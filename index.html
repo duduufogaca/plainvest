@@ -9512,7 +9512,7 @@
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <a class="member-login-btn" href="https://members.plainvest.app/login" id="nav-login-btn" data-i18n="nav.login">Login</a>
+      <a class="member-login-btn" href="#account" id="nav-login-btn" data-i18n="nav.login">Login</a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-btn active" onclick="setLang('en',this)" title="English">🇺🇸 EN</button>
         <button class="lang-btn" onclick="setLang('pt',this)" title="Português">🇧🇷 PT</button>
@@ -13794,8 +13794,8 @@
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrejoarg';
 
     function getMemberAppBase() {
-      if (window.location.protocol === 'file:' || window.location.hostname === 'localhost') return 'http://localhost:3000';
-      return 'https://members.plainvest.app';
+      if (window.location.protocol === 'file:') return 'http://localhost:3000';
+      return window.location.origin;
     }
 
     function openMemberApp(path) {
