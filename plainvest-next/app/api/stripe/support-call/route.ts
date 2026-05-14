@@ -6,9 +6,21 @@ function errorResponse(message: string, status = 500) {
   return NextResponse.json({ error: message }, { status });
 }
 
+export async function GET() {
+  return NextResponse.json({
+    ok: true,
+    message: 'Plainvest support-call checkout route is installed. Use the dashboard button to POST here and open Stripe Checkout.',
+    needs: 'STRIPE_SUPPORT_CALL_PRICE_ID must be set before checkout can open.',
+  });
+}
+
 export async function POST() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  let priceId = process.env.STRIPE_PRICE_ID;
+  const priceId = process.env.STRIPE_SUPPORT_CALL_PRICE_ID;
+
+  if (!priceId || priceId.startsWith('price_replace')) {
+    return errorResponse('Missing STRIPE_SUPPORT_CALL_PRICE_ID. Create the AUD $39.90 support call price in Stripe and add its price_ ID to .env.local.');
+  }
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -17,29 +29,8 @@ export async function POST() {
     return NextResponse.redirect(new URL('/login', siteUrl), { status: 303 });
   }
 
-  const stripe = createStripeClient();
-
-  if (!priceId || priceId.startsWith('price_replace')) {
-    const productId = process.env.STRIPE_PRODUCT_ID;
-
-    if (!productId || productId.startsWith('prod_your')) {
-      return errorResponse('Missing STRIPE_PRICE_ID or STRIPE_PRODUCT_ID. Add your Stripe annual access price ID or product ID to .env.local.');
-    }
-
-    const prices = await stripe.prices.list({
-      product: productId,
-      active: true,
-      limit: 1,
-    });
-
-    priceId = prices.data[0]?.id;
-
-    if (!priceId) {
-      return errorResponse('No active Stripe price found for the configured product.');
-    }
-  }
-
   try {
+    const stripe = createStripeClient();
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: [{ price: priceId, quantity: 1 }],
@@ -48,10 +39,10 @@ export async function POST() {
       metadata: {
         user_id: user.id,
         email: user.email || '',
-        product: 'plainvest_premium_annual',
+        product: 'plainvest_support_call',
       },
-      success_url: `${siteUrl}/dashboard?payment=success`,
-      cancel_url: `${siteUrl}/dashboard?payment=cancelled`,
+      success_url: `${siteUrl}/dashboard?support=paid#booking`,
+      cancel_url: `${siteUrl}/dashboard?support=cancelled#booking`,
     });
 
     if (!session.url) {
@@ -60,7 +51,7 @@ export async function POST() {
 
     return NextResponse.redirect(session.url, { status: 303 });
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Stripe checkout failed.';
+    const message = error instanceof Error ? error.message : 'Stripe support call checkout failed.';
     return errorResponse(message);
   }
 }

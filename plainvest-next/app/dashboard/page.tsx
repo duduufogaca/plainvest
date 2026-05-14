@@ -49,15 +49,31 @@ export default async function Dashboard() {
           </p>
         </div>
         {isPremium ? (
-          <div className="cards" id="guides">
-            {dashboardItems.map((item) => (
-              <article className="dash-card" key={item}>
-                <span>Premium</span>
-                <h2>{item}</h2>
-                <p>Connect this card to the matching guide or protected content route.</p>
-              </article>
-            ))}
-          </div>
+          <>
+            <div className="cards" id="guides">
+              {dashboardItems.map((item) => (
+                <article className="dash-card" key={item}>
+                  <span>Premium</span>
+                  <h2>{item}</h2>
+                  <p>Connect this card to the matching guide or protected content route.</p>
+                </article>
+              ))}
+            </div>
+            <section className="support-call-panel" id="booking">
+              <div>
+                <p className="eyebrow">Extra support call</p>
+                <h2>Book another 60-minute support call.</h2>
+                <p>Premium includes one yearly support call. If members want more help, they can purchase an extra online call separately for questions, exchange setup, DCA planning, Bitcoin safety, or chart-reading support.</p>
+              </div>
+              <div className="price-box">
+                <strong>AUD $39.90</strong>
+                <span>Extra 60-minute call</span>
+                <form action="/api/stripe/support-call" method="POST">
+                  <button type="submit">Pay for support call</button>
+                </form>
+              </div>
+            </section>
+          </>
         ) : (
           <section className="purchase-panel">
             <div>

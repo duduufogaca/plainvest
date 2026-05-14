@@ -27,3 +27,30 @@ for all
 to service_role
 using (true)
 with check (true);
+
+create table if not exists public.support_call_purchases (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete set null,
+  email text,
+  stripe_checkout_session_id text unique,
+  stripe_payment_intent_id text,
+  status text not null default 'paid',
+  created_at timestamptz not null default now()
+);
+
+alter table public.support_call_purchases enable row level security;
+
+drop policy if exists "Members can read their own support call purchases" on public.support_call_purchases;
+create policy "Members can read their own support call purchases"
+on public.support_call_purchases
+for select
+to authenticated
+using (auth.uid() = user_id);
+
+drop policy if exists "Service role can manage support call purchases" on public.support_call_purchases;
+create policy "Service role can manage support call purchases"
+on public.support_call_purchases
+for all
+to service_role
+using (true)
+with check (true);

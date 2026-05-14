@@ -36,9 +36,29 @@ export async function POST(request: Request) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
     const userId = session.metadata?.user_id || session.client_reference_id;
+    const product = session.metadata?.product;
 
     if (!userId) {
       return NextResponse.json({ error: 'Checkout session missing user ID.' }, { status: 400 });
+    }
+
+    if (product === 'plainvest_support_call') {
+      const supabaseAdmin = createAdminClient();
+      const { error } = await supabaseAdmin.from('support_call_purchases').upsert({
+        user_id: userId,
+        email: session.customer_email || session.metadata?.email || null,
+        stripe_checkout_session_id: session.id,
+        stripe_payment_intent_id: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+        status: 'paid',
+      }, {
+        onConflict: 'stripe_checkout_session_id',
+      });
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+
+      return NextResponse.json({ received: true });
     }
 
     const now = new Date();
