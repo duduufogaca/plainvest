@@ -1,0 +1,20 @@
+import Link from 'next/link';
+import { signIn } from '../actions/auth';
+
+export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+  const params = await searchParams;
+  return (
+    <main className="auth-shell">
+      <form className="auth-card" action={signIn}>
+        <p className="eyebrow">Member login</p>
+        <h1>Welcome back.</h1>
+        <p className="muted">Log in to continue your Plainvest Premium learning path.</p>
+        {params.message ? <div className="notice">{params.message}</div> : null}
+        <label>Email<input name="email" type="email" required /></label>
+        <label>Password<input name="password" type="password" minLength={6} required /></label>
+        <button type="submit">Login</button>
+        <p className="switch">New member? <Link href="/signup">Create an account</Link></p>
+      </form>
+    </main>
+  );
+}

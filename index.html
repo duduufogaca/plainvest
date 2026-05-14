@@ -10543,7 +10543,7 @@
           <div class="account-card">
             <h3 data-i18n="account.createTitle">Create account</h3>
             <p data-i18n="account.createCopy">Create your Plainvest profile so your Premium access can be connected after purchase.</p>
-            <form class="account-form" onsubmit="submitMemberAccount(event)">
+            <form class="account-form" onsubmit="openMemberSignup(event)">
               <label><span data-i18n="account.nameLabel">Name</span><input class="account-input" id="acct-name" type="text" placeholder="Jane Smith" required></label>
               <label><span data-i18n="account.emailLabel">Email</span><input class="account-input" id="acct-email" type="email" placeholder="you@email.com" required></label>
               <label><span data-i18n="account.passwordLabel">Password</span><input class="account-input" id="acct-password" type="password" placeholder="Create a password" required minlength="8"></label>
@@ -10555,7 +10555,7 @@
           <div class="account-card">
             <h3 data-i18n="account.loginTitle">Member login</h3>
             <p data-i18n="account.loginCopy">After your member account is connected, this is where Premium members will log in.</p>
-            <form class="account-form" onsubmit="showMemberLoginNotice(event)">
+            <form class="account-form" onsubmit="openMemberLogin(event)">
               <label><span data-i18n="account.emailLabel">Email</span><input class="account-input" id="login-email" type="email" placeholder="you@email.com" required></label>
               <label><span data-i18n="account.passwordLabel">Password</span><input class="account-input" id="login-password" type="password" placeholder="Your password" required></label>
               <button class="account-btn secondary" id="login-submit" type="submit" data-i18n="account.loginBtn">Log in →</button>
@@ -10581,7 +10581,7 @@
                 <li data-i18n="account.pay3">Extra support call: AUD $39.90</li>
                 <li data-i18n="account.pay4">Member hub, book list, Bitcoin, DCA, exchange setup, and chart-reading content</li>
               </ul>
-              <button class="account-btn" type="button" onclick="showPaymentSetupNotice()" data-i18n="account.paymentBtn">Finalize purchase →</button>
+              <button class="account-btn" type="button" onclick="openMemberDashboard()" data-i18n="account.paymentBtn">Finalize purchase →</button>
             </div>
           </div>
         </div>
@@ -11318,12 +11318,12 @@
         account: {
           eyebrow: 'Founding access',
           h2: 'Create your <em>Premium</em> account.',
-          lead: 'Create your member profile and finalize annual Premium access when you are ready.',
+          lead: 'Create your secure member profile, log in, and finish annual Premium access through the protected member dashboard.',
           pill1: 'AUD $89.90/year',
           pill2: 'One yearly payment',
           pill3: 'Beginner support',
           createTitle: 'Create account',
-          createCopy: 'Create your Plainvest profile so your Premium access can be connected after purchase.',
+          createCopy: 'Open the secure Plainvest member app to create your account with Supabase authentication.',
           nameLabel: 'Name',
           emailLabel: 'Email',
           passwordLabel: 'Password',
@@ -11331,15 +11331,15 @@
           emailPlaceholder: 'you@email.com',
           createPasswordPlaceholder: 'Create a password',
           loginPasswordPlaceholder: 'Your password',
-          createBtn: 'Create account →',
-          createSuccess: 'Thanks. Your account details were received.',
+          createBtn: 'Open signup →',
+          createSuccess: 'Opening secure signup.',
           securityNote: 'Use an email you want connected to your Premium access.',
           loginTitle: 'Member login',
-          loginCopy: 'Use this preview login to inspect the Premium member area while secure accounts are being prepared.',
+          loginCopy: 'Already created your account? Log in to continue to your dashboard and Premium access.',
           loginBtn: 'Log in →',
-          loginNotice: 'Opening the Premium member preview.',
+          loginNotice: 'Opening secure login.',
           paymentTitle: 'Finalize your Premium access',
-          paymentCopy: 'Complete your annual access purchase, then use the same email to enter the Premium member area.',
+          paymentCopy: 'Log in to the member dashboard and continue to secure Stripe checkout for annual access.',
           launch1: 'Annual Premium learning hub access',
           launch2: 'One 60-minute Zoom support call included',
           launch3: 'Growing guides, books, Bitcoin, DCA, exchange, and chart-reading modules',
@@ -11349,8 +11349,8 @@
           pay2: 'Includes one 60-minute Zoom call',
           pay3: 'Extra support call: AUD $39.90',
           pay4: 'Member hub, book list, Bitcoin, DCA, exchange setup, and chart-reading content',
-          paymentBtn: 'Finalize purchase →',
-          paymentNotice: 'Checkout will open here when the secure payment link is connected.'
+          paymentBtn: 'Open member dashboard →',
+          paymentNotice: 'Opening the secure member dashboard.'
         },
         member: {
           eyebrow: 'Premium member area',
@@ -11834,12 +11834,12 @@
         account: {
           eyebrow: 'Acesso fundador',
           h2: 'Crie sua conta <em>Premium</em>.',
-          lead: 'Crie seu perfil de membro e finalize o acesso Premium anual quando estiver pronto.',
+          lead: 'Crie seu perfil de membro com segurança, faça login e finalize o acesso Premium anual pelo painel protegido.',
           pill1: 'aprox. R$320,00/ano',
           pill2: 'Um pagamento anual',
           pill3: 'Apoio para iniciantes',
           createTitle: 'Criar conta',
-          createCopy: 'Crie seu perfil Plainvest para conectar seu acesso Premium depois da compra.',
+          createCopy: 'Abra o app seguro de membros Plainvest para criar sua conta com autenticação Supabase.',
           nameLabel: 'Nome',
           emailLabel: 'Email',
           passwordLabel: 'Senha',
@@ -11847,15 +11847,15 @@
           emailPlaceholder: 'voce@email.com',
           createPasswordPlaceholder: 'Crie uma senha',
           loginPasswordPlaceholder: 'Sua senha',
-          createBtn: 'Criar conta →',
-          createSuccess: 'Obrigado. Os dados da sua conta foram recebidos.',
+          createBtn: 'Abrir cadastro →',
+          createSuccess: 'Abrindo cadastro seguro.',
           securityNote: 'Use um email que você quer conectar ao seu acesso Premium.',
           loginTitle: 'Login de membro',
-          loginCopy: 'Use este login de prévia para verificar a área Premium enquanto as contas seguras estão sendo preparadas.',
+          loginCopy: 'Já criou sua conta? Entre para continuar para o painel e o acesso Premium.',
           loginBtn: 'Entrar →',
-          loginNotice: 'Abrindo a prévia da área Premium.',
+          loginNotice: 'Abrindo login seguro.',
           paymentTitle: 'Finalize seu acesso Premium',
-          paymentCopy: 'Conclua a compra do acesso anual e use o mesmo email para entrar na área Premium.',
+          paymentCopy: 'Entre no painel de membro e continue para o checkout seguro do acesso anual.',
           launch1: 'Acesso anual ao hub de aprendizado Premium',
           launch2: 'Uma chamada no Zoom de 60 minutos incluída',
           launch3: 'Guias, livros, Bitcoin, DCA, exchange e módulos de leitura de gráficos em crescimento',
@@ -11865,8 +11865,8 @@
           pay2: 'Inclui uma chamada no Zoom de 60 minutos',
           pay3: 'Chamada extra de apoio: aprox. R$142,00',
           pay4: 'Hub de membro, lista de livros, Bitcoin, DCA, ajuda com exchange e conteúdo de leitura de gráficos',
-          paymentBtn: 'Finalizar compra →',
-          paymentNotice: 'O checkout abrirá aqui quando o link de pagamento seguro estiver conectado.'
+          paymentBtn: 'Abrir painel de membro →',
+          paymentNotice: 'Abrindo o painel seguro de membro.'
         },
         member: {
           eyebrow: 'Área Premium',
@@ -13792,6 +13792,29 @@
     }
 
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrejoarg';
+
+    function getMemberAppBase() {
+      if (window.location.protocol === 'file:') return 'http://localhost:3000';
+      return window.location.origin;
+    }
+
+    function openMemberApp(path) {
+      window.location.href = getMemberAppBase() + path;
+    }
+
+    function openMemberSignup(event) {
+      if (event && event.preventDefault) event.preventDefault();
+      openMemberApp('/signup');
+    }
+
+    function openMemberLogin(event) {
+      if (event && event.preventDefault) event.preventDefault();
+      openMemberApp('/login');
+    }
+
+    function openMemberDashboard() {
+      openMemberApp('/dashboard');
+    }
 
     async function submitMemberAccount(event) {
       if (event && event.preventDefault) event.preventDefault();
