@@ -8,6 +8,6 @@ export function createStripeClient() {
   }
 
   return new Stripe(secretKey, {
-    apiVersion: '2024-06-20',
+    apiVersion: '2025-02-24.acacia',
   });
 }
