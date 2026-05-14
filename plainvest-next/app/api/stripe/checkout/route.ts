@@ -7,14 +7,8 @@ function errorResponse(message: string, status = 500) {
 }
 
 export async function POST() {
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').trim().replace(/\/$/, '');
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   let priceId = process.env.STRIPE_PRICE_ID;
-
-  try {
-    new URL(siteUrl);
-  } catch {
-    return errorResponse('NEXT_PUBLIC_SITE_URL is not valid. Use https://members.plainvest.app with no spaces or line breaks.');
-  }
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

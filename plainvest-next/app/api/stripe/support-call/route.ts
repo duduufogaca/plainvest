@@ -15,14 +15,8 @@ export async function GET() {
 }
 
 export async function POST() {
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').trim().replace(/\/$/, '');
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const priceId = process.env.STRIPE_SUPPORT_CALL_PRICE_ID;
-
-  try {
-    new URL(siteUrl);
-  } catch {
-    return errorResponse('NEXT_PUBLIC_SITE_URL is not valid. Use https://members.plainvest.app with no spaces or line breaks.');
-  }
 
   if (!priceId || priceId.startsWith('price_replace')) {
     return errorResponse('Missing STRIPE_SUPPORT_CALL_PRICE_ID. Create the AUD $39.90 support call price in Stripe and add its price_ ID to .env.local.');
