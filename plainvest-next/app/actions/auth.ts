@@ -10,7 +10,14 @@ function getOrigin() {
 export async function signIn(formData: FormData) {
   const email = String(formData.get('email') || '');
   const password = String(formData.get('password') || '');
-  const supabase = await createClient();
+  let supabase;
+
+  try {
+    supabase = await createClient();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Supabase is not connected yet.';
+    redirect(`/login?message=${encodeURIComponent(message)}`);
+  }
 
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
@@ -24,7 +31,14 @@ export async function signIn(formData: FormData) {
 export async function signUp(formData: FormData) {
   const email = String(formData.get('email') || '');
   const password = String(formData.get('password') || '');
-  const supabase = await createClient();
+  let supabase;
+
+  try {
+    supabase = await createClient();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Supabase is not connected yet.';
+    redirect(`/signup?message=${encodeURIComponent(message)}`);
+  }
 
   const { error } = await supabase.auth.signUp({
     email,
@@ -42,7 +56,11 @@ export async function signUp(formData: FormData) {
 }
 
 export async function signOut() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
+  try {
+    const supabase = await createClient();
+    await supabase.auth.signOut();
+  } catch {
+    // If auth configuration is missing, still let the user leave the dashboard.
+  }
   redirect('/login');
 }

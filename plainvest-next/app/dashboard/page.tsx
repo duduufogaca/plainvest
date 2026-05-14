@@ -15,6 +15,26 @@ const dashboardItems = [
 ];
 
 export default async function Dashboard() {
+  const missingEnv = [
+    ['NEXT_PUBLIC_SUPABASE_URL', process.env.NEXT_PUBLIC_SUPABASE_URL],
+    ['NEXT_PUBLIC_SUPABASE_ANON_KEY', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY],
+  ].filter(([, value]) => !value).map(([name]) => name);
+
+  if (missingEnv.length > 0) {
+    return (
+      <main className="setup-shell">
+        <section className="setup-card">
+          <p className="eyebrow">Setup needed</p>
+          <h1>Supabase is not connected on this deployment yet.</h1>
+          <p>Add these environment variables in Vercel, then redeploy the project:</p>
+          <ul>
+            {missingEnv.map((name) => <li key={name}>{name}</li>)}
+          </ul>
+        </section>
+      </main>
+    );
+  }
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -22,7 +42,21 @@ export default async function Dashboard() {
     redirect('/login');
   }
 
-  const { isPremium, access } = await getPremiumAccess(supabase, user.id);
+  const { isPremium, access, error: accessError } = await getPremiumAccess(supabase, user.id);
+
+  if (accessError) {
+    return (
+      <main className="setup-shell">
+        <section className="setup-card">
+          <p className="eyebrow">Database setup needed</p>
+          <h1>The member access table is not ready yet.</h1>
+          <p>Run this SQL file in Supabase SQL Editor, then refresh this page:</p>
+          <code>plainvest-next/supabase/member_access.sql</code>
+          <p className="muted">Supabase message: {accessError.message}</p>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="dashboard-shell">
