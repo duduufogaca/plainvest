@@ -47,8 +47,8 @@ export async function POST() {
         email: user.email || '',
         product: 'plainvest_support_call',
       },
-      success_url: `${siteUrl}/dashboard?support=paid#booking`,
-      cancel_url: `${siteUrl}/dashboard?support=cancelled#booking`,
+      success_url: `${siteUrl}/index.html#member`,
+      cancel_url: `${siteUrl}/index.html#member`,
     });
 
     if (!session.url) {

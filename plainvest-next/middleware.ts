@@ -62,7 +62,7 @@ export async function middleware(request: NextRequest) {
       stripe_payment_intent_id: string | null;
     }>();
 
-  const hasStripePaymentProof = Boolean(data?.stripe_payment_intent_id);
+  const hasStripePaymentProof = Boolean(data?.stripe_payment_intent_id || data?.stripe_checkout_session_id);
 
   if (error || data?.premium_status !== 'active' || !hasStripePaymentProof) {
     return NextResponse.redirect(new URL('/dashboard', request.url));

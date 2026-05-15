@@ -156,6 +156,28 @@ a { color:inherit; text-decoration:none; }
   display:grid;
   grid-template-columns:280px minmax(0,1fr);
 }
+.payment-shell {
+  min-height:100vh;
+  padding:clamp(1rem,3vw,2.4rem);
+}
+.payment-topbar {
+  width:min(1180px,100%);
+  margin:0 auto 1rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.payment-topbar .ghost {
+  width:auto;
+  margin-top:0;
+  min-width:110px;
+  text-align:center;
+}
+.payment-content {
+  width:min(1180px,100%);
+  margin:0 auto;
+}
 .sidebar {
   position:sticky;
   top:0;

@@ -73,5 +73,5 @@ export async function signOut() {
   } catch {
     // If auth configuration is missing, still let the user leave the dashboard.
   }
-  redirect('/login');
+  redirect('https://plainvest.app');
 }

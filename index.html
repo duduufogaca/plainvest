@@ -4167,6 +4167,31 @@
       white-space: nowrap;
     }
 
+    .member-head-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: .55rem;
+      flex-wrap: wrap;
+    }
+
+    .member-logout-link {
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .04);
+      color: var(--muted);
+      border-radius: 16px;
+      padding: .8rem 1rem;
+      font-size: .78rem;
+      font-weight: 900;
+      transition: border-color .2s ease, color .2s ease, background .2s ease;
+    }
+
+    .member-logout-link:hover {
+      border-color: rgba(0, 212, 170, .35);
+      color: var(--white);
+      background: rgba(0, 212, 170, .07);
+    }
+
     .member-hero-visual {
       margin-bottom: 1rem;
       border: 1px solid rgba(255, 255, 255, .10);
@@ -10660,7 +10685,10 @@
           <div class="section-h2" data-i18n-html="member.h2">Your Plainvest <em>learning hub.</em></div>
           <p class="section-lead" data-i18n="member.lead">This is the first version of the member space. Premium content will live here after login: guides, books, exchange help, meetings, and saved learning paths.</p>
         </div>
-        <div class="member-status" data-i18n="member.status">Member preview</div>
+        <div class="member-head-actions">
+          <div class="member-status" data-i18n="member.status">Member preview</div>
+          <a class="member-logout-link" href="/logout" data-i18n="member.logoutBtn">Logout</a>
+        </div>
       </div>
       <div class="member-hero-visual">
         <div class="member-hero-copy">
@@ -10848,6 +10876,7 @@
         </div>
         <div class="member-guide-actions">
           <button class="member-action-btn" onclick="showPage('member')" data-i18n="memberGuide.backBtn">Back to member area</button>
+          <a class="member-action-btn" href="/logout" data-i18n="member.logoutBtn">Logout</a>
         </div>
       </div>
       <div class="member-guide-frame-wrap">
@@ -10873,6 +10902,7 @@
         </div>
         <div class="member-books-tools">
           <button class="member-action-btn" onclick="showPage('member')" data-i18n="memberBooks.backBtn">Back to member area</button>
+          <a class="member-action-btn" href="/logout" data-i18n="member.logoutBtn">Logout</a>
         </div>
       </div>
 
@@ -11451,6 +11481,7 @@
           supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.',
           askBtn: 'Book support call',
           extraCallBtn: 'Buy extra call — AUD $39.90',
+          logoutBtn: 'Logout',
           path1Title: 'Start with your goal',
           path1Text: 'Choose what you want to understand first: investing basics, Bitcoin, DCA, books, or exchange setup.',
           path2Title: 'Follow one module',
@@ -11968,6 +11999,7 @@
           supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Chamadas online extras de 60 minutos ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
           askBtn: 'Agendar chamada',
           extraCallBtn: 'Comprar chamada extra — AUD $39,90',
+          logoutBtn: 'Sair',
           path1Title: 'Comece pelo seu objetivo',
           path1Text: 'Escolha o que quer entender primeiro: básico de investimentos, Bitcoin, DCA, livros ou configuração de exchange.',
           path2Title: 'Siga um módulo',
