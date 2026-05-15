@@ -15,7 +15,6 @@ function isMembersHost(host: string | null) {
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const isProtectedMemberPath =
-    pathname === '/index.html' ||
     pathname.startsWith('/files/premium_content/');
   const shouldProtectMemberPage = isMembersHost(request.headers.get('host')) && isProtectedMemberPath;
 
@@ -73,5 +72,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/index.html', '/files/premium_content/:path*'],
+  matcher: ['/files/premium_content/:path*'],
 };
