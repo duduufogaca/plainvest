@@ -7544,6 +7544,60 @@
       display: none !important;
     }
 
+    .premium-protected-content {
+      display: none !important;
+    }
+
+    body.premium-access-granted .premium-protected-content {
+      display: block !important;
+    }
+
+    body.premium-access-granted .member-books-grid.premium-protected-content {
+      display: grid !important;
+    }
+
+    .premium-access-blocker {
+      display: none;
+      max-width: 760px;
+      margin: 2rem auto;
+      border: 1px solid rgba(244, 200, 106, .28);
+      border-radius: 24px;
+      padding: clamp(1.1rem, 3vw, 2rem);
+      background: linear-gradient(145deg, rgba(20, 35, 57, .94), rgba(8, 18, 33, .96));
+      color: var(--muted);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .26);
+    }
+
+    .premium-access-blocker h2 {
+      margin: 0 0 .7rem;
+      color: var(--white);
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: 0;
+    }
+
+    .premium-access-blocker p {
+      margin: 0 0 1.1rem;
+      line-height: 1.7;
+    }
+
+    .premium-access-blocker a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border-radius: 999px;
+      padding: .85rem 1.1rem;
+      background: linear-gradient(135deg, var(--teal-soft), var(--teal));
+      color: #061626;
+      font-weight: 900;
+    }
+
+    body.premium-access-denied .premium-access-blocker,
+    body.premium-access-checking .premium-access-blocker {
+      display: block;
+    }
+
     /* ── Logo refinement ────────────────────────────────────────── */
     .logo {
       gap: 0.6rem;
@@ -10594,7 +10648,12 @@
 
   <!-- PREMIUM MEMBER AREA -->
   <section id="member" class="app-page" data-page="member">
-    <div class="member-shell">
+    <div class="premium-access-blocker" data-premium-blocker>
+      <h2>Premium access required</h2>
+      <p>Log in and complete the one-time Premium purchase to unlock the member learning hub.</p>
+      <a href="/dashboard">Continue to payment</a>
+    </div>
+    <div class="member-shell premium-protected-content">
       <div class="member-head">
         <div>
           <div class="section-eyebrow" data-i18n="member.eyebrow">Premium member area</div>
@@ -10635,6 +10694,9 @@
           <p data-i18n="member.supportText">Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.</p>
           <div class="member-support-actions">
             <button class="member-action-btn primary" onclick="openMemberGuide('zoom')" data-i18n="member.askBtn">Book support call</button>
+            <form class="member-extra-call-form" action="/api/stripe/support-call" method="POST">
+              <button class="member-action-btn" type="submit" data-i18n="member.extraCallBtn">Buy extra call — AUD $39.90</button>
+            </form>
           </div>
         </div>
       </div>
@@ -10772,7 +10834,12 @@
 
   <!-- PREMIUM MEMBER FILE VIEWER -->
   <section id="member-guide" class="app-page" data-page="member-guide">
-    <div class="member-guide-shell">
+    <div class="premium-access-blocker" data-premium-blocker>
+      <h2>Premium access required</h2>
+      <p>Log in and complete the one-time Premium purchase to unlock this guide.</p>
+      <a href="/dashboard">Continue to payment</a>
+    </div>
+    <div class="member-guide-shell premium-protected-content">
       <div class="member-guide-head">
         <div>
           <div class="section-eyebrow" id="member-guide-eyebrow" data-i18n="memberGuide.eyebrow">Premium file</div>
@@ -10792,7 +10859,12 @@
 
   <!-- PREMIUM BOOK LIST -->
   <section id="member-books" class="app-page" data-page="member-books">
-    <div class="member-books-shell">
+    <div class="premium-access-blocker" data-premium-blocker>
+      <h2>Premium access required</h2>
+      <p>Log in and complete the one-time Premium purchase to unlock the book list.</p>
+      <a href="/dashboard">Continue to payment</a>
+    </div>
+    <div class="member-books-shell premium-protected-content">
       <div class="member-books-head">
         <div>
           <div class="section-eyebrow" data-i18n="memberBooks.eyebrow">Premium book list</div>
@@ -11378,6 +11450,7 @@
           supportTitle: 'Member support',
           supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.',
           askBtn: 'Book support call',
+          extraCallBtn: 'Buy extra call — AUD $39.90',
           path1Title: 'Start with your goal',
           path1Text: 'Choose what you want to understand first: investing basics, Bitcoin, DCA, books, or exchange setup.',
           path2Title: 'Follow one module',
@@ -11894,6 +11967,7 @@
           supportTitle: 'Suporte de membro',
           supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Chamadas online extras de 60 minutos ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
           askBtn: 'Agendar chamada',
+          extraCallBtn: 'Comprar chamada extra — AUD $39,90',
           path1Title: 'Comece pelo seu objetivo',
           path1Text: 'Escolha o que quer entender primeiro: básico de investimentos, Bitcoin, DCA, livros ou configuração de exchange.',
           path2Title: 'Siga um módulo',
@@ -14577,13 +14651,33 @@
       });
     }
 
+    function isLocalPlainvestPreview() {
+      return window.location.protocol === 'file:' ||
+        window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1';
+    }
+
+    function isPremiumProtectedPage(page) {
+      return ['member', 'member-guide', 'member-books'].indexOf(page) >= 0;
+    }
+
+    function resetPremiumAccessState() {
+      document.body.classList.remove('premium-access-checking', 'premium-access-denied', 'premium-access-granted');
+    }
+
     function isMemberAppHost() {
       return /(^|\.)members\.plainvest\.app$/i.test(window.location.hostname);
     }
 
     async function ensurePremiumAccessForMemberPage(page) {
-      if (!isMemberAppHost()) return true;
-      if (['member', 'member-guide', 'member-books'].indexOf(page) < 0) return true;
+      if (!isPremiumProtectedPage(page)) return true;
+      if (isLocalPlainvestPreview()) {
+        document.body.classList.add('premium-access-granted');
+        return true;
+      }
+
+      document.body.classList.remove('premium-access-denied', 'premium-access-granted');
+      document.body.classList.add('premium-access-checking');
 
       try {
         var response = await fetch('/api/member/status', {
@@ -14592,12 +14686,22 @@
         });
         var status = response.ok ? await response.json() : null;
 
-        if (status && status.authenticated && status.premium) return true;
+        if (status && status.authenticated && status.premium) {
+          document.body.classList.remove('premium-access-checking', 'premium-access-denied');
+          document.body.classList.add('premium-access-granted');
+          return true;
+        }
 
-        window.location.replace(status && status.authenticated ? '/dashboard' : '/login?mode=manual');
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        setTimeout(function () {
+          window.location.replace(status && status.authenticated ? '/dashboard' : '/login?mode=manual');
+        }, 350);
         return false;
       } catch (error) {
-        window.location.replace('/dashboard');
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        setTimeout(function () { window.location.replace('/dashboard'); }, 350);
         return false;
       }
     }
@@ -14605,10 +14709,17 @@
     function showPage(page, options) {
       options = options || {};
       var selected = APP_PAGES.indexOf(page) >= 0 ? page : 'home';
-      if (!options.accessChecked && ['member', 'member-guide', 'member-books'].indexOf(selected) >= 0 && isMemberAppHost()) {
+      if (!isPremiumProtectedPage(selected)) {
+        resetPremiumAccessState();
+      }
+      if (!options.accessChecked && isPremiumProtectedPage(selected)) {
         document.querySelectorAll('.app-page').forEach(function (el) {
-          el.hidden = true;
+          el.hidden = el.getAttribute('data-page') !== selected;
         });
+        refreshActiveNav(selected);
+        if (options.updateHash !== false && window.location.hash !== '#' + selected) {
+          history.pushState(null, '', '#' + selected);
+        }
         ensurePremiumAccessForMemberPage(selected).then(function (allowed) {
           if (allowed) showPage(selected, Object.assign({}, options, { accessChecked: true }));
         });

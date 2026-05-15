@@ -1,6 +1,23 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Investment Paths Guide</title><link rel="stylesheet" href="premium-guide.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Investment Paths Guide</title><link rel="stylesheet" href="premium-guide.css"><script id="plainvest-premium-file-guard">
+(function () {
+  var local = location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1";
+  if (local) return;
+  document.documentElement.style.visibility = "hidden";
+  fetch("/api/member/status", { credentials: "include", cache: "no-store" })
+    .then(function (response) { return response.ok ? response.json() : null; })
+    .then(function (status) {
+      if (status && status.authenticated && status.premium) {
+        document.documentElement.style.visibility = "visible";
+        return;
+      }
+      location.replace(status && status.authenticated ? "/dashboard" : "/login?mode=manual");
+    })
+    .catch(function () { location.replace("/dashboard"); });
+})();
+</script>
+</head>
 <body>
 <main class="guide">
   <a class="platform-back" href="../../index.html#member">← Back to member area</a>
@@ -28,6 +45,61 @@
     <img src="../../assets/currency-purchasing-power.jpg" alt="Illustration of dollar purchasing power falling over time">
     <figcaption>Inflation is one reason beginners compare cash, bonds, shares, property, gold, and Bitcoin. The goal is not just a bigger number, but better real purchasing power over time.</figcaption>
   </figure>
+
+  <section class="section behavior-study">
+    <div class="section-split">
+      <div>
+        <h2>The hardest investment path is behaviour</h2>
+        <p>The chart below is powerful because every red dot can feel like a strong reason to sell: recession fear, debt crisis, flash crash, political stress, oil shocks, war headlines, shutdowns, and bear-market panic. Yet over that period the broad market still climbed through repeated waves of fear.</p>
+        <p>This does not mean selling is always wrong. It means the market gives investors scary stories all the time, and a beginner without a written plan can confuse a headline with a strategy.</p>
+      </div>
+      <div class="study-note">
+        <strong>What studies suggest</strong>
+        <span>Behavioural-finance research points to three recurring problems: losses feel emotionally stronger than gains, frequent trading can reduce investor returns after costs, and panic decisions often happen when prices are already stressed.</span>
+      </div>
+    </div>
+
+    <figure class="guide-visual behavior-visual">
+      <img src="../../assets/reasons-to-sell.png" alt="Reasons to sell chart showing market headlines during a long rising market">
+      <figcaption>The lesson is not “never sell”. The lesson is “do not let every scary headline become your investment policy”.</figcaption>
+    </figure>
+
+    <div class="decision-grid">
+      <div class="decision-card">
+        <strong>Weak reasons to sell</strong>
+        <ul>
+          <li>A scary headline without a change in your original thesis.</li>
+          <li>Social media panic, predictions, or short-term market noise.</li>
+          <li>Trying to perfectly time the bottom or avoid every correction.</li>
+          <li>Selling only because the account is red and uncomfortable to look at.</li>
+        </ul>
+      </div>
+      <div class="decision-card decision-card-good">
+        <strong>Stronger reasons to sell</strong>
+        <ul>
+          <li>Your goal, time horizon, or cash need has genuinely changed.</li>
+          <li>The original investment thesis is broken or the risk is now too concentrated.</li>
+          <li>You are rebalancing back to a written plan.</li>
+          <li>Fees, tax, product structure, or platform risk no longer make sense.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="research-stack">
+      <div>
+        <strong>Prospect theory</strong>
+        <p>Kahneman and Tversky showed that people evaluate gains and losses differently under risk. In plain English, losing money can feel much more painful than the pleasure of making the same amount, which helps explain why drawdowns can trigger panic.</p>
+      </div>
+      <div>
+        <strong>Overtrading evidence</strong>
+        <p>Barber and Odean studied individual investor trading and found a clear pattern: more active trading was associated with lower net performance after costs. Activity can feel productive, but it is not the same as progress.</p>
+      </div>
+      <div>
+        <strong>Plainvest rule</strong>
+        <p>Before buying, write the sell rules. If you only decide after the market falls, emotion is already in the room. A simple rulebook protects you from turning volatility into a permanent mistake.</p>
+      </div>
+    </div>
+  </section>
 
   <section class="section">
     <h2>Index funds and ETFs</h2>
