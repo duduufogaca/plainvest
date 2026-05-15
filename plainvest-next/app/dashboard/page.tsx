@@ -106,7 +106,7 @@ export default async function Dashboard() {
         <div className="brand">Plainvest</div>
         <nav>
           <a className="active" href="#overview">Member home</a>
-          <a href="#guides">Premium guides</a>
+          <a href="#guides">Investment paths</a>
           <a href="#booking">Support call</a>
           <a href="#account">Account</a>
         </nav>
@@ -121,7 +121,7 @@ export default async function Dashboard() {
           <p>
             Logged in as {user.email}. {isPremium
               ? 'Choose a guide below and continue your learning path. Your Premium access is active.'
-              : 'Your account works. Complete your one-time purchase to unlock the Premium guides and member resources.'}
+              : 'Your account works. Complete your one-time purchase to unlock the Premium learning hub and member resources.'}
           </p>
         </div>
         {isPremium ? (
@@ -155,7 +155,7 @@ export default async function Dashboard() {
             <div>
               <p className="eyebrow">Premium purchase</p>
               <h2>Plainvest Premium Learning Pass</h2>
-              <p>Unlock the member guides, book list, chart-reading tools, Bitcoin research, DCA method, and one included support call.</p>
+              <p>Unlock the investment paths, book list, chart-reading tools, Bitcoin research, DCA method, and one included support call.</p>
             </div>
             <div className="price-box">
               <strong>AUD $89.90</strong>

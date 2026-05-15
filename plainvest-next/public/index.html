@@ -10722,7 +10722,7 @@
         <div class="member-card">
           <div class="member-icon">📚</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card1Title">Premium guides</h3>
+          <h3 data-i18n="member.card1Title">Investment paths</h3>
           <p data-i18n="member.card1Text">Step-by-step explanations for each investment path, from beginner basics to practical buying decisions.</p>
           <ul>
             <li data-i18n="member.card1Item1">Index funds, ETFs, bonds, stocks, REITs, gold, and crypto</li>
@@ -11460,7 +11460,7 @@
           path4Title: 'Take the next step',
           path4Text: 'Move from learning to a calmer first decision, with risks and trade-offs understood.',
           unlocked: 'Unlocked',
-          card1Title: 'Premium guides',
+          card1Title: 'Investment paths',
           card1Text: 'Step-by-step explanations for each investment path, from beginner basics to practical buying decisions.',
           card1Item1: 'Index funds, ETFs, bonds, stocks, REITs, gold, and crypto',
           card1Item2: 'How each investment works and when it may fit',
@@ -11977,7 +11977,7 @@
           path4Title: 'Dê o próximo passo',
           path4Text: 'Saia do aprendizado para uma primeira decisão mais calma, entendendo riscos e vantagens.',
           unlocked: 'Liberado',
-          card1Title: 'Guias Premium',
+          card1Title: 'Caminhos de investimento',
           card1Text: 'Explicações passo a passo para cada caminho de investimento, do básico até decisões práticas de compra.',
           card1Item1: 'Fundos de índice, ETFs, títulos, ações, FIIs/REITs, ouro e cripto',
           card1Item2: 'Como cada investimento funciona e quando pode fazer sentido',
@@ -14051,8 +14051,8 @@
       const modules = {
         guides: {
           icon: '📚',
-          en: ['Premium guides', 'Use this area to go deeper into each investment path with plain-English explanations, buying steps, risk notes, and beginner examples by country. Start with the investment you are most curious about, then compare it with the simulator before making any decision.'],
-          pt: ['Guias Premium', 'Use esta área para aprofundar cada caminho de investimento com explicações simples, passos de compra, pontos de risco e exemplos para iniciantes por país. Comece pelo investimento que mais desperta curiosidade e compare no simulador antes de qualquer decisão.']
+          en: ['Investment paths', 'Use this area to go deeper into each investment path with plain-English explanations, buying steps, risk notes, and beginner examples by country. Start with the investment you are most curious about, then compare it with the simulator before making any decision.'],
+          pt: ['Caminhos de investimento', 'Use esta área para aprofundar cada caminho de investimento com explicações simples, passos de compra, pontos de risco e exemplos para iniciantes por país. Comece pelo investimento que mais desperta curiosidade e compare no simulador antes de qualquer decisão.']
         },
         crypto: {
           icon: '₿',
@@ -14652,9 +14652,10 @@
     }
 
     function isLocalPlainvestPreview() {
-      return window.location.protocol === 'file:' ||
+      var isLocal = window.location.protocol === 'file:' ||
         window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1';
+      return isLocal && new URLSearchParams(window.location.search).get('preview') === '1';
     }
 
     function isPremiumProtectedPage(page) {
@@ -14674,6 +14675,13 @@
       if (isLocalPlainvestPreview()) {
         document.body.classList.add('premium-access-granted');
         return true;
+      }
+
+      if (!isMemberAppHost()) {
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        window.location.replace('https://members.plainvest.app/dashboard');
+        return false;
       }
 
       document.body.classList.remove('premium-access-denied', 'premium-access-granted');

@@ -1174,6 +1174,8 @@ li { margin:.24rem 0; font-size:.84rem; }
 }
 .behavior-visual img {
   width:100%;
+  max-height:none;
+  object-fit:contain;
   border-radius:12px;
   display:block;
 }
