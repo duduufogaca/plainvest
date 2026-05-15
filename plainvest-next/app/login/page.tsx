@@ -1,7 +1,16 @@
 import Link from 'next/link';
 import { signIn } from '../actions/auth';
+import { createClient } from '@/lib/supabase/server';
+import { redirect } from 'next/navigation';
 
 export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect('/dashboard#guides');
+  }
+
   const params = await searchParams;
   return (
     <main className="auth-shell">
