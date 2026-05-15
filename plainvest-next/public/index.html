@@ -9526,7 +9526,7 @@
     </ul>
     <div class="nav-actions">
       <a class="member-login-btn member-create-btn" href="https://members.plainvest.app/signup" id="nav-create-member-btn" data-i18n="nav.createMember">Create member</a>
-      <a class="member-login-btn" href="https://members.plainvest.app/login" id="nav-login-btn" data-i18n="nav.login">Login</a>
+      <a class="member-login-btn" href="https://members.plainvest.app/login?mode=manual" id="nav-login-btn" data-i18n="nav.login">Login</a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-btn active" onclick="setLang('en',this)" title="English">🇺🇸 EN</button>
         <button class="lang-btn" onclick="setLang('pt',this)" title="Português">🇧🇷 PT</button>
@@ -13812,7 +13812,7 @@
 
     function openMemberLogin(event) {
       if (event && event.preventDefault) event.preventDefault();
-      openMemberApp('/login');
+      openMemberApp('/login?mode=manual');
     }
 
     function openMemberDashboard() {

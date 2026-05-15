@@ -4,16 +4,16 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 
-export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string; mode?: string }> }) {
+  const params = await searchParams;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (user) {
+  if (user && params.mode !== 'manual') {
     const { isPremium } = await getPremiumAccess(supabase, user.id);
     redirect(isPremium ? '/index.html#member' : '/dashboard');
   }
 
-  const params = await searchParams;
   return (
     <main className="auth-shell">
       <form className="auth-card" action={signIn}>
