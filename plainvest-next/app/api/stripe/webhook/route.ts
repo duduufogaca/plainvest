@@ -62,8 +62,6 @@ export async function POST(request: Request) {
     }
 
     const now = new Date();
-    const expiresAt = new Date(now);
-    expiresAt.setFullYear(expiresAt.getFullYear() + 1);
 
     const supabaseAdmin = createAdminClient();
     const { error } = await supabaseAdmin.from('member_access').upsert({
@@ -71,7 +69,7 @@ export async function POST(request: Request) {
       email: session.customer_email || session.metadata?.email || null,
       premium_status: 'active',
       access_started_at: now.toISOString(),
-      access_expires_at: expiresAt.toISOString(),
+      access_expires_at: null,
       stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
       stripe_checkout_session_id: session.id,
       stripe_payment_intent_id: typeof session.payment_intent === 'string' ? session.payment_intent : null,

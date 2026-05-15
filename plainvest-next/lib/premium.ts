@@ -16,8 +16,7 @@ export async function getPremiumAccess(supabase: SupabaseClient, userId: string)
     return { isPremium: false, access: null, error };
   }
 
-  const expiresAt = data?.access_expires_at ? new Date(data.access_expires_at).getTime() : 0;
-  const isPremium = data?.premium_status === 'active' && expiresAt > Date.now();
+  const isPremium = data?.premium_status === 'active';
 
   return { isPremium, access: data, error: null };
 }

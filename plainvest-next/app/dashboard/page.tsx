@@ -84,7 +84,7 @@ export default async function Dashboard() {
     redirect('/login');
   }
 
-  const { isPremium, access, error: accessError } = await getPremiumAccess(supabase, user.id);
+  const { isPremium, error: accessError } = await getPremiumAccess(supabase, user.id);
 
   if (accessError) {
     return (
@@ -120,7 +120,7 @@ export default async function Dashboard() {
           <h1>{isPremium ? 'Welcome to your Premium learning area.' : 'Finish your Premium access.'}</h1>
           <p>
             Logged in as {user.email}. {isPremium
-              ? `Choose a guide below and continue your learning path. Your access is active until ${access?.access_expires_at ? new Date(access.access_expires_at).toLocaleDateString() : 'your expiry date'}.`
+              ? 'Choose a guide below and continue your learning path. Your Premium access is active.'
               : 'Your account works. Complete your one-time purchase to unlock the Premium guides and member resources.'}
           </p>
         </div>
@@ -139,7 +139,7 @@ export default async function Dashboard() {
               <div>
                 <p className="eyebrow">Extra support call</p>
                 <h2>Book another 60-minute support call.</h2>
-                <p>Premium includes one 60-minute support call during the access year. If members want more help, they can purchase an extra online call separately for questions, exchange setup, DCA planning, Bitcoin safety, or chart-reading support.</p>
+                <p>Premium includes one 60-minute support call. If members want more help, they can purchase an extra online call separately for questions, exchange setup, DCA planning, Bitcoin safety, or chart-reading support.</p>
               </div>
               <div className="price-box">
                 <strong>AUD $39.90</strong>
@@ -155,7 +155,7 @@ export default async function Dashboard() {
             <div>
               <p className="eyebrow">Premium purchase</p>
               <h2>Plainvest Premium Learning Pass</h2>
-              <p>Unlock one year of member guides, book list, chart-reading tools, Bitcoin research, DCA method, and one included support call.</p>
+              <p>Unlock the member guides, book list, chart-reading tools, Bitcoin research, DCA method, and one included support call.</p>
             </div>
             <div className="price-box">
               <strong>AUD $89.90</strong>

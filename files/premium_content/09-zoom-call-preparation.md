@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Premium includes one 60-minute Zoom call during the access year. The call is for education, questions, platform understanding, and confidence-building.
+Premium includes one 60-minute Zoom call. The call is for education, questions, platform understanding, and confidence-building.
 
 It is not personal financial advice.
 
