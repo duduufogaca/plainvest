@@ -14690,7 +14690,8 @@
       try {
         var response = await fetch('/api/member/status', {
           credentials: 'include',
-          cache: 'no-store'
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-store' }
         });
         var status = response.ok ? await response.json() : null;
 

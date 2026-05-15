@@ -4,6 +4,9 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string; mode?: string }> }) {
   const params = await searchParams;
   const supabase = await createClient();

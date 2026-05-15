@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { signUp } from '../actions/auth';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function SignUp({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
   const params = await searchParams;
   return (

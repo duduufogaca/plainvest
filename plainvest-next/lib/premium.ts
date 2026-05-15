@@ -18,7 +18,7 @@ export async function getPremiumAccess(supabase: SupabaseClient, userId: string)
     return { isPremium: false, access: null, error };
   }
 
-  const hasStripePaymentProof = Boolean(data?.stripe_checkout_session_id || data?.stripe_payment_intent_id);
+  const hasStripePaymentProof = Boolean(data?.stripe_payment_intent_id);
   const isPremium = data?.premium_status === 'active' && hasStripePaymentProof;
 
   return { isPremium, access: data, error: null };

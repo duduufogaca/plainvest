@@ -1171,11 +1171,13 @@ li { margin:.24rem 0; font-size:.84rem; }
 .behavior-visual {
   padding:.55rem;
   background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(239,244,249,.96));
+  overflow:visible;
 }
 .behavior-visual img {
-  width:100%;
-  max-height:none;
-  object-fit:contain;
+  width:100% !important;
+  height:auto !important;
+  max-height:none !important;
+  object-fit:contain !important;
   border-radius:12px;
   display:block;
 }
