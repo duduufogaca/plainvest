@@ -29,7 +29,7 @@ export async function POST() {
     const productId = process.env.STRIPE_PRODUCT_ID;
 
     if (!productId || productId.startsWith('prod_your')) {
-      return errorResponse('Missing STRIPE_PRICE_ID or STRIPE_PRODUCT_ID. Add your Stripe annual access price ID or product ID to .env.local.');
+      return errorResponse('Missing STRIPE_PRICE_ID or STRIPE_PRODUCT_ID. Add your Stripe one-time purchase price ID or product ID to .env.local.');
     }
 
     const prices = await stripe.prices.list({
@@ -56,7 +56,7 @@ export async function POST() {
       metadata: {
         user_id: user.id,
         email: user.email || '',
-        product: 'plainvest_premium_annual',
+        product: 'plainvest_premium_access',
       },
       success_url: `${siteUrl}/api/stripe/confirm?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/dashboard?payment=cancelled`,

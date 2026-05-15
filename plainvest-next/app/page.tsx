@@ -12,7 +12,7 @@ export default function Home() {
         </p>
         <div className="actions">
           <Link href="/signup">Create account</Link>
-          <Link href="/login" className="secondary">Login</Link>
+          <Link href="/login?mode=manual" className="secondary">Login</Link>
         </div>
       </section>
     </main>

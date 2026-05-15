@@ -121,7 +121,7 @@ export default async function Dashboard() {
           <p>
             Logged in as {user.email}. {isPremium
               ? `Choose a guide below and continue your learning path. Your access is active until ${access?.access_expires_at ? new Date(access.access_expires_at).toLocaleDateString() : 'your expiry date'}.`
-              : 'Your account works. Complete annual access to unlock the Premium guides and member resources.'}
+              : 'Your account works. Complete your one-time purchase to unlock the Premium guides and member resources.'}
           </p>
         </div>
         {isPremium ? (
@@ -139,7 +139,7 @@ export default async function Dashboard() {
               <div>
                 <p className="eyebrow">Extra support call</p>
                 <h2>Book another 60-minute support call.</h2>
-                <p>Premium includes one yearly support call. If members want more help, they can purchase an extra online call separately for questions, exchange setup, DCA planning, Bitcoin safety, or chart-reading support.</p>
+                <p>Premium includes one 60-minute support call during the access year. If members want more help, they can purchase an extra online call separately for questions, exchange setup, DCA planning, Bitcoin safety, or chart-reading support.</p>
               </div>
               <div className="price-box">
                 <strong>AUD $39.90</strong>
@@ -153,13 +153,13 @@ export default async function Dashboard() {
         ) : (
           <section className="purchase-panel">
             <div>
-              <p className="eyebrow">Annual access</p>
+              <p className="eyebrow">Premium purchase</p>
               <h2>Plainvest Premium Learning Pass</h2>
-              <p>Unlock the member guides, book list, chart-reading tools, Bitcoin research, DCA method, and one yearly support call.</p>
+              <p>Unlock one year of member guides, book list, chart-reading tools, Bitcoin research, DCA method, and one included support call.</p>
             </div>
             <div className="price-box">
               <strong>AUD $89.90</strong>
-              <span>One year access</span>
+              <span>One-time purchase</span>
               <form action="/api/stripe/checkout" method="POST">
                 <button type="submit">Continue to secure checkout</button>
               </form>

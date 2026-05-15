@@ -13,7 +13,7 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
         <label>Email<input name="email" type="email" required /></label>
         <label>Password<input name="password" type="password" minLength={6} required /></label>
         <button type="submit">Create account</button>
-        <p className="switch">Already have an account? <Link href="/login">Login</Link></p>
+        <p className="switch">Already have an account? <Link href="/login?mode=manual">Login</Link></p>
       </form>
     </main>
   );
