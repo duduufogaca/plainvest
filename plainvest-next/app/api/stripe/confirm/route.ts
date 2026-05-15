@@ -60,7 +60,7 @@ export async function GET(request: Request) {
       return redirectTo(`/dashboard?payment=db-error&message=${encodeURIComponent(error.message)}`, request);
     }
 
-    return redirectTo('/dashboard?payment=success#guides', request);
+    return redirectTo('/index.html#member', request);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to confirm Stripe payment.';
     console.error('Plainvest Stripe confirmation failed:', message);

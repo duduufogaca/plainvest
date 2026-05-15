@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { signIn } from '../actions/auth';
 import { createClient } from '@/lib/supabase/server';
+import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 
 export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
@@ -8,7 +9,8 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    redirect('/dashboard#guides');
+    const { isPremium } = await getPremiumAccess(supabase, user.id);
+    redirect(isPremium ? '/index.html#member' : '/dashboard');
   }
 
   const params = await searchParams;
