@@ -14577,9 +14577,43 @@
       });
     }
 
+    function isMemberAppHost() {
+      return /(^|\.)members\.plainvest\.app$/i.test(window.location.hostname);
+    }
+
+    async function ensurePremiumAccessForMemberPage(page) {
+      if (!isMemberAppHost()) return true;
+      if (['member', 'member-guide', 'member-books'].indexOf(page) < 0) return true;
+
+      try {
+        var response = await fetch('/api/member/status', {
+          credentials: 'include',
+          cache: 'no-store'
+        });
+        var status = response.ok ? await response.json() : null;
+
+        if (status && status.authenticated && status.premium) return true;
+
+        window.location.replace(status && status.authenticated ? '/dashboard' : '/login?mode=manual');
+        return false;
+      } catch (error) {
+        window.location.replace('/dashboard');
+        return false;
+      }
+    }
+
     function showPage(page, options) {
       options = options || {};
       var selected = APP_PAGES.indexOf(page) >= 0 ? page : 'home';
+      if (!options.accessChecked && ['member', 'member-guide', 'member-books'].indexOf(selected) >= 0 && isMemberAppHost()) {
+        document.querySelectorAll('.app-page').forEach(function (el) {
+          el.hidden = true;
+        });
+        ensurePremiumAccessForMemberPage(selected).then(function (allowed) {
+          if (allowed) showPage(selected, Object.assign({}, options, { accessChecked: true }));
+        });
+        return;
+      }
       document.querySelectorAll('.app-page').forEach(function (el) {
         el.hidden = el.getAttribute('data-page') !== selected;
       });
