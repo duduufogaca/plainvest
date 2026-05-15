@@ -4,17 +4,79 @@ import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 
 const dashboardItems = [
-  'Premium welcome guide',
-  'DCA method',
-  'Exchange and platform setup',
-  'Crypto self-custody',
-  'Bitcoin research section',
-  'Book list',
-  'Chart reading tools',
-  'Support call booking',
+  {
+    title: 'Premium welcome guide',
+    href: '/files/premium_content/00-premium-member-start-here.html',
+    description: 'Start here, understand the Plainvest story, and choose your learning path.',
+  },
+  {
+    title: 'Investment paths',
+    href: '/files/premium_content/01-investment-paths-guide.html',
+    description: 'Compare investment types, risk, time horizon, and beginner-friendly use cases.',
+  },
+  {
+    title: 'DCA method',
+    href: '/files/premium_content/02-dca-method-guide.html',
+    description: 'Learn how recurring investing works through different market prices.',
+  },
+  {
+    title: 'Exchange setup',
+    href: '/files/premium_content/03-exchange-and-platform-setup-checklist.html',
+    description: 'Open accounts more calmly and understand the key platform settings.',
+  },
+  {
+    title: 'Crypto self-custody',
+    href: '/files/premium_content/04-crypto-and-self-custody-guide.html',
+    description: 'Understand wallets, seed phrases, cold storage, and common security mistakes.',
+  },
+  {
+    title: 'Bitcoin research',
+    href: '/files/premium_content/05-bitcoin-research-section.html',
+    description: 'White paper, halving, supply, on-chain metrics, and why Bitcoin was created.',
+  },
+  {
+    title: 'Book list',
+    href: '/files/premium_content/06-books-and-reading-path.html',
+    description: 'A curated reading path for investing, macro, Bitcoin, business, and wealth.',
+  },
+  {
+    title: 'Chart reading tools',
+    href: '/files/premium_content/07-chart-reading-and-research-tools.html',
+    description: 'Use TradingView-style chart tools, time frames, and basic market structure.',
+  },
+  {
+    title: 'Market cycles',
+    href: '/files/premium_content/08-crypto-cycle-lessons.html',
+    description: 'Learn cycle psychology, risk, liquidity, euphoria, fear, and discipline.',
+  },
+  {
+    title: 'Support call preparation',
+    href: '/files/premium_content/09-zoom-call-preparation.html',
+    description: 'Prepare questions and make the most from your included 60-minute call.',
+  },
 ];
 
 export default async function Dashboard() {
+  const missingEnv = [
+    ['NEXT_PUBLIC_SUPABASE_URL', process.env.NEXT_PUBLIC_SUPABASE_URL],
+    ['NEXT_PUBLIC_SUPABASE_ANON_KEY', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY],
+  ].filter(([, value]) => !value).map(([name]) => name);
+
+  if (missingEnv.length > 0) {
+    return (
+      <main className="setup-shell">
+        <section className="setup-card">
+          <p className="eyebrow">Setup needed</p>
+          <h1>Supabase is not connected on this deployment yet.</h1>
+          <p>Add these environment variables in Vercel, then redeploy the project:</p>
+          <ul>
+            {missingEnv.map((name) => <li key={name}>{name}</li>)}
+          </ul>
+        </section>
+      </main>
+    );
+  }
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -22,7 +84,21 @@ export default async function Dashboard() {
     redirect('/login');
   }
 
-  const { isPremium, access } = await getPremiumAccess(supabase, user.id);
+  const { isPremium, access, error: accessError } = await getPremiumAccess(supabase, user.id);
+
+  if (accessError) {
+    return (
+      <main className="setup-shell">
+        <section className="setup-card">
+          <p className="eyebrow">Database setup needed</p>
+          <h1>The member access table is not ready yet.</h1>
+          <p>Run this SQL file in Supabase SQL Editor, then refresh this page:</p>
+          <code>plainvest-next/supabase/member_access.sql</code>
+          <p className="muted">Supabase message: {accessError.message}</p>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="dashboard-shell">
@@ -41,10 +117,10 @@ export default async function Dashboard() {
       <section className="dashboard-content">
         <div className="dashboard-hero" id="overview">
           <p className="eyebrow">{isPremium ? 'Premium member dashboard' : 'Member account'}</p>
-          <h1>{isPremium ? 'Your premium learning area is ready.' : 'Finish your Premium access.'}</h1>
+          <h1>{isPremium ? 'Welcome to your Premium learning area.' : 'Finish your Premium access.'}</h1>
           <p>
             Logged in as {user.email}. {isPremium
-              ? `Your access is active until ${access?.access_expires_at ? new Date(access.access_expires_at).toLocaleDateString() : 'your expiry date'}.`
+              ? `Choose a guide below and continue your learning path. Your access is active until ${access?.access_expires_at ? new Date(access.access_expires_at).toLocaleDateString() : 'your expiry date'}.`
               : 'Your account works. Complete annual access to unlock the Premium guides and member resources.'}
           </p>
         </div>
@@ -52,11 +128,11 @@ export default async function Dashboard() {
           <>
             <div className="cards" id="guides">
               {dashboardItems.map((item) => (
-                <article className="dash-card" key={item}>
+                <a className="dash-card" key={item.title} href={item.href}>
                   <span>Premium</span>
-                  <h2>{item}</h2>
-                  <p>Connect this card to the matching guide or protected content route.</p>
-                </article>
+                  <h2>{item.title}</h2>
+                  <p>{item.description}</p>
+                </a>
               ))}
             </div>
             <section className="support-call-panel" id="booking">

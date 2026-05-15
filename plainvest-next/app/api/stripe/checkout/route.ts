@@ -26,13 +26,28 @@ export async function POST() {
   const stripe = createStripeClient();
 
   if (!priceId || priceId.startsWith('price_replace')) {
-    return errorResponse('Missing STRIPE_PRICE_ID. Add your Stripe annual access price_ ID in Vercel.');
+    const productId = process.env.STRIPE_PRODUCT_ID;
+
+    if (!productId || productId.startsWith('prod_your')) {
+      return errorResponse('Missing STRIPE_PRICE_ID or STRIPE_PRODUCT_ID. Add your Stripe annual access price ID or product ID to .env.local.');
+    }
+
+    const prices = await stripe.prices.list({
+      product: productId,
+      active: true,
+      limit: 1,
+    });
+
+    priceId = prices.data[0]?.id;
+
+    if (!priceId) {
+      return errorResponse('No active Stripe price found for the configured product.');
+    }
   }
 
   try {
     const price = await stripe.prices.retrieve(priceId);
     const mode = price.recurring ? 'subscription' : 'payment';
-
     const session = await stripe.checkout.sessions.create({
       mode,
       line_items: [{ price: priceId, quantity: 1 }],
@@ -43,7 +58,7 @@ export async function POST() {
         email: user.email || '',
         product: 'plainvest_premium_annual',
       },
-      success_url: `${siteUrl}/dashboard?payment=success`,
+      success_url: `${siteUrl}/api/stripe/confirm?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/dashboard?payment=cancelled`,
     });
 

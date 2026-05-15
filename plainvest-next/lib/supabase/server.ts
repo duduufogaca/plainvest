@@ -32,7 +32,7 @@ export async function createClient() {
               cookieStore.set(name, value, options);
             });
           } catch {
-            // Server Components cannot set cookies directly.
+            // Server Components cannot set cookies directly. Middleware refreshes sessions.
           }
         },
       },

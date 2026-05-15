@@ -17,36 +17,68 @@
   <section class="section">
     <h2>How DCA works</h2>
     <p>You choose an amount, choose a schedule, and keep contributing through good markets and bad markets. When prices are high, the same contribution buys less. When prices are low, it buys more. Over time, the habit becomes more important than guessing the exact bottom.</p>
-    <div class="dca-visual dca-chart-visual" aria-label="DCA chart showing purchases at different prices">
-      <svg class="dca-buy-chart" viewBox="0 0 980 430" role="img">
+    <div class="dca-visual dca-chart-visual dca-lesson-card" aria-label="DCA chart showing monthly purchases, average price, and total units">
+      <div class="dca-lesson-head">
+        <div>
+          <span class="mini-kicker">Illustrative example</span>
+          <strong>Dollar-cost averaging: $417/month</strong>
+        </div>
+        <div class="dca-total-box">
+          <span>Total purchased</span>
+          <strong>300 units</strong>
+        </div>
+      </div>
+      <svg class="dca-buy-chart dca-lesson-svg" viewBox="0 0 980 500" role="img">
         <defs>
           <linearGradient id="dcaArea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#00d4aa" stop-opacity=".26"/>
+            <stop offset="0%" stop-color="#e8b84b" stop-opacity=".28"/>
             <stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/>
           </linearGradient>
         </defs>
         <g class="dca-grid">
-          <path d="M80 70H920M80 145H920M80 220H920M80 295H920M80 370H920"/>
-          <path d="M80 70V370M200 70V370M320 70V370M440 70V370M560 70V370M680 70V370M800 70V370M920 70V370"/>
+          <path d="M85 70H920M85 130H920M85 190H920M85 250H920M85 310H920M85 370H920"/>
+          <path d="M85 70V370M155 70V370M225 70V370M295 70V370M365 70V370M435 70V370M505 70V370M575 70V370M645 70V370M715 70V370M785 70V370M855 70V370M920 70V370"/>
         </g>
-        <path class="dca-area" d="M80 260 C150 190 205 145 300 182 C395 224 440 315 545 275 C650 232 705 118 805 154 C860 172 890 218 920 204 L920 370 L80 370Z"/>
-        <path class="dca-price-line" d="M80 260 C150 190 205 145 300 182 C395 224 440 315 545 275 C650 232 705 118 805 154 C860 172 890 218 920 204"/>
-        <g class="dca-buy-points">
-          <g transform="translate(110 236)"><circle r="10"/><text x="-30" y="-18">Bought</text></g>
-          <g transform="translate(245 166)"><circle r="10"/><text x="-30" y="-18">Bought</text></g>
-          <g transform="translate(420 302)"><circle r="10"/><text x="-30" y="-18">Bought</text></g>
-          <g transform="translate(585 252)"><circle r="10"/><text x="-30" y="-18">Bought</text></g>
-          <g transform="translate(755 134)"><circle r="10"/><text x="-30" y="-18">Bought</text></g>
-          <g transform="translate(895 210)"><circle r="10"/><text x="-30" y="-18">Bought</text></g>
+        <g class="dca-axis-values">
+          <text x="37" y="76">$26</text><text x="42" y="136">$22</text><text x="42" y="196">$18</text><text x="42" y="256">$14</text><text x="42" y="316">$10</text><text x="48" y="376">$6</text>
+        </g>
+        <path class="dca-area" d="M85 190 L155 205 L225 230 L295 290 L365 250 L435 205 L505 220 L575 160 L645 95 L715 170 L785 96 L855 165 L920 128 L920 370 L85 370Z"/>
+        <path class="dca-average-line" d="M85 205H920"/>
+        <g class="dca-average-badge" transform="translate(620 226)">
+          <rect x="0" y="0" width="245" height="38" rx="10"/>
+          <text x="122" y="25">Average price: $17/unit</text>
+        </g>
+        <path class="dca-price-line" d="M85 190 L155 205 L225 230 L295 290 L365 250 L435 205 L505 220 L575 160 L645 95 L715 170 L785 96 L855 165 L920 128"/>
+        <g class="dca-buy-tags">
+          <g transform="translate(85 190)"><rect x="-19" y="-42" width="38" height="30" rx="7"/><text y="-21">21</text></g>
+          <g transform="translate(155 205)"><rect x="-19" y="8" width="38" height="30" rx="7"/><text y="29">26</text></g>
+          <g transform="translate(225 230)"><rect x="-19" y="8" width="38" height="30" rx="7"/><text y="29">28</text></g>
+          <g transform="translate(295 290)"><rect x="-19" y="-54" width="38" height="30" rx="7"/><text y="-33">35</text></g>
+          <g transform="translate(365 250)"><rect x="-19" y="-50" width="38" height="30" rx="7"/><text y="-29">32</text></g>
+          <g transform="translate(435 205)"><rect x="-19" y="8" width="38" height="30" rx="7"/><text y="29">26</text></g>
+          <g transform="translate(505 220)"><rect x="-19" y="8" width="38" height="30" rx="7"/><text y="29">28</text></g>
+          <g transform="translate(575 160)"><rect x="-19" y="-42" width="38" height="30" rx="7"/><text y="-21">21</text></g>
+          <g transform="translate(645 95)"><rect x="-19" y="10" width="38" height="30" rx="7"/><text y="31">19</text></g>
+          <g transform="translate(715 170)"><rect x="-19" y="8" width="38" height="30" rx="7"/><text y="29">24</text></g>
+          <g transform="translate(785 96)"><rect x="-19" y="10" width="38" height="30" rx="7"/><text y="31">19</text></g>
+          <g transform="translate(855 165)"><rect x="-19" y="-42" width="38" height="30" rx="7"/><text y="-21">21</text></g>
+        </g>
+        <g class="dca-callout-arrow">
+          <path d="M360 336L305 296"/>
+          <path d="M304 296L317 300M304 296L310 309"/>
+          <rect x="345" y="318" width="260" height="34" rx="9"/>
+          <text x="475" y="341">More units bought when price falls</text>
         </g>
         <g class="dca-axis-labels">
-          <text x="72" y="405">M1</text><text x="192" y="405">M2</text><text x="312" y="405">M3</text><text x="432" y="405">M4</text><text x="552" y="405">M5</text><text x="672" y="405">M6</text><text x="792" y="405">M7</text><text x="912" y="405">M8</text>
-          <text x="24" y="78">High</text><text x="28" y="374">Low</text>
+          <text x="73" y="408">Jan</text><text x="143" y="408">Feb</text><text x="213" y="408">Mar</text><text x="283" y="408">Apr</text><text x="353" y="408">May</text><text x="423" y="408">Jun</text><text x="493" y="408">Jul</text><text x="563" y="408">Aug</text><text x="633" y="408">Sep</text><text x="703" y="408">Oct</text><text x="773" y="408">Nov</text><text x="843" y="408">Dec</text>
+          <text class="axis-title" x="34" y="226" transform="rotate(-90 34 226)">Unit price</text>
         </g>
       </svg>
+      <p class="dca-visual-note">The orange numbers show how many units the same monthly amount buys. Lower prices buy more units, higher prices buy fewer units.</p>
       <div class="visual-legend">
-        <span><i class="visual-dot" style="background:var(--teal)"></i>Price moves up and down</span>
-        <span><i class="visual-dot" style="background:var(--gold)"></i>The same habit keeps buying</span>
+        <span><i class="visual-dot" style="background:var(--teal)"></i>Market price changes</span>
+        <span><i class="visual-dot" style="background:var(--gold)"></i>Units bought each month</span>
+        <span><i class="visual-dot" style="background:#ffffff"></i>Average paid price</span>
       </div>
     </div>
     <ol class="steps">
