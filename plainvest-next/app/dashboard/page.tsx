@@ -105,8 +105,8 @@ export default async function Dashboard() {
       <aside className="sidebar">
         <div className="brand">Plainvest</div>
         <nav>
-          <a className="active" href="#overview">Overview</a>
-          <a href="#guides">Guides</a>
+          <a className="active" href="#overview">Member home</a>
+          <a href="#guides">Premium guides</a>
           <a href="#booking">Support call</a>
           <a href="#account">Account</a>
         </nav>
@@ -116,7 +116,7 @@ export default async function Dashboard() {
       </aside>
       <section className="dashboard-content">
         <div className="dashboard-hero" id="overview">
-          <p className="eyebrow">{isPremium ? 'Premium member dashboard' : 'Member account'}</p>
+          <p className="eyebrow">{isPremium ? 'Premium member home' : 'Member account'}</p>
           <h1>{isPremium ? 'Welcome to your Premium learning area.' : 'Finish your Premium access.'}</h1>
           <p>
             Logged in as {user.email}. {isPremium

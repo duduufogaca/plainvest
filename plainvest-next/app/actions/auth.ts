@@ -1,6 +1,7 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
+import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 
 function getOrigin() {
@@ -23,6 +24,16 @@ export async function signIn(formData: FormData) {
 
   if (error) {
     redirect(`/login?message=${encodeURIComponent(error.message)}`);
+  }
+
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (user) {
+    const { isPremium } = await getPremiumAccess(supabase, user.id);
+
+    if (isPremium) {
+      redirect('/dashboard#guides');
+    }
   }
 
   redirect('/dashboard');
