@@ -4239,6 +4239,34 @@
       background: rgba(0, 212, 170, .07);
     }
 
+    .support-call-paid-panel {
+      display: none;
+      margin: 1rem 0;
+      border: 1px solid rgba(100, 229, 196, .35);
+      background: linear-gradient(135deg, rgba(100, 229, 196, .12), rgba(247, 205, 105, .08));
+      border-radius: 18px;
+      padding: 1rem;
+    }
+
+    body.support-call-paid .support-call-paid-panel {
+      display: block;
+    }
+
+    .support-call-paid-panel strong {
+      display: block;
+      color: #f7cd69;
+      margin-bottom: .35rem;
+      font-size: .95rem;
+      line-height: 1.25;
+    }
+
+    .support-call-paid-panel p {
+      margin: 0 0 .85rem;
+      color: #b6c8dc;
+      font-size: .78rem;
+      line-height: 1.6;
+    }
+
     .member-hero-visual {
       margin-bottom: 1rem;
       border: 1px solid rgba(255, 255, 255, .10);
@@ -10228,7 +10256,7 @@
 
   <!-- TESTIMONIALS -->
   <section class="testimonials app-page" data-page="learn">
-    <div class="section-eyebrow" data-i18n="testi.eyebrow">Early tester feedback</div>
+    <div class="section-eyebrow" data-i18n="testi.eyebrow">User feedback</div>
     <div class="section-h2" data-i18n-html="testi.h2">From curious to <em>confident</em>.</div>
     <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">Plainvest is being shaped with comments from early testers and first-time investors, so the launch version answers real beginner confusion.</p>
     <div class="testi-grid">
@@ -10572,8 +10600,8 @@
       </div>
       <div class="launch-trust-card">
         <div class="launch-trust-icon">★</div>
-        <h3 data-i18n="trustLaunch.t3">Early tester feedback</h3>
-        <p data-i18n="trustLaunch.b3">The page is being improved from real comments by first-time investors before the public launch.</p>
+        <h3 data-i18n="trustLaunch.t3">Beginner feedback</h3>
+        <p data-i18n="trustLaunch.b3">Plainvest keeps improving from real comments by first-time investors and members.</p>
       </div>
       <div class="launch-trust-card">
         <div class="launch-trust-icon">!</div>
@@ -10787,10 +10815,15 @@
         <div class="member-support">
           <h3 data-i18n="member.supportTitle">Member support</h3>
           <p data-i18n="member.supportText">Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.</p>
+          <div class="support-call-paid-panel" id="support-call-paid-panel">
+            <strong data-i18n="member.extraPaidTitle">Extra call payment received</strong>
+            <p data-i18n="member.extraPaidText">Now send your preferred days, times, timezone, and the questions you want to cover. We will reply with confirmation and the Zoom details.</p>
+            <a class="member-action-btn primary" href="mailto:hello@plainvest.app?subject=Plainvest%20extra%20support%20call%20details&body=Hi%20Plainvest%2C%0A%0AI%20have%20paid%20for%20an%20extra%2060-minute%20support%20call.%0A%0AMy%20preferred%20days%2Ftimes%20are%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AMy%20timezone%20is%3A%20%0A%0AQuestions%20I%20want%20to%20cover%3A%0A-%20%0A-%20%0A-%20%0A" data-i18n="member.extraPaidBtn">Send call details</a>
+          </div>
           <div class="member-support-actions">
             <a class="member-action-btn primary" href="mailto:hello@plainvest.app?subject=Plainvest%20Premium%20support%20call%20booking&body=Hi%20Plainvest%2C%0A%0AI%20would%20like%20to%20book%20my%20included%2060-minute%20Zoom%20support%20call.%0A%0AMy%20preferred%20days%2Ftimes%20are%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AQuestions%20I%20want%20to%20cover%3A%0A-%20" data-i18n="member.askBtn">Book support call</a>
             <form class="member-extra-call-form" action="/api/stripe/support-call" method="POST">
-              <button class="member-action-btn" type="submit" data-i18n="member.extraCallBtn">Buy extra call — AUD $39.90</button>
+              <button class="member-action-btn" type="submit" data-i18n="member.extraCallBtn">Pay for extra call — AUD $39.90</button>
             </form>
           </div>
         </div>
@@ -11301,7 +11334,7 @@
           band3K: 'Use real context',
           band3T: 'Understand growth next to inflation pressure.',
           band3B: 'You are not just seeing bigger numbers. You are seeing what those numbers still buy over time.',
-          social: 'Built with <strong>early tester feedback</strong><br>from people who wanted investing to finally make sense.',
+          social: 'Built with <strong>beginner feedback</strong><br>from people who wanted investing to finally make sense.',
           cta1: 'Try the free simulator', cta2: 'See Premium access',
           trust1: 'Always free to use', trust2: 'No account needed', trust3: 'Zero jargon'
         },
@@ -11311,8 +11344,8 @@
           b1: 'The calculator runs in your browser. Projection inputs are for learning and are not sent anywhere by the simulator.',
           t2: 'Built from beginner confusion',
           b2: 'Plainvest was built because the first investing step can feel harder than it needs to be.',
-          t3: 'Early tester feedback',
-          b3: 'The page is being improved from real comments by first-time investors before the public launch.',
+          t3: 'Beginner feedback',
+          b3: 'Plainvest keeps improving from real comments by first-time investors and members.',
           t4: 'Education, not advice',
           b4: 'Plainvest helps you understand options, risks, and questions to ask. It does not tell you what to buy.',
           note: 'Public launch note: Premium is designed as guided education for beginners. Any investment decision should still consider your goals, risk tolerance, fees, tax, and personal circumstances.'
@@ -11557,8 +11590,11 @@
           booksListBtn: 'Open book list',
           supportTitle: 'Member support',
           supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Book by email with your preferred times. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.',
-          askBtn: 'Book support call',
-          extraCallBtn: 'Buy extra call — AUD $39.90',
+          askBtn: 'Book included support call',
+          extraCallBtn: 'Pay for extra call — AUD $39.90',
+          extraPaidTitle: 'Extra call payment received',
+          extraPaidText: 'Now send your preferred days, times, timezone, and the questions you want to cover. We will reply with confirmation and the Zoom details.',
+          extraPaidBtn: 'Send call details',
           logoutBtn: 'Logout',
           path1Title: 'Start with your goal',
           path1Text: 'Choose what you want to understand first: investing basics, Bitcoin, DCA, books, or exchange setup.',
@@ -11832,7 +11868,7 @@
           band3K: 'Use contexto real',
           band3T: 'Entenda crescimento junto da pressão da inflação.',
           band3B: 'Você não vê apenas números maiores. Você vê o que esses números ainda conseguem comprar com o passar do tempo.',
-          social: 'Criado com <strong>feedback dos primeiros testes</strong><br>de pessoas que queriam finalmente entender investimentos.',
+          social: 'Criado com <strong>feedback de iniciantes</strong><br>de pessoas que queriam finalmente entender investimentos.',
           cta1: 'Testar simulador grátis', cta2: 'Ver acesso Premium',
           trust1: 'Sempre gratuito', trust2: 'Sem cadastro', trust3: 'Zero jargão'
         },
@@ -11842,8 +11878,8 @@
           b1: 'O cálculo roda no seu navegador. Os valores da simulação são para aprendizado e não são enviados pelo simulador.',
           t2: 'Criado a partir da confusão de iniciantes',
           b2: 'O Plainvest foi criado porque o primeiro passo nos investimentos pode parecer mais difícil do que deveria.',
-          t3: 'Feedback de primeiros testes',
-          b3: 'A página está sendo melhorada com comentários reais de iniciantes antes do lançamento público.',
+          t3: 'Feedback de iniciantes',
+          b3: 'O Plainvest continua melhorando com comentários reais de investidores iniciantes e membros.',
           t4: 'Educação, não recomendação',
           b4: 'O Plainvest ajuda você a entender opções, riscos e perguntas importantes. Ele não diz o que comprar.',
           note: 'Nota de lançamento: o Premium foi pensado como educação guiada para iniciantes. Qualquer decisão de investimento ainda deve considerar seus objetivos, tolerância a risco, taxas, impostos e circunstâncias pessoais.'
@@ -12088,8 +12124,11 @@
           booksListBtn: 'Abrir lista de livros',
           supportTitle: 'Suporte de membro',
           supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Agende por email com seus horários preferidos. Chamadas online extras de 60 minutos ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
-          askBtn: 'Agendar chamada',
-          extraCallBtn: 'Comprar chamada extra — AUD $39,90',
+          askBtn: 'Agendar chamada incluída',
+          extraCallBtn: 'Pagar chamada extra — aprox. R$142,00',
+          extraPaidTitle: 'Pagamento da chamada extra recebido',
+          extraPaidText: 'Agora envie seus dias, horários, fuso horário e as perguntas que quer conversar. Vamos responder com a confirmação e os detalhes do Zoom.',
+          extraPaidBtn: 'Enviar detalhes da chamada',
           logoutBtn: 'Sair',
           path1Title: 'Comece pelo seu objetivo',
           path1Text: 'Escolha o que quer entender primeiro: básico de investimentos, Bitcoin, DCA, livros ou configuração de exchange.',
@@ -13943,12 +13982,12 @@
         var title = lock.querySelector('h5');
         var copy = lock.querySelector('p');
         var btn = lock.querySelector('.lock-btn');
-        if (title) title.textContent = isPt ? 'Premium disponível' : 'Premium access available';
+        if (title) title.textContent = isPt ? 'Acesse o guia Premium' : 'Get Premium access';
         if (copy) copy.textContent = isPt
           ? 'Este guia aprofundado faz parte do hub Premium. Use o simulador gratuito e desbloqueie o acesso quando quiser seguir para os próximos passos.'
           : 'This deeper guide is part of the Premium hub. Use the free simulator first, then unlock access when you are ready for next steps.';
         if (btn) {
-          btn.textContent = isPt ? 'Ver Premium' : 'See Premium';
+          btn.textContent = isPt ? 'Acessar Premium →' : 'Get Premium access →';
           btn.disabled = false;
           btn.setAttribute('onclick', "closeModalDirect();showPage('plans')");
         }
@@ -14759,13 +14798,36 @@
       var params;
       try { params = new URLSearchParams(window.location.search); }
       catch (e) { return; }
-      if (params.get('member_session') !== '1') return;
-      premiumSessionUrlRequested = true;
-      params.delete('member_session');
+      var hasMemberSession = params.get('member_session') === '1';
+      var supportCallPaid = params.get('support_call_paid') === '1';
+      if (!hasMemberSession && !supportCallPaid) return;
+      if (hasMemberSession) {
+        premiumSessionUrlRequested = true;
+        params.delete('member_session');
+      }
+      if (supportCallPaid) {
+        try { sessionStorage.setItem('plainvestSupportCallPaid', '1'); }
+        catch (e) { }
+        document.body.classList.add('support-call-paid');
+        params.delete('support_call_paid');
+      }
       var cleanSearch = params.toString();
       var cleanUrl = window.location.pathname + (cleanSearch ? '?' + cleanSearch : '') + window.location.hash;
       try { history.replaceState(null, '', cleanUrl); }
       catch (e) { }
+    }
+
+    function syncSupportCallPaidState(page) {
+      var paid = false;
+      try { paid = sessionStorage.getItem('plainvestSupportCallPaid') === '1'; }
+      catch (e) { }
+      document.body.classList.toggle('support-call-paid', paid);
+      if (paid && page === 'member') {
+        setTimeout(function () {
+          var panel = document.getElementById('support-call-paid-panel');
+          if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
     }
 
     function syncMemberNavState() {
@@ -14898,6 +14960,7 @@
       if (options.scroll !== false) {
         window.scrollTo({ top: 0, behavior: 'auto' });
       }
+      syncSupportCallPaidState(selected);
       afterPageShown(selected);
     }
 

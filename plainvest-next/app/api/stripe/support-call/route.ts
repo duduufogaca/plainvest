@@ -49,7 +49,7 @@ export async function POST() {
         email: user.email || '',
         product: 'plainvest_support_call',
       },
-      success_url: `${siteUrl}/index.html?member_session=1#member`,
+      success_url: `${siteUrl}/index.html?member_session=1&support_call_paid=1#member`,
       cancel_url: `${siteUrl}/index.html?member_session=1#member`,
     });
 
