@@ -423,6 +423,20 @@
       box-shadow: 0 12px 30px rgba(0, 212, 170, .28);
     }
 
+    .member-content-nav-item {
+      display: none;
+    }
+
+    .member-content-nav {
+      border-color: rgba(244, 200, 106, .36);
+      background: rgba(244, 200, 106, .10);
+      color: #ffe3a3;
+    }
+
+    body.premium-session-active .member-content-nav-item {
+      display: list-item;
+    }
+
     /* ══════════════════════════════════
    LANGUAGE SWITCHER — always visible
 ══════════════════════════════════ */
@@ -9599,6 +9613,7 @@
       <li><a href="#home" data-i18n="nav.home">Home</a></li>
       <li><a href="#simulator" data-i18n="nav.simulator">Simulator</a></li>
       <li><a href="#inflation" data-i18n="nav.inflation">Inflation</a></li>
+      <li class="member-content-nav-item"><a class="member-content-nav" href="#member" id="nav-member-content-btn" data-i18n="nav.memberContent">Member content</a></li>
       <li><a href="#plans" data-i18n="nav.plans">Plans</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
@@ -10686,7 +10701,6 @@
         </div>
         <div class="member-head-actions">
           <div class="member-status" data-i18n="member.status">Member preview</div>
-          <a class="member-logout-link" href="/logout" data-i18n="member.logoutBtn">Logout</a>
         </div>
       </div>
       <div class="member-hero-visual">
@@ -11206,7 +11220,7 @@
     // ══════════════════════════════════════════════════════
     const LANG = {
       en: {
-        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', createMember: 'Create member' },
+        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Member content' },
         hero: {
           kicker: 'Investing made for everyone',
           h1: 'Watch your money <em>grow simply</em> in 60 seconds.',
@@ -11724,7 +11738,7 @@
       },
 
       pt: {
-        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', createMember: 'Criar membro' },
+        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Conteúdo de membro' },
         hero: {
           kicker: 'Investimento para todo mundo',
           h1: 'Veja seu dinheiro <em>crescer de forma simples</em> em 60 segundos.',
@@ -12682,6 +12696,7 @@
       // Re-render charts when language changes
       if (typeof renderInflationChart === 'function') { renderInflationChart(); updateInflationStats(); }
       if (typeof simulate === 'function') { try { simulate(); } catch (e) { } }
+      if (typeof syncMemberNavState === 'function') { try { syncMemberNavState(); } catch (e) { } }
     }
 
     const COUNTRIES = {
@@ -14691,6 +14706,8 @@
       return ['member', 'member-guide', 'member-books'].indexOf(page) >= 0;
     }
 
+    var premiumSessionUrlRequested = false;
+
     function hasPremiumSessionAccess() {
       try { return sessionStorage.getItem('plainvestPremiumAccess') === 'granted'; }
       catch (e) { return false; }
@@ -14699,6 +14716,55 @@
     function rememberPremiumSessionAccess() {
       try { sessionStorage.setItem('plainvestPremiumAccess', 'granted'); }
       catch (e) { }
+      syncMemberNavState();
+    }
+
+    function clearPremiumSessionAccess() {
+      try { sessionStorage.removeItem('plainvestPremiumAccess'); }
+      catch (e) { }
+      document.body.classList.remove('premium-session-active', 'premium-access-granted', 'premium-access-checking', 'premium-access-denied');
+      syncMemberNavState();
+    }
+
+    function activatePremiumSessionFromUrl() {
+      var params;
+      try { params = new URLSearchParams(window.location.search); }
+      catch (e) { return; }
+      if (params.get('member_session') !== '1') return;
+      premiumSessionUrlRequested = true;
+      params.delete('member_session');
+      var cleanSearch = params.toString();
+      var cleanUrl = window.location.pathname + (cleanSearch ? '?' + cleanSearch : '') + window.location.hash;
+      try { history.replaceState(null, '', cleanUrl); }
+      catch (e) { }
+    }
+
+    function syncMemberNavState() {
+      var active = hasPremiumSessionAccess() || document.body.classList.contains('premium-access-granted');
+      var t = (LANG[currentLang] && LANG[currentLang].nav) || LANG.en.nav;
+      var createBtn = document.getElementById('nav-create-member-btn');
+      var loginBtn = document.getElementById('nav-login-btn');
+
+      document.body.classList.toggle('premium-session-active', !!active);
+
+      if (createBtn) {
+        createBtn.hidden = !!active;
+        createBtn.setAttribute('aria-hidden', active ? 'true' : 'false');
+      }
+
+      if (loginBtn) {
+        loginBtn.textContent = active ? (t.logout || 'Logout') : (t.login || 'Login');
+        loginBtn.href = active
+          ? (isMemberAppHost() ? '/logout' : 'https://members.plainvest.app/logout')
+          : 'https://members.plainvest.app/login?mode=manual';
+        loginBtn.onclick = active ? logoutMemberSession : null;
+      }
+    }
+
+    function logoutMemberSession(event) {
+      if (event) event.preventDefault();
+      clearPremiumSessionAccess();
+      window.location.href = isMemberAppHost() ? '/logout' : 'https://members.plainvest.app/logout';
     }
 
     function resetPremiumAccessState() {
@@ -14706,6 +14772,7 @@
       if (!hasPremiumSessionAccess()) {
         document.body.classList.remove('premium-access-granted');
       }
+      syncMemberNavState();
     }
 
     function isMemberAppHost() {
@@ -14716,52 +14783,59 @@
       if (!isPremiumProtectedPage(page)) return true;
       if (isLocalPlainvestPreview()) {
         document.body.classList.add('premium-access-granted');
+        syncMemberNavState();
         return true;
       }
 
       if (hasPremiumSessionAccess()) {
         document.body.classList.remove('premium-access-checking', 'premium-access-denied');
         document.body.classList.add('premium-access-granted');
+        syncMemberNavState();
         return true;
       }
 
       if (!isMemberAppHost()) {
         document.body.classList.remove('premium-access-checking', 'premium-access-granted');
         document.body.classList.add('premium-access-denied');
-        window.location.replace('https://members.plainvest.app/dashboard');
+        window.location.replace('https://members.plainvest.app/login?mode=manual');
         return false;
       }
 
-      document.body.classList.remove('premium-access-denied', 'premium-access-granted');
-      document.body.classList.add('premium-access-checking');
+      if (premiumSessionUrlRequested) {
+        document.body.classList.remove('premium-access-denied', 'premium-access-granted');
+        document.body.classList.add('premium-access-checking');
 
-      try {
-        var response = await fetch('/api/member/status', {
-          credentials: 'include',
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-store' }
-        });
-        var status = response.ok ? await response.json() : null;
+        try {
+          var response = await fetch('/api/member/status', {
+            credentials: 'include',
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-store' }
+          });
+          var status = response.ok ? await response.json() : null;
 
-        if (status && status.authenticated && status.premium) {
-          document.body.classList.remove('premium-access-checking', 'premium-access-denied');
-          document.body.classList.add('premium-access-granted');
-          rememberPremiumSessionAccess();
-          return true;
-        }
+          if (status && status.authenticated && status.premium) {
+            document.body.classList.remove('premium-access-checking', 'premium-access-denied');
+            document.body.classList.add('premium-access-granted');
+            rememberPremiumSessionAccess();
+            return true;
+          }
 
-        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
-        document.body.classList.add('premium-access-denied');
-        setTimeout(function () {
+          document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+          document.body.classList.add('premium-access-denied');
           window.location.replace(status && status.authenticated ? '/dashboard' : '/login?mode=manual');
-        }, 350);
-        return false;
-      } catch (error) {
-        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
-        document.body.classList.add('premium-access-denied');
-        setTimeout(function () { window.location.replace('/dashboard'); }, 350);
-        return false;
+          return false;
+        } catch (error) {
+          document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+          document.body.classList.add('premium-access-denied');
+          window.location.replace('/login?mode=manual');
+          return false;
+        }
       }
+
+      document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+      document.body.classList.add('premium-access-denied');
+      window.location.replace('/login?mode=manual');
+      return false;
     }
 
     function showPage(page, options) {
@@ -14815,10 +14889,12 @@
     // ══════════════════════════════════════════════════════
     function plainvestInit() {
       try {
+        activatePremiumSessionFromUrl();
         setupSectionNavigation();
         syncMobileSimulatorLayout();
         setCountry('us', document.querySelector('.cs-flag.active'));
         setLang('en', document.querySelector('.lang-btn.active'));
+        syncMemberNavState();
         showPage(pageFromHash(window.location.hash), { updateHash: false, instant: true });
 
         // Event listeners
@@ -14853,6 +14929,7 @@
             try { updateInflationStats(); } catch (e) { }
           }, 200);
         });
+        window.addEventListener('pageshow', function () { try { syncMemberNavState(); } catch (e) { } });
 
         var raf = window.requestAnimationFrame || function (cb) { return setTimeout(cb, 16); };
         raf(function () {

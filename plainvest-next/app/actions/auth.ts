@@ -3,6 +3,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
+import { getPostHogClient } from '@/lib/posthog-server';
 
 function getOrigin() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
@@ -43,10 +44,15 @@ export async function signIn(formData: FormData) {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
+    const posthog = getPostHogClient();
+    posthog.identify({ distinctId: user.id, properties: { email: user.email } });
+    posthog.capture({ distinctId: user.id, event: 'user_logged_in' });
+    await posthog.shutdown();
+
     const { isPremium } = await getPremiumAccess(supabase, user.id);
 
     if (isPremium) {
-      redirect('/index.html#member');
+      redirect('/index.html?member_session=1#member');
     }
   }
 
@@ -64,7 +70,7 @@ export async function signUp(formData: FormData) {
     redirect('/signup?message=Signup is not available right now. Please try again shortly.');
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { error, data } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -74,6 +80,13 @@ export async function signUp(formData: FormData) {
 
   if (error) {
     redirect(`/signup?message=${encodeURIComponent(friendlyAuthMessage(error.message))}`);
+  }
+
+  if (data.user) {
+    const posthog = getPostHogClient();
+    posthog.identify({ distinctId: data.user.id, properties: { email: data.user.email } });
+    posthog.capture({ distinctId: data.user.id, event: 'user_signed_up' });
+    await posthog.shutdown();
   }
 
   redirect('/login?message=Check your email to confirm your account.');
@@ -93,6 +106,13 @@ export async function requestPasswordReset(formData: FormData) {
     await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${getOrigin()}/auth/callback?next=/update-password`,
     });
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const posthog = getPostHogClient();
+      posthog.capture({ distinctId: user.id, event: 'password_reset_requested' });
+      await posthog.shutdown();
+    }
   }
 
   redirect('/forgot-password?message=If that email exists, a password reset link has been sent.');
@@ -118,15 +138,32 @@ export async function updatePassword(formData: FormData) {
     redirect('/update-password?message=We could not update your password. Please request a new reset link.');
   }
 
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user) {
+    const posthog = getPostHogClient();
+    posthog.capture({ distinctId: user.id, event: 'password_updated' });
+    await posthog.shutdown();
+  }
+
   redirect('/login?message=Password updated. You can log in now.');
 }
 
 export async function signOut() {
+  let userId: string | undefined;
   try {
     const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    userId = user?.id;
     await supabase.auth.signOut();
   } catch {
     // If auth configuration is missing, still let the user leave the dashboard.
   }
+
+  if (userId) {
+    const posthog = getPostHogClient();
+    posthog.capture({ distinctId: userId, event: 'user_logged_out' });
+    await posthog.shutdown();
+  }
+
   redirect(getPublicSiteUrl());
 }

@@ -1,6 +1,7 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 import { createStripeClient } from '@/lib/stripe';
+import { getPostHogClient } from '@/lib/posthog-server';
 import { NextResponse } from 'next/server';
 
 function redirectTo(path: string, request: Request) {
@@ -59,7 +60,11 @@ export async function GET(request: Request) {
       return redirectTo('/dashboard?payment=activation-error', request);
     }
 
-    return redirectTo('/index.html#member', request);
+    const posthog = getPostHogClient();
+    posthog.capture({ distinctId: user.id, event: 'payment_confirmed', properties: { product: 'plainvest_premium_access' } });
+    await posthog.shutdown();
+
+    return redirectTo('/index.html?member_session=1#member', request);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to confirm Stripe payment.';
     console.error('Plainvest Stripe confirmation failed:', message);

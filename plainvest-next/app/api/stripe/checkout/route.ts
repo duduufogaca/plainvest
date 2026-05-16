@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { createStripeClient } from '@/lib/stripe';
+import { getPostHogClient } from '@/lib/posthog-server';
 import { NextResponse } from 'next/server';
 
 function errorResponse(message: string, status = 500) {
@@ -66,6 +67,10 @@ export async function POST() {
     if (!session.url) {
       return errorResponse('Stripe did not return a Checkout URL.');
     }
+
+    const posthog = getPostHogClient();
+    posthog.capture({ distinctId: user.id, event: 'checkout_started', properties: { product: 'plainvest_premium_access', mode } });
+    await posthog.shutdown();
 
     return NextResponse.redirect(session.url, { status: 303 });
   } catch (error) {

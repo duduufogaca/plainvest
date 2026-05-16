@@ -53,7 +53,7 @@ export default async function Dashboard() {
   }
 
   if (isPremium) {
-    redirect('/index.html#member');
+    redirect('/index.html?member_session=1#member');
   }
 
   return (
