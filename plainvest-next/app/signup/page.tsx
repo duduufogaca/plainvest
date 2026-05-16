@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { signUp } from '../actions/auth';
+import { SubmitButton } from '../components/submit-button';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -15,7 +16,7 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
         {params.message ? <div className="notice">{params.message}</div> : null}
         <label>Email<input name="email" type="email" required /></label>
         <label>Password<input name="password" type="password" minLength={6} required /></label>
-        <button type="submit">Create account</button>
+        <SubmitButton pendingText="Creating account...">Create account</SubmitButton>
         <p className="switch">Already have an account? <Link href="/login?mode=manual">Login</Link></p>
       </form>
     </main>

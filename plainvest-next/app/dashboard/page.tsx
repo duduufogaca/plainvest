@@ -2,6 +2,7 @@ import { signOut } from '../actions/auth';
 import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
+import { SubmitButton } from '../components/submit-button';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -61,7 +62,7 @@ export default async function Dashboard() {
       <nav className="payment-topbar">
         <div className="brand">Plainvest</div>
         <form action={signOut}>
-          <button className="ghost" type="submit">Logout</button>
+          <SubmitButton className="ghost" pendingText="Logging out...">Logout</SubmitButton>
         </form>
       </nav>
       <section className="payment-content">
@@ -84,7 +85,7 @@ export default async function Dashboard() {
             <strong>{premiumPriceLabel}</strong>
             <span>One-time purchase</span>
             <form action="/api/stripe/checkout" method="POST">
-              <button type="submit">Continue to secure checkout</button>
+              <SubmitButton pendingText="Opening checkout...">Continue to secure checkout</SubmitButton>
             </form>
           </div>
         </section>

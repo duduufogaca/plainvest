@@ -3,16 +3,53 @@ import { signIn } from '../actions/auth';
 import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
+import { SubmitButton } from '../components/submit-button';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string; mode?: string }> }) {
   const params = await searchParams;
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const missingEnv = [
+    ['NEXT_PUBLIC_SUPABASE_URL', process.env.NEXT_PUBLIC_SUPABASE_URL],
+    ['NEXT_PUBLIC_SUPABASE_ANON_KEY', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY],
+  ].filter(([, value]) => !value).map(([name]) => name);
+
+  if (missingEnv.length > 0) {
+    return (
+      <main className="setup-shell">
+        <section className="setup-card">
+          <p className="eyebrow">Setup needed</p>
+          <h1>Member login is not connected yet.</h1>
+          <p>Add these environment variables in Vercel, then redeploy the project:</p>
+          <ul>
+            {missingEnv.map((name) => <li key={name}>{name}</li>)}
+          </ul>
+        </section>
+      </main>
+    );
+  }
+
+  let user = null;
+
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  } catch {
+    return (
+      <main className="setup-shell">
+        <section className="setup-card">
+          <p className="eyebrow">Setup needed</p>
+          <h1>Member login is not available right now.</h1>
+          <p>Please check the Supabase environment variables in Vercel, redeploy, and try again.</p>
+        </section>
+      </main>
+    );
+  }
 
   if (user && params.mode !== 'manual') {
+    const supabase = await createClient();
     const { isPremium } = await getPremiumAccess(supabase, user.id);
     redirect(isPremium ? '/index.html?member_session=1#member' : '/dashboard');
   }
@@ -26,7 +63,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         {params.message ? <div className="notice">{params.message}</div> : null}
         <label>Email<input name="email" type="email" required /></label>
         <label>Password<input name="password" type="password" minLength={6} required /></label>
-        <button type="submit">Login</button>
+        <SubmitButton pendingText="Logging in...">Login</SubmitButton>
         <p className="switch"><Link href="/forgot-password">Forgot password?</Link></p>
         <p className="switch">New member? <Link href="/signup">Create an account</Link></p>
       </form>

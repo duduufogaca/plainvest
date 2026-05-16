@@ -423,6 +423,10 @@
       box-shadow: 0 12px 30px rgba(0, 212, 170, .28);
     }
 
+    body.premium-session-active .member-create-btn {
+      display: none !important;
+    }
+
     .member-content-nav-item {
       display: none;
     }
@@ -14740,7 +14744,7 @@
     }
 
     function syncMemberNavState() {
-      var active = hasPremiumSessionAccess() || document.body.classList.contains('premium-access-granted');
+      var active = hasPremiumSessionAccess() || document.body.classList.contains('premium-access-granted') || premiumSessionUrlRequested;
       var t = (LANG[currentLang] && LANG[currentLang].nav) || LANG.en.nav;
       var createBtn = document.getElementById('nav-create-member-btn');
       var loginBtn = document.getElementById('nav-login-btn');
@@ -14749,7 +14753,9 @@
 
       if (createBtn) {
         createBtn.hidden = !!active;
+        createBtn.style.display = active ? 'none' : '';
         createBtn.setAttribute('aria-hidden', active ? 'true' : 'false');
+        createBtn.tabIndex = active ? -1 : 0;
       }
 
       if (loginBtn) {
