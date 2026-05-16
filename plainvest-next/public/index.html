@@ -14691,8 +14691,21 @@
       return ['member', 'member-guide', 'member-books'].indexOf(page) >= 0;
     }
 
+    function hasPremiumSessionAccess() {
+      try { return sessionStorage.getItem('plainvestPremiumAccess') === 'granted'; }
+      catch (e) { return false; }
+    }
+
+    function rememberPremiumSessionAccess() {
+      try { sessionStorage.setItem('plainvestPremiumAccess', 'granted'); }
+      catch (e) { }
+    }
+
     function resetPremiumAccessState() {
-      document.body.classList.remove('premium-access-checking', 'premium-access-denied', 'premium-access-granted');
+      document.body.classList.remove('premium-access-checking', 'premium-access-denied');
+      if (!hasPremiumSessionAccess()) {
+        document.body.classList.remove('premium-access-granted');
+      }
     }
 
     function isMemberAppHost() {
@@ -14702,6 +14715,12 @@
     async function ensurePremiumAccessForMemberPage(page) {
       if (!isPremiumProtectedPage(page)) return true;
       if (isLocalPlainvestPreview()) {
+        document.body.classList.add('premium-access-granted');
+        return true;
+      }
+
+      if (hasPremiumSessionAccess()) {
+        document.body.classList.remove('premium-access-checking', 'premium-access-denied');
         document.body.classList.add('premium-access-granted');
         return true;
       }
@@ -14727,6 +14746,7 @@
         if (status && status.authenticated && status.premium) {
           document.body.classList.remove('premium-access-checking', 'premium-access-denied');
           document.body.classList.add('premium-access-granted');
+          rememberPremiumSessionAccess();
           return true;
         }
 
