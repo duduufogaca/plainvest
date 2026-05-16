@@ -9,5 +9,5 @@ export async function GET() {
     // A logout link should still return the visitor to the public site.
   }
 
-  return NextResponse.redirect('https://plainvest.app', { status: 303 });
+  return NextResponse.redirect(process.env.NEXT_PUBLIC_PUBLIC_SITE_URL || 'https://plainvest.app', { status: 303 });
 }

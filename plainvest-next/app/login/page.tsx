@@ -27,6 +27,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         <label>Email<input name="email" type="email" required /></label>
         <label>Password<input name="password" type="password" minLength={6} required /></label>
         <button type="submit">Login</button>
+        <p className="switch"><Link href="/forgot-password">Forgot password?</Link></p>
         <p className="switch">New member? <Link href="/signup">Create an account</Link></p>
       </form>
     </main>

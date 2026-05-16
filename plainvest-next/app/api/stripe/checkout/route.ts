@@ -3,7 +3,8 @@ import { createStripeClient } from '@/lib/stripe';
 import { NextResponse } from 'next/server';
 
 function errorResponse(message: string, status = 500) {
-  return NextResponse.json({ error: message }, { status });
+  console.error('Plainvest checkout error:', message);
+  return NextResponse.json({ error: 'Checkout is not available right now. Please try again shortly.' }, { status });
 }
 
 export async function POST() {

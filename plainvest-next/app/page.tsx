@@ -5,15 +5,22 @@ export default function Home() {
     <main className="public-shell">
       <section className="hero-card">
         <p className="eyebrow">Plainvest Premium</p>
-        <h1>Member learning, account access, and guided investing education.</h1>
+        <h1>Your member learning hub starts here.</h1>
         <p>
-          This Next.js app is ready for Supabase authentication. Members can create an account,
-          log in, and access the dashboard after purchase.
+          Log in to continue your Premium learning path, or create an account before completing
+          your one-time Plainvest Premium purchase.
         </p>
         <div className="actions">
-          <Link href="/signup">Create account</Link>
-          <Link href="/login?mode=manual" className="secondary">Login</Link>
+          <Link href="/login?mode=manual">Login</Link>
+          <Link href="/signup" className="secondary">Create account</Link>
         </div>
+        <p className="tiny-links">
+          <Link href="/forgot-password">Forgot password?</Link>
+          <span>•</span>
+          <Link href="/terms">Terms</Link>
+          <span>•</span>
+          <Link href="/privacy">Privacy</Link>
+        </p>
       </section>
     </main>
   );

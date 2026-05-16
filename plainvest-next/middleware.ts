@@ -14,12 +14,17 @@ function isMembersHost(host: string | null) {
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const isProtectedMemberPath =
-    pathname.startsWith('/files/premium_content/');
-  const shouldProtectMemberPage = isMembersHost(request.headers.get('host')) && isProtectedMemberPath;
+  const isProtectedMemberPath = pathname.startsWith('/files/premium_content/');
 
-  if (!shouldProtectMemberPage) {
+  if (!isProtectedMemberPath) {
     return NextResponse.next();
+  }
+
+  if (!isMembersHost(request.headers.get('host'))) {
+    const url = new URL(request.url);
+    url.protocol = 'https:';
+    url.host = 'members.plainvest.app';
+    return NextResponse.redirect(url);
   }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;

@@ -55,13 +55,14 @@ export async function GET(request: Request) {
     });
 
     if (error) {
-      return redirectTo(`/dashboard?payment=db-error&message=${encodeURIComponent(error.message)}`, request);
+      console.error('Plainvest payment activation database error:', error.message);
+      return redirectTo('/dashboard?payment=activation-error', request);
     }
 
     return redirectTo('/index.html#member', request);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to confirm Stripe payment.';
     console.error('Plainvest Stripe confirmation failed:', message);
-    return redirectTo(`/dashboard?payment=confirm-error&message=${encodeURIComponent(message)}`, request);
+    return redirectTo('/dashboard?payment=confirm-error', request);
   }
 }

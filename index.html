@@ -10720,7 +10720,7 @@
           <h3 data-i18n="member.supportTitle">Member support</h3>
           <p data-i18n="member.supportText">Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.</p>
           <div class="member-support-actions">
-            <button class="member-action-btn primary" onclick="openMemberGuide('zoom')" data-i18n="member.askBtn">Book support call</button>
+            <a class="member-action-btn primary" href="mailto:hello@plainvest.app?subject=Plainvest%20Premium%20support%20call%20booking&body=Hi%20Plainvest%2C%0A%0AI%20would%20like%20to%20book%20my%20included%2060-minute%20Zoom%20support%20call.%0A%0AMy%20preferred%20days%2Ftimes%20are%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AQuestions%20I%20want%20to%20cover%3A%0A-%20" data-i18n="member.askBtn">Book support call</a>
             <form class="member-extra-call-form" action="/api/stripe/support-call" method="POST">
               <button class="member-action-btn" type="submit" data-i18n="member.extraCallBtn">Buy extra call — AUD $39.90</button>
             </form>
@@ -10875,7 +10875,6 @@
         </div>
         <div class="member-guide-actions">
           <button class="member-action-btn" onclick="showPage('member')" data-i18n="memberGuide.backBtn">Back to member area</button>
-          <a class="member-action-btn" href="/logout" data-i18n="member.logoutBtn">Logout</a>
         </div>
       </div>
       <div class="member-guide-frame-wrap">
@@ -10901,7 +10900,6 @@
         </div>
         <div class="member-books-tools">
           <button class="member-action-btn" onclick="showPage('member')" data-i18n="memberBooks.backBtn">Back to member area</button>
-          <a class="member-action-btn" href="/logout" data-i18n="member.logoutBtn">Logout</a>
         </div>
       </div>
 
@@ -11477,7 +11475,7 @@
           openFileBtn: 'Open file',
           booksListBtn: 'Open book list',
           supportTitle: 'Member support',
-          supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.',
+          supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Book by email with your preferred times. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.',
           askBtn: 'Book support call',
           extraCallBtn: 'Buy extra call — AUD $39.90',
           logoutBtn: 'Logout',
@@ -11995,7 +11993,7 @@
           openFileBtn: 'Abrir arquivo',
           booksListBtn: 'Abrir lista de livros',
           supportTitle: 'Suporte de membro',
-          supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Chamadas online extras de 60 minutos ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
+          supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Agende por email com seus horários preferidos. Chamadas online extras de 60 minutos ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
           askBtn: 'Agendar chamada',
           extraCallBtn: 'Comprar chamada extra — AUD $39,90',
           logoutBtn: 'Sair',

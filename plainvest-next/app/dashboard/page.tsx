@@ -7,6 +7,9 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Dashboard() {
+  const premiumPriceLabel = process.env.NEXT_PUBLIC_PREMIUM_PRICE_LABEL || 'AUD $89.90';
+  const supportCallPriceLabel = process.env.NEXT_PUBLIC_SUPPORT_CALL_PRICE_LABEL || 'AUD $39.90';
+
   const missingEnv = [
     ['NEXT_PUBLIC_SUPABASE_URL', process.env.NEXT_PUBLIC_SUPABASE_URL],
     ['NEXT_PUBLIC_SUPABASE_ANON_KEY', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY],
@@ -37,14 +40,13 @@ export default async function Dashboard() {
   const { isPremium, error: accessError } = await getPremiumAccess(supabase, user.id);
 
   if (accessError) {
+    console.error('Plainvest member access check failed:', accessError.message);
     return (
       <main className="setup-shell">
         <section className="setup-card">
-          <p className="eyebrow">Database setup needed</p>
-          <h1>The member access table is not ready yet.</h1>
-          <p>Run this SQL file in Supabase SQL Editor, then refresh this page:</p>
-          <code>plainvest-next/supabase/member_access.sql</code>
-          <p className="muted">Supabase message: {accessError.message}</p>
+          <p className="eyebrow">Access check</p>
+          <h1>We could not confirm your member access.</h1>
+          <p>Please refresh the page or try again shortly. If this continues, contact Plainvest support.</p>
         </section>
       </main>
     );
@@ -75,9 +77,11 @@ export default async function Dashboard() {
             <p className="eyebrow">Premium purchase</p>
             <h2>Plainvest Premium Learning Pass</h2>
             <p>Unlock the investment paths, book list, chart-reading tools, Bitcoin research, DCA method, and one included support call.</p>
+            <p className="muted">Need help later? Extra support calls are available separately for {supportCallPriceLabel}.</p>
+            <p className="tiny-links"><a href="/terms">Terms</a><span>•</span><a href="/privacy">Privacy</a></p>
           </div>
           <div className="price-box">
-            <strong>AUD $89.90</strong>
+            <strong>{premiumPriceLabel}</strong>
             <span>One-time purchase</span>
             <form action="/api/stripe/checkout" method="POST">
               <button type="submit">Continue to secure checkout</button>

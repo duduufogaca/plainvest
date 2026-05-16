@@ -151,6 +151,28 @@ a { color:inherit; text-decoration:none; }
   text-align:center;
 }
 .switch a { color:var(--teal); font-weight:900; }
+.tiny-links {
+  margin:1rem 0 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  align-items:center;
+  color:var(--muted);
+  font-size:.86rem;
+}
+.tiny-links a {
+  color:#c9fff3;
+  font-weight:850;
+}
+.legal-card {
+  display:grid;
+  gap:.35rem;
+}
+.legal-card h2 {
+  margin:1rem 0 .1rem;
+  color:var(--text);
+  font-size:1.1rem;
+}
 .dashboard-shell {
   min-height:100vh;
   display:grid;

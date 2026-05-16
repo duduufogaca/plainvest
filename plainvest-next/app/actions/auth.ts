@@ -8,6 +8,21 @@ function getOrigin() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 }
 
+function getPublicSiteUrl() {
+  return process.env.NEXT_PUBLIC_PUBLIC_SITE_URL || 'https://plainvest.app';
+}
+
+function friendlyAuthMessage(message: string) {
+  const lower = message.toLowerCase();
+  if (lower.includes('email not confirmed') || lower.includes('confirm')) {
+    return 'Please confirm your email first. Open the confirmation email from Plainvest, then try logging in again.';
+  }
+  if (lower.includes('invalid login credentials')) {
+    return 'The email or password is not correct. You can try again or reset your password.';
+  }
+  return 'We could not complete that request. Please try again.';
+}
+
 export async function signIn(formData: FormData) {
   const email = String(formData.get('email') || '');
   const password = String(formData.get('password') || '');
@@ -15,15 +30,14 @@ export async function signIn(formData: FormData) {
 
   try {
     supabase = await createClient();
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Supabase is not connected yet.';
-    redirect(`/login?message=${encodeURIComponent(message)}`);
+  } catch {
+    redirect('/login?message=Login is not available right now. Please try again shortly.');
   }
 
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    redirect(`/login?message=${encodeURIComponent(error.message)}`);
+    redirect(`/login?message=${encodeURIComponent(friendlyAuthMessage(error.message))}`);
   }
 
   const { data: { user } } = await supabase.auth.getUser();
@@ -46,9 +60,8 @@ export async function signUp(formData: FormData) {
 
   try {
     supabase = await createClient();
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Supabase is not connected yet.';
-    redirect(`/signup?message=${encodeURIComponent(message)}`);
+  } catch {
+    redirect('/signup?message=Signup is not available right now. Please try again shortly.');
   }
 
   const { error } = await supabase.auth.signUp({
@@ -60,10 +73,52 @@ export async function signUp(formData: FormData) {
   });
 
   if (error) {
-    redirect(`/signup?message=${encodeURIComponent(error.message)}`);
+    redirect(`/signup?message=${encodeURIComponent(friendlyAuthMessage(error.message))}`);
   }
 
   redirect('/login?message=Check your email to confirm your account.');
+}
+
+export async function requestPasswordReset(formData: FormData) {
+  const email = String(formData.get('email') || '').trim();
+  let supabase;
+
+  try {
+    supabase = await createClient();
+  } catch {
+    redirect('/forgot-password?message=Password reset is not available right now. Please try again soon.');
+  }
+
+  if (email) {
+    await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${getOrigin()}/auth/callback?next=/update-password`,
+    });
+  }
+
+  redirect('/forgot-password?message=If that email exists, a password reset link has been sent.');
+}
+
+export async function updatePassword(formData: FormData) {
+  const password = String(formData.get('password') || '');
+  let supabase;
+
+  try {
+    supabase = await createClient();
+  } catch {
+    redirect('/update-password?message=Password update is not available right now. Please try again soon.');
+  }
+
+  if (password.length < 6) {
+    redirect('/update-password?message=Use at least 6 characters.');
+  }
+
+  const { error } = await supabase.auth.updateUser({ password });
+
+  if (error) {
+    redirect('/update-password?message=We could not update your password. Please request a new reset link.');
+  }
+
+  redirect('/login?message=Password updated. You can log in now.');
 }
 
 export async function signOut() {
@@ -73,5 +128,5 @@ export async function signOut() {
   } catch {
     // If auth configuration is missing, still let the user leave the dashboard.
   }
-  redirect('https://plainvest.app');
+  redirect(getPublicSiteUrl());
 }
