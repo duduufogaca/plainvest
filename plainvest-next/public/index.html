@@ -1838,6 +1838,45 @@
       padding: .72rem 1rem;
     }
 
+    .sim-premium-nudge {
+      grid-column: 1 / -1;
+      border: 1px solid rgba(247, 205, 105, .28);
+      background: linear-gradient(135deg, rgba(247, 205, 105, .10), rgba(100, 229, 196, .08));
+      border-radius: 22px;
+      padding: 1rem 1.1rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .sim-premium-nudge strong {
+      display: block;
+      color: #f7cd69;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      line-height: 1.25;
+      margin-bottom: .35rem;
+    }
+
+    .sim-premium-nudge p {
+      margin: 0;
+      color: #b8c7da;
+      font-size: .78rem;
+      line-height: 1.55;
+    }
+
+    .sim-premium-nudge button {
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal-soft), var(--teal));
+      color: #061626;
+      padding: .85rem 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
     .res-main {
       background: linear-gradient(180deg, rgba(21, 36, 60, .98) 0%, rgba(12, 24, 43, .98) 100%);
       border: 1px solid rgba(255, 255, 255, .08);
@@ -6392,6 +6431,10 @@
         grid-template-columns: 1fr;
       }
 
+      .sim-premium-nudge {
+        grid-template-columns: 1fr;
+      }
+
       .inf-controls,
       .contact-intro-card {
         grid-template-columns: 1fr;
@@ -9965,6 +10008,13 @@
               </div>
               <button class="eb-btn" onclick="showPage('plans')" data-i18n="sim.eduBtn">See Premium access →</button>
             </div>
+            <div class="sim-premium-nudge" id="sim-premium-nudge">
+              <div>
+                <strong id="sim-nudge-title">Want help turning this result into a first real step?</strong>
+                <p id="sim-nudge-text">Premium includes a 60-minute Zoom call so you can ask questions about platforms, DCA, ETFs, Bitcoin safety, or what to learn next.</p>
+              </div>
+              <button type="button" id="sim-nudge-btn" onclick="showPage('plans')">Use Premium support →</button>
+            </div>
           </div>
         </div>
       </div>
@@ -10258,7 +10308,7 @@
   <section class="testimonials app-page" data-page="learn">
     <div class="section-eyebrow" data-i18n="testi.eyebrow">User feedback</div>
     <div class="section-h2" data-i18n-html="testi.h2">From curious to <em>confident</em>.</div>
-    <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">Plainvest is being shaped with comments from early testers and first-time investors, so the launch version answers real beginner confusion.</p>
+    <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">Plainvest is being shaped with comments from first-time investors, so the product answers real beginner confusion.</p>
     <div class="testi-grid">
       <div class="t-card reveal reveal-delay-1">
         <div class="t-stars">USER FEEDBACK</div>
@@ -10266,8 +10316,8 @@
         <div class="t-person">
           <div class="t-av">👩‍🍳</div>
           <div>
-            <div class="t-name">Maria, 27</div>
-            <div class="t-role">First-time investor</div>
+            <div class="t-name">Maria, 27 — Sydney</div>
+            <div class="t-role">First-time ETF learner</div>
           </div>
         </div>
       </div>
@@ -10277,8 +10327,8 @@
         <div class="t-person">
           <div class="t-av">👨‍💻</div>
           <div>
-            <div class="t-name">James, 31</div>
-            <div class="t-role">Learning the basics</div>
+            <div class="t-name">James, 31 — Brisbane</div>
+            <div class="t-role">Cash saver learning inflation</div>
           </div>
         </div>
       </div>
@@ -10288,8 +10338,8 @@
         <div class="t-person">
           <div class="t-av">👩‍🏫</div>
           <div>
-            <div class="t-name">Ana, 34</div>
-            <div class="t-role">Comparing options</div>
+            <div class="t-name">Ana, 34 — Melbourne</div>
+            <div class="t-role">Beginner comparing options</div>
           </div>
         </div>
       </div>
@@ -10955,6 +11005,66 @@
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('cycles')" data-i18n="member.openFileBtn">Open file</button>
         </div>
+        <div class="member-card">
+          <div class="member-icon">🧾</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card10Title">Australian tax and CGT basics</h3>
+          <p data-i18n="member.card10Text">Plain-English education about CGT, records, ETF distributions, crypto disposals, and questions to ask a tax professional.</p>
+          <ul>
+            <li data-i18n="member.card10Item1">Capital gains and the 12-month discount concept</li>
+            <li data-i18n="member.card10Item2">Records to keep before tax time</li>
+            <li data-i18n="member.card10Item3">Common beginner mistakes to avoid</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('tax')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🛡️</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card11Title">Superannuation basics</h3>
+          <p data-i18n="member.card11Text">Understand why super is already investing, what to compare, and which beginner questions matter most.</p>
+          <ul>
+            <li data-i18n="member.card11Item1">Fees, investment options, performance, and insurance</li>
+            <li data-i18n="member.card11Item2">MySuper and voluntary contribution basics</li>
+            <li data-i18n="member.card11Item3">A calm checklist before making changes</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('super')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🏛️</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card12Title">Australian platform comparison</h3>
+          <p data-i18n="member.card12Text">Compare common Australian platforms by fees, assets, ownership model, ease of use, and beginner fit.</p>
+          <ul>
+            <li data-i18n="member.card12Item1">Stake, SelfWealth, CommSec, Vanguard, BetaShares, and Pearler</li>
+            <li data-i18n="member.card12Item2">Fee and feature filters to research</li>
+            <li data-i18n="member.card12Item3">A checklist before opening an account</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('platforms')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🔤</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card13Title">Glossary of key terms</h3>
+          <p data-i18n="member.card13Text">A quick plain-English reference for the investing words beginners keep seeing in guides, books, and broker apps.</p>
+          <ul>
+            <li data-i18n="member.card13Item1">ETF, index fund, brokerage, liquidity, volatility, and more</li>
+            <li data-i18n="member.card13Item2">Australian terms like franking credits, CGT, and super</li>
+            <li data-i18n="member.card13Item3">Crypto terms without hype or confusion</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('glossary')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">✅</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card14Title">Your first trade walkthrough</h3>
+          <p data-i18n="member.card14Text">A practical walkthrough for the moment beginners freeze: funding the account, order types, fees, and confirmations.</p>
+          <ul>
+            <li data-i18n="member.card14Item1">Market order vs limit order in plain English</li>
+            <li data-i18n="member.card14Item2">What to check before confirming a trade</li>
+            <li data-i18n="member.card14Item3">How to save records and start small</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('firsttrade')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
       </div>
       <div class="member-next" data-i18n="member.next">Premium is designed to keep every next step clear: learn the idea, understand the tools, ask questions, and build confidence before taking action.</div>
     </div>
@@ -10997,7 +11107,7 @@
         <div>
           <div class="section-eyebrow" data-i18n="memberBooks.eyebrow">Premium book list</div>
           <div class="section-h2" data-i18n-html="memberBooks.h2">Books that build <em>real investing confidence.</em></div>
-          <p class="section-lead" data-i18n="memberBooks.lead">A member-only reading path with book covers, quick reasons to read each one, and Amazon buttons ready for your links.</p>
+          <p class="section-lead" data-i18n="memberBooks.lead">A member-only reading path with book covers, quick reasons to read each one, and direct Amazon search links.</p>
         </div>
         <div class="member-books-tools">
           <button class="member-action-btn" onclick="showPage('member')" data-i18n="memberBooks.backBtn">Back to member area</button>
@@ -11012,7 +11122,7 @@
             <h3 data-i18n="memberBooks.book1Title">The Little Book of Common Sense Investing</h3>
             <div class="member-book-author" data-i18n="memberBooks.book1Author">John C. Bogle</div>
             <p data-i18n="memberBooks.book1Text">Best first read for understanding index funds and long-term simplicity.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Little+Book+of+Common+Sense+Investing+John+Bogle" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11022,7 +11132,7 @@
             <h3 data-i18n="memberBooks.book2Title">The Psychology of Money</h3>
             <div class="member-book-author" data-i18n="memberBooks.book2Author">Morgan Housel</div>
             <p data-i18n="memberBooks.book2Text">Mindset, behaviour, patience, and why smart money decisions are emotional too.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Psychology+of+Money+Morgan+Housel" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11032,7 +11142,7 @@
             <h3 data-i18n="memberBooks.book3Title">A Random Walk Down Wall Street</h3>
             <div class="member-book-author" data-i18n="memberBooks.book3Author">Burton G. Malkiel</div>
             <p data-i18n="memberBooks.book3Text">A classic evidence-based view of markets, diversification, and why beating the market is hard.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=A+Random+Walk+Down+Wall+Street+Burton+Malkiel" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11042,7 +11152,7 @@
             <h3 data-i18n="memberBooks.book4Title">Rich Dad Poor Dad</h3>
             <div class="member-book-author" data-i18n="memberBooks.book4Author">Robert T. Kiyosaki</div>
             <p data-i18n="memberBooks.book4Text">Useful beginner mindset around assets, liabilities, and money habits.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=Rich+Dad+Poor+Dad+Robert+Kiyosaki" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11052,7 +11162,7 @@
             <h3 data-i18n="memberBooks.book5Title">I Will Teach You to Be Rich</h3>
             <div class="member-book-author" data-i18n="memberBooks.book5Author">Ramit Sethi</div>
             <p data-i18n="memberBooks.book5Text">Practical personal finance systems, automation, and consistent investing habits.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=I+Will+Teach+You+to+Be+Rich+Ramit+Sethi" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11062,7 +11172,7 @@
             <h3 data-i18n="memberBooks.book6Title">The Intelligent Investor</h3>
             <div class="member-book-author" data-i18n="memberBooks.book6Author">Benjamin Graham</div>
             <p data-i18n="memberBooks.book6Text">A deeper classic for valuation, risk, discipline, and long-term investor thinking.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Intelligent+Investor+Benjamin+Graham" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11072,7 +11182,7 @@
             <h3 data-i18n="memberBooks.book7Title">The Bitcoin Standard</h3>
             <div class="member-book-author" data-i18n="memberBooks.book7Author">Saifedean Ammous</div>
             <p data-i18n="memberBooks.book7Text">A monetary history view of Bitcoin, scarcity, hard money, and why people see it as a long-term store of value.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Bitcoin+Standard+Saifedean+Ammous" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11082,7 +11192,7 @@
             <h3 data-i18n="memberBooks.book8Title">The Fiat Standard</h3>
             <div class="member-book-author" data-i18n="memberBooks.book8Author">Saifedean Ammous</div>
             <p data-i18n="memberBooks.book8Text">A deeper look at modern money, inflation, debt, and how fiat systems shape financial decisions.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Fiat+Standard+Saifedean+Ammous" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11092,7 +11202,7 @@
             <h3 data-i18n="memberBooks.book9Title">Inventing Bitcoin</h3>
             <div class="member-book-author" data-i18n="memberBooks.book9Author">Yan Pritzker</div>
             <p data-i18n="memberBooks.book9Text">A beginner-friendly explanation of how Bitcoin works without needing a technical background.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=Inventing+Bitcoin+Yan+Pritzker" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11102,7 +11212,7 @@
             <h3 data-i18n="memberBooks.book10Title">The Internet of Money</h3>
             <div class="member-book-author" data-i18n="memberBooks.book10Author">Andreas M. Antonopoulos</div>
             <p data-i18n="memberBooks.book10Text">Short essays and talks that explain why open monetary networks matter beyond price charts.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Internet+of+Money+Andreas+Antonopoulos" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11112,7 +11222,7 @@
             <h3 data-i18n="memberBooks.book11Title">The Black Swan</h3>
             <div class="member-book-author" data-i18n="memberBooks.book11Author">Nassim Nicholas Taleb</div>
             <p data-i18n="memberBooks.book11Text">A powerful book about rare events, uncertainty, fragility, and why markets surprise people.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Black+Swan+Nassim+Nicholas+Taleb" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11122,12 +11232,12 @@
             <h3 data-i18n="memberBooks.book12Title">Principles: Life and Work</h3>
             <div class="member-book-author" data-i18n="memberBooks.book12Author">Ray Dalio</div>
             <p data-i18n="memberBooks.book12Text">Business, decision-making, risk, and life principles from one of the world's best-known investors.</p>
-            <a class="member-amazon-btn" href="#" onclick="event.preventDefault()" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=Principles+Life+and+Work+Ray+Dalio" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
       </div>
 
-      <div class="member-book-note" data-i18n="memberBooks.note">Amazon buttons use placeholder links for now. Replace each href="#" with your Amazon link when ready.</div>
+      <div class="member-book-note" data-i18n="memberBooks.note">Book buttons open Amazon Australia search results. You can replace them later with Amazon Associates links if you join the affiliate program.</div>
     </div>
   </section>
 
@@ -11385,7 +11495,10 @@
           methodCopy: 'Plainvest uses transparent, simplified long-run assumptions so beginners can compare paths quickly. It is designed to show direction, trade-offs, and inflation impact in a way that is easy to understand.',
           methodP1: 'The return rate for each path is shown on the investment card so assumptions are visible.',
           methodP2: 'Results compound monthly and can be viewed yearly or monthly, but they are not guaranteed.',
-          methodP3: 'Taxes, fees, timing, inflation, exchange rates, and personal circumstances can change real-life outcomes.'
+          methodP3: 'Taxes, fees, timing, inflation, exchange rates, and personal circumstances can change real-life outcomes.',
+          nudgeTitle: 'Want help turning this result into a first real step?',
+          nudgeText: 'Premium includes a 60-minute Zoom call so you can ask questions about platforms, DCA, ETFs, Bitcoin safety, or what to learn next.',
+          nudgeBtn: 'Use Premium support →'
         },
         inflation: {
           eyebrow: '📉 The hidden risk',
@@ -11437,13 +11550,13 @@
         testi: {
           eyebrow: 'User feedback',
           h2: 'From curious to <em>confident</em>.',
-          lead: 'Plainvest is being shaped with comments from beginner investors, so the launch version answers real questions.',
+          lead: 'Plainvest is being shaped with comments from first-time investors, so the product answers real beginner confusion.',
           q1: '"I typed in $100 a month just to play around, then realised waiting five more years would cost me more than I thought. That was the first time investing felt practical."',
-          p1: 'First-time investor',
+          p1: 'First-time ETF learner',
           q2: '"The inflation chart made the biggest difference for me. I finally understood why leaving everything in savings is not as safe as it looks."',
-          p2: 'Learning the basics',
+          p2: 'Cash saver learning inflation',
           q3: '"I liked that I could click the terms without feeling silly. ETF, index fund, bonds — it made the words less intimidating before I made any decision."',
-          p3: 'Comparing options'
+          p3: 'Beginner comparing options'
         },
         story: {
           eyebrow: 'Our story',
@@ -11651,6 +11764,31 @@
           card9Item1: 'Mistakes to avoid in bull and bear markets',
           card9Item2: 'How to stay calm when narratives change',
           card9Item3: 'Ongoing Premium updates as the project grows',
+          card10Title: 'Australian tax and CGT basics',
+          card10Text: 'Plain-English education about CGT, records, ETF distributions, crypto disposals, and questions to ask a tax professional.',
+          card10Item1: 'Capital gains and the 12-month discount concept',
+          card10Item2: 'Records to keep before tax time',
+          card10Item3: 'Common beginner mistakes to avoid',
+          card11Title: 'Superannuation basics',
+          card11Text: 'Understand why super is already investing, what to compare, and which beginner questions matter most.',
+          card11Item1: 'Fees, investment options, performance, and insurance',
+          card11Item2: 'MySuper and voluntary contribution basics',
+          card11Item3: 'A calm checklist before making changes',
+          card12Title: 'Australian platform comparison',
+          card12Text: 'Compare common Australian platforms by fees, assets, ownership model, ease of use, and beginner fit.',
+          card12Item1: 'Stake, SelfWealth, CommSec, Vanguard, BetaShares, and Pearler',
+          card12Item2: 'Fee and feature filters to research',
+          card12Item3: 'A checklist before opening an account',
+          card13Title: 'Glossary of key terms',
+          card13Text: 'A quick plain-English reference for the investing words beginners keep seeing in guides, books, and broker apps.',
+          card13Item1: 'ETF, index fund, brokerage, liquidity, volatility, and more',
+          card13Item2: 'Australian terms like franking credits, CGT, and super',
+          card13Item3: 'Crypto terms without hype or confusion',
+          card14Title: 'Your first trade walkthrough',
+          card14Text: 'A practical walkthrough for the moment beginners freeze: funding the account, order types, fees, and confirmations.',
+          card14Item1: 'Market order vs limit order in plain English',
+          card14Item2: 'What to check before confirming a trade',
+          card14Item3: 'How to save records and start small',
           cardBtn: 'Open guide',
           booksBtn: 'View reading list',
           meetingBtn: 'Request meeting',
@@ -11680,10 +11818,10 @@
         memberBooks: {
           eyebrow: 'Premium book list',
           h2: 'Books that build <em>real investing confidence.</em>',
-          lead: 'A member-only reading path with book covers, quick reasons to read each one, and Amazon buttons ready for your links.',
+          lead: 'A member-only reading path with book covers, quick reasons to read each one, and direct Amazon search links.',
           backBtn: 'Back to member area',
           buyBtn: 'Buy on Amazon',
-          note: 'Amazon buttons use placeholder links for now. Replace each href="#" with your Amazon link when ready.',
+          note: 'Book buttons open Amazon Australia search results. You can replace them later with Amazon Associates links if you join the affiliate program.',
           book1Level: 'Start here',
           book1Title: 'The Little Book of Common Sense Investing',
           book1Author: 'John C. Bogle',
@@ -11919,7 +12057,10 @@
           methodCopy: 'O Plainvest usa premissas transparentes e simplificadas de longo prazo para que iniciantes possam comparar caminhos rapidamente. A ideia é mostrar direção, vantagens, riscos e o impacto da inflação de uma forma fácil de entender.',
           methodP1: 'A taxa usada em cada caminho aparece no card do investimento para deixar as premissas visíveis.',
           methodP2: 'Os resultados capitalizam mensalmente e podem ser vistos por ano ou por mês, mas não são garantidos.',
-          methodP3: 'Impostos, taxas, momento de compra, inflação, câmbio e circunstâncias pessoais podem mudar os resultados reais.'
+          methodP3: 'Impostos, taxas, momento de compra, inflação, câmbio e circunstâncias pessoais podem mudar os resultados reais.',
+          nudgeTitle: 'Quer ajuda para transformar este resultado em um primeiro passo real?',
+          nudgeText: 'O Premium inclui uma chamada de 60 minutos no Zoom para tirar dúvidas sobre plataformas, DCA, ETFs, segurança em Bitcoin ou o que estudar depois.',
+          nudgeBtn: 'Usar suporte Premium →'
         },
         inflation: {
           eyebrow: '📉 O risco escondido',
@@ -11971,13 +12112,13 @@
         testi: {
           eyebrow: 'Feedback de usuários',
           h2: 'De curioso a <em>confiante</em>.',
-          lead: 'O Plainvest está sendo moldado com comentários de investidores iniciantes, para que a versão de lançamento responda dúvidas reais.',
+          lead: 'O Plainvest está sendo moldado com comentários de investidores iniciantes, para responder dúvidas reais de quem está começando.',
           q1: '"Coloquei R$100 por mês só para testar e percebi que esperar mais cinco anos custaria mais do que eu imaginava. Foi a primeira vez que investir pareceu prático."',
-          p1: 'Investidora iniciante',
+          p1: 'Iniciante aprendendo ETFs',
           q2: '"O gráfico de inflação foi o que mais me marcou. Finalmente entendi por que deixar tudo parado na poupança não é tão seguro quanto parece."',
-          p2: 'Aprendendo o básico',
+          p2: 'Poupador entendendo inflação',
           q3: '"Gostei de poder clicar nos termos sem me sentir perdida. ETF, fundo de índice, títulos — as palavras ficaram menos assustadoras antes de qualquer decisão."',
-          p3: 'Comparando opções'
+          p3: 'Iniciante comparando opções'
         },
         story: {
           eyebrow: 'Nossa história',
@@ -12185,6 +12326,31 @@
           card9Item1: 'Erros para evitar em mercados de alta e de baixa',
           card9Item2: 'Como manter calma quando as narrativas mudam',
           card9Item3: 'Atualizações contínuas do Premium conforme o projeto cresce',
+          card10Title: 'Impostos e CGT na Austrália',
+          card10Text: 'Educação em linguagem simples sobre CGT, registros, distribuições de ETFs, vendas de cripto e perguntas para fazer a um profissional de impostos.',
+          card10Item1: 'Ganhos de capital e o conceito do desconto de 12 meses',
+          card10Item2: 'Registros para manter antes do imposto',
+          card10Item3: 'Erros comuns de iniciantes para evitar',
+          card11Title: 'Noções de superannuation',
+          card11Text: 'Entenda por que o super já é investimento, o que comparar e quais perguntas importam para iniciantes.',
+          card11Item1: 'Taxas, opções de investimento, performance e seguros',
+          card11Item2: 'Noções de MySuper e contribuições voluntárias',
+          card11Item3: 'Checklist calmo antes de fazer mudanças',
+          card12Title: 'Comparação de plataformas australianas',
+          card12Text: 'Compare plataformas australianas comuns por taxas, ativos, modelo de custódia, facilidade de uso e perfil de iniciante.',
+          card12Item1: 'Stake, SelfWealth, CommSec, Vanguard, BetaShares e Pearler',
+          card12Item2: 'Filtros de taxas e recursos para pesquisar',
+          card12Item3: 'Checklist antes de abrir uma conta',
+          card13Title: 'Glossário de termos importantes',
+          card13Text: 'Uma referência rápida em linguagem simples para palavras de investimento que aparecem em guias, livros e apps de corretoras.',
+          card13Item1: 'ETF, fundo de índice, corretagem, liquidez, volatilidade e mais',
+          card13Item2: 'Termos australianos como franking credits, CGT e super',
+          card13Item3: 'Termos de cripto sem hype ou confusão',
+          card14Title: 'Primeira compra passo a passo',
+          card14Text: 'Um passo a passo prático para o momento em que iniciantes travam: depósito, tipos de ordem, taxas e confirmações.',
+          card14Item1: 'Ordem a mercado vs ordem limitada em linguagem simples',
+          card14Item2: 'O que conferir antes de confirmar uma compra',
+          card14Item3: 'Como salvar registros e começar pequeno',
           cardBtn: 'Abrir guia',
           booksBtn: 'Ver lista de leitura',
           meetingBtn: 'Solicitar reunião',
@@ -12214,10 +12380,10 @@
         memberBooks: {
           eyebrow: 'Lista de livros Premium',
           h2: 'Livros que constroem <em>confiança real para investir.</em>',
-          lead: 'Uma trilha de leitura exclusiva para membros, com capas dos livros, motivos rápidos para ler cada um e botões da Amazon prontos para seus links.',
+          lead: 'Uma trilha de leitura exclusiva para membros, com capas dos livros, motivos rápidos para ler cada um e links diretos de busca na Amazon.',
           backBtn: 'Voltar para área de membro',
           buyBtn: 'Comprar na Amazon',
-          note: 'Os botões da Amazon estão com links temporários por enquanto. Troque cada href="#" pelo seu link da Amazon quando estiver pronto.',
+          note: 'Os botões abrem resultados de busca na Amazon Austrália. Depois você pode trocar por links do Amazon Associates se entrar no programa de afiliados.',
           book1Level: 'Comece aqui',
           book1Title: 'O Pequeno Livro do Investimento com Bom Senso',
           book1Author: 'John C. Bogle',
@@ -12754,6 +12920,9 @@
         setText('method-p1', s.methodP1);
         setText('method-p2', s.methodP2);
         setText('method-p3', s.methodP3);
+        setText('sim-nudge-title', s.nudgeTitle);
+        setText('sim-nudge-text', s.nudgeText);
+        setText('sim-nudge-btn', s.nudgeBtn);
         updateInflationControlCopy();
         if (typeof renderInflationChart === 'function') { renderInflationChart(); updateInflationStats(); }
       }
@@ -13534,6 +13703,18 @@
       // % return
       const pctReturn = totalIn > 0 ? Math.round((earned / totalIn) * 100) + '%' : '—';
       document.getElementById('rMultPct').textContent = pctReturn;
+      const nudgeTitle = document.getElementById('sim-nudge-title');
+      const nudgeText = document.getElementById('sim-nudge-text');
+      const nudgeBtn = document.getElementById('sim-nudge-btn');
+      if (nudgeTitle && nudgeText) {
+        nudgeTitle.textContent = isPt
+          ? `Transforme ${fmt(finalV)} em um próximo passo mais claro.`
+          : `Turn ${fmt(finalV)} into a clearer next step.`;
+        nudgeText.textContent = isPt
+          ? 'O Premium inclui uma chamada de 60 minutos no Zoom para tirar dúvidas sobre plataforma, DCA, ETFs, Bitcoin ou como começar com mais calma.'
+          : 'Premium includes a 60-minute Zoom call to help you ask questions about platforms, DCA, ETFs, Bitcoin, or how to start more calmly.';
+      }
+      if (nudgeBtn) nudgeBtn.textContent = isPt ? 'Usar suporte Premium →' : 'Use Premium support →';
 
       // Year slider labels
       updateYearUI(yrs);
@@ -14130,6 +14311,26 @@
         references: {
           title: isPt ? 'Fontes de pesquisa Premium' : 'Premium Research Sources',
           file: 'files/premium_content/10-research-sources.html'
+        },
+        tax: {
+          title: isPt ? 'Impostos e CGT na Austrália' : 'Australian Tax and CGT Basics',
+          file: 'files/premium_content/11-australian-tax-cgt-basics.html'
+        },
+        super: {
+          title: isPt ? 'Noções de superannuation' : 'Superannuation Basics',
+          file: 'files/premium_content/12-superannuation-basics.html'
+        },
+        platforms: {
+          title: isPt ? 'Comparação de plataformas australianas' : 'Australian Platform Comparison',
+          file: 'files/premium_content/13-australian-platform-comparison.html'
+        },
+        glossary: {
+          title: isPt ? 'Glossário de termos de investimento' : 'Glossary of Investing Terms',
+          file: 'files/premium_content/14-glossary-60-key-terms.html'
+        },
+        firsttrade: {
+          title: isPt ? 'Primeira compra passo a passo' : 'Your First Trade Walkthrough',
+          file: 'files/premium_content/15-first-trade-walkthrough.html'
         }
       };
     }

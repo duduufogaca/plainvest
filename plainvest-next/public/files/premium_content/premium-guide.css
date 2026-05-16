@@ -1330,9 +1330,28 @@ li { margin:.24rem 0; font-size:.84rem; }
   padding:.7rem 1rem;
   font-weight:900;
 }
+.link-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.75rem;
+  margin-top:1rem;
+}
+.link-grid a {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  border:1px solid rgba(100,229,196,.28);
+  border-radius:14px;
+  background:rgba(100,229,196,.08);
+  color:var(--ink);
+  font-weight:900;
+  text-align:center;
+  padding:.7rem;
+}
 @media(max-width:720px) {
   .guide { padding:1rem .85rem 2rem; }
-  .quick-strip,.grid-2,.grid-3,.study-note { grid-template-columns:1fr; }
+  .quick-strip,.grid-2,.grid-3,.study-note,.link-grid { grid-template-columns:1fr; }
   .hero,.section { border-radius:16px; }
   .wallet-row,.cycle-labels,.booking-form,.exchange-screen,.zoom-screen,.zoom-agenda,.tv-native-top,.cycle-study-head,.bitcoin-plain-lens,.halving-clock,.halving-metrics { grid-template-columns:1fr; }
   .tv-native-top { display:grid; }
