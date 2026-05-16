@@ -4,9 +4,11 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { SubmitButton } from '../components/submit-button';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+export const metadata: Metadata = { robots: { index: false, follow: false } };
 
 export default async function Login({ searchParams }: { searchParams: Promise<{ message?: string; mode?: string }> }) {
   const params = await searchParams;

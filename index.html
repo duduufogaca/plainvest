@@ -3832,6 +3832,35 @@
       line-height: 1.48;
     }
 
+    .plan-zoom-callout {
+      margin-top: .9rem;
+      border: 1px solid rgba(100, 229, 196, .34);
+      background: linear-gradient(135deg, rgba(100, 229, 196, .14), rgba(247, 205, 105, .08));
+      border-radius: 18px;
+      padding: .95rem 1rem;
+    }
+
+    .plan-zoom-callout strong {
+      display: block;
+      color: #f7cd69;
+      font-size: .92rem;
+      line-height: 1.25;
+      margin-bottom: .35rem;
+    }
+
+    .plan-zoom-callout span,
+    .plan-founding-note {
+      display: block;
+      color: #b6c8dc;
+      font-size: .72rem;
+      line-height: 1.55;
+    }
+
+    .plan-founding-note {
+      margin-top: .65rem;
+      color: #f1d891;
+    }
+
     .plan-faq {
       max-width: 1180px;
       margin: 1.35rem auto 0;
@@ -9904,9 +9933,9 @@
             <div class="edu-banner">
               <div class="eb-text">
                 <h4 data-i18n="sim.eduTitle">Want to understand the full picture?</h4>
-                <p data-i18n="sim.eduText">Premium guides are coming soon. The simulator, starter guide, and inflation tools are free while we keep improving the first version.</p>
+                <p data-i18n="sim.eduText">Premium is live with step-by-step guides, DCA lessons, crypto safety, book paths, exchange setup help, and one included 60-minute Zoom support call.</p>
               </div>
-              <button class="eb-btn" onclick="showPage('plans')" data-i18n="sim.eduBtn">See what's coming →</button>
+              <button class="eb-btn" onclick="showPage('plans')" data-i18n="sim.eduBtn">See Premium access →</button>
             </div>
           </div>
         </div>
@@ -10184,15 +10213,15 @@
 
     <div class="learn-premium-banner">
       <div class="lpb-left">
-        <h4 id="lpb-title">Premium guides are coming soon</h4>
-        <p id="lpb-text">Plainvest Premium is coming soon. Deeper guides, step-by-step checklists, and saved simulations will arrive in a later release.</p>
+        <h4 id="lpb-title">Premium guides are live</h4>
+        <p id="lpb-text">Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.</p>
         <div class="lpb-pills">
           <div class="lpb-pill" id="lpb-p1">How to buy your first Index Fund</div>
           <div class="lpb-pill" id="lpb-p2">What is a brokerage account?</div>
           <div class="lpb-pill" id="lpb-p3">Dollar-cost averaging explained</div>
         </div>
       </div>
-      <button class="lpb-btn" id="lpb-btn" onclick="showPage('plans')">Coming soon →</button>
+      <button class="lpb-btn" id="lpb-btn" onclick="showPage('plans')">Get Premium access →</button>
     </div>
   </section>
 
@@ -10204,35 +10233,35 @@
     <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">Plainvest is being shaped with comments from early testers and first-time investors, so the launch version answers real beginner confusion.</p>
     <div class="testi-grid">
       <div class="t-card reveal reveal-delay-1">
-        <div class="t-stars">EARLY TESTER</div>
+        <div class="t-stars">USER FEEDBACK</div>
         <div class="t-quote">"I typed in $100 a month just to play around, then realised waiting five more years would cost me more than I thought. That was the first time investing felt practical."</div>
         <div class="t-person">
           <div class="t-av">👩‍🍳</div>
           <div>
             <div class="t-name">Maria, 27</div>
-            <div class="t-role">Early tester — first-time investor</div>
+            <div class="t-role">First-time investor</div>
           </div>
         </div>
       </div>
       <div class="t-card reveal reveal-delay-2">
-        <div class="t-stars">EARLY TESTER</div>
+        <div class="t-stars">USER FEEDBACK</div>
         <div class="t-quote">"The inflation chart made the biggest difference for me. I finally understood why leaving everything in savings is not as safe as it looks."</div>
         <div class="t-person">
           <div class="t-av">👨‍💻</div>
           <div>
             <div class="t-name">James, 31</div>
-            <div class="t-role">Early tester — learning the basics</div>
+            <div class="t-role">Learning the basics</div>
           </div>
         </div>
       </div>
       <div class="t-card reveal reveal-delay-3">
-        <div class="t-stars">EARLY TESTER</div>
+        <div class="t-stars">USER FEEDBACK</div>
         <div class="t-quote">"I liked that I could click the terms without feeling silly. ETF, index fund, bonds — it made the words less intimidating before I made any decision."</div>
         <div class="t-person">
           <div class="t-av">👩‍🏫</div>
           <div>
             <div class="t-name">Ana, 34</div>
-            <div class="t-role">Early tester — comparing options</div>
+            <div class="t-role">Comparing options</div>
           </div>
         </div>
       </div>
@@ -10442,8 +10471,8 @@
             <div class="si-card-item" id="si-b1-i4">ASX 200 &amp; Superannuation</div>
           </div>
           <div class="si-card-bottom">
-            <span class="si-card-tag" id="si-b1-tag">⏳ Coming soon</span>
-            <button class="si-card-btn" id="si-b1-btn" disabled>Notify me</button>
+            <span class="si-card-tag" id="si-b1-tag">Premium guide</span>
+            <button class="si-card-btn" id="si-b1-btn" onclick="showPage('plans')">Learn in Premium</button>
           </div>
         </div>
 
@@ -10462,8 +10491,8 @@
             <div class="si-card-item" id="si-b2-i4">Brazilian stocks</div>
           </div>
           <div class="si-card-bottom">
-            <span class="si-card-tag" id="si-b2-tag">⏳ Coming soon</span>
-            <button class="si-card-btn" id="si-b2-btn" disabled>Notify me</button>
+            <span class="si-card-tag" id="si-b2-tag">Premium guide</span>
+            <button class="si-card-btn" id="si-b2-btn" onclick="showPage('plans')">Learn in Premium</button>
           </div>
         </div>
 
@@ -10482,8 +10511,8 @@
             <div class="si-card-item" id="si-b3-i4">Available worldwide</div>
           </div>
           <div class="si-card-bottom">
-            <span class="si-card-tag" id="si-b3-tag">⏳ Coming soon</span>
-            <button class="si-card-btn" id="si-b3-btn" disabled>Notify me</button>
+            <span class="si-card-tag" id="si-b3-tag">Premium guide</span>
+            <button class="si-card-btn" id="si-b3-btn" onclick="showPage('plans')">Learn in Premium</button>
           </div>
         </div>
 
@@ -10573,6 +10602,11 @@
         <div class="plan-tier" data-i18n="plans.prem.tier">Premium Learning Pass</div>
         <div class="plan-price" id="plans-prem-price">AUD $89.90</div>
         <div class="plan-desc" data-i18n="plans.prem.desc">Premium guides, DCA learning, crypto self-custody basics, book paths, exchange setup help, and beginner support.</div>
+        <div class="plan-zoom-callout">
+          <strong id="plans-zoom-title" data-i18n="plans.zoom.title">Includes a 60-minute Zoom support call</strong>
+          <span id="plans-zoom-text" data-i18n="plans.zoom.text">Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.</span>
+        </div>
+        <div class="plan-founding-note" id="plans-founding-note" data-i18n="plans.foundingNote">This founding price is locked in for early members and may increase after the launch period.</div>
         <div class="plan-bestfor">
           <div class="plan-bestfor-label" id="plans-prem-bestfor-label">Best for</div>
           <div class="plan-bestfor-text" id="plans-prem-bestfor-text">People who already like the simulator and now want step-by-step help choosing, buying, and building with more confidence.</div>
@@ -10629,6 +10663,22 @@
       <div class="plan-faq-card">
         <h3 data-i18n="plans.faq.q4">Is the price final?</h3>
         <p data-i18n="plans.faq.a4">AUD $89.90 is the founding one-time price while Plainvest grows with early users.</p>
+      </div>
+      <div class="plan-faq-card">
+        <h3 data-i18n="plans.faq.q5">How do I access the content after I pay?</h3>
+        <p data-i18n="plans.faq.a5">Create your member account, complete Stripe checkout, then return to the member hub where the guides unlock automatically.</p>
+      </div>
+      <div class="plan-faq-card">
+        <h3 data-i18n="plans.faq.q6">How do I book the Zoom call?</h3>
+        <p data-i18n="plans.faq.a6">Inside the member hub, use the support call section to email your preferred times. We reply within 24 hours to schedule it.</p>
+      </div>
+      <div class="plan-faq-card">
+        <h3 data-i18n="plans.faq.q7">How long do I keep access?</h3>
+        <p data-i18n="plans.faq.a7">It is not a monthly subscription. Your one-time purchase unlocks Premium member access to the current hub and included launch resources.</p>
+      </div>
+      <div class="plan-faq-card">
+        <h3 data-i18n="plans.faq.q8">Can I get a refund?</h3>
+        <p data-i18n="plans.faq.a8">If something is wrong or you purchased by mistake, contact us within 7 days. We review requests fairly and your Australian Consumer Law rights still apply.</p>
       </div>
     </div>
     <div class="plans-footnote" id="plans-footnote">Plainvest Premium is designed to reduce hesitation, not add complexity. The goal is to help someone go from “I think I should invest” to “I know what my first step is.”</div>
@@ -11295,8 +11345,8 @@
           hSavingsLabel: '📌 A savings account would give you only',
           cmpTitle: 'Compare every money path',
           eduTitle: 'Want to understand the full picture?',
-          eduText: 'Premium guides are coming soon. The simulator, starter guide, and inflation tools are free while we keep improving the first version.',
-          eduBtn: 'See what\'s coming →',
+          eduText: 'Premium is live with step-by-step guides, DCA lessons, crypto safety, book paths, exchange setup help, and one included 60-minute Zoom support call.',
+          eduBtn: 'See Premium access →',
           methodKicker: 'How projections work',
           methodTitle: 'Built to teach clearly, not to promise outcomes.',
           methodCopy: 'Plainvest uses transparent, simplified long-run assumptions so beginners can compare paths quickly. It is designed to show direction, trade-offs, and inflation impact in a way that is easy to understand.',
@@ -11339,9 +11389,9 @@
             nasdaq: { name: 'NASDAQ-100', tagline: 'A concentrated US growth index with major tech leaders. Higher upside potential, but more swings than a broad market fund.' },
             reit: { name: 'REITs / FIIs', tagline: 'Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.' }
           },
-          premTitle: 'Premium guides are coming soon',
-          premText: 'Plainvest Premium is coming soon. Deeper guides, step-by-step checklists, and saved simulations will arrive in a later release.',
-          premBtn: 'Coming soon →'
+          premTitle: 'Premium guides are live',
+          premText: 'Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.',
+          premBtn: 'Get Premium access →'
         },
         learnPillars: [
           'How to buy your first Index Fund',
@@ -11352,15 +11402,15 @@
           'When to sell — and when not to'
         ],
         testi: {
-          eyebrow: 'Early tester feedback',
+          eyebrow: 'User feedback',
           h2: 'From curious to <em>confident</em>.',
-          lead: 'Plainvest is being shaped with comments from early testers and beginner investors, so the launch version answers real questions.',
+          lead: 'Plainvest is being shaped with comments from beginner investors, so the launch version answers real questions.',
           q1: '"I typed in $100 a month just to play around, then realised waiting five more years would cost me more than I thought. That was the first time investing felt practical."',
-          p1: 'Early tester — first-time investor',
+          p1: 'First-time investor',
           q2: '"The inflation chart made the biggest difference for me. I finally understood why leaving everything in savings is not as safe as it looks."',
-          p2: 'Early tester — learning the basics',
+          p2: 'Learning the basics',
           q3: '"I liked that I could click the terms without feeling silly. ETF, index fund, bonds — it made the words less intimidating before I made any decision."',
-          p3: 'Early tester — comparing options'
+          p3: 'Comparing options'
         },
         story: {
           eyebrow: 'Our story',
@@ -11387,14 +11437,14 @@
         midCta: {
           eyebrow: '✨ Go further',
           h: 'Ready to go from simulating to <em style="color:var(--teal)">actually investing?</em>',
-          p: 'Premium guides are coming soon. Plainvest is focused on making the free simulator and beginner education feel useful first.',
+          p: 'Premium is now available for people who want structured guides, practical checklists, and support after using the free simulator.',
           pill1: 'Step-by-step account setup',
           pill2: 'Country-specific paths',
           pill3: 'Beginner-focused guidance',
           sideK: 'What changes next',
           sideH: 'Move from curiosity to your first real decision.',
-          sideP: 'Use the simulator to understand the numbers now. The next-step guides are coming soon for the decisions beginners need help with most.',
-          btn1: 'Premium coming soon', btn2: 'See exchange options',
+          sideP: 'Use the simulator to understand the numbers, then use Premium to learn the next steps beginners usually get stuck on.',
+          btn1: 'Get Premium access', btn2: 'See exchange options',
         },
         plans: {
           eyebrow: 'Pricing',
@@ -11421,6 +11471,11 @@
           proof2: '1 x 60-min Zoom call',
           proof3: 'Extra calls AUD $39.90',
           valueNote: 'Launch value: Premium is priced below many single investing courses, while including the learning hub and one 60-minute support call.',
+          foundingNote: 'This founding price is locked in for early members and may increase after the launch period.',
+          zoom: {
+            title: 'Includes a 60-minute Zoom support call',
+            text: 'Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.'
+          },
           footnote: 'Plainvest Premium is designed to reduce hesitation, not add complexity. The goal is to help someone go from “I think I should invest” to “I know what my first step is.”',
           free: { tier: 'Free — always', desc: 'Explore and simulate with no commitment, ever.', f1: 'Simulator with multiple paths by country', f2: 'Side-by-side comparison table', f3: 'Basic explanations for the main investment types', f4: 'Contextual tips per investment', btn: 'Try it free' },
           prem: { badge: 'Founding one-time price', tier: 'Premium Learning Pass', per: '', price: 'AUD $89.90', desc: 'Guided learning, crypto safety, book paths, exchange setup help, and beginner support.', f1: 'Guided investing lessons', f2: 'Deep-dive guides, DCA method, and how-to-buy steps by country.', f3: 'Bitcoin and crypto safety', f4: 'White paper, halving, on-chain basics, self-custody, wallets, and cycle mistakes.', f5: 'Book and content library', f6: 'Curated investing, macro, Bitcoin, business, and wealth books with reading order.', f7: 'Exchange setup help', f8: 'Help choosing a platform, opening an account, and understanding settings and tools.', f9: 'One included Zoom call', f10: 'A 60-minute beginner support call to help answer questions and guide your next steps.', f11: 'Growing member hub', f12: 'New studies, insights, chart-reading lessons, and member resources added over time.', f13: 'Macroeconomics reading path, including The Black Swan and other options', f14: 'Chart reading tool to analyze price across stocks, crypto, indexes, and ETFs', f15: 'Crypto market cycle lessons from two full cycles so you can avoid common mistakes', f16: 'New products, studies, and insights added over time for members', btn: 'Purchase access' },
@@ -11432,7 +11487,15 @@
             q3: 'What happens after purchase?',
             a3: 'Members get access to the learning hub, book path, premium modules, and call booking details.',
             q4: 'Is the price final?',
-            a4: 'AUD $89.90 is the founding one-time price while Plainvest grows with early users.'
+            a4: 'AUD $89.90 is the founding one-time price while Plainvest grows with early users.',
+            q5: 'How do I access the content after I pay?',
+            a5: 'Create your member account, complete Stripe checkout, then return to the member hub where the guides unlock automatically.',
+            q6: 'How do I book the Zoom call?',
+            a6: 'Inside the member hub, use the support call section to email your preferred times. We reply within 24 hours to schedule it.',
+            q7: 'How long do I keep access?',
+            a7: 'It is not a monthly subscription. Your one-time purchase unlocks Premium member access to the current hub and included launch resources.',
+            q8: 'Can I get a refund?',
+            a8: 'If something is wrong or you purchased by mistake, contact us within 7 days. We review requests fairly and your Australian Consumer Law rights still apply.'
           }
         },
         account: {
@@ -11731,10 +11794,10 @@
         ,
         startInvesting: {
           eyebrow: '🚀 The next step', h2: 'Ready to start <em>investing?</em>',
-          lead: "Once you've found a strategy you're confident in, the next step is opening an account. We're building access for Australia, the US, Brazil, and global investors.",
-          b1name: 'Australia & USA', b1sub: 'Australia · USA · S&P 500 · Nasdaq', b1desc: 'Built for investors in Australia and the United States, with beginner-friendly access to diversified funds, S&P 500 and Nasdaq ETFs, stocks, and long-term core portfolios.', b1tag: '⏳ Coming soon', b1btn: 'Notify me when live',
-          b2name: 'Brazil', b2sub: 'Brazil · Tesouro · CDB · ETF', b2desc: 'Designed for Brazilian investors who want simple digital access to Tesouro Direto, fixed income, ETFs, FIIs, and local stocks in one clear path.', b2tag: '⏳ Coming soon', b2btn: 'Notify me when live',
-          b3name: 'Crypto', b3sub: 'Global · Bitcoin · Ethereum · Crypto', b3desc: 'Global crypto access for investors who want Bitcoin, Ethereum, and major digital assets through a regulated platform with worldwide reach.', b3tag: '⏳ Coming soon', b3btn: 'Notify me when live',
+          lead: "Once you've found a strategy you're confident in, Premium helps you understand the practical next step: choosing a platform, opening an account, and using the main tools calmly.",
+          b1name: 'Australia & USA', b1sub: 'Australia · USA · S&P 500 · Nasdaq', b1desc: 'Premium explains beginner-friendly access to diversified funds, S&P 500 and Nasdaq ETFs, stocks, and long-term core portfolios in Australia and the United States.', b1tag: 'Premium guide', b1btn: 'Learn in Premium',
+          b2name: 'Brazil', b2sub: 'Brazil · Tesouro · CDB · ETF', b2desc: 'Premium helps Brazilian investors understand Tesouro Direto, fixed income, ETFs, FIIs, and local stocks in one clear learning path.', b2tag: 'Premium guide', b2btn: 'Learn in Premium',
+          b3name: 'Crypto', b3sub: 'Global · Bitcoin · Ethereum · Crypto', b3desc: 'Premium explains crypto access, Bitcoin, Ethereum, exchange basics, cold storage, and common safety mistakes before you touch real money.', b3tag: 'Premium guide', b3btn: 'Learn in Premium',
           bottomH: 'Are you an exchange or financial platform?',
           bottomP: "We're looking for regulated exchange partners globally.",
           bottomBtn1: 'Partner with us →', bottomBtn2: 'See plans →'
@@ -11813,8 +11876,8 @@
           hSavingsLabel: '📌 Uma poupança te daria apenas',
           cmpTitle: 'Compare todos os caminhos',
           eduTitle: 'Quer entender o cenário completo?',
-          eduText: 'Os guias Premium virão em breve. O simulador, o guia inicial e as ferramentas de inflação continuam gratuitos enquanto melhoramos a primeira versão.',
-          eduBtn: 'Ver o que vem depois →',
+          eduText: 'O Premium já está disponível com guias passo a passo, método DCA, segurança em cripto, trilha de livros, ajuda com exchange e uma chamada incluída de 60 minutos no Zoom.',
+          eduBtn: 'Ver acesso Premium →',
           methodKicker: 'Como as projeções funcionam',
           methodTitle: 'Feito para ensinar com clareza, não para prometer resultados.',
           methodCopy: 'O Plainvest usa premissas transparentes e simplificadas de longo prazo para que iniciantes possam comparar caminhos rapidamente. A ideia é mostrar direção, vantagens, riscos e o impacto da inflação de uma forma fácil de entender.',
@@ -11857,9 +11920,9 @@
             nasdaq: { name: 'NASDAQ-100', tagline: 'Um índice americano de crescimento concentrado em grandes líderes de tecnologia. Maior potencial, mas com mais oscilações do que um fundo amplo de mercado.' },
             reit: { name: 'FIIs / REITs', tagline: 'Tenha uma fatia de imóveis reais — escritórios, shoppings, apartamentos — e receba aluguéis sem ser proprietário.' }
           },
-          premTitle: 'Guias Premium em breve',
-          premText: 'O Plainvest Premium vem em breve. Guias mais profundos, checklists passo a passo e simulações salvas chegarão em uma versão futura.',
-          premBtn: 'Em breve →'
+          premTitle: 'Guias Premium disponíveis',
+          premText: 'Acesse o hub de membros com caminhos de investimento, método DCA, pesquisa sobre Bitcoin, autocustódia cripto, leitura de gráficos, lista de livros e sua chamada incluída de 60 minutos no Zoom.',
+          premBtn: 'Acessar Premium →'
         },
         learnPillars: [
           'Como comprar seu primeiro Fundo de Índice',
@@ -11870,15 +11933,15 @@
           'Quando vender — e quando não vender'
         ],
         testi: {
-          eyebrow: 'Feedback dos primeiros testes',
+          eyebrow: 'Feedback de usuários',
           h2: 'De curioso a <em>confiante</em>.',
-          lead: 'O Plainvest está sendo moldado com comentários de primeiros testadores e investidores iniciantes, para que a versão de lançamento responda dúvidas reais.',
+          lead: 'O Plainvest está sendo moldado com comentários de investidores iniciantes, para que a versão de lançamento responda dúvidas reais.',
           q1: '"Coloquei R$100 por mês só para testar e percebi que esperar mais cinco anos custaria mais do que eu imaginava. Foi a primeira vez que investir pareceu prático."',
-          p1: 'Primeiro teste — investidora iniciante',
+          p1: 'Investidora iniciante',
           q2: '"O gráfico de inflação foi o que mais me marcou. Finalmente entendi por que deixar tudo parado na poupança não é tão seguro quanto parece."',
-          p2: 'Primeiro teste — aprendendo o básico',
+          p2: 'Aprendendo o básico',
           q3: '"Gostei de poder clicar nos termos sem me sentir perdida. ETF, fundo de índice, títulos — as palavras ficaram menos assustadoras antes de qualquer decisão."',
-          p3: 'Primeiro teste — comparando opções'
+          p3: 'Comparando opções'
         },
         story: {
           eyebrow: 'Nossa história',
@@ -11905,14 +11968,14 @@
         midCta: {
           eyebrow: '✨ Vá além',
           h: 'Pronto para sair da simulação e <em style="color:var(--teal)">investir de verdade?</em>',
-          p: 'Os guias Premium vêm em breve. O Plainvest está focado primeiro em tornar o simulador gratuito e a educação inicial realmente úteis.',
+          p: 'O Premium já está disponível para quem quer guias estruturados, checklists práticos e apoio depois de usar o simulador gratuito.',
           pill1: 'Abertura de conta passo a passo',
           pill2: 'Caminhos por país',
           pill3: 'Orientação feita para iniciantes',
           sideK: 'O que muda depois',
           sideH: 'Saia da curiosidade para a sua primeira decisão real.',
-          sideP: 'Use o simulador para entender os números agora. Os guias de próximo passo vêm em breve para as decisões que mais travam os iniciantes.',
-          btn1: 'Premium em breve', btn2: 'Ver opções de exchanges',
+          sideP: 'Use o simulador para entender os números e depois use o Premium para aprender os próximos passos que mais travam iniciantes.',
+          btn1: 'Acessar Premium', btn2: 'Ver opções de exchanges',
         },
         plans: {
           eyebrow: 'Preços',
@@ -11939,6 +12002,11 @@
           proof2: '1 chamada de 60 min no Zoom',
           proof3: 'Chamadas extras aprox. R$142,00',
           valueNote: 'Valor de lançamento: o Premium custa menos que muitos cursos únicos de investimento, incluindo o hub de aprendizado e uma chamada de apoio de 60 minutos.',
+          foundingNote: 'Este preço fundador fica garantido para os primeiros membros e pode aumentar após o período de lançamento.',
+          zoom: {
+            title: 'Inclui uma chamada de 60 minutos no Zoom',
+            text: 'Traga suas dúvidas sobre exchanges, DCA, segurança em Bitcoin ou primeiros passos. Ajudamos você a entender o próximo movimento.'
+          },
           footnote: 'O Plainvest Premium foi pensado para reduzir a insegurança, não para adicionar complexidade. A meta é ajudar alguém a sair de “acho que deveria investir” para “sei qual é meu primeiro passo”.',
           free: { tier: 'Gratuito — para sempre', desc: 'Explore e simule sem compromisso, sempre.', f1: 'Simulador com vários caminhos por país', f2: 'Tabela comparativa lado a lado', f3: 'Explicações básicas dos principais tipos de investimento', f4: 'Dicas contextuais por investimento', btn: 'Experimentar grátis' },
           prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe Premium de Aprendizado', per: '', price: 'aprox. R$320,00', desc: 'Aprendizado guiado, segurança em cripto, trilha de livros, ajuda com exchange e apoio para iniciantes. Valor equivalente a AUD $89,90 em pagamento único.', f1: 'Aulas guiadas de investimento', f2: 'Guias aprofundados, método DCA e passos de compra por país.', f3: 'Bitcoin e segurança em cripto', f4: 'White paper, halving, noções on-chain, autocustódia, carteiras e erros de ciclo.', f5: 'Biblioteca de livros e conteúdos', f6: 'Livros de investimento, macro, Bitcoin, negócios e riqueza com ordem de leitura.', f7: 'Ajuda com exchange', f8: 'Ajuda para escolher plataforma, abrir conta e entender configurações e ferramentas.', f9: 'Uma chamada incluída no Zoom', f10: 'Uma chamada de apoio para iniciantes de 60 minutos para ajudar com dúvidas e próximos passos.', f11: 'Hub de membro em crescimento', f12: 'Novos estudos, insights, aulas de leitura de gráfico e recursos adicionados com o tempo.', f13: 'Trilha de livros sobre macroeconomia, incluindo A Lógica do Cisne Negro e outras opções', f14: 'Ferramenta de leitura de gráficos para analisar preço em ações, cripto, índices e ETFs', f15: 'Lições de dois ciclos completos do mercado cripto para evitar erros comuns', f16: 'Novos produtos, estudos e insights adicionados com o tempo para membros', btn: 'Comprar acesso' },
@@ -11950,7 +12018,15 @@
             q3: 'O que acontece depois da compra?',
             a3: 'Membros recebem acesso ao hub de aprendizado, trilha de livros, módulos Premium e detalhes para agendar a chamada.',
             q4: 'O preço é definitivo?',
-            a4: 'AUD $89,90 é o preço fundador em pagamento único enquanto o Plainvest cresce com os primeiros usuários.'
+            a4: 'AUD $89,90 é o preço fundador em pagamento único enquanto o Plainvest cresce com os primeiros usuários.',
+            q5: 'Como acesso o conteúdo depois de pagar?',
+            a5: 'Crie sua conta de membro, finalize o checkout no Stripe e volte para o hub de membros, onde os guias são liberados automaticamente.',
+            q6: 'Como agendo a chamada no Zoom?',
+            a6: 'Dentro do hub de membros, use a seção da chamada de suporte para enviar seus horários preferidos por email. Respondemos em até 24 horas para agendar.',
+            q7: 'Por quanto tempo mantenho o acesso?',
+            a7: 'Não é assinatura mensal. Seu pagamento único libera acesso Premium ao hub atual e aos recursos incluídos no lançamento.',
+            q8: 'Posso pedir reembolso?',
+            a8: 'Se algo estiver errado ou você comprou por engano, fale conosco em até 7 dias. Analisamos de forma justa e seus direitos legais continuam válidos.'
           }
         },
         account: {
@@ -12155,22 +12231,22 @@
         startInvesting: {
           eyebrow: '🚀 Próximo passo',
           h2: 'Pronto para começar a <em>investir?</em>',
-          lead: 'Depois de encontrar uma estratégia que faz sentido para você, o próximo passo é abrir uma conta. Estamos construindo acesso para Austrália, Estados Unidos, Brasil e investidores globais.',
+          lead: 'Depois de encontrar uma estratégia que faz sentido para você, o Premium ajuda no próximo passo prático: escolher uma plataforma, abrir conta e usar as ferramentas principais com calma.',
           b1name: 'Austrália e EUA',
           b1sub: 'Austrália · EUA · S&P 500 · Nasdaq',
-          b1desc: 'Feito para investidores na Austrália e nos Estados Unidos, com acesso simples a fundos diversificados, ETFs do S&P 500 e Nasdaq, ações e carteiras de longo prazo.',
-          b1tag: '⏳ Em breve',
-          b1btn: 'Avise-me quando lançar',
+          b1desc: 'O Premium explica acesso para iniciantes a fundos diversificados, ETFs do S&P 500 e Nasdaq, ações e carteiras de longo prazo na Austrália e nos Estados Unidos.',
+          b1tag: 'Guia Premium',
+          b1btn: 'Aprender no Premium',
           b2name: 'Brasil',
           b2sub: 'Brasil · Tesouro · CDB · ETF',
-          b2desc: 'Pensado para investidores brasileiros que querem entender Tesouro Direto, renda fixa, ETFs, FIIs e ações locais em um caminho mais claro.',
-          b2tag: '⏳ Em breve',
-          b2btn: 'Avise-me quando lançar',
+          b2desc: 'O Premium ajuda investidores brasileiros a entender Tesouro Direto, renda fixa, ETFs, FIIs e ações locais em um caminho mais claro.',
+          b2tag: 'Guia Premium',
+          b2btn: 'Aprender no Premium',
           b3name: 'Cripto',
           b3sub: 'Global · Bitcoin · Ethereum · Cripto',
-          b3desc: 'Acesso global para investidores que querem entender Bitcoin, Ethereum e principais ativos digitais com mais clareza e segurança.',
-          b3tag: '⏳ Em breve',
-          b3btn: 'Avise-me quando lançar',
+          b3desc: 'O Premium explica acesso cripto, Bitcoin, Ethereum, noções de exchange, carteira fria e erros comuns de segurança antes de mexer com dinheiro real.',
+          b3tag: 'Guia Premium',
+          b3btn: 'Aprender no Premium',
           bottomH: 'Você é uma exchange ou plataforma financeira?',
           bottomP: 'Estamos abertos a parcerias com plataformas reguladas no mundo todo.',
           bottomBtn1: 'Falar sobre parceria →',
@@ -12531,6 +12607,11 @@
         setText('plans-proof-1', pl.proof1);
         setText('plans-proof-2', pl.proof2);
         setText('plans-proof-3', pl.proof3);
+        setText('plans-founding-note', pl.foundingNote);
+        if (pl.zoom) {
+          setText('plans-zoom-title', pl.zoom.title);
+          setText('plans-zoom-text', pl.zoom.text);
+        }
         setText('plans-footnote', pl.footnote);
         setText('plans-prem-price', pl.prem.price);
       }
@@ -12643,10 +12724,10 @@
         ? {
           eyebrow: '🚀 Mercados que apoiamos primeiro',
           h2: 'Pronto para sair do <em>aprendizado</em> para a ação?',
-          lead: 'Quando uma estratégia já faz sentido para você, o próximo passo é escolher onde realmente investiria. Estes são os primeiros mercados em torno dos quais o Plainvest está sendo construído.',
-          b1name: 'Austrália e EUA', b1sub: 'Austrália · EUA · S&P 500 · Nasdaq', b1desc: 'Feito para investidores da Austrália e dos Estados Unidos, com acesso simples a fundos diversificados, ETFs do S&P 500 e do Nasdaq, ações e carteiras de longo prazo.', b1items: ['Fundos de índice do S&P 500 e Nasdaq-100', 'ETFs de dividendos', 'REITs e títulos', 'ASX 200 e Superannuation'], b1tag: '⏳ Em breve', b1btn: 'Avisar quando disponível',
-          b2name: 'Brasil', b2sub: 'Brasil · Tesouro · CDB · ETF', b2desc: 'Pensado para investidores brasileiros que querem acesso simples ao Tesouro Direto, renda fixa, ETFs, FIIs e ações locais em um caminho claro.', b2items: ['Tesouro Direto', 'CDB e LCI/LCA', 'FIIs e ETFs da B3', 'Ações brasileiras'], b2tag: '⏳ Em breve', b2btn: 'Avisar quando disponível',
-          b3name: 'Cripto', b3sub: 'Global · Bitcoin · Ethereum · Cripto', b3desc: 'Acesso global a cripto para quem quer Bitcoin, Ethereum e os principais ativos digitais em uma plataforma regulada com alcance mundial.', b3items: ['Bitcoin e Ethereum', 'Top 50 altcoins', 'Custódia segura em armazenamento frio', 'Disponível no mundo todo'], b3tag: '⏳ Em breve', b3btn: 'Avisar quando disponível',
+          lead: 'Quando uma estratégia já faz sentido para você, o próximo passo é escolher onde realmente investiria. O Premium ajuda a entender plataformas, contas, ferramentas e caminhos por mercado.',
+          b1name: 'Austrália e EUA', b1sub: 'Austrália · EUA · S&P 500 · Nasdaq', b1desc: 'O Premium explica acesso para iniciantes a fundos diversificados, ETFs do S&P 500 e do Nasdaq, ações e carteiras de longo prazo.', b1items: ['Fundos de índice do S&P 500 e Nasdaq-100', 'ETFs de dividendos', 'REITs e títulos', 'ASX 200 e Superannuation'], b1tag: 'Guia Premium', b1btn: 'Aprender no Premium',
+          b2name: 'Brasil', b2sub: 'Brasil · Tesouro · CDB · ETF', b2desc: 'O Premium ajuda investidores brasileiros a entender Tesouro Direto, renda fixa, ETFs, FIIs e ações locais em um caminho claro.', b2items: ['Tesouro Direto', 'CDB e LCI/LCA', 'FIIs e ETFs da B3', 'Ações brasileiras'], b2tag: 'Guia Premium', b2btn: 'Aprender no Premium',
+          b3name: 'Cripto', b3sub: 'Global · Bitcoin · Ethereum · Cripto', b3desc: 'O Premium explica cripto, Bitcoin, Ethereum, exchanges, autocustódia e erros comuns de segurança antes de mexer com dinheiro real.', b3items: ['Bitcoin e Ethereum', 'Top 50 altcoins', 'Custódia segura em armazenamento frio', 'Disponível no mundo todo'], b3tag: 'Guia Premium', b3btn: 'Aprender no Premium',
           bottomH: 'Você é uma exchange ou plataforma financeira?',
           bottomP: 'Estamos buscando parceiros regulados nos EUA, Austrália, Brasil e além. Ajude investidores iniciantes a sair do aprendizado para a ação com mais confiança.',
           premiumNote: 'Para membros Premium, o Plainvest ajuda a escolher uma exchange, abrir conta se necessário e entender as ferramentas dentro da plataforma.',
@@ -12656,10 +12737,10 @@
         : {
           eyebrow: '🚀 Markets we support first',
           h2: 'Ready to move from <em>learning</em> to action?',
-          lead: "Once a strategy makes sense to you, the next step is choosing where you would actually invest. These are the first markets Plainvest is building around.",
-          b1name: 'Australia & USA', b1sub: 'Australia · USA · S&P 500 · Nasdaq', b1desc: 'Built for investors in Australia and the United States, with beginner-friendly access to diversified funds, S&P 500 and Nasdaq ETFs, stocks, and long-term core portfolios.', b1items: ['S&P 500 and Nasdaq-100 funds', 'Dividend ETFs', 'REITs & bonds', 'ASX 200 & Superannuation'], b1tag: '⏳ Coming soon', b1btn: 'Notify me when live',
-          b2name: 'Brazil', b2sub: 'Brazil · Tesouro · CDB · ETF', b2desc: 'Designed for Brazilian investors who want simple digital access to Tesouro Direto, fixed income, ETFs, FIIs, and local stocks in one clear path.', b2items: ['Tesouro Direto', 'CDB and LCI/LCA', 'FIIs and B3 ETFs', 'Brazilian stocks'], b2tag: '⏳ Coming soon', b2btn: 'Notify me when live',
-          b3name: 'Crypto', b3sub: 'Global · Bitcoin · Ethereum · Crypto', b3desc: 'Global crypto access for investors who want Bitcoin, Ethereum, and major digital assets through a regulated platform with worldwide reach.', b3items: ['Bitcoin & Ethereum', 'Top 50 altcoins', 'Secure cold storage', 'Available worldwide'], b3tag: '⏳ Coming soon', b3btn: 'Notify me when live',
+          lead: "Once a strategy makes sense to you, the next step is choosing where you would actually invest. Premium helps you understand platforms, accounts, tools, and market paths.",
+          b1name: 'Australia & USA', b1sub: 'Australia · USA · S&P 500 · Nasdaq', b1desc: 'Premium explains beginner-friendly access to diversified funds, S&P 500 and Nasdaq ETFs, stocks, and long-term core portfolios.', b1items: ['S&P 500 and Nasdaq-100 funds', 'Dividend ETFs', 'REITs & bonds', 'ASX 200 & Superannuation'], b1tag: 'Premium guide', b1btn: 'Learn in Premium',
+          b2name: 'Brazil', b2sub: 'Brazil · Tesouro · CDB · ETF', b2desc: 'Premium helps Brazilian investors understand Tesouro Direto, fixed income, ETFs, FIIs, and local stocks in one clear learning path.', b2items: ['Tesouro Direto', 'CDB and LCI/LCA', 'FIIs and B3 ETFs', 'Brazilian stocks'], b2tag: 'Premium guide', b2btn: 'Learn in Premium',
+          b3name: 'Crypto', b3sub: 'Global · Bitcoin · Ethereum · Crypto', b3desc: 'Premium explains crypto access, Bitcoin, Ethereum, exchanges, self-custody, and common security mistakes before you touch real money.', b3items: ['Bitcoin & Ethereum', 'Top 50 altcoins', 'Secure cold storage', 'Available worldwide'], b3tag: 'Premium guide', b3btn: 'Learn in Premium',
           bottomH: 'Are you an exchange or financial platform?',
           bottomP: "We're actively seeking regulated partners in the US, Australia, Brazil and beyond. Help beginner investors move from learning to action with more confidence.",
           premiumNote: 'For Premium members, Plainvest helps choose an exchange, open an account if needed, and understand the tools inside the platform.',
@@ -13862,14 +13943,14 @@
         var title = lock.querySelector('h5');
         var copy = lock.querySelector('p');
         var btn = lock.querySelector('.lock-btn');
-        if (title) title.textContent = isPt ? 'Premium em breve' : 'Premium coming soon';
+        if (title) title.textContent = isPt ? 'Premium disponível' : 'Premium access available';
         if (copy) copy.textContent = isPt
-          ? 'Este guia aprofundado vem em breve. Por enquanto, a explicação gratuita e o simulador continuam disponíveis para testar e aprender.'
-          : 'This deeper guide is coming soon. For now, the free explanation and simulator remain available to test and learn.';
+          ? 'Este guia aprofundado faz parte do hub Premium. Use o simulador gratuito e desbloqueie o acesso quando quiser seguir para os próximos passos.'
+          : 'This deeper guide is part of the Premium hub. Use the free simulator first, then unlock access when you are ready for next steps.';
         if (btn) {
-          btn.textContent = isPt ? 'Em breve' : 'Coming soon';
-          btn.disabled = true;
-          btn.removeAttribute('onclick');
+          btn.textContent = isPt ? 'Ver Premium' : 'See Premium';
+          btn.disabled = false;
+          btn.setAttribute('onclick', "closeModalDirect();showPage('plans')");
         }
       });
     }
@@ -13939,62 +14020,6 @@
 
     function openMemberDashboard() {
       openMemberApp('/dashboard');
-    }
-
-    async function submitMemberAccount(event) {
-      if (event && event.preventDefault) event.preventDefault();
-      var nameEl = document.getElementById('acct-name');
-      var emailEl = document.getElementById('acct-email');
-      var passwordEl = document.getElementById('acct-password');
-      var submitBtn = document.getElementById('acct-submit');
-      var successEl = document.getElementById('acct-success');
-      var name = nameEl ? nameEl.value.trim() : '';
-      var email = emailEl ? emailEl.value.trim() : '';
-      var password = passwordEl ? passwordEl.value : '';
-      if (!name || !email || !/\S+@\S+\.\S+/.test(email)) {
-        alert(currentLang === 'pt' ? 'Por favor insira seu nome e um email válido.' : 'Please enter your name and a valid email.');
-        return;
-      }
-      if (!password || password.length < 8) {
-        alert(currentLang === 'pt' ? 'A senha precisa ter pelo menos 8 caracteres.' : 'Password needs at least 8 characters.');
-        return;
-      }
-      var originalText = submitBtn ? submitBtn.textContent : '';
-      if (successEl) successEl.classList.remove('show');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = currentLang === 'pt' ? 'Enviando...' : 'Sending...';
-      }
-      try {
-        var response = await fetch(FORMSPREE_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            form_type: 'Premium member account request',
-            name: name,
-            email: email,
-            plan: 'Premium',
-            price: 'AUD $89.90',
-            language: currentLang === 'pt' ? 'Portuguese' : 'English',
-            page: window.location.href,
-            _replyto: email,
-            _subject: 'New Plainvest Premium member request'
-          })
-        });
-        if (!response.ok) throw new Error('Formspree request failed');
-        if (successEl) successEl.classList.add('show');
-        if (nameEl) nameEl.value = '';
-        if (emailEl) emailEl.value = '';
-        if (passwordEl) passwordEl.value = '';
-      } catch (err) {
-        console.error(err);
-        alert(currentLang === 'pt' ? 'Não consegui enviar agora. Tente novamente ou envie email para hello@plainvest.app.' : 'Could not send right now. Please try again or email hello@plainvest.app.');
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-        }
-      }
     }
 
     function showMemberLoginNotice(event) {

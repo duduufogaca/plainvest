@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { signUp } from '../actions/auth';
 import { SubmitButton } from '../components/submit-button';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+export const metadata: Metadata = { robots: { index: false, follow: false } };
 
 export default async function SignUp({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
   const params = await searchParams;
