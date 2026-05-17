@@ -2024,6 +2024,20 @@
       color: var(--white);
     }
 
+    .cost-of-waiting {
+      display: none;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.8rem;
+      color: #f0b429;
+      background: rgba(240, 180, 41, 0.07);
+      border-bottom: 1px solid rgba(240, 180, 41, 0.18);
+      letter-spacing: 0.01em;
+    }
+
+    .cost-of-waiting.visible {
+      display: block;
+    }
+
     .rm-stat-lbl {
       font-size: 0.65rem;
       font-weight: 600;
@@ -3588,6 +3602,62 @@
       margin-top: 3.5rem;
     }
 
+    .plan-who {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.4rem auto 0;
+      max-width: 1180px;
+    }
+    .plan-who-col {
+      border-radius: 18px;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .plan-who-yes {
+      background: linear-gradient(145deg, rgba(0,212,170,.08), rgba(10,21,38,.9));
+      border-color: rgba(0,212,170,.18);
+    }
+    .plan-who-no {
+      background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(10,21,38,.92));
+    }
+    .plan-who-label {
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .65rem;
+    }
+    .plan-who-yes .plan-who-label { color: var(--teal); }
+    .plan-who-no .plan-who-label { color: #a9bbd0; }
+    .plan-who-col ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: grid;
+      gap: .42rem;
+    }
+    .plan-who-col li {
+      font-size: .83rem;
+      color: var(--soft);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .plan-who-yes li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .plan-who-no li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: #7f95ad;
+      font-size: .8rem;
+    }
     .plans-prelude {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -6594,7 +6664,8 @@
       .launch-trust,
       .plan-faq,
       .plans-prelude,
-      .plans-grid {
+      .plans-grid,
+      .plan-who {
         grid-template-columns: 1fr;
         max-width: 420px;
       }
@@ -9821,6 +9892,7 @@
       <li><a href="#simulator" data-i18n="nav.simulator">Simulator</a></li>
       <li><a href="#inflation" data-i18n="nav.inflation">Inflation</a></li>
       <li><a href="#learn" data-i18n="nav.learn">Learn</a></li>
+      <li><a href="#books" data-i18n="nav.books">Books</a></li>
       <li><a href="#story" data-i18n="nav.story">Story</a></li>
       <li class="member-content-nav-item"><a class="member-content-nav" href="#member" id="nav-member-content-btn" data-i18n="nav.memberContent">Member content</a></li>
       <li><a href="#plans" data-i18n="nav.plans">Plans</a></li>
@@ -9861,6 +9933,7 @@
         <div class="hero-actions">
           <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Try the free simulator</button>
           <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta2">See Premium access</button>
+          <button class="btn-ghost" onclick="openMemberSignup()" data-i18n="hero.cta3">Get Premium — AUD $89.90</button>
         </div>
       </div>
       <div class="hs-sidecard">
@@ -10018,6 +10091,7 @@
               <div class="rm-stat-lbl" id="lblMultPct">return</div>
             </div>
           </div>
+          <div class="cost-of-waiting" id="cost-of-waiting"></div>
           <div class="chart-area"><canvas id="mainChart"></canvas>
             <div id="mainChartVisual" class="live-chart live-chart-fallback">
               <div class="live-chart-top">
@@ -10411,42 +10485,24 @@
 
   <!-- TESTIMONIALS -->
   <section class="testimonials app-page" data-page="learn">
-    <div class="section-eyebrow" data-i18n="testi.eyebrow">User feedback</div>
-    <div class="section-h2" data-i18n-html="testi.h2">From curious to <em>confident</em>.</div>
-          <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">These are anonymized simulator comments from first-time investors. After launch, this section will be replaced with real member quotes and names only with permission.</p>
+    <div class="section-eyebrow" data-i18n="testi.eyebrow">Simulator insights</div>
+    <div class="section-h2" data-i18n-html="testi.h2">What first-time investors <em>notice</em>.</div>
+    <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">Instead of using placeholder testimonials, this section highlights the useful beginner insights the simulator is designed to create.</p>
     <div class="testi-grid">
       <div class="t-card reveal reveal-delay-1">
-        <div class="t-stars">USER FEEDBACK</div>
-        <div class="t-quote">"I typed in $100 a month just to play around, then realised waiting five more years would cost me more than I thought. That was the first time investing felt practical."</div>
-        <div class="t-person">
-          <div class="t-av">👩‍🍳</div>
-          <div>
-            <div class="t-name">Simulator feedback — Sydney</div>
-            <div class="t-role">First-time ETF learner</div>
-          </div>
-        </div>
+        <div class="t-stars">INSIGHT</div>
+        <div class="t-quote">Small monthly amounts look different when you can see 10, 20, and 30 years on one chart.</div>
+        <div class="t-role">Why the simulator matters</div>
       </div>
       <div class="t-card reveal reveal-delay-2">
-        <div class="t-stars">USER FEEDBACK</div>
-        <div class="t-quote">"The inflation chart made the biggest difference for me. I finally understood why leaving everything in savings is not as safe as it looks."</div>
-        <div class="t-person">
-          <div class="t-av">👨‍💻</div>
-          <div>
-            <div class="t-name">Simulator feedback — Brisbane</div>
-            <div class="t-role">Cash saver learning inflation</div>
-          </div>
-        </div>
+        <div class="t-stars">INSIGHT</div>
+        <div class="t-quote">Inflation becomes easier to understand when cash, savings, and invested growth are compared side by side.</div>
+        <div class="t-role">Why the inflation page matters</div>
       </div>
       <div class="t-card reveal reveal-delay-3">
-        <div class="t-stars">USER FEEDBACK</div>
-        <div class="t-quote">"I liked that I could click the terms without feeling silly. ETF, index fund, bonds — it made the words less intimidating before I made any decision."</div>
-        <div class="t-person">
-          <div class="t-av">👩‍🏫</div>
-          <div>
-            <div class="t-name">Simulator feedback — Melbourne</div>
-            <div class="t-role">Beginner comparing options</div>
-          </div>
-        </div>
+        <div class="t-stars">INSIGHT</div>
+        <div class="t-quote">Terms like ETF, index fund, bonds, Bitcoin, and DCA feel less intimidating after they are tied to plain examples.</div>
+        <div class="t-role">Why the learning guides matter</div>
       </div>
     </div>
   </section>
@@ -10600,12 +10656,12 @@
           </div>
         </div>
         <div class="book-card books-locked-card">
-          <div class="book-cover">🔐</div>
+          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9780812973815-L.jpg" alt="The Black Swan cover" loading="lazy"></div>
           <div class="book-meta">
-            <div class="book-title" id="book-title-7">+ 15 more books</div>
-            <div class="book-author" id="book-author-7">Various authors</div>
-            <p class="book-why" id="book-why-7">With summaries, takeaways, and reading order by level.</p>
-            <div class="book-tag" id="book-tag-7">🔐 Premium only</div>
+            <div class="book-title" id="book-title-7">The Black Swan</div>
+            <div class="book-author" id="book-author-7">Nassim Nicholas Taleb</div>
+            <p class="book-why" id="book-why-7">A macro and risk classic about rare events, uncertainty, and why overconfidence can be expensive.</p>
+            <div class="book-tag" id="book-tag-7">🧩 Macro & risk</div>
           </div>
         </div>
       </div>
@@ -10632,9 +10688,9 @@
   <section id="start-investing" class="app-page" data-page="start-investing">
     <div class="si-inner">
       <div class="si-header">
-        <div class="section-eyebrow" id="si-eyebrow">🚀 Markets we support first</div>
+        <div class="section-eyebrow" id="si-eyebrow">🚀 Markets covered in Premium</div>
         <div class="section-h2" id="si-h2">Ready to move from <em>learning</em> to action?</div>
-        <p class="section-lead" id="si-lead">Once a strategy makes sense to you, the next step is choosing where you would actually invest. These are the first markets Plainvest is building around.</p>
+        <p class="section-lead" id="si-lead">Once a strategy makes sense, beginners usually ask what market, platform, or account type to learn next. Premium explains the first markets and tools Plainvest focuses on for education.</p>
       </div>
 
       <div class="si-grid">
@@ -10742,6 +10798,27 @@
         <span id="plans-pre-b3">Most people do not need more financial noise. They need simpler decisions, better framing, and a clear starting point.</span>
       </div>
     </div>
+    <div class="plan-who" aria-label="Who Premium is for">
+      <div class="plan-who-col plan-who-yes">
+        <div class="plan-who-label" data-i18n="plans.who.yesLabel">This is for you if</div>
+        <ul>
+          <li data-i18n="plans.who.y1">You are curious about investing but don't know where to start.</li>
+          <li data-i18n="plans.who.y2">You want plain-English explanations, not jargon or broker dashboards.</li>
+          <li data-i18n="plans.who.y3">You want one expert hour to ask questions instead of guessing alone.</li>
+          <li data-i18n="plans.who.y4">You are Australian and want guidance on platforms, tax basics, and super.</li>
+          <li data-i18n="plans.who.y5">You want to understand Bitcoin, crypto safety, or ETFs without hype.</li>
+        </ul>
+      </div>
+      <div class="plan-who-col plan-who-no">
+        <div class="plan-who-label" data-i18n="plans.who.noLabel">This is not for you if</div>
+        <ul>
+          <li data-i18n="plans.who.n1">You are already actively investing and want advanced analysis.</li>
+          <li data-i18n="plans.who.n2">You want specific stock tips or guaranteed return predictions.</li>
+          <li data-i18n="plans.who.n3">You are looking for licensed financial advice or tax consulting.</li>
+          <li data-i18n="plans.who.n4">You expect Plainvest to tell you what to buy.</li>
+        </ul>
+      </div>
+    </div>
     <div class="launch-trust" aria-label="Plainvest launch trust notes">
       <div class="launch-trust-card">
         <div class="launch-trust-icon">✓</div>
@@ -10842,6 +10919,7 @@
           </div>
         </div>
         <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
+        <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.86rem;line-height:1.45;" data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
       </div>
     </div>
     <div class="plan-faq" aria-label="Premium questions">
@@ -10948,7 +11026,7 @@
         <div>
           <div class="section-eyebrow" data-i18n="member.eyebrow">Premium member area</div>
           <div class="section-h2" data-i18n-html="member.h2">Your Plainvest <em>learning hub.</em></div>
-          <p class="section-lead" data-i18n="member.lead">This is the first version of the member space. Premium content will live here after login: guides, books, exchange help, meetings, and saved learning paths.</p>
+          <p class="section-lead" data-i18n="member.lead">Your Premium content is ready here after login: guides, books, exchange help, meetings, and saved learning paths in one place.</p>
         </div>
         <div class="member-head-actions">
           <div class="member-status" data-i18n="member.status">Member preview</div>
@@ -11230,7 +11308,7 @@
         <div>
           <div class="section-eyebrow" data-i18n="memberBooks.eyebrow">Premium book list</div>
           <div class="section-h2" data-i18n-html="memberBooks.h2">Books that build <em>real investing confidence.</em></div>
-          <p class="section-lead" data-i18n="memberBooks.lead">A member-only reading path with book covers, quick reasons to read each one, and direct Amazon search links.</p>
+          <p class="section-lead" data-i18n="memberBooks.lead">A member-only reading path with book covers, quick reasons to read each one, and direct Amazon associate links.</p>
         </div>
         <div class="member-books-tools">
           <button class="member-action-btn" onclick="showPage('member')" data-i18n="memberBooks.backBtn">Back to member area</button>
@@ -11245,7 +11323,7 @@
             <h3 data-i18n="memberBooks.book1Title">The Little Book of Common Sense Investing</h3>
             <div class="member-book-author" data-i18n="memberBooks.book1Author">John C. Bogle</div>
             <p data-i18n="memberBooks.book1Text">Best first read for understanding index funds and long-term simplicity.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Little+Book+of+Common+Sense+Investing+John+Bogle" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/4wycemX" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11255,7 +11333,7 @@
             <h3 data-i18n="memberBooks.book2Title">The Psychology of Money</h3>
             <div class="member-book-author" data-i18n="memberBooks.book2Author">Morgan Housel</div>
             <p data-i18n="memberBooks.book2Text">Mindset, behaviour, patience, and why smart money decisions are emotional too.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Psychology+of+Money+Morgan+Housel" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/3PuiNq2" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11265,7 +11343,7 @@
             <h3 data-i18n="memberBooks.book3Title">A Random Walk Down Wall Street</h3>
             <div class="member-book-author" data-i18n="memberBooks.book3Author">Burton G. Malkiel</div>
             <p data-i18n="memberBooks.book3Text">A classic evidence-based view of markets, diversification, and why beating the market is hard.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=A+Random+Walk+Down+Wall+Street+Burton+Malkiel" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/3RbZ2Ed" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11275,7 +11353,7 @@
             <h3 data-i18n="memberBooks.book4Title">Rich Dad Poor Dad</h3>
             <div class="member-book-author" data-i18n="memberBooks.book4Author">Robert T. Kiyosaki</div>
             <p data-i18n="memberBooks.book4Text">Useful beginner mindset around assets, liabilities, and money habits.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=Rich+Dad+Poor+Dad+Robert+Kiyosaki" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/3PsPDr9" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11285,7 +11363,7 @@
             <h3 data-i18n="memberBooks.book5Title">I Will Teach You to Be Rich</h3>
             <div class="member-book-author" data-i18n="memberBooks.book5Author">Ramit Sethi</div>
             <p data-i18n="memberBooks.book5Text">Practical personal finance systems, automation, and consistent investing habits.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=I+Will+Teach+You+to+Be+Rich+Ramit+Sethi" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/4dwfxT4" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11295,7 +11373,7 @@
             <h3 data-i18n="memberBooks.book6Title">The Intelligent Investor</h3>
             <div class="member-book-author" data-i18n="memberBooks.book6Author">Benjamin Graham</div>
             <p data-i18n="memberBooks.book6Text">A deeper classic for valuation, risk, discipline, and long-term investor thinking.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Intelligent+Investor+Benjamin+Graham" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/4ubgM0Y" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11305,7 +11383,7 @@
             <h3 data-i18n="memberBooks.book7Title">The Bitcoin Standard</h3>
             <div class="member-book-author" data-i18n="memberBooks.book7Author">Saifedean Ammous</div>
             <p data-i18n="memberBooks.book7Text">A monetary history view of Bitcoin, scarcity, hard money, and why people see it as a long-term store of value.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Bitcoin+Standard+Saifedean+Ammous" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/3RJkIYm" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11315,7 +11393,7 @@
             <h3 data-i18n="memberBooks.book8Title">The Fiat Standard</h3>
             <div class="member-book-author" data-i18n="memberBooks.book8Author">Saifedean Ammous</div>
             <p data-i18n="memberBooks.book8Text">A deeper look at modern money, inflation, debt, and how fiat systems shape financial decisions.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Fiat+Standard+Saifedean+Ammous" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/49UFLxo" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11325,7 +11403,7 @@
             <h3 data-i18n="memberBooks.book9Title">Inventing Bitcoin</h3>
             <div class="member-book-author" data-i18n="memberBooks.book9Author">Yan Pritzker</div>
             <p data-i18n="memberBooks.book9Text">A beginner-friendly explanation of how Bitcoin works without needing a technical background.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=Inventing+Bitcoin+Yan+Pritzker" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/4fqz7CE" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11335,7 +11413,7 @@
             <h3 data-i18n="memberBooks.book10Title">The Internet of Money</h3>
             <div class="member-book-author" data-i18n="memberBooks.book10Author">Andreas M. Antonopoulos</div>
             <p data-i18n="memberBooks.book10Text">Short essays and talks that explain why open monetary networks matter beyond price charts.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Internet+of+Money+Andreas+Antonopoulos" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/42B33EH" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11345,7 +11423,7 @@
             <h3 data-i18n="memberBooks.book11Title">The Black Swan</h3>
             <div class="member-book-author" data-i18n="memberBooks.book11Author">Nassim Nicholas Taleb</div>
             <p data-i18n="memberBooks.book11Text">A powerful book about rare events, uncertainty, fragility, and why markets surprise people.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=The+Black+Swan+Nassim+Nicholas+Taleb" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/4eNizoc" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
         <div class="member-book-card">
@@ -11355,12 +11433,12 @@
             <h3 data-i18n="memberBooks.book12Title">Principles: Life and Work</h3>
             <div class="member-book-author" data-i18n="memberBooks.book12Author">Ray Dalio</div>
             <p data-i18n="memberBooks.book12Text">Business, decision-making, risk, and life principles from one of the world's best-known investors.</p>
-            <a class="member-amazon-btn" href="https://www.amazon.com.au/s?k=Principles+Life+and+Work+Ray+Dalio" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+            <a class="member-amazon-btn" href="https://amzn.to/4ubOcg1" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
       </div>
 
-      <div class="member-book-note" data-i18n="memberBooks.note">Book buttons open Amazon Australia search results. You can replace them later with Amazon Associates links if you join the affiliate program.</div>
+      <div class="member-book-note" data-i18n="memberBooks.note">Book buttons open Amazon through Plainvest associate links. Check the edition, format, and price before buying.</div>
     </div>
   </section>
 
@@ -11573,7 +11651,7 @@
           band3T: 'Understand growth next to inflation pressure.',
           band3B: 'You are not just seeing bigger numbers. You are seeing what those numbers still buy over time.',
           social: 'Built with <strong>beginner feedback</strong><br>from people who wanted investing to finally make sense.',
-          cta1: 'Try the free simulator', cta2: 'See Premium access',
+          cta1: 'Try the free simulator', cta2: 'See Premium access', cta3: 'Get Premium — AUD $89.90',
           trust1: 'Always free to use', trust2: 'No account needed', trust3: 'Zero jargon'
         },
         strip: { free: 'Free', free2: 'no credit card, ever', sec: '60 seconds', sec2: 'to your first result', plain: 'Plain language', nojargon: 'no jargon', built: 'Built for', beginners: 'complete beginners', edu: 'Educational', notadvice: 'not advice' },
@@ -11676,15 +11754,16 @@
           'Premium topic: when to sell — and when not to'
         ],
         testi: {
-          eyebrow: 'User feedback',
-          h2: 'From curious to <em>confident</em>.',
-          lead: 'These are anonymized simulator comments from first-time investors. After launch, this section will be replaced with real member quotes and names only with permission.',
-          q1: '"I typed in $100 a month just to play around, then realised waiting five more years would cost me more than I thought. That was the first time investing felt practical."',
-          p1: 'First-time ETF learner',
-          q2: '"The inflation chart made the biggest difference for me. I finally understood why leaving everything in savings is not as safe as it looks."',
-          p2: 'Cash saver learning inflation',
-          q3: '"I liked that I could click the terms without feeling silly. ETF, index fund, bonds — it made the words less intimidating before I made any decision."',
-          p3: 'Beginner comparing options'
+          eyebrow: 'Simulator insights',
+          h2: 'What first-time investors <em>notice</em>.',
+          lead: 'Instead of using placeholder testimonials, this section highlights the useful beginner insights the simulator is designed to create.',
+          label: 'INSIGHT',
+          q1: 'Small monthly amounts look different when you can see 10, 20, and 30 years on one chart.',
+          p1: 'Why the simulator matters',
+          q2: 'Inflation becomes easier to understand when cash, savings, and invested growth are compared side by side.',
+          p2: 'Why the inflation page matters',
+          q3: 'Terms like ETF, index fund, bonds, Bitcoin, and DCA feel less intimidating after they are tied to plain examples.',
+          p3: 'Why the learning guides matter'
         },
         story: {
           eyebrow: 'Our story',
@@ -11746,6 +11825,19 @@
           proof3: 'Extra calls AUD $39.90',
           valueNote: 'Launch value: a single 1-hour financial education session in Australia can cost AUD $200–$350. Premium includes a 60-minute support call plus structured guides and book paths for AUD $89.90 once.',
           foundingNote: 'This founding price is locked in for early members and may increase after the launch period.',
+          who: {
+            yesLabel: 'This is for you if',
+            noLabel: 'This is not for you if',
+            y1: "You are curious about investing but don't know where to start.",
+            y2: 'You want plain-English explanations, not jargon or broker dashboards.',
+            y3: 'You want one expert hour to ask questions instead of guessing alone.',
+            y4: 'You are Australian and want guidance on platforms, tax basics, and super.',
+            y5: 'You want to understand Bitcoin, crypto safety, or ETFs without hype.',
+            n1: 'You are already actively investing and want advanced analysis.',
+            n2: 'You want specific stock tips or guaranteed return predictions.',
+            n3: 'You are looking for licensed financial advice or tax consulting.',
+            n4: 'You expect Plainvest to tell you what to buy.'
+          },
           zoom: {
             title: 'Includes a 60-minute Zoom support call',
             text: 'Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.'
@@ -11759,6 +11851,7 @@
             s3: '3. Access everything',
             b3: 'Open all 15 guides, the book path, and book your Zoom call.'
           },
+          purchaseNote: 'One-time payment. No subscription. 7-day review policy if something is not right.',
           free: { tier: 'Free — always', desc: 'Explore and simulate with no commitment, ever.', f1: 'Simulator with multiple paths by country', f2: 'Side-by-side comparison table', f3: 'Basic explanations for the main investment types', f4: 'Contextual tips per investment', btn: 'Try it free' },
           prem: { badge: 'Founding one-time price', tier: 'Premium Learning Pass', per: '', price: 'AUD $89.90', desc: 'Guided learning, crypto safety, book paths, exchange setup help, and beginner support.', f1: 'Guided investing lessons', f2: 'Deep-dive guides, DCA method, and how-to-buy steps by country.', f3: 'Bitcoin and crypto safety', f4: 'White paper, halving, on-chain basics, self-custody, wallets, and cycle mistakes.', f5: 'Book and content library', f6: 'Curated investing, macro, Bitcoin, business, and wealth books with reading order.', f7: 'Exchange setup help', f8: 'Help choosing a platform, opening an account, and understanding settings and tools.', f9: 'One included Zoom call', f10: 'A 60-minute beginner support call to help answer questions and guide your next steps.', f11: 'Growing member hub', f12: 'New studies, insights, chart-reading lessons, and member resources added over time.', f13: 'Macroeconomics reading path, including The Black Swan and other options', f14: 'Chart reading tool to analyze price across stocks, crypto, indexes, and ETFs', f15: 'Crypto market cycle lessons from two full cycles so you can avoid common mistakes', f16: 'New products, studies, and insights added over time for members', btn: 'Purchase access' },
           faq: {
@@ -11954,10 +12047,10 @@
         memberBooks: {
           eyebrow: 'Premium book list',
           h2: 'Books that build <em>real investing confidence.</em>',
-          lead: 'A member-only reading path with book covers, quick reasons to read each one, and direct Amazon search links.',
+          lead: 'A member-only reading path with book covers, quick reasons to read each one, and direct Amazon associate links.',
           backBtn: 'Back to member area',
           buyBtn: 'Buy on Amazon',
-          note: 'Book buttons open Amazon Australia search results. You can replace them later with Amazon Associates links if you join the affiliate program.',
+          note: 'Book buttons open Amazon through Plainvest associate links. Check the edition, format, and price before buying.',
           book1Level: 'Start here',
           book1Title: 'The Little Book of Common Sense Investing',
           book1Author: 'John C. Bogle',
@@ -12039,11 +12132,11 @@
             'Rich Dad Poor Dad',
             'I Will Teach You to Be Rich',
             'The Intelligent Investor',
-            '+ 15 more books'
+            'The Black Swan'
           ],
           authors: [
             'John C. Bogle', 'Morgan Housel', 'Burton G. Malkiel',
-            'Robert T. Kiyosaki', 'Ramit Sethi', 'Benjamin Graham', 'Various authors'
+            'Robert T. Kiyosaki', 'Ramit Sethi', 'Benjamin Graham', 'Nassim Nicholas Taleb'
           ],
           why: [
             'The founder of Vanguard makes the case for index funds in plain English. The single most important book for any beginner — short, clear, and life-changing.',
@@ -12052,9 +12145,9 @@
             'The book that got millions thinking about assets vs liabilities for the first time.',
             'A 6-week plan for automating your finances and investing consistently.',
             'Warren Buffett calls this "the best book on investing ever written."',
-            'With chapter summaries, key takeaways and reading order by level.'
+            'A macro and risk classic about rare events, uncertainty, and why overconfidence can be expensive.'
           ],
-          tags: ['⭐ #1 for beginners', '⭐ Most recommended', '📊 Evidence-based', '🧠 Mindset shift', '⚡ Action-focused', '🏛️ The classic', '🔐 Premium only'],
+          tags: ['⭐ #1 for beginners', '⭐ Most recommended', '📊 Evidence-based', '🧠 Mindset shift', '⚡ Action-focused', '🏛️ The classic', '🧩 Macro & risk'],
           premTitle: '🔐 Premium member reading room',
           premText: 'Premium members get curated reading paths, chapter summaries, key takeaways, and a full list organised by beginner, intermediate, and advanced level.',
           premBtn: 'Purchase access →',
@@ -12146,7 +12239,7 @@
           band3T: 'Entenda crescimento junto da pressão da inflação.',
           band3B: 'Você não vê apenas números maiores. Você vê o que esses números ainda conseguem comprar com o passar do tempo.',
           social: 'Criado com <strong>feedback de iniciantes</strong><br>de pessoas que queriam finalmente entender investimentos.',
-          cta1: 'Testar simulador grátis', cta2: 'Ver acesso Premium',
+          cta1: 'Testar simulador grátis', cta2: 'Ver acesso Premium', cta3: 'Comprar Premium — AUD $89.90',
           trust1: 'Sempre gratuito', trust2: 'Sem cadastro', trust3: 'Zero jargão'
         },
         strip: { free: 'Grátis', free2: 'sem cartão de crédito', sec: '60 segundos', sec2: 'para o primeiro resultado', plain: 'Linguagem simples', nojargon: 'sem jargão', built: 'Feito para', beginners: 'iniciantes completos', edu: 'Educacional', notadvice: 'não é conselho financeiro' },
@@ -12249,15 +12342,16 @@
           'Tópico Premium: quando vender — e quando não vender'
         ],
         testi: {
-          eyebrow: 'Feedback de usuários',
-          h2: 'De curioso a <em>confiante</em>.',
-          lead: 'Estes são comentários anonimizados de pessoas usando o simulador. Depois do lançamento, esta seção será atualizada com depoimentos reais de membros, com permissão.',
-          q1: '"Coloquei R$100 por mês só para testar e percebi que esperar mais cinco anos custaria mais do que eu imaginava. Foi a primeira vez que investir pareceu prático."',
-          p1: 'Iniciante aprendendo ETFs',
-          q2: '"O gráfico de inflação foi o que mais me marcou. Finalmente entendi por que deixar tudo parado na poupança não é tão seguro quanto parece."',
-          p2: 'Poupador entendendo inflação',
-          q3: '"Gostei de poder clicar nos termos sem me sentir perdida. ETF, fundo de índice, títulos — as palavras ficaram menos assustadoras antes de qualquer decisão."',
-          p3: 'Iniciante comparando opções'
+          eyebrow: 'Insights do simulador',
+          h2: 'O que investidores iniciantes <em>percebem</em>.',
+          lead: 'Em vez de usar depoimentos provisórios, esta seção mostra os aprendizados úteis que o simulador foi criado para gerar.',
+          label: 'INSIGHT',
+          q1: 'Pequenos aportes mensais parecem diferentes quando você vê 10, 20 e 30 anos no mesmo gráfico.',
+          p1: 'Por que o simulador importa',
+          q2: 'A inflação fica mais fácil de entender quando dinheiro parado, poupança e investimento aparecem lado a lado.',
+          p2: 'Por que a página de inflação importa',
+          q3: 'Termos como ETF, fundo de índice, títulos, Bitcoin e DCA ficam menos assustadores quando ligados a exemplos simples.',
+          p3: 'Por que os guias de aprendizado importam'
         },
         story: {
           eyebrow: 'Nossa história',
@@ -12319,6 +12413,19 @@
           proof3: 'Chamadas extras aprox. R$142,00',
           valueNote: 'Valor de lançamento: uma única sessão de educação financeira de 1 hora na Austrália pode custar AUD $200–$350. O Premium inclui uma chamada de 60 minutos, guias estruturados e trilha de livros por AUD $89,90 uma vez.',
           foundingNote: 'Este preço fundador fica garantido para os primeiros membros e pode aumentar após o período de lançamento.',
+          who: {
+            yesLabel: 'Isso é para você se',
+            noLabel: 'Isso não é para você se',
+            y1: 'Você tem curiosidade sobre investimentos mas não sabe por onde começar.',
+            y2: 'Quer explicações em linguagem simples, sem jargões ou painéis de corretora.',
+            y3: 'Quer uma hora com um especialista para tirar dúvidas em vez de adivinhar sozinho.',
+            y4: 'É australiano e quer orientação sobre plataformas, noções de imposto e super.',
+            y5: 'Quer entender Bitcoin, segurança em cripto ou ETFs sem exageros.',
+            n1: 'Você já investe ativamente e quer análises avançadas.',
+            n2: 'Quer dicas específicas de ações ou previsões de retorno garantido.',
+            n3: 'Está buscando assessoria financeira licenciada ou consultoria tributária.',
+            n4: 'Espera que o Plainvest diga o que comprar.'
+          },
           zoom: {
             title: 'Inclui uma chamada de 60 minutos no Zoom',
             text: 'Traga suas dúvidas sobre exchanges, DCA, segurança em Bitcoin ou primeiros passos. Ajudamos você a entender o próximo movimento.'
@@ -12332,6 +12439,7 @@
             s3: '3. Acesse tudo',
             b3: 'Abra os 15 guias, a trilha de livros e agende sua chamada no Zoom.'
           },
+          purchaseNote: 'Pagamento único. Sem assinatura. Política de revisão de 7 dias se algo não estiver certo.',
           free: { tier: 'Gratuito — para sempre', desc: 'Explore e simule sem compromisso, sempre.', f1: 'Simulador com vários caminhos por país', f2: 'Tabela comparativa lado a lado', f3: 'Explicações básicas dos principais tipos de investimento', f4: 'Dicas contextuais por investimento', btn: 'Experimentar grátis' },
           prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe Premium de Aprendizado', per: '', price: 'aprox. R$320,00', desc: 'Aprendizado guiado, segurança em cripto, trilha de livros, ajuda com exchange e apoio para iniciantes. Valor equivalente a AUD $89,90 em pagamento único.', f1: 'Aulas guiadas de investimento', f2: 'Guias aprofundados, método DCA e passos de compra por país.', f3: 'Bitcoin e segurança em cripto', f4: 'White paper, halving, noções on-chain, autocustódia, carteiras e erros de ciclo.', f5: 'Biblioteca de livros e conteúdos', f6: 'Livros de investimento, macro, Bitcoin, negócios e riqueza com ordem de leitura.', f7: 'Ajuda com exchange', f8: 'Ajuda para escolher plataforma, abrir conta e entender configurações e ferramentas.', f9: 'Uma chamada incluída no Zoom', f10: 'Uma chamada de apoio para iniciantes de 60 minutos para ajudar com dúvidas e próximos passos.', f11: 'Hub de membro em crescimento', f12: 'Novos estudos, insights, aulas de leitura de gráfico e recursos adicionados com o tempo.', f13: 'Trilha de livros sobre macroeconomia, incluindo A Lógica do Cisne Negro e outras opções', f14: 'Ferramenta de leitura de gráficos para analisar preço em ações, cripto, índices e ETFs', f15: 'Lições de dois ciclos completos do mercado cripto para evitar erros comuns', f16: 'Novos produtos, estudos e insights adicionados com o tempo para membros', btn: 'Comprar acesso' },
           faq: {
@@ -12527,10 +12635,10 @@
         memberBooks: {
           eyebrow: 'Lista de livros Premium',
           h2: 'Livros que constroem <em>confiança real para investir.</em>',
-          lead: 'Uma trilha de leitura exclusiva para membros, com capas dos livros, motivos rápidos para ler cada um e links diretos de busca na Amazon.',
+          lead: 'Uma trilha de leitura exclusiva para membros, com capas dos livros, motivos rápidos para ler cada um e links diretos de associado da Amazon.',
           backBtn: 'Voltar para área de membro',
           buyBtn: 'Comprar na Amazon',
-          note: 'Os botões abrem resultados de busca na Amazon Austrália. Depois você pode trocar por links do Amazon Associates se entrar no programa de afiliados.',
+          note: 'Os botões abrem a Amazon com links de associado Plainvest. Confira a edição, formato e preço antes de comprar.',
           book1Level: 'Comece aqui',
           book1Title: 'O Pequeno Livro do Investimento com Bom Senso',
           book1Author: 'John C. Bogle',
@@ -12636,11 +12744,11 @@
             'Pai Rico, Pai Pobre',
             'Eu Vou Ensinar Você a Ser Rico',
             'O Investidor Inteligente',
-            '+ 15 livros adicionais'
+            'A Lógica do Cisne Negro'
           ],
           authors: [
             'John C. Bogle', 'Morgan Housel', 'Burton G. Malkiel',
-            'Robert T. Kiyosaki', 'Ramit Sethi', 'Benjamin Graham', 'Vários autores'
+            'Robert T. Kiyosaki', 'Ramit Sethi', 'Benjamin Graham', 'Nassim Nicholas Taleb'
           ],
           why: [
             'O fundador da Vanguard defende os fundos de índice em linguagem simples. O livro mais importante para qualquer iniciante — curto, claro e transformador.',
@@ -12649,9 +12757,9 @@
             'O livro que fez milhões de pessoas pensarem sobre ativos e passivos pela primeira vez.',
             'Um plano de 6 semanas para automatizar suas finanças e investir consistentemente.',
             'Warren Buffett o chama de "o melhor livro sobre investimentos já escrito."',
-            'Com resumos por capítulo, principais aprendizados e ordem de leitura por nível.'
+            'Um clássico de macro e risco sobre eventos raros, incerteza e por que excesso de confiança pode sair caro.'
           ],
-          tags: ['⭐ Nº1 para iniciantes', '⭐ Mais recomendado', '📊 Baseado em evidências', '🧠 Mudança de mentalidade', '⚡ Foco em ação', '🏛️ O clássico', '🔐 Somente Premium'],
+          tags: ['⭐ Nº1 para iniciantes', '⭐ Mais recomendado', '📊 Baseado em evidências', '🧠 Mudança de mentalidade', '⚡ Foco em ação', '🏛️ O clássico', '🧩 Macro e risco'],
           premTitle: '🔐 Área de leitura para membros Premium',
           premText: 'Membros Premium têm trilhas de leitura, resumos por capítulo, principais aprendizados e uma lista completa por nível: iniciante, intermediário e avançado.',
           premBtn: 'Comprar acesso →',
@@ -12891,6 +12999,7 @@
       const tt = t.testi;
       const quotes = document.querySelectorAll('.t-quote');
       const roles = document.querySelectorAll('.t-role');
+      const stars = document.querySelectorAll('.t-stars');
       setText('testi-lead', tt.lead);
       if (quotes[0]) quotes[0].textContent = tt.q1;
       if (quotes[1]) quotes[1].textContent = tt.q2;
@@ -12898,6 +13007,7 @@
       if (roles[0]) roles[0].textContent = tt.p1;
       if (roles[1]) roles[1].textContent = tt.p2;
       if (roles[2]) roles[2].textContent = tt.p3;
+      stars.forEach(function (star) { star.textContent = tt.label || 'INSIGHT'; });
 
       // Re-render tiles with the selected language.
       // Guard: COUNTRIES may not be defined yet on first call
@@ -13080,9 +13190,9 @@
       // Start Investing / Exchanges translations
       var si = currentLang === 'pt'
         ? {
-          eyebrow: '🚀 Mercados que apoiamos primeiro',
+          eyebrow: '🚀 Mercados abordados no Premium',
           h2: 'Pronto para sair do <em>aprendizado</em> para a ação?',
-          lead: 'Quando uma estratégia já faz sentido para você, o próximo passo é escolher onde realmente investiria. O Premium ajuda a entender plataformas, contas, ferramentas e caminhos por mercado.',
+          lead: 'Quando uma estratégia faz sentido, iniciantes geralmente perguntam qual mercado, plataforma ou tipo de conta aprender em seguida. O Premium explica os primeiros mercados e ferramentas que o Plainvest aborda para educação.',
           b1name: 'Austrália e EUA', b1sub: 'Austrália · EUA · S&P 500 · Nasdaq', b1desc: 'O Premium explica acesso para iniciantes a fundos diversificados, ETFs do S&P 500 e do Nasdaq, ações e carteiras de longo prazo.', b1items: ['Fundos de índice do S&P 500 e Nasdaq-100', 'ETFs de dividendos', 'REITs e títulos', 'ASX 200 e Superannuation'], b1tag: 'Guia Premium', b1btn: 'Aprender no Premium',
           b2name: 'Brasil', b2sub: 'Brasil · Tesouro · CDB · ETF', b2desc: 'O Premium ajuda investidores brasileiros a entender Tesouro Direto, renda fixa, ETFs, FIIs e ações locais em um caminho claro.', b2items: ['Tesouro Direto', 'CDB e LCI/LCA', 'FIIs e ETFs da B3', 'Ações brasileiras'], b2tag: 'Guia Premium', b2btn: 'Aprender no Premium',
           b3name: 'Cripto', b3sub: 'Global · Bitcoin · Ethereum · Cripto', b3desc: 'O Premium explica cripto, Bitcoin, Ethereum, exchanges, autocustódia e erros comuns de segurança antes de mexer com dinheiro real.', b3items: ['Bitcoin e Ethereum', 'Top 50 altcoins', 'Custódia segura em armazenamento frio', 'Disponível no mundo todo'], b3tag: 'Guia Premium', b3btn: 'Aprender no Premium',
@@ -13093,9 +13203,9 @@
           bottomBtn2: 'Ver planos →'
         }
         : {
-          eyebrow: '🚀 Markets we support first',
+          eyebrow: '🚀 Markets covered in Premium',
           h2: 'Ready to move from <em>learning</em> to action?',
-          lead: "Once a strategy makes sense to you, the next step is choosing where you would actually invest. Premium helps you understand platforms, accounts, tools, and market paths.",
+          lead: "Once a strategy makes sense, beginners usually ask what market, platform, or account type to learn next. Premium explains the first markets and tools Plainvest focuses on for education.",
           b1name: 'Australia & USA', b1sub: 'Australia · USA · S&P 500 · Nasdaq', b1desc: 'Premium explains beginner-friendly access to diversified funds, S&P 500 and Nasdaq ETFs, stocks, and long-term core portfolios.', b1items: ['S&P 500 and Nasdaq-100 funds', 'Dividend ETFs', 'REITs & bonds', 'ASX 200 & Superannuation'], b1tag: 'Premium guide', b1btn: 'Learn in Premium',
           b2name: 'Brazil', b2sub: 'Brazil · Tesouro · CDB · ETF', b2desc: 'Premium helps Brazilian investors understand Tesouro Direto, fixed income, ETFs, FIIs, and local stocks in one clear learning path.', b2items: ['Tesouro Direto', 'CDB and LCI/LCA', 'FIIs and B3 ETFs', 'Brazilian stocks'], b2tag: 'Premium guide', b2btn: 'Learn in Premium',
           b3name: 'Crypto', b3sub: 'Global · Bitcoin · Ethereum · Crypto', b3desc: 'Premium explains crypto access, Bitcoin, Ethereum, exchanges, self-custody, and common security mistakes before you touch real money.', b3items: ['Bitcoin & Ethereum', 'Top 50 altcoins', 'Secure cold storage', 'Available worldwide'], b3tag: 'Premium guide', b3btn: 'Learn in Premium',
@@ -13831,6 +13941,23 @@
       const totalIn = invArr[invArr.length - 1];
       const earned = finalV - totalIn;
       const mult = totalIn > 0 ? (finalV / totalIn).toFixed(1) + '×' : '—';
+
+      // Cost-of-waiting insight
+      const cowEl = document.getElementById('cost-of-waiting');
+      if (cowEl) {
+        const delayYrs = yrs >= 10 ? 5 : yrs >= 5 ? 3 : 0;
+        if (delayYrs > 0 && (init > 0 || mo > 0)) {
+          const lateV = Math.round(fv(init, mo, inv.rate, yrs - delayYrs));
+          const cowLoss = finalV - lateV;
+          const isPtCow = currentLang === 'pt';
+          cowEl.textContent = isPtCow
+            ? `⏳ Começar ${delayYrs} anos depois reduziria este resultado em aproximadamente ${fmt(cowLoss)}.`
+            : `⏳ Starting ${delayYrs} years later would reduce this result by approximately ${fmt(cowLoss)}.`;
+          cowEl.classList.add('visible');
+        } else {
+          cowEl.classList.remove('visible');
+        }
+      }
 
       // Result header — language-aware
       const isPt = currentLang === 'pt';
