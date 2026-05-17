@@ -5879,6 +5879,14 @@
       font-size: 2.8rem;
       background: linear-gradient(180deg, #f7fbfa, #eef5f3);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .books-spot-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .books-spot-tag {
@@ -10383,7 +10391,7 @@
         <h4 id="lpb-title">Premium guides are live</h4>
         <p id="lpb-text">Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.</p>
         <div class="lpb-pills">
-          <div class="lpb-pill" id="lpb-p1">How to buy your first Index Fund</div>
+          <div class="lpb-pill" id="lpb-p1">Premium topic: how to buy your first Index Fund</div>
           <div class="lpb-pill" id="lpb-p2">What is a brokerage account?</div>
           <div class="lpb-pill" id="lpb-p3">Dollar-cost averaging explained</div>
         </div>
@@ -10405,7 +10413,7 @@
         <div class="t-person">
           <div class="t-av">👩‍🍳</div>
           <div>
-            <div class="t-name">Maria, 27 — Sydney</div>
+            <div class="t-name">Simulator feedback — Sydney</div>
             <div class="t-role">First-time ETF learner</div>
           </div>
         </div>
@@ -10416,7 +10424,7 @@
         <div class="t-person">
           <div class="t-av">👨‍💻</div>
           <div>
-            <div class="t-name">James, 31 — Brisbane</div>
+            <div class="t-name">Simulator feedback — Brisbane</div>
             <div class="t-role">Cash saver learning inflation</div>
           </div>
         </div>
@@ -10427,7 +10435,7 @@
         <div class="t-person">
           <div class="t-av">👩‍🏫</div>
           <div>
-            <div class="t-name">Ana, 34 — Melbourne</div>
+            <div class="t-name">Simulator feedback — Melbourne</div>
             <div class="t-role">Beginner comparing options</div>
           </div>
         </div>
@@ -10515,7 +10523,7 @@
 
     <div class="books-spotlight">
       <div class="books-spot-card">
-        <div class="books-spot-cover">📘</div>
+        <div class="books-spot-cover"><img src="https://covers.openlibrary.org/b/isbn/9781119404507-L.jpg" alt="The Little Book of Common Sense Investing cover"></div>
         <div>
           <div class="books-free-label" id="books-free-label">✓ Free preview</div>
           <div class="books-spot-tag" id="books-spot-tag">Plainvest pick</div>
@@ -10813,16 +10821,16 @@
         <div class="plan-value-note" data-i18n="plans.valueNote">Launch value: a single 1-hour financial education session in Australia can cost AUD $200–$350. Premium includes a 60-minute support call plus structured guides and book paths for AUD $89.90 once.</div>
         <div class="plan-flow" aria-label="How Premium works">
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s1">1. Create your account</strong>
+            <strong data-i18n="plans.flow.s1">1. Create your free account</strong>
             <span data-i18n="plans.flow.b1">Use the email you want connected to Premium access.</span>
           </div>
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s2">2. Complete secure checkout</strong>
-            <span data-i18n="plans.flow.b2">Stripe handles the payment and returns you to Plainvest.</span>
+            <strong data-i18n="plans.flow.s2">2. Complete checkout</strong>
+            <span data-i18n="plans.flow.b2">Pay AUD $89.90 once through Stripe secure checkout.</span>
           </div>
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s3">3. Unlock the member hub</strong>
-            <span data-i18n="plans.flow.b3">Open the guides, book path, and support call section.</span>
+            <strong data-i18n="plans.flow.s3">3. Access everything</strong>
+            <span data-i18n="plans.flow.b3">Open all 15 guides, the book path, and book your Zoom call.</span>
           </div>
         </div>
         <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
@@ -10839,7 +10847,7 @@
       </div>
       <div class="plan-faq-card">
         <h3 data-i18n="plans.faq.q3">What happens after purchase?</h3>
-        <p data-i18n="plans.faq.a3">Members get access to the learning hub, book path, premium modules, and call booking details.</p>
+        <p data-i18n="plans.faq.a3">Immediately after purchase: 15 structured guides covering investing basics, DCA, Bitcoin safety, crypto self-custody, Australian tax and CGT, superannuation, platform comparison, books, chart reading, and more — plus booking access for your included 60-minute Zoom call.</p>
       </div>
       <div class="plan-faq-card">
         <h3 data-i18n="plans.faq.q4">Is the price final?</h3>
@@ -10851,11 +10859,11 @@
       </div>
       <div class="plan-faq-card">
         <h3 data-i18n="plans.faq.q6">How do I book the Zoom call?</h3>
-        <p data-i18n="plans.faq.a6">Inside the member hub, open the Zoom call guide and choose a time from the booking calendar. Confirmation arrives automatically.</p>
+        <p data-i18n="plans.faq.a6">Inside the member hub, open the Zoom call guide and choose a time directly from the Calendly calendar. Confirmation details are sent automatically.</p>
       </div>
       <div class="plan-faq-card">
         <h3 data-i18n="plans.faq.q7">How long do I keep access?</h3>
-        <p data-i18n="plans.faq.a7">Your access is permanent. One purchase, no expiry, and no future subscription required for the current Premium hub.</p>
+        <p data-i18n="plans.faq.a7">Your access is permanent. One purchase, no expiry, and no subscription ever required.</p>
       </div>
       <div class="plan-faq-card">
         <h3 data-i18n="plans.faq.q8">Can I get a refund?</h3>
@@ -10967,7 +10975,7 @@
         </div>
         <div class="member-support">
           <h3 data-i18n="member.supportTitle">Member support</h3>
-          <p data-i18n="member.supportText">Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Open the Zoom call guide to choose a calendar time or send a booking request. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.</p>
+          <p data-i18n="member.supportText">Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Open the Zoom call guide to choose a time in Calendly. Extra online calls are available separately for AUD $39.90 if you need more help.</p>
           <div class="support-call-paid-panel" id="support-call-paid-panel">
             <strong data-i18n="member.extraPaidTitle">Extra call payment received</strong>
             <p data-i18n="member.extraPaidText">Now send your preferred days, times, timezone, and the questions you want to cover. We will reply with confirmation and the Zoom details.</p>
@@ -11494,7 +11502,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <div class="foot-meta" data-i18n="footer.meta">© 2026 Plainvest · Educational product concept · Plain-English investing</div>
+      <div class="foot-meta" data-i18n="footer.meta">© 2026 Plainvest · Educational platform · Plain-English investing</div>
       <div class="foot-links" aria-label="Legal links">
         <a href="https://members.plainvest.app/privacy" target="_blank" rel="noopener" data-i18n="footer.privacy">Privacy Policy</a>
         <a href="https://members.plainvest.app/terms" target="_blank" rel="noopener" data-i18n="footer.terms">Terms of Service</a>
@@ -11652,7 +11660,7 @@
           premBtn: 'Get Premium access →'
         },
         learnPillars: [
-          'How to buy your first Index Fund',
+          'Premium topic: how to buy your first Index Fund',
           'What is a brokerage account?',
           'Regular contributions explained',
           'Tax-advantaged accounts (401k, IRA, ISA)',
@@ -11736,12 +11744,12 @@
           },
           footnote: 'Plainvest Premium is designed to reduce hesitation, not add complexity. The goal is to help someone go from “I think I should invest” to “I know what my first step is.”',
           flow: {
-            s1: '1. Create your account',
+            s1: '1. Create your free account',
             b1: 'Use the email you want connected to Premium access.',
-            s2: '2. Complete secure checkout',
-            b2: 'Stripe handles the payment and returns you to Plainvest.',
-            s3: '3. Unlock the member hub',
-            b3: 'Open the guides, book path, and support call section.'
+            s2: '2. Complete checkout',
+            b2: 'Pay AUD $89.90 once through Stripe secure checkout.',
+            s3: '3. Access everything',
+            b3: 'Open all 15 guides, the book path, and book your Zoom call.'
           },
           free: { tier: 'Free — always', desc: 'Explore and simulate with no commitment, ever.', f1: 'Simulator with multiple paths by country', f2: 'Side-by-side comparison table', f3: 'Basic explanations for the main investment types', f4: 'Contextual tips per investment', btn: 'Try it free' },
           prem: { badge: 'Founding one-time price', tier: 'Premium Learning Pass', per: '', price: 'AUD $89.90', desc: 'Guided learning, crypto safety, book paths, exchange setup help, and beginner support.', f1: 'Guided investing lessons', f2: 'Deep-dive guides, DCA method, and how-to-buy steps by country.', f3: 'Bitcoin and crypto safety', f4: 'White paper, halving, on-chain basics, self-custody, wallets, and cycle mistakes.', f5: 'Book and content library', f6: 'Curated investing, macro, Bitcoin, business, and wealth books with reading order.', f7: 'Exchange setup help', f8: 'Help choosing a platform, opening an account, and understanding settings and tools.', f9: 'One included Zoom call', f10: 'A 60-minute beginner support call to help answer questions and guide your next steps.', f11: 'Growing member hub', f12: 'New studies, insights, chart-reading lessons, and member resources added over time.', f13: 'Macroeconomics reading path, including The Black Swan and other options', f14: 'Chart reading tool to analyze price across stocks, crypto, indexes, and ETFs', f15: 'Crypto market cycle lessons from two full cycles so you can avoid common mistakes', f16: 'New products, studies, and insights added over time for members', btn: 'Purchase access' },
@@ -11751,15 +11759,15 @@
             q2: 'Is this a subscription?',
             a2: 'No. It is a one-time purchase for Premium member access, resources, and the included support call.',
             q3: 'What happens after purchase?',
-            a3: 'Members get access to the learning hub, book path, premium modules, and call booking details.',
+            a3: 'Immediately after purchase: 15 structured guides covering investing basics, DCA, Bitcoin safety, crypto self-custody, Australian tax and CGT, superannuation, platform comparison, books, chart reading, and more — plus booking access for your included 60-minute Zoom call.',
             q4: 'Is the price final?',
             a4: 'AUD $89.90 is the founding one-time price while Plainvest grows with early users.',
             q5: 'How do I access the content after I pay?',
             a5: 'Create your member account, complete Stripe checkout, then return to the member hub where the guides unlock automatically.',
             q6: 'How do I book the Zoom call?',
-            a6: 'Inside the member hub, open the Zoom call guide and choose a time from the booking calendar. Confirmation arrives automatically.',
+            a6: 'Inside the member hub, open the Zoom call guide and choose a time directly from the Calendly calendar. Confirmation details are sent automatically.',
             q7: 'How long do I keep access?',
-            a7: 'Your access is permanent. One purchase, no expiry, and no future subscription required for the current Premium hub.',
+            a7: 'Your access is permanent. One purchase, no expiry, and no subscription ever required.',
             q8: 'Can I get a refund?',
             a8: 'If something is wrong or you purchased by mistake, contact us within 7 days. We review requests fairly and your Australian Consumer Law rights still apply.'
           }
@@ -11822,7 +11830,7 @@
           openFileBtn: 'Open file',
           booksListBtn: 'Open book list',
           supportTitle: 'Member support',
-          supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Open the Zoom call guide to choose a calendar time or send a booking request. Extra 60-minute online calls are available separately for AUD $39.90 if you need more help.',
+          supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Open the Zoom call guide to choose a time in Calendly. Extra online calls are available separately for AUD $39.90 if you need more help.',
           askBtn: 'Book included support call',
           extraCallBtn: 'Pay for extra call — AUD $39.90',
           extraPaidTitle: 'Extra call payment received',
@@ -12004,7 +12012,7 @@
           privacy: 'Privacy Policy',
           terms: 'Terms of Service',
           email: 'Email',
-          meta: '© 2026 Plainvest · Educational product concept · Plain-English investing',
+          meta: '© 2026 Plainvest · Educational platform · Plain-English investing',
           meta2: 'Made to turn financial hesitation into first steps.'
         },
         books: {
@@ -12225,7 +12233,7 @@
           premBtn: 'Acessar Premium →'
         },
         learnPillars: [
-          'Como comprar seu primeiro Fundo de Índice',
+          'Tópico Premium: como comprar seu primeiro Fundo de Índice',
           'O que é uma corretora?',
           'Aportes regulares explicados',
           'Contas com vantagem fiscal (PGBL, VGBL, Previdência)',
@@ -12309,12 +12317,12 @@
           },
           footnote: 'O Plainvest Premium foi pensado para reduzir a insegurança, não para adicionar complexidade. A meta é ajudar alguém a sair de “acho que deveria investir” para “sei qual é meu primeiro passo”.',
           flow: {
-            s1: '1. Crie sua conta',
+            s1: '1. Crie sua conta gratuita',
             b1: 'Use o email que você quer conectar ao acesso Premium.',
-            s2: '2. Finalize o checkout seguro',
-            b2: 'O Stripe processa o pagamento e retorna você ao Plainvest.',
-            s3: '3. Acesse o hub de membros',
-            b3: 'Abra os guias, a trilha de livros e a seção da chamada de suporte.'
+            s2: '2. Finalize o checkout',
+            b2: 'Pague AUD $89,90 uma vez pelo checkout seguro do Stripe.',
+            s3: '3. Acesse tudo',
+            b3: 'Abra os 15 guias, a trilha de livros e agende sua chamada no Zoom.'
           },
           free: { tier: 'Gratuito — para sempre', desc: 'Explore e simule sem compromisso, sempre.', f1: 'Simulador com vários caminhos por país', f2: 'Tabela comparativa lado a lado', f3: 'Explicações básicas dos principais tipos de investimento', f4: 'Dicas contextuais por investimento', btn: 'Experimentar grátis' },
           prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe Premium de Aprendizado', per: '', price: 'aprox. R$320,00', desc: 'Aprendizado guiado, segurança em cripto, trilha de livros, ajuda com exchange e apoio para iniciantes. Valor equivalente a AUD $89,90 em pagamento único.', f1: 'Aulas guiadas de investimento', f2: 'Guias aprofundados, método DCA e passos de compra por país.', f3: 'Bitcoin e segurança em cripto', f4: 'White paper, halving, noções on-chain, autocustódia, carteiras e erros de ciclo.', f5: 'Biblioteca de livros e conteúdos', f6: 'Livros de investimento, macro, Bitcoin, negócios e riqueza com ordem de leitura.', f7: 'Ajuda com exchange', f8: 'Ajuda para escolher plataforma, abrir conta e entender configurações e ferramentas.', f9: 'Uma chamada incluída no Zoom', f10: 'Uma chamada de apoio para iniciantes de 60 minutos para ajudar com dúvidas e próximos passos.', f11: 'Hub de membro em crescimento', f12: 'Novos estudos, insights, aulas de leitura de gráfico e recursos adicionados com o tempo.', f13: 'Trilha de livros sobre macroeconomia, incluindo A Lógica do Cisne Negro e outras opções', f14: 'Ferramenta de leitura de gráficos para analisar preço em ações, cripto, índices e ETFs', f15: 'Lições de dois ciclos completos do mercado cripto para evitar erros comuns', f16: 'Novos produtos, estudos e insights adicionados com o tempo para membros', btn: 'Comprar acesso' },
@@ -12324,15 +12332,15 @@
             q2: 'É uma assinatura?',
             a2: 'Não. É uma compra em pagamento único para acesso de membro Premium, recursos e a chamada incluída.',
             q3: 'O que acontece depois da compra?',
-            a3: 'Membros recebem acesso ao hub de aprendizado, trilha de livros, módulos Premium e detalhes para agendar a chamada.',
+            a3: 'Imediatamente após a compra: 15 guias estruturados sobre noções de investimento, DCA, segurança em Bitcoin, autocustódia cripto, impostos e CGT na Austrália, superannuation, comparação de plataformas, livros, leitura de gráficos e mais — além do agendamento da sua chamada incluída de 60 minutos no Zoom.',
             q4: 'O preço é definitivo?',
             a4: 'AUD $89,90 é o preço fundador em pagamento único enquanto o Plainvest cresce com os primeiros usuários.',
             q5: 'Como acesso o conteúdo depois de pagar?',
             a5: 'Crie sua conta de membro, finalize o checkout no Stripe e volte para o hub de membros, onde os guias são liberados automaticamente.',
             q6: 'Como agendo a chamada no Zoom?',
-            a6: 'Dentro do hub de membros, abra o guia da chamada no Zoom e escolha um horário diretamente no calendário. A confirmação chega automaticamente.',
+            a6: 'Dentro do hub de membros, abra o guia da chamada no Zoom e escolha um horário direto no calendário do Calendly. Os detalhes de confirmação são enviados automaticamente.',
             q7: 'Por quanto tempo mantenho o acesso?',
-            a7: 'Seu acesso é permanente. Um pagamento único, sem expiração e sem assinatura futura para o hub Premium atual.',
+            a7: 'Seu acesso é permanente. Um pagamento único, sem expiração e sem assinatura.',
             q8: 'Posso pedir reembolso?',
             a8: 'Se algo estiver errado ou você comprou por engano, fale conosco em até 7 dias. Analisamos de forma justa e seus direitos legais continuam válidos.'
           }
@@ -12395,7 +12403,7 @@
           openFileBtn: 'Abrir arquivo',
           booksListBtn: 'Abrir lista de livros',
           supportTitle: 'Suporte de membro',
-          supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Abra o guia da chamada no Zoom para escolher um horário no calendário ou enviar uma solicitação. Chamadas online extras de 60 minutos ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
+          supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Abra o guia da chamada no Zoom para escolher um horário no Calendly. Chamadas online extras ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
           askBtn: 'Agendar chamada incluída',
           extraCallBtn: 'Pagar chamada extra — aprox. R$142,00',
           extraPaidTitle: 'Pagamento da chamada extra recebido',
@@ -12601,7 +12609,7 @@
           privacy: 'Política de Privacidade',
           terms: 'Termos de Uso',
           email: 'Email',
-          meta: '© 2026 Plainvest · Conceito educacional · Investimentos em linguagem simples',
+          meta: '© 2026 Plainvest · Plataforma educacional · Investimentos em linguagem simples',
           meta2: 'Feito para transformar hesitação financeira em primeiros passos.'
         },
         books: {
