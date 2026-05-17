@@ -427,6 +427,11 @@
       display: none !important;
     }
 
+    body.premium-session-active .books-public-nav-item,
+    body.premium-session-active .plans-public-nav-item {
+      display: none !important;
+    }
+
     .member-content-nav-item {
       display: none;
     }
@@ -3540,30 +3545,41 @@
     .t-card {
       background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
       border: 1px solid var(--border-lt);
-      border-radius: 22px;
-      padding: 1.8rem;
+      border-radius: 16px;
+      padding: 1.55rem;
       transition: transform 0.22s, box-shadow 0.22s;
-      border-top: 3px solid transparent;
+      border-left: 4px solid rgba(0, 212, 170, .55);
     }
 
     .t-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
-      border-top-color: var(--teal-dim);
+      border-left-color: var(--teal-dim);
     }
 
     .t-stars {
-      color: var(--gold-dim);
-      font-size: 0.85rem;
-      margin-bottom: 0.9rem;
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      color: #0d8f79;
+      background: rgba(0, 212, 170, .10);
+      border: 1px solid rgba(0, 212, 170, .20);
+      border-radius: 999px;
+      padding: .32rem .68rem;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
 
     .t-quote {
-      font-size: 0.85rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
       color: var(--ink-mid);
-      line-height: 1.72;
-      margin-bottom: 1.2rem;
-      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      font-style: normal;
     }
 
     .t-person {
@@ -3583,8 +3599,9 @@
     }
 
     .t-role {
-      font-size: 0.7rem;
-      color: var(--ink-soft);
+      font-size: 0.78rem;
+      color: #0d8f79;
+      font-weight: 800;
       margin-top: 0.1rem;
     }
 
@@ -9880,8 +9897,6 @@
 </head>
 
 <body>
-  <div class="fixed-build-ribbon"><span id="build-ribbon-label">Current build</span><span class="build-ribbon-date">29 Apr 2026</span></div>
-
   <!-- NAV -->
   <nav>
     <a class="logo" href="#home">
@@ -9892,10 +9907,10 @@
       <li><a href="#simulator" data-i18n="nav.simulator">Simulator</a></li>
       <li><a href="#inflation" data-i18n="nav.inflation">Inflation</a></li>
       <li><a href="#learn" data-i18n="nav.learn">Learn</a></li>
-      <li><a href="#books" data-i18n="nav.books">Books</a></li>
       <li><a href="#story" data-i18n="nav.story">Story</a></li>
+      <li class="books-public-nav-item"><a href="#books" data-i18n="nav.books">Books</a></li>
       <li class="member-content-nav-item"><a class="member-content-nav" href="#member" id="nav-member-content-btn" data-i18n="nav.memberContent">Member content</a></li>
-      <li><a href="#plans" data-i18n="nav.plans">Plans</a></li>
+      <li class="plans-public-nav-item"><a href="#plans" data-i18n="nav.plans">Plans</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
@@ -9932,8 +9947,7 @@
         </div>
         <div class="hero-actions">
           <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Try the free simulator</button>
-          <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta2">See Premium access</button>
-          <button class="btn-ghost" onclick="openMemberSignup()" data-i18n="hero.cta3">Get Premium — AUD $89.90</button>
+          <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta3">Get Premium — AUD $89.90</button>
         </div>
       </div>
       <div class="hs-sidecard">
@@ -10185,7 +10199,6 @@
                 <h4 data-i18n="sim.eduTitle">Want to understand the full picture?</h4>
                 <p data-i18n="sim.eduText">Premium is live with step-by-step guides, DCA lessons, crypto safety, book paths, exchange setup help, and one included 60-minute Zoom support call.</p>
               </div>
-              <button class="eb-btn" onclick="handlePremiumSupportClick()" data-i18n="sim.eduBtn">Use Premium support →</button>
             </div>
             <div class="sim-premium-nudge" id="sim-premium-nudge">
               <div>
@@ -10669,17 +10682,9 @@
         <div class="books-gate-icon">🔐</div>
         <h3 class="books-gate-title" id="books-gate-title">Unlock the full reading list</h3>
         <p class="books-gate-sub" id="books-gate-sub">The full reading list is included for Premium members, with summaries, key takeaways, and a reading path from beginner to advanced.</p>
-        <button class="books-gate-btn" id="books-gate-btn" onclick="openMemberSignup()">Purchase access</button>
+        <button class="books-gate-btn" id="books-gate-btn" onclick="showPage('plans')">See Premium access</button>
         <div class="books-gate-note" id="books-gate-note">Included in Premium membership</div>
       </div>
-    </div>
-
-    <div class="books-premium-note">
-      <div class="bpn-left">
-        <h4 id="books-prem-title">🔐 Want the full reading path?</h4>
-        <p id="books-prem-text">Premium includes curated reading paths, chapter summaries, key takeaways, and a full list organised by beginner, intermediate, and advanced level.</p>
-      </div>
-      <button class="bpn-btn" id="books-prem-btn" onclick="openMemberSignup()">Purchase access →</button>
     </div>
   </section>
 
@@ -10866,7 +10871,7 @@
           <strong id="plans-zoom-title" data-i18n="plans.zoom.title">Includes a 60-minute Zoom support call</strong>
           <span id="plans-zoom-text" data-i18n="plans.zoom.text">Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.</span>
         </div>
-        <div class="plan-founding-note" id="plans-founding-note" data-i18n="plans.foundingNote">This founding price is locked in for early members and may increase after the launch period.</div>
+        <div class="plan-founding-note" id="plans-founding-note" data-i18n="plans.foundingNote">Founding price for the first 50 members. It may increase after those early spots are filled.</div>
         <div class="plan-bestfor">
           <div class="plan-bestfor-label" id="plans-prem-bestfor-label">Best for</div>
           <div class="plan-bestfor-text" id="plans-prem-bestfor-text">People who already like the simulator and now want step-by-step help choosing, buying, and building with more confidence.</div>
@@ -10918,7 +10923,7 @@
             <span data-i18n="plans.flow.b3">Open all 15 guides, the book path, and book your Zoom call.</span>
           </div>
         </div>
-        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
+        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberDashboard()">Purchase access</button>
         <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.86rem;line-height:1.45;" data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
       </div>
     </div>
@@ -11029,7 +11034,7 @@
           <p class="section-lead" data-i18n="member.lead">Your Premium content is ready here after login: guides, books, exchange help, meetings, and saved learning paths in one place.</p>
         </div>
         <div class="member-head-actions">
-          <div class="member-status" data-i18n="member.status">Member preview</div>
+          <div class="member-status" data-i18n="member.status">Premium member</div>
         </div>
       </div>
       <div class="member-hero-visual">
@@ -11494,7 +11499,7 @@
               <textarea class="cf-textarea" id="fb-msg" placeholder="Tell us what you think — the good, the bad, and the 'why doesn't it do this yet?'..."></textarea>
             </div>
             <button class="cf-submit" id="fb-submit" onclick="submitForm('feedback', event)">Send feedback →</button>
-            <div class="cf-success" id="fb-success">✅ Thanks for your message! We read every piece of feedback and it genuinely shapes what we build next.</div>
+            <div class="cf-success" id="fb-success">✅ Thanks for your message! We read every piece of feedback and usually review it within 3–5 business days.</div>
           </div>
         </div>
 
@@ -11541,7 +11546,7 @@
       <div class="contact-right">
         <div class="section-eyebrow" style="color:var(--teal);margin-top:0.5rem;" id="contact-why-eyebrow">Why reach out?</div>
         <div class="contact-side-summary">
-          <div class="contact-side-kicker" id="contact-side-kicker">Built in public</div>
+          <div class="contact-side-kicker" id="contact-side-kicker">Built from user feedback</div>
           <div class="contact-side-title" id="contact-side-title">Feedback shapes what Plainvest becomes next.</div>
           <div class="contact-side-text" id="contact-side-text">The strongest product improvements on this page came from real review rounds, simulation feedback, and questions from first-time investors. That is the standard we want to keep.</div>
         </div>
@@ -11824,7 +11829,7 @@
           proof2: '1 x 60-min Zoom call',
           proof3: 'Extra calls AUD $39.90',
           valueNote: 'Launch value: a single 1-hour financial education session in Australia can cost AUD $200–$350. Premium includes a 60-minute support call plus structured guides and book paths for AUD $89.90 once.',
-          foundingNote: 'This founding price is locked in for early members and may increase after the launch period.',
+          foundingNote: 'Founding price for the first 50 members. It may increase after those early spots are filled.',
           who: {
             yesLabel: 'This is for you if',
             noLabel: 'This is not for you if',
@@ -11914,7 +11919,7 @@
           eyebrow: 'Premium member area',
           h2: 'Your Plainvest <em>learning hub.</em>',
           lead: 'After login, members come here to access every Premium benefit in one clean place: guides, book paths, DCA learning, crypto safety, support, and practical help when questions appear.',
-          status: 'Premium access',
+          status: 'Premium member',
           welcomeTitle: 'Everything included in your Premium membership',
           welcomeText: 'Use this area as the member home after login. It brings the Premium promise into one place: learning, practical steps, exchange support, books, crypto safety, and your included Zoom call.',
           check1: 'All Premium guides unlocked',
@@ -12150,11 +12155,11 @@
           tags: ['⭐ #1 for beginners', '⭐ Most recommended', '📊 Evidence-based', '🧠 Mindset shift', '⚡ Action-focused', '🏛️ The classic', '🧩 Macro & risk'],
           premTitle: '🔐 Premium member reading room',
           premText: 'Premium members get curated reading paths, chapter summaries, key takeaways, and a full list organised by beginner, intermediate, and advanced level.',
-          premBtn: 'Purchase access →',
+          premBtn: 'See Premium access →',
           freeLabel: '✓ Free preview',
           gateTitle: 'Unlock the full reading list',
           gateSub: 'The full reading list is included for Premium members, with summaries, key takeaways, and a reading path from beginner to advanced.',
-          gateBtn: 'Purchase access',
+          gateBtn: 'See Premium access',
           gateNote: 'Included in Premium membership'
         },
         contact: {
@@ -12172,7 +12177,7 @@
             v3: 'Use this section for bugs, ideas, partnerships, press, or market expansion.'
           },
           side: {
-            kicker: 'Built in public',
+            kicker: 'Built from user feedback',
             title: 'Feedback shapes what Plainvest becomes next.',
             text: 'The strongest product improvements on this page came from real review rounds, simulation feedback, and questions from first-time investors. That is the standard we want to keep.'
           },
@@ -12181,7 +12186,7 @@
             topicDefault: 'Choose a topic...', topics: ['Bug report', 'Feature request', 'General feedback', 'Content suggestion', 'Other'],
             placeholder: 'Tell us what you think — the good, the bad, and the \'why doesn\'t it do this yet?\'...',
             submit: 'Send feedback →',
-            success: '✅ Thanks for your message! We read every piece of feedback and it genuinely shapes what we build next.'
+            success: '✅ Thanks for your message! We read every piece of feedback and usually review it within 3–5 business days.'
           },
           pt: {
             lblName: 'Your name', lblEmail: 'Email', lblCompany: 'Company / Organisation', lblType: 'Type of partnership', lblMsg: 'Tell us about the opportunity',
@@ -12412,7 +12417,7 @@
           proof2: '1 chamada de 60 min no Zoom',
           proof3: 'Chamadas extras aprox. R$142,00',
           valueNote: 'Valor de lançamento: uma única sessão de educação financeira de 1 hora na Austrália pode custar AUD $200–$350. O Premium inclui uma chamada de 60 minutos, guias estruturados e trilha de livros por AUD $89,90 uma vez.',
-          foundingNote: 'Este preço fundador fica garantido para os primeiros membros e pode aumentar após o período de lançamento.',
+          foundingNote: 'Preço fundador para os primeiros 50 membros. Pode aumentar depois que essas vagas iniciais forem preenchidas.',
           who: {
             yesLabel: 'Isso é para você se',
             noLabel: 'Isso não é para você se',
@@ -12502,7 +12507,7 @@
           eyebrow: 'Área Premium',
           h2: 'Seu hub de <em>aprendizado Plainvest.</em>',
           lead: 'Depois do login, membros entram aqui para acessar todos os benefícios Premium em um só lugar: guias, trilhas de livros, método DCA, segurança em cripto, chamada incluída e ajuda prática quando surgirem dúvidas.',
-          status: 'Acesso Premium',
+          status: 'Membro Premium',
           welcomeTitle: 'Tudo incluído no seu acesso Premium',
           welcomeText: 'Use esta área como a página inicial do membro após o login. Ela reúne a promessa Premium em um só lugar: aprendizado, próximos passos, suporte com exchange, livros, segurança em cripto e sua chamada incluída no Zoom.',
           check1: 'Todos os guias Premium liberados',
@@ -12762,11 +12767,11 @@
           tags: ['⭐ Nº1 para iniciantes', '⭐ Mais recomendado', '📊 Baseado em evidências', '🧠 Mudança de mentalidade', '⚡ Foco em ação', '🏛️ O clássico', '🧩 Macro e risco'],
           premTitle: '🔐 Área de leitura para membros Premium',
           premText: 'Membros Premium têm trilhas de leitura, resumos por capítulo, principais aprendizados e uma lista completa por nível: iniciante, intermediário e avançado.',
-          premBtn: 'Comprar acesso →',
+          premBtn: 'Ver acesso Premium →',
           freeLabel: '✓ Prévia gratuita',
           gateTitle: 'Desbloqueie a lista completa de leitura',
           gateSub: 'A lista completa de leitura está incluída para membros Premium, com resumos, principais aprendizados e uma trilha do iniciante ao avançado.',
-          gateBtn: 'Comprar acesso',
+          gateBtn: 'Ver acesso Premium',
           gateNote: 'Incluído no acesso Premium'
         },
         contact: {
@@ -12784,7 +12789,7 @@
             v3: 'Use esta área para bugs, ideias, parcerias, imprensa ou expansão para novos mercados.'
           },
           side: {
-            kicker: 'Construído em público',
+            kicker: 'Construído com feedback de usuários',
             title: 'O feedback ajuda a definir o próximo passo do Plainvest.',
             text: 'As melhores melhorias desta página vieram de revisões reais, feedback sobre as simulações e dúvidas de investidores iniciantes. Esse é o padrão que queremos manter.'
           },
@@ -12793,7 +12798,7 @@
             topicDefault: 'Escolha um assunto...', topics: ['Relato de bug', 'Sugestão de funcionalidade', 'Feedback geral', 'Sugestão de conteúdo', 'Outro'],
             placeholder: 'Conta pra gente o que achou — o bom, o ruim e o "por que ainda não tem isso?"...',
             submit: 'Enviar feedback →',
-            success: '✅ Mensagem recebida! Lemos cada feedback e ele genuinamente influencia o que construímos a seguir.'
+            success: '✅ Mensagem recebida! Lemos cada feedback e normalmente revisamos em 3–5 dias úteis.'
           },
           pt: {
             lblName: 'Seu nome', lblEmail: 'E-mail', lblCompany: 'Empresa / Organização', lblType: 'Tipo de parceria', lblMsg: 'Fale sobre a oportunidade',
