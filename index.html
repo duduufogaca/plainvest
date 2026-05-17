@@ -6016,6 +6016,13 @@
       flex-shrink: 0;
       background: var(--chalk);
       box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+    .book-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .book-meta {
@@ -9814,6 +9821,7 @@
       <li><a href="#simulator" data-i18n="nav.simulator">Simulator</a></li>
       <li><a href="#inflation" data-i18n="nav.inflation">Inflation</a></li>
       <li><a href="#learn" data-i18n="nav.learn">Learn</a></li>
+      <li><a href="#story" data-i18n="nav.story">Story</a></li>
       <li class="member-content-nav-item"><a class="member-content-nav" href="#member" id="nav-member-content-btn" data-i18n="nav.memberContent">Member content</a></li>
       <li><a href="#plans" data-i18n="nav.plans">Plans</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
@@ -10103,14 +10111,14 @@
                 <h4 data-i18n="sim.eduTitle">Want to understand the full picture?</h4>
                 <p data-i18n="sim.eduText">Premium is live with step-by-step guides, DCA lessons, crypto safety, book paths, exchange setup help, and one included 60-minute Zoom support call.</p>
               </div>
-              <button class="eb-btn" onclick="showPage('plans')" data-i18n="sim.eduBtn">See Premium access →</button>
+              <button class="eb-btn" onclick="handlePremiumSupportClick()" data-i18n="sim.eduBtn">Use Premium support →</button>
             </div>
             <div class="sim-premium-nudge" id="sim-premium-nudge">
               <div>
                 <strong id="sim-nudge-title">Want help turning this result into a first real step?</strong>
                 <p id="sim-nudge-text">Premium includes a 60-minute Zoom call so you can ask questions about platforms, DCA, ETFs, Bitcoin safety, or what to learn next.</p>
               </div>
-              <button type="button" id="sim-nudge-btn" onclick="showPage('plans')">Use Premium support →</button>
+              <button type="button" id="sim-nudge-btn" onclick="handlePremiumSupportClick()">Use Premium support →</button>
             </div>
           </div>
         </div>
@@ -10392,8 +10400,8 @@
         <p id="lpb-text">Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.</p>
         <div class="lpb-pills">
           <div class="lpb-pill" id="lpb-p1">Premium topic: how to buy your first Index Fund</div>
-          <div class="lpb-pill" id="lpb-p2">What is a brokerage account?</div>
-          <div class="lpb-pill" id="lpb-p3">Dollar-cost averaging explained</div>
+          <div class="lpb-pill" id="lpb-p2">Premium topic: what is a brokerage account?</div>
+          <div class="lpb-pill" id="lpb-p3">Premium topic: dollar-cost averaging explained</div>
         </div>
       </div>
       <button class="lpb-btn" id="lpb-btn" onclick="showPage('plans')">Get Premium access →</button>
@@ -10405,7 +10413,7 @@
   <section class="testimonials app-page" data-page="learn">
     <div class="section-eyebrow" data-i18n="testi.eyebrow">User feedback</div>
     <div class="section-h2" data-i18n-html="testi.h2">From curious to <em>confident</em>.</div>
-    <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">Plainvest is being shaped with comments from first-time investors, so the product answers real beginner confusion.</p>
+          <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">These are anonymized simulator comments from first-time investors. After launch, this section will be replaced with real member quotes and names only with permission.</p>
     <div class="testi-grid">
       <div class="t-card reveal reveal-delay-1">
         <div class="t-stars">USER FEEDBACK</div>
@@ -10457,13 +10465,13 @@
           <p class="story-para" id="story-p2">What I wish I had was something simple. Something that could show me visually, in plain numbers, what would actually happen if I put aside even a small amount each month.</p>
           <p class="story-para" id="story-p3">Because here's the truth nobody tells you: investing is not gambling. It is a simple, patient habit that protects your money from quietly losing value and gives it a chance to grow.</p>
           <p class="story-para" id="story-p4">Plainvest exists for every person who ever thought, “I'll figure it out later” or “I don't have enough to start.” You just need to see what's possible.</p>
-          <p class="story-para" id="story-p5">My goal is simple: help as many people as possible understand that investing is for everyone.</p>
+          <p class="story-para" id="story-p5">I'm Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that investing is for everyone, without pretending this is personal financial advice.</p>
         </div>
         <div class="story-signature">
           <div class="story-sig-avatar">P</div>
           <div>
-            <div class="story-sig-name" id="story-sig-name">Eduardo, Plainvest founder</div>
-            <div class="story-sig-role" id="story-sig-role">Built in Australia because I needed it — and you might too.</div>
+            <div class="story-sig-name" id="story-sig-name">Eduardo Fogaça, Plainvest founder</div>
+            <div class="story-sig-role" id="story-sig-role">Built in Australia from the beginner questions I wish someone had answered earlier.</div>
           </div>
         </div>
         <div class="story-cta-row">
@@ -10547,7 +10555,7 @@
     <div class="books-locked-wrapper">
       <div class="books-locked-grid">
         <div class="book-card books-locked-card">
-          <div class="book-cover">📗</div>
+          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg" alt="The Psychology of Money cover" loading="lazy"></div>
           <div class="book-meta">
             <div class="book-title" id="book-title-2">The Psychology of Money</div>
             <div class="book-author" id="book-author-2">Morgan Housel</div>
@@ -10556,7 +10564,7 @@
           </div>
         </div>
         <div class="book-card books-locked-card">
-          <div class="book-cover">📙</div>
+          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9780393330335-L.jpg" alt="A Random Walk Down Wall Street cover" loading="lazy"></div>
           <div class="book-meta">
             <div class="book-title" id="book-title-3">A Random Walk Down Wall Street</div>
             <div class="book-author" id="book-author-3">Burton G. Malkiel</div>
@@ -10565,7 +10573,7 @@
           </div>
         </div>
         <div class="book-card books-locked-card bc-gold">
-          <div class="book-cover">📕</div>
+          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg" alt="Rich Dad Poor Dad cover" loading="lazy"></div>
           <div class="book-meta">
             <div class="book-title" id="book-title-4">Rich Dad Poor Dad</div>
             <div class="book-author" id="book-author-4">Robert T. Kiyosaki</div>
@@ -10574,7 +10582,7 @@
           </div>
         </div>
         <div class="book-card books-locked-card">
-          <div class="book-cover">📒</div>
+          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9781523505746-L.jpg" alt="I Will Teach You to Be Rich cover" loading="lazy"></div>
           <div class="book-meta">
             <div class="book-title" id="book-title-5">I Will Teach You to Be Rich</div>
             <div class="book-author" id="book-author-5">Ramit Sethi</div>
@@ -10583,7 +10591,7 @@
           </div>
         </div>
         <div class="book-card books-locked-card bc-purple">
-          <div class="book-cover">📔</div>
+          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9780060555665-L.jpg" alt="The Intelligent Investor cover" loading="lazy"></div>
           <div class="book-meta">
             <div class="book-title" id="book-title-6">The Intelligent Investor</div>
             <div class="book-author" id="book-author-6">Benjamin Graham</div>
@@ -10982,7 +10990,7 @@
             <a class="member-action-btn primary" href="mailto:hello@plainvest.app?subject=Plainvest%20extra%20support%20call%20details&body=Hi%20Plainvest%2C%0A%0AI%20have%20paid%20for%20an%20extra%2060-minute%20support%20call.%0A%0AMy%20preferred%20days%2Ftimes%20are%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AMy%20timezone%20is%3A%20%0A%0AQuestions%20I%20want%20to%20cover%3A%0A-%20%0A-%20%0A-%20%0A" data-i18n="member.extraPaidBtn">Send call details</a>
           </div>
           <div class="member-support-actions">
-            <a class="member-action-btn primary" href="mailto:hello@plainvest.app?subject=Plainvest%20Premium%20support%20call%20booking&body=Hi%20Plainvest%2C%0A%0AI%20would%20like%20to%20book%20my%20included%2060-minute%20Zoom%20support%20call.%0A%0AMy%20preferred%20days%2Ftimes%20are%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AQuestions%20I%20want%20to%20cover%3A%0A-%20" data-i18n="member.askBtn">Book support call</a>
+            <button class="member-action-btn primary" onclick="openMemberGuide('zoom')" data-i18n="member.askBtn">Book included support call</button>
             <form class="member-extra-call-form" action="/api/stripe/support-call" method="POST">
               <button class="member-action-btn" type="submit" data-i18n="member.extraCallBtn">Pay for extra call — AUD $39.90</button>
             </form>
@@ -11609,7 +11617,7 @@
           cmpTitle: 'Compare every money path',
           eduTitle: 'Want to understand the full picture?',
           eduText: 'Premium is live with step-by-step guides, DCA lessons, crypto safety, book paths, exchange setup help, and one included 60-minute Zoom support call.',
-          eduBtn: 'See Premium access →',
+          eduBtn: 'Use Premium support →',
           methodKicker: 'How projections work',
           methodTitle: 'Built to teach clearly, not to promise outcomes.',
           methodCopy: 'Plainvest uses transparent, simplified long-run assumptions so beginners can compare paths quickly. It is designed to show direction, trade-offs, and inflation impact in a way that is easy to understand.',
@@ -11661,16 +11669,16 @@
         },
         learnPillars: [
           'Premium topic: how to buy your first Index Fund',
-          'What is a brokerage account?',
-          'Regular contributions explained',
-          'Tax-advantaged accounts (401k, IRA, ISA)',
-          'Building a diversified portfolio',
-          'When to sell — and when not to'
+          'Premium topic: what is a brokerage account?',
+          'Premium topic: dollar-cost averaging explained',
+          'Premium topic: tax-advantaged accounts (401k, IRA, ISA)',
+          'Premium topic: building a diversified portfolio',
+          'Premium topic: when to sell — and when not to'
         ],
         testi: {
           eyebrow: 'User feedback',
           h2: 'From curious to <em>confident</em>.',
-          lead: 'Plainvest is being shaped with comments from first-time investors, so the product answers real beginner confusion.',
+          lead: 'These are anonymized simulator comments from first-time investors. After launch, this section will be replaced with real member quotes and names only with permission.',
           q1: '"I typed in $100 a month just to play around, then realised waiting five more years would cost me more than I thought. That was the first time investing felt practical."',
           p1: 'First-time ETF learner',
           q2: '"The inflation chart made the biggest difference for me. I finally understood why leaving everything in savings is not as safe as it looks."',
@@ -11682,8 +11690,8 @@
           eyebrow: 'Our story',
           quote: 'I didn\'t have this tool when I started. I wish I had — and that\'s exactly <em>why I built it.</em>',
           missionLabel: 'What Plainvest stands for',
-          sigName: 'Eduardo, Plainvest founder',
-          sigRole: 'Built in Australia because I needed it — and you might too.',
+          sigName: 'Eduardo Fogaça, Plainvest founder',
+          sigRole: 'Built in Australia from the beginner questions I wish someone had answered earlier.',
           cta1: 'Try the simulator →', cta2: 'Start learning →'
         },
         storyParas: [
@@ -11691,7 +11699,7 @@
           'What I wish I had was something simple. Something that could show me — visually, in plain numbers — what would actually happen if I put aside even a small amount each month. Not theory. Not lectures. Just: <strong>"here\'s what $100 a month looks like in 10 years."</strong> That\'s it. That\'s the whole thing.',
           'Because here\'s the truth nobody tells you: <strong>investing isn\'t gambling</strong>. It\'s not something only smart or rich people do. It\'s a habit. A simple, patient habit that protects your money from quietly losing value — and gives it a chance to grow instead.',
           'Plainvest exists for every person who felt like I did. For anyone who ever thought "I\'ll figure it out later" or "I don\'t have enough to start." You don\'t need a finance degree. You don\'t need thousands in the bank. You just need to <strong>see what\'s possible</strong> — and that\'s what this is for.',
-          'My goal is simple: help as many people as possible understand that <strong>investing is for everyone</strong>. Plainvest is not here to give personal financial advice; it is here to make the first learning step clearer, calmer, and more honest.'
+          'I\'m Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that <strong>investing is for everyone</strong>, without pretending this is personal financial advice.'
         ],
         missionPillars: [
           { h: 'Investing is for everyone', p: 'Not just the wealthy or the financially educated. Anyone with $10 and a smartphone can start. Plainvest was built to make that feel real — not just possible.' },
@@ -12182,7 +12190,7 @@
           cmpTitle: 'Compare todos os caminhos',
           eduTitle: 'Quer entender o cenário completo?',
           eduText: 'O Premium já está disponível com guias passo a passo, método DCA, segurança em cripto, trilha de livros, ajuda com exchange e uma chamada incluída de 60 minutos no Zoom.',
-          eduBtn: 'Ver acesso Premium →',
+          eduBtn: 'Usar suporte Premium →',
           methodKicker: 'Como as projeções funcionam',
           methodTitle: 'Feito para ensinar com clareza, não para prometer resultados.',
           methodCopy: 'O Plainvest usa premissas transparentes e simplificadas de longo prazo para que iniciantes possam comparar caminhos rapidamente. A ideia é mostrar direção, vantagens, riscos e o impacto da inflação de uma forma fácil de entender.',
@@ -12234,16 +12242,16 @@
         },
         learnPillars: [
           'Tópico Premium: como comprar seu primeiro Fundo de Índice',
-          'O que é uma corretora?',
-          'Aportes regulares explicados',
-          'Contas com vantagem fiscal (PGBL, VGBL, Previdência)',
-          'Montando uma carteira diversificada',
-          'Quando vender — e quando não vender'
+          'Tópico Premium: o que é uma corretora?',
+          'Tópico Premium: aportes regulares explicados',
+          'Tópico Premium: contas com vantagem fiscal (PGBL, VGBL, Previdência)',
+          'Tópico Premium: montando uma carteira diversificada',
+          'Tópico Premium: quando vender — e quando não vender'
         ],
         testi: {
           eyebrow: 'Feedback de usuários',
           h2: 'De curioso a <em>confiante</em>.',
-          lead: 'O Plainvest está sendo moldado com comentários de investidores iniciantes, para responder dúvidas reais de quem está começando.',
+          lead: 'Estes são comentários anonimizados de pessoas usando o simulador. Depois do lançamento, esta seção será atualizada com depoimentos reais de membros, com permissão.',
           q1: '"Coloquei R$100 por mês só para testar e percebi que esperar mais cinco anos custaria mais do que eu imaginava. Foi a primeira vez que investir pareceu prático."',
           p1: 'Iniciante aprendendo ETFs',
           q2: '"O gráfico de inflação foi o que mais me marcou. Finalmente entendi por que deixar tudo parado na poupança não é tão seguro quanto parece."',
@@ -12255,8 +12263,8 @@
           eyebrow: 'Nossa história',
           quote: 'Eu não tinha essa ferramenta quando comecei. Queria ter tido — e é exatamente <em>por isso que a criei.</em>',
           missionLabel: 'O que o Plainvest representa',
-          sigName: 'Eduardo, fundador do Plainvest',
-          sigRole: 'Criado na Austrália porque eu precisava disso — e talvez você também.',
+          sigName: 'Eduardo Fogaça, fundador do Plainvest',
+          sigRole: 'Criado na Austrália a partir das dúvidas de iniciante que eu queria ter entendido antes.',
           cta1: 'Testar o simulador →', cta2: 'Começar a aprender →'
         },
         storyParas: [
@@ -12264,7 +12272,7 @@
           'O que eu queria era algo simples. Algo que pudesse me mostrar — visualmente, em números claros — o que aconteceria se eu separasse mesmo um pouquinho por mês. Sem teoria. Sem aula. Só: <strong>"é isso que R$100 por mês vira em 10 anos."</strong> Só isso. Era tudo que eu precisava.',
           'Porque eis a verdade que ninguém te conta: <strong>investir não é jogo</strong>. Não é coisa só de gente rica ou inteligente. É um hábito. Um hábito simples e paciente que protege o seu dinheiro de perder valor em silêncio — e dá a ele uma chance de crescer.',
           'O Plainvest existe para cada pessoa que se sentiu como eu me senti. Para quem já pensou "vou deixar para depois" ou "não tenho dinheiro suficiente para começar". Você não precisa de diploma em finanças. Não precisa de milhares na conta. Só precisa <strong>ver o que é possível</strong> — e é exatamente para isso que o Plainvest existe.',
-          'Meu objetivo é simples: ajudar o máximo de pessoas possível a entenderem que <strong>investir é para todo mundo</strong>. O Plainvest não está aqui para dar recomendação financeira pessoal; ele existe para deixar o primeiro passo de aprendizado mais claro, mais calmo e mais honesto.'
+          'Eu sou Eduardo, a pessoa construindo o Plainvest na Austrália. Meu objetivo é simples: ajudar o máximo de pessoas possível a entenderem que <strong>investir é para todo mundo</strong>, sem fingir que isso é recomendação financeira pessoal.'
         ],
         missionPillars: [
           { h: 'Investir é para todo mundo', p: 'Não apenas para os ricos ou os que já entendem de finanças. Qualquer pessoa com R$10 e um celular pode começar. O Plainvest foi criado para fazer isso parecer real — não só possível.' },
@@ -14527,6 +14535,14 @@
       var files = getMemberGuideFiles();
       var data = files[currentMemberGuideKey] || files.welcome;
       window.location.href = data.file;
+    }
+
+    function handlePremiumSupportClick() {
+      if (hasPremiumSessionAccess() || document.body.classList.contains('premium-access-granted') || premiumSessionUrlRequested) {
+        openMemberGuide('zoom');
+        return;
+      }
+      showPage('plans');
     }
 
     function openMemberModule(moduleKey) {
