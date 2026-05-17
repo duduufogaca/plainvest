@@ -3484,7 +3484,7 @@
       background: var(--teal-dim);
     }
 
-    /* TESTIMONIALS */
+    /* SIMULATOR INSIGHTS */
     .testimonials {
       padding: 6rem 3rem;
       background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
@@ -3555,6 +3555,18 @@
       transform: translateY(-4px);
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
       border-left-color: var(--teal-dim);
+    }
+
+    .t-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      background: rgba(0, 212, 170, .12);
+      border: 1px solid rgba(0, 212, 170, .22);
+      font-size: 1.25rem;
     }
 
     .t-stars {
@@ -4013,6 +4025,73 @@
       color: var(--muted);
       font-size: .78rem;
       line-height: 1.55;
+    }
+
+    .member-hub-preview {
+      margin: 1.05rem 0;
+      border: 1px solid rgba(100, 229, 196, .18);
+      background:
+        radial-gradient(circle at 88% 12%, rgba(100, 229, 196, .13), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .02));
+      border-radius: 20px;
+      padding: 1rem;
+    }
+
+    .member-hub-preview-head {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: center;
+      margin-bottom: .8rem;
+    }
+
+    .member-hub-preview-head strong {
+      color: #fff;
+      font-size: .88rem;
+    }
+
+    .member-hub-preview-head span {
+      color: #f7cd69;
+      font-size: .66rem;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .member-hub-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .55rem;
+    }
+
+    .member-hub-preview-card {
+      min-height: 74px;
+      border: 1px solid rgba(255, 255, 255, .09);
+      background: rgba(4, 15, 30, .34);
+      border-radius: 14px;
+      padding: .72rem;
+    }
+
+    .member-hub-preview-card span {
+      display: block;
+      color: #64e5c4;
+      font-size: 1rem;
+      margin-bottom: .28rem;
+    }
+
+    .member-hub-preview-card strong {
+      display: block;
+      color: #f4f8fb;
+      font-size: .68rem;
+      line-height: 1.32;
+    }
+
+    .member-hub-preview-card small {
+      display: block;
+      margin-top: .22rem;
+      color: #8ea6bf;
+      font-size: .58rem;
+      line-height: 1.35;
     }
 
     .plan-faq {
@@ -5165,7 +5244,7 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(0, .8fr));
+      grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(0, .82fr));
       gap: 1.6rem;
       align-items: start;
     }
@@ -5281,6 +5360,66 @@
 
     .foot-col a:hover {
       color: var(--teal-soft);
+    }
+
+    .footer-capture {
+      border: 1px solid rgba(100, 229, 196, .18);
+      background: rgba(100, 229, 196, .055);
+      border-radius: 16px;
+      padding: .95rem;
+    }
+
+    .footer-capture p {
+      margin: 0 0 .75rem;
+    }
+
+    .footer-capture-row {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .footer-capture input {
+      min-width: 0;
+      flex: 1;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .06);
+      color: #fff;
+      border-radius: 10px;
+      padding: .72rem .78rem;
+      font: 700 .76rem 'Sora', sans-serif;
+      outline: none;
+    }
+
+    .footer-capture input::placeholder {
+      color: rgba(205, 220, 235, .62);
+    }
+
+    .footer-capture button {
+      border: none;
+      border-radius: 10px;
+      padding: .72rem .88rem;
+      background: linear-gradient(135deg, var(--teal-soft), var(--teal));
+      color: #061626;
+      font: 900 .74rem 'Sora', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .footer-capture button:disabled {
+      opacity: .65;
+      cursor: progress;
+    }
+
+    .footer-capture-success {
+      display: none;
+      margin-top: .62rem;
+      color: #9df1d9;
+      font-size: .68rem;
+      line-height: 1.45;
+    }
+
+    .footer-capture-success.show {
+      display: block;
     }
 
     .foot-bottom {
@@ -6689,6 +6828,10 @@
 
       .premium-value-grid {
         grid-template-columns: 1fr;
+      }
+
+      .member-hub-preview-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .si-card.si-card-primary,
@@ -8374,27 +8517,37 @@
     }
 
     .t-card {
-      background: linear-gradient(160deg, rgba(19, 34, 64, 0.98) 0%, rgba(12, 22, 42, 0.98) 100%) !important;
-      border: 1px solid rgba(255, 255, 255, 0.07) !important;
-      border-radius: 20px !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
-      transition: transform 0.25s, border-color 0.25s !important;
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbfd 100%) !important;
+      border: 1px solid rgba(12, 34, 56, 0.10) !important;
+      border-left: 4px solid rgba(0, 164, 135, 0.5) !important;
+      border-radius: 16px !important;
+      box-shadow: 0 10px 28px rgba(15, 35, 55, 0.08) !important;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s !important;
     }
 
     .t-card:hover {
       transform: translateY(-4px) !important;
-      border-color: rgba(0, 212, 170, 0.2) !important;
+      border-left-color: #0d8f79 !important;
+      box-shadow: 0 16px 38px rgba(15, 35, 55, 0.12) !important;
+    }
+
+    .t-icon {
+      background: rgba(0, 164, 135, 0.10) !important;
+      border-color: rgba(0, 164, 135, 0.18) !important;
     }
 
     .t-quote {
-      color: var(--chalk) !important;
-      font-size: 0.92rem !important;
-      line-height: 1.7 !important;
+      color: var(--ink) !important;
+      font-size: 0.98rem !important;
+      line-height: 1.58 !important;
+      font-weight: 800 !important;
     }
 
     .t-stars {
-      color: var(--gold) !important;
-      letter-spacing: 2px !important;
+      color: #0d8f79 !important;
+      background: rgba(0, 164, 135, .09) !important;
+      border-color: rgba(0, 164, 135, .16) !important;
+      letter-spacing: .08em !important;
     }
 
     .t-name {
@@ -8403,8 +8556,9 @@
     }
 
     .t-role {
-      color: var(--ink-soft) !important;
-      font-size: 0.78rem !important;
+      color: #496984 !important;
+      font-size: 0.8rem !important;
+      line-height: 1.5 !important;
     }
 
     /* ── Exchanges / SI ─────────────────────────────────────────── */
@@ -9798,6 +9952,10 @@
       .footer-grid {
         gap: 1rem !important;
       }
+
+      .footer-capture-row {
+        flex-direction: column;
+      }
     }
 
     @media (max-width: 520px) {
@@ -9938,7 +10096,7 @@
             <div class="hs-brand-sub" data-i18n="hero.brandSub">Plain-English investing simulator</div>
           </div>
         </div>
-        <h1 class="hs-h1" data-i18n-html="hero.h1">Watch your money <em>grow simply</em> in 60 seconds.</h1>
+        <h1 class="hs-h1" data-i18n-html="hero.h1">Watch your money <em>grow</em> in 60 seconds.</h1>
         <p class="hs-lead" data-i18n-html="hero.lead">Plainvest helps first-time investors compare growth, inflation, and beginner investment paths before risking real money.</p>
         <div class="hs-trust">
           <span class="hs-trust-item">✓ <span data-i18n="hero.trust1">Always free</span></span>
@@ -10194,12 +10352,6 @@
               </div>
             </div>
 
-            <div class="edu-banner">
-              <div class="eb-text">
-                <h4 data-i18n="sim.eduTitle">Want to understand the full picture?</h4>
-                <p data-i18n="sim.eduText">Premium is live with step-by-step guides, DCA lessons, crypto safety, book paths, exchange setup help, and one included 60-minute Zoom support call.</p>
-              </div>
-            </div>
             <div class="sim-premium-nudge" id="sim-premium-nudge">
               <div>
                 <strong id="sim-nudge-title">Want help turning this result into a first real step?</strong>
@@ -10496,23 +10648,26 @@
   </section>
 
 
-  <!-- TESTIMONIALS -->
+  <!-- SIMULATOR INSIGHTS -->
   <section class="testimonials app-page" data-page="learn">
     <div class="section-eyebrow" data-i18n="testi.eyebrow">Simulator insights</div>
     <div class="section-h2" data-i18n-html="testi.h2">What first-time investors <em>notice</em>.</div>
-    <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">Instead of using placeholder testimonials, this section highlights the useful beginner insights the simulator is designed to create.</p>
+    <p class="section-lead-bridge" id="testi-lead" data-i18n="testi.lead">These are the moments where the simulator changes how beginners think about money.</p>
     <div class="testi-grid">
       <div class="t-card reveal reveal-delay-1">
+        <div class="t-icon" aria-hidden="true">📈</div>
         <div class="t-stars">INSIGHT</div>
         <div class="t-quote">Small monthly amounts look different when you can see 10, 20, and 30 years on one chart.</div>
         <div class="t-role">Why the simulator matters</div>
       </div>
       <div class="t-card reveal reveal-delay-2">
+        <div class="t-icon" aria-hidden="true">💸</div>
         <div class="t-stars">INSIGHT</div>
         <div class="t-quote">Inflation becomes easier to understand when cash, savings, and invested growth are compared side by side.</div>
         <div class="t-role">Why the inflation page matters</div>
       </div>
       <div class="t-card reveal reveal-delay-3">
+        <div class="t-icon" aria-hidden="true">📚</div>
         <div class="t-stars">INSIGHT</div>
         <div class="t-quote">Terms like ETF, index fund, bonds, Bitcoin, and DCA feel less intimidating after they are tied to plain examples.</div>
         <div class="t-role">Why the learning guides matter</div>
@@ -10682,7 +10837,7 @@
         <div class="books-gate-icon">🔐</div>
         <h3 class="books-gate-title" id="books-gate-title">Unlock the full reading list</h3>
         <p class="books-gate-sub" id="books-gate-sub">The full reading list is included for Premium members, with summaries, key takeaways, and a reading path from beginner to advanced.</p>
-        <button class="books-gate-btn" id="books-gate-btn" onclick="showPage('plans')">See Premium access</button>
+        <button class="books-gate-btn" id="books-gate-btn" onclick="openMemberDashboard()">Purchase access</button>
         <div class="books-gate-note" id="books-gate-note">Included in Premium membership</div>
       </div>
     </div>
@@ -10811,7 +10966,8 @@
           <li data-i18n="plans.who.y2">You want plain-English explanations, not jargon or broker dashboards.</li>
           <li data-i18n="plans.who.y3">You want one expert hour to ask questions instead of guessing alone.</li>
           <li data-i18n="plans.who.y4">You are Australian and want guidance on platforms, tax basics, and super.</li>
-          <li data-i18n="plans.who.y5">You want to understand Bitcoin, crypto safety, or ETFs without hype.</li>
+          <li data-i18n="plans.who.y5">You are Brazilian, American, Australian, or from another country and want to understand investing, diversification, and global options more clearly.</li>
+          <li data-i18n="plans.who.y6">You want to understand Bitcoin, crypto safety, or ETFs without hype.</li>
         </ul>
       </div>
       <div class="plan-who-col plan-who-no">
@@ -10909,6 +11065,44 @@
           <span class="plan-proof-pill" id="plans-proof-3">Extra calls AUD $39.90</span>
         </div>
         <div class="plan-value-note" data-i18n="plans.valueNote">Launch value: a single 1-hour financial education session in Australia can cost AUD $200–$350. Premium includes a 60-minute support call plus structured guides and book paths for AUD $89.90 once.</div>
+        <div class="member-hub-preview" aria-label="Premium hub preview">
+          <div class="member-hub-preview-head">
+            <strong data-i18n="plans.preview.title">Inside Premium</strong>
+            <span data-i18n="plans.preview.badge">Member hub preview</span>
+          </div>
+          <div class="member-hub-preview-grid">
+            <div class="member-hub-preview-card">
+              <span>📘</span>
+              <strong data-i18n="plans.preview.c1">Investment paths</strong>
+              <small data-i18n="plans.preview.b1">ETFs, index funds, Bitcoin, gold, bonds, stocks</small>
+            </div>
+            <div class="member-hub-preview-card">
+              <span>📈</span>
+              <strong data-i18n="plans.preview.c2">DCA method</strong>
+              <small data-i18n="plans.preview.b2">Build a recurring investing habit</small>
+            </div>
+            <div class="member-hub-preview-card">
+              <span>🔐</span>
+              <strong data-i18n="plans.preview.c3">Crypto safety</strong>
+              <small data-i18n="plans.preview.b3">Wallets, seed phrases, custody mistakes</small>
+            </div>
+            <div class="member-hub-preview-card">
+              <span>📚</span>
+              <strong data-i18n="plans.preview.c4">Book path</strong>
+              <small data-i18n="plans.preview.b4">Reading order with Amazon links</small>
+            </div>
+            <div class="member-hub-preview-card">
+              <span>🧾</span>
+              <strong data-i18n="plans.preview.c5">Tax and super</strong>
+              <small data-i18n="plans.preview.b5">Australia-focused basics</small>
+            </div>
+            <div class="member-hub-preview-card">
+              <span>💬</span>
+              <strong data-i18n="plans.preview.c6">Zoom support</strong>
+              <small data-i18n="plans.preview.b6">Book your included 60-minute call</small>
+            </div>
+          </div>
+        </div>
         <div class="plan-flow" aria-label="How Premium works">
           <div class="plan-flow-step">
             <strong data-i18n="plans.flow.s1">1. Create your free account</strong>
@@ -10923,7 +11117,7 @@
             <span data-i18n="plans.flow.b3">Open all 15 guides, the book path, and book your Zoom call.</span>
           </div>
         </div>
-        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberDashboard()">Purchase access</button>
+        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
         <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.86rem;line-height:1.45;" data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
       </div>
     </div>
@@ -11161,7 +11355,7 @@
             <li data-i18n="member.card5Item2">Book summaries and key lessons</li>
             <li data-i18n="member.card5Item3">What to read next based on your goals</li>
           </ul>
-          <button class="member-open-file" onclick="showPage('member-books')" data-i18n="member.booksListBtn">Open book list</button>
+          <button class="member-open-file" onclick="openMemberBooks()" data-i18n="member.booksListBtn">Open book list</button>
         </div>
         <div class="member-card">
           <div class="member-icon">💬</div>
@@ -11382,7 +11576,7 @@
           </div>
         </div>
         <div class="member-book-card">
-          <div class="member-book-cover has-image cover-gold"><img src="assets/book-bitcoin-standard.svg" alt="The Bitcoin Standard cover"><small data-i18n="memberBooks.book7Level">Bitcoin</small><span data-i18n="memberBooks.book7Title">The Bitcoin Standard</span><em data-i18n="memberBooks.book7Author">Saifedean Ammous</em></div>
+          <div class="member-book-cover has-image cover-gold"><img src="https://covers.openlibrary.org/b/isbn/9781544526155-L.jpg" alt="The Bitcoin Standard cover"><small data-i18n="memberBooks.book7Level">Bitcoin</small><span data-i18n="memberBooks.book7Title">The Bitcoin Standard</span><em data-i18n="memberBooks.book7Author">Saifedean Ammous</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book7Level">Bitcoin</div>
             <h3 data-i18n="memberBooks.book7Title">The Bitcoin Standard</h3>
@@ -11591,6 +11785,15 @@
         <p data-i18n="footer.col2Body">Plainvest is designed to feel clear, calm, and useful for first-time investors. Questions, ideas, and partnership conversations are always welcome.</p>
         <p data-i18n-html="footer.col2Contact" style="margin-top:.75rem;"><a href="mailto:hello@plainvest.app">hello@plainvest.app</a></p>
       </div>
+      <div class="foot-col footer-capture">
+        <div class="foot-col-title" data-i18n="footer.captureTitle">Free weekly insight</div>
+        <p data-i18n="footer.captureText">Not ready to buy yet? Get one simple investing idea by email each week.</p>
+        <div class="footer-capture-row">
+          <input id="footer-email-capture" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email for weekly Plainvest insight">
+          <button id="footer-email-submit" type="button" onclick="submitNewsletter(event)" data-i18n="footer.captureBtn">Join</button>
+        </div>
+        <div class="footer-capture-success" id="footer-email-success" data-i18n="footer.captureSuccess">Thanks — you are on the Plainvest insight list.</div>
+      </div>
     </div>
     <div class="foot-bottom">
       <div class="foot-meta" data-i18n="footer.meta">© 2026 Plainvest · Educational platform · Plain-English investing</div>
@@ -11631,7 +11834,7 @@
         nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Member content' },
         hero: {
           kicker: 'Investing made for everyone',
-          h1: 'Watch your money <em>grow simply</em> in 60 seconds.',
+          h1: 'Watch your money <em>grow</em> in 60 seconds.',
           lead: 'Plainvest helps first-time investors see growth, inflation, and beginner investment paths clearly before risking real money.',
           brandSub: 'Plain-English investing simulator',
           sideKicker: 'Built for first-time investors',
@@ -11761,7 +11964,7 @@
         testi: {
           eyebrow: 'Simulator insights',
           h2: 'What first-time investors <em>notice</em>.',
-          lead: 'Instead of using placeholder testimonials, this section highlights the useful beginner insights the simulator is designed to create.',
+          lead: 'These are the moments where the simulator changes how beginners think about money.',
           label: 'INSIGHT',
           q1: 'Small monthly amounts look different when you can see 10, 20, and 30 years on one chart.',
           p1: 'Why the simulator matters',
@@ -11830,6 +12033,22 @@
           proof3: 'Extra calls AUD $39.90',
           valueNote: 'Launch value: a single 1-hour financial education session in Australia can cost AUD $200–$350. Premium includes a 60-minute support call plus structured guides and book paths for AUD $89.90 once.',
           foundingNote: 'Founding price for the first 50 members. It may increase after those early spots are filled.',
+          preview: {
+            title: 'Inside Premium',
+            badge: 'Member hub preview',
+            c1: 'Investment paths',
+            b1: 'ETFs, index funds, Bitcoin, gold, bonds, stocks',
+            c2: 'DCA method',
+            b2: 'Build a recurring investing habit',
+            c3: 'Crypto safety',
+            b3: 'Wallets, seed phrases, custody mistakes',
+            c4: 'Book path',
+            b4: 'Reading order with Amazon links',
+            c5: 'Tax and super',
+            b5: 'Australia-focused basics',
+            c6: 'Zoom support',
+            b6: 'Book your included 60-minute call'
+          },
           who: {
             yesLabel: 'This is for you if',
             noLabel: 'This is not for you if',
@@ -11837,7 +12056,8 @@
             y2: 'You want plain-English explanations, not jargon or broker dashboards.',
             y3: 'You want one expert hour to ask questions instead of guessing alone.',
             y4: 'You are Australian and want guidance on platforms, tax basics, and super.',
-            y5: 'You want to understand Bitcoin, crypto safety, or ETFs without hype.',
+            y5: 'You are Brazilian, American, Australian, or from another country and want to understand investing, diversification, and global options more clearly.',
+            y6: 'You want to understand Bitcoin, crypto safety, or ETFs without hype.',
             n1: 'You are already actively investing and want advanced analysis.',
             n2: 'You want specific stock tips or guaranteed return predictions.',
             n3: 'You are looking for licensed financial advice or tax consulting.',
@@ -12115,6 +12335,10 @@
           col2Title: 'Built for trust',
           col2Body: 'Plainvest is designed to feel clear, calm, and useful for first-time investors. Questions, ideas, and partnership conversations are always welcome.',
           col2Contact: '<a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
+          captureTitle: 'Free weekly insight',
+          captureText: 'Not ready to buy yet? Get one simple investing idea by email each week.',
+          captureBtn: 'Join',
+          captureSuccess: 'Thanks — you are on the Plainvest insight list.',
           privacy: 'Privacy Policy',
           terms: 'Terms of Service',
           email: 'Email',
@@ -12159,7 +12383,7 @@
           freeLabel: '✓ Free preview',
           gateTitle: 'Unlock the full reading list',
           gateSub: 'The full reading list is included for Premium members, with summaries, key takeaways, and a reading path from beginner to advanced.',
-          gateBtn: 'See Premium access',
+          gateBtn: 'Purchase access',
           gateNote: 'Included in Premium membership'
         },
         contact: {
@@ -12219,7 +12443,7 @@
         nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Conteúdo de membro' },
         hero: {
           kicker: 'Investimento para todo mundo',
-          h1: 'Veja seu dinheiro <em>crescer de forma simples</em> em 60 segundos.',
+          h1: 'Veja seu dinheiro <em>crescer</em> em 60 segundos.',
           lead: 'O Plainvest ajuda investidores iniciantes a ver crescimento, inflação e caminhos de investimento com clareza antes de arriscar dinheiro real.',
           brandSub: 'Simulador de investimentos em linguagem simples',
           sideKicker: 'Feito para quem está começando',
@@ -12349,7 +12573,7 @@
         testi: {
           eyebrow: 'Insights do simulador',
           h2: 'O que investidores iniciantes <em>percebem</em>.',
-          lead: 'Em vez de usar depoimentos provisórios, esta seção mostra os aprendizados úteis que o simulador foi criado para gerar.',
+          lead: 'Estes são os momentos em que o simulador muda a forma como iniciantes pensam sobre dinheiro.',
           label: 'INSIGHT',
           q1: 'Pequenos aportes mensais parecem diferentes quando você vê 10, 20 e 30 anos no mesmo gráfico.',
           p1: 'Por que o simulador importa',
@@ -12418,6 +12642,22 @@
           proof3: 'Chamadas extras aprox. R$142,00',
           valueNote: 'Valor de lançamento: uma única sessão de educação financeira de 1 hora na Austrália pode custar AUD $200–$350. O Premium inclui uma chamada de 60 minutos, guias estruturados e trilha de livros por AUD $89,90 uma vez.',
           foundingNote: 'Preço fundador para os primeiros 50 membros. Pode aumentar depois que essas vagas iniciais forem preenchidas.',
+          preview: {
+            title: 'Dentro do Premium',
+            badge: 'Prévia do hub de membros',
+            c1: 'Caminhos de investimento',
+            b1: 'ETFs, fundos de índice, Bitcoin, ouro, títulos e ações',
+            c2: 'Método DCA',
+            b2: 'Construa um hábito de investimento recorrente',
+            c3: 'Segurança em cripto',
+            b3: 'Carteiras, seed phrases e erros de custódia',
+            c4: 'Trilha de livros',
+            b4: 'Ordem de leitura com links da Amazon',
+            c5: 'Impostos e super',
+            b5: 'Noções focadas na Austrália',
+            c6: 'Suporte no Zoom',
+            b6: 'Agende sua chamada incluída de 60 minutos'
+          },
           who: {
             yesLabel: 'Isso é para você se',
             noLabel: 'Isso não é para você se',
@@ -12425,7 +12665,8 @@
             y2: 'Quer explicações em linguagem simples, sem jargões ou painéis de corretora.',
             y3: 'Quer uma hora com um especialista para tirar dúvidas em vez de adivinhar sozinho.',
             y4: 'É australiano e quer orientação sobre plataformas, noções de imposto e super.',
-            y5: 'Quer entender Bitcoin, segurança em cripto ou ETFs sem exageros.',
+            y5: 'Você é brasileiro, americano, australiano ou de outro país e quer entender melhor investimentos, diversificação e opções globais.',
+            y6: 'Quer entender Bitcoin, segurança em cripto ou ETFs sem exageros.',
             n1: 'Você já investe ativamente e quer análises avançadas.',
             n2: 'Quer dicas específicas de ações ou previsões de retorno garantido.',
             n3: 'Está buscando assessoria financeira licenciada ou consultoria tributária.',
@@ -12727,6 +12968,10 @@
           col2Title: 'Construído para gerar confiança',
           col2Body: 'O Plainvest foi pensado para ser claro, calmo e útil para quem está começando. Perguntas, ideias e conversas de parceria são sempre bem-vindas.',
           col2Contact: '<a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
+          captureTitle: 'Insight semanal grátis',
+          captureText: 'Ainda não quer comprar? Receba uma ideia simples de investimento por email toda semana.',
+          captureBtn: 'Entrar',
+          captureSuccess: 'Obrigado — você entrou na lista de insights do Plainvest.',
           privacy: 'Política de Privacidade',
           terms: 'Termos de Uso',
           email: 'Email',
@@ -12771,7 +13016,7 @@
           freeLabel: '✓ Prévia gratuita',
           gateTitle: 'Desbloqueie a lista completa de leitura',
           gateSub: 'A lista completa de leitura está incluída para membros Premium, com resumos, principais aprendizados e uma trilha do iniciante ao avançado.',
-          gateBtn: 'Ver acesso Premium',
+          gateBtn: 'Comprar acesso',
           gateNote: 'Incluído no acesso Premium'
         },
         contact: {
@@ -14546,16 +14791,22 @@
     }
 
     var currentMemberGuideKey = 'welcome';
+    var GUIDE_PROGRESS_KEY = 'pv_read_guides';
 
     function getReadGuides() {
-      try { return JSON.parse(localStorage.getItem('pv_read_guides') || '[]'); } catch (e) { return []; }
+      try { return JSON.parse(sessionStorage.getItem(GUIDE_PROGRESS_KEY) || '[]'); } catch (e) { return []; }
+    }
+
+    function clearGuideProgress() {
+      try { sessionStorage.removeItem(GUIDE_PROGRESS_KEY); } catch (e) {}
+      try { localStorage.removeItem(GUIDE_PROGRESS_KEY); } catch (e) {}
     }
 
     function markGuideRead(key) {
       if (!key || key === 'welcome') return;
       try {
         var read = getReadGuides();
-        if (read.indexOf(key) < 0) { read.push(key); localStorage.setItem('pv_read_guides', JSON.stringify(read)); }
+        if (read.indexOf(key) < 0) { read.push(key); sessionStorage.setItem(GUIDE_PROGRESS_KEY, JSON.stringify(read)); }
       } catch (e) {}
     }
 
@@ -14563,10 +14814,12 @@
       var read = getReadGuides();
       var total = Object.keys(getMemberGuideFiles()).length - 1;
       document.querySelectorAll('.member-open-file[onclick]').forEach(function (btn) {
-        var m = btn.getAttribute('onclick').match(/openMemberGuide\(['"]([^'"]+)['"]\)/);
-        if (!m) return;
+        var onclick = btn.getAttribute('onclick') || '';
+        var m = onclick.match(/openMemberGuide\(['"]([^'"]+)['"]\)/);
+        var key = m ? m[1] : (onclick.indexOf('openMemberBooks') >= 0 ? 'books' : '');
+        if (!key) return;
         var card = btn.closest('.member-card');
-        if (card) card.classList.toggle('guide-read', read.indexOf(m[1]) >= 0);
+        if (card) card.classList.toggle('guide-read', read.indexOf(key) >= 0);
       });
       var counter = document.getElementById('member-progress-counter');
       var bar = document.getElementById('member-progress-bar');
@@ -14667,6 +14920,12 @@
       var files = getMemberGuideFiles();
       var data = files[currentMemberGuideKey] || files.welcome;
       window.location.href = data.file;
+    }
+
+    function openMemberBooks() {
+      markGuideRead('books');
+      applyGuideProgress();
+      showPage('member-books');
     }
 
     function handlePremiumSupportClick() {
@@ -14849,6 +15108,53 @@
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
+        }
+      }
+    }
+
+    async function submitNewsletter(event) {
+      if (event && event.preventDefault) event.preventDefault();
+      const input = document.getElementById('footer-email-capture');
+      const button = document.getElementById('footer-email-submit');
+      const success = document.getElementById('footer-email-success');
+      const email = input ? input.value.trim() : '';
+
+      if (!/\S+@\S+\.\S+/.test(email)) {
+        alert(currentLang === 'pt' ? 'Por favor insira um email válido.' : 'Please enter a valid email address.');
+        return;
+      }
+
+      const originalText = button ? button.textContent : '';
+      if (success) success.classList.remove('show');
+      if (button) {
+        button.disabled = true;
+        button.textContent = currentLang === 'pt' ? 'Enviando...' : 'Joining...';
+      }
+
+      try {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            form_type: 'Newsletter signup',
+            email: email,
+            language: currentLang === 'pt' ? 'Portuguese' : 'English',
+            page: window.location.href,
+            _replyto: email,
+            _subject: 'New Plainvest weekly insight signup'
+          })
+        });
+        if (!response.ok) throw new Error('Formspree request failed');
+        if (input) input.value = '';
+        if (success) success.classList.add('show');
+      } catch (err) {
+        alert(currentLang === 'pt'
+          ? 'Não foi possível entrar na lista agora. Tente novamente ou envie um email para hello@plainvest.app.'
+          : 'Could not join right now. Please try again or email hello@plainvest.app.');
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = originalText;
         }
       }
     }
@@ -15325,6 +15631,7 @@
       if (!hasMemberSession && !supportCallPaid) return;
       if (hasMemberSession) {
         premiumSessionUrlRequested = true;
+        clearGuideProgress();
         params.delete('member_session');
       }
       if (supportCallPaid) {
