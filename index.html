@@ -1362,6 +1362,94 @@
       margin-top: .3rem;
     }
 
+    .hs-sim-preview {
+      border: 1px solid rgba(100, 229, 196, .20);
+      border-radius: 18px;
+      padding: .85rem;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(100, 229, 196, .12), transparent 34%),
+        rgba(255, 255, 255, .035);
+    }
+
+    .hs-sim-preview-top {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: flex-start;
+      margin-bottom: .72rem;
+    }
+
+    .hs-sim-label {
+      color: #9cb3ca;
+      font-size: .58rem;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .hs-sim-value {
+      margin-top: .16rem;
+      color: #f7fbff;
+      font-family: 'Lora', serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hs-sim-chip {
+      border: 1px solid rgba(247, 205, 105, .24);
+      border-radius: 999px;
+      padding: .28rem .48rem;
+      color: #f7cd69;
+      background: rgba(247, 205, 105, .08);
+      font-size: .58rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .hs-sim-chart {
+      height: 78px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .07);
+      background:
+        linear-gradient(to top, rgba(100, 229, 196, .10), transparent 70%),
+        repeating-linear-gradient(to right, rgba(255,255,255,.06) 0 1px, transparent 1px 20%),
+        repeating-linear-gradient(to top, rgba(255,255,255,.05) 0 1px, transparent 1px 33%),
+        rgba(4, 15, 30, .32);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hs-sim-chart::before {
+      content: '';
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 14%;
+      height: 60%;
+      background: linear-gradient(135deg, transparent 0 10%, #64e5c4 10% 13%, transparent 13% 27%, #64e5c4 27% 30%, transparent 30% 44%, #64e5c4 44% 47%, transparent 47% 61%, #64e5c4 61% 64%, transparent 64% 78%, #64e5c4 78% 81%, transparent 81%);
+      filter: drop-shadow(0 0 10px rgba(100, 229, 196, .35));
+    }
+
+    .hs-sim-chart::after {
+      content: '';
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      right: 7%;
+      top: 20%;
+      background: #f7cd69;
+      box-shadow: 0 0 0 5px rgba(247, 205, 105, .12);
+    }
+
+    .hs-sim-caption {
+      margin-top: .55rem;
+      color: #8fa7be;
+      font-size: .66rem;
+      line-height: 1.45;
+    }
+
     .hs-side-item {
       padding: .78rem .82rem;
       border-radius: 16px;
@@ -3932,6 +4020,50 @@
       line-height: 1.5;
     }
 
+    .plan-value-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .65rem;
+      margin-top: .9rem;
+    }
+
+    .plan-value-box {
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 16px;
+      padding: .9rem;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .plan-value-box.highlight {
+      border-color: rgba(100, 229, 196, .32);
+      background: linear-gradient(135deg, rgba(100, 229, 196, .13), rgba(247, 205, 105, .06));
+    }
+
+    .plan-value-box span {
+      display: block;
+      color: #9fb1c7;
+      font-size: .65rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+
+    .plan-value-box strong {
+      display: block;
+      color: #f7fbff;
+      font-size: .92rem;
+      line-height: 1.25;
+    }
+
+    .plan-value-box small {
+      display: block;
+      color: #9fb1c7;
+      font-size: .68rem;
+      line-height: 1.45;
+      margin-top: .35rem;
+    }
+
     .plans-footnote {
       max-width: 860px;
       margin: 1.35rem auto 0;
@@ -4025,6 +4157,21 @@
       color: var(--muted);
       font-size: .78rem;
       line-height: 1.55;
+    }
+
+    .plan-after-purchase {
+      margin: -.35rem 0 1.05rem;
+      border: 1px solid rgba(100, 229, 196, .18);
+      background: rgba(100, 229, 196, .06);
+      color: #b6c8dc;
+      border-radius: 16px;
+      padding: .85rem .95rem;
+      font-size: .76rem;
+      line-height: 1.55;
+    }
+
+    .plan-after-purchase strong {
+      color: #f7fbff;
     }
 
     .member-hub-preview {
@@ -5768,6 +5915,54 @@
     .contact-intro-v a:hover {
       color: var(--teal);
       text-decoration-color: var(--teal);
+    }
+
+    .buyer-question-card {
+      margin-top: 1.1rem;
+      border: 1px solid rgba(100, 229, 196, .18);
+      border-radius: 20px;
+      padding: 1rem;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(100, 229, 196, .10), transparent 32%),
+        rgba(255, 255, 255, .035);
+    }
+
+    .buyer-question-title {
+      color: #f7fbff;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      line-height: 1.25;
+      margin-bottom: .75rem;
+    }
+
+    .buyer-question-list {
+      display: grid;
+      gap: .65rem;
+    }
+
+    .buyer-question-list div {
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding-top: .65rem;
+    }
+
+    .buyer-question-list div:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .buyer-question-list strong {
+      display: block;
+      color: #64e5c4;
+      font-size: .72rem;
+      line-height: 1.3;
+      margin-bottom: .18rem;
+    }
+
+    .buyer-question-list span {
+      display: block;
+      color: #9fb1c7;
+      font-size: .72rem;
+      line-height: 1.5;
     }
 
     .contact-tabs {
@@ -9526,6 +9721,10 @@
         grid-template-columns: 1fr !important;
       }
 
+      .plan-value-compare {
+        grid-template-columns: 1fr !important;
+      }
+
       .si-grid {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
@@ -10112,6 +10311,17 @@
         <div>
           <div class="hs-side-kicker" data-i18n="hero.sideKicker">Built for first-time investors</div>
           <div class="hs-side-title" data-i18n="hero.sideTitle">A clearer way to understand what money can become.</div>
+        </div>
+        <div class="hs-sim-preview" aria-label="Simulator result preview">
+          <div class="hs-sim-preview-top">
+            <div>
+              <div class="hs-sim-label" data-i18n="hero.previewLabel">Example projection</div>
+              <div class="hs-sim-value" data-i18n="hero.previewValue">AUD $176k</div>
+            </div>
+            <div class="hs-sim-chip" data-i18n="hero.previewChip">$300/mo · 20y</div>
+          </div>
+          <div class="hs-sim-chart" aria-hidden="true"></div>
+          <div class="hs-sim-caption" data-i18n="hero.previewCaption">A quick visual of contributions, growth, and time before you risk real money.</div>
         </div>
         <div class="hs-side-grid">
           <div class="hs-side-item">
@@ -10837,7 +11047,7 @@
         <div class="books-gate-icon">🔐</div>
         <h3 class="books-gate-title" id="books-gate-title">Unlock the full reading list</h3>
         <p class="books-gate-sub" id="books-gate-sub">The full reading list is included for Premium members, with summaries, key takeaways, and a reading path from beginner to advanced.</p>
-        <button class="books-gate-btn" id="books-gate-btn" onclick="openMemberDashboard()">Purchase access</button>
+        <button class="books-gate-btn" id="books-gate-btn" onclick="showPage('plans')">Purchase access</button>
         <div class="books-gate-note" id="books-gate-note">Included in Premium membership</div>
       </div>
     </div>
@@ -11027,7 +11237,7 @@
           <strong id="plans-zoom-title" data-i18n="plans.zoom.title">Includes a 60-minute Zoom support call</strong>
           <span id="plans-zoom-text" data-i18n="plans.zoom.text">Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.</span>
         </div>
-        <div class="plan-founding-note" id="plans-founding-note" data-i18n="plans.foundingNote">Founding price for the first 50 members. It may increase after those early spots are filled.</div>
+        <div class="plan-founding-note" id="plans-founding-note" data-i18n="plans.foundingNote">Founding price for the first 50 members. Manually updated as early spots fill.</div>
         <div class="plan-bestfor">
           <div class="plan-bestfor-label" id="plans-prem-bestfor-label">Best for</div>
           <div class="plan-bestfor-text" id="plans-prem-bestfor-text">People who already like the simulator and now want step-by-step help choosing, buying, and building with more confidence.</div>
@@ -11064,7 +11274,18 @@
           <span class="plan-proof-pill" id="plans-proof-2">1 x 60-min Zoom call</span>
           <span class="plan-proof-pill" id="plans-proof-3">Extra calls AUD $39.90</span>
         </div>
-        <div class="plan-value-note" data-i18n="plans.valueNote">Launch value: a single 1-hour financial education session in Australia can cost AUD $200–$350. Premium includes a 60-minute support call plus structured guides and book paths for AUD $89.90 once.</div>
+        <div class="plan-value-compare" aria-label="Premium value comparison">
+          <div class="plan-value-box">
+            <span data-i18n="plans.compare.leftK">Typical 1-hour session</span>
+            <strong data-i18n="plans.compare.leftT">AUD $200–$350</strong>
+            <small data-i18n="plans.compare.leftB">A common range for one financial education or guidance session in Australia.</small>
+          </div>
+          <div class="plan-value-box highlight">
+            <span data-i18n="plans.compare.rightK">Plainvest Premium</span>
+            <strong data-i18n="plans.compare.rightT">AUD $89.90 once</strong>
+            <small data-i18n="plans.compare.rightB">Includes the 60-minute Zoom call, 15 guides, book path, and permanent hub access.</small>
+          </div>
+        </div>
         <div class="member-hub-preview" aria-label="Premium hub preview">
           <div class="member-hub-preview-head">
             <strong data-i18n="plans.preview.title">Inside Premium</strong>
@@ -11117,7 +11338,8 @@
             <span data-i18n="plans.flow.b3">Open all 15 guides, the book path, and book your Zoom call.</span>
           </div>
         </div>
-        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
+        <div class="plan-after-purchase" data-i18n-html="plans.afterPurchase"><strong>After payment:</strong> you land in the member hub, open any guide immediately, and book your included Zoom call from the support guide.</div>
+        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberDashboard()">Purchase access</button>
         <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.86rem;line-height:1.45;" data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
       </div>
     </div>
@@ -11659,6 +11881,24 @@
           </div>
         </div>
 
+        <div class="buyer-question-card">
+          <div class="buyer-question-title" data-i18n="contact.buyTitle">Common questions before buying</div>
+          <div class="buyer-question-list">
+            <div>
+              <strong data-i18n="contact.buyQ1">Is the Zoom call really 1-on-1?</strong>
+              <span data-i18n="contact.buyA1">Yes. Premium includes one private 60-minute Zoom support call.</span>
+            </div>
+            <div>
+              <strong data-i18n="contact.buyQ2">Does it cover my country?</strong>
+              <span data-i18n="contact.buyA2">The hub includes Australia-focused content plus global education for ETFs, Bitcoin, crypto safety, diversification, and market basics.</span>
+            </div>
+            <div>
+              <strong data-i18n="contact.buyQ3">Can I ask before paying?</strong>
+              <span data-i18n="contact.buyA3">Yes. Send a message here or email hello@plainvest.app if one question is holding you back.</span>
+            </div>
+          </div>
+        </div>
+
         <div class="contact-tabs" style="margin-top:2rem;">
           <button class="contact-tab active" id="tab-feedback" onclick="switchTab('feedback',this)">💬 <span id="tab-feedback-label">Feedback</span></button>
           <button class="contact-tab" id="tab-partner" onclick="switchTab('partner',this)">🤝 <span id="tab-partner-label">Partnership</span></button>
@@ -11786,10 +12026,10 @@
         <p data-i18n-html="footer.col2Contact" style="margin-top:.75rem;"><a href="mailto:hello@plainvest.app">hello@plainvest.app</a></p>
       </div>
       <div class="foot-col footer-capture">
-        <div class="foot-col-title" data-i18n="footer.captureTitle">Free weekly insight</div>
-        <p data-i18n="footer.captureText">Not ready to buy yet? Get one simple investing idea by email each week.</p>
+        <div class="foot-col-title" data-i18n="footer.captureTitle">Free Plainvest updates</div>
+        <p data-i18n="footer.captureText">Not ready to buy yet? Get Plainvest updates and investing insights when they drop.</p>
         <div class="footer-capture-row">
-          <input id="footer-email-capture" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email for weekly Plainvest insight">
+          <input id="footer-email-capture" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email for Plainvest updates">
           <button id="footer-email-submit" type="button" onclick="submitNewsletter(event)" data-i18n="footer.captureBtn">Join</button>
         </div>
         <div class="footer-capture-success" id="footer-email-success" data-i18n="footer.captureSuccess">Thanks — you are on the Plainvest insight list.</div>
@@ -11800,6 +12040,7 @@
       <div class="foot-links" aria-label="Legal links">
         <a href="https://members.plainvest.app/privacy" target="_blank" rel="noopener" data-i18n="footer.privacy">Privacy Policy</a>
         <a href="https://members.plainvest.app/terms" target="_blank" rel="noopener" data-i18n="footer.terms">Terms of Service</a>
+        <a href="https://www.instagram.com/plainvest.app" target="_blank" rel="noopener" data-i18n="footer.social">Instagram</a>
         <a href="mailto:hello@plainvest.app" data-i18n="footer.email">Email</a>
       </div>
       <div class="foot-meta" data-i18n="footer.meta2">Made to turn financial hesitation into first steps.</div>
@@ -11846,6 +12087,10 @@
           side3Title: 'Beginner-safe language',
           side3Body: 'The page explains ideas in plain English instead of sounding like a broker dashboard.',
           sideNote: '<strong>Why Plainvest?</strong> Start with the numbers first. Learn the labels second.',
+          previewLabel: 'Example projection',
+          previewValue: 'AUD $176k',
+          previewChip: '$300/mo · 20y',
+          previewCaption: 'A quick visual of contributions, growth, and time before you risk real money.',
           visualTitle: 'Watch money grow, simply.',
           visualSub: 'A calmer first step before real investment decisions.',
           visualPill: 'Free',
@@ -11864,8 +12109,8 @@
         },
         strip: { free: 'Free', free2: 'no credit card, ever', sec: '60 seconds', sec2: 'to your first result', plain: 'Plain language', nojargon: 'no jargon', built: 'Built for', beginners: 'complete beginners', edu: 'Educational', notadvice: 'not advice' },
         trustLaunch: {
-          t1: 'Private, local simulations',
-          b1: 'The calculator runs in your browser. Projection inputs are for learning and are not sent anywhere by the simulator.',
+          t1: 'Transparent assumptions',
+          b1: 'Every projection is educational and based on simple long-run assumptions, not promises or hidden signals.',
           t2: 'Built from beginner confusion',
           b2: 'Plainvest was built because the first investing step can feel harder than it needs to be.',
           t3: 'Beginner feedback',
@@ -12032,7 +12277,15 @@
           proof2: '1 x 60-min Zoom call',
           proof3: 'Extra calls AUD $39.90',
           valueNote: 'Launch value: a single 1-hour financial education session in Australia can cost AUD $200–$350. Premium includes a 60-minute support call plus structured guides and book paths for AUD $89.90 once.',
-          foundingNote: 'Founding price for the first 50 members. It may increase after those early spots are filled.',
+          foundingNote: 'Founding price for the first 50 members. Manually updated as early spots fill.',
+          compare: {
+            leftK: 'Typical 1-hour session',
+            leftT: 'AUD $200–$350',
+            leftB: 'A common range for one financial education or guidance session in Australia.',
+            rightK: 'Plainvest Premium',
+            rightT: 'AUD $89.90 once',
+            rightB: 'Includes the 60-minute Zoom call, 15 guides, book path, and permanent hub access.'
+          },
           preview: {
             title: 'Inside Premium',
             badge: 'Member hub preview',
@@ -12076,6 +12329,7 @@
             s3: '3. Access everything',
             b3: 'Open all 15 guides, the book path, and book your Zoom call.'
           },
+          afterPurchase: '<strong>After payment:</strong> you land in the member hub, open any guide immediately, and book your included Zoom call from the support guide.',
           purchaseNote: 'One-time payment. No subscription. 7-day review policy if something is not right.',
           free: { tier: 'Free — always', desc: 'Explore and simulate with no commitment, ever.', f1: 'Simulator with multiple paths by country', f2: 'Side-by-side comparison table', f3: 'Basic explanations for the main investment types', f4: 'Contextual tips per investment', btn: 'Try it free' },
           prem: { badge: 'Founding one-time price', tier: 'Premium Learning Pass', per: '', price: 'AUD $89.90', desc: 'Guided learning, crypto safety, book paths, exchange setup help, and beginner support.', f1: 'Guided investing lessons', f2: 'Deep-dive guides, DCA method, and how-to-buy steps by country.', f3: 'Bitcoin and crypto safety', f4: 'White paper, halving, on-chain basics, self-custody, wallets, and cycle mistakes.', f5: 'Book and content library', f6: 'Curated investing, macro, Bitcoin, business, and wealth books with reading order.', f7: 'Exchange setup help', f8: 'Help choosing a platform, opening an account, and understanding settings and tools.', f9: 'One included Zoom call', f10: 'A 60-minute beginner support call to help answer questions and guide your next steps.', f11: 'Growing member hub', f12: 'New studies, insights, chart-reading lessons, and member resources added over time.', f13: 'Macroeconomics reading path, including The Black Swan and other options', f14: 'Chart reading tool to analyze price across stocks, crypto, indexes, and ETFs', f15: 'Crypto market cycle lessons from two full cycles so you can avoid common mistakes', f16: 'New products, studies, and insights added over time for members', btn: 'Purchase access' },
@@ -12335,12 +12589,13 @@
           col2Title: 'Built for trust',
           col2Body: 'Plainvest is designed to feel clear, calm, and useful for first-time investors. Questions, ideas, and partnership conversations are always welcome.',
           col2Contact: '<a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
-          captureTitle: 'Free weekly insight',
-          captureText: 'Not ready to buy yet? Get one simple investing idea by email each week.',
+          captureTitle: 'Free Plainvest updates',
+          captureText: 'Not ready to buy yet? Get Plainvest updates and investing insights when they drop.',
           captureBtn: 'Join',
           captureSuccess: 'Thanks — you are on the Plainvest insight list.',
           privacy: 'Privacy Policy',
           terms: 'Terms of Service',
+          social: 'Instagram',
           email: 'Email',
           meta: '© 2026 Plainvest · Educational platform · Plain-English investing',
           meta2: 'Made to turn financial hesitation into first steps.'
@@ -12400,6 +12655,13 @@
             k3: 'Best use',
             v3: 'Use this section for bugs, ideas, partnerships, press, or market expansion.'
           },
+          buyTitle: 'Common questions before buying',
+          buyQ1: 'Is the Zoom call really 1-on-1?',
+          buyA1: 'Yes. Premium includes one private 60-minute Zoom support call.',
+          buyQ2: 'Does it cover my country?',
+          buyA2: 'The hub includes Australia-focused content plus global education for ETFs, Bitcoin, crypto safety, diversification, and market basics.',
+          buyQ3: 'Can I ask before paying?',
+          buyA3: 'Yes. Send a message here or email hello@plainvest.app if one question is holding you back.',
           side: {
             kicker: 'Built from user feedback',
             title: 'Feedback shapes what Plainvest becomes next.',
@@ -12455,6 +12717,10 @@
           side3Title: 'Linguagem segura para iniciantes',
           side3Body: 'A página explica as ideias de forma simples, sem parecer um painel complicado de corretora.',
           sideNote: '<strong>Por que Plainvest?</strong> Primeiro você entende os números. Depois aprende os nomes.',
+          previewLabel: 'Exemplo de projeção',
+          previewValue: 'AUD $176 mil',
+          previewChip: '$300/mês · 20 anos',
+          previewCaption: 'Um visual rápido de contribuições, crescimento e tempo antes de arriscar dinheiro real.',
           visualTitle: 'Veja o dinheiro crescer de forma simples.',
           visualSub: 'Um primeiro passo mais calmo antes de decisões reais de investimento.',
           visualPill: 'Grátis',
@@ -12473,8 +12739,8 @@
         },
         strip: { free: 'Grátis', free2: 'sem cartão de crédito', sec: '60 segundos', sec2: 'para o primeiro resultado', plain: 'Linguagem simples', nojargon: 'sem jargão', built: 'Feito para', beginners: 'iniciantes completos', edu: 'Educacional', notadvice: 'não é conselho financeiro' },
         trustLaunch: {
-          t1: 'Simulações privadas e locais',
-          b1: 'O cálculo roda no seu navegador. Os valores da simulação são para aprendizado e não são enviados pelo simulador.',
+          t1: 'Premissas transparentes',
+          b1: 'Cada projeção é educativa e baseada em premissas simplificadas de longo prazo — não são promessas nem sinais ocultos.',
           t2: 'Criado a partir da confusão de iniciantes',
           b2: 'O Plainvest foi criado porque o primeiro passo nos investimentos pode parecer mais difícil do que deveria.',
           t3: 'Feedback de iniciantes',
@@ -12641,7 +12907,15 @@
           proof2: '1 chamada de 60 min no Zoom',
           proof3: 'Chamadas extras aprox. R$142,00',
           valueNote: 'Valor de lançamento: uma única sessão de educação financeira de 1 hora na Austrália pode custar AUD $200–$350. O Premium inclui uma chamada de 60 minutos, guias estruturados e trilha de livros por AUD $89,90 uma vez.',
-          foundingNote: 'Preço fundador para os primeiros 50 membros. Pode aumentar depois que essas vagas iniciais forem preenchidas.',
+          foundingNote: 'Preço fundador para os primeiros 50 membros. Atualizado manualmente conforme as vagas iniciais forem preenchidas.',
+          compare: {
+            leftK: 'Sessão típica de 1 hora',
+            leftT: 'AUD $200–$350',
+            leftB: 'Uma faixa comum para uma sessão de educação ou orientação financeira na Austrália.',
+            rightK: 'Plainvest Premium',
+            rightT: 'AUD $89,90 uma vez',
+            rightB: 'Inclui a chamada de Zoom de 60 minutos, 15 guias, trilha de livros e acesso permanente ao hub.'
+          },
           preview: {
             title: 'Dentro do Premium',
             badge: 'Prévia do hub de membros',
@@ -12685,6 +12959,7 @@
             s3: '3. Acesse tudo',
             b3: 'Abra os 15 guias, a trilha de livros e agende sua chamada no Zoom.'
           },
+          afterPurchase: '<strong>Depois do pagamento:</strong> você entra no hub de membros, abre qualquer guia imediatamente e agenda sua chamada de Zoom pelo guia de suporte.',
           purchaseNote: 'Pagamento único. Sem assinatura. Política de revisão de 7 dias se algo não estiver certo.',
           free: { tier: 'Gratuito — para sempre', desc: 'Explore e simule sem compromisso, sempre.', f1: 'Simulador com vários caminhos por país', f2: 'Tabela comparativa lado a lado', f3: 'Explicações básicas dos principais tipos de investimento', f4: 'Dicas contextuais por investimento', btn: 'Experimentar grátis' },
           prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe Premium de Aprendizado', per: '', price: 'aprox. R$320,00', desc: 'Aprendizado guiado, segurança em cripto, trilha de livros, ajuda com exchange e apoio para iniciantes. Valor equivalente a AUD $89,90 em pagamento único.', f1: 'Aulas guiadas de investimento', f2: 'Guias aprofundados, método DCA e passos de compra por país.', f3: 'Bitcoin e segurança em cripto', f4: 'White paper, halving, noções on-chain, autocustódia, carteiras e erros de ciclo.', f5: 'Biblioteca de livros e conteúdos', f6: 'Livros de investimento, macro, Bitcoin, negócios e riqueza com ordem de leitura.', f7: 'Ajuda com exchange', f8: 'Ajuda para escolher plataforma, abrir conta e entender configurações e ferramentas.', f9: 'Uma chamada incluída no Zoom', f10: 'Uma chamada de apoio para iniciantes de 60 minutos para ajudar com dúvidas e próximos passos.', f11: 'Hub de membro em crescimento', f12: 'Novos estudos, insights, aulas de leitura de gráfico e recursos adicionados com o tempo.', f13: 'Trilha de livros sobre macroeconomia, incluindo A Lógica do Cisne Negro e outras opções', f14: 'Ferramenta de leitura de gráficos para analisar preço em ações, cripto, índices e ETFs', f15: 'Lições de dois ciclos completos do mercado cripto para evitar erros comuns', f16: 'Novos produtos, estudos e insights adicionados com o tempo para membros', btn: 'Comprar acesso' },
@@ -12968,12 +13243,13 @@
           col2Title: 'Construído para gerar confiança',
           col2Body: 'O Plainvest foi pensado para ser claro, calmo e útil para quem está começando. Perguntas, ideias e conversas de parceria são sempre bem-vindas.',
           col2Contact: '<a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
-          captureTitle: 'Insight semanal grátis',
-          captureText: 'Ainda não quer comprar? Receba uma ideia simples de investimento por email toda semana.',
+          captureTitle: 'Atualizações grátis do Plainvest',
+          captureText: 'Ainda não quer comprar? Receba novidades do Plainvest e insights de investimento quando forem publicados.',
           captureBtn: 'Entrar',
           captureSuccess: 'Obrigado — você entrou na lista de insights do Plainvest.',
           privacy: 'Política de Privacidade',
           terms: 'Termos de Uso',
+          social: 'Instagram',
           email: 'Email',
           meta: '© 2026 Plainvest · Plataforma educacional · Investimentos em linguagem simples',
           meta2: 'Feito para transformar hesitação financeira em primeiros passos.'
@@ -13033,6 +13309,13 @@
             k3: 'Melhor uso',
             v3: 'Use esta área para bugs, ideias, parcerias, imprensa ou expansão para novos mercados.'
           },
+          buyTitle: 'Dúvidas comuns antes de comprar',
+          buyQ1: 'A chamada no Zoom é realmente 1 a 1?',
+          buyA1: 'Sim. O Premium inclui uma chamada privada de suporte no Zoom com 60 minutos.',
+          buyQ2: 'Cobre o meu país?',
+          buyA2: 'O hub tem conteúdo focado na Austrália e educação global sobre ETFs, Bitcoin, segurança cripto, diversificação e noções de mercado.',
+          buyQ3: 'Posso perguntar antes de pagar?',
+          buyA3: 'Sim. Envie uma mensagem aqui ou mande email para hello@plainvest.app se uma dúvida estiver segurando sua decisão.',
           side: {
             kicker: 'Construído com feedback de usuários',
             title: 'O feedback ajuda a definir o próximo passo do Plainvest.',
@@ -15141,7 +15424,7 @@
             language: currentLang === 'pt' ? 'Portuguese' : 'English',
             page: window.location.href,
             _replyto: email,
-            _subject: 'New Plainvest weekly insight signup'
+            _subject: 'New Plainvest insight signup'
           })
         });
         if (!response.ok) throw new Error('Formspree request failed');
