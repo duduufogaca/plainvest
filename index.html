@@ -641,30 +641,56 @@
       animation: fadeUp 0.5s 0.22s ease both;
     }
 
-    .hs-stats {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: .28rem .5rem;
-      margin-top: 1.1rem;
+    .hs-how {
+      margin-top: 1.4rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(255, 255, 255, .07);
       animation: fadeUp 0.5s 0.28s ease both;
     }
-    .hs-stat {
-      display: inline-flex;
-      align-items: baseline;
-      gap: .25rem;
-      font-size: .72rem;
-      color: #9cb3ca;
+    .hs-how-label {
+      font-size: .58rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #5a7a98;
+      margin-bottom: .65rem;
     }
-    .hs-stat strong {
-      font-size: .8rem;
-      font-weight: 800;
+    .hs-how-steps {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+    .hs-how-step {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+    }
+    .hs-how-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(0, 212, 170, .12);
+      border: 1px solid rgba(0, 212, 170, .22);
       color: var(--teal);
-    }
-    .hs-stat-sep {
-      color: rgba(156, 179, 202, .3);
       font-size: .62rem;
-      line-height: 1;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: .06rem;
+    }
+    .hs-how-step strong {
+      display: block;
+      font-size: .8rem;
+      color: #d7e4f1;
+      font-weight: 700;
+      margin-bottom: .12rem;
+    }
+    .hs-how-step span {
+      font-size: .72rem;
+      color: #7a9ab8;
+      line-height: 1.4;
     }
 
     .btn-primary {
@@ -10562,14 +10588,31 @@
           <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Try the free simulator</button>
           <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta3">Get Premium — AUD $89.90</button>
         </div>
-        <div class="hs-stats" aria-label="Platform at a glance">
-          <span class="hs-stat"><strong data-i18n="hero.stat1N">9</strong> <span data-i18n="hero.stat1L">investment types</span></span>
-          <span class="hs-stat-sep" aria-hidden="true">·</span>
-          <span class="hs-stat"><strong data-i18n="hero.stat2N">3</strong> <span data-i18n="hero.stat2L">countries</span></span>
-          <span class="hs-stat-sep" aria-hidden="true">·</span>
-          <span class="hs-stat"><strong data-i18n="hero.stat3N">15</strong> <span data-i18n="hero.stat3L">premium guides</span></span>
-          <span class="hs-stat-sep" aria-hidden="true">·</span>
-          <span class="hs-stat"><strong data-i18n="hero.stat4N">60 min</strong> <span data-i18n="hero.stat4L">support call</span></span>
+        <div class="hs-how">
+          <div class="hs-how-label" data-i18n="hero.howLabel">How it works</div>
+          <div class="hs-how-steps">
+            <div class="hs-how-step">
+              <div class="hs-how-num">1</div>
+              <div>
+                <strong data-i18n="hero.how1T">Enter your numbers</strong>
+                <span data-i18n="hero.how1B">Monthly amount, time horizon, and country.</span>
+              </div>
+            </div>
+            <div class="hs-how-step">
+              <div class="hs-how-num">2</div>
+              <div>
+                <strong data-i18n="hero.how2T">See growth vs inflation</strong>
+                <span data-i18n="hero.how2B">Charts update instantly — no account needed.</span>
+              </div>
+            </div>
+            <div class="hs-how-step">
+              <div class="hs-how-num">3</div>
+              <div>
+                <strong data-i18n="hero.how3T">Understand what it means</strong>
+                <span data-i18n="hero.how3B">Plain-English context, no jargon, no advice.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="hs-sidecard">
@@ -12404,7 +12447,10 @@
           social: 'Built with <strong>beginner feedback</strong><br>from people who wanted investing to finally make sense.',
           cta1: 'Try the free simulator', cta2: 'See Premium access', cta3: 'Get Premium — AUD $89.90',
           trust1: 'Always free to use', trust2: 'No account needed', trust3: 'Zero jargon',
-          stat1N: '9', stat1L: 'investment types', stat2N: '3', stat2L: 'countries', stat3N: '15', stat3L: 'premium guides', stat4N: '60 min', stat4L: 'support call'
+          howLabel: 'How it works',
+          how1T: 'Enter your numbers', how1B: 'Monthly amount, time horizon, and country.',
+          how2T: 'See growth vs inflation', how2B: 'Charts update instantly — no account needed.',
+          how3T: 'Understand what it means', how3B: 'Plain-English context, no jargon, no advice.'
         },
         strip: { free: 'Free', free2: 'no credit card, ever', sec: '60 seconds', sec2: 'to your first result', plain: 'Plain language', nojargon: 'no jargon', built: 'Built for', beginners: 'complete beginners', edu: 'Educational', notadvice: 'not advice' },
         trustLaunch: {
@@ -13042,7 +13088,10 @@
           social: 'Criado com <strong>feedback de iniciantes</strong><br>de pessoas que queriam finalmente entender investimentos.',
           cta1: 'Testar simulador grátis', cta2: 'Ver acesso Premium', cta3: 'Comprar Premium — AUD $89.90',
           trust1: 'Sempre gratuito', trust2: 'Sem cadastro', trust3: 'Zero jargão',
-          stat1N: '9', stat1L: 'tipos de investimento', stat2N: '3', stat2L: 'países', stat3N: '15', stat3L: 'guias premium', stat4N: '60 min', stat4L: 'suporte personalizado'
+          howLabel: 'Como funciona',
+          how1T: 'Insira seus números', how1B: 'Valor mensal, horizonte de tempo e país.',
+          how2T: 'Veja crescimento vs inflação', how2B: 'Gráficos atualizam na hora — sem cadastro.',
+          how3T: 'Entenda o que significa', how3B: 'Contexto em linguagem simples, sem jargão.'
         },
         strip: { free: 'Grátis', free2: 'sem cartão de crédito', sec: '60 segundos', sec2: 'para o primeiro resultado', plain: 'Linguagem simples', nojargon: 'sem jargão', built: 'Feito para', beginners: 'iniciantes completos', edu: 'Educacional', notadvice: 'não é conselho financeiro' },
         trustLaunch: {
