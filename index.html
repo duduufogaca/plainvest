@@ -10620,7 +10620,7 @@
       <li><a href="#learn" data-i18n="nav.learn">Learn</a></li>
       <li><a href="#story" data-i18n="nav.story">Story</a></li>
       <li class="books-public-nav-item"><a href="#books" data-i18n="nav.books">Books</a></li>
-      <li class="member-content-nav-item"><a class="member-content-nav" href="#member" id="nav-member-content-btn" data-i18n="nav.memberContent">Member content</a></li>
+      <li class="member-content-nav-item"><a class="member-content-nav" href="#member" id="nav-member-content-btn" data-i18n="nav.memberContent">Premium Hub</a></li>
       <li class="plans-public-nav-item"><a href="#plans" data-i18n="nav.plans">Plans</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
@@ -12479,7 +12479,7 @@
     // ══════════════════════════════════════════════════════
     const LANG = {
       en: {
-        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Member content' },
+        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub' },
         hero: {
           kicker: 'Investing made for everyone',
           h1: 'Watch your money <em>grow</em> in 60 seconds.',
@@ -13120,7 +13120,7 @@
       },
 
       pt: {
-        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Conteúdo de membro' },
+        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium' },
         hero: {
           kicker: 'Investimento para todo mundo',
           h1: 'Veja seu dinheiro <em>crescer</em> em 60 segundos.',
@@ -15731,7 +15731,7 @@
         : '';
       document.getElementById('mIcon').textContent = data.icon;
       document.getElementById('mTitle').textContent = copy[0];
-      document.getElementById('mSub').textContent = isPt ? 'Área Premium · Conteúdo de membro' : 'Premium area · Member content';
+      document.getElementById('mSub').textContent = isPt ? 'Área Premium · Hub Premium' : 'Premium area · Premium Hub';
       document.getElementById('mBody').innerHTML = `
     <div class="modal-section">
       <div class="modal-section-title">${isPt ? 'Acesso de membro' : 'Member access'}</div>
