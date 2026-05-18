@@ -3801,6 +3801,20 @@
       border-left-color: var(--teal-dim);
     }
 
+    .t-card--gold { border-left-color: rgba(232, 184, 75, .55); }
+    .t-card--gold:hover { border-left-color: var(--gold); }
+    .t-card--blue { border-left-color: rgba(100, 160, 240, .55); }
+    .t-card--blue:hover { border-left-color: #6fa8ff; }
+
+    .t-icon--gold { background: rgba(232, 184, 75, .12); border-color: rgba(232, 184, 75, .22); }
+    .t-icon--blue { background: rgba(100, 160, 240, .12); border-color: rgba(100, 160, 240, .22); }
+
+    .t-stars--gold { color: #a07800; background: rgba(232, 184, 75, .10); border-color: rgba(232, 184, 75, .22); }
+    .t-stars--blue { color: #285ea8; background: rgba(100, 160, 240, .10); border-color: rgba(100, 160, 240, .22); }
+
+    .t-role--gold { color: var(--gold-dim); }
+    .t-role--blue { color: #285ea8; }
+
     .t-icon {
       width: 42px;
       height: 42px;
@@ -5988,17 +6002,37 @@
     }
 
     .mp-icon {
-      font-size: 1.4rem;
       flex-shrink: 0;
-      line-height: 1.2;
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: var(--teal-pale);
+      background-color: var(--teal-pale);
       border: 1px solid rgba(0, 212, 170, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 18px 18px;
+    }
+
+    .mp-icon--check {
+      background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 9.5l4 4 7-8' stroke='%2300d4aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    .mp-icon--growth {
+      background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 13l4-4 3 3 5-6' stroke='%2300d4aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 6h3v3' stroke='%2300d4aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+
+    .mp-icon--plus {
+      background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 4v10M4 9h10' stroke='%2300d4aa' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+
+    .mp-icon--alert {
+      background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 3L2 15h14L9 3z' stroke='%23e8b84b' stroke-width='1.75' stroke-linejoin='round'/%3E%3Cpath d='M9 8v3.5' stroke='%23e8b84b' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='9' cy='13' r='1' fill='%23e8b84b'/%3E%3C/svg%3E");
+      background-color: rgba(232, 184, 75, .08);
+      border-color: rgba(232, 184, 75, .18);
+    }
+
+    .mp-icon--plain {
+      background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='4' width='12' height='2' rx='1' fill='%2300d4aa'/%3E%3Crect x='3' y='8' width='9' height='2' rx='1' fill='%2300d4aa' opacity='.7'/%3E%3Crect x='3' y='12' width='6' height='2' rx='1' fill='%2300d4aa' opacity='.4'/%3E%3C/svg%3E");
     }
 
     .mp-text h4 {
@@ -10800,7 +10834,7 @@
      SECTION 2: INFLATION
 ══════════════════════════════════════════ -->
   <section id="inflation" class="app-page" data-page="inflation">
-    <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">📉 The hidden risk</div>
+    <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">The hidden risk</div>
     <div class="section-h2" id="inf-h2" data-i18n-html="inflation.h2">Your savings are <em>losing value</em> right now.</div>
     <p class="section-lead" id="inf-lead" data-i18n="inflation.lead">Inflation silently erodes the purchasing power of money sitting in savings. $10,000 today won't buy the same things in 10 years — unless your money grows faster than inflation.</p>
 
@@ -11082,21 +11116,21 @@
     <div class="testi-grid">
       <div class="t-card reveal reveal-delay-1">
         <div class="t-icon" aria-hidden="true">📈</div>
-        <div class="t-stars">INSIGHT</div>
+        <div class="t-stars">INSIGHT 01</div>
         <div class="t-quote">Small monthly amounts look different when you can see 10, 20, and 30 years on one chart.</div>
         <div class="t-role">Why the simulator matters</div>
       </div>
-      <div class="t-card reveal reveal-delay-2">
-        <div class="t-icon" aria-hidden="true">💸</div>
-        <div class="t-stars">INSIGHT</div>
+      <div class="t-card t-card--gold reveal reveal-delay-2">
+        <div class="t-icon t-icon--gold" aria-hidden="true">💸</div>
+        <div class="t-stars t-stars--gold">INSIGHT 02</div>
         <div class="t-quote">Inflation becomes easier to understand when cash, savings, and invested growth are compared side by side.</div>
-        <div class="t-role">Why the inflation page matters</div>
+        <div class="t-role t-role--gold">Why the inflation page matters</div>
       </div>
-      <div class="t-card reveal reveal-delay-3">
-        <div class="t-icon" aria-hidden="true">📚</div>
-        <div class="t-stars">INSIGHT</div>
+      <div class="t-card t-card--blue reveal reveal-delay-3">
+        <div class="t-icon t-icon--blue" aria-hidden="true">📚</div>
+        <div class="t-stars t-stars--blue">INSIGHT 03</div>
         <div class="t-quote">Terms like ETF, index fund, bonds, Bitcoin, and DCA feel less intimidating after they are tied to plain examples.</div>
-        <div class="t-role">Why the learning guides matter</div>
+        <div class="t-role t-role--blue">Why the learning guides matter</div>
       </div>
     </div>
   </section>
@@ -11134,35 +11168,35 @@
         <div class="story-mission-label" id="story-mission-label">What Plainvest stands for</div>
         <div class="mission-pillars">
           <div class="mission-pillar">
-            <div class="mp-icon">✓</div>
+            <div class="mp-icon mp-icon--check" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp1-h">Investing is for everyone</h4>
               <p id="mp1-p">Not just the wealthy or the financially educated. Plainvest was built to make investing feel real, not distant.</p>
             </div>
           </div>
           <div class="mission-pillar">
-            <div class="mp-icon">↗</div>
+            <div class="mp-icon mp-icon--growth" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp2-h">See it before you believe it</h4>
               <p id="mp2-p">Visualization changes how people think. Seeing numbers grow makes the idea practical.</p>
             </div>
           </div>
           <div class="mission-pillar">
-            <div class="mp-icon">+</div>
+            <div class="mp-icon mp-icon--plus" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp3-h">Small starts, big difference</h4>
               <p id="mp3-p">The habit matters more than the starting amount. Time does the heavy lifting.</p>
             </div>
           </div>
           <div class="mission-pillar">
-            <div class="mp-icon">!</div>
+            <div class="mp-icon mp-icon--alert" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp4-h">Saving is not enough anymore</h4>
               <p id="mp4-p">Inflation erodes money that sits still. Doing nothing has a cost too.</p>
             </div>
           </div>
           <div class="mission-pillar">
-            <div class="mp-icon">Aa</div>
+            <div class="mp-icon mp-icon--plain" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp5-h">No judgment, no jargon</h4>
               <p id="mp5-p">Finance should feel clear and human, not exclusive or intimidating.</p>
@@ -11274,7 +11308,7 @@
   <section id="start-investing" class="app-page" data-page="start-investing">
     <div class="si-inner">
       <div class="si-header">
-        <div class="section-eyebrow" id="si-eyebrow">🚀 Markets covered in Premium</div>
+        <div class="section-eyebrow" id="si-eyebrow">Markets covered in Premium</div>
         <div class="section-h2" id="si-h2">Ready to move from <em>learning</em> to action?</div>
         <p class="section-lead" id="si-lead">Once a strategy makes sense, beginners usually ask what market, platform, or account type to learn next. Premium explains the first markets and tools Plainvest focuses on for education.</p>
       </div>
@@ -12386,7 +12420,7 @@
           nudgeBtn: 'Use Premium support →'
         },
         inflation: {
-          eyebrow: '📉 The hidden risk',
+          eyebrow: 'The hidden risk',
           h2: 'Your savings are <em>losing value</em> right now.',
           lead: 'Inflation silently erodes the purchasing power of money sitting in savings. Compare cash, savings, and invested growth across a time horizon instead of guessing.',
           chartTitle: 'Purchasing power over a 30-year horizon',
@@ -12917,7 +12951,7 @@
         }
         ,
         startInvesting: {
-          eyebrow: '🚀 The next step', h2: 'Ready to start <em>investing?</em>',
+          eyebrow: 'The next step', h2: 'Ready to start <em>investing?</em>',
           lead: "Once you've found a strategy you're confident in, Premium helps you understand the practical next step: choosing a platform, opening an account, and using the main tools calmly.",
           b1name: 'Australia & USA', b1sub: 'Australia · USA · S&P 500 · Nasdaq', b1desc: 'Premium explains beginner-friendly access to diversified funds, S&P 500 and Nasdaq ETFs, stocks, and long-term core portfolios in Australia and the United States.', b1tag: 'Premium guide', b1btn: 'Learn in Premium',
           b2name: 'Brazil', b2sub: 'Brazil · Tesouro · CDB · ETF', b2desc: 'Premium helps Brazilian investors understand Tesouro Direto, fixed income, ETFs, FIIs, and local stocks in one clear learning path.', b2tag: 'Premium guide', b2btn: 'Learn in Premium',
@@ -13023,7 +13057,7 @@
           nudgeBtn: 'Usar suporte Premium →'
         },
         inflation: {
-          eyebrow: '📉 O risco escondido',
+          eyebrow: 'O risco escondido',
           h2: 'A sua reserva está <em>perdendo valor</em> agora mesmo.',
           lead: 'A inflação reduz silenciosamente o poder de compra do dinheiro parado. Compare dinheiro em caixa, poupança e crescimento investido em um horizonte de tempo claro.',
           chartTitle: 'Poder de compra em um horizonte de 30 anos',
@@ -13444,7 +13478,7 @@
           book12Text: 'Princípios de negócios, tomada de decisão, risco e vida de um dos investidores mais conhecidos do mundo.'
         },
         startInvesting: {
-          eyebrow: '🚀 Próximo passo',
+          eyebrow: 'Próximo passo',
           h2: 'Pronto para começar a <em>investir?</em>',
           lead: 'Depois de encontrar uma estratégia que faz sentido para você, o Premium ajuda no próximo passo prático: escolher uma plataforma, abrir conta e usar as ferramentas principais com calma.',
           b1name: 'Austrália e EUA',
@@ -13957,7 +13991,7 @@
       // Start Investing / Exchanges translations
       var si = currentLang === 'pt'
         ? {
-          eyebrow: '🚀 Mercados abordados no Premium',
+          eyebrow: 'Mercados abordados no Premium',
           h2: 'Pronto para sair do <em>aprendizado</em> para a ação?',
           lead: 'Quando uma estratégia faz sentido, iniciantes geralmente perguntam qual mercado, plataforma ou tipo de conta aprender em seguida. O Premium explica os primeiros mercados e ferramentas que o Plainvest aborda para educação.',
           b1name: 'Austrália e EUA', b1sub: 'Austrália · EUA · S&P 500 · Nasdaq', b1desc: 'O Premium explica acesso para iniciantes a fundos diversificados, ETFs do S&P 500 e do Nasdaq, ações e carteiras de longo prazo.', b1items: ['Fundos de índice do S&P 500 e Nasdaq-100', 'ETFs de dividendos', 'REITs e títulos', 'ASX 200 e Superannuation'], b1tag: 'Guia Premium', b1btn: 'Aprender no Premium',
@@ -13970,7 +14004,7 @@
           bottomBtn2: 'Ver planos →'
         }
         : {
-          eyebrow: '🚀 Markets covered in Premium',
+          eyebrow: 'Markets covered in Premium',
           h2: 'Ready to move from <em>learning</em> to action?',
           lead: "Once a strategy makes sense, beginners usually ask what market, platform, or account type to learn next. Premium explains the first markets and tools Plainvest focuses on for education.",
           b1name: 'Australia & USA', b1sub: 'Australia · USA · S&P 500 · Nasdaq', b1desc: 'Premium explains beginner-friendly access to diversified funds, S&P 500 and Nasdaq ETFs, stocks, and long-term core portfolios.', b1items: ['S&P 500 and Nasdaq-100 funds', 'Dividend ETFs', 'REITs & bonds', 'ASX 200 & Superannuation'], b1tag: 'Premium guide', b1btn: 'Learn in Premium',
