@@ -1,5 +1,6 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createStripeClient } from '@/lib/stripe';
+import { getPostHogClient } from '@/lib/posthog-server';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -58,12 +59,14 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
 
+      const posthogSC = getPostHogClient();
+      posthogSC.capture({ distinctId: userId, event: 'support_call_purchased', properties: { product: 'plainvest_support_call' } });
+      await posthogSC.shutdown();
+
       return NextResponse.json({ received: true });
     }
 
     const now = new Date();
-    const expiresAt = new Date(now);
-    expiresAt.setFullYear(expiresAt.getFullYear() + 1);
 
     const supabaseAdmin = createAdminClient();
     const { error } = await supabaseAdmin.from('member_access').upsert({
@@ -71,7 +74,7 @@ export async function POST(request: Request) {
       email: session.customer_email || session.metadata?.email || null,
       premium_status: 'active',
       access_started_at: now.toISOString(),
-      access_expires_at: expiresAt.toISOString(),
+      access_expires_at: null,
       stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
       stripe_checkout_session_id: session.id,
       stripe_payment_intent_id: typeof session.payment_intent === 'string' ? session.payment_intent : null,
@@ -81,6 +84,10 @@ export async function POST(request: Request) {
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
+
+    const posthog = getPostHogClient();
+    posthog.capture({ distinctId: userId, event: 'premium_access_activated', properties: { product: 'plainvest_premium_access' } });
+    await posthog.shutdown();
   }
 
   return NextResponse.json({ received: true });

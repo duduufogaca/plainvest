@@ -1,9 +1,11 @@
 import { createClient } from '@/lib/supabase/server';
 import { createStripeClient } from '@/lib/stripe';
+import { getPostHogClient } from '@/lib/posthog-server';
 import { NextResponse } from 'next/server';
 
 function errorResponse(message: string, status = 500) {
-  return NextResponse.json({ error: message }, { status });
+  console.error('Plainvest support call checkout error:', message);
+  return NextResponse.json({ error: 'Support call checkout is not available right now. Please try again shortly.' }, { status });
 }
 
 export async function GET() {
@@ -15,8 +17,14 @@ export async function GET() {
 }
 
 export async function POST() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').trim().replace(/\/$/, '');
   const priceId = process.env.STRIPE_SUPPORT_CALL_PRICE_ID;
+
+  try {
+    new URL(siteUrl);
+  } catch {
+    return errorResponse('NEXT_PUBLIC_SITE_URL is not valid. Use https://members.plainvest.app with no spaces or line breaks.');
+  }
 
   if (!priceId || priceId.startsWith('price_replace')) {
     return errorResponse('Missing STRIPE_SUPPORT_CALL_PRICE_ID. Create the AUD $39.90 support call price in Stripe and add its price_ ID to .env.local.');
@@ -41,13 +49,17 @@ export async function POST() {
         email: user.email || '',
         product: 'plainvest_support_call',
       },
-      success_url: `${siteUrl}/dashboard?support=paid#booking`,
-      cancel_url: `${siteUrl}/dashboard?support=cancelled#booking`,
+      success_url: `${siteUrl}/index.html?member_session=1&support_call_paid=1#member`,
+      cancel_url: `${siteUrl}/index.html?member_session=1#member`,
     });
 
     if (!session.url) {
       return errorResponse('Stripe did not return a Checkout URL.');
     }
+
+    const posthog = getPostHogClient();
+    posthog.capture({ distinctId: user.id, event: 'support_call_checkout_started', properties: { product: 'plainvest_support_call' } });
+    await posthog.shutdown();
 
     return NextResponse.redirect(session.url, { status: 303 });
   } catch (error) {
