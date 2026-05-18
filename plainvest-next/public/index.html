@@ -3101,9 +3101,16 @@
     }
 
     .tip-ico {
-      font-size: 1.2rem;
       flex-shrink: 0;
-      line-height: 1.5;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background-color: rgba(232, 184, 75, .15);
+      border: 1px solid rgba(232, 184, 75, .28);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 14px 14px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23e8b84b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='6' r='3.5'/%3E%3Cpath d='M6 10.5c0 1.1.9 2 2 2s2-.9 2-2'/%3E%3Cline x1='8' y1='12.5' x2='8' y2='14'/%3E%3C/svg%3E");
     }
 
     .tip-txt {
@@ -4572,9 +4579,15 @@
       margin-bottom: .7rem;
       background: rgba(0, 212, 170, .12);
       border: 1px solid rgba(0, 212, 170, .20);
-      color: #b8fff0;
-      font-weight: 900;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 16px 16px;
     }
+    .lti--check { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2300d4aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='2,8 6,12 14,4'/%3E%3C/svg%3E"); }
+    .lti--build { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2300d4aa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='6' r='3'/%3E%3Cpath d='M5.5 9.5 3 13h10l-2.5-3.5'/%3E%3Cline x1='8' y1='3' x2='8' y2='1'/%3E%3C/svg%3E"); }
+    .lti--people { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2300d4aa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1' y='2' width='10' height='8' rx='2'/%3E%3Cpath d='M11 7h3l-3 3'/%3E%3Ccircle cx='4' cy='6' r='1'/%3E%3Ccircle cx='7' cy='6' r='1'/%3E%3C/svg%3E"); }
+    .lti--edu { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23e8b84b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 3h5a2 2 0 0 1 2 2v8a2 2 0 0 0-2-2H2z'/%3E%3Cpath d='M14 3H9a2 2 0 0 0-2 2v8a2 2 0 0 1 2-2h5z'/%3E%3C/svg%3E"); }
+    .lti--edu { background-color: rgba(232,184,75,.10); border-color: rgba(232,184,75,.22); }
 
     .launch-trust-card h3 {
       margin: 0 0 .4rem;
@@ -10770,7 +10783,7 @@
 
         <div class="sim-side-info">
           <div class="insight-tip">
-            <div class="tip-ico">💡</div>
+            <div class="tip-ico" aria-hidden="true"></div>
             <div class="tip-txt" id="tipTxt"><strong>Good to know:</strong> Index funds track a broad market, spreading your money across hundreds of companies at once. Historically one of the most reliable long-term investments for beginners.</div>
           </div>
         </div>
@@ -11537,22 +11550,22 @@
     </div>
     <div class="launch-trust" aria-label="Plainvest launch trust notes">
       <div class="launch-trust-card">
-        <div class="launch-trust-icon">✓</div>
+        <div class="launch-trust-icon lti--check" aria-hidden="true"></div>
         <h3 data-i18n="trustLaunch.t1">Transparent assumptions</h3>
         <p data-i18n="trustLaunch.b1">Every projection is educational and based on simple long-run assumptions, not promises or hidden signals.</p>
       </div>
       <div class="launch-trust-card">
-        <div class="launch-trust-icon">Aa</div>
+        <div class="launch-trust-icon lti--build" aria-hidden="true"></div>
         <h3 data-i18n="trustLaunch.t2">Built from beginner confusion</h3>
         <p data-i18n="trustLaunch.b2">Plainvest was built because the first investing step can feel harder than it needs to be.</p>
       </div>
       <div class="launch-trust-card">
-        <div class="launch-trust-icon">★</div>
+        <div class="launch-trust-icon lti--people" aria-hidden="true"></div>
         <h3 data-i18n="trustLaunch.t3">Beginner feedback</h3>
         <p data-i18n="trustLaunch.b3">Plainvest keeps improving from real comments by first-time investors and members.</p>
       </div>
       <div class="launch-trust-card">
-        <div class="launch-trust-icon">!</div>
+        <div class="launch-trust-icon lti--edu" aria-hidden="true"></div>
         <h3 data-i18n="trustLaunch.t4">Education, not advice</h3>
         <p data-i18n="trustLaunch.b4">Plainvest helps you understand options, risks, and questions to ask. It does not tell you what to buy.</p>
       </div>
@@ -11567,9 +11580,9 @@
           <div class="plan-bestfor-text" id="plans-free-bestfor-text">People who want to explore investing, compare options, and understand the basic idea before taking action.</div>
         </div>
         <div class="plan-section-label" id="plans-free-includes-label">Includes</div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f1">Full investment simulator (5 types incl. Gold)</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f1">Full investment simulator — all 9 investment types</span></div>
         <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f2">Side-by-side comparison table</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f3">Basic explanations for all 6 investment types</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f3">Plain-English explanations for all 9 investment types</span></div>
         <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f4">Contextual tips per investment</span></div>
         <button class="plan-btn pb-out" data-i18n="plans.free.btn" onclick="showPage('simulator')">Try it free</button>
       </div>
@@ -12691,7 +12704,7 @@
           afterPurchase: '<strong>After payment:</strong> you land in the member hub, open any guide immediately, and book your included Zoom call from the support guide.',
           purchaseNote: 'One-time payment. No subscription. 7-day review policy if something is not right.',
           bottomCta: 'Purchase access — AUD $89.90',
-          free: { tier: 'Free — always', desc: 'Explore and simulate with no commitment, ever.', f1: 'Full investment simulator — 5 types including Gold', f2: 'Side-by-side comparison table', f3: 'Basic explanations for the main investment types', f4: 'Contextual tips per investment', btn: 'Try it free' },
+          free: { tier: 'Free — always', desc: 'Explore and simulate with no commitment, ever.', f1: 'Full investment simulator — all 9 investment types', f2: 'Side-by-side comparison table', f3: 'Plain-English explanations for all 9 investment types', f4: 'Contextual tips per investment', btn: 'Try it free' },
           prem: { badge: 'Founding one-time price', tier: 'Premium Learning Pass', per: '', price: 'AUD $89.90', desc: 'Guided learning, crypto safety, book paths, exchange setup help, and beginner support.', f1: 'Guided investing lessons', f2: 'Deep-dive guides, DCA method, and how-to-buy steps by country.', f3: 'Bitcoin and crypto safety', f4: 'White paper, halving, on-chain basics, self-custody, wallets, and cycle mistakes.', f5: 'Book and content library', f6: 'Curated investing, macro, Bitcoin, business, and wealth books with reading order.', f7: 'Exchange setup help', f8: 'Help choosing a platform, opening an account, and understanding settings and tools.', f9: 'One included Zoom call', f10: 'A 60-minute beginner support call to help answer questions and guide your next steps.', f11: 'Growing member hub', f12: 'New studies, insights, chart-reading lessons, and member resources added over time.', f13: 'Macroeconomics reading path, including The Black Swan and other options', f14: 'Chart reading tool to analyze price across stocks, crypto, indexes, and ETFs', f15: 'Crypto market cycle lessons from two full cycles so you can avoid common mistakes', f16: 'New products, studies, and insights added over time for members', btn: 'Purchase access' },
           faq: {
             q1: 'Is this financial advice?',
@@ -13332,7 +13345,7 @@
           afterPurchase: '<strong>Depois do pagamento:</strong> você entra no hub de membros, abre qualquer guia imediatamente e agenda sua chamada de Zoom pelo guia de suporte.',
           purchaseNote: 'Pagamento único. Sem assinatura. Política de revisão de 7 dias se algo não estiver certo.',
           bottomCta: 'Comprar acesso — aprox. R$320,00',
-          free: { tier: 'Gratuito — para sempre', desc: 'Explore e simule sem compromisso, sempre.', f1: 'Simulador completo — 5 tipos incluindo ouro', f2: 'Tabela comparativa lado a lado', f3: 'Explicações básicas dos principais tipos de investimento', f4: 'Dicas contextuais por investimento', btn: 'Experimentar grátis' },
+          free: { tier: 'Gratuito — para sempre', desc: 'Explore e simule sem compromisso, sempre.', f1: 'Simulador completo — todos os 9 tipos de investimento', f2: 'Tabela comparativa lado a lado', f3: 'Explicações em linguagem simples para todos os 9 tipos', f4: 'Dicas contextuais por investimento', btn: 'Experimentar grátis' },
           prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe Premium de Aprendizado', per: '', price: 'aprox. R$320,00', desc: 'Aprendizado guiado, segurança em cripto, trilha de livros, ajuda com exchange e apoio para iniciantes. Valor equivalente a AUD $89,90 em pagamento único.', f1: 'Aulas guiadas de investimento', f2: 'Guias aprofundados, método DCA e passos de compra por país.', f3: 'Bitcoin e segurança em cripto', f4: 'White paper, halving, noções on-chain, autocustódia, carteiras e erros de ciclo.', f5: 'Biblioteca de livros e conteúdos', f6: 'Livros de investimento, macro, Bitcoin, negócios e riqueza com ordem de leitura.', f7: 'Ajuda com exchange', f8: 'Ajuda para escolher plataforma, abrir conta e entender configurações e ferramentas.', f9: 'Uma chamada incluída no Zoom', f10: 'Uma chamada de apoio para iniciantes de 60 minutos para ajudar com dúvidas e próximos passos.', f11: 'Hub de membro em crescimento', f12: 'Novos estudos, insights, aulas de leitura de gráfico e recursos adicionados com o tempo.', f13: 'Trilha de livros sobre macroeconomia, incluindo A Lógica do Cisne Negro e outras opções', f14: 'Ferramenta de leitura de gráficos para analisar preço em ações, cripto, índices e ETFs', f15: 'Lições de dois ciclos completos do mercado cripto para evitar erros comuns', f16: 'Novos produtos, estudos e insights adicionados com o tempo para membros', btn: 'Comprar acesso' },
           faq: {
             q1: 'Isso é recomendação financeira?',
