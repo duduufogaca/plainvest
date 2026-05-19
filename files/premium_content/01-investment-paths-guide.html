@@ -54,6 +54,56 @@
   </section>
 
   <section class="section">
+    <h2>Risk and return: the visual spectrum</h2>
+    <p>Every investment type sits somewhere on a risk and return spectrum. Lower-risk options tend to offer more predictable but smaller returns. Higher-risk options can produce larger returns but also larger losses — including permanent loss of capital. This visual shows approximate relative positioning as a frame for thinking, not a precise measurement.</p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem;">
+      <svg viewBox="0 0 900 180" role="img" aria-label="Risk and return spectrum showing 9 investment types from low to high risk" style="min-width:580px;width:100%;height:auto;display:block;">
+        <defs>
+          <linearGradient id="spectrumGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#00d4aa"/>
+            <stop offset="45%" stop-color="#e8b84b"/>
+            <stop offset="100%" stop-color="#e05555"/>
+          </linearGradient>
+        </defs>
+        <rect x="48" y="98" width="806" height="12" rx="6" fill="url(#spectrumGrad)" opacity=".75"/>
+        <text x="48" y="166" fill="#4a7090" font-size="11" font-family="Sora,sans-serif">← Lower risk / return</text>
+        <text x="706" y="166" fill="#4a7090" font-size="11" font-family="Sora,sans-serif">Higher risk / return →</text>
+        <circle cx="68" cy="104" r="6" fill="#00d4aa"/>
+        <line x1="68" y1="97" x2="68" y2="70" stroke="#00d4aa" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="68" y="63" fill="#b0cce0" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Cash</text>
+        <circle cx="168" cy="104" r="6" fill="#00d4aa"/>
+        <line x1="168" y1="116" x2="168" y2="133" stroke="#00d4aa" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="168" y="146" fill="#b0cce0" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Bonds</text>
+        <circle cx="258" cy="104" r="6" fill="#2ed8b6"/>
+        <line x1="258" y1="97" x2="258" y2="55" stroke="#2ed8b6" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="258" y="47" fill="#b0cce0" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Brazil</text>
+        <text x="258" y="59" fill="#b0cce0" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Fixed Income</text>
+        <circle cx="368" cy="104" r="6" fill="#8fd4b8"/>
+        <line x1="368" y1="116" x2="368" y2="133" stroke="#8fd4b8" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="368" y="146" fill="#b0cce0" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">REITs / FIIs</text>
+        <circle cx="452" cy="104" r="8" fill="#e8b84b"/>
+        <line x1="452" y1="95" x2="452" y2="55" stroke="#e8b84b" stroke-width="2" stroke-dasharray="3 2" opacity=".7"/>
+        <text x="452" y="47" fill="#e8b84b" font-size="11" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">Index</text>
+        <text x="452" y="59" fill="#e8b84b" font-size="11" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">ETF</text>
+        <circle cx="540" cy="104" r="6" fill="#e8b84b"/>
+        <line x1="540" y1="116" x2="540" y2="133" stroke="#e8b84b" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="540" y="146" fill="#b0cce0" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Gold</text>
+        <circle cx="638" cy="104" r="6" fill="#e87b4b"/>
+        <line x1="638" y1="97" x2="638" y2="63" stroke="#e87b4b" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="638" y="56" fill="#b0cce0" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Stocks</text>
+        <circle cx="738" cy="104" r="7" fill="#e05555"/>
+        <line x1="738" y1="116" x2="738" y2="133" stroke="#e05555" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="738" y="146" fill="#b0cce0" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Bitcoin</text>
+        <circle cx="832" cy="104" r="7" fill="#c03030"/>
+        <line x1="832" y1="97" x2="832" y2="55" stroke="#c03030" stroke-width="1.5" stroke-dasharray="3 2" opacity=".55"/>
+        <text x="832" y="47" fill="#b0cce0" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Other</text>
+        <text x="832" y="59" fill="#b0cce0" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Crypto</text>
+      </svg>
+    </div>
+    <p style="font-size:.82rem;color:#4a7090;margin-top:.35rem;">Positions are approximate based on typical historical volatility. All investments carry real risk including the possibility of permanent loss. The spectrum does not account for fees, time horizon, liquidity, or individual suitability.</p>
+  </section>
+
+  <section class="section">
     <h2>The beginner map</h2>
     <div class="grid-3">
       <div class="tile"><strong>Core growth</strong><p>Broad index funds and ETFs are usually the simplest base because they spread money across many companies.</p></div>
@@ -249,6 +299,11 @@
       <div class="tile"><strong>BDRs (Brazilian Depositary Receipts)</strong><p>Certificates representing shares of foreign companies (Apple, Amazon, Microsoft) traded on B3 in Brazilian reais. Currency exposure to the dollar is built in. Useful for global diversification without a foreign brokerage account.</p></div>
     </div>
     <div class="callout"><strong>Brazilian investor rule:</strong> compare net return after tax and fees, not gross rate. An LCI at 90% CDI with zero income tax can be better than a CDB at 110% CDI after progressive tax. Always ask: what do I keep after tax?</div>
+  </section>
+
+  <section class="section">
+    <h2>Continue your learning path</h2>
+    <div class="callout"><strong>Next recommended guide:</strong> <a href="02-dca-method-guide.html">DCA Method Guide — build a consistent investing habit and reduce timing stress →</a></div>
   </section>
 
 </main>
