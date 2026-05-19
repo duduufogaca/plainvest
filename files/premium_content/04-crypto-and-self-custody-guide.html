@@ -126,6 +126,36 @@
   </section>
 
   <section class="section">
+    <h2>Popular hot wallets: what beginners actually use</h2>
+    <p>A hot wallet is software that stores your private keys on an internet-connected device (phone or computer). Hot wallets give you direct control of your crypto, but they depend on device security and your own caution. These are the most widely used options — but any wallet is only as safe as the person using it.</p>
+    <table class="mini-table">
+      <thead><tr><th>Wallet</th><th>Best for</th><th>Networks supported</th><th>Key cautions</th></tr></thead>
+      <tbody>
+        <tr><td>MetaMask</td><td>Ethereum and EVM-compatible networks (Polygon, Arbitrum, Base, Optimism). Standard for DeFi access.</td><td>Ethereum and EVM chains</td><td>Browser extension version is more vulnerable to phishing than the mobile app. Never import a seed phrase into a site claiming to be MetaMask.</td></tr>
+        <tr><td>Phantom</td><td>Solana ecosystem. Also supports Ethereum and Bitcoin. Clean mobile interface.</td><td>Solana, Ethereum, Bitcoin</td><td>Solana transactions are fast and cheap but irreversible. Double-check addresses; fake Phantom browser extensions exist.</td></tr>
+        <tr><td>Trust Wallet</td><td>Multi-chain wallet supporting Bitcoin, Ethereum, BNB Chain, and many others. Good mobile first experience.</td><td>Bitcoin, Ethereum, BNB Chain, 65+ chains</td><td>Wide network support increases complexity. Always download from official Trust Wallet site or app stores — fake versions are common.</td></tr>
+        <tr><td>Exodus</td><td>Beginners who want a clean desktop and mobile experience with built-in swap and portfolio tracking.</td><td>Bitcoin, Ethereum, Solana, 260+ assets</td><td>Not fully open source. Built-in swap convenience can carry higher fees than using a DEX directly.</td></tr>
+        <tr><td>Bitcoin Core / Electrum</td><td>Bitcoin-only users who want a lightweight or full node wallet with maximum control and transparency.</td><td>Bitcoin only</td><td>More technical setup. Electrum is a good lightweight option; Bitcoin Core requires syncing the full blockchain.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Hot wallet rule:</strong> never keep more than you would keep in a physical wallet in cash on your hot wallet. Hot wallets are for regular use and learning transactions. Meaningful long-term holdings belong in cold storage once you have practiced the setup.</div>
+
+    <h3 style="margin-top:1.5rem;margin-bottom:.7rem;font-size:1rem;color:#c2d5e8;">Network compatibility: why this matters before you send</h3>
+    <p>Every crypto asset lives on a specific network. Sending to the wrong network or using the wrong address format is one of the most common irreversible mistakes beginners make.</p>
+    <table class="mini-table">
+      <thead><tr><th>Network</th><th>Common assets</th><th>What to check before sending</th></tr></thead>
+      <tbody>
+        <tr><td>Bitcoin (BTC)</td><td>Bitcoin only</td><td>Bitcoin addresses start with 1, 3, or bc1. Confirm the receiving address format matches. Never send BTC to an Ethereum address.</td></tr>
+        <tr><td>Ethereum (ETH / ERC-20)</td><td>ETH, USDC, USDT (ERC-20), thousands of tokens</td><td>All Ethereum addresses start with 0x. Confirm the token contract is the official one (check on Etherscan) before sending.</td></tr>
+        <tr><td>Solana (SOL / SPL tokens)</td><td>SOL, USDC (Solana), BONK, many others</td><td>Solana addresses are base58 encoded (32-44 chars). Very fast and cheap, but completely irreversible. Use Solscan.io to verify.</td></tr>
+        <tr><td>BNB Chain (BEP-20)</td><td>BNB, USDT (BEP-20), BUSD</td><td>Same address format as Ethereum (0x) but different network. Sending BEP-20 to an ERC-20 address on the wrong network can result in loss.</td></tr>
+        <tr><td>Tron (TRC-20)</td><td>USDT (TRC-20) widely used for low-fee transfers</td><td>Tron addresses start with T. USDT on Tron and USDT on Ethereum are different networks — confirm which one the exchange supports before withdrawing.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Before every first transfer:</strong> open the destination platform's help page, confirm which network they support for that asset, then match the sending network in your wallet. A test transfer with the minimum amount is always worth the extra few minutes.</div>
+  </section>
+
+  <section class="section">
     <h2>Transaction safety workflow</h2>
     <ol class="steps">
       <li><div>Confirm the asset and network. USDT on Ethereum, Tron, Solana, and Polygon are not the same path.</div></li>
