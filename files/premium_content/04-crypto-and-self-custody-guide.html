@@ -85,6 +85,47 @@
   </section>
 
   <section class="section">
+    <h2>Hardware wallets: Ledger vs Trezor</h2>
+    <p>A hardware wallet is a small physical device that stores your private keys offline. It signs transactions without exposing the key to an internet-connected device. For any meaningful long-term crypto holding, hardware wallets are considered best practice. The two most established brands are Ledger and Trezor.</p>
+    <table class="mini-table">
+      <thead><tr><th>Feature</th><th>Ledger (Nano S Plus / X / Flex)</th><th>Trezor (Model One / Safe 3 / Safe 5)</th></tr></thead>
+      <tbody>
+        <tr><td>Chip security</td><td>Secure Element chip (closed source in some models)</td><td>No Secure Element historically; open source firmware throughout</td></tr>
+        <tr><td>Open source</td><td>Partially — firmware partially closed source</td><td>Fully open source firmware — community-auditable</td></tr>
+        <tr><td>Supported assets</td><td>Very wide — thousands of tokens via Ledger Live</td><td>Wide — most major assets; fewer obscure tokens than Ledger</td></tr>
+        <tr><td>Mobile connectivity</td><td>Ledger X has Bluetooth (optional, can be disabled)</td><td>USB-C connection; no Bluetooth</td></tr>
+        <tr><td>Recovery phrase backup</td><td>Standard BIP39 24 words — compatible with most wallets</td><td>Standard BIP39 12 or 24 words — compatible with most wallets</td></tr>
+        <tr><td>Price range (approx.)</td><td>USD $79–$249 depending on model</td><td>USD $49–$169 depending on model</td></tr>
+        <tr><td>Incident history</td><td>2020 customer data breach (names/addresses leaked — not funds). 2023 Ledger Connect Kit supply chain attack.</td><td>2023 phishing warnings after third-party data exposure.</td></tr>
+        <tr><td>For beginners</td><td>Good — Ledger Live software is polished</td><td>Good — open source appeals to users who want full auditability</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Key point:</strong> both are reputable. Neither brand guarantees safety if you share your seed phrase, buy from unofficial sources, or skip the setup verification process. Always buy directly from the manufacturer's official website — never from resellers on Amazon or other marketplaces where devices could be pre-configured.</div>
+
+    <h3 style="margin-top:1.5rem;margin-bottom:.7rem;font-size:1rem;color:#c2d5e8;">Hardware wallet setup checklist</h3>
+    <ul class="checklist">
+      <li>Buy only from the manufacturer's official website.</li>
+      <li>Verify the packaging seal is intact and device shows no sign of prior setup.</li>
+      <li>Set up the device on the official app (Ledger Live or Trezor Suite) downloaded from the official site.</li>
+      <li>Write the seed phrase offline — pen and paper, never photographed or typed anywhere.</li>
+      <li>Verify the seed phrase by restoring to a test device or using the device's own verification function before storing value.</li>
+      <li>Store the seed phrase in a separate physical location from the device.</li>
+      <li>Test a tiny transaction before transferring meaningful amounts.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Crypto inheritance: the question most beginners skip</h2>
+    <p>If you self-custody crypto and something happens to you, the asset is gone unless you have made deliberate plans. Unlike a bank account, there is no recovery process, no beneficiary form, and no customer support. This is not a morbid topic — it is a responsibility that comes with self-custody.</p>
+    <div class="grid-2">
+      <div class="tile"><strong>The problem</strong><p>A seed phrase stored only in your memory or in a single hidden location that only you know about is permanently inaccessible if you die or are incapacitated. Courts, lawyers, and family cannot recover it.</p></div>
+      <div class="tile"><strong>Basic plan</strong><p>At minimum: write a document that tells a trusted person that crypto exists, what wallets or exchanges hold it, and where to find access instructions. Keep this document physically secure and updated.</p></div>
+      <div class="tile"><strong>Seed phrase storage options</strong><p>Split the seed phrase into two parts stored in separate secure locations (requires both parts to restore). Or use a sealed envelope in a fireproof safe with a trusted family member. Metal backup plates (Cryptosteel, Bilodeau) resist fire and water.</p></div>
+      <div class="tile"><strong>Get professional help for large holdings</strong><p>For meaningful value, consider a solicitor who understands digital assets, or a crypto inheritance specialist. Some hardware wallet manufacturers publish inheritance guides. This is not optional at significant size.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
     <h2>Transaction safety workflow</h2>
     <ol class="steps">
       <li><div>Confirm the asset and network. USDT on Ethereum, Tron, Solana, and Polygon are not the same path.</div></li>
