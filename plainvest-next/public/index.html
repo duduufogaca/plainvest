@@ -22,7 +22,8 @@
   <meta name="twitter:description" content="A free investing simulator for beginners. Compare investment paths, test contributions over time, and understand inflation in a clearer way.">
   <meta name="twitter:image" content="https://plainvest.app/og-image.png">
   <meta name="twitter:image:alt" content="Plainvest investing simulator showing long-term growth and inflation comparison for beginner investors">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='24' fill='%230b1220'/%3E%3Cpath d='M28 72V24h18c14 0 24 8 24 21 0 12-10 20-24 20H40v7H28Z' fill='%23f7f6f2'/%3E%3Cpath d='M40 54h8c6 0 10-3 10-8 0-6-4-9-10-9h-8v17Z' fill='%2300d4aa'/%3E%3Cpath d='M54 68 74 48' stroke='%23e8b84b' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M56 68h18' stroke='%2367f0d1' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" href="assets/plainvest-icon.png">
+  <link rel="apple-touch-icon" href="assets/plainvest-icon.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Plainvest","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://plainvest.app/","description":"A free plain-English investing simulator for first-time investors to compare long-term returns, contributions, and inflation impact.","offers":[{"@type":"Offer","name":"Plainvest free simulator","price":"0","priceCurrency":"AUD"},{"@type":"Offer","name":"Plainvest Premium Learning Pass","price":"89.90","priceCurrency":"AUD"}],"audience":{"@type":"Audience","audienceType":"First-time investors"}}</script>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
   <script>
@@ -342,6 +343,21 @@
       background: linear-gradient(180deg, rgba(0, 212, 170, .98), rgba(0, 212, 170, .26));
       transform: rotate(31deg);
       opacity: .95;
+    }
+
+    .nav-logo {
+      height: 44px;
+      width: auto;
+      display: block;
+      mix-blend-mode: screen;
+      flex-shrink: 0;
+    }
+
+    .footer-logo-img {
+      height: 34px;
+      width: auto;
+      display: block;
+      mix-blend-mode: screen;
     }
 
     nav ul {
@@ -10525,6 +10541,10 @@
         height: 34px !important;
       }
 
+      .nav-logo {
+        height: 34px !important;
+      }
+
       .lang-btn {
         min-width: 70px !important;
         justify-content: center !important;
@@ -10611,7 +10631,7 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="#home">
-      <div class="logo-mark"><span>P</span></div>Plainvest
+      <img src="assets/plainvest-logo.png" alt="Plainvest" class="nav-logo">
     </a>
     <ul>
       <li><a href="#home" data-i18n="nav.home">Home</a></li>
@@ -12427,7 +12447,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="foot-logo"><span class="foot-logo-mark"><span>P</span></span><span>Plainvest</span></div>
+        <div class="foot-logo"><img src="assets/plainvest-logo.png" alt="Plainvest" class="footer-logo-img"></div>
         <p data-i18n="footer.tagline">Helping everyday people understand the power of investing — one simulation at a time.</p>
         <p class="foot-disc" data-i18n="footer.disc">Plainvest is an educational tool, not a financial advisor. All projections are estimates based on historical average returns and are not guaranteed. Please consult a qualified financial professional before making investment decisions.</p>
       </div>
