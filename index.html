@@ -6034,13 +6034,21 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal-pale), rgba(232, 184, 75, 0.12));
-      border: 2px solid var(--border-dark);
+      background: #081b2e;
+      border: 2px solid rgba(0, 212, 170, 0.28);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
       flex-shrink: 0;
+      overflow: hidden;
+      padding: 5px;
+      box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.08);
+    }
+
+    .story-sig-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .story-sig-name {
@@ -11324,7 +11332,7 @@
           <p class="story-para" id="story-p5">I'm Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that investing is for everyone, without pretending this is personal financial advice.</p>
         </div>
         <div class="story-signature">
-          <div class="story-sig-avatar">P</div>
+          <div class="story-sig-avatar"><img src="assets/plainvest-icon-cropped.png" alt="Plainvest"></div>
           <div>
             <div class="story-sig-name" id="story-sig-name">Eduardo Fogaça, Plainvest founder</div>
             <div class="story-sig-role" id="story-sig-role">Built in Australia from the beginner questions I wish someone had answered earlier.</div>
