@@ -26,6 +26,12 @@
     <div class="kicker">Premium Guide</div>
     <h1>Crypto safety before crypto <em>excitement.</em></h1>
     <p class="lead">Crypto can be powerful, but beginners must understand custody, scams, volatility, exchange risk, and irreversible mistakes before moving money.</p>
+    <div class="stat-row">
+      <div class="stat-block danger"><span class="stat-num">12</span><span class="stat-label">seed phrase words — lose them and access is gone permanently</span></div>
+      <div class="stat-block gold"><span class="stat-num">3</span><span class="stat-label">custody levels: exchange, hot wallet, hardware — each with different risk</span></div>
+      <div class="stat-block"><span class="stat-num">0x</span><span class="stat-label">Ethereum address format — sending to wrong network = permanent loss</span></div>
+      <div class="stat-block soft"><span class="stat-num">Cold</span><span class="stat-label">hardware wallet = keys stored offline — gold standard for serious holders</span></div>
+    </div>
   </header>
   <section class="section">
     <h2>The custody ladder</h2>
@@ -85,6 +91,77 @@
   </section>
 
   <section class="section">
+    <h2>Hardware wallets: Ledger vs Trezor</h2>
+    <p>A hardware wallet is a small physical device that stores your private keys offline. It signs transactions without exposing the key to an internet-connected device. For any meaningful long-term crypto holding, hardware wallets are considered best practice. The two most established brands are Ledger and Trezor.</p>
+    <table class="mini-table">
+      <thead><tr><th>Feature</th><th>Ledger (Nano S Plus / X / Flex)</th><th>Trezor (Model One / Safe 3 / Safe 5)</th></tr></thead>
+      <tbody>
+        <tr><td>Chip security</td><td>Secure Element chip (closed source in some models)</td><td>No Secure Element historically; open source firmware throughout</td></tr>
+        <tr><td>Open source</td><td>Partially — firmware partially closed source</td><td>Fully open source firmware — community-auditable</td></tr>
+        <tr><td>Supported assets</td><td>Very wide — thousands of tokens via Ledger Live</td><td>Wide — most major assets; fewer obscure tokens than Ledger</td></tr>
+        <tr><td>Mobile connectivity</td><td>Ledger X has Bluetooth (optional, can be disabled)</td><td>USB-C connection; no Bluetooth</td></tr>
+        <tr><td>Recovery phrase backup</td><td>Standard BIP39 24 words — compatible with most wallets</td><td>Standard BIP39 12 or 24 words — compatible with most wallets</td></tr>
+        <tr><td>Price range (approx.)</td><td>USD $79–$249 depending on model</td><td>USD $49–$169 depending on model</td></tr>
+        <tr><td>Incident history</td><td>2020 customer data breach (names/addresses leaked — not funds). 2023 Ledger Connect Kit supply chain attack.</td><td>2023 phishing warnings after third-party data exposure.</td></tr>
+        <tr><td>For beginners</td><td>Good — Ledger Live software is polished</td><td>Good — open source appeals to users who want full auditability</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Key point:</strong> both are reputable. Neither brand guarantees safety if you share your seed phrase, buy from unofficial sources, or skip the setup verification process. Always buy directly from the manufacturer's official website — never from resellers on Amazon or other marketplaces where devices could be pre-configured.</div>
+
+    <h3 style="margin-top:1.5rem;margin-bottom:.7rem;font-size:1rem;color:#c2d5e8;">Hardware wallet setup checklist</h3>
+    <ul class="checklist">
+      <li>Buy only from the manufacturer's official website.</li>
+      <li>Verify the packaging seal is intact and device shows no sign of prior setup.</li>
+      <li>Set up the device on the official app (Ledger Live or Trezor Suite) downloaded from the official site.</li>
+      <li>Write the seed phrase offline — pen and paper, never photographed or typed anywhere.</li>
+      <li>Verify the seed phrase by restoring to a test device or using the device's own verification function before storing value.</li>
+      <li>Store the seed phrase in a separate physical location from the device.</li>
+      <li>Test a tiny transaction before transferring meaningful amounts.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Crypto inheritance: the question most beginners skip</h2>
+    <p>If you self-custody crypto and something happens to you, the asset is gone unless you have made deliberate plans. Unlike a bank account, there is no recovery process, no beneficiary form, and no customer support. This is not a morbid topic — it is a responsibility that comes with self-custody.</p>
+    <div class="grid-2">
+      <div class="tile"><strong>The problem</strong><p>A seed phrase stored only in your memory or in a single hidden location that only you know about is permanently inaccessible if you die or are incapacitated. Courts, lawyers, and family cannot recover it.</p></div>
+      <div class="tile"><strong>Basic plan</strong><p>At minimum: write a document that tells a trusted person that crypto exists, what wallets or exchanges hold it, and where to find access instructions. Keep this document physically secure and updated.</p></div>
+      <div class="tile"><strong>Seed phrase storage options</strong><p>Split the seed phrase into two parts stored in separate secure locations (requires both parts to restore). Or use a sealed envelope in a fireproof safe with a trusted family member. Metal backup plates (Cryptosteel, Bilodeau) resist fire and water.</p></div>
+      <div class="tile"><strong>Get professional help for large holdings</strong><p>For meaningful value, consider a solicitor who understands digital assets, or a crypto inheritance specialist. Some hardware wallet manufacturers publish inheritance guides. This is not optional at significant size.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Popular hot wallets: what beginners actually use</h2>
+    <p>A hot wallet is software that stores your private keys on an internet-connected device (phone or computer). Hot wallets give you direct control of your crypto, but they depend on device security and your own caution. These are the most widely used options — but any wallet is only as safe as the person using it.</p>
+    <table class="mini-table">
+      <thead><tr><th>Wallet</th><th>Best for</th><th>Networks supported</th><th>Key cautions</th></tr></thead>
+      <tbody>
+        <tr><td>MetaMask</td><td>Ethereum and EVM-compatible networks (Polygon, Arbitrum, Base, Optimism). Standard for DeFi access.</td><td>Ethereum and EVM chains</td><td>Browser extension version is more vulnerable to phishing than the mobile app. Never import a seed phrase into a site claiming to be MetaMask.</td></tr>
+        <tr><td>Phantom</td><td>Solana ecosystem. Also supports Ethereum and Bitcoin. Clean mobile interface.</td><td>Solana, Ethereum, Bitcoin</td><td>Solana transactions are fast and cheap but irreversible. Double-check addresses; fake Phantom browser extensions exist.</td></tr>
+        <tr><td>Trust Wallet</td><td>Multi-chain wallet supporting Bitcoin, Ethereum, BNB Chain, and many others. Good mobile first experience.</td><td>Bitcoin, Ethereum, BNB Chain, 65+ chains</td><td>Wide network support increases complexity. Always download from official Trust Wallet site or app stores — fake versions are common.</td></tr>
+        <tr><td>Exodus</td><td>Beginners who want a clean desktop and mobile experience with built-in swap and portfolio tracking.</td><td>Bitcoin, Ethereum, Solana, 260+ assets</td><td>Not fully open source. Built-in swap convenience can carry higher fees than using a DEX directly.</td></tr>
+        <tr><td>Bitcoin Core / Electrum</td><td>Bitcoin-only users who want a lightweight or full node wallet with maximum control and transparency.</td><td>Bitcoin only</td><td>More technical setup. Electrum is a good lightweight option; Bitcoin Core requires syncing the full blockchain.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Hot wallet rule:</strong> never keep more than you would keep in a physical wallet in cash on your hot wallet. Hot wallets are for regular use and learning transactions. Meaningful long-term holdings belong in cold storage once you have practiced the setup.</div>
+
+    <h3 style="margin-top:1.5rem;margin-bottom:.7rem;font-size:1rem;color:#c2d5e8;">Network compatibility: why this matters before you send</h3>
+    <p>Every crypto asset lives on a specific network. Sending to the wrong network or using the wrong address format is one of the most common irreversible mistakes beginners make.</p>
+    <table class="mini-table">
+      <thead><tr><th>Network</th><th>Common assets</th><th>What to check before sending</th></tr></thead>
+      <tbody>
+        <tr><td>Bitcoin (BTC)</td><td>Bitcoin only</td><td>Bitcoin addresses start with 1, 3, or bc1. Confirm the receiving address format matches. Never send BTC to an Ethereum address.</td></tr>
+        <tr><td>Ethereum (ETH / ERC-20)</td><td>ETH, USDC, USDT (ERC-20), thousands of tokens</td><td>All Ethereum addresses start with 0x. Confirm the token contract is the official one (check on Etherscan) before sending.</td></tr>
+        <tr><td>Solana (SOL / SPL tokens)</td><td>SOL, USDC (Solana), BONK, many others</td><td>Solana addresses are base58 encoded (32-44 chars). Very fast and cheap, but completely irreversible. Use Solscan.io to verify.</td></tr>
+        <tr><td>BNB Chain (BEP-20)</td><td>BNB, USDT (BEP-20), BUSD</td><td>Same address format as Ethereum (0x) but different network. Sending BEP-20 to an ERC-20 address on the wrong network can result in loss.</td></tr>
+        <tr><td>Tron (TRC-20)</td><td>USDT (TRC-20) widely used for low-fee transfers</td><td>Tron addresses start with T. USDT on Tron and USDT on Ethereum are different networks — confirm which one the exchange supports before withdrawing.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Before every first transfer:</strong> open the destination platform's help page, confirm which network they support for that asset, then match the sending network in your wallet. A test transfer with the minimum amount is always worth the extra few minutes.</div>
+  </section>
+
+  <section class="section">
     <h2>Transaction safety workflow</h2>
     <ol class="steps">
       <li><div>Confirm the asset and network. USDT on Ethereum, Tron, Solana, and Polygon are not the same path.</div></li>
@@ -108,6 +185,23 @@
       </tbody>
     </table>
   </section>
+  <section class="section warning">
+    <h2>Scam patterns to recognise immediately</h2>
+    <p>Crypto scams follow repeatable patterns. Recognising the pattern is faster than evaluating each situation individually.</p>
+    <table class="mini-table">
+      <thead><tr><th>Pattern</th><th>How it looks</th><th>What to do</th></tr></thead>
+      <tbody>
+        <tr><td>Seed phrase request</td><td>Support agent, browser pop-up, or verification form asks for your 12 or 24 recovery words.</td><td>Stop completely. No legitimate service ever needs your seed phrase. It is always a theft attempt.</td></tr>
+        <tr><td>Fake wallet app</td><td>A search result or app store listing for Ledger, MetaMask, or Trust Wallet that is not the official source.</td><td>Only install from the official website. Check the developer name and number of reviews critically.</td></tr>
+        <tr><td>Approval phishing</td><td>A DeFi site asks you to approve a transaction that gives it control over all tokens in your wallet.</td><td>Revoke approvals at revoke.cash. Never approve unlimited spend limits on unknown contracts.</td></tr>
+        <tr><td>Fake giveaway</td><td>"Send 0.1 BTC and receive 0.2 back." Celebrity or project impersonation. Always a scam.</td><td>No legitimate giveaway requires sending first. Block and report.</td></tr>
+        <tr><td>Urgent support DM</td><td>Someone DMs you on Twitter, Discord, or Telegram claiming to be support after you post a question publicly.</td><td>Real support does not DM unsolicited. Never follow links from DMs about your wallet or account.</td></tr>
+        <tr><td>Address poisoning</td><td>A scammer sends a tiny transaction from an address visually similar to one you use, hoping you copy-paste it next time.</td><td>Always check the full address character by character before sending. Never copy from transaction history.</td></tr>
+        <tr><td>Pig butchering</td><td>A stranger builds a relationship over weeks, then introduces a "highly profitable" trading platform requiring deposits.</td><td>Any romantic or social contact that eventually leads to a trading platform recommendation is a fraud operation.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
   <section class="section">
     <h2>Wallet practice plan</h2>
     <p>Members should practice with very small amounts before treating self-custody as a storage solution. The goal is to build operational confidence before the value becomes emotionally meaningful.</p>
@@ -118,6 +212,11 @@
       <li><div>Restore the wallet on a spare device or safe test environment before relying on the backup.</div></li>
       <li><div>Only after practice, decide whether hot wallet, cold wallet, or exchange custody matches the risk level.</div></li>
     </ol>
+  </section>
+
+  <section class="section">
+    <h2>Continue your learning path</h2>
+    <div class="callout"><strong>Next recommended guide:</strong> <a href="05-bitcoin-research-section.html">Bitcoin Research Section — white paper, halving history, metrics, and allocation thinking →</a></div>
   </section>
 </main>
 </body>

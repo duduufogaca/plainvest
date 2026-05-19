@@ -1,13 +1,408 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Australian Platform Comparison</title><link rel="stylesheet" href="premium-guide.css"><script id="plainvest-premium-file-guard">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Global Platform Comparison — AU, US and Brazil</title><link rel="stylesheet" href="premium-guide.css"><script id="plainvest-premium-file-guard">
 (function(){var local=(location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")&&new URLSearchParams(location.search).get("preview")==="1";if(local)return;if(!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)){location.replace("https://members.plainvest.app/dashboard");return;}document.documentElement.style.visibility="hidden";fetch("/api/member/status",{credentials:"include",cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(s){if(s&&s.authenticated&&s.premium){document.documentElement.style.visibility="visible";return;}location.replace(s&&s.authenticated?"/dashboard":"/login?mode=manual");}).catch(function(){location.replace("/dashboard");});})();
 </script></head>
 <body><main class="guide guide-wide">
 <a class="platform-back" href="/index.html#member">← Back to member area</a>
-<header class="hero"><div class="kicker">Platform Choice</div><h1>Choose a platform by process, not hype.</h1><p class="lead">This is not a recommendation. It is a plain-English comparison framework so Australian beginners know what to research before opening an account.</p><div class="quick-strip"><div class="quick-card"><strong>Compare</strong><span>Fees, assets, ownership, ease of use.</span></div><div class="quick-card"><strong>Avoid</strong><span>Choosing only because an app looks nice.</span></div><div class="quick-card"><strong>Goal</strong><span>Use a platform calmly and consistently.</span></div></div></header>
-<section class="section"><h2>Platforms beginners often compare</h2><table class="mini-table"><thead><tr><th>Platform</th><th>Often suits</th><th>What to check before signing up</th></tr></thead><tbody><tr><td>CommSec / CommSec Pocket</td><td>Bank-backed familiarity and a simple ETF habit.</td><td>Brokerage, ETF menu, CHESS status, bank integration, minimum trades.</td></tr><tr><td>SelfWealth</td><td>Flat-fee ASX investing and long-term share/ETF buyers.</td><td>Brokerage, available markets, account opening process, reporting.</td></tr><tr><td>Stake</td><td>US shares and ASX access in one modern app.</td><td>FX fees, brokerage, CHESS sponsorship for ASX, product range, spreads.</td></tr><tr><td>Vanguard Personal Investor</td><td>Vanguard-focused long-term investors.</td><td>Available funds, account fees, brokerage rules, DRP options.</td></tr><tr><td>BetaShares Direct</td><td>ETF-focused portfolio building.</td><td>ETF range, account fees, portfolio features, custody model.</td></tr><tr><td>Pearler</td><td>Long-term automated ETF investing.</td><td>Auto-invest features, brokerage, CHESS, portfolio tools, supported assets.</td></tr></tbody></table></section>
-<section class="section"><h2>8 things to compare</h2><div class="grid-2"><div class="tile"><strong>1. Total cost</strong><p>Brokerage, FX spread, account fees, inactivity fees, and fund management fees all matter. A cheap trade can still be expensive if the FX spread is high.</p></div><div class="tile"><strong>2. Product access</strong><p>Can you buy the ETFs, shares, or markets you actually want? Check ASX, US shares, managed funds, and fractional investing rules.</p></div><div class="tile"><strong>3. Ownership model</strong><p>Understand CHESS sponsorship, custodian models, HINs, and what proof of ownership or statements you receive.</p></div><div class="tile"><strong>4. Tax reporting</strong><p>Check annual statements, dividend reports, trade confirmations, CSV exports, and whether your accountant can use them easily.</p></div><div class="tile"><strong>5. Automation</strong><p>If your plan is monthly DCA, auto-invest features and recurring deposits can matter more than fancy charts.</p></div><div class="tile"><strong>6. Security</strong><p>Look for two-factor authentication, withdrawal controls, device management, and support if your account is compromised.</p></div><div class="tile"><strong>7. Beginner clarity</strong><p>The best platform for a beginner is often the one they can use safely without accidentally buying the wrong product.</p></div><div class="tile"><strong>8. Support</strong><p>Check how support works before you need it. Email-only support may be fine, but know the response expectations.</p></div></div></section>
-<section class="section"><h2>How to avoid choosing the wrong platform</h2><ol class="steps"><li><div><strong>Write your investing plan first.</strong> Platform choice should follow your goal, not create it.</div></li><li><div><strong>Choose your first asset type.</strong> ASX ETF, US ETF, individual shares, crypto, or managed fund?</div></li><li><div><strong>Compare the cost of your actual behaviour.</strong> Monthly $200 DCA and occasional $5,000 buys have different fee sensitivity.</div></li><li><div><strong>Open with a small test amount.</strong> Learn deposits, order placement, confirmations, and withdrawals before moving larger amounts.</div></li><li><div><strong>Keep tax exports from day one.</strong> The best-looking app can become annoying if reporting is messy.</div></li></ol></section>
-<section class="section warning"><h2>Plainvest platform rule</h2><p>A platform is a tool, not a strategy. Do not pick one because a creator promoted it, because the app looks exciting, or because it offers the most products. Pick the platform that makes your beginner plan easier to follow, safer to record, and calmer to repeat.</p></section>
+
+<header class="hero">
+  <div class="kicker">Platform Choice · 🇦🇺 AU · 🇺🇸 US · 🇧🇷 Brazil</div>
+  <h1>Choose a platform by process, not hype.</h1>
+  <p class="lead">This guide covers investing platforms across Australia, the United States, and Brazil. For each country you get a full platform comparison table, cost breakdowns, key concepts, and a beginner path recommendation — so you know exactly what to research before opening an account.</p>
+  <div class="quick-strip">
+    <div class="quick-card"><strong>AU investors</strong><span>Jump to the Australia section — CHESS, DCA cost grid, and ASX platforms.</span></div>
+    <div class="quick-card"><strong>US investors</strong><span>Jump to the United States section — $0 platforms, Roth IRA, and index funds.</span></div>
+    <div class="quick-card"><strong>Brazil investors</strong><span>Jump to the Brazil section — corretoras, R$0 brokerage, and Tesouro access.</span></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-block gold"><span class="stat-num">3</span><span class="stat-label">countries with full platform breakdowns, costs, and beginner paths</span></div>
+    <div class="stat-block"><span class="stat-num">$0</span><span class="stat-label">US commissions: Fidelity, Schwab, Vanguard, Robinhood, IBKR Lite</span></div>
+    <div class="stat-block"><span class="stat-num">R$0</span><span class="stat-label">Brazil B3 brokerage: Clear, Rico, XP, NuInvest on eligible products</span></div>
+    <div class="stat-block soft"><span class="stat-num">IBKR</span><span class="stat-label">global multi-market access from a single account for AU, US, and BR</span></div>
+  </div>
+</header>
+
+<!-- ─────────────────────────────────────────────────
+     AUSTRALIA
+────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 style="font-size:1.3rem;margin-bottom:.3rem;">🇦🇺 Australia</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.1rem;">ASX-listed ETFs and shares · CHESS vs custodian · brokerage from $2 flat</p>
+
+  <p>Australian platforms vary significantly in brokerage model, ownership structure, product range, and automation features. The most important decision for a beginner is not which platform has the best app — it is which combination of cost, ownership model, and product access matches your actual behaviour. A $200/month DCA investor and a $5,000 occasional buyer have completely different fee sensitivities.</p>
+
+  <table class="mini-table">
+    <thead><tr><th>Platform</th><th>ASX brokerage</th><th>CHESS?</th><th>Best suited for</th><th>Key limitation</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>CommSec</strong></td>
+        <td>$5 (under $1k) · $10 ($1k–$10k) · $19.95 (over $10k)</td>
+        <td><span style="color:var(--teal);">Yes</span></td>
+        <td>Bank-backed familiarity; full ASX access; ETFs, individual shares, and managed funds; good customer support track record; integrates with CommBank accounts.</td>
+        <td>Higher brokerage than specialist platforms; $10 per trade on amounts up to $10,000 adds up on regular DCA; separate login from everyday banking unless you use CommBank.</td>
+      </tr>
+      <tr>
+        <td><strong>CommSec Pocket</strong></td>
+        <td>$2 flat (under $1k) · 0.20% (over $1k)</td>
+        <td><span style="color:var(--danger);">No (custodian)</span></td>
+        <td>Absolute beginners making small monthly contributions. The $2 flat fee makes it the cheapest option per trade for amounts under $1,000. Simple 7-ETF menu removes decision fatigue.</td>
+        <td>Only 7 ETF choices — no individual shares, no broad ETF range, no CHESS. Custodian model. Not appropriate if you want full control or plan to transfer assets later.</td>
+      </tr>
+      <tr>
+        <td><strong>Pearler</strong></td>
+        <td>$6.50 per trade</td>
+        <td><span style="color:var(--teal);">Yes</span></td>
+        <td>Long-term DCA investors who want automation. Pearler's auto-invest feature places recurring orders without manual intervention. Strong community focus and beginner education built in. CHESS sponsorship included.</td>
+        <td>$6.50 per automated trade means $78/year at monthly DCA frequency. At $200/month, brokerage is 3.25%. Product range smaller than CommSec; US shares access limited.</td>
+      </tr>
+      <tr>
+        <td><strong>SelfWealth</strong></td>
+        <td>$9.50 flat per trade</td>
+        <td><span style="color:var(--teal);">Yes</span></td>
+        <td>Buy-and-hold ASX investors making less frequent, larger trades. The flat $9.50 becomes proportionally cheaper as trade size grows. Community portfolio feature shows what other members hold.</td>
+        <td>$9.50 is expensive for small DCA amounts. US trades also cost $9.50 + FX spread. Mobile app less polished than competitors. Took several years to add US share access.</td>
+      </tr>
+      <tr>
+        <td><strong>Stake</strong></td>
+        <td>$3 ASX · $0 US shares (FX fee applies)</td>
+        <td><span style="color:var(--gold);">Optional — paid add-on</span></td>
+        <td>Investors who want both ASX and US share access in one modern app. $3 ASX brokerage is competitive. US trading is $0 commission but a ~0.7% FX conversion fee applies on each US trade.</td>
+        <td>CHESS sponsorship on ASX requires a paid plan (not default). Custodian model by default. The US FX spread is the real cost: a $1,000 US trade costs ~$7 in conversion fees before any return.</td>
+      </tr>
+      <tr>
+        <td><strong>Vanguard Personal Investor</strong></td>
+        <td>$0 on Vanguard ETFs · $9 on others</td>
+        <td><span style="color:var(--danger);">No (custodian)</span></td>
+        <td>Investors committed to Vanguard's ETF range: VAS, VGS, VDHG, VDBA, VDGR, VDCO. Zero brokerage makes it excellent for pure Vanguard ETF portfolios. Reinvestment built in.</td>
+        <td>Very limited product range outside Vanguard's own funds. No CHESS. Not suitable for anyone who wants individual shares, non-Vanguard ETFs, or US market access.</td>
+      </tr>
+      <tr>
+        <td><strong>BetaShares Direct</strong></td>
+        <td>$0 on BetaShares ETFs · varies on others</td>
+        <td><span style="color:var(--danger);">No (custodian)</span></td>
+        <td>Investors focused on BetaShares products: DHHF (diversified), NDIQ (Nasdaq), A200 (ASX 200), CRED (bonds), ETHI (ethical). Zero brokerage on their ETF range.</td>
+        <td>Custodian model; product range limited primarily to BetaShares ETFs; not suitable for investors wanting broader market access or individual shares.</td>
+      </tr>
+      <tr>
+        <td><strong>Interactive Brokers (AU)</strong></td>
+        <td>AUD $6 minimum · 0.08% of trade value</td>
+        <td><span style="color:var(--danger);">No (IBKR custodian)</span></td>
+        <td>Experienced investors who want global market access from one account — ASX, NYSE, Nasdaq, European exchanges, currencies, bonds, and options. ASIC licensed. Very low FX fee (0.002%). Best for multi-market portfolios.</td>
+        <td>Complex interface not designed for beginners. Minimum monthly activity fee may apply depending on account balance. Reporting requires more work. Not the right starting point for first-time investors.</td>
+      </tr>
+      <tr>
+        <td><strong>Moomoo AU</strong></td>
+        <td>$3 per ASX trade · $0 US (FX fee)</td>
+        <td><span style="color:var(--danger);">No (custodian)</span></td>
+        <td>Modern interface with research tools built in. Competitive pricing for ASX and US market access. Good option for investors who want charting, news, and trading data in a single app.</td>
+        <td>Newer entrant in the Australian market — less established track record. Custodian model. Research tools may encourage more trading than necessary for a long-term DCA investor.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:1.75rem;margin-bottom:.75rem;font-size:1rem;color:var(--soft);">Brokerage cost at different monthly DCA amounts (Australia)</h3>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:.75rem;">Brokerage as % of each contribution — lower is better. <span style="color:var(--teal);font-weight:700;">Low cost</span> · <span style="color:var(--gold);font-weight:700;">moderate</span> · <span style="color:var(--danger);font-weight:700;">high drag on return</span></p>
+
+  <div class="dca-cost-grid">
+    <table>
+      <thead><tr><th>Platform</th><th>$100/mo</th><th>$200/mo</th><th>$500/mo</th><th>$1,000/mo</th><th>CHESS?</th><th>Automation?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CommSec Pocket</strong></td><td class="dca-best">$2 (2.0%)</td><td class="dca-best">$2 (1.0%)</td><td class="dca-mid">~$1 (0.2%)*</td><td class="dca-best">$2 (0.2%)</td><td><span style="color:var(--danger);">No</span></td><td><span style="color:var(--teal);">Yes</span></td></tr>
+        <tr><td><strong>Stake</strong></td><td class="dca-mid">$3 (3.0%)</td><td class="dca-mid">$3 (1.5%)</td><td class="dca-best">$3 (0.6%)</td><td class="dca-best">$3 (0.3%)</td><td><span style="color:var(--gold);">Paid</span></td><td><span style="color:var(--muted);">Limited</span></td></tr>
+        <tr><td><strong>Pearler</strong></td><td class="dca-high">$6.50 (6.5%)</td><td class="dca-mid">$6.50 (3.25%)</td><td class="dca-mid">$6.50 (1.3%)</td><td class="dca-best">$6.50 (0.65%)</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--teal);">Yes (built-in)</span></td></tr>
+        <tr><td><strong>Moomoo</strong></td><td class="dca-mid">$3 (3.0%)</td><td class="dca-mid">$3 (1.5%)</td><td class="dca-best">$3 (0.6%)</td><td class="dca-best">$3 (0.3%)</td><td><span style="color:var(--danger);">No</span></td><td><span style="color:var(--muted);">Limited</span></td></tr>
+        <tr><td><strong>SelfWealth</strong></td><td class="dca-high">$9.50 (9.5%)</td><td class="dca-high">$9.50 (4.75%)</td><td class="dca-mid">$9.50 (1.9%)</td><td class="dca-mid">$9.50 (0.95%)</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--danger);">No</span></td></tr>
+        <tr><td><strong>CommSec</strong></td><td class="dca-high">$5–10 (5–10%)</td><td class="dca-high">$10 (5.0%)</td><td class="dca-mid">$10 (2.0%)</td><td class="dca-mid">$19.95 (2.0%)</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--danger);">No</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.75rem;color:var(--muted);margin-top:.3rem;">*CommSec Pocket switches to 0.20% above $1,000. Verify all current fees on each platform's website before deciding — fees change.</p>
+
+  <div class="callout"><strong>The threshold insight:</strong> at $100–$200/month, CommSec Pocket ($2 flat) has the lowest brokerage drag but no CHESS and only 7 ETF options. At $300–$500/month, Stake or Moomoo ($3 flat) become competitive with CHESS being the key upgrade decision. At $1,000+/month, Pearler with CHESS and auto-invest gives the best balance of cost, ownership, and automation.</div>
+</section>
+
+<section class="section">
+  <h2>CHESS vs custodian: the ownership model that matters</h2>
+  <p>This is one of the most important — and most misunderstood — differences between Australian platforms. Understanding it before you open an account prevents regret later.</p>
+  <div class="ownership-compare">
+    <div class="ownership-card chess">
+      <h4>✅ CHESS sponsored — direct ownership</h4>
+      <ul>
+        <li>You receive a personal HIN (Holder Identification Number)</li>
+        <li>Your name appears directly on the ASX register</li>
+        <li>Shares legally belong to you regardless of broker status</li>
+        <li>HIN can be transferred to any other CHESS-sponsored broker without selling</li>
+        <li>Annual holding statements issued directly by the registry (Computershare, Link)</li>
+        <li>Platforms: CommSec, SelfWealth, Pearler, Stake (paid upgrade)</li>
+      </ul>
+    </div>
+    <div class="ownership-card custodian">
+      <h4>⚠️ Custodian model — beneficial ownership</h4>
+      <ul>
+        <li>Platform holds assets in a pooled account on your behalf</li>
+        <li>You are the beneficial owner but do not appear on the ASX register</li>
+        <li>If the broker faces insolvency, assets may be frozen temporarily during resolution</li>
+        <li>Cannot transfer holdings to a CHESS broker without selling first</li>
+        <li>Generally fine for ASIC-regulated, established platforms — but understand the structure</li>
+        <li>Platforms: CommSec Pocket, Vanguard Personal, BetaShares Direct, Moomoo, IBKR</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>Practical reality for beginners:</strong> custodian platforms from established, ASIC-regulated issuers are safe for most investors. The key risk is operational (access delays during platform issues) rather than loss of assets. For long-term ETF portfolios where you want full control, portability, and the strongest legal ownership position, CHESS is the standard to target as your portfolio grows.</div>
+</section>
+
+<!-- ─────────────────────────────────────────────────
+     UNITED STATES
+────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 style="font-size:1.3rem;margin-bottom:.3rem;">🇺🇸 United States</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.1rem;">$0 commissions across all major platforms · Roth IRA / 401(k) tax wrappers · S&P 500 and total market index funds</p>
+
+  <p>The United States has the most competitive retail brokerage market in the world. Commission-free trading became the standard in 2019 when Schwab cut commissions to zero, forcing every major broker to follow within days. The result: US investors now pay nothing to buy or sell stocks and ETFs at the major platforms. The choice between US platforms therefore comes down to research quality, account types, fractional shares, platform depth, and the specific funds available.</p>
+
+  <table class="mini-table">
+    <thead><tr><th>Platform</th><th>Commission</th><th>Fractional shares</th><th>Best suited for</th><th>Key feature</th><th>Limitation</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Fidelity</strong></td>
+        <td><span style="color:var(--teal);">$0</span></td>
+        <td><span style="color:var(--teal);">Yes — Stocks by the Slice ($1 min)</span></td>
+        <td>Beginners and long-term investors. Best all-around US platform for most people starting out. No account minimum. No inactivity fees. Excellent customer service.</td>
+        <td>Fidelity's own FZROX (US total market, 0% expense ratio) and FXAIX (S&P 500, 0.015% ER) are among the cheapest index funds in the world. Zero-fee funds unavailable elsewhere.</td>
+        <td>Website can feel dense at first. Proprietary zero-fee funds only available at Fidelity — if you leave the platform, you'd need to sell and move to similar (but not identical) ETFs like VTI or VOO.</td>
+      </tr>
+      <tr>
+        <td><strong>Charles Schwab</strong></td>
+        <td><span style="color:var(--teal);">$0</span></td>
+        <td><span style="color:var(--teal);">Yes — Schwab Stock Slices ($5 min)</span></td>
+        <td>Investors who want a combination of research depth, customer service, and full platform capability. Acquired TD Ameritrade in 2020, inheriting the thinkorswim trading platform.</td>
+        <td>Strong proprietary ETF range (SCHB US total market 0.03%, SCHX large cap 0.03%, SCHD dividend 0.06%). thinkorswim available for more advanced chart work when ready.</td>
+        <td>thinkorswim is not needed and can be overwhelming for beginners. Some legacy TD Ameritrade accounts still transitioning to Schwab interface post-merger.</td>
+      </tr>
+      <tr>
+        <td><strong>Vanguard (US)</strong></td>
+        <td><span style="color:var(--teal);">$0</span></td>
+        <td><span style="color:var(--danger);">No</span></td>
+        <td>Long-term buy-and-hold index investors committed to the Vanguard philosophy. The natural home for VTI, VOO, VXUS, BND, and other Vanguard ETFs. Platform is designed around patience, not activity.</td>
+        <td>Vanguard ETFs (VTI 0.03%, VOO 0.03%, VXUS 0.07%) are among the most widely held index funds in the world. Platform is stable and deliberately simple — designed to discourage overtrading.</td>
+        <td>Website is dated and less intuitive than competitors. No fractional ETF shares. Customer service can be slow. Poor fit for investors who want trading tools, research, or frequent interaction.</td>
+      </tr>
+      <tr>
+        <td><strong>Robinhood</strong></td>
+        <td><span style="color:var(--teal);">$0</span></td>
+        <td><span style="color:var(--teal);">Yes ($1 min)</span></td>
+        <td>Simple first-account for very early investors. Easy sign-up, clean interface, crypto available alongside stocks.</td>
+        <td>Mobile-first design. Fractional shares accessible. IRA options available. Has added features like Robinhood Gold (research, higher yield) over time.</td>
+        <td>Designed to encourage frequent use — notification design, interface patterns, and social features can push toward overtrading. Limited research. History of controversial practices. Not recommended as a primary long-term investing platform.</td>
+      </tr>
+      <tr>
+        <td><strong>Interactive Brokers Lite</strong></td>
+        <td><span style="color:var(--teal);">$0 (Lite tier)</span></td>
+        <td><span style="color:var(--teal);">Yes</span></td>
+        <td>Investors who need global market access from a US account: international ETFs, bonds, currencies, futures, and 90+ countries. The best platform for non-US residents who want a US brokerage account.</td>
+        <td>IBKR Pro tier offers institutional-grade tools and lower per-share costs for active traders. Lite tier is genuinely $0 for retail. Unmatched global reach. Low FX conversion rates (0.002%).</td>
+        <td>Most complex platform interface on this list. Not beginner-first in design. IBKR Pro tier uses a tiered commission structure rather than flat $0. Platform depth can be overwhelming.</td>
+      </tr>
+      <tr>
+        <td><strong>M1 Finance</strong></td>
+        <td><span style="color:var(--teal);">$0</span></td>
+        <td><span style="color:var(--teal);">Yes (fractional slices)</span></td>
+        <td>Automated DCA investors who want a "set and forget" portfolio. You define target allocations in "pies" and M1 automatically rebalances each contribution proportionally.</td>
+        <td>Portfolio automation is genuinely powerful for systematic investors. Contributions are distributed to match your target allocation without manual rebalancing. IRA and taxable accounts available.</td>
+        <td>No real-time order placement — trades execute at a scheduled window (morning for basic, afternoon for M1 Plus). Not suitable for price-sensitive trading or anyone who wants live order execution.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:1.75rem;margin-bottom:.75rem;font-size:1rem;color:var(--soft);">Key index funds at US platforms — what to look for</h3>
+  <div class="grid-2">
+    <div class="tile"><strong>Fidelity zero-fee funds</strong><p>FZROX (US total market, 0% ER), FZILX (international, 0% ER), FXAIX (S&P 500, 0.015% ER). Only available at Fidelity accounts. If you ever switch platforms, you'll need to sell and move to equivalent ETFs like VTI or VXUS.</p></div>
+    <div class="tile"><strong>Vanguard ETFs (available anywhere)</strong><p>VTI (US total market, 0.03%), VOO (S&P 500, 0.03%), VXUS (international, 0.07%), BND (US bonds, 0.03%), VT (global all-world, 0.07%). These are available at every US brokerage and can be transferred between platforms.</p></div>
+    <div class="tile"><strong>Schwab ETFs</strong><p>SCHB (US total market, 0.03%), SCHX (US large cap, 0.03%), SCHY (international dividend, 0.14%), SCHD (US dividend, 0.06%). Very competitive costs; available at Schwab and most other brokers.</p></div>
+    <div class="tile"><strong>iShares (BlackRock) ETFs</strong><p>IVV (S&P 500, 0.03%), IEFA (international developed, 0.07%), AGG (US bonds, 0.03%), ITOT (US total market, 0.03%). Widely available, extremely liquid, frequently used by institutional investors.</p></div>
+  </div>
+
+  <h3 style="margin-top:1.75rem;margin-bottom:.75rem;font-size:1rem;color:var(--soft);">US account types: which wrapper to use and in what order</h3>
+  <div class="grid-2">
+    <div class="tile"><strong>1. 401(k) with employer match — always first</strong><p>If your employer offers a 401(k) match, contribute enough to receive the full match before anything else. An employer matching 50% of your contribution up to 6% of salary is an instant 50% return before any market gain. This is the highest-return "investment" available to most US workers.</p></div>
+    <div class="tile"><strong>2. Roth IRA — after getting full match</strong><p>Contributions are after-tax, but growth and qualifying withdrawals in retirement are completely tax-free. 2024 contribution limit: $7,000/year ($8,000 if aged 50+). Open at Fidelity, Schwab, or Vanguard. Invest in low-cost index ETFs. Start here before a taxable brokerage account.</p></div>
+    <div class="tile"><strong>3. Traditional IRA — if Roth not available</strong><p>Pre-tax contributions may be deductible depending on your income and whether you have a workplace plan. Growth is tax-deferred. Withdrawals in retirement are taxed as ordinary income. Same $7,000 limit as Roth (shared limit — total combined Roth + Traditional cannot exceed $7,000).</p></div>
+    <div class="tile"><strong>4. Taxable brokerage — for amounts beyond tax-advantaged limits</strong><p>No contribution limits. Capital gains tax applies on profits — short-term gains (under 12 months) taxed as ordinary income; long-term gains (12+ months) at 0%, 15%, or 20% depending on income. Use after maximising tax-advantaged options.</p></div>
+  </div>
+
+  <div class="callout"><strong>US beginner priority in order:</strong> (1) Contribute enough to 401(k) to get full employer match. (2) Max Roth IRA ($7,000). (3) Continue 401(k) up to annual limit ($23,000 in 2024). (4) Taxable brokerage for any additional saving. Within each account: buy broad, low-cost index ETFs. VOO, VTI, VXUS, or the Fidelity zero-fee equivalents depending on your platform.</div>
+</section>
+
+<!-- ─────────────────────────────────────────────────
+     BRAZIL
+────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 style="font-size:1.3rem;margin-bottom:.3rem;">🇧🇷 Brazil</h2>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.1rem;">B3 stock exchange · Tesouro Direto government bonds · FIIs · ETFs in BRL · corretagem R$0 on most platforms</p>
+
+  <p>Brazil's brokerage market has transformed dramatically over the past decade. Traditional high-fee stockbrokers have been replaced by digital corretoras offering R$0 brokerage on B3 equities. The result is that the cost barrier for accessing Brazilian stocks, ETFs, and FIIs has effectively been eliminated — the question now is which platform's product range, interface, fixed-income access, and research quality best serves your needs.</p>
+
+  <table class="mini-table">
+    <thead><tr><th>Corretora</th><th>B3 brokerage</th><th>Fixed income access</th><th>Best suited for</th><th>Key strength</th><th>Key limitation</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>XP Investimentos</strong></td>
+        <td><span style="color:var(--teal);">R$0 on most products</span></td>
+        <td>Tesouro Direto, CDB, LCI, LCA, CRI, CRA, debentures, fundos</td>
+        <td>Investors who want the broadest product range in Brazil under one roof. From Tesouro Selic for cash management through BDRs for international exposure and options for advanced strategies.</td>
+        <td>Brazil's largest independent broker. Strong research team (XP Research). Full product catalogue. The "CommSec of Brazil" — reliable, established, and comprehensive.</td>
+        <td>Interface can feel complex and product-heavy. Customer service has historically been a pain point for some users. Some fixed-income products require minimum investments of R$1,000+.</td>
+      </tr>
+      <tr>
+        <td><strong>Clear Corretora</strong></td>
+        <td><span style="color:var(--teal);">R$0 on B3 stocks, ETFs, FIIs</span></td>
+        <td>More limited than XP — primarily equity-focused</td>
+        <td>Active and day traders who want zero-cost equity trading on B3. Part of the XP group — uses the same back-end infrastructure as XP with a more trading-focused interface.</td>
+        <td>Best R$0 brokerage experience for frequent B3 equity trading. Strong charting and order-entry tools. Integration with XP's clearing infrastructure means high reliability.</td>
+        <td>Less focused on fixed-income; primarily designed for equity and derivatives traders rather than beginner investors building a diversified portfolio.</td>
+      </tr>
+      <tr>
+        <td><strong>Rico</strong></td>
+        <td><span style="color:var(--teal);">R$0 on most products</span></td>
+        <td>Tesouro Direto, CDB, LCI, LCA, fundos</td>
+        <td>Beginners within the XP ecosystem who want a simpler interface with good product access. More focused on education and guided investing than XP's main platform.</td>
+        <td>More beginner-friendly navigation than XP. Same back-end product access as XP. Strong for investors who want to start with Tesouro Selic and gradually add B3 ETFs.</td>
+        <td>Same infrastructure as XP — limited differentiation for experienced investors. Product range slightly narrower than XP's main platform. Interface less powerful for active traders.</td>
+      </tr>
+      <tr>
+        <td><strong>NuInvest (Nubank group)</strong></td>
+        <td><span style="color:var(--teal);">R$0 on B3 stocks, ETFs, FIIs</span></td>
+        <td>Tesouro Direto, CDB (Nu and third-party), fundos</td>
+        <td>Nubank customers who want investing integrated with their banking app. Very beginner-friendly. Previously called Easynvest before Nubank acquisition.</td>
+        <td>Seamless integration with the Nubank app — one login for banking and investing. Clean, simple interface. Strong brand trust among younger Brazilian investors. Crypto available via Nubank's separate entity.</td>
+        <td>Product range narrower than XP/Rico. Fixed-income selection smaller — fewer CDB issuers, no CRI/CRA/debentures. Research tools still developing compared to established brokers.</td>
+      </tr>
+      <tr>
+        <td><strong>BTG Pactual Digital</strong></td>
+        <td><span style="color:var(--teal);">R$0 on most B3 products</span></td>
+        <td>Broad — Tesouro, CDB, LCI, LCA, CRI, CRA, fundos exclusivos, previdência</td>
+        <td>Investors with larger portfolios (R$5,000+) who value institutional-grade research and a broader product set including exclusives. BTG is Brazil's largest investment bank.</td>
+        <td>Best research quality among Brazilian retail platforms. Access to exclusivo products and structured notes not available at XP or Rico. Strong fixed-income shelf including CRI/CRA with high yields.</td>
+        <td>Interface less intuitive for pure beginners. Some premium products have higher minimums. Customer service geared toward larger account holders. Less suitable as a starter platform for small monthly contributions.</td>
+      </tr>
+      <tr>
+        <td><strong>Inter Invest</strong></td>
+        <td><span style="color:var(--teal);">R$0 on B3 products</span></td>
+        <td>Tesouro Direto, CDB (Inter Bank), some LCI/LCA</td>
+        <td>Inter banking customers who want investing in the same app. Easy integration, beginner-friendly, suitable for small regular contributions.</td>
+        <td>One app for banking, cards, and investing. Clean interface. Good starter platform for those already using Inter for banking.</td>
+        <td>Fixed-income product range limited primarily to Inter Bank's own CDB and Tesouro Direto. Less suitable for investors who want competitive third-party CDB rates or a broad shelf of fixed-income products.</td>
+      </tr>
+      <tr>
+        <td><strong>Toro Investimentos</strong></td>
+        <td><span style="color:var(--teal);">R$0 on B3 products</span></td>
+        <td>Tesouro Direto, CDB, some LCI/LCA</td>
+        <td>Beginners who value education and guided investing alongside the product access. Toro has invested in educational content and beginner onboarding.</td>
+        <td>Strong educational resources integrated into the platform. Good for investors who want to learn and invest in the same environment. Recently part of BTG ecosystem.</td>
+        <td>Product range not as broad as XP or BTG main platform. Less suitable for experienced investors who have outgrown beginner-focused interfaces.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:1.75rem;margin-bottom:.75rem;font-size:1rem;color:var(--soft);">Key products and concepts that differ in Brazil</h3>
+  <div class="grid-2">
+    <div class="tile"><strong>FGC guarantee: R$250,000 per CPF per institution</strong><p>The Fundo Garantidor de Créditos protects CDB, LCI, LCA, poupança, and some other bank-issued products up to R$250,000 per CPF per institution. If you hold more than this in CDB with a single bank, consider spreading across multiple issuers to maintain full FGC coverage.</p></div>
+    <div class="tile"><strong>Income tax on fixed income: progressive, regressive by term</strong><p>CDB and Tesouro Prefixado/IPCA+ pay income tax (IR) on returns: 22.5% for under 6 months, 20% for 6–12 months, 17.5% for 12–24 months, and 15% for over 24 months. LCI and LCA are income tax exempt for individuals — compare net return, not gross rate.</p></div>
+    <div class="tile"><strong>Come-cotas: the fund tax that runs on a schedule</strong><p>Brazilian investment funds (fundos de investimento, not ETFs) pay come-cotas — a mandatory redemption of units to pay tax on 31 May and 30 November every year, even if you have not sold. This reduces your unit count while you hold. B3-listed ETFs like BOVA11 and IVVB11 do NOT use come-cotas — one reason many investors prefer ETFs over fundos.</p></div>
+    <div class="tile"><strong>B3 vs Tesouro Direto: same corretora, different systems</strong><p>B3 is Brazil's stock and ETF exchange (stocks, ETFs, FIIs, options, BDRs). Tesouro Direto is a separate government bond programme operated by the Treasury. Both are accessible through your corretora, but they involve different risks, tax treatments, and market hours. Know which you are accessing before placing an order.</p></div>
+    <div class="tile"><strong>CDI rate: the benchmark for fixed income</strong><p>Most Brazilian CDB products pay a percentage of the CDI (Certificado de Depósito Interbancário) rate, which closely tracks the Selic. At a Selic of ~14.75%, a CDB at 100% CDI pays approximately 14.75% per year before income tax. A CDB at 110% CDI pays more. Always compare net of tax when choosing between products.</p></div>
+    <div class="tile"><strong>BDRs: international shares on B3 in BRL</strong><p>Brazilian Depositary Receipts let you hold certificates representing Apple, Microsoft, Amazon, and hundreds of other global companies, denominated in BRL on B3. Currency risk is built in — when the BRL weakens against the USD, BDR values in BRL rise. This makes BDRs a natural FX hedge for Brazilian investors. Available at XP, Rico, BTG, and NuInvest.</p></div>
+  </div>
+
+  <h3 style="margin-top:1.75rem;margin-bottom:.75rem;font-size:1rem;color:var(--soft);">Brazilian platform comparison at different monthly contribution levels</h3>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:.75rem;">With R$0 brokerage widespread, the key differentiators at different levels are minimum investment requirements and product access.</p>
+
+  <div class="dca-cost-grid">
+    <table>
+      <thead><tr><th>Corretora</th><th>R$100/mo</th><th>R$500/mo</th><th>R$2,000/mo</th><th>Tesouro Direto?</th><th>CDB third party?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>NuInvest / Nubank</strong></td><td class="dca-best">✅ Easy start</td><td class="dca-best">✅ Good</td><td class="dca-mid">⚠️ Product range limits</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--gold);">Limited issuers</span></td></tr>
+        <tr><td><strong>Rico (XP group)</strong></td><td class="dca-best">✅ Easy start</td><td class="dca-best">✅ Good</td><td class="dca-best">✅ Full access</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--teal);">Yes — many issuers</span></td></tr>
+        <tr><td><strong>XP Investimentos</strong></td><td class="dca-mid">⚠️ Can feel complex</td><td class="dca-best">✅ Good</td><td class="dca-best">✅ Full access</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--teal);">Yes — broadest shelf</span></td></tr>
+        <tr><td><strong>Inter Invest</strong></td><td class="dca-best">✅ Easy start</td><td class="dca-best">✅ Good</td><td class="dca-mid">⚠️ Fixed income limited</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--gold);">Inter Bank CDB only</span></td></tr>
+        <tr><td><strong>BTG Pactual Digital</strong></td><td class="dca-mid">⚠️ Interface complexity</td><td class="dca-best">✅ Good</td><td class="dca-best">✅ Best product access</td><td><span style="color:var(--teal);">Yes</span></td><td><span style="color:var(--teal);">Yes — incl. exclusives</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout"><strong>Brazilian beginner priority:</strong> Start with NuInvest or Rico if you are already a Nubank customer or want the simplest interface. Use XP when your portfolio grows and you want access to more CDB issuers, CRI/CRA, and a broader fixed-income shelf. Move to BTG for institutional-quality research and exclusive products when your portfolio justifies the interface complexity. Always compare net-of-tax returns, not gross rates — an LCI at 90% CDI with zero tax may beat a CDB at 103% CDI after 22.5% income tax.</div>
+</section>
+
+<!-- ─────────────────────────────────────────────────
+     MULTI-MARKET
+────────────────────────────────────────────────── -->
+<section class="section">
+  <h2>Multi-market platforms: one account, global access</h2>
+  <p>Some platforms allow investors from any of these three countries to access global markets from a single account. They are more complex but relevant for members who want international diversification without maintaining separate accounts in each country.</p>
+
+  <table class="mini-table">
+    <thead><tr><th>Platform</th><th>Accessible from</th><th>Main use case</th><th>Cost structure</th><th>Key note</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Interactive Brokers (IBKR)</strong></td>
+        <td>AU, BR, US, 200+ countries</td>
+        <td>Access US ETFs (VTI, VOO, QQQ), ASX shares, European ETFs, and more from one account. USD base currency. Exceptional for multi-country portfolios.</td>
+        <td>Lite tier: $0 US commissions. Pro tier: tiered per-share. FX: 0.002% — the lowest available. Inactivity fee may apply depending on account balance.</td>
+        <td>ASIC licensed for AU users. Complex interface — best for investors who are comfortable with English-language finance tools and do not need hand-holding. Not a beginner-first platform.</td>
+      </tr>
+      <tr>
+        <td><strong>eToro</strong></td>
+        <td>AU, BR, US, 100+ countries</td>
+        <td>Stocks, ETFs, crypto. Copy-trading feature mirrors other investors' portfolios. Good brand recognition among newer retail investors globally.</td>
+        <td>$0 commission on stocks. FX and overnight fees apply. Spread-based pricing on some instruments. Copy-trading is a feature, not a free service.</td>
+        <td>Custodian model — you do not own shares directly. Copy-trading is a feature, not a strategy. Platform design encourages frequent interaction. Better suited to active, social investors than long-term buy-and-hold.</td>
+      </tr>
+      <tr>
+        <td><strong>Moomoo (global)</strong></td>
+        <td>AU, US, SG, and expanding</td>
+        <td>ASX and US market access in one app with integrated research tools. Popular for investors wanting AU + US dual-market access with modern interface.</td>
+        <td>$3 ASX / $0 US stocks (FX applies for non-USD accounts). Research tools included at no additional cost.</td>
+        <td>Custodian model. Newer entrant in some markets. Interface includes community features and social trading elements — consider whether this encourages more trading than planned.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout"><strong>Who benefits from IBKR:</strong> Australian investors who want direct US market access (VTI, QQQ, VOO) without high FX spreads on AU platforms. Brazilian investors wanting a USD-denominated account with access to US ETFs and international markets beyond the BDR system. In both cases, familiarity with English-language financial platforms and comfort with a complex interface are prerequisites. Start with your domestic platform first, then add IBKR when you genuinely need the global access.</div>
+</section>
+
+<section class="section">
+  <h2>8 things to compare regardless of country</h2>
+  <div class="grid-2">
+    <div class="tile"><strong>1. Total cost</strong><p>Brokerage, FX spread, account fees, inactivity fees, and fund management fees all matter together. A $0 commission trade can still be expensive if the FX spread is 0.7%.</p></div>
+    <div class="tile"><strong>2. Product access</strong><p>Can you buy what you actually want? Check your specific ETFs, asset classes, account types (Roth IRA, Tesouro), and market access before opening an account.</p></div>
+    <div class="tile"><strong>3. Ownership model</strong><p>CHESS (AU direct ownership), SIPC insurance (US custodian up to $500K), FGC (BR bank-issued products up to R$250K). Understand the protection structure before depositing.</p></div>
+    <div class="tile"><strong>4. Tax reporting</strong><p>Annual statements, trade confirmations, distribution reports, and CSV exports. Test whether your accountant in your country can actually use the format before you have a problem at tax time.</p></div>
+    <div class="tile"><strong>5. Automation</strong><p>If your plan is monthly DCA, auto-invest features and recurring deposits matter more than platform aesthetics. A platform that requires manual action each month creates a friction point that compounds over years.</p></div>
+    <div class="tile"><strong>6. Security</strong><p>Two-factor authentication, withdrawal address controls, device management, and responsive support if something goes wrong. Check this before depositing anything meaningful.</p></div>
+    <div class="tile"><strong>7. Beginner safety</strong><p>The best platform for a beginner is the one where it is hardest to accidentally buy the wrong thing. Fewer products, clearer screens, and deliberate friction in order placement are features, not flaws.</p></div>
+    <div class="tile"><strong>8. Support quality</strong><p>Know how support works before you need it: phone, email, chat, response time, language availability. Platform problems happen at the worst times — know who to call.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>How to avoid choosing the wrong platform</h2>
+  <ol class="steps">
+    <li><div><strong>Write your investing plan first.</strong> Platform choice should follow your goal, not create it. Know your asset type, country, frequency, and amount before looking at platforms.</div></li>
+    <li><div><strong>Choose your country and asset type.</strong> ASX ETF, US index fund, Brazilian Tesouro, or a mix? The right platform is dictated by where your first investment sits.</div></li>
+    <li><div><strong>Calculate the actual cost of your behaviour.</strong> Monthly $200 DCA and an occasional $5,000 buy have completely different fee sensitivities. Do the maths for your specific plan.</div></li>
+    <li><div><strong>Open with a small test amount.</strong> Learn deposits, order entry, confirmations, tax statements, and withdrawals before moving significant money in.</div></li>
+    <li><div><strong>Check tax reporting before it matters.</strong> Request a sample annual statement or check the help centre. The nicest-looking app becomes frustrating if export formats are incomplete at tax time.</div></li>
+  </ol>
+</section>
+
+<section class="section">
+  <h2>Continue your learning path</h2>
+  <div class="callout"><strong>Next recommended guide:</strong> <a href="15-first-trade-walkthrough.html">First Trade Walkthrough — from pre-trade checklist to post-trade records and your first 30-day investing habit →</a></div>
+</section>
+
+<section class="section warning">
+  <h2>Plainvest platform rule</h2>
+  <p>A platform is a tool, not a strategy. Do not pick one because a creator promoted it, because the app looks exciting, or because it offers the most products. Pick the platform that makes your investing plan easier to follow, safer to record, and calmer to repeat — then use it consistently for years.</p>
+</section>
 </main></body></html>

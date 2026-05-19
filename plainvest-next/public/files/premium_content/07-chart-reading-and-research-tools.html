@@ -26,6 +26,12 @@
     <div class="kicker">Premium Research Guide</div>
     <h1>Read charts without becoming a <em>gambler.</em></h1>
     <p class="lead">Chart tools can help members understand price history, trend, volatility, and levels. They should support research, not replace a plan.</p>
+    <div class="stat-row">
+      <div class="stat-block"><span class="stat-num">Monthly</span><span class="stat-label">timeframe — start here for context before zooming in to weekly or daily</span></div>
+      <div class="stat-block gold"><span class="stat-num">5</span><span class="stat-label">candlestick patterns worth understanding before reading a chart</span></div>
+      <div class="stat-block danger"><span class="stat-num">RSI</span><span class="stat-label">most misused indicator — overbought ≠ sell signal in a strong trend</span></div>
+      <div class="stat-block soft"><span class="stat-num">Live</span><span class="stat-label">TradingView embed with market picker — QQQ, SPY, BTC, Gold</span></div>
+    </div>
   </header>
   <section class="section">
     <h2>What charts are useful for</h2>
@@ -126,6 +132,95 @@
   </section>
 
   <section class="section">
+    <h2>Indicators beginners commonly misuse</h2>
+    <p>Most beginner chart mistakes do not come from not knowing enough indicators — they come from using simple indicators as if they make investing decisions obvious. They do not.</p>
+    <table class="mini-table">
+      <thead><tr><th>Indicator</th><th>What it actually does</th><th>Common misuse</th></tr></thead>
+      <tbody>
+        <tr><td>RSI (Relative Strength Index)</td><td>Measures recent price speed on a 0–100 scale. Above 70 is called "overbought", below 30 "oversold".</td><td>Treating 70+ as a sell signal and 30- as a buy signal. An asset can stay "overbought" for months during a trend.</td></tr>
+        <tr><td>MACD</td><td>Shows momentum by comparing two moving averages. Crossovers are often highlighted.</td><td>Treating every crossover as an entry or exit. Most crossovers produce false signals in choppy markets.</td></tr>
+        <tr><td>Bollinger Bands</td><td>Price channels showing standard deviation from a moving average.</td><td>Assuming price must "bounce" from the lower band or "reverse" from the upper. Price can walk the band for extended periods.</td></tr>
+        <tr><td>Moving average crossovers</td><td>"Golden cross" (50-day crosses above 200-day) is often described as bullish.</td><td>The cross lags actual price — it often appears after the move has already happened.</td></tr>
+        <tr><td>Fibonacci levels</td><td>Price retracement levels drawn at specific percentages between a high and low.</td><td>Treating them as precise support/resistance. They are zones, and price does not respect them reliably.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Plainvest rule:</strong> Indicators explain past price. They do not predict future price. Use them to understand context and volatility, not to generate "signals" that tell you when to buy or sell.</div>
+  </section>
+
+  <section class="section">
+    <h2>Economic events that move markets</h2>
+    <p>Markets do not move randomly. Certain scheduled announcements regularly create price volatility across stocks, ETFs, Bitcoin, and currencies. Knowing when these happen helps members avoid being surprised, and helps avoid placing orders immediately before major events.</p>
+    <table class="mini-table">
+      <thead><tr><th>Event</th><th>Who publishes it</th><th>Why it moves markets</th><th>How often</th></tr></thead>
+      <tbody>
+        <tr><td>Central bank interest rate decision</td><td>US Fed, RBA, ECB, others</td><td>Rate changes affect borrowing costs, stock valuations, and currency. Unexpected changes can cause sharp moves in all assets.</td><td>8 times/year (US Fed); 8 times/year (RBA)</td></tr>
+        <tr><td>US CPI inflation report</td><td>US Bureau of Labor Statistics</td><td>Shows whether inflation is rising or falling. Affects expectations for Fed rate decisions and growth stocks heavily.</td><td>Monthly</td></tr>
+        <tr><td>Australian CPI</td><td>Australian Bureau of Statistics (ABS)</td><td>Affects RBA rate expectations, property-linked assets, and consumer confidence.</td><td>Quarterly (monthly from 2023)</td></tr>
+        <tr><td>US Non-Farm Payrolls (jobs report)</td><td>US Bureau of Labor Statistics</td><td>Strong jobs = Fed may raise rates. Weak jobs = potential cuts. Major US market mover on release day.</td><td>First Friday of each month</td></tr>
+        <tr><td>Company earnings (ASX / S&P 500)</td><td>Individual companies</td><td>Revenue, profit, and guidance can move individual stocks 10–30% on a single day. ETFs are less affected unless a giant like Apple or BHP reports.</td><td>Quarterly (US); Semi-annual (ASX)</td></tr>
+        <tr><td>US GDP report</td><td>Bureau of Economic Analysis</td><td>Measures overall economic output. Two consecutive negative quarters = technical recession definition. Moves broad markets.</td><td>Quarterly (advance, revised, final)</td></tr>
+        <tr><td>FOMC meeting minutes</td><td>US Federal Reserve</td><td>More detail on what Fed members discussed. Can shift bond and currency markets significantly.</td><td>3 weeks after each meeting</td></tr>
+        <tr><td>Bitcoin halving</td><td>Bitcoin protocol (block schedule)</td><td>Reduces new issuance. Historically associated with narratives around scarcity. Not a guaranteed price catalyst.</td><td>Approximately every 4 years</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Practical use:</strong> add key economic dates to a calendar. Avoid placing large limit orders or making major buying decisions on the same day as a major Fed meeting, CPI print, or company earnings. Prices can gap significantly in either direction within minutes of the announcement.</div>
+  </section>
+
+  <section class="section">
+    <h2>Reading a candlestick: the basics every investor should know</h2>
+    <p>Candlestick charts show four prices for each time period: open, high, low, and close. Most serious investors use candlestick charts rather than line charts because they show more information at a glance. You do not need to memorise dozens of patterns — but understanding one candle is genuinely useful.</p>
+    <div style="overflow-x:auto;padding-bottom:.5rem;">
+      <svg viewBox="0 0 700 200" role="img" aria-label="Candlestick diagram showing bullish and bearish candle anatomy" style="min-width:420px;width:100%;height:auto;display:block;">
+        <!-- Bullish candle (left) -->
+        <line x1="150" y1="30" x2="150" y2="75" stroke="#00d4aa" stroke-width="2.5"/>
+        <rect x="125" y="75" width="50" height="80" rx="3" fill="#00d4aa" fill-opacity=".8"/>
+        <line x1="150" y1="155" x2="150" y2="185" stroke="#00d4aa" stroke-width="2.5"/>
+        <text x="150" y="22" fill="#00d4aa" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Bullish candle</text>
+        <text x="150" y="198" fill="#4a7090" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">(Close &gt; Open)</text>
+        <!-- Labels for bullish -->
+        <line x1="178" y1="32" x2="210" y2="32" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="215" y="36" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">High (wick)</text>
+        <line x1="178" y1="75" x2="210" y2="75" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="215" y="79" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">Close (top of body)</text>
+        <line x1="178" y1="155" x2="210" y2="155" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="215" y="159" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">Open (bottom of body)</text>
+        <line x1="178" y1="184" x2="210" y2="184" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="215" y="188" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">Low (wick)</text>
+        <!-- Bearish candle (right) -->
+        <line x1="530" y1="25" x2="530" y2="65" stroke="#e05555" stroke-width="2.5"/>
+        <rect x="505" y="65" width="50" height="80" rx="3" fill="#e05555" fill-opacity=".8"/>
+        <line x1="530" y1="145" x2="530" y2="188" stroke="#e05555" stroke-width="2.5"/>
+        <text x="530" y="17" fill="#e05555" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Bearish candle</text>
+        <text x="530" y="200" fill="#4a7090" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">(Close &lt; Open)</text>
+        <!-- Labels for bearish -->
+        <line x1="503" y1="27" x2="470" y2="27" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="345" y="31" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">High (wick)</text>
+        <line x1="503" y1="65" x2="470" y2="65" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="345" y="69" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">Open (top of body)</text>
+        <line x1="503" y1="145" x2="470" y2="145" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="345" y="149" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">Close (bottom of body)</text>
+        <line x1="503" y1="187" x2="470" y2="187" stroke="#4a7090" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="345" y="191" fill="#4a7090" font-size="10" font-family="Sora,sans-serif">Low (wick)</text>
+      </svg>
+    </div>
+    <div class="grid-2">
+      <div class="tile"><strong>What to read from a single candle</strong><p>A green (or white) candle means price closed higher than it opened — buyers were dominant. A red (or black) candle means price closed lower than it opened — sellers were dominant. The wick shows how far price traveled outside the body: a long upper wick means price was rejected at higher levels. A long lower wick means buyers stepped in after a drop.</p></div>
+      <div class="tile"><strong>What not to read from a single candle</strong><p>A single candle does not predict the next one. One big red candle after months of green candles can be noise, a news event, or the start of a reversal — you cannot tell from one candle alone. Context (where is this on the monthly chart? what just happened macroeconomically?) matters far more than the candle pattern in isolation.</p></div>
+    </div>
+    <table class="mini-table">
+      <thead><tr><th>Candle feature</th><th>What it can suggest</th><th>What to check alongside it</th></tr></thead>
+      <tbody>
+        <tr><td>Long green body, small wicks</td><td>Strong buying pressure throughout the period — bulls were in control.</td><td>Is this consistent with the trend, or a single spike in a bearish context?</td></tr>
+        <tr><td>Long red body, small wicks</td><td>Strong selling pressure — bears were in control throughout.</td><td>Is this the 5th consecutive red candle (trend) or the 1st after a big rise (potential reversal or news)?</td></tr>
+        <tr><td>Long upper wick, small body</td><td>Price pushed higher but was rejected — sellers entered near the highs.</td><td>Did this happen near a historically significant resistance area?</td></tr>
+        <tr><td>Long lower wick, small body (called a hammer)</td><td>Price dropped sharply but recovered — buyers emerged near the lows.</td><td>Is this near a support area? Does volume confirm that buyers were active?</td></tr>
+        <tr><td>Doji (open ≈ close, both wicks)</td><td>Indecision — neither buyers nor sellers dominated the period.</td><td>After a strong trend, a doji may suggest the trend is weakening. In a range, it may mean nothing.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Plainvest candlestick rule:</strong> use candles to understand what already happened, not to predict what must happen next. A hammer candle at a support area on a weekly chart is interesting context for research. It is not a buy signal.</div>
+  </section>
+
+  <section class="section">
     <h2>Research dashboard ideas</h2>
     <ul class="checklist">
       <li>Watchlist split by core assets, satellites, learning only, and avoid.</li>
@@ -191,6 +286,11 @@
       resetChart();
     })();
   </script>
+
+  <section class="section">
+    <h2>Continue your learning path</h2>
+    <div class="callout"><strong>Next recommended guide:</strong> <a href="08-crypto-cycle-lessons.html">Crypto Cycle Lessons — real market collapses, cycle psychology, and risk controls →</a></div>
+  </section>
 </main>
 </body>
 </html>

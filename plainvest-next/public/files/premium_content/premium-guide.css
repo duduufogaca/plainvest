@@ -1364,9 +1364,304 @@ li { margin:.24rem 0; font-size:.84rem; }
   text-align:center;
   padding:.7rem;
 }
+/* ── Stat blocks ─────────────────────────────────────── */
+.stat-row {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:.85rem;
+  margin:1.25rem 0;
+}
+.stat-block {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.25rem 1rem;
+  text-align:center;
+}
+.stat-block .stat-num {
+  display:block;
+  font-size:1.9rem;
+  font-weight:900;
+  color:var(--teal);
+  line-height:1.1;
+}
+.stat-block .stat-label {
+  display:block;
+  font-size:.75rem;
+  color:var(--muted);
+  margin-top:.35rem;
+  line-height:1.3;
+}
+.stat-block.gold .stat-num { color:var(--gold); }
+.stat-block.danger .stat-num { color:var(--danger); }
+.stat-block.soft .stat-num { color:var(--soft); }
+
+/* ── Fee bar chart ───────────────────────────────────── */
+.fee-bars {
+  display:flex;
+  flex-direction:column;
+  gap:.85rem;
+  margin:1.25rem 0;
+}
+.fee-bar-row {
+  display:grid;
+  grid-template-columns:180px 1fr 110px;
+  align-items:center;
+  gap:.75rem;
+}
+.fee-bar-label { font-size:.83rem; color:var(--ink); font-weight:700; line-height:1.3; }
+.fee-bar-track {
+  height:30px;
+  background:rgba(255,255,255,.06);
+  border-radius:8px;
+  overflow:hidden;
+}
+.fee-bar-fill {
+  height:100%;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  padding-left:.65rem;
+  font-size:.73rem;
+  font-weight:700;
+  color:#061626;
+}
+.fee-bar-fill.teal { background:var(--teal); }
+.fee-bar-fill.gold { background:var(--gold); }
+.fee-bar-fill.danger { background:var(--danger); }
+.fee-bar-amount { font-size:.88rem; font-weight:900; color:var(--ink); text-align:right; }
+
+/* ── CGT compare cards ───────────────────────────────── */
+.cgt-compare {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+  margin:1.25rem 0;
+}
+.cgt-card {
+  border-radius:18px;
+  padding:1.4rem;
+  text-align:center;
+}
+.cgt-card.short {
+  background:rgba(224,85,85,.1);
+  border:1px solid rgba(224,85,85,.32);
+}
+.cgt-card.long {
+  background:rgba(0,212,170,.08);
+  border:1px solid rgba(0,212,170,.3);
+}
+.cgt-card .cgt-months {
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.5rem;
+}
+.cgt-card .cgt-tax {
+  font-size:2.4rem;
+  font-weight:900;
+  line-height:1.05;
+}
+.cgt-card.short .cgt-tax { color:var(--danger); }
+.cgt-card.long .cgt-tax { color:var(--teal); }
+.cgt-card .cgt-detail { font-size:.77rem; color:var(--muted); margin-top:.4rem; line-height:1.4; }
+.cgt-card .cgt-badge {
+  display:inline-block;
+  margin-top:.65rem;
+  font-size:.7rem;
+  font-weight:900;
+  padding:.22rem .65rem;
+  border-radius:999px;
+  letter-spacing:.04em;
+}
+.cgt-card.short .cgt-badge { background:rgba(224,85,85,.2); color:var(--danger); }
+.cgt-card.long .cgt-badge { background:rgba(0,212,170,.15); color:var(--teal); }
+
+/* ── Financial year timeline ─────────────────────────── */
+.fy-timeline {
+  position:relative;
+  padding:0 0 .5rem 56px;
+  margin:1.25rem 0;
+}
+.fy-timeline::before {
+  content:"";
+  position:absolute;
+  left:23px;
+  top:4px;
+  bottom:4px;
+  width:2px;
+  background:linear-gradient(to bottom,var(--teal),var(--gold),var(--danger));
+}
+.fy-item {
+  display:flex;
+  gap:1rem;
+  margin-bottom:1.1rem;
+  position:relative;
+}
+.fy-dot {
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:var(--panel);
+  border:2px solid var(--teal);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  font-size:.63rem;
+  font-weight:900;
+  color:var(--teal);
+  text-align:center;
+  line-height:1.1;
+  z-index:1;
+  position:absolute;
+  left:-55px;
+  top:0;
+}
+.fy-dot.gold { border-color:var(--gold); color:var(--gold); }
+.fy-dot.warn { border-color:var(--danger); color:var(--danger); }
+.fy-content {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:.85rem 1rem;
+  flex:1;
+}
+.fy-content strong { color:var(--ink); display:block; margin-bottom:.25rem; font-size:.9rem; }
+.fy-content p { margin:0; font-size:.82rem; color:var(--muted); line-height:1.45; }
+
+/* ── Process flow ────────────────────────────────────── */
+.process-flow {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  align-items:flex-start;
+  margin:1.25rem 0;
+}
+.flow-step {
+  flex:1;
+  min-width:110px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:.9rem .75rem;
+  text-align:center;
+}
+.flow-step .step-num {
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:var(--teal);
+  color:#061626;
+  font-weight:900;
+  font-size:.82rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto .45rem;
+}
+.flow-step strong { display:block; font-size:.8rem; color:var(--ink); margin-bottom:.2rem; }
+.flow-step p { font-size:.73rem; color:var(--muted); margin:0; line-height:1.4; }
+.flow-arrow {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  font-size:1rem;
+  padding-top:.7rem;
+  flex-shrink:0;
+}
+
+/* ── DCA platform cost grid ──────────────────────────── */
+.dca-cost-grid {
+  margin:1.25rem 0;
+  overflow-x:auto;
+}
+.dca-cost-grid table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:520px;
+}
+.dca-cost-grid th {
+  background:var(--panel);
+  padding:.65rem .75rem;
+  font-size:.78rem;
+  color:var(--muted);
+  font-weight:700;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+}
+.dca-cost-grid td {
+  padding:.6rem .75rem;
+  font-size:.83rem;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.dca-cost-grid tr:hover td { background:rgba(255,255,255,.03); }
+.dca-best { color:var(--teal); font-weight:900; }
+.dca-mid { color:var(--gold); }
+.dca-high { color:var(--danger); }
+
+/* ── Icon feature cards ──────────────────────────────── */
+.icon-cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:.85rem;
+  margin:1.25rem 0;
+}
+.icon-card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.2rem 1rem;
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+}
+.icon-card .ic-icon {
+  font-size:1.6rem;
+  line-height:1;
+}
+.icon-card strong { color:var(--ink); font-size:.9rem; }
+.icon-card p { font-size:.82rem; color:var(--muted); margin:0; line-height:1.45; }
+
+/* ── Ownership compare ───────────────────────────────── */
+.ownership-compare {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+  margin:1.25rem 0;
+}
+.ownership-card {
+  border-radius:16px;
+  padding:1.25rem;
+}
+.ownership-card.chess {
+  background:rgba(0,212,170,.08);
+  border:1px solid rgba(0,212,170,.28);
+}
+.ownership-card.custodian {
+  background:rgba(232,184,75,.07);
+  border:1px solid rgba(232,184,75,.25);
+}
+.ownership-card h4 {
+  margin:0 0 .5rem;
+  font-size:.95rem;
+}
+.ownership-card.chess h4 { color:var(--teal); }
+.ownership-card.custodian h4 { color:var(--gold); }
+.ownership-card ul {
+  margin:0;
+  padding-left:1.1rem;
+  font-size:.82rem;
+  color:var(--muted);
+  line-height:1.6;
+}
+
 @media(max-width:720px) {
   .guide { padding:1rem .85rem 2rem; }
-  .quick-strip,.grid-2,.grid-3,.study-note,.link-grid { grid-template-columns:1fr; }
+  .quick-strip,.grid-2,.grid-3,.study-note,.link-grid,.stat-row,.cgt-compare,.ownership-compare { grid-template-columns:1fr; }
   .hero,.section { border-radius:16px; }
   .wallet-row,.cycle-labels,.booking-form,.exchange-screen,.zoom-screen,.zoom-agenda,.tv-native-top,.cycle-study-head,.bitcoin-plain-lens,.halving-clock,.halving-metrics { grid-template-columns:1fr; }
   .tv-native-top { display:grid; }
@@ -1381,4 +1676,9 @@ li { margin:.24rem 0; font-size:.84rem; }
   .tradingview-widget-container iframe,
   .tool-frame-wrap iframe { min-height:680px !important; }
   .tradingview-section .tool-frame-wrap { margin-left:0; margin-right:0; }
+  .fee-bar-row { grid-template-columns:1fr; }
+  .fee-bar-amount { text-align:left; }
+  .process-flow { flex-direction:column; }
+  .flow-arrow { transform:rotate(90deg); align-self:center; }
+  .fy-timeline { padding-left:52px; }
 }
