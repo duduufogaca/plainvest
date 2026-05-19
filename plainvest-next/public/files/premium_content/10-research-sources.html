@@ -32,7 +32,7 @@
       <div class="quick-card"><strong>Save what matters</strong><span>Bookmark sources you return to. One good source used well beats ten opened once.</span></div>
     </div>
     <div class="stat-row">
-      <div class="stat-block"><span class="stat-num">6</span><span class="stat-label">source categories: education, ETFs, crypto, charts, tax, macro</span></div>
+      <div class="stat-block"><span class="stat-num">7</span><span class="stat-label">source categories: education, ETFs, crypto, sentiment, charts, tax, macro</span></div>
       <div class="stat-block gold"><span class="stat-num">5</span><span class="stat-label">step research workflow for any new investment idea</span></div>
       <div class="stat-block danger"><span class="stat-num">6</span><span class="stat-label">source types to treat with caution — know the red flags</span></div>
       <div class="stat-block soft"><span class="stat-num">Free</span><span class="stat-label">all curated tools accessible with a free account or no login</span></div>
@@ -107,6 +107,7 @@
       <div class="tile"><strong><a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Bitcoin White Paper</a></strong><p>The original 9-page document. Read it slowly once without expecting to understand everything. It introduces the problem Bitcoin tries to solve better than any secondary explanation.</p></div>
       <div class="tile"><strong><a href="https://consumer.ftc.gov/articles/what-know-about-cryptocurrency-and-scams" target="_blank" rel="noopener">FTC Crypto Scam Guidance</a></strong><p>US Federal Trade Commission guidance on recovery phrase scams, fake support, giveaway fraud, and impersonation. Read this before engaging with any person offering crypto help online.</p></div>
       <div class="tile"><strong><a href="https://etherscan.io/" target="_blank" rel="noopener">Etherscan</a></strong><p>Ethereum blockchain explorer. Check token contracts, wallet activity, smart contract code, and transaction history. If someone asks you to approve a contract, you can check what it does here first.</p></div>
+      <div class="tile"><strong><a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener">Crypto Fear &amp; Greed Index — Alternative.me</a></strong><p>Daily index (0–100) measuring overall crypto market sentiment from volatility, momentum, social volume, dominance, and search trends. Extreme fear has historically coincided with attractive entry points. Live data also appears on the Plainvest Sentiment page. <strong>Source used by Plainvest.</strong></p></div>
     </div>
   </section>
 
@@ -116,6 +117,36 @@
       <div class="tile"><strong><a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></strong><p>The main chart platform recommended in Guide 07. Start with a free account, set monthly candles, search any symbol (SPY, QQQ, BTCUSD, VAS, IVV, BOVA11, GOLD), and compare long-term price history before you buy anything.</p></div>
       <div class="tile"><strong><a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">FRED (St. Louis Fed)</a></strong><p>Federal Reserve Economic Data. Charts for inflation (CPI), interest rates, money supply, unemployment, GDP, and more. Free, authoritative, and useful for understanding the macro context behind market moves.</p></div>
     </div>
+  </section>
+
+  <section class="section">
+    <h2>Market sentiment tools</h2>
+    <p>Sentiment indices measure whether investors are driven by fear or greed at a given moment. They are contrarian context tools — not buy or sell signals — and are most useful when read alongside price charts and your own written plan. Both indices below power the live gauges on the Plainvest <strong>Sentiment</strong> page.</p>
+    <div class="grid-2">
+      <div class="tile">
+        <strong><a href="https://money.cnn.com/data/fear-and-greed/" target="_blank" rel="noopener">CNN Fear &amp; Greed Index — US Stock Market</a></strong>
+        <p>Published by CNN Business. Scores US stock market sentiment from 0 (Extreme Fear) to 100 (Extreme Greed) using seven indicators: stock price momentum (S&amp;P 500 vs its 125-day moving average), stock price strength (52-week highs vs lows on the NYSE), stock price breadth (McClellan Volume Summation Index), put and call options ratio, junk bond demand (yield spread), market volatility (VIX), and safe-haven demand (stocks vs bonds). Updated daily.</p>
+        <p style="margin-top:.6rem;font-size:.8rem;color:#8ba5c1"><strong>Raw API used by Plainvest:</strong> <code>production.dataviz.cnn.io/index/fearandgreed/graphdata/</code></p>
+      </div>
+      <div class="tile">
+        <strong><a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener">Crypto Fear &amp; Greed Index — Alternative.me</a></strong>
+        <p>Published by Alternative.me. Scores the overall crypto market sentiment from 0 (Extreme Fear) to 100 (Extreme Greed) using five weighted signals: volatility (25%) — compares current Bitcoin price against 30-day and 90-day averages; market momentum and volume (25%); social media volume and sentiment (15%); Bitcoin dominance (10%); and Google Trends data (10%). Updated daily. Historical data for the previous 30 days is available via the free API.</p>
+        <p style="margin-top:.6rem;font-size:.8rem;color:#8ba5c1"><strong>Free API used by Plainvest:</strong> <code>api.alternative.me/fng/?limit=30</code></p>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>How to use both together:</strong> When the US stock market shows Extreme Fear but crypto shows Greed, there may be a divergence worth researching. When both show Extreme Fear simultaneously, it often marks a period of broader risk-off behaviour across markets. Neither reading tells you what to do — it tells you what the crowd is feeling. Your plan decides what to do with that information.
+    </div>
+    <table class="mini-table" style="margin-top:1.4rem">
+      <thead><tr><th>Score range</th><th>Category</th><th>What it typically reflects</th></tr></thead>
+      <tbody>
+        <tr><td>0 – 24</td><td><strong style="color:#d93648">Extreme Fear</strong></td><td>Investors selling, capitulation behaviour, often near bottoms historically — but not always</td></tr>
+        <tr><td>25 – 44</td><td><strong style="color:#e07832">Fear</strong></td><td>Cautious mood, below-average risk appetite, markets often under pressure</td></tr>
+        <tr><td>45 – 55</td><td><strong style="color:#c9a820">Neutral</strong></td><td>Balanced sentiment, neither panic nor euphoria — often a transitional zone</td></tr>
+        <tr><td>56 – 74</td><td><strong style="color:#5cb830">Greed</strong></td><td>Risk appetite rising, momentum driven, buyers dominant — valuations can stretch</td></tr>
+        <tr><td>75 – 100</td><td><strong style="color:#1dab62">Extreme Greed</strong></td><td>FOMO-driven buying, elevated valuations, historically precedes corrections — not always</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="section">
