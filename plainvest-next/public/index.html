@@ -10616,6 +10616,182 @@
     }
 
 
+    /* ── FEAR & GREED / SENTIMENT ─────────────────────────── */
+    #sentiment {
+      padding: 5rem 3rem;
+      background: linear-gradient(170deg, #060c18 0%, #091524 55%, #060c18 100%);
+    }
+    .sentiment-inner { max-width: 1080px; margin: 0 auto; }
+    .fgi-lead {
+      max-width: 680px;
+      color: var(--ink-soft);
+      font-size: .93rem;
+      line-height: 1.7;
+      margin: .7rem 0 2.6rem;
+    }
+    .fgi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+      margin-bottom: 1.8rem;
+    }
+    .fgi-card {
+      background: linear-gradient(135deg, rgba(13,28,52,.9), rgba(8,19,35,.7));
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 22px;
+      padding: 1.6rem 1.6rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+    .fgi-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .fgi-market-label {
+      font-size: .72rem;
+      font-weight: 800;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .fgi-source-badge {
+      font-size: .62rem;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(0,212,170,.08);
+      border: 1px solid rgba(0,212,170,.18);
+      border-radius: 20px;
+      padding: .18rem .6rem;
+    }
+    .fgi-gauge-wrap {
+      position: relative;
+      padding-bottom: 2.4rem;
+    }
+    .fgi-svg-container { width: 100%; }
+    .fgi-value-overlay {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .fgi-number {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .fgi-category {
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin-top: .3rem;
+    }
+    .fgi-history-row {
+      display: flex;
+      gap: 1rem;
+      padding-top: .85rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .fgi-hist-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .22rem;
+    }
+    .fgi-hist-label {
+      font-size: .6rem;
+      color: var(--ink-muted, #576880);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+    .fgi-hist-val {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+    .fgi-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .fgi-updated { font-size: .6rem; color: var(--ink-muted, #576880); }
+    .fgi-source-link {
+      font-size: .66rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-decoration: none;
+    }
+    .fgi-source-link:hover { text-decoration: underline; }
+
+    /* Scale bar */
+    .fgi-scale {
+      display: flex;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2.2rem;
+      font-size: .66rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .fgi-scale-item { flex: 1; padding: .55rem .3rem; color: #fff; }
+
+    /* Explainer */
+    .fgi-explainer {
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      padding: 2rem;
+    }
+    .fgi-explainer h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .fgi-explainer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 2.2rem;
+    }
+    .fgi-explain-item strong {
+      display: block;
+      font-size: .72rem;
+      font-weight: 800;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: .35rem;
+    }
+    .fgi-explain-item p {
+      font-size: .82rem;
+      color: var(--ink-soft);
+      line-height: 1.68;
+      margin: 0;
+    }
+    .fgi-disclaimer {
+      margin-top: 1.2rem;
+      padding: .8rem 1rem;
+      background: rgba(232,184,75,.06);
+      border: 1px solid rgba(232,184,75,.15);
+      border-radius: 12px;
+      font-size: .74rem;
+      color: var(--gold);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 720px) {
+      .fgi-grid { grid-template-columns: 1fr; }
+      .fgi-explainer-grid { grid-template-columns: 1fr; }
+      #sentiment { padding: 3.5rem 1.2rem; }
+    }
+
     @keyframes orb1 {
       0% {
         transform: translate(0, 0) scale(1)
@@ -10648,6 +10824,7 @@
       <li><a href="#home" data-i18n="nav.home">Home</a></li>
       <li><a href="#simulator" data-i18n="nav.simulator">Simulator</a></li>
       <li><a href="#inflation" data-i18n="nav.inflation">Inflation</a></li>
+      <li><a href="#sentiment" data-i18n="nav.sentiment">Sentiment</a></li>
       <li><a href="#learn" data-i18n="nav.learn">Learn</a></li>
       <li><a href="#story" data-i18n="nav.story">Story</a></li>
       <li class="books-public-nav-item"><a href="#books" data-i18n="nav.books">Books</a></li>
@@ -11193,6 +11370,112 @@
     </div>
   </section>
 
+
+  <!-- ══════════════════════════════════════════
+     SECTION: FEAR & GREED / SENTIMENT
+══════════════════════════════════════════ -->
+  <section id="sentiment" class="app-page" data-page="sentiment">
+    <div class="sentiment-inner">
+      <div class="section-eyebrow" data-i18n="sentiment.eyebrow">Market Sentiment</div>
+      <h2 class="section-h2" data-i18n-html="sentiment.h2">Fear &amp; Greed — <em>how markets feel right now.</em></h2>
+      <p class="fgi-lead" data-i18n="sentiment.lead">Two live indices measuring whether investors are driven by panic or overconfidence. Useful context before any investment decision — not a buy or sell signal.</p>
+
+      <div class="fgi-grid">
+        <!-- US Stock Market -->
+        <div class="fgi-card">
+          <div class="fgi-card-header">
+            <div class="fgi-market-label" data-i18n="sentiment.usLabel">US Stock Market</div>
+            <div class="fgi-source-badge">CNN Fear &amp; Greed</div>
+          </div>
+          <div class="fgi-gauge-wrap">
+            <div class="fgi-svg-container" id="fgi-us-gauge"></div>
+            <div class="fgi-value-overlay">
+              <div class="fgi-number" id="fgi-us-number" style="color:#8ba5c1">—</div>
+              <div class="fgi-category" id="fgi-us-category" style="color:#8ba5c1">Loading…</div>
+            </div>
+          </div>
+          <div class="fgi-history-row">
+            <div class="fgi-hist-item">
+              <span class="fgi-hist-label" data-i18n="sentiment.prevWeek">1 week ago</span>
+              <span class="fgi-hist-val" id="fgi-us-week">—</span>
+            </div>
+            <div class="fgi-hist-item">
+              <span class="fgi-hist-label" data-i18n="sentiment.prevMonth">1 month ago</span>
+              <span class="fgi-hist-val" id="fgi-us-month">—</span>
+            </div>
+          </div>
+          <div class="fgi-card-footer">
+            <span class="fgi-updated" id="fgi-us-updated"></span>
+            <a href="https://money.cnn.com/data/fear-and-greed/" target="_blank" rel="noopener" class="fgi-source-link">CNN →</a>
+          </div>
+        </div>
+
+        <!-- Crypto Market -->
+        <div class="fgi-card">
+          <div class="fgi-card-header">
+            <div class="fgi-market-label" data-i18n="sentiment.cryptoLabel">Crypto Market</div>
+            <div class="fgi-source-badge">Alternative.me</div>
+          </div>
+          <div class="fgi-gauge-wrap">
+            <div class="fgi-svg-container" id="fgi-crypto-gauge"></div>
+            <div class="fgi-value-overlay">
+              <div class="fgi-number" id="fgi-crypto-number" style="color:#8ba5c1">—</div>
+              <div class="fgi-category" id="fgi-crypto-category" style="color:#8ba5c1">Loading…</div>
+            </div>
+          </div>
+          <div class="fgi-history-row">
+            <div class="fgi-hist-item">
+              <span class="fgi-hist-label" data-i18n="sentiment.prevWeek">1 week ago</span>
+              <span class="fgi-hist-val" id="fgi-crypto-week">—</span>
+            </div>
+            <div class="fgi-hist-item">
+              <span class="fgi-hist-label" data-i18n="sentiment.prevMonth">1 month ago</span>
+              <span class="fgi-hist-val" id="fgi-crypto-month">—</span>
+            </div>
+          </div>
+          <div class="fgi-card-footer">
+            <span class="fgi-updated" id="fgi-crypto-updated"></span>
+            <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener" class="fgi-source-link">Alternative.me →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scale reference -->
+      <div class="fgi-scale">
+        <div class="fgi-scale-item" style="background:#9b2230">0–24<br>Extreme Fear</div>
+        <div class="fgi-scale-item" style="background:#c46828">25–44<br>Fear</div>
+        <div class="fgi-scale-item" style="background:#b8941c;color:#0d1e35">45–55<br>Neutral</div>
+        <div class="fgi-scale-item" style="background:#4e962c;color:#0d1e35">56–74<br>Greed</div>
+        <div class="fgi-scale-item" style="background:#178a4e">75–100<br>Extreme Greed</div>
+      </div>
+
+      <!-- Educational explainer -->
+      <div class="fgi-explainer">
+        <h3 data-i18n="sentiment.explainTitle">How to read this index</h3>
+        <div class="fgi-explainer-grid">
+          <div class="fgi-explain-item">
+            <strong data-i18n="sentiment.e1T">What it measures</strong>
+            <p data-i18n="sentiment.e1B">Market sentiment — whether investors are acting out of panic (fear) or overconfidence (greed). Built from volatility, momentum, options activity, and other signals.</p>
+          </div>
+          <div class="fgi-explain-item">
+            <strong data-i18n="sentiment.e2T">How to use it</strong>
+            <p data-i18n="sentiment.e2B">It is a contrarian indicator, not a timing tool. Extreme fear has historically appeared near market bottoms; extreme greed near tops. Use it as context, not instruction.</p>
+          </div>
+          <div class="fgi-explain-item">
+            <strong data-i18n="sentiment.e3T">Crypto vs stocks</strong>
+            <p data-i18n="sentiment.e3B">Both indices often move together but can diverge sharply during crypto-specific events. A large gap between the two is worth noticing and researching further.</p>
+          </div>
+          <div class="fgi-explain-item">
+            <strong data-i18n="sentiment.e4T">Warren Buffett's rule</strong>
+            <p data-i18n="sentiment.e4B">"Be fearful when others are greedy and greedy when others are fearful." The index makes that rule visible. It does not tell you when to act — only your plan can do that.</p>
+          </div>
+        </div>
+        <div class="fgi-disclaimer" data-i18n="sentiment.disclaimer">
+          This index reflects market sentiment only. It is not financial advice, a buy or sell signal, or a prediction of future prices. Always research before making any investment decision.
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="learn" class="app-page" data-page="learn">
     <div class="section-eyebrow" data-i18n="learn.eyebrow">Investment starter guide</div>
@@ -12518,7 +12801,8 @@
     // ══════════════════════════════════════════════════════
     const LANG = {
       en: {
-        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub' },
+        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', sentiment: 'Sentiment', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub' },
+        sentiment: { eyebrow: 'Market Sentiment', h2: 'Fear &amp; Greed — <em>how markets feel right now.</em>', lead: 'Two live indices measuring whether investors are driven by panic or overconfidence. Useful context before any investment decision — not a buy or sell signal.', usLabel: 'US Stock Market', cryptoLabel: 'Crypto Market', prevWeek: '1 week ago', prevMonth: '1 month ago', explainTitle: 'How to read this index', e1T: 'What it measures', e1B: 'Market sentiment — whether investors are acting out of panic (fear) or overconfidence (greed). Built from volatility, momentum, options activity, and other signals.', e2T: 'How to use it', e2B: 'It is a contrarian indicator, not a timing tool. Extreme fear has historically appeared near market bottoms; extreme greed near tops. Use it as context, not instruction.', e3T: 'Crypto vs stocks', e3B: 'Both indices often move together but can diverge sharply during crypto-specific events. A large gap between the two is worth noticing and researching further.', e4T: 'Warren Buffett\'s rule', e4B: '"Be fearful when others are greedy and greedy when others are fearful." The index makes that rule visible. It does not tell you when to act — only your plan can do that.', disclaimer: 'This index reflects market sentiment only. It is not financial advice, a buy or sell signal, or a prediction of future prices. Always research before making any investment decision.' },
         hero: {
           kicker: 'Investing made for everyone',
           h1: 'Watch your money <em>grow</em> in 60 seconds.',
@@ -13164,7 +13448,8 @@
       },
 
       pt: {
-        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium' },
+        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', sentiment: 'Sentimento', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium' },
+        sentiment: { eyebrow: 'Sentimento de Mercado', h2: 'Medo e Ganância — <em>como os mercados estão agora.</em>', lead: 'Dois índices ao vivo que medem se os investidores estão agindo por pânico ou excesso de confiança. Contexto útil antes de qualquer decisão de investimento — não é sinal de compra ou venda.', usLabel: 'Mercado dos EUA', cryptoLabel: 'Mercado Cripto', prevWeek: '1 semana atrás', prevMonth: '1 mês atrás', explainTitle: 'Como ler este índice', e1T: 'O que ele mede', e1B: 'O sentimento do mercado — se os investidores estão agindo por pânico (medo) ou excesso de confiança (ganância). Construído a partir de volatilidade, momentum, atividade de opções e outros sinais.', e2T: 'Como usar', e2B: 'É um indicador contrário, não uma ferramenta de timing. Medo extremo historicamente aparece perto de fundos de mercado; ganância extrema perto de topos. Use como contexto, não instrução.', e3T: 'Cripto vs ações', e3B: 'Ambos os índices frequentemente se movem juntos, mas podem divergir fortemente durante eventos específicos de cripto. Uma grande diferença entre os dois vale a pena pesquisar.', e4T: 'A regra de Warren Buffett', e4B: '"Seja medroso quando os outros são gananciosos e ganancioso quando os outros são medrosos." O índice torna essa regra visível. Não diz quando agir — apenas o seu plano pode fazer isso.', disclaimer: 'Este índice reflete apenas o sentimento do mercado. Não é conselho financeiro, sinal de compra ou venda, nem previsão de preços futuros. Sempre pesquise antes de tomar qualquer decisão de investimento.' },
         hero: {
           kicker: 'Investimento para todo mundo',
           h1: 'Veja seu dinheiro <em>crescer</em> em 60 segundos.',
@@ -16691,6 +16976,129 @@
       }
     })();
 
+  </script>
+
+  <!-- ── FEAR & GREED INDEX ───────────────────────────────── -->
+  <script>
+  (function () {
+    function fgiColor(v) {
+      if (v <= 24) return '#d93648';
+      if (v <= 44) return '#e07832';
+      if (v <= 55) return '#d4a820';
+      if (v <= 74) return '#5cb830';
+      return '#1dab62';
+    }
+    function fgiLabel(v) {
+      if (v <= 24) return 'Extreme Fear';
+      if (v <= 44) return 'Fear';
+      if (v <= 55) return 'Neutral';
+      if (v <= 74) return 'Greed';
+      return 'Extreme Greed';
+    }
+    function pt(cx, cy, r, pct) {
+      var a = (180 - pct * 180) * Math.PI / 180;
+      return { x: +(cx + r * Math.cos(a)).toFixed(2), y: +(cy - r * Math.sin(a)).toFixed(2) };
+    }
+    function arc(cx, cy, oR, iR, s, e, col) {
+      var po1 = pt(cx,cy,oR,s), po2 = pt(cx,cy,oR,e);
+      var pi1 = pt(cx,cy,iR,s), pi2 = pt(cx,cy,iR,e);
+      var lg = (e - s) > 0.5 ? 1 : 0;
+      return '<path d="M'+po1.x+' '+po1.y+' A'+oR+' '+oR+' 0 '+lg+' 0 '+po2.x+' '+po2.y+
+             ' L'+pi2.x+' '+pi2.y+' A'+iR+' '+iR+' 0 '+lg+' 1 '+pi1.x+' '+pi1.y+' Z" fill="'+col+'"/>';
+    }
+    function drawGauge(id, value) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var cx = 100, cy = 112, oR = 80, iR = 52, g = 0.005;
+      var segs = [
+        [0, 0.24, '#9b2230'], [0.25, 0.44, '#c46828'],
+        [0.45, 0.55, '#b8921a'], [0.56, 0.74, '#4e962c'], [0.75, 1, '#178a4e']
+      ].map(function (s) {
+        return arc(cx, cy, oR, iR, s[0] + g, Math.min(1, s[1]) - g, s[2]);
+      }).join('');
+
+      var v = Math.max(0, Math.min(100, value));
+      var tip = pt(cx, cy, oR - 5, v / 100);
+      var bl  = pt(cx, cy, 7, v / 100 - 0.09);
+      var br  = pt(cx, cy, 7, v / 100 + 0.09);
+      var needle = '<polygon points="'+tip.x+','+tip.y+' '+bl.x+','+bl.y+' '+br.x+','+br.y+'" fill="white" opacity=".92"/>';
+      var dot    = '<circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#0b1e33" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>';
+      var lblL   = '<text x="12" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Fear</text>';
+      var lblR   = '<text x="188" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Greed</text>';
+
+      el.innerHTML = '<svg viewBox="0 0 200 128" style="width:100%;display:block;overflow:visible">' +
+                     segs + needle + dot + lblL + lblR + '</svg>';
+    }
+    function setVal(numId, catId, v) {
+      var n = document.getElementById(numId), c = document.getElementById(catId);
+      if (n) { n.textContent = v; n.style.color = fgiColor(v); }
+      if (c) { c.textContent = fgiLabel(v); c.style.color = fgiColor(v); }
+    }
+    function setHist(id, v, cat) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = v + (cat ? '  ·  ' + cat : '');
+    }
+    function setUpdated(id, ts) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      try {
+        var d = new Date(typeof ts === 'number' && ts < 1e12 ? ts * 1000 : ts);
+        el.textContent = 'Updated ' + d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch (e) { el.textContent = ''; }
+    }
+
+    /* ── Crypto (Alternative.me — CORS-enabled) ── */
+    fetch('https://api.alternative.me/fng/?limit=30')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var data = d.data;
+        var cur  = parseInt(data[0].value);
+        var wk   = data[7]  ? parseInt(data[7].value)  : null;
+        var mo   = data[29] ? parseInt(data[29].value) : null;
+        drawGauge('fgi-crypto-gauge', cur);
+        setVal('fgi-crypto-number', 'fgi-crypto-category', cur);
+        if (wk !== null) setHist('fgi-crypto-week',  wk,  data[7].value_classification);
+        if (mo !== null) setHist('fgi-crypto-month', mo,  data[29].value_classification);
+        setUpdated('fgi-crypto-updated', parseInt(data[0].timestamp));
+      })
+      .catch(function () {
+        var c = document.getElementById('fgi-crypto-category');
+        if (c) { c.textContent = 'Data unavailable'; c.style.color = '#8ba5c1'; }
+        var n = document.getElementById('fgi-crypto-number');
+        if (n) { n.textContent = '—'; n.style.color = '#8ba5c1'; }
+      });
+
+    /* ── US Market (CNN) — try CORS, graceful fallback ── */
+    fetch('https://production.dataviz.cnn.io/index/fearandgreed/graphdata/')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var fg   = d.fear_and_greed;
+        var cur  = Math.round(fg.score);
+        var hist = d.fear_and_greed_historical && d.fear_and_greed_historical.data;
+        drawGauge('fgi-us-gauge', cur);
+        setVal('fgi-us-number', 'fgi-us-category', cur);
+        if (hist) {
+          var wkPt  = hist[hist.length - 8]  || hist[0];
+          var moPt  = hist[hist.length - 31] || hist[0];
+          if (wkPt)  setHist('fgi-us-week',  Math.round(wkPt.y),  wkPt.rating);
+          if (moPt)  setHist('fgi-us-month', Math.round(moPt.y),  moPt.rating);
+        }
+        setUpdated('fgi-us-updated', fg.timestamp);
+      })
+      .catch(function () {
+        var n = document.getElementById('fgi-us-number');
+        var c = document.getElementById('fgi-us-category');
+        if (n) { n.textContent = '—'; n.style.color = '#8ba5c1'; }
+        if (c) {
+          c.textContent = 'View live on CNN ↗';
+          c.style.color = '#00d4aa';
+          c.style.cursor = 'pointer';
+          c.onclick = function () { window.open('https://money.cnn.com/data/fear-and-greed/', '_blank'); };
+        }
+        var u = document.getElementById('fgi-us-updated');
+        if (u) u.textContent = 'CORS blocked — open CNN directly';
+      });
+  })();
   </script>
 
 </body>
