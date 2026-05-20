@@ -30,6 +30,19 @@ body {
 .guide-wide {
   width:min(1480px,100%);
 }
+.guide-topnav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:.75rem;
+}
+.guide-topnav .platform-back { margin-bottom:0; }
+.guide-logo {
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  flex-shrink:0;
+}
 .platform-back {
   display:inline-flex;
   align-items:center;

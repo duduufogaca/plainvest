@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Crypto Cycle Lessons</title><link rel="stylesheet" href="premium-guide.css"><script id="plainvest-premium-file-guard">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Crypto Cycle Lessons</title><link rel="stylesheet" href="premium-guide.css"><link rel="icon" type="image/png" href="/assets/plainvest-icon.png"><link rel="apple-touch-icon" href="/assets/plainvest-app-icon.png"><script id="plainvest-premium-file-guard">
 (function () {
   var local = (location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1") && new URLSearchParams(location.search).get("preview") === "1";
   if (local) return;
@@ -21,7 +21,10 @@
 </head>
 <body>
 <main class="guide">
-  <a class="platform-back" href="/index.html#member">← Back to member area</a>
+  <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member">← Back to member area</a>
+    <img class="guide-logo" src="/assets/plainvest-icon.png" alt="Plainvest" width="32" height="32">
+  </nav>
   <header class="hero">
     <div class="kicker">Premium Market Cycle Lessons</div>
     <h1>Learn the market cycle before the cycle <em>tests you.</em></h1>
@@ -194,6 +197,75 @@
   <section class="section warning">
     <h2>Social media cycle traps</h2>
     <p>During bull markets, social media rewards confidence, speed, and dramatic price targets. During bear markets, it rewards fear and anger. Members should use social content as a source of questions, not as an instruction system. A good process stays calmer than the feed.</p>
+  </section>
+
+  <section class="section">
+    <h2>Traditional market cycles: stocks and the broader economy</h2>
+    <p>Crypto cycles are extreme in speed and magnitude, but the underlying psychology mirrors what has happened in traditional markets for decades. Understanding both helps investors avoid treating crypto behaviour as unique when the same emotional forces have driven stocks, property, and commodities through similar phases for generations.</p>
+    <svg class="cycle-wave" viewBox="0 0 960 280" role="img" aria-label="Traditional stock market cycle illustration showing dotcom bust 2000, 2008 financial crisis, 2020 COVID crash, and 2022 bear market" style="margin:1.6rem 0;border-radius:12px;background:#0b1d32;padding:.5rem 0;">
+      <defs>
+        <linearGradient id="tradArea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4f8ef7" stop-opacity=".22"/>
+          <stop offset="100%" stop-color="#4f8ef7" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- baseline -->
+      <line x1="30" y1="240" x2="930" y2="240" stroke="#1e3a5f" stroke-width="1"/>
+      <!-- main price path: 90s bull → dotcom peak → bust → 08 bull → crisis → recovery → 2020 → 2022 bear → recovery -->
+      <path d="M40 220 C80 215 110 200 150 165 C185 135 200 110 230 90 C260 70 270 68 290 72 C320 82 340 130 370 155 C400 175 430 165 460 145 C490 125 510 105 540 95 C570 85 590 82 610 86 C630 90 640 115 660 130 C680 145 690 160 700 155 C710 148 720 125 740 115 C760 105 775 102 795 105 C815 108 830 125 850 135 C870 145 890 140 920 138 L920 240 L40 240 Z" fill="url(#tradArea)"/>
+      <path d="M40 220 C80 215 110 200 150 165 C185 135 200 110 230 90 C260 70 270 68 290 72 C320 82 340 130 370 155 C400 175 430 165 460 145 C490 125 510 105 540 95 C570 85 590 82 610 86 C630 90 640 115 660 130 C680 145 690 160 700 155 C710 148 720 125 740 115 C760 105 775 102 795 105 C815 108 830 125 850 135 C870 145 890 140 920 138" fill="none" stroke="#4f8ef7" stroke-width="4" stroke-linecap="round"/>
+      <!-- event markers: dotcom peak ~290, 2008 crisis ~610, 2020 crash ~700, 2022 bear ~795 -->
+      <line x1="290" y1="72" x2="290" y2="245" stroke="#e8b84b" stroke-width="2" stroke-dasharray="7 5"/>
+      <line x1="610" y1="86" x2="610" y2="245" stroke="#e05555" stroke-width="2" stroke-dasharray="7 5"/>
+      <line x1="700" y1="155" x2="700" y2="245" stroke="#e05555" stroke-width="2" stroke-dasharray="7 5"/>
+      <line x1="795" y1="105" x2="795" y2="245" stroke="#e8b84b" stroke-width="2" stroke-dasharray="7 5"/>
+      <!-- dots at peaks/troughs -->
+      <circle cx="290" cy="72" r="5" fill="#e8b84b"/>
+      <circle cx="370" cy="155" r="4" fill="#e05555"/>
+      <circle cx="610" cy="86" r="5" fill="#e8b84b"/>
+      <circle cx="660" cy="130" r="4" fill="#e05555"/>
+      <circle cx="700" cy="155" r="4" fill="#e05555"/>
+      <circle cx="795" cy="105" r="4" fill="#e8b84b"/>
+      <!-- labels -->
+      <text x="200" y="60" fill="#4f8ef7" font-size="13" font-family="Sora, sans-serif" font-weight="700">90s bull run</text>
+      <text x="258" y="55" fill="#e8b84b" font-size="12" font-family="Sora, sans-serif">Dotcom peak</text>
+      <text x="258" y="68" fill="#e8b84b" font-size="11" font-family="Sora, sans-serif">2000</text>
+      <text x="335" y="172" fill="#e05555" font-size="11" font-family="Sora, sans-serif">Bust −49%</text>
+      <text x="430" y="132" fill="#4f8ef7" font-size="12" font-family="Sora, sans-serif">Recovery</text>
+      <text x="490" y="78" fill="#4f8ef7" font-size="12" font-family="Sora, sans-serif">Mid-2000s bull</text>
+      <text x="578" y="70" fill="#e8b84b" font-size="12" font-family="Sora, sans-serif">2007 peak</text>
+      <text x="638" y="148" fill="#e05555" font-size="11" font-family="Sora, sans-serif">GFC −57%</text>
+      <text x="668" y="172" fill="#e05555" font-size="11" font-family="Sora, sans-serif">COVID −34%</text>
+      <text x="666" y="182" fill="#e05555" font-size="10" font-family="Sora, sans-serif">2020</text>
+      <text x="796" y="92" fill="#e8b84b" font-size="12" font-family="Sora, sans-serif">2022 peak</text>
+      <text x="845" y="152" fill="#4f8ef7" font-size="12" font-family="Sora, sans-serif">Recovery</text>
+      <!-- x-axis labels -->
+      <text x="36" y="258" fill="#5a7a9a" font-size="11" font-family="Sora, sans-serif">1995</text>
+      <text x="278" y="258" fill="#5a7a9a" font-size="11" font-family="Sora, sans-serif">2000</text>
+      <text x="452" y="258" fill="#5a7a9a" font-size="11" font-family="Sora, sans-serif">2007</text>
+      <text x="598" y="258" fill="#5a7a9a" font-size="11" font-family="Sora, sans-serif">2008</text>
+      <text x="692" y="258" fill="#5a7a9a" font-size="11" font-family="Sora, sans-serif">2020</text>
+      <text x="783" y="258" fill="#5a7a9a" font-size="11" font-family="Sora, sans-serif">2022</text>
+      <text x="895" y="258" fill="#5a7a9a" font-size="11" font-family="Sora, sans-serif">Now</text>
+    </svg>
+    <p style="font-size:.85rem;color:#6b8aaa;margin-top:-.4rem;margin-bottom:1.2rem;">Stylised illustration — not to scale. Actual S&amp;P 500 drawdowns: dotcom −49% (2000–02), GFC −57% (2007–09), COVID −34% (2020), 2022 bear −25%.</p>
+    <div class="grid-2">
+      <div class="tile"><strong>Traditional cycles are slower but just as painful</strong><p>A crypto bear can last 12–18 months. A traditional stock bear market often takes 1–3 years to bottom and several more years to recover. The dotcom bust took the Nasdaq 15 years to return to its 2000 high. The emotional pattern — euphoria, denial, capitulation, recovery — is identical across both asset classes.</p></div>
+      <div class="tile"><strong>The cause changes; the psychology does not</strong><p>2000: tech valuation excess. 2008: mortgage and credit system collapse. 2020: pandemic shock. 2022: interest rate shock. Each crisis felt unique in the moment and was predictable in hindsight. The same investor emotions — disbelief at the top, panic at the bottom — repeat regardless of the trigger.</p></div>
+      <div class="tile"><strong>Recovery requires staying in</strong><p>Every bear market above ended in a recovery that eventually exceeded the prior peak. Investors who sold at the bottom and waited for "certainty" before re-entering missed the sharpest recovery months. Broad diversified funds (ETFs, index funds) capture those recoveries automatically if you stay invested through the drawdown.</p></div>
+      <div class="tile"><strong>Crypto amplifies traditional cycles</strong><p>When global risk appetite falls (rising interest rates, recessions, geopolitical shocks), speculative assets including crypto tend to sell off more sharply than equities. Bitcoin and high-risk altcoins often fall faster and further than the S&amp;P 500 in the same risk-off period. Understanding traditional macro cycles helps predict when crypto is likely to face additional pressure beyond its own internal cycles.</p></div>
+    </div>
+    <table class="mini-table" style="margin-top:1.2rem;">
+      <thead><tr><th>Event</th><th>Asset / market</th><th>Peak to trough</th><th>Recovery time to new high</th></tr></thead>
+      <tbody>
+        <tr><td>Dotcom bust (2000–02)</td><td>Nasdaq Composite</td><td>−78%</td><td>~15 years (2015)</td></tr>
+        <tr><td>Global Financial Crisis (2007–09)</td><td>S&amp;P 500</td><td>−57%</td><td>~4 years (2013)</td></tr>
+        <tr><td>COVID crash (Feb–Mar 2020)</td><td>S&amp;P 500</td><td>−34%</td><td>~5 months (Aug 2020)</td></tr>
+        <tr><td>2022 rate-shock bear</td><td>S&amp;P 500</td><td>−25%</td><td>~20 months (Jan 2024)</td></tr>
+        <tr><td>2022 crypto bear</td><td>Bitcoin</td><td>−78%</td><td>~26 months (Mar 2024)</td></tr>
+      </tbody>
+    </table>
+    <div class="callout" style="margin-top:1.2rem;"><strong>Key principle:</strong> Traditional market cycles confirm what crypto cycles show in extreme form. The investor who avoids being shaken out in a drawdown and continues contributing through it often ends in a better position than the one who tries to time exit and re-entry perfectly.</div>
   </section>
 
   <section class="section">
