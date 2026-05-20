@@ -7,8 +7,8 @@
     <nav class="guide-topnav">
     <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
     <div class="guide-lang-switch">
-      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
-      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">🇺🇸 EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">🇧🇷 PT</button>
     </div>
   </nav>
 <header class="hero"><div class="kicker"><span class="lang-en">Australia Basics</span><span class="lang-pt">Fundamentos Austrália</span></div><h1><span class="lang-en">Your super is already investing.</span><span class="lang-pt">O seu superannuation já está investindo.</span></h1><p class="lead">Superannuation is often the largest investment Australians will ever own. This guide helps beginners understand what to check, what not to ignore, and why small differences compound for decades.</p><div class="quick-strip"><div class="quick-card"><strong><span class="lang-en">Core idea</span><span class="lang-pt">Ideia central</span></strong><span>Your fund invests on your behalf.</span></div><div class="quick-card"><strong><span class="lang-en">Big levers</span><span class="lang-pt">Alavancas principais</span></strong><span>Fees, option, insurance, contributions.</span></div><div class="quick-card"><strong><span class="lang-en">Mindset</span><span class="lang-pt">Mentalidade</span></strong><span>Small settings can matter over decades.</span></div></div>
@@ -103,4 +103,26 @@
   <div class="callout"><strong>Next recommended guide:</strong> <a href="13-australian-platform-comparison.html">Australian Platform Comparison — fees, CHESS, and how to choose your first brokerage →</a></div>
 </section>
 <section class="section warning"><h2>Do not rush changes</h2><p>Super is powerful because it compounds for decades, but it is also personal. Tax, contribution caps, age, income, insurance, family situation, and retirement goals matter. Use this guide to ask better questions, then get qualified advice before making major super decisions.</p></section>
-</main></body></html>
+</main><script>
+(function(){
+  var l='en';
+  try{var s=localStorage.getItem('plainvest-lang');if(s==='pt'||s==='en')l=s;}catch(e){}
+  document.documentElement.lang=l;
+  document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===l);
+  });
+  window.setGuideLang=function(lang){
+    document.documentElement.lang=lang;
+    try{localStorage.setItem('plainvest-lang',lang);}catch(e){}
+    document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+      b.classList.toggle('active',b.dataset.lang===lang);
+    });
+    if(window.parent!==window)try{window.parent.postMessage({type:'langChange',lang:lang},'*');}catch(e){}
+  };
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='setLang'&&(e.data.lang==='en'||e.data.lang==='pt'))
+      window.setGuideLang(e.data.lang);
+  });
+})();
+</script>
+</body></html>

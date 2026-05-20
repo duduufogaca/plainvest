@@ -7,8 +7,8 @@
     <nav class="guide-topnav">
     <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
     <div class="guide-lang-switch">
-      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
-      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">🇺🇸 EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">🇧🇷 PT</button>
     </div>
   </nav>
 <header class="hero"><div class="kicker"><span class="lang-en">Australia Basics</span><span class="lang-pt">Fundamentos Austrália</span></div><h1><span class="lang-en">Tax, CGT, and records without the panic.</span><span class="lang-pt">Impostos, CGT e registros sem pânico.</span></h1><p class="lead">This guide is educational only, not tax advice. It helps Australian beginners understand what usually creates tax questions, what records to keep, and what to ask a registered tax professional before tax time.</p><div class="quick-strip"><div class="quick-card"><strong><span class="lang-en">Goal</span><span class="lang-pt">Objetivo</span></strong><span>Know what to track before you invest.</span></div><div class="quick-card"><strong><span class="lang-en">Best time</span><span class="lang-pt">Melhor momento</span></strong><span>Before your first trade, not after June.</span></div><div class="quick-card"><strong><span class="lang-en">Key habit</span><span class="lang-pt">Hábito essencial</span></strong><span>Save every statement and export.</span></div></div>
@@ -159,4 +159,26 @@
 </section>
 
 <section class="section warning"><h2>What to ask an accountant</h2><p>Ask how CGT applies to your situation, how to handle ETF distributions and foreign income, whether the 12-month discount applies, how to record crypto activity, and what software or reports they prefer. Plainvest can help you prepare better questions, but a registered tax professional should handle personal tax advice.</p></section>
-</main></body></html>
+</main><script>
+(function(){
+  var l='en';
+  try{var s=localStorage.getItem('plainvest-lang');if(s==='pt'||s==='en')l=s;}catch(e){}
+  document.documentElement.lang=l;
+  document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===l);
+  });
+  window.setGuideLang=function(lang){
+    document.documentElement.lang=lang;
+    try{localStorage.setItem('plainvest-lang',lang);}catch(e){}
+    document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+      b.classList.toggle('active',b.dataset.lang===lang);
+    });
+    if(window.parent!==window)try{window.parent.postMessage({type:'langChange',lang:lang},'*');}catch(e){}
+  };
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='setLang'&&(e.data.lang==='en'||e.data.lang==='pt'))
+      window.setGuideLang(e.data.lang);
+  });
+})();
+</script>
+</body></html>

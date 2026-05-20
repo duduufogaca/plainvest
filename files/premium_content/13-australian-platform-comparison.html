@@ -411,4 +411,26 @@
   <h2><span class="lang-en">Plainvest platform rule</span><span class="lang-pt">Regra de plataforma da Plainvest</span></h2>
   <p>A platform is a tool, not a strategy. Do not pick one because a creator promoted it, because the app looks exciting, or because it offers the most products. Pick the platform that makes your investing plan easier to follow, safer to record, and calmer to repeat — then use it consistently for years.</p>
 </section>
-</main></body></html>
+</main><script>
+(function(){
+  var l='en';
+  try{var s=localStorage.getItem('plainvest-lang');if(s==='pt'||s==='en')l=s;}catch(e){}
+  document.documentElement.lang=l;
+  document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===l);
+  });
+  window.setGuideLang=function(lang){
+    document.documentElement.lang=lang;
+    try{localStorage.setItem('plainvest-lang',lang);}catch(e){}
+    document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+      b.classList.toggle('active',b.dataset.lang===lang);
+    });
+    if(window.parent!==window)try{window.parent.postMessage({type:'langChange',lang:lang},'*');}catch(e){}
+  };
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='setLang'&&(e.data.lang==='en'||e.data.lang==='pt'))
+      window.setGuideLang(e.data.lang);
+  });
+})();
+</script>
+</body></html>

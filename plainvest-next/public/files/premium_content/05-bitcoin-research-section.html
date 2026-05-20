@@ -24,8 +24,8 @@
     <nav class="guide-topnav">
     <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
     <div class="guide-lang-switch">
-      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
-      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">🇺🇸 EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">🇧🇷 PT</button>
     </div>
   </nav>
   <header class="hero">
@@ -249,6 +249,28 @@
         update(fallbackHeight, 'fallback');
       });
   })();
+</script>
+<script>
+(function(){
+  var l='en';
+  try{var s=localStorage.getItem('plainvest-lang');if(s==='pt'||s==='en')l=s;}catch(e){}
+  document.documentElement.lang=l;
+  document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===l);
+  });
+  window.setGuideLang=function(lang){
+    document.documentElement.lang=lang;
+    try{localStorage.setItem('plainvest-lang',lang);}catch(e){}
+    document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+      b.classList.toggle('active',b.dataset.lang===lang);
+    });
+    if(window.parent!==window)try{window.parent.postMessage({type:'langChange',lang:lang},'*');}catch(e){}
+  };
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='setLang'&&(e.data.lang==='en'||e.data.lang==='pt'))
+      window.setGuideLang(e.data.lang);
+  });
+})();
 </script>
 </body>
 </html>

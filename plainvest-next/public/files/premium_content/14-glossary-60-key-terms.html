@@ -7,8 +7,8 @@
     <nav class="guide-topnav">
     <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
     <div class="guide-lang-switch">
-      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
-      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">🇺🇸 EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">🇧🇷 PT</button>
     </div>
   </nav>
 <header class="hero"><div class="kicker"><span class="lang-en">Glossary</span><span class="lang-pt">Glossário</span></div><h1><span class="lang-en">60 investing words in plain English.</span><span class="lang-pt">60 termos de investimento em linguagem simples.</span></h1><p class="lead">Use this when a guide, broker, chart, or book uses a word that makes the whole thing feel harder than it needs to be. The point is not to memorise everything. The point is to stop jargon from blocking action.</p>
@@ -31,4 +31,26 @@
 <section class="section"><h2><span class="lang-en">Beginner translation list</span><span class="lang-pt">Lista de tradução para iniciantes</span></h2><p>Fiat means government-issued money. Real return means return after inflation. Nominal return means return before inflation. Spread means the gap between buy and sell prices. Market order prioritises execution. Limit order sets your price. Rebalancing brings your portfolio back to target weights. Preservation age is when super access may begin, depending on rules. Concessional contribution is usually pre-tax super money. Non-concessional contribution is usually after-tax super money.</p></section>
 
 <section class="section"><h2><span class="lang-en">Use this glossary alongside every other guide</span><span class="lang-pt">Use este glossário ao lado de todos os outros guias</span></h2><div class="callout"><strong>The Glossary is a reference, not a reading order.</strong> Return to it any time a guide, book, broker screen, or conversation uses a word that blocks your understanding. You can also use the <a href="14-glossary-60-key-terms.html">Glossary</a> search (Ctrl+F / Cmd+F) to find any term quickly. If a word is missing, bring it to your Zoom call.</div></section>
-</main></body></html>
+</main><script>
+(function(){
+  var l='en';
+  try{var s=localStorage.getItem('plainvest-lang');if(s==='pt'||s==='en')l=s;}catch(e){}
+  document.documentElement.lang=l;
+  document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===l);
+  });
+  window.setGuideLang=function(lang){
+    document.documentElement.lang=lang;
+    try{localStorage.setItem('plainvest-lang',lang);}catch(e){}
+    document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+      b.classList.toggle('active',b.dataset.lang===lang);
+    });
+    if(window.parent!==window)try{window.parent.postMessage({type:'langChange',lang:lang},'*');}catch(e){}
+  };
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='setLang'&&(e.data.lang==='en'||e.data.lang==='pt'))
+      window.setGuideLang(e.data.lang);
+  });
+})();
+</script>
+</body></html>
