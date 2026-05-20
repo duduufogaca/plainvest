@@ -56,9 +56,10 @@ body {
 .guide-lang-btn.active,
 .guide-lang-btn:hover { background:var(--teal); color:#071120; border-color:var(--teal); }
 /* ── Bilingual content ── */
-.lang-en, .lang-pt { display:none; }
-html[lang="en"] .lang-en { display:revert; }
-html[lang="pt"] .lang-pt, html[lang="pt-BR"] .lang-pt { display:revert; }
+/* !important ensures these override container-specific span rules (.quick-card span, .study-note span, etc.) */
+.lang-en, .lang-pt { display:none !important; }
+html[lang="en"] .lang-en { display:revert !important; }
+html[lang="pt"] .lang-pt, html[lang="pt-BR"] .lang-pt { display:revert !important; }
 .platform-back {
   display:inline-flex;
   align-items:center;

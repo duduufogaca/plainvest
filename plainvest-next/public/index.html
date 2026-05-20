@@ -11952,7 +11952,7 @@
       </div>
       <div class="member-progress-strip">
         <div class="member-progress-bar-wrap" aria-hidden="true"><div class="member-progress-bar" id="member-progress-bar"></div></div>
-        <span id="member-progress-counter" class="member-progress-label">0 of 17 guides opened</span>
+        <span id="member-progress-counter" class="member-progress-label">0 of 18 guides opened</span>
       </div>
       <div class="member-grid">
         <div class="member-card">
@@ -12170,6 +12170,18 @@
             <li data-i18n="member.card11Item3">A calm checklist before making changes</li>
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('super')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🧠</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card18Title">Don't panic sell</h3>
+          <p data-i18n="member.card18Text">The emotional investor framework — why panic selling destroys long-term results, how to recognise fear in disguise, and what to do instead during a market crash.</p>
+          <ul>
+            <li data-i18n="member.card18Item1">Five "reasons to sell" that are actually fear</li>
+            <li data-i18n="member.card18Item2">A 5-question decision framework before selling anything</li>
+            <li data-i18n="member.card18Item3">Every major crash recovery in history — the full table</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('panicsell')" data-i18n="member.openFileBtn">Open file</button>
         </div>
       </div>
       <div class="member-next" data-i18n="member.next">Premium is designed to keep every next step clear: learn the idea, understand the tools, ask questions, and build confidence before taking action.</div>
@@ -13014,6 +13026,11 @@
           card15Item1: 'How inflation erodes cash across AU, US & Brazil',
           card15Item2: 'Asset-by-asset inflation response table',
           card15Item3: 'The real cost of waiting — modelled over 20 years',
+          card18Title: 'Don\'t panic sell',
+          card18Text: 'The emotional investor framework — why panic selling destroys long-term results, how to recognise fear in disguise, and what to do instead during a market crash.',
+          card18Item1: 'Five "reasons to sell" that are actually fear',
+          card18Item2: 'A 5-question decision framework before selling anything',
+          card18Item3: 'Every major crash recovery in history — the full table',
           cardBtn: 'Open guide',
           booksBtn: 'View reading list',
           meetingBtn: 'Request meeting',
@@ -13673,6 +13690,11 @@
           card15Item1: 'Como a inflação corrói o caixa na AU, EUA e Brasil',
           card15Item2: 'Tabela de resposta dos ativos à inflação',
           card15Item3: 'O custo real de esperar — modelado em 20 anos',
+          card18Title: 'Não venda no pânico',
+          card18Text: 'O guia do investidor emocional — por que vender no pânico destrói resultados, como reconhecer o medo disfarçado e o que fazer durante uma crise de mercado.',
+          card18Item1: 'Cinco "motivos para vender" que são na verdade medo',
+          card18Item2: 'Estrutura de 5 perguntas antes de vender qualquer coisa',
+          card18Item3: 'Todas as recuperações de crises históricas — a tabela completa',
           cardBtn: 'Abrir guia',
           booksBtn: 'Ver lista de leitura',
           meetingBtn: 'Solicitar reunião',
@@ -15740,6 +15762,10 @@
         sentiment: {
           title: isPt ? 'Sentimento de mercado: Medo e Ganância' : 'Market Sentiment: Fear & Greed',
           file: 'files/premium_content/17-market-sentiment-fear-and-greed.html'
+        },
+        panicsell: {
+          title: isPt ? 'Não venda no pânico' : 'Don\'t Panic Sell',
+          file: 'files/premium_content/18-dont-panic-sell.html'
         }
       };
     }
@@ -16778,6 +16804,104 @@
 
   </script>
 
+  <!-- ── Mobile bottom navigation ── -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="#simulator" class="mob-nav-item" data-i18n="nav.simulator">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span data-i18n="nav.simulator">Simulator</span>
+    </a>
+    <a href="#inflation" class="mob-nav-item" data-i18n-label="nav.inflation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <span data-i18n="nav.inflation">Inflation</span>
+    </a>
+    <a href="#learn" class="mob-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <span data-i18n="nav.learn">Learn</span>
+    </a>
+    <a href="#plans" class="mob-nav-item mob-nav-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span data-i18n="nav.plans">Plans</span>
+    </a>
+  </nav>
+
+  <style>
+  .mobile-bottom-nav {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .mobile-bottom-nav {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(7, 17, 32, 0.97);
+      border-top: 1px solid rgba(0, 212, 170, 0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.4rem 0 calc(0.4rem + env(safe-area-inset-bottom));
+      justify-content: space-around;
+      align-items: stretch;
+    }
+    .mob-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      flex: 1;
+      text-decoration: none;
+      color: #7a99b8;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.2rem;
+      transition: color 0.2s;
+    }
+    .mob-nav-item svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .mob-nav-item:hover,
+    .mob-nav-item.is-active {
+      color: #00d4aa;
+    }
+    .mob-nav-item.mob-nav-cta {
+      color: #00d4aa;
+    }
+    .mob-nav-item.mob-nav-cta svg {
+      stroke: #00d4aa;
+    }
+    /* Push page content above bottom nav */
+    body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+  </style>
+
+  <script>
+  /* Highlight active mobile bottom nav item on scroll */
+  (function () {
+    var sections = ['simulator', 'inflation', 'learn', 'plans'];
+    var items = document.querySelectorAll('.mob-nav-item');
+    if (!items.length) return;
+    function updateActive() {
+      var scrollY = window.scrollY + window.innerHeight * 0.4;
+      var active = '';
+      sections.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) active = id;
+      });
+      items.forEach(function (a) {
+        var href = a.getAttribute('href').replace('#', '');
+        a.classList.toggle('is-active', href === active);
+      });
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+  </script>
 
 </body>
 
