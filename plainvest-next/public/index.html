@@ -12192,10 +12192,6 @@
             <div class="member-check" data-i18n="member.check3">Exchange setup support</div>
             <div class="member-check" data-i18n="member.check4">Books, DCA, crypto, and saved learning paths</div>
           </div>
-          <div class="member-support-actions">
-            <button class="member-action-btn primary" onclick="openMemberGuide('welcome')" data-i18n="member.welcomeBtn">Open Welcome</button>
-            <button class="member-action-btn" onclick="openMemberGuide('references')" data-i18n="member.sourcesBtn">Research sources</button>
-          </div>
         </div>
         <div class="member-support">
           <h3 data-i18n="member.supportTitle">Member support</h3>
@@ -12236,6 +12232,30 @@
         <span id="member-progress-counter" class="member-progress-label">0 of 15 guides opened</span>
       </div>
       <div class="member-grid">
+        <div class="member-card">
+          <div class="member-icon">🚀</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.cardWelcomeTitle">Premium Welcome — Start Here</h3>
+          <p data-i18n="member.cardWelcomeText">Your first stop. Understand what's included in Premium, how to navigate the hub, and which guide to open first based on your goals and experience.</p>
+          <ul>
+            <li data-i18n="member.cardWelcomeItem1">What's included in your Premium access</li>
+            <li data-i18n="member.cardWelcomeItem2">How to use the hub and navigate guides</li>
+            <li data-i18n="member.cardWelcomeItem3">Where to start based on your experience level</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('welcome')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🗂️</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.cardLibraryTitle">Research &amp; Tools Library</h3>
+          <p data-i18n="member.cardLibraryText">10 categories of curated research tools, reference sources, and educational material. From ETF screeners and sentiment gauges to platform comparisons, tax basics, and sources to avoid.</p>
+          <ul>
+            <li data-i18n="member.cardLibraryItem1">ETF tools, crypto research, chart platforms, sentiment gauges</li>
+            <li data-i18n="member.cardLibraryItem2">Platform comparison: AU, US &amp; Brazil</li>
+            <li data-i18n="member.cardLibraryItem3">AU tax basics, superannuation tools, and red-flag sources</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('references')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
         <div class="member-card">
           <div class="member-icon">📚</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
@@ -13146,9 +13166,17 @@
           heroPill1: 'Structured learning',
           heroPill2: 'Practical checklists',
           heroPill3: 'Support call',
-          welcomeBtn: 'Open Welcome',
-          sourcesBtn: 'Research sources',
           openFileBtn: 'Open file',
+          cardWelcomeTitle: 'Premium Welcome — Start Here',
+          cardWelcomeText: 'Your first stop. Understand what\'s included in Premium, how to navigate the hub, and which guide to open first based on your goals and experience.',
+          cardWelcomeItem1: 'What\'s included in your Premium access',
+          cardWelcomeItem2: 'How to use the hub and navigate guides',
+          cardWelcomeItem3: 'Where to start based on your experience level',
+          cardLibraryTitle: 'Research & Tools Library',
+          cardLibraryText: '10 categories of curated research tools, reference sources, and educational material. From ETF screeners and sentiment gauges to platform comparisons, tax basics, and sources to avoid.',
+          cardLibraryItem1: 'ETF tools, crypto research, chart platforms, sentiment gauges',
+          cardLibraryItem2: 'Platform comparison: AU, US & Brazil',
+          cardLibraryItem3: 'AU tax basics, superannuation tools, and red-flag sources',
           booksListBtn: 'Open book list',
           supportTitle: 'Member support',
           supportText: 'Use your included Zoom call for questions, exchange setup, investment topics, or anything that feels unclear. Open the Zoom call guide to choose a time in Calendly. Extra online calls are available separately for AUD $39.90 if you need more help.',
@@ -13793,9 +13821,17 @@
           heroPill1: 'Aprendizado estruturado',
           heroPill2: 'Checklists práticos',
           heroPill3: 'Chamada de suporte',
-          welcomeBtn: 'Abrir boas-vindas',
-          sourcesBtn: 'Fontes de pesquisa',
           openFileBtn: 'Abrir arquivo',
+          cardWelcomeTitle: 'Boas-vindas Premium — Comece Aqui',
+          cardWelcomeText: 'Seu primeiro passo. Entenda o que está incluído no Premium, como navegar pelo hub e qual guia abrir primeiro com base nos seus objetivos.',
+          cardWelcomeItem1: 'O que está incluído no seu acesso Premium',
+          cardWelcomeItem2: 'Como usar o hub e navegar pelos guias',
+          cardWelcomeItem3: 'Por onde começar de acordo com seu nível',
+          cardLibraryTitle: 'Biblioteca de Pesquisa e Ferramentas',
+          cardLibraryText: '10 categorias de ferramentas de pesquisa, fontes de referência e material educativo. De triadores de ETF e medidores de sentimento a comparações de plataformas, noções de impostos e fontes a evitar.',
+          cardLibraryItem1: 'Ferramentas de ETF, cripto, gráficos e sentimento de mercado',
+          cardLibraryItem2: 'Comparação de plataformas: AU, EUA e Brasil',
+          cardLibraryItem3: 'Noções de imposto AU, ferramentas de super e fontes duvidosas',
           booksListBtn: 'Abrir lista de livros',
           supportTitle: 'Suporte de membro',
           supportText: 'Use sua chamada incluída no Zoom para dúvidas, configuração de exchange, temas de investimento ou qualquer ponto que ainda pareça confuso. Abra o guia da chamada no Zoom para escolher um horário no Calendly. Chamadas online extras ficam disponíveis separadamente por aprox. R$142,00 se precisar de mais ajuda.',
@@ -15920,7 +15956,7 @@
           file: 'files/premium_content/09-zoom-call-preparation.html'
         },
         references: {
-          title: isPt ? 'Fontes de pesquisa Premium' : 'Premium Research Sources',
+          title: isPt ? 'Biblioteca de Pesquisa e Ferramentas' : 'Research & Tools Library',
           file: 'files/premium_content/10-research-sources.html'
         },
         tax: {
