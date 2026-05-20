@@ -325,6 +325,7 @@
         c.style.cursor = 'pointer';
         c.onclick = function () { window.open('https://money.cnn.com/data/fear-and-greed/', '_blank'); };
       }
+      drawGauge('fgi-us-gauge', 50);
       var u = document.getElementById('fgi-us-updated');
       if (u) u.textContent = 'CORS blocked — open CNN directly';
     });

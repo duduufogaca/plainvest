@@ -11773,7 +11773,7 @@
           </div>
         </div>
         <div class="plan-after-purchase" data-i18n-html="plans.afterPurchase"><strong>After payment:</strong> you land in the member hub, open any guide immediately, and book your included Zoom call from the support guide.</div>
-        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberDashboard()">Purchase access</button>
+        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
         <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.86rem;line-height:1.45;" data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
       </div>
     </div>
@@ -11812,7 +11812,7 @@
       </div>
     </div>
     <div class="plans-bottom-cta">
-      <button class="plan-btn pb-fill" data-i18n="plans.bottomCta" onclick="openMemberDashboard()">Purchase access — AUD $89.90</button>
+      <button class="plan-btn pb-fill" data-i18n="plans.bottomCta" onclick="openMemberSignup()">Purchase access — AUD $89.90</button>
       <p data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
     </div>
     <div class="plans-footnote" id="plans-footnote">Plainvest Premium is designed to reduce hesitation, not add complexity. The goal is to help someone go from “I think I should invest” to “I know what my first step is.”</div>
@@ -12098,42 +12098,6 @@
           <button class="member-open-file" onclick="openMemberGuide('sentiment')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">🧾</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card10Title">Australian tax and CGT basics</h3>
-          <p data-i18n="member.card10Text">Plain-English education about CGT, records, ETF distributions, crypto disposals, and questions to ask a tax professional.</p>
-          <ul>
-            <li data-i18n="member.card10Item1">Capital gains and the 12-month discount concept</li>
-            <li data-i18n="member.card10Item2">Records to keep before tax time</li>
-            <li data-i18n="member.card10Item3">Common beginner mistakes to avoid</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('tax')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🛡️</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card11Title">Superannuation basics</h3>
-          <p data-i18n="member.card11Text">Understand why super is already investing, what to compare, and which beginner questions matter most.</p>
-          <ul>
-            <li data-i18n="member.card11Item1">Fees, investment options, performance, and insurance</li>
-            <li data-i18n="member.card11Item2">MySuper and voluntary contribution basics</li>
-            <li data-i18n="member.card11Item3">A calm checklist before making changes</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('super')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🌏</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card12Title">Platform comparison: AU, US &amp; Brazil</h3>
-          <p data-i18n="member.card12Text">Compare investing platforms across Australia, the United States, and Brazil — by fees, assets, ownership model, and beginner fit.</p>
-          <ul>
-            <li data-i18n="member.card12Item1">Australian: CommSec, Pearler, SelfWealth, Stake, and more</li>
-            <li data-i18n="member.card12Item2">US: Fidelity, Schwab, Vanguard, Robinhood, IBKR</li>
-            <li data-i18n="member.card12Item3">Brazil: XP, NuInvest, Rico, Clear, BTG Digital</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('platforms')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
           <div class="member-icon">🔤</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
           <h3 data-i18n="member.card13Title">Glossary of key terms</h3>
@@ -12168,6 +12132,42 @@
             <li data-i18n="member.card15Item3">The real cost of waiting — modelled over 20 years</li>
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('inflation')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🌏</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card12Title">Platform comparison: AU, US &amp; Brazil</h3>
+          <p data-i18n="member.card12Text">Compare investing platforms across Australia, the United States, and Brazil — by fees, assets, ownership model, and beginner fit.</p>
+          <ul>
+            <li data-i18n="member.card12Item1">Australian: CommSec, Pearler, SelfWealth, Stake, and more</li>
+            <li data-i18n="member.card12Item2">US: Fidelity, Schwab, Vanguard, Robinhood, IBKR</li>
+            <li data-i18n="member.card12Item3">Brazil: XP, NuInvest, Rico, Clear, BTG Digital</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('platforms')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🧾</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card10Title">Australian tax and CGT basics</h3>
+          <p data-i18n="member.card10Text">Plain-English education about CGT, records, ETF distributions, crypto disposals, and questions to ask a tax professional.</p>
+          <ul>
+            <li data-i18n="member.card10Item1">Capital gains and the 12-month discount concept</li>
+            <li data-i18n="member.card10Item2">Records to keep before tax time</li>
+            <li data-i18n="member.card10Item3">Common beginner mistakes to avoid</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('tax')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🛡️</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card11Title">Superannuation basics</h3>
+          <p data-i18n="member.card11Text">Understand why super is already investing, what to compare, and which beginner questions matter most.</p>
+          <ul>
+            <li data-i18n="member.card11Item1">Fees, investment options, performance, and insurance</li>
+            <li data-i18n="member.card11Item2">MySuper and voluntary contribution basics</li>
+            <li data-i18n="member.card11Item3">A calm checklist before making changes</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('super')" data-i18n="member.openFileBtn">Open file</button>
         </div>
       </div>
       <div class="member-next" data-i18n="member.next">Premium is designed to keep every next step clear: learn the idea, understand the tools, ask questions, and build confidence before taking action.</div>
@@ -12280,7 +12280,7 @@
           </div>
         </div>
         <div class="member-book-card">
-          <div class="member-book-cover has-image cover-gold"><img src="https://covers.openlibrary.org/b/isbn/9781544526155-L.jpg" alt="The Bitcoin Standard cover"><small data-i18n="memberBooks.book7Level">Bitcoin</small><span data-i18n="memberBooks.book7Title">The Bitcoin Standard</span><em data-i18n="memberBooks.book7Author">Saifedean Ammous</em></div>
+          <div class="member-book-cover has-image cover-gold"><img src="https://covers.openlibrary.org/b/isbn/9781119473862-L.jpg" alt="The Bitcoin Standard cover" onerror="this.parentElement.classList.remove('has-image')"><small data-i18n="memberBooks.book7Level">Bitcoin</small><span data-i18n="memberBooks.book7Title">The Bitcoin Standard</span><em data-i18n="memberBooks.book7Author">Saifedean Ammous</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book7Level">Bitcoin</div>
             <h3 data-i18n="memberBooks.book7Title">The Bitcoin Standard</h3>
