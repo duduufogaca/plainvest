@@ -13920,6 +13920,7 @@
 
     function setLang(lang, btn) {
       currentLang = lang;
+      try { localStorage.setItem('plainvest-lang', lang); } catch(e) {}
       document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 
       // Update active button
@@ -16656,7 +16657,13 @@
         setupSectionNavigation();
         syncMobileSimulatorLayout();
         setCountry('us', document.querySelector('.cs-flag.active'));
-        setLang('en', document.querySelector('.lang-btn.active'));
+        var _savedLang = 'en';
+        try { var _s = localStorage.getItem('plainvest-lang'); if (_s === 'pt' || _s === 'en') _savedLang = _s; } catch(e) {}
+        var _langBtn = null;
+        document.querySelectorAll('.lang-btn').forEach(function(b) {
+          if ((b.getAttribute('onclick') || '').indexOf("'" + _savedLang + "'") !== -1) _langBtn = b;
+        });
+        setLang(_savedLang, _langBtn);
         syncMemberNavState();
         showPage(pageFromHash(window.location.hash), { updateHash: false, instant: true });
 
