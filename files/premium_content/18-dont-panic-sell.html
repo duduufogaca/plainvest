@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Don't Panic Sell</title><link rel="stylesheet" href="premium-guide.css"><link rel="icon" type="image/png" href="/assets/plainvest-app-icon.png"><link rel="apple-touch-icon" href="/assets/plainvest-app-icon.png"><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#071120"><script id="plainvest-premium-file-guard">
+(function () {
+  var local = (location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1") && new URLSearchParams(location.search).get("preview") === "1";
+  if (local) return;
+  if (!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)) { location.replace("https://members.plainvest.app/dashboard"); return; }
+  document.documentElement.style.visibility = "hidden";
+  fetch("/api/member/status", { credentials: "include", cache: "no-store" })
+    .then(function (response) { return response.ok ? response.json() : null; })
+    .then(function (status) {
+      if (status && status.authenticated && status.premium) {
+        document.documentElement.style.visibility = "visible";
+        return;
+      }
+      location.replace(status && status.authenticated ? "/dashboard" : "/login?mode=manual");
+    })
+    .catch(function () { location.replace("/dashboard"); });
+})();
+</script>
+</head>
+<body>
+<main class="guide">
+  <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">🇺🇸 EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">🇧🇷 PT</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="kicker"><span class="lang-en">Premium Behavioural Guide</span><span class="lang-pt">Guia Premium de Comportamento</span></div>
+    <h1><span class="lang-en">Don't panic sell — <em>the emotional investor framework.</em></span><span class="lang-pt">Não venda no pânico — <em>o guia do investidor emocional.</em></span></h1>
+    <p class="lead"><span class="lang-en">Panic selling is the single most common way beginner investors destroy long-term results. Markets crash. Fear is intense. Every headline confirms your worst thoughts. And yet — investors who stay invested through every crash in history have recovered. This guide explains why panic selling feels right, why it almost always isn't, and what to do instead.</span><span class="lang-pt">Vender no pânico é a forma mais comum de iniciantes destruírem resultados de longo prazo. Os mercados caem. O medo é intenso. Cada manchete confirma seus piores pensamentos. E ainda assim — investidores que permaneceram investidos em cada crise da história se recuperaram. Este guia explica por que vender no pânico parece certo, por que quase nunca é, e o que fazer em vez disso.</span></p>
+    <div class="stat-row">
+      <div class="stat-block danger"><span class="stat-num">−34%</span><span class="stat-label"><span class="lang-en">S&amp;P 500 COVID crash, Feb–Mar 2020 — recovered in 5 months</span><span class="lang-pt">queda do S&amp;P 500 no COVID, fev–mar 2020 — recuperado em 5 meses</span></span></div>
+      <div class="stat-block gold"><span class="stat-num">10 days</span><span class="stat-label"><span class="lang-en">miss the best 10 days in 20 years and your return drops by more than half</span><span class="lang-pt">perder os 10 melhores dias em 20 anos reduz seu retorno pela metade</span></span></div>
+      <div class="stat-block"><span class="stat-num">100%</span><span class="stat-label"><span class="lang-en">of major market crashes in history have eventually recovered</span><span class="lang-pt">das grandes crises históricas do mercado se recuperaram</span></span></div>
+      <div class="stat-block soft"><span class="stat-num">Rule</span><span class="stat-label"><span class="lang-en">write your exit rules before the crash — not during it</span><span class="lang-pt">escreva suas regras de saída antes da crise — não durante ela</span></span></div>
+    </div>
+  </header>
+
+  <!-- 1. THE PROBLEM -->
+  <section class="section">
+    <h2><span class="lang-en">Why panic selling destroys long-term results</span><span class="lang-pt">Por que vender no pânico destrói resultados de longo prazo</span></h2>
+    <p><span class="lang-en">Panic selling is not just about the loss you lock in when you sell. The bigger problem is what happens next. Most investors who sell during a crash do not re-enter at the bottom. They wait until things feel "safe" again — which typically means waiting until prices have already recovered significantly. The result: you sell low, you buy back high, and you pay tax on any gain from before the crash.</span><span class="lang-pt">Vender no pânico não se trata apenas da perda que você realiza ao vender. O problema maior é o que acontece depois. A maioria dos investidores que vende durante uma crise não volta a comprar no fundo. Eles esperam até as coisas parecerem "seguras" novamente — o que geralmente significa esperar até que os preços já tenham se recuperado significativamente. O resultado: você vende barato, compra caro de volta e ainda paga imposto sobre qualquer ganho anterior à crise.</span></p>
+    <p><span class="lang-en">Research by JP Morgan Asset Management found that an investor who missed just the 10 best trading days in the S&amp;P 500 over the 20 years to 2022 would have ended with less than half the return of someone who stayed fully invested. Those 10 best days — spread across two decades — often came within two weeks of the 10 worst days. The volatility that drives panic selling is the same volatility that produces recovery gains.</span><span class="lang-pt">Uma pesquisa da JP Morgan Asset Management mostrou que um investidor que perdeu apenas os 10 melhores dias de negociação do S&amp;P 500 nos 20 anos até 2022 teria encerrado com menos da metade do retorno de quem permaneceu totalmente investido. Esses 10 melhores dias — distribuídos ao longo de duas décadas — frequentemente ocorreram dentro de duas semanas dos 10 piores dias. A volatilidade que gera o pânico é a mesma que produz os ganhos da recuperação.</span></p>
+
+    <!-- SVG: Cost of Missing Best Days -->
+    <div style="margin: 1.8rem 0;">
+      <svg viewBox="0 0 760 220" role="img" aria-label="Bar chart showing how missing the best market days reduces returns" style="width:100%;border-radius:12px;background:#0b1d32;padding:1rem 0;">
+        <text x="380" y="28" fill="#c8ddf0" font-size="13" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">The cost of missing the market's best days (S&amp;P 500, 2003–2022)</text>
+        <!-- bars -->
+        <!-- Fully invested: $10k → ~$64,844 — height 160 -->
+        <rect x="70" y="52" width="80" height="140" rx="4" fill="#00d4aa"/>
+        <text x="110" y="45" fill="#00d4aa" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">$64,844</text>
+        <text x="110" y="204" fill="#7ab3cc" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Fully invested</text>
+        <!-- Miss 10 best days: ~$29,708 — height ~64 -->
+        <rect x="185" y="128" width="80" height="64" rx="4" fill="#e8b84b"/>
+        <text x="225" y="121" fill="#e8b84b" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">$29,708</text>
+        <text x="225" y="204" fill="#7ab3cc" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Miss 10 days</text>
+        <!-- Miss 20 best days: ~$17,826 — height ~38 -->
+        <rect x="300" y="154" width="80" height="38" rx="4" fill="#e07832"/>
+        <text x="340" y="147" fill="#e07832" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">$17,826</text>
+        <text x="340" y="204" fill="#7ab3cc" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Miss 20 days</text>
+        <!-- Miss 30 best days: ~$11,701 — height ~25 -->
+        <rect x="415" y="167" width="80" height="25" rx="4" fill="#d93648"/>
+        <text x="455" y="160" fill="#d93648" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">$11,701</text>
+        <text x="455" y="204" fill="#7ab3cc" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Miss 30 days</text>
+        <!-- Miss 40 best days: ~$8,048 — height ~17 -->
+        <rect x="530" y="175" width="80" height="17" rx="4" fill="#963648"/>
+        <text x="570" y="168" fill="#963648" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">$8,048</text>
+        <text x="570" y="204" fill="#7ab3cc" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Miss 40 days</text>
+        <!-- starting value label -->
+        <text x="680" y="197" fill="#5a7a9a" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Starting: $10,000</text>
+        <!-- baseline -->
+        <line x1="50" y1="192" x2="720" y2="192" stroke="#1e3a5f" stroke-width="1"/>
+      </svg>
+      <p style="font-size:.82rem;color:#5a7a9a;margin-top:.4rem;text-align:center;"><span class="lang-en">Illustrative — based on JP Morgan Asset Management research concept. Past performance does not guarantee future results.</span><span class="lang-pt">Ilustrativo — baseado no conceito de pesquisa da JP Morgan Asset Management. Resultados passados não garantem resultados futuros.</span></p>
+    </div>
+
+    <div class="callout"><strong><span class="lang-en">The timing problem:</span><span class="lang-pt">O problema do timing:</span></strong> <span class="lang-en">Panic selling only works if you time two decisions correctly — the exit AND the re-entry. Most investors get one of these wrong. Getting both right requires predicting the future, which nobody reliably does. The mathematics of staying invested almost always beats the mathematics of trying to time the market.</span><span class="lang-pt">Vender no pânico só funciona se você acertar duas decisões — a saída E a volta. A maioria dos investidores erra pelo menos uma delas. Acertar as duas exige prever o futuro, o que ninguém faz de forma confiável. A matemática de permanecer investido quase sempre supera a de tentar acertar o timing do mercado.</span></div>
+  </section>
+
+  <!-- 2. CRASH RECOVERY TABLE -->
+  <section class="section">
+    <h2><span class="lang-en">Every major crash has recovered — the full historical record</span><span class="lang-pt">Toda grande crise se recuperou — o registro histórico completo</span></h2>
+    <p><span class="lang-en">The table below shows every significant market crash in the last 100 years and how long recovery took. None of these felt small or temporary at the time. Every single one was described by media as potentially permanent. Every one recovered.</span><span class="lang-pt">A tabela abaixo mostra cada grande crise de mercado dos últimos 100 anos e quanto tempo levou a recuperação. Nenhuma pareceu pequena ou temporária na época. Cada uma foi descrita pela mídia como potencialmente permanente. Todas se recuperaram.</span></p>
+    <table class="mini-table">
+      <thead>
+        <tr>
+          <th><span class="lang-en">Event</span><span class="lang-pt">Evento</span></th>
+          <th><span class="lang-en">Market / asset</span><span class="lang-pt">Mercado / ativo</span></th>
+          <th><span class="lang-en">Peak to trough</span><span class="lang-pt">Pico ao fundo</span></th>
+          <th><span class="lang-en">Recovery to new high</span><span class="lang-pt">Recuperação até nova máxima</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="lang-en">Great Depression (1929–32)</span><span class="lang-pt">Grande Depressão (1929–32)</span></td><td>Dow Jones</td><td>−89%</td><td><span class="lang-en">~25 years (1954)</span><span class="lang-pt">~25 anos (1954)</span></td></tr>
+        <tr><td><span class="lang-en">Black Monday (Oct 1987)</span><span class="lang-pt">Segunda-feira Negra (out 1987)</span></td><td>S&amp;P 500</td><td>−34%</td><td><span class="lang-en">~2 years (1989)</span><span class="lang-pt">~2 anos (1989)</span></td></tr>
+        <tr><td><span class="lang-en">Dotcom bust (2000–02)</span><span class="lang-pt">Colapso da bolha ponto-com (2000–02)</span></td><td>Nasdaq</td><td>−78%</td><td><span class="lang-en">~15 years (2015)</span><span class="lang-pt">~15 anos (2015)</span></td></tr>
+        <tr><td><span class="lang-en">Global Financial Crisis (2007–09)</span><span class="lang-pt">Crise Financeira Global (2007–09)</span></td><td>S&amp;P 500</td><td>−57%</td><td><span class="lang-en">~4 years (2013)</span><span class="lang-pt">~4 anos (2013)</span></td></tr>
+        <tr><td><span class="lang-en">COVID crash (Feb–Mar 2020)</span><span class="lang-pt">Crise do COVID (fev–mar 2020)</span></td><td>S&amp;P 500</td><td>−34%</td><td><span class="lang-en">~5 months (Aug 2020)</span><span class="lang-pt">~5 meses (ago 2020)</span></td></tr>
+        <tr><td><span class="lang-en">2022 rate-shock bear</span><span class="lang-pt">Bear market do choque de juros (2022)</span></td><td>S&amp;P 500</td><td>−25%</td><td><span class="lang-en">~20 months (Jan 2024)</span><span class="lang-pt">~20 meses (jan 2024)</span></td></tr>
+        <tr><td><span class="lang-en">Bitcoin 2018 bear market</span><span class="lang-pt">Bear market do Bitcoin em 2018</span></td><td>Bitcoin</td><td>−84%</td><td><span class="lang-en">~3 years (Dec 2020)</span><span class="lang-pt">~3 anos (dez 2020)</span></td></tr>
+        <tr><td><span class="lang-en">Bitcoin 2022 bear market</span><span class="lang-pt">Bear market do Bitcoin em 2022</span></td><td>Bitcoin</td><td>−78%</td><td><span class="lang-en">~26 months (Mar 2024)</span><span class="lang-pt">~26 meses (mar 2024)</span></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.82rem;color:#5a7a9a;margin-top:.6rem;"><span class="lang-en">Note: these are broad index and major asset recoveries. Individual stocks and speculative tokens can and do permanently fail. Diversification across index funds dramatically reduces the risk of permanent loss compared to single-asset bets.</span><span class="lang-pt">Observação: estas são recuperações de índices amplos e ativos principais. Ações individuais e tokens especulativos podem e falham permanentemente. A diversificação em fundos de índice reduz drasticamente o risco de perda permanente em comparação com apostas em um único ativo.</span></p>
+  </section>
+
+  <!-- 3. WHY SELLING FEELS RIGHT -->
+  <section class="section">
+    <h2><span class="lang-en">Why selling feels like the smart move during a crash</span><span class="lang-pt">Por que vender parece a decisão inteligente durante uma crise</span></h2>
+    <p><span class="lang-en">Behavioral economics has documented the psychological forces that make panic selling feel like rational analysis rather than fear. Understanding these forces helps you recognise them when they activate.</span><span class="lang-pt">A economia comportamental documentou as forças psicológicas que fazem a venda no pânico parecer análise racional em vez de medo. Entender essas forças ajuda a reconhecê-las quando elas se ativam.</span></p>
+    <div class="grid-2">
+      <div class="tile">
+        <strong><span class="lang-en">Loss aversion</span><span class="lang-pt">Aversão à perda</span></strong>
+        <p><span class="lang-en">Research by Kahneman and Tversky found that losses feel roughly twice as painful as equivalent gains feel pleasurable. A $5,000 loss hurts more than a $5,000 gain feels good. During a crash, this asymmetry makes every passing hour feel urgent — your brain is wired to stop the pain by doing something.</span><span class="lang-pt">Pesquisas de Kahneman e Tversky descobriram que as perdas parecem cerca de duas vezes mais dolorosas do que os ganhos equivalentes são prazerosos. Uma perda de $5.000 dói mais do que um ganho de $5.000 é satisfatório. Durante uma crise, essa assimetria faz cada hora parecer urgente — seu cérebro está programado para parar a dor fazendo algo.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Recency bias</span><span class="lang-pt">Viés de recência</span></strong>
+        <p><span class="lang-en">Whatever has happened recently feels most likely to continue. After three weeks of falling prices, your brain extrapolates: it will keep falling. This is why crashes feel bottomless in the middle — you have no recent memory of prices rising, so rising feels impossible. The opposite bias drives bull market overconfidence.</span><span class="lang-pt">O que aconteceu recentemente parece mais provável de continuar. Após três semanas de queda de preços, seu cérebro extrapola: vai continuar caindo. É por isso que as crises parecem sem fundo no meio — você não tem memória recente de preços subindo, então subir parece impossível. O viés oposto alimenta a superconfiança nos mercados em alta.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Narrative bias</span><span class="lang-pt">Viés de narrativa</span></strong>
+        <p><span class="lang-en">You actively seek information that confirms what you feel. During a crash, you read every article warning of further decline and ignore every analyst calling a bottom. Media amplifies this: fear sells more than reassurance. The news ecosystem in a crash is systematically skewed toward the worst-case scenario because that is what generates clicks.</span><span class="lang-pt">Você busca ativamente informações que confirmam o que sente. Durante uma crise, você lê todos os artigos que alertam sobre novas quedas e ignora cada analista que chama o fundo. A mídia amplifica isso: o medo vende mais do que a tranquilidade. O ecossistema de notícias em uma crise é sistematicamente enviesado para o pior cenário, pois é o que gera cliques.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Social contagion</span><span class="lang-pt">Contágio social</span></strong>
+        <p><span class="lang-en">The people around you — colleagues, family, online communities — are all talking about selling. Fear spreads through networks the way diseases do. When everyone in your social circle is panicking, calm begins to feel irresponsible rather than disciplined. The very act of discussing your holdings amplifies the emotional pressure to act.</span><span class="lang-pt">As pessoas ao seu redor — colegas, família, comunidades online — estão todas falando em vender. O medo se espalha pelas redes como doenças. Quando todos no seu círculo social estão em pânico, a calma começa a parecer irresponsável em vez de disciplinada. O simples ato de discutir seus investimentos amplifica a pressão emocional para agir.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">The illusion of control</span><span class="lang-pt">A ilusão de controle</span></strong>
+        <p><span class="lang-en">Selling feels like taking control. Holding feels passive and helpless. But in most cases, selling is not control — it is acting on fear while telling yourself it is strategy. Real control is having a plan written before the crash and following it when the crash arrives. That requires discipline, not action.</span><span class="lang-pt">Vender parece assumir o controle. Manter parece passivo e impotente. Mas na maioria dos casos, vender não é controle — é agir por medo enquanto se diz que é estratégia. Controle real é ter um plano escrito antes da crise e segui-lo quando ela chega. Isso exige disciplina, não ação.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">"This crash is different"</span><span class="lang-pt">"Esta crise é diferente"</span></strong>
+        <p><span class="lang-en">Every crash in history felt unprecedented at the time. The 1987 Black Monday crash was described as the start of a new Great Depression. The 2008 GFC was called the end of modern capitalism. The 2020 COVID crash was framed as the beginning of an indefinite economic shutdown. Each was different in its cause. All recovered. The cause of the crash does not predict whether markets recover — they always have.</span><span class="lang-pt">Cada crise na história pareceu sem precedentes na época. O crash de Segunda-feira Negra de 1987 foi descrito como o início de uma nova Grande Depressão. A Crise Financeira Global de 2008 foi chamada de fim do capitalismo moderno. A crise do COVID em 2020 foi apresentada como o início de um shutdown econômico indefinido. Cada uma foi diferente em sua causa. Todas se recuperaram. A causa da crise não prediz se os mercados se recuperam — eles sempre se recuperaram.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FIVE EXCUSES THAT ARE REALLY FEAR -->
+  <section class="section">
+    <h2><span class="lang-en">Five "reasons to sell" that are actually fear in disguise</span><span class="lang-pt">Cinco "motivos para vender" que são na verdade medo disfarçado</span></h2>
+    <p><span class="lang-en">These statements feel like rational analysis. They are not. If you hear yourself saying any of these during a market downturn, recognise it as your loss aversion speaking, not your investment strategy.</span><span class="lang-pt">Essas afirmações parecem análise racional. Não são. Se você se ouvir dizendo qualquer uma dessas durante uma queda de mercado, reconheça-a como sua aversão à perda falando, não sua estratégia de investimento.</span></p>
+    <div class="process-flow" style="flex-direction:column;gap:1rem;">
+      <div class="flow-step" style="width:100%;max-width:100%;">
+        <div class="step-num" style="background:#d93648;">1</div>
+        <strong><span class="lang-en">"I'll sell now and buy back lower."</span><span class="lang-pt">"Vou vender agora e recomprar mais barato."</span></strong>
+        <p><span class="lang-en">This requires knowing exactly when the bottom is — which nobody does in real time. Most investors who sell "to buy back lower" wait too long, miss the first leg of recovery, and end up re-entering at prices near or above where they sold. The re-entry requires a second correct prediction under the same emotional pressure.</span><span class="lang-pt">Isso exige saber exatamente quando é o fundo — o que ninguém sabe em tempo real. A maioria dos investidores que vende "para recomprar mais barato" espera demais, perde o primeiro trecho da recuperação e acaba voltando a preços próximos ou acima de onde vendeu. A reentrada exige uma segunda previsão correta sob a mesma pressão emocional.</span></p>
+      </div>
+      <div class="flow-step" style="width:100%;max-width:100%;">
+        <div class="step-num" style="background:#d93648;">2</div>
+        <strong><span class="lang-en">"I can't sleep at night with these losses."</span><span class="lang-pt">"Não consigo dormir com essas perdas."</span></strong>
+        <p><span class="lang-en">This is a position sizing problem, not a reason to sell. If the level of risk in your portfolio keeps you awake, the solution is to permanently reduce your exposure to that level of risk — not to sell at the bottom and reload when the emotional pressure is lower. If a 30% drop in your portfolio is unacceptable, you were over-allocated to growth assets from the start.</span><span class="lang-pt">Isso é um problema de tamanho de posição, não um motivo para vender. Se o nível de risco no seu portfólio não te deixa dormir, a solução é reduzir permanentemente a exposição a esse nível de risco — não vender no fundo e recomprar quando a pressão emocional diminuir. Se uma queda de 30% no seu portfólio é inaceitável, você estava super alocado em ativos de crescimento desde o início.</span></p>
+      </div>
+      <div class="flow-step" style="width:100%;max-width:100%;">
+        <div class="step-num" style="background:#d93648;">3</div>
+        <strong><span class="lang-en">"Everyone is saying this will keep falling."</span><span class="lang-pt">"Todo mundo está dizendo que vai continuar caindo."</span></strong>
+        <p><span class="lang-en">Consensus opinion during market extremes is historically one of the least reliable predictors of what happens next. When everyone is bearish, the worst is often already priced in. This is the basis of contrarian investing. The crowd's certainty about direction at market bottoms and tops has been wrong far more often than it has been right.</span><span class="lang-pt">A opinião de consenso durante os extremos do mercado é historicamente um dos preditores menos confiáveis do que acontecerá a seguir. Quando todos estão pessimistas, o pior geralmente já está precificado. Essa é a base do investimento contrário. A certeza das multidões sobre a direção nos fundos e topos do mercado esteve errada muito mais vezes do que acertou.</span></p>
+      </div>
+      <div class="flow-step" style="width:100%;max-width:100%;">
+        <div class="step-num" style="background:#d93648;">4</div>
+        <strong><span class="lang-en">"I need to protect what I have left."</span><span class="lang-pt">"Preciso proteger o que me sobrou."</span></strong>
+        <p><span class="lang-en">Selling a diversified portfolio at a 35% loss does not protect your wealth — it locks in that 35% loss permanently. "Protecting" unrealised losses by realising them is not protection; it is surrender. Unless you genuinely need the cash for a known expense within the next 12 months, this statement is the voice of loss aversion, not financial planning.</span><span class="lang-pt">Vender um portfólio diversificado com 35% de perda não protege sua riqueza — torna essa perda de 35% permanente. "Proteger" perdas não realizadas tornando-as realizadas não é proteção; é rendição. A menos que você realmente precise do dinheiro para uma despesa conhecida nos próximos 12 meses, essa afirmação é a voz da aversão à perda, não do planejamento financeiro.</span></p>
+      </div>
+      <div class="flow-step" style="width:100%;max-width:100%;">
+        <div class="step-num" style="background:#d93648;">5</div>
+        <strong><span class="lang-en">"This is clearly going to zero."</span><span class="lang-pt">"Isso claramente vai a zero."</span></strong>
+        <p><span class="lang-en">A broad index fund tracking hundreds of companies cannot go to zero unless every major company in the economy simultaneously collapses — in which case the cash you sold to would also be worthless. A well-diversified ETF tracking the S&amp;P 500, ASX 200, or a world index is not going to zero. Individual speculative assets can — which is why concentration in single assets is a different risk category than diversified index investing.</span><span class="lang-pt">Um fundo de índice amplo que rastreia centenas de empresas não pode ir a zero, a menos que cada grande empresa da economia colapse simultaneamente — caso em que o dinheiro para o qual você vendeu também seria sem valor. Um ETF bem diversificado que rastreia o S&amp;P 500, ASX 200 ou um índice mundial não vai a zero. Ativos especulativos individuais podem — é por isso que a concentração em ativos únicos é uma categoria de risco diferente do investimento em índices diversificados.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. REAL REASONS TO SELL -->
+  <section class="section">
+    <h2><span class="lang-en">The real reasons to sell</span><span class="lang-pt">Os motivos reais para vender</span></h2>
+    <p><span class="lang-en">Selling is appropriate in specific circumstances — none of which are triggered by price alone. If you can clearly state one of the following before you sell, you have a reason. If you cannot, you likely have fear.</span><span class="lang-pt">Vender é apropriado em circunstâncias específicas — nenhuma delas é acionada apenas pelo preço. Se você consegue declarar claramente um dos seguintes antes de vender, você tem um motivo. Se não consegue, provavelmente é medo.</span></p>
+    <div class="grid-2">
+      <div class="tile">
+        <strong><span class="lang-en">You genuinely need the cash</span><span class="lang-pt">Você realmente precisa do dinheiro</span></strong>
+        <p><span class="lang-en">A known, specific expense within the next 12 months — medical, housing, emergency — that cannot be funded from other sources. Not "the market makes me uncomfortable." A real, documented need for the capital.</span><span class="lang-pt">Uma despesa conhecida e específica nos próximos 12 meses — médica, habitacional, emergência — que não pode ser financiada por outras fontes. Não "o mercado me deixa desconfortável." Uma necessidade real e documentada do capital.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">The investment thesis has changed</span><span class="lang-pt">A tese de investimento mudou</span></strong>
+        <p><span class="lang-en">The reason you bought is no longer valid — the company changed fundamentally, the fund's mandate changed, or you discovered the asset is not what you thought it was. Price declining is not the same as the thesis changing. If the thesis is intact, the price falling is usually just noise.</span><span class="lang-pt">O motivo pelo qual você comprou não é mais válido — a empresa mudou fundamentalmente, o mandato do fundo mudou, ou você descobriu que o ativo não é o que você pensava. Preço caindo não é o mesmo que tese mudando. Se a tese está intacta, o preço caindo é geralmente apenas ruído.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Planned rebalancing</span><span class="lang-pt">Rebalanceamento planejado</span></strong>
+        <p><span class="lang-en">Your asset allocation has drifted significantly from your target. For example, a large gain in one asset class means it now represents too large a share of your portfolio. Selling some to restore your target allocation is disciplined — it is planned, rule-based, and not driven by price direction.</span><span class="lang-pt">Sua alocação de ativos se afastou significativamente da meta. Por exemplo, um grande ganho em uma classe de ativos significa que agora representa uma parcela muito grande do seu portfólio. Vender um pouco para restaurar a alocação alvo é disciplinado — é planejado, baseado em regras e não impulsionado pela direção do preço.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Tax-loss harvesting with a replacement plan</span><span class="lang-pt">Colheita de perda fiscal com plano de substituição</span></strong>
+        <p><span class="lang-en">You realise a loss to offset capital gains elsewhere in your portfolio, and you immediately or shortly reinvest in a similar asset so you maintain your market exposure. This is a tax strategy, not a market call. In Australia, there is no wash-sale rule — you can sell and immediately rebuy the same asset. In the US, you must wait 30 days or buy a substantially different asset.</span><span class="lang-pt">Você realiza uma perda para compensar ganhos de capital em outros lugares do seu portfólio, e imediatamente ou em breve reinveste em um ativo similar para manter sua exposição ao mercado. Isso é uma estratégia fiscal, não uma aposta no mercado. Na Austrália, não há regra de wash-sale — você pode vender e recomprar o mesmo ativo imediatamente. Nos EUA, você deve esperar 30 dias ou comprar um ativo substancialmente diferente.</span></p>
+      </div>
+    </div>
+    <div class="callout"><strong><span class="lang-en">The test:</span><span class="lang-pt">O teste:</span></strong> <span class="lang-en">Write down the reason you want to sell. Then ask: would this reason exist if the price were 20% higher? If the answer is no — if the only reason you want to sell is the price — you have identified fear, not strategy.</span><span class="lang-pt">Escreva o motivo pelo qual quer vender. Depois pergunte: esse motivo existiria se o preço fosse 20% maior? Se a resposta for não — se o único motivo para vender é o preço — você identificou medo, não estratégia.</span></div>
+  </section>
+
+  <!-- 6. DECISION FRAMEWORK SVG -->
+  <section class="section">
+    <h2><span class="lang-en">The decision framework: five questions before selling anything</span><span class="lang-pt">A estrutura de decisão: cinco perguntas antes de vender qualquer coisa</span></h2>
+    <p><span class="lang-en">Run through these five questions in order. If you reach a "stop" at any point, do not sell. If you pass all five, you may have a genuine reason to act.</span><span class="lang-pt">Percorra estas cinco perguntas em ordem. Se você chegar a um "pare" em qualquer ponto, não venda. Se passar por todas as cinco, talvez tenha um motivo genuíno para agir.</span></p>
+
+    <!-- Decision tree SVG -->
+    <div style="overflow-x:auto;margin:1.6rem 0;">
+      <svg viewBox="0 0 700 580" role="img" aria-label="Decision framework flowchart: five questions to ask before selling" style="min-width:340px;width:100%;border-radius:12px;background:#0b1d32;padding:1rem;">
+
+        <!-- START -->
+        <rect x="250" y="16" width="200" height="40" rx="20" fill="#1e3a5f"/>
+        <text x="350" y="41" fill="#c8ddf0" font-size="13" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">I want to sell</text>
+        <line x1="350" y1="56" x2="350" y2="80" stroke="#2a5080" stroke-width="2"/>
+
+        <!-- Q1 -->
+        <rect x="180" y="80" width="340" height="48" rx="8" fill="#13273f"/>
+        <text x="350" y="100" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">Q1: Do I need this money for a known expense</text>
+        <text x="350" y="116" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">within the next 12 months?</text>
+        <!-- NO arrow down -->
+        <line x1="350" y1="128" x2="350" y2="152" stroke="#2a5080" stroke-width="2"/>
+        <text x="360" y="144" fill="#5a7a9a" font-size="11" font-family="Sora,sans-serif">No</text>
+        <!-- YES arrow right to stop -->
+        <line x1="520" y1="104" x2="580" y2="104" stroke="#00d4aa" stroke-width="2"/>
+        <text x="535" y="98" fill="#00d4aa" font-size="11" font-family="Sora,sans-serif">Yes →</text>
+        <rect x="582" y="84" width="100" height="40" rx="8" fill="#0e4033"/>
+        <text x="632" y="108" fill="#00d4aa" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">May sell</text>
+
+        <!-- Q2 -->
+        <rect x="180" y="152" width="340" height="48" rx="8" fill="#13273f"/>
+        <text x="350" y="172" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">Q2: Has the investment thesis changed — not</text>
+        <text x="350" y="188" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">the price, but the reason I own it?</text>
+        <line x1="350" y1="200" x2="350" y2="224" stroke="#2a5080" stroke-width="2"/>
+        <text x="360" y="216" fill="#5a7a9a" font-size="11" font-family="Sora,sans-serif">No</text>
+        <line x1="520" y1="176" x2="580" y2="176" stroke="#e05555" stroke-width="2"/>
+        <text x="535" y="170" fill="#e05555" font-size="11" font-family="Sora,sans-serif">Yes →</text>
+        <rect x="582" y="156" width="100" height="40" rx="8" fill="#3a1020"/>
+        <text x="632" y="180" fill="#e05555" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">Review &amp; act</text>
+
+        <!-- Q3 -->
+        <rect x="180" y="224" width="340" height="48" rx="8" fill="#13273f"/>
+        <text x="350" y="244" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">Q3: Is this a planned rebalance or tax</text>
+        <text x="350" y="260" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">action I decided before the downturn?</text>
+        <line x1="350" y1="272" x2="350" y2="296" stroke="#2a5080" stroke-width="2"/>
+        <text x="360" y="288" fill="#5a7a9a" font-size="11" font-family="Sora,sans-serif">No</text>
+        <line x1="520" y1="248" x2="580" y2="248" stroke="#00d4aa" stroke-width="2"/>
+        <text x="535" y="242" fill="#00d4aa" font-size="11" font-family="Sora,sans-serif">Yes →</text>
+        <rect x="582" y="228" width="100" height="40" rx="8" fill="#0e4033"/>
+        <text x="632" y="252" fill="#00d4aa" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">May sell</text>
+
+        <!-- Q4 -->
+        <rect x="180" y="296" width="340" height="48" rx="8" fill="#13273f"/>
+        <text x="350" y="316" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">Q4: Would I still want to sell if the price</text>
+        <text x="350" y="332" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">were 20% higher than it is now?</text>
+        <line x1="350" y1="344" x2="350" y2="368" stroke="#2a5080" stroke-width="2"/>
+        <text x="360" y="360" fill="#5a7a9a" font-size="11" font-family="Sora,sans-serif">Yes</text>
+        <line x1="520" y1="320" x2="580" y2="320" stroke="#d93648" stroke-width="2"/>
+        <text x="535" y="314" fill="#d93648" font-size="11" font-family="Sora,sans-serif">No →</text>
+        <rect x="582" y="300" width="100" height="40" rx="8" fill="#2a0a10"/>
+        <text x="632" y="316" fill="#d93648" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">STOP.</text>
+        <text x="632" y="332" fill="#d93648" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">This is fear.</text>
+
+        <!-- Q5 -->
+        <rect x="180" y="368" width="340" height="48" rx="8" fill="#13273f"/>
+        <text x="350" y="388" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">Q5: Have you waited at least 48 hours</text>
+        <text x="350" y="404" fill="#c8ddf0" font-size="12" font-family="Sora,sans-serif" text-anchor="middle">after deciding to sell before acting?</text>
+        <line x1="350" y1="416" x2="350" y2="440" stroke="#2a5080" stroke-width="2"/>
+        <text x="360" y="432" fill="#5a7a9a" font-size="11" font-family="Sora,sans-serif">No</text>
+        <line x1="520" y1="392" x2="580" y2="392" stroke="#00d4aa" stroke-width="2"/>
+        <text x="535" y="386" fill="#00d4aa" font-size="11" font-family="Sora,sans-serif">Yes →</text>
+        <rect x="582" y="372" width="100" height="40" rx="8" fill="#0e4033"/>
+        <text x="632" y="396" fill="#00d4aa" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">Proceed</text>
+
+        <!-- WAIT box -->
+        <rect x="200" y="440" width="300" height="40" rx="8" fill="#1a3550"/>
+        <text x="350" y="460" fill="#e8b84b" font-size="12" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">Wait 48 hours. Read this guide again.</text>
+        <text x="350" y="476" fill="#8ba5c1" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">If the reason still holds after 48 hours, re-enter the framework.</text>
+
+        <!-- arrow from No/wait -->
+        <line x1="350" y1="440" x2="350" y2="440" stroke="none"/>
+
+        <!-- FINAL STOP for all no-paths -->
+        <rect x="200" y="516" width="300" height="44" rx="20" fill="#2a0a10"/>
+        <text x="350" y="537" fill="#d93648" font-size="14" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">Do not sell today.</text>
+        <text x="350" y="553" fill="#d93648" font-size="11" font-family="Sora,sans-serif" text-anchor="middle">Check your written plan. Book a support call if needed.</text>
+        <line x1="350" y1="480" x2="350" y2="516" stroke="#2a5080" stroke-width="2"/>
+      </svg>
+    </div>
+    <p style="font-size:.82rem;color:#5a7a9a;text-align:center;margin-top:-.4rem;"><span class="lang-en">Print this and put it somewhere visible near where you check your portfolio. The best time to read it is before you open the app during a crash.</span><span class="lang-pt">Imprima e coloque em algum lugar visível perto de onde você verifica seu portfólio. O melhor momento para ler é antes de abrir o aplicativo durante uma crise.</span></p>
+  </section>
+
+  <!-- 7. WHAT TO DO INSTEAD -->
+  <section class="section">
+    <h2><span class="lang-en">What to do instead of selling</span><span class="lang-pt">O que fazer em vez de vender</span></h2>
+    <p><span class="lang-en">If you find yourself wanting to sell during a downturn, the following actions are more likely to help your long-term results than selling.</span><span class="lang-pt">Se você se pega querendo vender durante uma queda, as seguintes ações têm maior probabilidade de ajudar seus resultados de longo prazo do que vender.</span></p>
+    <div class="grid-2">
+      <div class="tile">
+        <strong><span class="lang-en">Check your portfolio less often</span><span class="lang-pt">Verifique seu portfólio com menos frequência</span></strong>
+        <p><span class="lang-en">Daily portfolio checking during a bear market amplifies anxiety without adding information useful for a long-term investor. Checking weekly or monthly reduces emotional pressure substantially. If you invest in index funds with a 10+ year horizon, daily prices are irrelevant to your outcome.</span><span class="lang-pt">Verificar o portfólio diariamente durante um bear market amplifica a ansiedade sem adicionar informações úteis para um investidor de longo prazo. Verificar semanalmente ou mensalmente reduz substancialmente a pressão emocional. Se você investe em fundos de índice com horizonte de 10+ anos, os preços diários são irrelevantes para seu resultado.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Write down why you want to sell — and wait</span><span class="lang-pt">Escreva por que quer vender — e espere</span></strong>
+        <p><span class="lang-en">Force yourself to articulate your reason in writing. Most investors cannot write a coherent investment-based reason — they can only write a price-based reason. Writing creates distance between the emotion and the action. Then wait 48 hours. Most panic-sell urges do not survive 48 hours of reflection.</span><span class="lang-pt">Force-se a articular seu motivo por escrito. A maioria dos investidores não consegue escrever um motivo coerente baseado em investimento — eles só conseguem escrever um motivo baseado em preço. Escrever cria distância entre a emoção e a ação. Depois espere 48 horas. A maioria dos impulsos de venda por pânico não sobrevive a 48 horas de reflexão.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Read your original investment thesis</span><span class="lang-pt">Leia sua tese de investimento original</span></strong>
+        <p><span class="lang-en">Why did you buy? What did you believe when you decided to invest? If the reasons you originally invested are still true, the price moving lower does not change the case for holding. If you did not write a thesis when you bought, write one now — and keep it for future decisions.</span><span class="lang-pt">Por que você comprou? O que você acreditava quando decidiu investir? Se os motivos pelos quais você investiu originalmente ainda são verdadeiros, o preço cair não muda o argumento para manter. Se você não escreveu uma tese quando comprou, escreva uma agora — e guarde para decisões futuras.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Consider buying more if thesis is intact</span><span class="lang-pt">Considere comprar mais se a tese estiver intacta</span></strong>
+        <p><span class="lang-en">If the asset is on sale and your thesis has not changed, the downturn may represent an opportunity rather than a threat. This is what DCA investors do systematically — they contribute regularly regardless of price, which means they buy more units when prices are lower. Buying during a crash requires emotional courage — which is exactly why it creates the best long-term returns.</span><span class="lang-pt">Se o ativo está em promoção e sua tese não mudou, a queda pode representar uma oportunidade em vez de uma ameaça. Isso é o que os investidores de DCA fazem sistematicamente — eles contribuem regularmente independentemente do preço, o que significa que compram mais unidades quando os preços são menores. Comprar durante uma crise requer coragem emocional — que é exatamente por isso que cria os melhores retornos de longo prazo.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Log off social media during high volatility</span><span class="lang-pt">Saia das redes sociais durante alta volatilidade</span></strong>
+        <p><span class="lang-en">Social media during a market crash is an emotion amplifier, not an information source. The posts that go viral during crashes are the most alarming ones. Leaving Twitter/X, Reddit, and crypto Telegram channels during a downturn removes the social contagion component and makes clearer thinking possible.</span><span class="lang-pt">As redes sociais durante uma crise de mercado são amplificadores de emoção, não fontes de informação. As postagens que viralizam durante crises são as mais alarmantes. Sair do Twitter/X, Reddit e canais de Telegram de cripto durante uma queda remove o componente de contágio social e torna o pensamento mais claro possível.</span></p>
+      </div>
+      <div class="tile">
+        <strong><span class="lang-en">Book your support call</span><span class="lang-pt">Agende sua chamada de suporte</span></strong>
+        <p><span class="lang-en">If you are genuinely unsure whether your reason to sell is rational or emotional, your included Plainvest support call is the right place to work through it. Bring your written reason, your investment thesis, and the specific asset in question. An outside perspective during a period of market stress is one of the most valuable uses of the call.</span><span class="lang-pt">Se você não tem certeza se seu motivo para vender é racional ou emocional, sua chamada de suporte incluída no Plainvest é o lugar certo para resolver isso. Traga seu motivo escrito, sua tese de investimento e o ativo específico em questão. Uma perspectiva externa durante um período de estresse de mercado é um dos usos mais valiosos da chamada.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PRE-CRASH CHECKLIST -->
+  <section class="section">
+    <h2><span class="lang-en">Your pre-crash checklist — do this now, before it happens</span><span class="lang-pt">Sua checklist pré-crise — faça isso agora, antes que aconteça</span></h2>
+    <p><span class="lang-en">The investors who handle crashes best are not the ones who predicted them — they are the ones who prepared for them. Most of this preparation happens in the calm between crashes, not during one. Work through this list while markets are normal.</span><span class="lang-pt">Os investidores que lidam melhor com crises não são os que as previram — são os que se prepararam para elas. A maior parte dessa preparação acontece na calmaria entre as crises, não durante elas. Trabalhe nesta lista enquanto os mercados estão normais.</span></p>
+    <ul class="checklist">
+      <li><span class="lang-en">Emergency fund is separate from investments (3–6 months of expenses in cash)</span><span class="lang-pt">O fundo de emergência está separado dos investimentos (3 a 6 meses de despesas em dinheiro)</span></li>
+      <li><span class="lang-en">Investment money is money I do not need for the next 5+ years</span><span class="lang-pt">O dinheiro investido é dinheiro que não precisarei pelos próximos 5+ anos</span></li>
+      <li><span class="lang-en">I have written down why I own each asset I hold</span><span class="lang-pt">Escrevi por que sou dono de cada ativo que tenho</span></li>
+      <li><span class="lang-en">I know the worst drawdown each asset has historically experienced</span><span class="lang-pt">Conheço a pior queda histórica de cada ativo que tenho</span></li>
+      <li><span class="lang-en">My portfolio allocation reflects my actual risk tolerance, not my hopeful risk tolerance</span><span class="lang-pt">Minha alocação de portfólio reflete minha tolerância real ao risco, não minha tolerância ideal</span></li>
+      <li><span class="lang-en">I have read this guide and understand the five fear-disguised reasons to sell</span><span class="lang-pt">Li este guia e entendo os cinco motivos de venda disfarçados de medo</span></li>
+      <li><span class="lang-en">I have bookmarked the decision framework and know where to find it during a crash</span><span class="lang-pt">Marquei a estrutura de decisão e sei onde encontrá-la durante uma crise</span></li>
+      <li><span class="lang-en">I have the Plainvest support call available and know how to book it</span><span class="lang-pt">Tenho a chamada de suporte do Plainvest disponível e sei como agendá-la</span></li>
+      <li><span class="lang-en">I will check my portfolio weekly — not daily — if markets are falling sharply</span><span class="lang-pt">Verificarei meu portfólio semanalmente — não diariamente — se os mercados estiverem caindo acentuadamente</span></li>
+      <li><span class="lang-en">I understand that every major broad-market crash in history has recovered</span><span class="lang-pt">Entendo que toda grande crise de mercado amplo na história se recuperou</span></li>
+    </ul>
+    <div class="callout"><strong><span class="lang-en">The single most important investing skill:</span><span class="lang-pt">A habilidade de investimento mais importante:</span></strong> <span class="lang-en">Not stock picking. Not market timing. Not finding the next 100x asset. It is staying invested through multiple market cycles, continuing to contribute, and not letting fear-based decisions interrupt years of compounding. Most investors know this intellectually. Very few manage it emotionally. This guide exists to help with the gap between knowing and doing.</span><span class="lang-pt">Não é selecionar ações. Não é cronometrar o mercado. Não é encontrar o próximo ativo 100x. É permanecer investido ao longo de múltiplos ciclos de mercado, continuar contribuindo e não deixar decisões baseadas em medo interromper anos de composição. A maioria dos investidores sabe disso intelectualmente. Muito poucos conseguem gerenciar emocionalmente. Este guia existe para ajudar a fechar a lacuna entre saber e fazer.</span></div>
+  </section>
+
+  <section class="section">
+    <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
+    <div class="callout"><strong><span class="lang-en">Next recommended guide:</span><span class="lang-pt">Próximo guia recomendado:</span></strong> <a href="08-crypto-cycle-lessons.html"><span class="lang-en">Crypto Cycle Lessons — understand the full cycle so you recognise where you are in it →</span><span class="lang-pt">Lições de Ciclos Cripto — entenda o ciclo completo para reconhecer em qual fase você está →</span></a></div>
+  </section>
+</main>
+<script>
+(function(){
+  var l='en';
+  try{var s=localStorage.getItem('plainvest-lang');if(s==='pt'||s==='en')l=s;}catch(e){}
+  document.documentElement.lang=l;
+  document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===l);
+  });
+  window.setGuideLang=function(lang){
+    document.documentElement.lang=lang;
+    try{localStorage.setItem('plainvest-lang',lang);}catch(e){}
+    document.querySelectorAll('.guide-lang-btn').forEach(function(b){
+      b.classList.toggle('active',b.dataset.lang===lang);
+    });
+    if(window.parent!==window)try{window.parent.postMessage({type:'langChange',lang:lang},'*');}catch(e){}
+  };
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.type==='setLang'&&(e.data.lang==='en'||e.data.lang==='pt'))
+      window.setGuideLang(e.data.lang);
+  });
+})();
+</script>
+</body>
+</html>
