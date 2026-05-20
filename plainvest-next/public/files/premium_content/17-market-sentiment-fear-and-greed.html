@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Market Sentiment: Fear &amp; Greed</title><link rel="stylesheet" href="premium-guide.css"><style>
+.fgi-lead { max-width:680px; color:#aebbd0; font-size:.93rem; line-height:1.7; margin:.7rem 0 2.6rem; }
+.fgi-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; margin-bottom:1.8rem; }
+.fgi-card { background:linear-gradient(135deg,rgba(13,28,52,.9),rgba(8,19,35,.7)); border:1px solid rgba(255,255,255,.09); border-radius:22px; padding:1.6rem 1.6rem 1.2rem; display:flex; flex-direction:column; gap:.9rem; }
+.fgi-card-header { display:flex; align-items:center; justify-content:space-between; }
+.fgi-market-label { font-size:.72rem; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:.12em; }
+.fgi-source-badge { font-size:.62rem; font-weight:600; color:#00d4aa; background:rgba(0,212,170,.08); border:1px solid rgba(0,212,170,.18); border-radius:20px; padding:.18rem .6rem; }
+.fgi-gauge-wrap { position:relative; padding-bottom:2.4rem; }
+.fgi-svg-container { width:100%; }
+.fgi-value-overlay { position:absolute; left:50%; bottom:0; transform:translateX(-50%); text-align:center; white-space:nowrap; }
+.fgi-number { font-family:'Sora',sans-serif; font-size:2.8rem; font-weight:800; line-height:1; }
+.fgi-category { font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.14em; margin-top:.3rem; }
+.fgi-history-row { display:flex; gap:1rem; padding-top:.85rem; border-top:1px solid rgba(255,255,255,.07); }
+.fgi-hist-item { flex:1; display:flex; flex-direction:column; gap:.22rem; }
+.fgi-hist-label { font-size:.6rem; color:#576880; font-weight:700; text-transform:uppercase; letter-spacing:.09em; }
+.fgi-hist-val { font-size:.88rem; font-weight:700; color:#aebbd0; }
+.fgi-card-footer { display:flex; align-items:center; justify-content:space-between; }
+.fgi-updated { font-size:.6rem; color:#576880; }
+.fgi-source-link { font-size:.66rem; font-weight:700; color:#00d4aa; text-decoration:none; }
+.fgi-source-link:hover { text-decoration:underline; }
+.fgi-scale { display:flex; border-radius:12px; overflow:hidden; margin-bottom:2.2rem; font-size:.66rem; font-weight:700; text-align:center; line-height:1.35; }
+.fgi-scale-item { flex:1; padding:.55rem .3rem; color:#fff; }
+@media(max-width:720px) { .fgi-grid { grid-template-columns:1fr; } }
+</style>
+<script id="plainvest-premium-file-guard">
+(function () {
+  var local = (location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1") && new URLSearchParams(location.search).get("preview") === "1";
+  if (local) return;
+  if (!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)) { location.replace("https://members.plainvest.app/dashboard"); return; }
+  document.documentElement.style.visibility = "hidden";
+  fetch("/api/member/status", { credentials: "include", cache: "no-store" })
+    .then(function (response) { return response.ok ? response.json() : null; })
+    .then(function (status) {
+      if (status && status.authenticated && status.premium) {
+        document.documentElement.style.visibility = "visible";
+        return;
+      }
+      location.replace(status && status.authenticated ? "/dashboard" : "/login?mode=manual");
+    })
+    .catch(function () { location.replace("/dashboard"); });
+})();
+</script>
+</head>
+<body>
+<main class="guide">
+  <a class="platform-back" href="/index.html#member">← Back to member area</a>
+  <header class="hero">
+    <div class="kicker">Market Sentiment</div>
+    <h1>Fear &amp; Greed — <em>how markets feel right now.</em></h1>
+    <p class="lead">Two live indices measuring whether investors are driven by panic or overconfidence. Useful context before any investment decision — not a buy or sell signal. Updated daily from their source APIs.</p>
+    <div class="stat-row">
+      <div class="stat-block gold"><span class="stat-num">0–100</span><span class="stat-label">the scale — 0 is maximum fear, 100 is maximum greed</span></div>
+      <div class="stat-block"><span class="stat-num">2</span><span class="stat-label">live indices — US stock market (CNN) and crypto market (Alternative.me)</span></div>
+      <div class="stat-block soft"><span class="stat-num">Daily</span><span class="stat-label">update frequency — both APIs refresh once per day</span></div>
+      <div class="stat-block danger"><span class="stat-num">Not</span><span class="stat-label">a buy or sell signal — context only, your plan decides what to do</span></div>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Live indices</h2>
+    <p class="fgi-lead">Both gauges below pull live data directly from their source APIs. The number reflects today's reading; the history items show where sentiment stood one week and one month ago.</p>
+
+    <div class="fgi-grid">
+      <div class="fgi-card">
+        <div class="fgi-card-header">
+          <div class="fgi-market-label">US Stock Market</div>
+          <div class="fgi-source-badge">CNN Fear &amp; Greed</div>
+        </div>
+        <div class="fgi-gauge-wrap">
+          <div class="fgi-svg-container" id="fgi-us-gauge"></div>
+          <div class="fgi-value-overlay">
+            <div class="fgi-number" id="fgi-us-number" style="color:#8ba5c1">—</div>
+            <div class="fgi-category" id="fgi-us-category" style="color:#8ba5c1">Loading…</div>
+          </div>
+        </div>
+        <div class="fgi-history-row">
+          <div class="fgi-hist-item">
+            <span class="fgi-hist-label">1 week ago</span>
+            <span class="fgi-hist-val" id="fgi-us-week">—</span>
+          </div>
+          <div class="fgi-hist-item">
+            <span class="fgi-hist-label">1 month ago</span>
+            <span class="fgi-hist-val" id="fgi-us-month">—</span>
+          </div>
+        </div>
+        <div class="fgi-card-footer">
+          <span class="fgi-updated" id="fgi-us-updated"></span>
+          <a href="https://money.cnn.com/data/fear-and-greed/" target="_blank" rel="noopener" class="fgi-source-link">CNN →</a>
+        </div>
+      </div>
+
+      <div class="fgi-card">
+        <div class="fgi-card-header">
+          <div class="fgi-market-label">Crypto Market</div>
+          <div class="fgi-source-badge">Alternative.me</div>
+        </div>
+        <div class="fgi-gauge-wrap">
+          <div class="fgi-svg-container" id="fgi-crypto-gauge"></div>
+          <div class="fgi-value-overlay">
+            <div class="fgi-number" id="fgi-crypto-number" style="color:#8ba5c1">—</div>
+            <div class="fgi-category" id="fgi-crypto-category" style="color:#8ba5c1">Loading…</div>
+          </div>
+        </div>
+        <div class="fgi-history-row">
+          <div class="fgi-hist-item">
+            <span class="fgi-hist-label">1 week ago</span>
+            <span class="fgi-hist-val" id="fgi-crypto-week">—</span>
+          </div>
+          <div class="fgi-hist-item">
+            <span class="fgi-hist-label">1 month ago</span>
+            <span class="fgi-hist-val" id="fgi-crypto-month">—</span>
+          </div>
+        </div>
+        <div class="fgi-card-footer">
+          <span class="fgi-updated" id="fgi-crypto-updated"></span>
+          <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener" class="fgi-source-link">Alternative.me →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="fgi-scale">
+      <div class="fgi-scale-item" style="background:#9b2230">0–24<br>Extreme Fear</div>
+      <div class="fgi-scale-item" style="background:#c46828">25–44<br>Fear</div>
+      <div class="fgi-scale-item" style="background:#b8941c;color:#0d1e35">45–55<br>Neutral</div>
+      <div class="fgi-scale-item" style="background:#4e962c;color:#0d1e35">56–74<br>Greed</div>
+      <div class="fgi-scale-item" style="background:#178a4e">75–100<br>Extreme Greed</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>How to read this index</h2>
+    <div class="grid-2">
+      <div class="tile"><strong>What it measures</strong><p>Market sentiment — whether investors are acting out of panic (fear) or overconfidence (greed). Built from volatility, momentum, options activity, and other signals. It does not measure the value of an asset. It measures the emotional state of the crowd around it.</p></div>
+      <div class="tile"><strong>How to use it</strong><p>It is a contrarian indicator, not a timing tool. Extreme fear has historically appeared near market bottoms; extreme greed near tops. The key word is "historically" — past patterns do not guarantee future results. Use it as context, not instruction.</p></div>
+      <div class="tile"><strong>Crypto vs stocks</strong><p>Both indices often move together, especially during broad risk-off events like rate hikes or macro uncertainty. They can diverge sharply during crypto-specific events — a Bitcoin halving, a major exchange collapse, or a regulatory ruling. A large gap between the two is worth researching before acting.</p></div>
+      <div class="tile"><strong>Warren Buffett's rule</strong><p>"Be fearful when others are greedy and greedy when others are fearful." The index makes that principle visible. It does not tell you when to act — that is what your written investment plan is for. The index removes some of the guesswork about where the crowd currently stands.</p></div>
+    </div>
+    <div class="callout"><strong>The most important thing to understand:</strong> a high fear reading does not guarantee prices will recover. A high greed reading does not guarantee prices will fall. These are probability-weighted observations from market history, not laws. Your plan — not the gauge — determines what you do.</div>
+  </section>
+
+  <section class="section">
+    <h2>Score reference</h2>
+    <table class="mini-table">
+      <thead><tr><th>Score range</th><th>Category</th><th>What it typically reflects</th><th>Contrarian read</th></tr></thead>
+      <tbody>
+        <tr><td>0 – 24</td><td><strong style="color:#d93648">Extreme Fear</strong></td><td>Investors selling, capitulation behaviour, panic headlines dominant</td><td>Historically near bottoms — but not always. Some crashes extend into this zone for months.</td></tr>
+        <tr><td>25 – 44</td><td><strong style="color:#e07832">Fear</strong></td><td>Cautious mood, below-average risk appetite, markets often under pressure</td><td>Accumulation zone for patient investors. Crowd is defensive, not euphoric.</td></tr>
+        <tr><td>45 – 55</td><td><strong style="color:#c9a820">Neutral</strong></td><td>Balanced sentiment, neither panic nor euphoria</td><td>Often a transitional zone. Watch price action rather than relying on the index alone.</td></tr>
+        <tr><td>56 – 74</td><td><strong style="color:#5cb830">Greed</strong></td><td>Risk appetite rising, momentum-driven, buyers dominant</td><td>Valuations can stretch in this zone. Worth checking if you are buying at elevated prices.</td></tr>
+        <tr><td>75 – 100</td><td><strong style="color:#1dab62">Extreme Greed</strong></td><td>FOMO-driven buying, elevated valuations, mainstream media bullish</td><td>Historically precedes corrections — but markets can stay in extreme greed for extended periods before turning.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2>What each index actually measures</h2>
+    <h3 style="margin-top:1.4rem;margin-bottom:.8rem;font-size:1rem;color:#00d4aa;letter-spacing:.04em;text-transform:uppercase;">CNN Fear &amp; Greed — US Stock Market (7 indicators)</h3>
+    <div class="grid-2">
+      <div class="tile"><strong>Stock price momentum</strong><p>Compares the S&P 500 to its 125-day moving average. When the index is trading well above its average, momentum is bullish (greed). When it is below, momentum is bearish (fear).</p></div>
+      <div class="tile"><strong>Stock price strength</strong><p>Measures the ratio of 52-week highs vs lows on the NYSE. More new highs than lows signals greed; the reverse signals fear.</p></div>
+      <div class="tile"><strong>Stock price breadth</strong><p>Uses the McClellan Volume Summation Index — whether advancing stocks are supported by high trading volume (greed) or declining stocks are (fear).</p></div>
+      <div class="tile"><strong>Put and call options ratio</strong><p>Compares the volume of put options (bets on price falls) to call options (bets on price rises). More puts than usual signals fear; more calls signals greed.</p></div>
+      <div class="tile"><strong>Junk bond demand</strong><p>Looks at the yield spread between investment-grade and junk bonds. When investors chase yield in risky bonds (spread narrows), it signals greed. Wide spreads signal fear.</p></div>
+      <div class="tile"><strong>Market volatility (VIX)</strong><p>The CBOE Volatility Index measures implied volatility in the S&P 500 options market. High VIX = fear; low VIX = complacency (greed).</p></div>
+    </div>
+    <div class="callout">The seventh indicator is <strong>safe-haven demand</strong> — the relative performance of stocks vs Treasury bonds over 20 days. When investors prefer the safety of bonds, it signals fear. When stocks outperform strongly, it signals greed.</div>
+
+    <h3 style="margin-top:2rem;margin-bottom:.8rem;font-size:1rem;color:#00d4aa;letter-spacing:.04em;text-transform:uppercase;">Alternative.me — Crypto Market (5 weighted factors)</h3>
+    <div class="grid-2">
+      <div class="tile"><strong>Volatility — 25%</strong><p>Compares current Bitcoin price volatility against its 30-day and 90-day averages. Unusual volatility spikes, especially to the downside, are treated as a sign of fear in the market.</p></div>
+      <div class="tile"><strong>Market momentum and volume — 25%</strong><p>Compares current Bitcoin trading volume against recent averages. High buying volume in a rising market signals greed. Low volume or high sell volume signals fear.</p></div>
+      <div class="tile"><strong>Social media sentiment — 15%</strong><p>Analyses the volume and sentiment of Bitcoin-related content on social platforms. Very high positive engagement and hashtag activity is treated as a signal of greed.</p></div>
+      <div class="tile"><strong>Bitcoin dominance — 10%</strong><p>Tracks Bitcoin's share of total crypto market cap. Rising Bitcoin dominance can signal fear (investors retreating from altcoins to the relative safety of Bitcoin). Falling dominance can signal risk appetite.</p></div>
+    </div>
+    <div class="callout">The fifth factor is <strong>Google Trends (10%)</strong> — the search volume for Bitcoin-related terms and the ratio of positive to negative search queries. Surges in searches like "Bitcoin crash" signal fear; surges in "Bitcoin price prediction" or "how to buy Bitcoin" signal greed.</div>
+  </section>
+
+  <section class="section">
+    <h2>Using both together</h2>
+    <table class="mini-table">
+      <thead><tr><th>US stocks reading</th><th>Crypto reading</th><th>What it may suggest</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:#d93648">Extreme Fear</strong></td><td><strong style="color:#d93648">Extreme Fear</strong></td><td>Broad risk-off across markets. Historically a period where patient investors have found good entry points — but drawdowns can extend further before recovery.</td></tr>
+        <tr><td><strong style="color:#d93648">Fear</strong></td><td><strong style="color:#1dab62">Greed / Extreme Greed</strong></td><td>Crypto running independently from stocks. Could reflect a crypto-specific catalyst (halving cycle, ETF approval, institutional adoption news). Research the specific driver before acting.</td></tr>
+        <tr><td><strong style="color:#1dab62">Greed / Extreme Greed</strong></td><td><strong style="color:#d93648">Fear</strong></td><td>Stock market euphoria while crypto pulls back. Often appears after crypto-specific bad news (exchange collapses, regulatory crackdowns) while broader markets remain strong.</td></tr>
+        <tr><td><strong style="color:#1dab62">Extreme Greed</strong></td><td><strong style="color:#1dab62">Extreme Greed</strong></td><td>Both markets in euphoria simultaneously. Historically a period with elevated correction risk. Not a sell signal — but worth reviewing your allocation against your written plan.</td></tr>
+        <tr><td><strong style="color:#c9a820">Neutral</strong></td><td><strong style="color:#c9a820">Neutral</strong></td><td>No strong directional signal from either index. Price action and fundamentals should dominate your analysis at this point rather than sentiment.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Remember:</strong> these are two separate indices measuring different assets. They are built from different inputs and different methodologies. The combination gives useful context — it does not give instructions. Always return to your written investment plan before making a decision.</div>
+  </section>
+
+  <section class="section">
+    <h2>What the index does not tell you</h2>
+    <div class="grid-2">
+      <div class="tile"><strong>It does not predict timing</strong><p>Markets can remain in Extreme Fear for months (March 2020, November 2022) or in Extreme Greed for extended periods. A reading alone is not a reliable entry or exit trigger. Position sizing and patience matter more than the exact number.</p></div>
+      <div class="tile"><strong>It does not measure value</strong><p>A 40 reading does not mean an asset is cheap. A 75 reading does not mean it is expensive. The index measures crowd psychology, not intrinsic value. Combine it with price history and your own research.</p></div>
+      <div class="tile"><strong>It does not account for fundamentals</strong><p>Bitcoin at Extreme Fear in a post-halving year with strong on-chain metrics is different from Bitcoin at Extreme Fear during a project collapse or regulatory ban. Context always matters more than the score.</p></div>
+      <div class="tile"><strong>It does not replace a plan</strong><p>If your plan says "add $300/month regardless of sentiment," the index should not change that. It can be useful for sizing discretionary decisions or managing emotional reactions, but it is not a strategy on its own.</p></div>
+    </div>
+  </section>
+
+  <section class="section warning">
+    <h2>Disclaimer</h2>
+    <p>This page displays live market sentiment data from third-party APIs (CNN Business and Alternative.me). The indices reflect aggregated signals about investor behaviour — they are not financial advice, investment recommendations, or predictions of future prices. Plainvest uses this data for educational context only. Always do your own research before making any investment decision.</p>
+  </section>
+
+  <section class="section">
+    <h2>Deepen your study</h2>
+    <div class="callout"><strong>Related guide:</strong> <a href="10-research-sources.html">Research &amp; Tools Library — full source list including API documentation, platform comparisons, and tax tools →</a></div>
+  </section>
+</main>
+
+<script>
+(function () {
+  function fgiColor(v) {
+    if (v <= 24) return '#d93648';
+    if (v <= 44) return '#e07832';
+    if (v <= 55) return '#d4a820';
+    if (v <= 74) return '#5cb830';
+    return '#1dab62';
+  }
+  function fgiLabel(v) {
+    if (v <= 24) return 'Extreme Fear';
+    if (v <= 44) return 'Fear';
+    if (v <= 55) return 'Neutral';
+    if (v <= 74) return 'Greed';
+    return 'Extreme Greed';
+  }
+  function pt(cx, cy, r, pct) {
+    var a = (180 - pct * 180) * Math.PI / 180;
+    return { x: +(cx + r * Math.cos(a)).toFixed(2), y: +(cy - r * Math.sin(a)).toFixed(2) };
+  }
+  function arc(cx, cy, oR, iR, s, e, col) {
+    var po1 = pt(cx,cy,oR,s), po2 = pt(cx,cy,oR,e);
+    var pi1 = pt(cx,cy,iR,s), pi2 = pt(cx,cy,iR,e);
+    var lg = (e - s) > 0.5 ? 1 : 0;
+    return '<path d="M'+po1.x+' '+po1.y+' A'+oR+' '+oR+' 0 '+lg+' 0 '+po2.x+' '+po2.y+
+           ' L'+pi2.x+' '+pi2.y+' A'+iR+' '+iR+' 0 '+lg+' 1 '+pi1.x+' '+pi1.y+' Z" fill="'+col+'"/>';
+  }
+  function drawGauge(id, value) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var cx = 100, cy = 112, oR = 80, iR = 52, g = 0.005;
+    var segs = [
+      [0, 0.24, '#9b2230'], [0.25, 0.44, '#c46828'],
+      [0.45, 0.55, '#b8921a'], [0.56, 0.74, '#4e962c'], [0.75, 1, '#178a4e']
+    ].map(function (s) {
+      return arc(cx, cy, oR, iR, s[0] + g, Math.min(1, s[1]) - g, s[2]);
+    }).join('');
+    var v = Math.max(0, Math.min(100, value));
+    var tip = pt(cx, cy, oR - 5, v / 100);
+    var bl  = pt(cx, cy, 7, v / 100 - 0.09);
+    var br  = pt(cx, cy, 7, v / 100 + 0.09);
+    var needle = '<polygon points="'+tip.x+','+tip.y+' '+bl.x+','+bl.y+' '+br.x+','+br.y+'" fill="white" opacity=".92"/>';
+    var dot    = '<circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#0b1e33" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>';
+    var lblL   = '<text x="12" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Fear</text>';
+    var lblR   = '<text x="188" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Greed</text>';
+    el.innerHTML = '<svg viewBox="0 0 200 128" style="width:100%;display:block;overflow:visible">' +
+                   segs + needle + dot + lblL + lblR + '</svg>';
+  }
+  function setVal(numId, catId, v) {
+    var n = document.getElementById(numId), c = document.getElementById(catId);
+    if (n) { n.textContent = v; n.style.color = fgiColor(v); }
+    if (c) { c.textContent = fgiLabel(v); c.style.color = fgiColor(v); }
+  }
+  function setHist(id, v, cat) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = v + (cat ? '  ·  ' + cat : '');
+  }
+  function setUpdated(id, ts) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    try {
+      var d = new Date(typeof ts === 'number' && ts < 1e12 ? ts * 1000 : ts);
+      el.textContent = 'Updated ' + d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+    } catch (e) { el.textContent = ''; }
+  }
+
+  fetch('https://api.alternative.me/fng/?limit=30')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var data = d.data;
+      var cur  = parseInt(data[0].value);
+      var wk   = data[7]  ? parseInt(data[7].value)  : null;
+      var mo   = data[29] ? parseInt(data[29].value) : null;
+      drawGauge('fgi-crypto-gauge', cur);
+      setVal('fgi-crypto-number', 'fgi-crypto-category', cur);
+      if (wk !== null) setHist('fgi-crypto-week',  wk,  data[7].value_classification);
+      if (mo !== null) setHist('fgi-crypto-month', mo,  data[29].value_classification);
+      setUpdated('fgi-crypto-updated', parseInt(data[0].timestamp));
+    })
+    .catch(function () {
+      var c = document.getElementById('fgi-crypto-category');
+      if (c) { c.textContent = 'Data unavailable'; c.style.color = '#8ba5c1'; }
+      var n = document.getElementById('fgi-crypto-number');
+      if (n) { n.textContent = '—'; n.style.color = '#8ba5c1'; }
+    });
+
+  fetch('https://production.dataviz.cnn.io/index/fearandgreed/graphdata/')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var fg   = d.fear_and_greed;
+      var cur  = Math.round(fg.score);
+      var hist = d.fear_and_greed_historical && d.fear_and_greed_historical.data;
+      drawGauge('fgi-us-gauge', cur);
+      setVal('fgi-us-number', 'fgi-us-category', cur);
+      if (hist) {
+        var wkPt  = hist[hist.length - 8]  || hist[0];
+        var moPt  = hist[hist.length - 31] || hist[0];
+        if (wkPt)  setHist('fgi-us-week',  Math.round(wkPt.y),  wkPt.rating);
+        if (moPt)  setHist('fgi-us-month', Math.round(moPt.y),  moPt.rating);
+      }
+      setUpdated('fgi-us-updated', fg.timestamp);
+    })
+    .catch(function () {
+      var n = document.getElementById('fgi-us-number');
+      var c = document.getElementById('fgi-us-category');
+      if (n) { n.textContent = '—'; n.style.color = '#8ba5c1'; }
+      if (c) {
+        c.textContent = 'View live on CNN ↗';
+        c.style.color = '#00d4aa';
+        c.style.cursor = 'pointer';
+        c.onclick = function () { window.open('https://money.cnn.com/data/fear-and-greed/', '_blank'); };
+      }
+      var u = document.getElementById('fgi-us-updated');
+      if (u) u.textContent = 'CORS blocked — open CNN directly';
+    });
+})();
+</script>
+</body>
+</html>
