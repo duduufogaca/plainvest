@@ -44,9 +44,107 @@
       </div>
     </header>
 
-    <figure class="guide-visual">
-      <img src="../../assets/hero-seed-growth.png" alt="Seed growing beside an upward chart line">
-      <figcaption>Plainvest uses the seed idea because investing education should feel like building something patiently: small inputs, clear habits, and time.</figcaption>
+    <figure class="guide-visual" style="background:#0b1d32;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 230" role="img" aria-label="Three stages of growth: seed, growing plant, flourishing tree — representing the journey from beginner to confident investor" style="width:100%;display:block;">
+        <defs>
+          <radialGradient id="wSeedGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e8b84b" stop-opacity=".3"/><stop offset="100%" stop-color="#e8b84b" stop-opacity="0"/></radialGradient>
+          <radialGradient id="wPlantGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d4aa" stop-opacity=".22"/><stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/></radialGradient>
+          <radialGradient id="wConfGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d4aa" stop-opacity=".32"/><stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/></radialGradient>
+          <linearGradient id="wGround" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#162840"/><stop offset="100%" stop-color="#0b1d32"/></linearGradient>
+          <pattern id="wDots" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse"><circle cx="18" cy="18" r="1" fill="rgba(255,255,255,.045)"/></pattern>
+        </defs>
+
+        <!-- Background -->
+        <rect width="900" height="230" fill="#0b1d32"/>
+        <rect width="900" height="230" fill="url(#wDots)"/>
+
+        <!-- Ground strip -->
+        <rect x="0" y="185" width="900" height="45" fill="url(#wGround)"/>
+        <line x1="0" y1="185" x2="900" y2="185" stroke="rgba(0,212,170,.12)" stroke-width="1"/>
+
+        <!-- Subtle horizontal grid lines -->
+        <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+        <line x1="0" y1="120" x2="900" y2="120" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+
+        <!-- ── STAGE 1: Seed / Foundation (x=150) ── -->
+        <circle cx="150" cy="160" r="70" fill="url(#wSeedGlow)"/>
+        <!-- Soil -->
+        <ellipse cx="150" cy="188" rx="52" ry="11" fill="#162840"/>
+        <!-- Seed shape -->
+        <ellipse cx="147" cy="175" rx="14" ry="18" fill="#e8b84b" opacity=".88" transform="rotate(-18,147,175)"/>
+        <ellipse cx="147" cy="175" rx="14" ry="18" fill="none" stroke="rgba(232,184,75,.35)" stroke-width="1.5" transform="rotate(-18,147,175)"/>
+        <!-- Tiny first sprout -->
+        <line x1="150" y1="158" x2="150" y2="140" stroke="#4ecda4" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="144" cy="136" rx="8" ry="11" fill="#4ecda4" opacity=".72" transform="rotate(-22,144,136)"/>
+        <ellipse cx="156" cy="134" rx="7" ry="9" fill="#4ecda4" opacity=".6" transform="rotate(18,156,134)"/>
+        <!-- Stage label -->
+        <text x="150" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#e8b84b">Foundation</text>
+        <text x="150" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Understand the basics</text>
+
+        <!-- Arrow 1→2 -->
+        <path d="M 230 145 Q 300 130 370 145" fill="none" stroke="rgba(0,212,170,.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
+        <polygon points="370,140 378,145 370,150" fill="rgba(0,212,170,.3)"/>
+
+        <!-- ── STAGE 2: Growing plant / Knowledge (x=450) ── -->
+        <circle cx="450" cy="130" r="90" fill="url(#wPlantGlow)"/>
+        <!-- Soil -->
+        <ellipse cx="450" cy="188" rx="58" ry="12" fill="#162840"/>
+        <!-- Stem -->
+        <line x1="450" y1="186" x2="450" y2="118" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="450" y1="162" x2="430" y2="144" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="450" y1="150" x2="470" y2="135" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- Leaves -->
+        <ellipse cx="420" cy="136" rx="22" ry="10" fill="#00d4aa" opacity=".58" transform="rotate(-42,420,136)"/>
+        <ellipse cx="480" cy="128" rx="20" ry="9" fill="#00d4aa" opacity=".52" transform="rotate(38,480,128)"/>
+        <ellipse cx="438" cy="160" rx="16" ry="7" fill="#00d4aa" opacity=".48" transform="rotate(-28,438,160)"/>
+        <ellipse cx="462" cy="164" rx="15" ry="7" fill="#00d4aa" opacity=".44" transform="rotate(26,462,164)"/>
+        <!-- Crown -->
+        <ellipse cx="450" cy="108" rx="20" ry="24" fill="#00d4aa" opacity=".6"/>
+        <ellipse cx="440" cy="100" rx="13" ry="17" fill="#00d4aa" opacity=".55" transform="rotate(-12,440,100)"/>
+        <ellipse cx="460" cy="98" rx="12" ry="16" fill="#00d4aa" opacity=".5" transform="rotate(14,460,98)"/>
+        <!-- Stage label -->
+        <text x="450" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#00d4aa">Knowledge</text>
+        <text x="450" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Guides, research, comparisons</text>
+
+        <!-- Arrow 2→3 -->
+        <path d="M 530 130 Q 600 110 670 125" fill="none" stroke="rgba(0,212,170,.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
+        <polygon points="670,120 678,125 670,130" fill="rgba(0,212,170,.3)"/>
+
+        <!-- ── STAGE 3: Full tree / Confidence (x=760) ── -->
+        <circle cx="760" cy="100" r="110" fill="url(#wConfGlow)"/>
+        <!-- Soil -->
+        <ellipse cx="760" cy="188" rx="68" ry="13" fill="#162840"/>
+        <!-- Main trunk -->
+        <line x1="760" y1="186" x2="760" y2="72" stroke="#00d4aa" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- Branches -->
+        <line x1="760" y1="155" x2="732" y2="132" stroke="#00d4aa" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="760" y1="140" x2="790" y2="118" stroke="#00d4aa" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="760" y1="120" x2="738" y2="100" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="760" y1="112" x2="782" y2="95" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- Leaf clusters — lower -->
+        <ellipse cx="722" cy="124" rx="24" ry="11" fill="#00d4aa" opacity=".6" transform="rotate(-44,722,124)"/>
+        <ellipse cx="798" cy="110" rx="22" ry="10" fill="#00d4aa" opacity=".55" transform="rotate(40,798,110)"/>
+        <ellipse cx="730" cy="150" rx="18" ry="8" fill="#00d4aa" opacity=".5" transform="rotate(-30,730,150)"/>
+        <ellipse cx="790" cy="156" rx="17" ry="7" fill="#00d4aa" opacity=".45" transform="rotate(28,790,156)"/>
+        <!-- Leaf clusters — upper -->
+        <ellipse cx="730" cy="94" rx="20" ry="9" fill="#00d4aa" opacity=".58" transform="rotate(-38,730,94)"/>
+        <ellipse cx="790" cy="88" rx="18" ry="9" fill="#00d4aa" opacity=".52" transform="rotate(34,790,88)"/>
+        <!-- Crown (gold-tinted for 'achieved' state) -->
+        <ellipse cx="760" cy="62" rx="36" ry="42" fill="#00d4aa" opacity=".52"/>
+        <ellipse cx="746" cy="50" rx="24" ry="30" fill="#00d4aa" opacity=".58" transform="rotate(-14,746,50)"/>
+        <ellipse cx="774" cy="48" rx="22" ry="28" fill="#00d4aa" opacity=".54" transform="rotate(16,774,48)"/>
+        <!-- Golden fruit/star at peak -->
+        <circle cx="760" cy="32" r="10" fill="#e8b84b" opacity=".88"/>
+        <circle cx="760" cy="32" r="5" fill="#0b1d32"/>
+        <circle cx="760" cy="32" r="3" fill="#e8b84b" opacity=".9"/>
+        <!-- Stage label -->
+        <text x="760" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#e8b84b">Confidence</text>
+        <text x="760" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Clear plan, first trade, calm mind</text>
+
+        <!-- Subtle watermark -->
+        <text x="886" y="18" text-anchor="end" font-family="Sora,sans-serif" font-size="8.5" fill="rgba(255,255,255,.1)">Plainvest Premium</text>
+      </svg>
+      <figcaption>From your first question to your first confident trade — Plainvest Premium is the path between them.</figcaption>
     </figure>
 
     <section class="section">
