@@ -299,7 +299,7 @@
       if (n) { n.textContent = '—'; n.style.color = '#8ba5c1'; }
     });
 
-  fetch('https://production.dataviz.cnn.io/index/fearandgreed/graphdata/')
+  fetch('/api/fgi-us')
     .then(function (r) { return r.json(); })
     .then(function (d) {
       var fg   = d.fear_and_greed;
