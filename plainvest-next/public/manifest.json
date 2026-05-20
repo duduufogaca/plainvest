@@ -1,0 +1,17 @@
+{
+  "name": "Plainvest",
+  "short_name": "Plainvest",
+  "description": "Plain-English investing education for first-time investors.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#071120",
+  "theme_color": "#071120",
+  "icons": [
+    {
+      "src": "/assets/plainvest-app-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
