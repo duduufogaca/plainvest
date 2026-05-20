@@ -4,7 +4,10 @@
 (function(){var local=(location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")&&new URLSearchParams(location.search).get("preview")==="1";if(local)return;if(!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)){location.replace("https://members.plainvest.app/dashboard");return;}document.documentElement.style.visibility="hidden";fetch("/api/member/status",{credentials:"include",cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(s){if(s&&s.authenticated&&s.premium){document.documentElement.style.visibility="visible";return;}location.replace(s&&s.authenticated?"/dashboard":"/login?mode=manual");}).catch(function(){location.replace("/dashboard");});})();
 </script></head>
 <body><main class="guide">
-<a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
+  <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
+    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+  </nav>
 <header class="hero"><div class="kicker">First Trade</div><h1>Understand the click before you click.</h1><p class="lead">This guide does not tell you what to buy. It explains the practical steps beginners usually freeze on when placing a first ETF or share order.</p><div class="quick-strip"><div class="quick-card"><strong>Start small</strong><span>The first trade is about learning the process.</span></div><div class="quick-card"><strong>Check twice</strong><span>Ticker, market, order type, fees.</span></div><div class="quick-card"><strong>Keep proof</strong><span>Save confirmations for tax records.</span></div></div>
 <div class="stat-row">
   <div class="stat-block"><span class="stat-num">7</span><span class="stat-label">step calm walkthrough from app open to confirmation saved</span></div>

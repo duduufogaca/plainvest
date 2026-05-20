@@ -4,7 +4,10 @@
 (function(){var local=(location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")&&new URLSearchParams(location.search).get("preview")==="1";if(local)return;if(!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)){location.replace("https://members.plainvest.app/dashboard");return;}document.documentElement.style.visibility="hidden";fetch("/api/member/status",{credentials:"include",cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(s){if(s&&s.authenticated&&s.premium){document.documentElement.style.visibility="visible";return;}location.replace(s&&s.authenticated?"/dashboard":"/login?mode=manual");}).catch(function(){location.replace("/dashboard");});})();
 </script></head>
 <body><main class="guide">
-<a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
+  <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
+    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+  </nav>
 <header class="hero"><div class="kicker">Australia Basics</div><h1>Your super is already investing.</h1><p class="lead">Superannuation is often the largest investment Australians will ever own. This guide helps beginners understand what to check, what not to ignore, and why small differences compound for decades.</p><div class="quick-strip"><div class="quick-card"><strong>Core idea</strong><span>Your fund invests on your behalf.</span></div><div class="quick-card"><strong>Big levers</strong><span>Fees, option, insurance, contributions.</span></div><div class="quick-card"><strong>Mindset</strong><span>Small settings can matter over decades.</span></div></div>
 
 <div class="stat-row">
