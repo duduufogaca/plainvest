@@ -4,11 +4,14 @@
 (function(){var local=(location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")&&new URLSearchParams(location.search).get("preview")==="1";if(local)return;if(!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)){location.replace("https://members.plainvest.app/dashboard");return;}document.documentElement.style.visibility="hidden";fetch("/api/member/status",{credentials:"include",cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(s){if(s&&s.authenticated&&s.premium){document.documentElement.style.visibility="visible";return;}location.replace(s&&s.authenticated?"/dashboard":"/login?mode=manual");}).catch(function(){location.replace("/dashboard");});})();
 </script></head>
 <body><main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
-<header class="hero"><div class="kicker">First Trade</div><h1>Understand the click before you click.</h1><p class="lead">This guide does not tell you what to buy. It explains the practical steps beginners usually freeze on when placing a first ETF or share order.</p><div class="quick-strip"><div class="quick-card"><strong>Start small</strong><span>The first trade is about learning the process.</span></div><div class="quick-card"><strong>Check twice</strong><span>Ticker, market, order type, fees.</span></div><div class="quick-card"><strong>Keep proof</strong><span>Save confirmations for tax records.</span></div></div>
+<header class="hero"><div class="kicker"><span class="lang-en">First Trade</span><span class="lang-pt">Primeira Operação</span></div><h1><span class="lang-en">Understand the click before you click.</span><span class="lang-pt">Entenda o clique antes de clicar.</span></h1><p class="lead">This guide does not tell you what to buy. It explains the practical steps beginners usually freeze on when placing a first ETF or share order.</p><div class="quick-strip"><div class="quick-card"><strong><span class="lang-en">Start small</span><span class="lang-pt">Comece pequeno</span></strong><span>The first trade is about learning the process.</span></div><div class="quick-card"><strong><span class="lang-en">Check twice</span><span class="lang-pt">Verifique duas vezes</span></strong><span>Ticker, market, order type, fees.</span></div><div class="quick-card"><strong><span class="lang-en">Keep proof</span><span class="lang-pt">Guarde comprovantes</span></strong><span>Save confirmations for tax records.</span></div></div>
 <div class="stat-row">
   <div class="stat-block"><span class="stat-num">7</span><span class="stat-label">step calm walkthrough from app open to confirmation saved</span></div>
   <div class="stat-block danger"><span class="stat-num">5</span><span class="stat-label">common first-trade mistakes and exactly how to avoid them</span></div>
@@ -16,25 +19,25 @@
   <div class="stat-block soft"><span class="stat-num">14%</span><span class="stat-label">what a $7 brokerage fee costs on a $50 trade — fees matter</span></div>
 </div>
 </header>
-<section class="section"><h2>Before opening the app</h2><p>A good first trade starts before the broker screen. Write down the investment type, ticker, expected market, amount, reason for buying, and whether this is a one-off purchase or the beginning of a DCA habit. This protects you from clicking because the app made something look exciting.</p><ul class="checklist"><li>I know whether I am buying an ETF, share, fund, or crypto asset.</li><li>I know the ticker and have checked it on the official issuer or exchange site.</li><li>I know the currency and market where it trades.</li><li>I know how much I am comfortable testing first.</li><li>I know where the trade confirmation will be stored.</li></ul></section>
-<section class="section"><h2>The calm walkthrough</h2>
+<section class="section"><h2><span class="lang-en">Before opening the app</span><span class="lang-pt">Antes de abrir o aplicativo</span></h2><p>A good first trade starts before the broker screen. Write down the investment type, ticker, expected market, amount, reason for buying, and whether this is a one-off purchase or the beginning of a DCA habit. This protects you from clicking because the app made something look exciting.</p><ul class="checklist"><li><span class="lang-en">I know whether I am buying an ETF, share, fund, or crypto asset.</span><span class="lang-pt">Sei se estou comprando um ETF, ação, fundo ou ativo cripto.</span></li><li><span class="lang-en">I know the ticker and have checked it on the official issuer or exchange site.</span><span class="lang-pt">Conheço o ticker e o verifiquei no site oficial do emissor ou da bolsa.</span></li><li><span class="lang-en">I know the currency and market where it trades.</span><span class="lang-pt">Sei a moeda e o mercado em que é negociado.</span></li><li><span class="lang-en">I know how much I am comfortable testing first.</span><span class="lang-pt">Sei quanto estou confortável em testar primeiro.</span></li><li>I know where the trade confirmation will be stored.</li></ul></section>
+<section class="section"><h2><span class="lang-en">The calm walkthrough</span><span class="lang-pt">O guia passo a passo com calma</span></h2>
 <p>Follow these steps in order. Do not skip straight to step 4 — most first-trade mistakes happen because someone skipped steps 1 or 2.</p>
 <div class="process-flow">
   <div class="flow-step">
     <div class="step-num">1</div>
-    <strong>Confirm your decision</strong>
+    <strong><span class="lang-en">Confirm your decision</span><span class="lang-pt">Confirme sua decisão</span></strong>
     <p>Know why you picked this investment type, not just the ticker</p>
   </div>
   <div class="flow-arrow">→</div>
   <div class="flow-step">
     <div class="step-num">2</div>
-    <strong>Fund the account</strong>
+    <strong><span class="lang-en">Fund the account</span><span class="lang-pt">Deposite na conta</span></strong>
     <p>Small test deposit first — confirm it arrives before trading</p>
   </div>
   <div class="flow-arrow">→</div>
   <div class="flow-step">
     <div class="step-num">3</div>
-    <strong>Search the ticker</strong>
+    <strong><span class="lang-en">Search the ticker</span><span class="lang-pt">Pesquise o ticker</span></strong>
     <p>Check full name, exchange, and currency against the issuer site</p>
   </div>
   <div class="flow-arrow">→</div>
@@ -63,11 +66,11 @@
   </div>
 </div>
 </section>
-<section class="section"><h2>Market vs limit order</h2><div class="grid-2"><div class="tile"><strong>Market order</strong><p>Buys quickly at the best available price. Simple, but final price can move, especially in volatile assets or thinly traded products.</p></div><div class="tile"><strong>Limit order</strong><p>You set the highest price you accept when buying. It may not fill, but it gives more control over price.</p></div><div class="tile"><strong>Beginner use case</strong><p>For learning, a small limit order can help you understand the mechanics without rushing.</p></div><div class="tile"><strong>Risk</strong><p>A limit order too far from market price may never execute. A market order in volatile conditions can surprise you.</p></div></div></section>
-<section class="section"><h2>Order screen checklist</h2><table class="mini-table"><thead><tr><th>Field</th><th>Question to ask</th></tr></thead><tbody><tr><td>Ticker</td><td>Is this the exact product I intended to buy?</td></tr><tr><td>Market</td><td>ASX, NYSE, Nasdaq, or another exchange?</td></tr><tr><td>Currency</td><td>AUD or foreign currency? Is there an FX fee?</td></tr><tr><td>Quantity</td><td>How many units or shares am I buying?</td></tr><tr><td>Order type</td><td>Market or limit? What price am I accepting?</td></tr><tr><td>Brokerage</td><td>What fee is charged for this trade?</td></tr><tr><td>Settlement</td><td>When does cash leave and ownership settle?</td></tr></tbody></table></section>
-<section class="section"><h2>After the trade</h2><p>Do not judge the decision by the next hour of price movement. The first trade is the beginning of a process: record keeping, reviewing your plan, learning how distributions work, and deciding whether a recurring habit makes sense.</p><ul class="checklist"><li>Save the trade confirmation PDF.</li><li>Update your spreadsheet with date, ticker, units, price, fees, and reason.</li><li>Set a calendar reminder to download annual tax statements.</li><li>If this is DCA, choose the next contribution date.</li><li>Do not keep refreshing the app every few minutes. That trains anxiety, not discipline.</li></ul></section>
+<section class="section"><h2><span class="lang-en">Market vs limit order</span><span class="lang-pt">Ordem a mercado vs ordem limitada</span></h2><div class="grid-2"><div class="tile"><strong>Market order</strong><p>Buys quickly at the best available price. Simple, but final price can move, especially in volatile assets or thinly traded products.</p></div><div class="tile"><strong>Limit order</strong><p>You set the highest price you accept when buying. It may not fill, but it gives more control over price.</p></div><div class="tile"><strong>Beginner use case</strong><p>For learning, a small limit order can help you understand the mechanics without rushing.</p></div><div class="tile"><strong>Risk</strong><p>A limit order too far from market price may never execute. A market order in volatile conditions can surprise you.</p></div></div></section>
+<section class="section"><h2><span class="lang-en">Order screen checklist</span><span class="lang-pt">Checklist da tela de ordem</span></h2><table class="mini-table"><thead><tr><th>Field</th><th>Question to ask</th></tr></thead><tbody><tr><td>Ticker</td><td>Is this the exact product I intended to buy?</td></tr><tr><td>Market</td><td>ASX, NYSE, Nasdaq, or another exchange?</td></tr><tr><td>Currency</td><td>AUD or foreign currency? Is there an FX fee?</td></tr><tr><td>Quantity</td><td>How many units or shares am I buying?</td></tr><tr><td>Order type</td><td>Market or limit? What price am I accepting?</td></tr><tr><td>Brokerage</td><td>What fee is charged for this trade?</td></tr><tr><td>Settlement</td><td>When does cash leave and ownership settle?</td></tr></tbody></table></section>
+<section class="section"><h2><span class="lang-en">After the trade</span><span class="lang-pt">Após a operação</span></h2><p>Do not judge the decision by the next hour of price movement. The first trade is the beginning of a process: record keeping, reviewing your plan, learning how distributions work, and deciding whether a recurring habit makes sense.</p><ul class="checklist"><li>Save the trade confirmation PDF.</li><li>Update your spreadsheet with date, ticker, units, price, fees, and reason.</li><li>Set a calendar reminder to download annual tax statements.</li><li>If this is DCA, choose the next contribution date.</li><li>Do not keep refreshing the app every few minutes. That trains anxiety, not discipline.</li></ul></section>
 <section class="section">
-<h2>Common first-trade mistakes</h2>
+<h2><span class="lang-en">Common first-trade mistakes</span><span class="lang-pt">Erros comuns na primeira operação</span></h2>
 <table class="mini-table"><thead><tr><th>Mistake</th><th>Why it happens</th><th>How to avoid it</th></tr></thead><tbody>
 <tr><td>Buying the wrong ticker</td><td>Two assets can have similar names but different risk profiles (e.g. VAS vs VGS, QQQ vs QQQM, Bitcoin vs Bitcoin Cash).</td><td>Search the full name on the issuer's site before placing the order. Confirm the ISIN or index if in doubt.</td></tr>
 <tr><td>Wrong market or currency</td><td>Some ETFs are listed in multiple countries in different currencies. Buying the US-listed version instead of the AUD-listed version changes FX risk and tax treatment.</td><td>Check exchange name and currency on the order screen before confirming.</td></tr>
@@ -78,7 +81,7 @@
 </section>
 
 <section class="section">
-<h2>Your first 30 days as an investor</h2>
+<h2><span class="lang-en">Your first 30 days as an investor</span><span class="lang-pt">Seus primeiros 30 dias como investidor</span></h2>
 <p>Most new investors make decisions without structure. This checklist gives the first month a deliberate shape — from account setup to the first confirmed trade and the habits that will matter long after it.</p>
 <table class="mini-table">
   <thead><tr><th>Days</th><th>Milestone</th><th>Why it matters</th></tr></thead>
@@ -101,7 +104,7 @@
 </ul>
 </section>
 
-<section class="section warning"><h2>First-trade rule</h2><p>For a beginner, the first trade should be about learning the process, not proving confidence. Start small enough that a mistake becomes a lesson, not a crisis.</p></section>
+<section class="section warning"><h2><span class="lang-en">First-trade rule</span><span class="lang-pt">Regra da primeira operação</span></h2><p>For a beginner, the first trade should be about learning the process, not proving confidence. Start small enough that a mistake becomes a lesson, not a crisis.</p></section>
 
 <section class="section">
   <h2>You've completed the foundational path</h2>

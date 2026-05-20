@@ -21,12 +21,15 @@
 </head>
 <body>
 <main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
   <header class="hero">
-    <div class="kicker">Premium Guide</div>
+    <div class="kicker"><span class="lang-en">Premium Guide</span><span class="lang-pt">Guia Premium</span></div>
     <h1>Crypto safety before crypto <em>excitement.</em></h1>
     <p class="lead">Crypto can be powerful, but beginners must understand custody, scams, volatility, exchange risk, and irreversible mistakes before moving money.</p>
     <div class="stat-row">
@@ -37,33 +40,33 @@
     </div>
   </header>
   <section class="section">
-    <h2>The custody ladder</h2>
+    <h2><span class="lang-en">The custody ladder</span><span class="lang-pt">A escada de custódia</span></h2>
     <div class="custody-visual" aria-label="Cold wallet custody illustration">
       <div class="wallet-row">
-        <div class="wallet-card"><div class="wallet-icon"></div><strong>Cold wallet</strong><p>A physical signing device like Ledger or Trezor keeps private keys offline.</p></div>
-        <div class="wallet-card"><div class="wallet-icon" style="background:linear-gradient(145deg,#314053,#101722)"></div><strong>Recovery phrase</strong><p>The backup words control recovery. Whoever has them can control the funds.</p></div>
-        <div class="wallet-card"><div class="wallet-icon" style="background:linear-gradient(145deg,#193d37,#061410)"></div><strong>Test transfer</strong><p>Practice with tiny amounts before trusting any wallet setup with meaningful value.</p></div>
+        <div class="wallet-card"><div class="wallet-icon"></div><strong><span class="lang-en">Cold wallet</span><span class="lang-pt">Cold wallet</span></strong><p>A physical signing device like Ledger or Trezor keeps private keys offline.</p></div>
+        <div class="wallet-card"><div class="wallet-icon" style="background:linear-gradient(145deg,#314053,#101722)"></div><strong><span class="lang-en">Recovery phrase</span><span class="lang-pt">Frase de recuperação</span></strong><p>The backup words control recovery. Whoever has them can control the funds.</p></div>
+        <div class="wallet-card"><div class="wallet-icon" style="background:linear-gradient(145deg,#193d37,#061410)"></div><strong><span class="lang-en">Test transfer</span><span class="lang-pt">Transferência de teste</span></strong><p>Practice with tiny amounts before trusting any wallet setup with meaningful value.</p></div>
       </div>
     </div>
     <div class="grid-3">
-      <div class="tile"><strong>Exchange account</strong><p>Simple to start, but the platform controls the withdrawal process. Platform failure, hacks, freezes, or account problems can affect access.</p></div>
-      <div class="tile"><strong>Hot wallet</strong><p>You control the wallet, but it is connected to an internet device. Good for learning and smaller amounts, not careless storage.</p></div>
-      <div class="tile"><strong>Cold wallet</strong><p>Private keys stay offline. Better for larger long-term holdings, but setup and backup responsibility is higher.</p></div>
+      <div class="tile"><strong><span class="lang-en">Exchange account</span><span class="lang-pt">Conta em exchange</span></strong><p>Simple to start, but the platform controls the withdrawal process. Platform failure, hacks, freezes, or account problems can affect access.</p></div>
+      <div class="tile"><strong><span class="lang-en">Hot wallet</span><span class="lang-pt">Hot wallet</span></strong><p>You control the wallet, but it is connected to an internet device. Good for learning and smaller amounts, not careless storage.</p></div>
+      <div class="tile"><strong><span class="lang-en">Cold wallet</span><span class="lang-pt">Cold wallet</span></strong><p>Private keys stay offline. Better for larger long-term holdings, but setup and backup responsibility is higher.</p></div>
     </div>
   </section>
   <section class="section">
-    <h2>Self-custody basics</h2>
+    <h2><span class="lang-en">Self-custody basics</span><span class="lang-pt">Fundamentos da autocustódia</span></h2>
     <p>Self-custody means you control the keys that control the asset. That freedom comes with responsibility. If a seed phrase is lost, stolen, photographed, stored in cloud notes, or typed into a fake site, recovery may be impossible.</p>
     <ul class="checklist">
-      <li>Never type your seed phrase into a website or app unless restoring a wallet you intentionally installed from the official source.</li>
-      <li>Keep backups offline, private, and protected from water, fire, and theft.</li>
-      <li>Test small transactions before sending meaningful amounts.</li>
-      <li>Check network names carefully: Bitcoin, Ethereum, Solana, Polygon, and other networks are different rails.</li>
+      <li><span class="lang-en">Never type your seed phrase into a website or app unless restoring a wallet you intentionally installed from the official source.</span><span class="lang-pt">Nunca digite sua seed phrase em um site ou aplicativo, a menos que esteja restaurando uma carteira instalada intencionalmente a partir da fonte oficial.</span></li>
+      <li><span class="lang-en">Keep backups offline, private, and protected from water, fire, and theft.</span><span class="lang-pt">Mantenha backups offline, privados e protegidos contra água, fogo e roubo.</span></li>
+      <li><span class="lang-en">Test small transactions before sending meaningful amounts.</span><span class="lang-pt">Teste com transações pequenas antes de enviar valores significativos.</span></li>
+      <li><span class="lang-en">Check network names carefully: Bitcoin, Ethereum, Solana, Polygon, and other networks are different rails.</span><span class="lang-pt">Verifique os nomes das redes com cuidado: Bitcoin, Ethereum, Solana, Polygon e outras redes são trilhos diferentes.</span></li>
       <li>Assume DMs, giveaways, urgent support messages, and “double your money” offers are dangerous.</li>
     </ul>
   </section>
   <section class="section warning">
-    <h2>Beginner mistakes to avoid</h2>
+    <h2><span class="lang-en">Beginner mistakes to avoid</span><span class="lang-pt">Erros comuns a evitar</span></h2>
     <div class="grid-2">
       <div class="tile"><strong>Buying because price is moving</strong><p>Fast green candles can create fear of missing out. That is not a plan.</p></div>
       <div class="tile"><strong>Using leverage</strong><p>Leverage can liquidate beginners quickly. It is not needed for learning.</p></div>
@@ -72,7 +75,7 @@
     </div>
   </section>
   <section class="section">
-    <h2>Hot wallet, cold wallet, exchange: decision matrix</h2>
+    <h2><span class="lang-en">Hot wallet, cold wallet, exchange: decision matrix</span><span class="lang-pt">Hot wallet, cold wallet, exchange: matriz de decisão</span></h2>
     <table class="mini-table">
       <thead><tr><th>Storage</th><th>Convenience</th><th>Risk</th><th>Beginner use</th></tr></thead>
       <tbody>
@@ -83,7 +86,7 @@
     </table>
   </section>
   <section class="section">
-    <h2>Recovery phrase rules</h2>
+    <h2><span class="lang-en">Recovery phrase rules</span><span class="lang-pt">Regras da frase de recuperação</span></h2>
     <ul class="checklist">
       <li>Write it offline. Do not screenshot it.</li>
       <li>Do not store it in email, cloud notes, WhatsApp, photo gallery, or password manager unless you fully understand the risk model.</li>
@@ -94,7 +97,7 @@
   </section>
 
   <section class="section">
-    <h2>Hardware wallets: Ledger vs Trezor</h2>
+    <h2><span class="lang-en">Hardware wallets: Ledger vs Trezor</span><span class="lang-pt">Carteiras de hardware: Ledger vs Trezor</span></h2>
     <p>A hardware wallet is a small physical device that stores your private keys offline. It signs transactions without exposing the key to an internet-connected device. For any meaningful long-term crypto holding, hardware wallets are considered best practice. The two most established brands are Ledger and Trezor.</p>
     <table class="mini-table">
       <thead><tr><th>Feature</th><th>Ledger (Nano S Plus / X / Flex)</th><th>Trezor (Model One / Safe 3 / Safe 5)</th></tr></thead>
@@ -124,7 +127,7 @@
   </section>
 
   <section class="section">
-    <h2>Crypto inheritance: the question most beginners skip</h2>
+    <h2><span class="lang-en">Crypto inheritance: the question most beginners skip</span><span class="lang-pt">Herança cripto: a pergunta que a maioria dos iniciantes ignora</span></h2>
     <p>If you self-custody crypto and something happens to you, the asset is gone unless you have made deliberate plans. Unlike a bank account, there is no recovery process, no beneficiary form, and no customer support. This is not a morbid topic — it is a responsibility that comes with self-custody.</p>
     <div class="grid-2">
       <div class="tile"><strong>The problem</strong><p>A seed phrase stored only in your memory or in a single hidden location that only you know about is permanently inaccessible if you die or are incapacitated. Courts, lawyers, and family cannot recover it.</p></div>
@@ -135,7 +138,7 @@
   </section>
 
   <section class="section">
-    <h2>Popular hot wallets: what beginners actually use</h2>
+    <h2><span class="lang-en">Popular hot wallets: what beginners actually use</span><span class="lang-pt">Hot wallets populares: o que os iniciantes realmente usam</span></h2>
     <p>A hot wallet is software that stores your private keys on an internet-connected device (phone or computer). Hot wallets give you direct control of your crypto, but they depend on device security and your own caution. These are the most widely used options — but any wallet is only as safe as the person using it.</p>
     <table class="mini-table">
       <thead><tr><th>Wallet</th><th>Best for</th><th>Networks supported</th><th>Key cautions</th></tr></thead>
@@ -165,7 +168,7 @@
   </section>
 
   <section class="section">
-    <h2>Transaction safety workflow</h2>
+    <h2><span class="lang-en">Transaction safety workflow</span><span class="lang-pt">Fluxo de segurança em transações</span></h2>
     <ol class="steps">
       <li><div>Confirm the asset and network. USDT on Ethereum, Tron, Solana, and Polygon are not the same path.</div></li>
       <li><div>Copy the address from the destination wallet and check the first and last characters after pasting.</div></li>
@@ -176,7 +179,7 @@
   </section>
 
   <section class="section">
-    <h2>Token due diligence</h2>
+    <h2><span class="lang-en">Token due diligence</span><span class="lang-pt">Due diligence de tokens</span></h2>
     <table class="mini-table">
       <thead><tr><th>Area</th><th>Question</th><th>Why it matters</th></tr></thead>
       <tbody>
@@ -189,7 +192,7 @@
     </table>
   </section>
   <section class="section warning">
-    <h2>Scam patterns to recognise immediately</h2>
+    <h2><span class="lang-en">Scam patterns to recognise immediately</span><span class="lang-pt">Padrões de golpes para reconhecer imediatamente</span></h2>
     <p>Crypto scams follow repeatable patterns. Recognising the pattern is faster than evaluating each situation individually.</p>
     <table class="mini-table">
       <thead><tr><th>Pattern</th><th>How it looks</th><th>What to do</th></tr></thead>
@@ -218,7 +221,7 @@
   </section>
 
   <section class="section">
-    <h2>Continue your learning path</h2>
+    <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
     <div class="callout"><strong>Next recommended guide:</strong> <a href="05-bitcoin-research-section.html">Bitcoin Research Section — white paper, halving history, metrics, and allocation thinking →</a></div>
   </section>
 </main>

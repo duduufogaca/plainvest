@@ -4,19 +4,22 @@
 (function(){var local=(location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")&&new URLSearchParams(location.search).get("preview")==="1";if(local)return;if(!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)){location.replace("https://members.plainvest.app/dashboard");return;}document.documentElement.style.visibility="hidden";fetch("/api/member/status",{credentials:"include",cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(s){if(s&&s.authenticated&&s.premium){document.documentElement.style.visibility="visible";return;}location.replace(s&&s.authenticated?"/dashboard":"/login?mode=manual");}).catch(function(){location.replace("/dashboard");});})();
 </script></head>
 <body><main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
 
 <header class="hero">
-  <div class="kicker">Premium Foundations · AU · US · Brazil</div>
+  <div class="kicker"><span class="lang-en">Premium Foundations · AU · US · Brazil</span><span class="lang-pt">Fundamentos Premium · AU · EUA · Brasil</span></div>
   <h1>Your money loses value every year. <em>Here's what to do about it.</em></h1>
   <p class="lead">Inflation is the silent cost of doing nothing with cash. This guide explains how inflation works across Australia, the United States, and Brazil — what it has done to purchasing power historically, which assets have kept pace, and why this is the foundational reason most people invest.</p>
   <div class="quick-strip">
-    <div class="quick-card"><strong>The problem</strong><span>Cash sitting still loses real value every year.</span></div>
-    <div class="quick-card"><strong>The scale</strong><span>3 countries, 3 different inflation stories — same underlying risk.</span></div>
-    <div class="quick-card"><strong>The answer</strong><span>Assets that grow faster than inflation preserve real wealth.</span></div>
+    <div class="quick-card"><strong><span class="lang-en">The problem</span><span class="lang-pt">O problema</span></strong><span>Cash sitting still loses real value every year.</span></div>
+    <div class="quick-card"><strong><span class="lang-en">The scale</span><span class="lang-pt">A escala</span></strong><span>3 countries, 3 different inflation stories — same underlying risk.</span></div>
+    <div class="quick-card"><strong><span class="lang-en">The answer</span><span class="lang-pt">A resposta</span></strong><span>Assets that grow faster than inflation preserve real wealth.</span></div>
   </div>
   <div class="stat-row">
     <div class="stat-block gold"><span class="stat-num">~3.4%</span><span class="stat-label">Australia current CPI — above the RBA's 2–3% target band</span></div>
@@ -27,24 +30,24 @@
 </header>
 
 <section class="section">
-  <h2>What inflation means in plain English</h2>
+  <h2><span class="lang-en">What inflation means in plain English</span><span class="lang-pt">O que a inflação significa em linguagem simples</span></h2>
   <p>Inflation is the gradual rise in the price of goods and services over time. When prices rise by 3% per year, a basket of items that costs $100 today will cost $103 next year. That sounds small. Over 20 years at 3%, that same basket costs approximately $180. Your $100 bill buys about 55 cents of what it used to.</p>
   <p>The problem is not the number — it is the direction. Cash does not grow. It sits. And while it sits, prices around it move up. The result is a slow, invisible erosion of what that money can actually buy.</p>
 
   <div class="icon-cards">
     <div class="icon-card">
       <div class="ic-icon">🏠</div>
-      <strong>Housing and rent</strong>
+      <strong><span class="lang-en">Housing and rent</span><span class="lang-pt">Habitação e aluguel</span></strong>
       <p>Property prices and rents have historically risen faster than general CPI in Australia, the US, and Brazil — creating wealth for owners, cost pressure for renters.</p>
     </div>
     <div class="icon-card">
       <div class="ic-icon">🛒</div>
-      <strong>Groceries and essentials</strong>
+      <strong><span class="lang-en">Groceries and essentials</span><span class="lang-pt">Alimentos e essenciais</span></strong>
       <p>Food prices are volatile and often rise faster than headline inflation. The 2022–2023 inflation spike in all three countries was felt most sharply in supermarkets.</p>
     </div>
     <div class="icon-card">
       <div class="ic-icon">⚡</div>
-      <strong>Energy and utilities</strong>
+      <strong><span class="lang-en">Energy and utilities</span><span class="lang-pt">Energia e serviços</span></strong>
       <p>Electricity, gas, and fuel costs are sensitive to global commodity prices and infrastructure costs. Australian energy bills roughly doubled between 2021 and 2024.</p>
     </div>
     <div class="icon-card">
@@ -58,7 +61,7 @@
 </section>
 
 <section class="section">
-  <h2>What $10,000 becomes: cash vs investing over 20 years</h2>
+  <h2><span class="lang-en">What $10,000 becomes: cash vs investing over 20 years</span><span class="lang-pt">O que $10.000 se tornam: dinheiro parado vs investido em 20 anos</span></h2>
   <p>This comparison uses illustrative historical averages. Real returns vary year by year, and past performance does not guarantee future results. The purpose is to show the direction and scale of the difference — not a prediction.</p>
 
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem;margin:1.25rem 0;">
@@ -123,7 +126,7 @@
 </section>
 
 <section class="section">
-  <h2>Australia: the RBA, CPI, and what inflation has done here</h2>
+  <h2><span class="lang-en">Australia: the RBA, CPI, and what inflation has done here</span><span class="lang-pt">Austrália: o RBA, o IPC e o que a inflação fez aqui</span></h2>
   <p>Australia experienced low, stable inflation from the mid-1990s through 2021 — the RBA successfully kept CPI within its 2–3% target band for nearly three decades. Then, in 2022, a combination of post-COVID supply shocks, energy price increases, and strong domestic demand pushed Australian CPI to 7.8% — the highest in over 30 years.</p>
 
   <div class="grid-2">
@@ -150,7 +153,7 @@
 </section>
 
 <section class="section">
-  <h2>United States: the Fed, the 2022 shock, and what history shows</h2>
+  <h2><span class="lang-en">United States: the Fed, the 2022 shock, and what history shows</span><span class="lang-pt">Estados Unidos: o Fed, o choque de 2022 e o que a história mostra</span></h2>
   <p>The United States Federal Reserve has a dual mandate: stable prices (approximately 2% inflation) and maximum employment. For most of the 2010s, US inflation ran below the 2% target. Then, in June 2022, US CPI hit 9.1% — the highest since 1981. The Fed responded with the fastest rate-hiking cycle in 40 years.</p>
 
   <div class="grid-2">
@@ -164,7 +167,7 @@
 </section>
 
 <section class="section">
-  <h2>Brazil: a country that knows inflation the hard way</h2>
+  <h2><span class="lang-en">Brazil: a country that knows inflation the hard way</span><span class="lang-pt">Brasil: um país que conhece a inflação da maneira difícil</span></h2>
   <p>Brazil has the richest and most painful inflation history of the three countries covered by Plainvest. Brazilians who lived through the 1980s and 1990s experienced hyperinflation that at its peak reached over 6,000% per year. That era shaped Brazilian financial culture in ways that are still visible today — including very high fixed-income returns, a culture of diversification, and a deep-seated awareness that cash can become worthless quickly.</p>
 
   <div class="grid-2">
@@ -180,7 +183,7 @@
 </section>
 
 <section class="section">
-  <h2>How different assets respond to inflation</h2>
+  <h2><span class="lang-en">How different assets respond to inflation</span><span class="lang-pt">Como diferentes ativos respondem à inflação</span></h2>
   <p>No single asset is a perfect inflation hedge in all conditions. Understanding how each category behaves helps you build a portfolio that preserves real purchasing power over time.</p>
 
   <table class="mini-table">
@@ -201,7 +204,7 @@
 </section>
 
 <section class="section">
-  <h2>The cost of doing nothing: the math that matters most</h2>
+  <h2><span class="lang-en">The cost of doing nothing: the math that matters most</span><span class="lang-pt">O custo de não fazer nada: a matemática que mais importa</span></h2>
   <p>The most common reason beginners delay investing is waiting for the right moment or the right amount of knowledge. The problem is that delay has a real, calculable cost — not in terms of missed gains, but in terms of purchasing power permanently given up.</p>
 
   <div class="fee-bars">
@@ -234,7 +237,7 @@
 </section>
 
 <section class="section">
-  <h2>Inflation by goal: which tools for which purpose</h2>
+  <h2><span class="lang-en">Inflation by goal: which tools for which purpose</span><span class="lang-pt">Inflação por objetivo: quais ferramentas para qual finalidade</span></h2>
   <p>Different goals have different inflation sensitivities. A 6-month emergency fund and a 25-year retirement account should not be treated the same way, even though both involve money.</p>
 
   <div class="grid-2">
@@ -246,7 +249,7 @@
 </section>
 
 <section class="section">
-  <h2>Continue your learning path</h2>
+  <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
   <div class="callout"><strong>Next: put the plan into action.</strong> You now understand why holding only cash is not a neutral choice. The next step is choosing how to invest — through a consistent DCA habit, the right platform for your country, and the investment type that matches your goal and time horizon. Start with the <a href="02-dca-method-guide.html">DCA Method Guide</a> or the <a href="13-australian-platform-comparison.html">Platform Comparison Guide →</a></div>
 </section>
 

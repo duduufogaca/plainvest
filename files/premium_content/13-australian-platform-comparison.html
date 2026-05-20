@@ -4,14 +4,17 @@
 (function(){var local=(location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")&&new URLSearchParams(location.search).get("preview")==="1";if(local)return;if(!/(^|\.)members\.plainvest\.app$/i.test(location.hostname)){location.replace("https://members.plainvest.app/dashboard");return;}document.documentElement.style.visibility="hidden";fetch("/api/member/status",{credentials:"include",cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(s){if(s&&s.authenticated&&s.premium){document.documentElement.style.visibility="visible";return;}location.replace(s&&s.authenticated?"/dashboard":"/login?mode=manual");}).catch(function(){location.replace("/dashboard");});})();
 </script></head>
 <body><main class="guide guide-wide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
 
 <header class="hero">
-  <div class="kicker">Platform Choice · 🇦🇺 AU · 🇺🇸 US · 🇧🇷 Brazil</div>
-  <h1>Choose a platform by process, not hype.</h1>
+  <div class="kicker"><span class="lang-en">Platform Choice · 🇦🇺 AU · 🇺🇸 US · 🇧🇷 Brazil</span><span class="lang-pt">Escolha de Plataforma · 🇦🇺 AU · 🇺🇸 US · 🇧🇷 Brasil</span></div>
+  <h1><span class="lang-en">Choose a platform by process, not hype.</span><span class="lang-pt">Escolha uma plataforma por processo, não por hype.</span></h1>
   <p class="lead">This guide covers investing platforms across Australia, the United States, and Brazil. For each country you get a full platform comparison table, cost breakdowns, key concepts, and a beginner path recommendation — so you know exactly what to research before opening an account.</p>
   <div class="quick-strip">
     <div class="quick-card"><strong>AU investors</strong><span>Jump to the Australia section — CHESS, DCA cost grid, and ASX platforms.</span></div>
@@ -126,16 +129,16 @@
 </section>
 
 <section class="section">
-  <h2>CHESS vs custodian: the ownership model that matters</h2>
+  <h2><span class="lang-en">CHESS vs custodian: the ownership model that matters</span><span class="lang-pt">CHESS vs custodiante: o modelo de propriedade que importa</span></h2>
   <p>This is one of the most important — and most misunderstood — differences between Australian platforms. Understanding it before you open an account prevents regret later.</p>
   <div class="ownership-compare">
     <div class="ownership-card chess">
       <h4>✅ CHESS sponsored — direct ownership</h4>
       <ul>
-        <li>You receive a personal HIN (Holder Identification Number)</li>
-        <li>Your name appears directly on the ASX register</li>
-        <li>Shares legally belong to you regardless of broker status</li>
-        <li>HIN can be transferred to any other CHESS-sponsored broker without selling</li>
+        <li><span class="lang-en">You receive a personal HIN (Holder Identification Number)</span><span class="lang-pt">Você recebe um HIN pessoal (Número de Identificação do Titular)</span></li>
+        <li><span class="lang-en">Your name appears directly on the ASX register</span><span class="lang-pt">Seu nome aparece diretamente no registro da ASX</span></li>
+        <li><span class="lang-en">Shares legally belong to you regardless of broker status</span><span class="lang-pt">As ações pertencem legalmente a você independentemente do status da corretora</span></li>
+        <li><span class="lang-en">HIN can be transferred to any other CHESS-sponsored broker without selling</span><span class="lang-pt">O HIN pode ser transferido para qualquer outra corretora patrocinada pelo CHESS sem vender</span></li>
         <li>Annual holding statements issued directly by the registry (Computershare, Link)</li>
         <li>Platforms: CommSec, SelfWealth, Pearler, Stake (paid upgrade)</li>
       </ul>
@@ -341,7 +344,7 @@
      MULTI-MARKET
 ────────────────────────────────────────────────── -->
 <section class="section">
-  <h2>Multi-market platforms: one account, global access</h2>
+  <h2><span class="lang-en">Multi-market platforms: one account, global access</span><span class="lang-pt">Plataformas multimercado: uma conta, acesso global</span></h2>
   <p>Some platforms allow investors from any of these three countries to access global markets from a single account. They are more complex but relevant for members who want international diversification without maintaining separate accounts in each country.</p>
 
   <table class="mini-table">
@@ -375,7 +378,7 @@
 </section>
 
 <section class="section">
-  <h2>8 things to compare regardless of country</h2>
+  <h2><span class="lang-en">8 things to compare regardless of country</span><span class="lang-pt">8 coisas a comparar independentemente do país</span></h2>
   <div class="grid-2">
     <div class="tile"><strong>1. Total cost</strong><p>Brokerage, FX spread, account fees, inactivity fees, and fund management fees all matter together. A $0 commission trade can still be expensive if the FX spread is 0.7%.</p></div>
     <div class="tile"><strong>2. Product access</strong><p>Can you buy what you actually want? Check your specific ETFs, asset classes, account types (Roth IRA, Tesouro), and market access before opening an account.</p></div>
@@ -389,7 +392,7 @@
 </section>
 
 <section class="section">
-  <h2>How to avoid choosing the wrong platform</h2>
+  <h2><span class="lang-en">How to avoid choosing the wrong platform</span><span class="lang-pt">Como evitar escolher a plataforma errada</span></h2>
   <ol class="steps">
     <li><div><strong>Write your investing plan first.</strong> Platform choice should follow your goal, not create it. Know your asset type, country, frequency, and amount before looking at platforms.</div></li>
     <li><div><strong>Choose your country and asset type.</strong> ASX ETF, US index fund, Brazilian Tesouro, or a mix? The right platform is dictated by where your first investment sits.</div></li>
@@ -400,12 +403,12 @@
 </section>
 
 <section class="section">
-  <h2>Continue your learning path</h2>
+  <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
   <div class="callout"><strong>Next recommended guide:</strong> <a href="15-first-trade-walkthrough.html">First Trade Walkthrough — from pre-trade checklist to post-trade records and your first 30-day investing habit →</a></div>
 </section>
 
 <section class="section warning">
-  <h2>Plainvest platform rule</h2>
+  <h2><span class="lang-en">Plainvest platform rule</span><span class="lang-pt">Regra de plataforma da Plainvest</span></h2>
   <p>A platform is a tool, not a strategy. Do not pick one because a creator promoted it, because the app looks exciting, or because it offers the most products. Pick the platform that makes your investing plan easier to follow, safer to record, and calmer to repeat — then use it consistently for years.</p>
 </section>
 </main></body></html>

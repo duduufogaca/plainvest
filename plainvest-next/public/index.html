@@ -13927,6 +13927,12 @@
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
 
+      // Propagate language to open guide iframe (same origin)
+      var guideFrame = document.getElementById('member-guide-frame');
+      if (guideFrame && guideFrame.contentWindow) {
+        try { guideFrame.contentWindow.postMessage({ type: 'setLang', lang: lang }, '*'); } catch(e) {}
+      }
+
       const t = LANG[lang];
       const csFlags = document.querySelectorAll('.cs-flag');
       const inflTabs = document.querySelectorAll('.inf-tab');

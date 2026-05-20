@@ -21,12 +21,15 @@
 </head>
 <body>
 <main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
   <header class="hero">
-    <div class="kicker">Premium Bitcoin Section</div>
+    <div class="kicker"><span class="lang-en">Premium Bitcoin Section</span><span class="lang-pt">Seção Premium Bitcoin</span></div>
     <h1>Understand Bitcoin before buying <em>Bitcoin.</em></h1>
     <p class="lead">This section explains why Bitcoin was created, what the white paper introduced, how halving works, and which metrics members can study without getting lost in hype.</p>
     <div class="stat-row">
@@ -37,36 +40,36 @@
     </div>
   </header>
   <section class="section">
-    <h2>Why it was created</h2>
+    <h2><span class="lang-en">Why it was created</span><span class="lang-pt">Por que foi criado</span></h2>
     <p>Bitcoin was released after the 2008 financial crisis as a peer-to-peer electronic cash system that does not require a central bank or payment company to settle transactions. Its design combines a public ledger, proof-of-work mining, fixed issuance rules, and user-controlled keys.</p>
-    <div class="callout"><strong>Plain-English framing:</strong> Bitcoin is not just “price going up or down.” It is a monetary network with programmed supply, open settlement, and a high responsibility custody model.</div>
+    <div class="callout"><strong><span class="lang-en">Plain-English framing:</span><span class="lang-pt">Explicação simples:</span></strong> Bitcoin is not just “price going up or down.” It is a monetary network with programmed supply, open settlement, and a high responsibility custody model.</div>
   </section>
   <section class="section">
-    <h2>Purchasing power: the professional way to think about it</h2>
+    <h2><span class="lang-en">Purchasing power: the professional way to think about it</span><span class="lang-pt">Poder de compra: a forma profissional de pensar sobre isso</span></h2>
     <p>Bitcoin is often discussed through purchasing-power examples because the core question is not only “what is the price?” but “what does money buy over long periods?” This visual is illustrative, not a promise: it helps members compare a scarce digital asset narrative with currencies that can lose purchasing power over time.</p>
     <figure class="bitcoin-house-card">
       <img src="../../assets/bitcoin-home-price.webp" alt="Illustration comparing a home price in dollars and bitcoin over time">
       <figcaption>
-        <strong>Visual example:</strong> the same real-world asset can look very different when priced in a currency that loses purchasing power versus a scarce digital asset. Use this as a discussion frame, not as a forecast.
+        <strong><span class="lang-en">Visual example:</span><span class="lang-pt">Exemplo visual:</span></strong> the same real-world asset can look very different when priced in a currency that loses purchasing power versus a scarce digital asset. Use this as a discussion frame, not as a forecast.
       </figcaption>
     </figure>
     <div class="bitcoin-plain-lens">
-      <div><strong>What this example is saying</strong><p>The dollar price of a home can rise over time because wages, credit, inflation, land scarcity, and currency weakness all affect nominal prices.</p></div>
-      <div><strong>Why Bitcoin is shown</strong><p>The image asks a different question: if an asset has a fixed supply, could fewer units be needed to buy the same kind of real-world asset over long periods?</p></div>
-      <div><strong>What it does not prove</strong><p>It does not guarantee Bitcoin will rise, replace property, or protect every investor. It is a conversation starter about scarcity, purchasing power, volatility, and time horizon.</p></div>
+      <div><strong><span class="lang-en">What this example is saying</span><span class="lang-pt">O que este exemplo está dizendo</span></strong><p>The dollar price of a home can rise over time because wages, credit, inflation, land scarcity, and currency weakness all affect nominal prices.</p></div>
+      <div><strong><span class="lang-en">Why Bitcoin is shown</span><span class="lang-pt">Por que o Bitcoin é mostrado</span></strong><p>The image asks a different question: if an asset has a fixed supply, could fewer units be needed to buy the same kind of real-world asset over long periods?</p></div>
+      <div><strong><span class="lang-en">What it does not prove</span><span class="lang-pt">O que isso não prova</span></strong><p>It does not guarantee Bitcoin will rise, replace property, or protect every investor. It is a conversation starter about scarcity, purchasing power, volatility, and time horizon.</p></div>
     </div>
   </section>
   <section class="section">
-    <h2>White paper ideas</h2>
+    <h2><span class="lang-en">White paper ideas</span><span class="lang-pt">Ideias do white paper</span></h2>
     <ul class="checklist">
-      <li>Peer-to-peer transactions without relying on one central intermediary.</li>
-      <li>A public chain of blocks that records transaction history.</li>
-      <li>Proof-of-work mining to make rewriting history expensive.</li>
-      <li>Private keys that authorize spending, which means key security is critical.</li>
+      <li><span class="lang-en">Peer-to-peer transactions without relying on one central intermediary.</span><span class="lang-pt">Transações ponto a ponto sem depender de um intermediário central.</span></li>
+      <li><span class="lang-en">A public chain of blocks that records transaction history.</span><span class="lang-pt">Uma cadeia pública de blocos que registra o histórico de transações.</span></li>
+      <li><span class="lang-en">Proof-of-work mining to make rewriting history expensive.</span><span class="lang-pt">Mineração por prova de trabalho para tornar a reescrita do histórico cara.</span></li>
+      <li><span class="lang-en">Private keys that authorize spending, which means key security is critical.</span><span class="lang-pt">Chaves privadas que autorizam gastos, o que torna a segurança das chaves fundamental.</span></li>
     </ul>
   </section>
   <section class="section">
-    <h2>Read the original Bitcoin white paper</h2>
+    <h2><span class="lang-en">Read the original Bitcoin white paper</span><span class="lang-pt">Leia o white paper original do Bitcoin</span></h2>
     <p>The best way to understand Bitcoin is to read the original document slowly, then return to beginner explanations after. Focus first on the problem it tries to solve: online payments without relying on a trusted third party.</p>
     <div class="tool-frame-wrap">
       <div class="tool-frame-head">Bitcoin: A Peer-to-Peer Electronic Cash System</div>
@@ -75,7 +78,7 @@
     <a class="mini-link" href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Open white paper in a new tab</a>
   </section>
   <section class="section">
-    <h2>Halving history: every event and its context</h2>
+    <h2><span class="lang-en">Halving history: every event and its context</span><span class="lang-pt">Histórico de halving: cada evento e seu contexto</span></h2>
     <p>The halving schedule is fixed into Bitcoin's code. Every 210,000 blocks (approximately four years), the subsidy miners receive per block is cut in half. This table shows every halving, the approximate date, the block reward before and after, and what happened to price in the following cycle — without implying the pattern will repeat.</p>
     <table class="mini-table">
       <thead><tr><th>Halving</th><th>Date (approx.)</th><th>Block height</th><th>Reward before</th><th>Reward after</th><th>Context</th></tr></thead>
@@ -87,11 +90,11 @@
         <tr><td>5th halving (estimated)</td><td>~2028</td><td>1,050,000</td><td>3.125 BTC</td><td>~1.5625 BTC</td><td>Miners increasingly dependent on transaction fees rather than block subsidy.</td></tr>
       </tbody>
     </table>
-    <div class="callout"><strong>Important framing:</strong> each halving cycle has involved different macro conditions, institutional involvement, regulatory context, and market structure. Past cycles do not guarantee future ones. Halvings matter as a supply narrative, not as a reliable price prediction calendar.</div>
+    <div class="callout"><strong><span class="lang-en">Important framing:</span><span class="lang-pt">Enquadramento importante:</span></strong> each halving cycle has involved different macro conditions, institutional involvement, regulatory context, and market structure. Past cycles do not guarantee future ones. Halvings matter as a supply narrative, not as a reliable price prediction calendar.</div>
   </section>
 
   <section class="section">
-    <h2>Halving and supply</h2>
+    <h2><span class="lang-en">Halving and supply</span><span class="lang-pt">Halving e oferta</span></h2>
     <p>Bitcoin’s issuance schedule reduces the new bitcoin subsidy roughly every four years. This event is called a halving. The fixed supply narrative matters because it contrasts with money systems where supply can expand by policy decision. Scarcity alone does not guarantee price, but it is central to Bitcoin’s design.</p>
     <div class="halving-clock" data-halving-clock>
       <div class="halving-orbit" aria-hidden="true">
@@ -116,7 +119,7 @@
     </div>
   </section>
   <section class="section">
-    <h2>Metrics to learn slowly</h2>
+    <h2><span class="lang-en">Metrics to learn slowly</span><span class="lang-pt">Métricas para aprender aos poucos</span></h2>
     <div class="grid-2">
       <div class="tile"><strong>Hash rate</strong><p>A broad measure of mining power securing the network.</p></div>
       <div class="tile"><strong>Transaction fees</strong><p>Fees show demand for block space and become more important as subsidy declines.</p></div>
@@ -125,7 +128,7 @@
     </div>
   </section>
   <section class="section">
-    <h2>Bitcoin study map</h2>
+    <h2><span class="lang-en">Bitcoin study map</span><span class="lang-pt">Mapa de estudo do Bitcoin</span></h2>
     <table class="mini-table">
       <thead><tr><th>Theme</th><th>What to learn</th><th>Common mistake</th></tr></thead>
       <tbody>
@@ -138,7 +141,7 @@
   </section>
 
   <section class="section">
-    <h2>Bitcoin ETFs: owning exposure without self-custody</h2>
+    <h2><span class="lang-en">Bitcoin ETFs: owning exposure without self-custody</span><span class="lang-pt">ETFs de Bitcoin: ter exposição sem autocustódia</span></h2>
     <p>In January 2024, the US Securities and Exchange Commission approved spot Bitcoin ETFs. This created a new way for investors to get Bitcoin price exposure through regulated financial products, without managing private keys or exchanges directly.</p>
     <div class="grid-2">
       <div class="tile"><strong>What a Bitcoin ETF is</strong><p>A fund that holds actual Bitcoin (spot ETF) or Bitcoin futures contracts (futures ETF). Shares trade on stock exchanges like NASDAQ or NYSE. You buy shares through your brokerage account — just like an index fund. The fund custodian holds the Bitcoin, not you.</p></div>
@@ -152,7 +155,7 @@
   </section>
 
   <section class="section">
-    <h2>Bitcoin vs other crypto</h2>
+    <h2><span class="lang-en">Bitcoin vs other crypto</span><span class="lang-pt">Bitcoin vs outras criptomoedas</span></h2>
     <p>Members should avoid treating all crypto assets as the same. Bitcoin’s thesis is usually about monetary scarcity, decentralised settlement, censorship resistance, and long-term store-of-value debate. Many other crypto assets are closer to software networks, startup-like speculation, governance tokens, or applications with different risks.</p>
     <div class="grid-2">
       <div class="tile"><strong>Bitcoin questions</strong><p>Can the supply schedule remain credible? Is self-custody understood? How does volatility fit your risk tolerance?</p></div>
@@ -161,7 +164,7 @@
   </section>
 
   <section class="section">
-    <h2>Major Bitcoin drawdowns in history</h2>
+    <h2><span class="lang-en">Major Bitcoin drawdowns in history</span><span class="lang-pt">Grandes quedas do Bitcoin na história</span></h2>
     <p>The most important table a beginner can study before buying Bitcoin is not the price highs — it is the drawdowns. Every one of these happened. Many people sold at the bottom. Knowing the history does not remove emotional pain, but it prevents being surprised by it.</p>
     <table class="mini-table">
       <thead><tr><th>Period</th><th>Peak price (approx.)</th><th>Trough price (approx.)</th><th>Drawdown</th><th>Duration</th></tr></thead>
@@ -201,7 +204,7 @@
   </section>
 
   <section class="section">
-    <h2>Continue your learning path</h2>
+    <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
     <div class="callout"><strong>Next recommended guide:</strong> <a href="07-chart-reading-and-research-tools.html">Chart Reading and Research Tools — how to read price history and use TradingView →</a></div>
   </section>
 </main>

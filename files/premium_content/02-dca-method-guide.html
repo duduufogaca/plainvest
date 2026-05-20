@@ -21,18 +21,21 @@
 </head>
 <body>
 <main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
   <header class="hero">
-    <div class="kicker">Premium Guide</div>
+    <div class="kicker"><span class="lang-en">Premium Guide</span><span class="lang-pt">Guia Premium</span></div>
     <h1>DCA: make investing a <em>repeatable habit.</em></h1>
     <p class="lead">Dollar-cost averaging means investing a planned amount on a regular schedule instead of waiting for the perfect day. It is simple, but powerful because it reduces decision stress.</p>
     <div class="quick-strip">
-      <div class="quick-card"><strong>Best for</strong><span>People building a habit from salary or regular income.</span></div>
-      <div class="quick-card"><strong>Protects from</strong><span>Overthinking entry prices and delaying forever.</span></div>
-      <div class="quick-card"><strong>Still needs</strong><span>A good asset, emergency cash, and realistic risk expectations.</span></div>
+      <div class="quick-card"><strong><span class="lang-en">Best for</span><span class="lang-pt">Melhor para</span></strong><span>People building a habit from salary or regular income.</span></div>
+      <div class="quick-card"><strong><span class="lang-en">Protects from</span><span class="lang-pt">Protege contra</span></strong><span>Overthinking entry prices and delaying forever.</span></div>
+      <div class="quick-card"><strong><span class="lang-en">Still needs</span><span class="lang-pt">Ainda precisa de</span></strong><span>A good asset, emergency cash, and realistic risk expectations.</span></div>
     </div>
     <div class="stat-row">
       <div class="stat-block"><span class="stat-num">12</span><span class="stat-label">months DCA smooths out price entry compared to one lump-sum bet</span></div>
@@ -42,7 +45,7 @@
     </div>
   </header>
   <section class="section">
-    <h2>How DCA works</h2>
+    <h2><span class="lang-en">How DCA works</span><span class="lang-pt">Como o DCA funciona</span></h2>
     <p>You choose an amount, choose a schedule, and keep contributing through good markets and bad markets. When prices are high, the same contribution buys less. When prices are low, it buys more. Over time, the habit becomes more important than guessing the exact bottom.</p>
     <div class="dca-visual dca-chart-visual dca-lesson-card" aria-label="DCA chart showing monthly purchases, average price, and total units">
       <div class="dca-lesson-head">
@@ -116,16 +119,16 @@
     </ol>
   </section>
   <section class="section">
-    <h2>Where DCA helps</h2>
+    <h2><span class="lang-en">Where DCA helps</span><span class="lang-pt">Onde o DCA ajuda</span></h2>
     <div class="grid-2">
-      <div class="tile"><strong>Behaviour</strong><p>It removes the constant question: “Should I buy today?” That helps beginners start and stay consistent.</p></div>
+      <div class="tile"><strong><span class="lang-en">Behaviour</span><span class="lang-pt">Comportamento</span></strong><p>It removes the constant question: “Should I buy today?” That helps beginners start and stay consistent.</p></div>
       <div class="tile"><strong>Risk management</strong><p>It avoids putting all money in at one market price. This can be helpful when markets are volatile.</p></div>
       <div class="tile"><strong>Cash flow</strong><p>It fits normal life because most people earn money gradually, not in one big lump sum.</p></div>
       <div class="tile"><strong>Learning</strong><p>Small recurring contributions can help you learn platform tools and market behaviour without rushing.</p></div>
     </div>
   </section>
   <section class="section">
-    <h2>DCA vs lump sum vs waiting</h2>
+    <h2><span class="lang-en">DCA vs lump sum vs waiting</span><span class="lang-pt">DCA vs aporte único vs esperar</span></h2>
     <table class="mini-table">
       <thead><tr><th>Method</th><th>Strength</th><th>Weakness</th><th>Best use</th></tr></thead>
       <tbody>
@@ -136,7 +139,7 @@
     </table>
   </section>
   <section class="section">
-    <h2>Advanced DCA rules members can use</h2>
+    <h2><span class="lang-en">Advanced DCA rules members can use</span><span class="lang-pt">Regras avançadas de DCA que membros podem usar</span></h2>
     <div class="grid-2">
       <div class="tile"><strong>Base contribution</strong><p>A fixed recurring amount that happens regardless of market mood.</p></div>
       <div class="tile"><strong>Reserve contribution</strong><p>Optional extra cash kept for large drawdowns, only if emergency savings are already healthy.</p></div>
@@ -146,7 +149,7 @@
   </section>
 
   <section class="section">
-    <h2>DCA plan templates</h2>
+    <h2><span class="lang-en">DCA plan templates</span><span class="lang-pt">Modelos de plano de DCA</span></h2>
     <table class="mini-table">
       <thead><tr><th>Template</th><th>How it works</th><th>Who it suits</th></tr></thead>
       <tbody>
@@ -159,17 +162,17 @@
   </section>
 
   <section class="section">
-    <h2>Behaviour design</h2>
+    <h2><span class="lang-en">Behaviour design</span><span class="lang-pt">Desenho comportamental</span></h2>
     <p>The hardest part of DCA is not the calculation. It is continuing when headlines are frightening and not overcommitting when everything feels easy. Make the habit small enough that you can continue through normal life stress.</p>
     <ul class="checklist">
-      <li>Automate the transfer only after you understand where the money is going.</li>
-      <li>Keep an emergency fund separate so you are not forced to sell investments during bad timing.</li>
-      <li>Do not increase contribution size just because recent returns were good.</li>
-      <li>Do not stop learning after automation begins. Review fees, asset choice, and taxes periodically.</li>
+      <li><span class="lang-en">Automate the transfer only after you understand where the money is going.</span><span class="lang-pt">Automatize a transferência somente depois de entender para onde o dinheiro vai.</span></li>
+      <li><span class="lang-en">Keep an emergency fund separate so you are not forced to sell investments during bad timing.</span><span class="lang-pt">Mantenha uma reserva de emergência separada para não ser forçado a vender investimentos em um momento ruim.</span></li>
+      <li><span class="lang-en">Do not increase contribution size just because recent returns were good.</span><span class="lang-pt">Não aumente o valor da contribuição só porque os retornos recentes foram bons.</span></li>
+      <li><span class="lang-en">Do not stop learning after automation begins. Review fees, asset choice, and taxes periodically.</span><span class="lang-pt">Não pare de aprender depois de automatizar. Revise taxas, escolha de ativos e impostos periodicamente.</span></li>
     </ul>
   </section>
   <section class="section">
-    <h2>How DCA connects to market cycles</h2>
+    <h2><span class="lang-en">How DCA connects to market cycles</span><span class="lang-pt">Como o DCA se conecta aos ciclos de mercado</span></h2>
     <p>DCA works best when the member already accepts that markets move in cycles. There will be periods when contributions immediately look successful and periods when every contribution looks wrong for months. The habit is designed to survive both.</p>
     <div class="grid-2">
       <div class="tile"><strong>Rising market</strong><p>DCA may feel too slow. The danger is increasing contributions beyond comfort because confidence is high.</p></div>
@@ -179,7 +182,7 @@
     </div>
   </section>
   <section class="section">
-    <h2>Worked example: why DCA lowers average cost in a volatile market</h2>
+    <h2><span class="lang-en">Worked example: why DCA lowers average cost in a volatile market</span><span class="lang-pt">Exemplo prático: por que o DCA reduz o custo médio em um mercado volátil</span></h2>
     <p>This example shows the same total investment ($1,200) made all at once versus spread over 6 months during a falling and recovering market. The numbers are illustrative, not a promise of outcome.</p>
     <table class="mini-table">
       <thead><tr><th>Month</th><th>Price per unit</th><th>DCA: $200/month</th><th>Units bought</th></tr></thead>
@@ -197,7 +200,7 @@
   </section>
 
   <section class="section">
-    <h2>What happens to investors without a DCA plan: four common patterns</h2>
+    <h2><span class="lang-en">What happens to investors without a DCA plan: four common patterns</span><span class="lang-pt">O que acontece com investidores sem um plano de DCA: quatro padrões comuns</span></h2>
     <p>These patterns are not invented. They appear repeatedly in investor behaviour research and in how beginners describe their own experience. Recognising one of these patterns in yourself before starting is more useful than discovering it mid-drawdown.</p>
     <div class="grid-2">
       <div class="tile"><strong>The delayed starter</strong><p>Waits for the "right time" to begin. Studies for months. Reads charts for signals. Asks opinions. The market rises. They wait more, now feeling like they missed it. The market falls. They feel validated, but still don't buy because "it might fall more." Studies for more months. Six to twelve months later, they still haven't started. The cost: compound growth does not wait for confidence.</p></div>
@@ -209,11 +212,11 @@
   </section>
 
   <section class="section warning">
-    <h2>Where DCA does not help</h2>
+    <h2><span class="lang-en">Where DCA does not help</span><span class="lang-pt">Onde o DCA não ajuda</span></h2>
     <p>DCA does not turn a bad investment into a good one. It does not remove volatility. It does not protect you from scams, high fees, bad products, or poor asset selection. Use DCA only after you understand what you are buying and why it belongs in your plan.</p>
   </section>
   <section class="section">
-    <h2>Tax efficiency and DCA: what to understand early</h2>
+    <h2><span class="lang-en">Tax efficiency and DCA: what to understand early</span><span class="lang-pt">Eficiência tributária e DCA: o que entender desde cedo</span></h2>
     <p>DCA creates multiple purchase events, each with its own cost base. Understanding the tax implications before you start makes record-keeping simpler and prevents surprises at tax time.</p>
     <div class="grid-2">
       <div class="tile"><strong>Each buy creates a separate lot</strong><p>If you buy 12 times per year, you have 12 cost-base records. When you eventually sell, which lots you sell first can affect your tax outcome. Most platforms default to FIFO (first in, first out), but rules vary by country.</p></div>
@@ -250,7 +253,7 @@
   </section>
 
   <section class="section">
-    <h2>Continue your learning path</h2>
+    <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
     <div class="callout"><strong>Next recommended guide:</strong> <a href="03-exchange-and-platform-setup-checklist.html">Exchange and Platform Checklist — evaluate any platform before opening an account →</a></div>
   </section>
 </main>

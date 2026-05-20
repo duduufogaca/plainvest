@@ -21,12 +21,15 @@
 </head>
 <body>
 <main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
   <header class="hero">
-    <div class="kicker">Premium Checklist</div>
+    <div class="kicker"><span class="lang-en">Premium Checklist</span><span class="lang-pt">Checklist Premium</span></div>
     <h1>Choose a platform before choosing a <em>button.</em></h1>
     <p class="lead">A beginner platform should be understandable, regulated where relevant, transparent on fees, and secure enough for the type of asset you want to buy.</p>
     <div class="stat-row">
@@ -37,7 +40,7 @@
     </div>
   </header>
   <section class="section">
-    <h2>Before opening an account</h2>
+    <h2><span class="lang-en">Before opening an account</span><span class="lang-pt">Antes de abrir uma conta</span></h2>
     <div class="exchange-visual" aria-label="Exchange setup illustration">
       <div class="exchange-screen">
         <div class="exchange-window">
@@ -50,15 +53,15 @@
                 <circle cx="500" cy="36" r="8" fill="#e8b84b"/>
               </svg>
             </div>
-            <div class="exchange-stat"><strong>Fees</strong><span>Brokerage, spread, FX, withdrawals</span></div>
-            <div class="exchange-stat"><strong>Security</strong><span>2FA, alerts, withdrawal rules</span></div>
-            <div class="exchange-stat"><strong>Products</strong><span>ETFs, shares, crypto, bonds</span></div>
-            <div class="exchange-stat"><strong>Records</strong><span>Statements and tax documents</span></div>
+            <div class="exchange-stat"><strong><span class="lang-en">Fees</span><span class="lang-pt">Taxas</span></strong><span>Brokerage, spread, FX, withdrawals</span></div>
+            <div class="exchange-stat"><strong><span class="lang-en">Security</span><span class="lang-pt">Segurança</span></strong><span>2FA, alerts, withdrawal rules</span></div>
+            <div class="exchange-stat"><strong><span class="lang-en">Products</span><span class="lang-pt">Produtos</span></strong><span>ETFs, shares, crypto, bonds</span></div>
+            <div class="exchange-stat"><strong><span class="lang-en">Records</span><span class="lang-pt">Registros</span></strong><span>Statements and tax documents</span></div>
           </div>
         </div>
         <div class="exchange-steps">
-          <div class="exchange-step"><strong>1. Verify platform</strong><span>Check regulation, company details, custody, and supported country.</span></div>
-          <div class="exchange-step"><strong>2. Secure account</strong><span>Use strong password, authenticator app, login alerts, and withdrawal checks.</span></div>
+          <div class="exchange-step"><strong><span class="lang-en">1. Verify platform</span><span class="lang-pt">1. Verificar plataforma</span></strong><span>Check regulation, company details, custody, and supported country.</span></div>
+          <div class="exchange-step"><strong><span class="lang-en">2. Secure account</span><span class="lang-pt">2. Proteger conta</span></strong><span>Use strong password, authenticator app, login alerts, and withdrawal checks.</span></div>
           <div class="exchange-step"><strong>3. Test with small amount</strong><span>Learn deposits, orders, fees, documents, and withdrawals before scaling.</span></div>
           <div class="exchange-step"><strong>4. Keep records</strong><span>Save confirmations, tax reports, wallet addresses, and yearly statements.</span></div>
         </div>
@@ -67,12 +70,12 @@
     <div class="grid-2">
       <div class="tile"><strong>Country and regulation</strong><p>Check whether the platform operates legally in your country and what protections apply to your account or assets.</p></div>
       <div class="tile"><strong>Product access</strong><p>Confirm the platform offers what you need: ETFs, local shares, US shares, bonds, crypto, recurring buys, or retirement accounts.</p></div>
-      <div class="tile"><strong>Fees</strong><p>Look for brokerage, spreads, FX conversion, management fees, deposit fees, withdrawal fees, and inactivity fees.</p></div>
+      <div class="tile"><strong><span class="lang-en">Fees</span><span class="lang-pt">Taxas</span></strong><p>Look for brokerage, spreads, FX conversion, management fees, deposit fees, withdrawal fees, and inactivity fees.</p></div>
       <div class="tile"><strong>Support and education</strong><p>Beginners need clear statements, tax documents, help center articles, and responsive support.</p></div>
     </div>
   </section>
   <section class="section">
-    <h2>Security setup</h2>
+    <h2><span class="lang-en">Security setup</span><span class="lang-pt">Configuração de segurança</span></h2>
     <ol class="steps">
       <li><div>Use a strong unique password saved in a password manager.</div></li>
       <li><div>Enable two-factor authentication. Prefer authenticator apps or hardware keys over SMS when available.</div></li>
@@ -82,18 +85,18 @@
     </ol>
   </section>
   <section class="section">
-    <h2>Inside the platform: what to understand</h2>
+    <h2><span class="lang-en">Inside the platform: what to understand</span><span class="lang-pt">Dentro da plataforma: o que entender</span></h2>
     <ul class="checklist">
-      <li>Market order vs limit order, and why spread matters.</li>
-      <li>Settlement time, available cash, pending orders, and withdrawal rules.</li>
-      <li>Portfolio value vs invested amount vs unrealised gain or loss.</li>
-      <li>Dividend settings, reinvestment options, and tax documents.</li>
+      <li><span class="lang-en">Market order vs limit order, and why spread matters.</span><span class="lang-pt">Ordem a mercado vs ordem limitada, e por que o spread importa.</span></li>
+      <li><span class="lang-en">Settlement time, available cash, pending orders, and withdrawal rules.</span><span class="lang-pt">Tempo de liquidação, saldo disponível, ordens pendentes e regras de saque.</span></li>
+      <li><span class="lang-en">Portfolio value vs invested amount vs unrealised gain or loss.</span><span class="lang-pt">Valor do portfólio vs valor investido vs ganho ou perda não realizado.</span></li>
+      <li><span class="lang-en">Dividend settings, reinvestment options, and tax documents.</span><span class="lang-pt">Configurações de dividendos, opções de reinvestimento e documentos fiscais.</span></li>
       <li>Crypto deposits, network fees, withdrawal networks, and address formats if using crypto.</li>
     </ul>
     <div class="callout"><strong>Premium support use:</strong> bring screenshots or questions to your Zoom call, but never share passwords, authentication codes, seed phrases, or private keys.</div>
   </section>
   <section class="section">
-    <h2>Platform comparison scorecard</h2>
+    <h2><span class="lang-en">Platform comparison scorecard</span><span class="lang-pt">Scorecard de comparação de plataformas</span></h2>
     <table class="mini-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Red flag</th></tr></thead>
       <tbody>
@@ -106,7 +109,7 @@
     </table>
   </section>
   <section class="section">
-    <h2>First transaction workflow</h2>
+    <h2><span class="lang-en">First transaction workflow</span><span class="lang-pt">Fluxo da primeira transação</span></h2>
     <ol class="steps">
       <li><div>Deposit a small amount first and confirm the platform records it correctly.</div></li>
       <li><div>Use a small test buy to understand order confirmation, price, spread, and fees.</div></li>
@@ -117,7 +120,7 @@
   </section>
 
   <section class="section">
-    <h2>Questions to ask before trusting a platform</h2>
+    <h2><span class="lang-en">Questions to ask before trusting a platform</span><span class="lang-pt">Perguntas a fazer antes de confiar em uma plataforma</span></h2>
     <div class="grid-2">
       <div class="tile"><strong>Who holds the asset?</strong><p>Understand whether assets are held in your name, in custody, through a nominee structure, or inside a pooled platform arrangement.</p></div>
       <div class="tile"><strong>What happens if the platform fails?</strong><p>Look for client money rules, custody arrangements, insurance limits, and whether protections differ by asset type.</p></div>
@@ -127,7 +130,7 @@
   </section>
 
   <section class="section">
-    <h2>Country-specific platforms: what beginners commonly compare</h2>
+    <h2><span class="lang-en">Country-specific platforms: what beginners commonly compare</span><span class="lang-pt">Plataformas por país: o que os iniciantes costumam comparar</span></h2>
     <p>These tables are a research starting point, not a recommendation. Fees, features, and regulation change — verify current information directly with each platform before opening an account.</p>
 
     <h3 style="margin-top:1.5rem;margin-bottom:.7rem;font-size:1rem;color:#c2d5e8;">Australia</h3>
@@ -175,7 +178,7 @@
   </section>
 
   <section class="section">
-    <h2>Multi-market platforms: accessing more than one country from one account</h2>
+    <h2><span class="lang-en">Multi-market platforms: accessing more than one country from one account</span><span class="lang-pt">Plataformas multimercado: acessar mais de um país com uma única conta</span></h2>
     <p>Most beginners should start with a local platform and learn it well first. But some investors specifically need to hold assets across countries — for example, a Brazilian living in Australia, or an Australian wanting US ETFs alongside ASX shares. These notes explain when a global platform like Interactive Brokers makes sense.</p>
     <div class="grid-2">
       <div class="tile"><strong>Interactive Brokers: what makes it different</strong><p>IBKR is one of the few brokers genuinely built for multi-currency, multi-market access from a single account. From one login, you can hold Australian shares, US ETFs, bonds, London-listed stocks, and assets in 30+ other countries. FX conversion is done at interbank rates plus ~0.002% — dramatically cheaper than the 0.5–1% most retail brokers charge. Available to residents of Australia, the US, Brazil, and most other countries. Regulated in each major jurisdiction (ASIC, SEC, FCA, etc.).</p></div>
@@ -194,7 +197,7 @@
   </section>
 
   <section class="section warning">
-    <h2>Platform red flags</h2>
+    <h2><span class="lang-en">Platform red flags</span><span class="lang-pt">Sinais de alerta em plataformas</span></h2>
     <ul class="checklist">
       <li>Guaranteed returns, urgent deadlines, or “risk-free” high yield.</li>
       <li>No clear company registration, custody details, or fee schedule.</li>
@@ -204,7 +207,7 @@
     </ul>
   </section>
   <section class="section">
-    <h2>Records and tax organisation</h2>
+    <h2><span class="lang-en">Records and tax organisation</span><span class="lang-pt">Registros e organização fiscal</span></h2>
     <p>A good platform should make record keeping easy. Members should know where to find trade confirmations, dividend statements, deposit history, withdrawal history, FX conversion records, and yearly tax summaries.</p>
     <ul class="checklist">
       <li>Create a folder for annual statements and tax documents.</li>
@@ -216,7 +219,7 @@
   </section>
 
   <section class="section">
-    <h2>Continue your learning path</h2>
+    <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
     <div class="callout"><strong>Next recommended guide:</strong> <a href="04-crypto-and-self-custody-guide.html">Crypto Self-Custody Guide — wallets, seed phrases, and keeping crypto safe →</a></div>
   </section>
 </main>

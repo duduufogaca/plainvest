@@ -21,24 +21,27 @@
 </head>
 <body>
 <main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
   <header class="hero">
-    <div class="kicker">Premium Market Cycle Lessons</div>
-    <h1>Learn the market cycle before the cycle <em>tests you.</em></h1>
-    <p class="lead">Markets move through optimism, euphoria, anxiety, panic, disbelief, and recovery. Crypto makes the emotions louder, but the psychology appears across stocks, property, commodities, and speculative assets.</p>
+    <div class="kicker"><span class="lang-en">Premium Market Cycle Lessons</span><span class="lang-pt">Lições Premium sobre Ciclos de Mercado</span></div>
+    <h1><span class="lang-en">Learn the market cycle before the cycle <em>tests you.</em></span><span class="lang-pt">Aprenda o ciclo de mercado antes que o ciclo <em>te teste.</em></span></h1>
+    <p class="lead"><span class="lang-en">Markets move through optimism, euphoria, anxiety, panic, disbelief, and recovery. Crypto makes the emotions louder, but the psychology appears across stocks, property, commodities, and speculative assets.</span><span class="lang-pt">Os mercados passam por otimismo, euforia, ansiedade, pânico, descrença e recuperação. O cripto amplifica as emoções, mas a psicologia aparece em ações, imóveis, commodities e ativos especulativos.</span></p>
     <div class="stat-row">
-      <div class="stat-block danger"><span class="stat-num">−80%</span><span class="stat-label">typical Bitcoin bear market drawdown — cycles are severe</span></div>
-      <div class="stat-block gold"><span class="stat-num">Luna</span><span class="stat-label">$40B wiped in 72 hours — the collapse that changed the cycle</span></div>
-      <div class="stat-block"><span class="stat-num">FTX</span><span class="stat-label">$8B customer funds missing — why self-custody matters</span></div>
-      <div class="stat-block soft"><span class="stat-num">Plan</span><span class="stat-label">exit rules written before the cycle — not during the hype</span></div>
+      <div class="stat-block danger"><span class="stat-num">−80%</span><span class="stat-label"><span class="lang-en">typical Bitcoin bear market drawdown — cycles are severe</span><span class="lang-pt">queda típica do bear market do Bitcoin — os ciclos são severos</span></span></div>
+      <div class="stat-block gold"><span class="stat-num">Luna</span><span class="stat-label"><span class="lang-en">$40B wiped in 72 hours — the collapse that changed the cycle</span><span class="lang-pt">$40B destruídos em 72 horas — o colapso que mudou o ciclo</span></span></div>
+      <div class="stat-block"><span class="stat-num">FTX</span><span class="stat-label"><span class="lang-en">$8B customer funds missing — why self-custody matters</span><span class="lang-pt">$8B em fundos de clientes desaparecidos — por que a autocustódia importa</span></span></div>
+      <div class="stat-block soft"><span class="stat-num">Plan</span><span class="stat-label"><span class="lang-en">exit rules written before the cycle — not during the hype</span><span class="lang-pt">regras de saída escritas antes do ciclo — não durante o hype</span></span></div>
     </div>
   </header>
 
   <section class="section">
-    <h2>Traditional market cycles: stocks and the broader economy</h2>
+    <h2><span class="lang-en">Traditional market cycles: stocks and the broader economy</span><span class="lang-pt">Ciclos de mercado tradicionais: ações e a economia em geral</span></h2>
     <p>Crypto cycles are extreme in speed and magnitude, but the underlying psychology mirrors what has happened in traditional markets for decades. Understanding both helps investors avoid treating crypto behaviour as unique when the same emotional forces have driven stocks, property, and commodities through similar phases for generations.</p>
     <svg class="cycle-wave" viewBox="0 0 960 280" role="img" aria-label="Traditional stock market cycle illustration showing dotcom bust 2000, 2008 financial crisis, 2020 COVID crash, and 2022 bear market" style="margin:1.6rem 0;border-radius:12px;background:#0b1d32;padding:.5rem 0;">
       <defs>
@@ -86,10 +89,10 @@
     </svg>
     <p style="font-size:.85rem;color:#6b8aaa;margin-top:-.4rem;margin-bottom:1.2rem;">Stylised illustration — not to scale. Actual S&amp;P 500 drawdowns: dotcom −49% (2000–02), GFC −57% (2007–09), COVID −34% (2020), 2022 bear −25%.</p>
     <div class="grid-2">
-      <div class="tile"><strong>Traditional cycles are slower but just as painful</strong><p>A crypto bear can last 12–18 months. A traditional stock bear market often takes 1–3 years to bottom and several more years to recover. The dotcom bust took the Nasdaq 15 years to return to its 2000 high. The emotional pattern — euphoria, denial, capitulation, recovery — is identical across both asset classes.</p></div>
-      <div class="tile"><strong>The cause changes; the psychology does not</strong><p>2000: tech valuation excess. 2008: mortgage and credit system collapse. 2020: pandemic shock. 2022: interest rate shock. Each crisis felt unique in the moment and was predictable in hindsight. The same investor emotions — disbelief at the top, panic at the bottom — repeat regardless of the trigger.</p></div>
-      <div class="tile"><strong>Recovery requires staying in</strong><p>Every bear market above ended in a recovery that eventually exceeded the prior peak. Investors who sold at the bottom and waited for "certainty" before re-entering missed the sharpest recovery months. Broad diversified funds (ETFs, index funds) capture those recoveries automatically if you stay invested through the drawdown.</p></div>
-      <div class="tile"><strong>Crypto amplifies traditional cycles</strong><p>When global risk appetite falls (rising interest rates, recessions, geopolitical shocks), speculative assets including crypto tend to sell off more sharply than equities. Bitcoin and high-risk altcoins often fall faster and further than the S&amp;P 500 in the same risk-off period. Understanding traditional macro cycles helps predict when crypto is likely to face additional pressure beyond its own internal cycles.</p></div>
+      <div class="tile"><strong><span class="lang-en">Traditional cycles are slower but just as painful</span><span class="lang-pt">Ciclos tradicionais são mais lentos, mas igualmente dolorosos</span></strong><p>A crypto bear can last 12–18 months. A traditional stock bear market often takes 1–3 years to bottom and several more years to recover. The dotcom bust took the Nasdaq 15 years to return to its 2000 high. The emotional pattern — euphoria, denial, capitulation, recovery — is identical across both asset classes.</p></div>
+      <div class="tile"><strong><span class="lang-en">The cause changes; the psychology does not</span><span class="lang-pt">A causa muda; a psicologia não</span></strong><p>2000: tech valuation excess. 2008: mortgage and credit system collapse. 2020: pandemic shock. 2022: interest rate shock. Each crisis felt unique in the moment and was predictable in hindsight. The same investor emotions — disbelief at the top, panic at the bottom — repeat regardless of the trigger.</p></div>
+      <div class="tile"><strong><span class="lang-en">Recovery requires staying in</span><span class="lang-pt">A recuperação exige permanecer investido</span></strong><p>Every bear market above ended in a recovery that eventually exceeded the prior peak. Investors who sold at the bottom and waited for "certainty" before re-entering missed the sharpest recovery months. Broad diversified funds (ETFs, index funds) capture those recoveries automatically if you stay invested through the drawdown.</p></div>
+      <div class="tile"><strong><span class="lang-en">Crypto amplifies traditional cycles</span><span class="lang-pt">O cripto amplifica os ciclos tradicionais</span></strong><p>When global risk appetite falls (rising interest rates, recessions, geopolitical shocks), speculative assets including crypto tend to sell off more sharply than equities. Bitcoin and high-risk altcoins often fall faster and further than the S&amp;P 500 in the same risk-off period. Understanding traditional macro cycles helps predict when crypto is likely to face additional pressure beyond its own internal cycles.</p></div>
     </div>
     <table class="mini-table" style="margin-top:1.2rem;">
       <thead><tr><th>Event</th><th>Asset / market</th><th>Peak to trough</th><th>Recovery time to new high</th></tr></thead>
@@ -104,26 +107,26 @@
     <div class="callout" style="margin-top:1.2rem;"><strong>Key principle:</strong> Traditional market cycles confirm what crypto cycles show in extreme form. The investor who avoids being shaken out in a drawdown and continues contributing through it often ends in a better position than the one who tries to time exit and re-entry perfectly.</div>
   </section>
   <section class="section">
-    <h2>Common cycle mistakes</h2>
+    <h2><span class="lang-en">Common cycle mistakes</span><span class="lang-pt">Erros comuns do ciclo</span></h2>
     <div class="grid-2">
-      <div class="tile"><strong>Buying only after hype</strong><p>Many beginners wait until friends, media, and influencers are excited. That can mean risk is already higher.</p></div>
-      <div class="tile"><strong>No exit or review plan</strong><p>If you do not know why you own something, you will not know what to do when it rises or falls.</p></div>
-      <div class="tile"><strong>Ignoring the risk behind the product</strong><p>Market gains do not matter if fees, leverage, liquidity, custody, tax, or platform risk quietly damage the result.</p></div>
-      <div class="tile"><strong>Believing every narrative</strong><p>AI, property booms, commodities, crypto, small caps, and new sectors can all become overhyped. Real adoption takes time.</p></div>
+      <div class="tile"><strong><span class="lang-en">Buying only after hype</span><span class="lang-pt">Comprar apenas após o hype</span></strong><p>Many beginners wait until friends, media, and influencers are excited. That can mean risk is already higher.</p></div>
+      <div class="tile"><strong><span class="lang-en">No exit or review plan</span><span class="lang-pt">Sem plano de saída ou revisão</span></strong><p>If you do not know why you own something, you will not know what to do when it rises or falls.</p></div>
+      <div class="tile"><strong><span class="lang-en">Ignoring the risk behind the product</span><span class="lang-pt">Ignorar o risco por trás do produto</span></strong><p>Market gains do not matter if fees, leverage, liquidity, custody, tax, or platform risk quietly damage the result.</p></div>
+      <div class="tile"><strong><span class="lang-en">Believing every narrative</span><span class="lang-pt">Acreditar em toda narrativa</span></strong><p>AI, property booms, commodities, crypto, small caps, and new sectors can all become overhyped. Real adoption takes time.</p></div>
     </div>
   </section>
   <section class="section">
-    <h2>Member rules for volatile markets</h2>
+    <h2><span class="lang-en">Member rules for volatile markets</span><span class="lang-pt">Regras do membro para mercados voláteis</span></h2>
     <ul class="checklist">
-      <li>Never use money needed for rent, bills, debt, tax, or emergency savings.</li>
-      <li>Position size so a major drawdown does not destroy your life, sleep, or confidence.</li>
-      <li>Separate long-term investing, tactical ideas, and speculation into different mental buckets.</li>
-      <li>Record every purchase reason and review it when the market mood changes.</li>
-      <li>Expect stories to sound most convincing near emotional extremes.</li>
+      <li><span class="lang-en">Never use money needed for rent, bills, debt, tax, or emergency savings.</span><span class="lang-pt">Nunca use dinheiro necessário para aluguel, contas, dívidas, impostos ou reserva de emergência.</span></li>
+      <li><span class="lang-en">Position size so a major drawdown does not destroy your life, sleep, or confidence.</span><span class="lang-pt">Dimensione sua posição para que uma grande queda não destrua sua vida, seu sono ou sua confiança.</span></li>
+      <li><span class="lang-en">Separate long-term investing, tactical ideas, and speculation into different mental buckets.</span><span class="lang-pt">Separe investimentos de longo prazo, ideias táticas e especulação em categorias mentais distintas.</span></li>
+      <li><span class="lang-en">Record every purchase reason and review it when the market mood changes.</span><span class="lang-pt">Registre o motivo de cada compra e revise quando o humor do mercado mudar.</span></li>
+      <li><span class="lang-en">Expect stories to sound most convincing near emotional extremes.</span><span class="lang-pt">Espere que as narrativas soem mais convincentes perto dos extremos emocionais.</span></li>
     </ul>
   </section>
   <section class="section">
-    <h2>Cycle phases to recognise</h2>
+    <h2><span class="lang-en">Cycle phases to recognise</span><span class="lang-pt">Fases do ciclo a reconhecer</span></h2>
     <figure class="cycle-cheat-card">
       <img src="../../assets/market-cycle-psychology.jpg" alt="Psychology of a market cycle chart showing emotional phases from disbelief to euphoria, panic, depression, and recovery">
       <figcaption><strong>Market psychology reference:</strong> this Wall St. Cheat Sheet style chart is useful because it names the emotions investors often feel as price moves. Use it to recognize behaviour, not to predict exact timing.</figcaption>
@@ -161,7 +164,7 @@
       </svg>
     </details>
     <table class="mini-table">
-      <thead><tr><th>Phase</th><th>What it feels like</th><th>Member behaviour</th></tr></thead>
+      <thead><tr><th><span class="lang-en">Phase</span><span class="lang-pt">Fase</span></th><th><span class="lang-en">What it feels like</span><span class="lang-pt">Como se sente</span></th><th><span class="lang-en">Member behaviour</span><span class="lang-pt">Comportamento do membro</span></th></tr></thead>
       <tbody>
         <tr><td>Disbelief</td><td>Prices recover but most people think it is temporary.</td><td>Study calmly. Avoid rushing. Build watchlist.</td></tr>
         <tr><td>Acceleration</td><td>Stories improve, media attention returns, confidence rises.</td><td>Review position sizing, fees, liquidity, and risk before emotion increases.</td></tr>
@@ -171,16 +174,16 @@
     </table>
   </section>
   <section class="section">
-    <h2>Cycle lessons</h2>
+    <h2><span class="lang-en">Cycle lessons</span><span class="lang-pt">Lições do ciclo</span></h2>
     <div class="grid-2">
-      <div class="tile"><strong>Survival beats prediction</strong><p>Staying solvent and emotionally stable matters more than calling the exact top or bottom.</p></div>
-      <div class="tile"><strong>Liquidity matters</strong><p>Small assets can rise fast and collapse faster. Exiting can be harder than entering.</p></div>
-      <div class="tile"><strong>Operational risk is part of performance</strong><p>A hacked wallet, failed platform, high-fee product, tax surprise, or poor liquidity can turn paper gains into real loss.</p></div>
-      <div class="tile"><strong>Narratives rotate</strong><p>The popular sector changes. A good process survives changing stories.</p></div>
+      <div class="tile"><strong><span class="lang-en">Survival beats prediction</span><span class="lang-pt">Sobreviver supera prever</span></strong><p>Staying solvent and emotionally stable matters more than calling the exact top or bottom.</p></div>
+      <div class="tile"><strong><span class="lang-en">Liquidity matters</span><span class="lang-pt">Liquidez importa</span></strong><p>Small assets can rise fast and collapse faster. Exiting can be harder than entering.</p></div>
+      <div class="tile"><strong><span class="lang-en">Operational risk is part of performance</span><span class="lang-pt">Risco operacional faz parte do desempenho</span></strong><p>A hacked wallet, failed platform, high-fee product, tax surprise, or poor liquidity can turn paper gains into real loss.</p></div>
+      <div class="tile"><strong><span class="lang-en">Narratives rotate</span><span class="lang-pt">As narrativas se alternam</span></strong><p>The popular sector changes. A good process survives changing stories.</p></div>
     </div>
   </section>
   <section class="section">
-    <h2>Real collapses: what actually happened</h2>
+    <h2><span class="lang-en">Real collapses: what actually happened</span><span class="lang-pt">Colapsos reais: o que realmente aconteceu</span></h2>
     <p>Principles without examples are easy to ignore. These events are studied not to predict the next one, but because they each reveal a different type of risk that abstract warnings cannot replace.</p>
     <div class="grid-2">
       <div class="tile"><strong>Luna / Terra — May 2022</strong><p>Terra's UST was an algorithmic stablecoin: it was supposed to stay at $1.00 using a mechanism that minted and burned its sister token, Luna. When confidence broke, UST lost its peg. The mechanism went into a death spiral. Luna collapsed from roughly $80 to near zero in under a week. Approximately $40 billion in market value disappeared. Lesson: "stablecoin" is a label, not a guarantee. Algorithmic designs can fail under selling pressure that the mechanism was never stress-tested for at scale.</p></div>
@@ -191,9 +194,9 @@
   </section>
 
   <section class="section">
-    <h2>Pattern checklist: am I in a dangerous cycle phase?</h2>
+    <h2><span class="lang-en">Pattern checklist: am I in a dangerous cycle phase?</span><span class="lang-pt">Checklist de padrões: estou em uma fase perigosa do ciclo?</span></h2>
     <table class="mini-table">
-      <thead><tr><th>Warning sign</th><th>What it often means</th><th>Member response</th></tr></thead>
+      <thead><tr><th><span class="lang-en">Warning sign</span><span class="lang-pt">Sinal de alerta</span></th><th><span class="lang-en">What it often means</span><span class="lang-pt">O que geralmente significa</span></th><th><span class="lang-en">Member response</span><span class="lang-pt">Resposta do membro</span></th></tr></thead>
       <tbody>
         <tr><td>Friends who never invest are asking about crypto</td><td>Retail adoption is late-stage. Risk may be elevated.</td><td>Do not increase position size because of social pressure.</td></tr>
         <tr><td>Projects promise fixed returns or guaranteed gains</td><td>Almost always fraud or a ponzi structure.</td><td>Stop. Do not deposit. Report.</td></tr>
@@ -205,18 +208,18 @@
   </section>
 
   <section class="section">
-    <h2>Risk controls for cycle investing</h2>
+    <h2><span class="lang-en">Risk controls for cycle investing</span><span class="lang-pt">Controles de risco para investir em ciclos</span></h2>
     <ul class="checklist">
-      <li>Define the maximum percentage of net worth exposed to high-volatility crypto assets.</li>
-      <li>Separate long-term Bitcoin learning from short-term altcoin speculation.</li>
-      <li>Keep tax obligations and emergency cash outside the market.</li>
-      <li>Use a custody checklist before market excitement increases.</li>
-      <li>Write a rule for taking risk down when position size grows faster than knowledge.</li>
+      <li><span class="lang-en">Define the maximum percentage of net worth exposed to high-volatility crypto assets.</span><span class="lang-pt">Defina o percentual máximo do patrimônio líquido exposto a ativos cripto de alta volatilidade.</span></li>
+      <li><span class="lang-en">Separate long-term Bitcoin learning from short-term altcoin speculation.</span><span class="lang-pt">Separe o aprendizado de longo prazo sobre Bitcoin da especulação de curto prazo em altcoins.</span></li>
+      <li><span class="lang-en">Keep tax obligations and emergency cash outside the market.</span><span class="lang-pt">Mantenha obrigações fiscais e reserva de emergência fora do mercado.</span></li>
+      <li><span class="lang-en">Use a custody checklist before market excitement increases.</span><span class="lang-pt">Use um checklist de custódia antes que a empolgação do mercado aumente.</span></li>
+      <li><span class="lang-en">Write a rule for taking risk down when position size grows faster than knowledge.</span><span class="lang-pt">Escreva uma regra para reduzir risco quando o tamanho da posição cresce mais rápido do que o conhecimento.</span></li>
     </ul>
   </section>
 
   <section class="section">
-    <h2>Altcoin-specific risks: what Bitcoin does not have</h2>
+    <h2><span class="lang-en">Altcoin-specific risks: what Bitcoin does not have</span><span class="lang-pt">Riscos específicos de altcoins: o que o Bitcoin não tem</span></h2>
     <p>Altcoins can produce large returns in short periods. They can also fall 95%+ and never recover. The risks below exist in varying degrees across most non-Bitcoin tokens. Understanding them before entering is more useful than learning them during a loss.</p>
     <div class="grid-2">
       <div class="tile"><strong>Token unlocks</strong><p>When a project launches, founders, investors, and team members often receive tokens that are locked for a period (the "vesting schedule"). When the lock-up ends, those insiders can sell. Token unlock events — often available on sites like TokenUnlocks.app — can create predictable selling pressure. Beginners rarely check for upcoming unlocks before buying.</p></div>
@@ -227,7 +230,7 @@
       <div class="tile"><strong>Smart contract and bridge risk</strong><p>DeFi protocols can have bugs in code that no audit fully eliminates. Cross-chain bridges (tools that move assets between blockchains) have been the target of some of the largest crypto hacks (Ronin/Axie, Wormhole, Nomad). Interacting with complex DeFi protocols requires a level of technical understanding that goes well beyond beginner crypto investing.</p></div>
     </div>
     <table class="mini-table">
-      <thead><tr><th>Before buying an altcoin, check</th><th>Where to find it</th><th>Red flag</th></tr></thead>
+      <thead><tr><th><span class="lang-en">Before buying an altcoin, check</span><span class="lang-pt">Antes de comprar uma altcoin, verifique</span></th><th><span class="lang-en">Where to find it</span><span class="lang-pt">Onde encontrar</span></th><th><span class="lang-en">Red flag</span><span class="lang-pt">Sinal de alerta</span></th></tr></thead>
       <tbody>
         <tr><td>Circulating vs total supply</td><td>CoinGecko token page</td><td>Less than 20% of supply currently circulating</td></tr>
         <tr><td>Upcoming token unlocks</td><td>TokenUnlocks.app or project docs</td><td>Large unlock within 3–6 months</td></tr>
@@ -240,16 +243,16 @@
   </section>
 
   <section class="section">
-    <h2>Position sizing and exit framework</h2>
+    <h2><span class="lang-en">Position sizing and exit framework</span><span class="lang-pt">Dimensionamento de posição e framework de saída</span></h2>
     <p>Most beginners plan their entry. Very few plan their exit. Having written rules for both removes the emotional pressure of deciding in the moment — which is usually when clarity is lowest.</p>
     <div class="grid-2">
-      <div class="tile"><strong>Size before you buy</strong><p>Before entering, ask: if this falls 80%, what does that mean in real money and real sleep? A $2,000 position in a volatile crypto asset can fall to $400. That may be acceptable as a learning position. The same logic applied to $20,000 has very different consequences. Size should match knowledge and risk tolerance, not conviction alone.</p></div>
-      <div class="tile"><strong>Core vs satellite buckets</strong><p>Mentally divide money into buckets: the core (broad diversified funds, super, long-term holdings) and the satellite (higher risk, speculative ideas). Define the maximum satellite percentage before markets get exciting. Keeping the core untouched through volatility requires defining it in advance — not during panic.</p></div>
-      <div class="tile"><strong>Written exit rules</strong><p>Write at least three things that would make you reduce or exit a position: a broken thesis, a specific percentage loss, a change in personal finances, or a change in the original reason for holding. If you cannot name these before buying, the exit decision will be made by emotion — usually at the worst time.</p></div>
-      <div class="tile"><strong>The time-limit rule</strong><p>One simple rule that many investors use: if a position has not done what you expected within your original time frame, review the thesis fully before deciding to hold. Indefinite holding "waiting for recovery" without re-examining the reason is hope, not investing.</p></div>
+      <div class="tile"><strong><span class="lang-en">Size before you buy</span><span class="lang-pt">Dimensione antes de comprar</span></strong><p>Before entering, ask: if this falls 80%, what does that mean in real money and real sleep? A $2,000 position in a volatile crypto asset can fall to $400. That may be acceptable as a learning position. The same logic applied to $20,000 has very different consequences. Size should match knowledge and risk tolerance, not conviction alone.</p></div>
+      <div class="tile"><strong><span class="lang-en">Core vs satellite buckets</span><span class="lang-pt">Núcleo vs satélite</span></strong><p>Mentally divide money into buckets: the core (broad diversified funds, super, long-term holdings) and the satellite (higher risk, speculative ideas). Define the maximum satellite percentage before markets get exciting. Keeping the core untouched through volatility requires defining it in advance — not during panic.</p></div>
+      <div class="tile"><strong><span class="lang-en">Written exit rules</span><span class="lang-pt">Regras de saída escritas</span></strong><p>Write at least three things that would make you reduce or exit a position: a broken thesis, a specific percentage loss, a change in personal finances, or a change in the original reason for holding. If you cannot name these before buying, the exit decision will be made by emotion — usually at the worst time.</p></div>
+      <div class="tile"><strong><span class="lang-en">The time-limit rule</span><span class="lang-pt">A regra do limite de tempo</span></strong><p>One simple rule that many investors use: if a position has not done what you expected within your original time frame, review the thesis fully before deciding to hold. Indefinite holding "waiting for recovery" without re-examining the reason is hope, not investing.</p></div>
     </div>
     <table class="mini-table">
-      <thead><tr><th>Exit trigger type</th><th>Example rule</th><th>Why it helps</th></tr></thead>
+      <thead><tr><th><span class="lang-en">Exit trigger type</span><span class="lang-pt">Tipo de gatilho de saída</span></th><th><span class="lang-en">Example rule</span><span class="lang-pt">Regra de exemplo</span></th><th><span class="lang-en">Why it helps</span><span class="lang-pt">Por que ajuda</span></th></tr></thead>
       <tbody>
         <tr><td>Thesis broken</td><td>Sell if the reason I originally bought no longer exists.</td><td>Prevents holding through stubbornness instead of logic.</td></tr>
         <tr><td>Position grown too large</td><td>Review or reduce if a satellite position grows beyond my written maximum.</td><td>Prevents a single winning bet from becoming an accidental all-in.</td></tr>
@@ -262,13 +265,13 @@
   </section>
 
   <section class="section warning">
-    <h2>Social media cycle traps</h2>
+    <h2><span class="lang-en">Social media cycle traps</span><span class="lang-pt">Armadilhas de ciclo nas redes sociais</span></h2>
     <p>During bull markets, social media rewards confidence, speed, and dramatic price targets. During bear markets, it rewards fear and anger. Members should use social content as a source of questions, not as an instruction system. A good process stays calmer than the feed.</p>
   </section>
 
 
   <section class="section">
-    <h2>Continue your learning path</h2>
+    <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
     <div class="callout"><strong>Next recommended guide:</strong> <a href="10-research-sources.html">Research Sources — where to find reliable investing information and how to use it →</a></div>
   </section>
 </main>

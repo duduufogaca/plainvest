@@ -45,12 +45,15 @@
 </head>
 <body>
 <main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
   <header class="hero">
-    <div class="kicker">Market Sentiment</div>
+    <div class="kicker"><span class="lang-en">Market Sentiment</span><span class="lang-pt">Sentimento de Mercado</span></div>
     <h1>Fear &amp; Greed — <em>how markets feel right now.</em></h1>
     <p class="lead">Two live indices measuring whether investors are driven by panic or overconfidence. Useful context before any investment decision — not a buy or sell signal. Updated daily from their source APIs.</p>
     <div class="stat-row">
@@ -62,7 +65,7 @@
   </header>
 
   <section class="section">
-    <h2>Live indices</h2>
+    <h2><span class="lang-en">Live indices</span><span class="lang-pt">Índices ao vivo</span></h2>
     <p class="fgi-lead">Both gauges below pull live data directly from their source APIs. The number reflects today's reading; the history items show where sentiment stood one week and one month ago.</p>
 
     <div class="fgi-grid">
@@ -133,18 +136,18 @@
   </section>
 
   <section class="section">
-    <h2>How to read this index</h2>
+    <h2><span class="lang-en">How to read this index</span><span class="lang-pt">Como ler este índice</span></h2>
     <div class="grid-2">
-      <div class="tile"><strong>What it measures</strong><p>Market sentiment — whether investors are acting out of panic (fear) or overconfidence (greed). Built from volatility, momentum, options activity, and other signals. It does not measure the value of an asset. It measures the emotional state of the crowd around it.</p></div>
-      <div class="tile"><strong>How to use it</strong><p>It is a contrarian indicator, not a timing tool. Extreme fear has historically appeared near market bottoms; extreme greed near tops. The key word is "historically" — past patterns do not guarantee future results. Use it as context, not instruction.</p></div>
-      <div class="tile"><strong>Crypto vs stocks</strong><p>Both indices often move together, especially during broad risk-off events like rate hikes or macro uncertainty. They can diverge sharply during crypto-specific events — a Bitcoin halving, a major exchange collapse, or a regulatory ruling. A large gap between the two is worth researching before acting.</p></div>
+      <div class="tile"><strong><span class="lang-en">What it measures</span><span class="lang-pt">O que mede</span></strong><p>Market sentiment — whether investors are acting out of panic (fear) or overconfidence (greed). Built from volatility, momentum, options activity, and other signals. It does not measure the value of an asset. It measures the emotional state of the crowd around it.</p></div>
+      <div class="tile"><strong><span class="lang-en">How to use it</span><span class="lang-pt">Como usar</span></strong><p>It is a contrarian indicator, not a timing tool. Extreme fear has historically appeared near market bottoms; extreme greed near tops. The key word is "historically" — past patterns do not guarantee future results. Use it as context, not instruction.</p></div>
+      <div class="tile"><strong><span class="lang-en">Crypto vs stocks</span><span class="lang-pt">Cripto vs ações</span></strong><p>Both indices often move together, especially during broad risk-off events like rate hikes or macro uncertainty. They can diverge sharply during crypto-specific events — a Bitcoin halving, a major exchange collapse, or a regulatory ruling. A large gap between the two is worth researching before acting.</p></div>
       <div class="tile"><strong>Warren Buffett's rule</strong><p>"Be fearful when others are greedy and greedy when others are fearful." The index makes that principle visible. It does not tell you when to act — that is what your written investment plan is for. The index removes some of the guesswork about where the crowd currently stands.</p></div>
     </div>
-    <div class="callout"><strong>The most important thing to understand:</strong> a high fear reading does not guarantee prices will recover. A high greed reading does not guarantee prices will fall. These are probability-weighted observations from market history, not laws. Your plan — not the gauge — determines what you do.</div>
+    <div class="callout"><strong><span class="lang-en">The most important thing to understand:</span><span class="lang-pt">A coisa mais importante a entender:</span></strong> a high fear reading does not guarantee prices will recover. A high greed reading does not guarantee prices will fall. These are probability-weighted observations from market history, not laws. Your plan — not the gauge — determines what you do.</div>
   </section>
 
   <section class="section">
-    <h2>Score reference</h2>
+    <h2><span class="lang-en">Score reference</span><span class="lang-pt">Referência de pontuação</span></h2>
     <table class="mini-table">
       <thead><tr><th>Score range</th><th>Category</th><th>What it typically reflects</th><th>Contrarian read</th></tr></thead>
       <tbody>
@@ -158,10 +161,10 @@
   </section>
 
   <section class="section">
-    <h2>What each index actually measures</h2>
+    <h2><span class="lang-en">What each index actually measures</span><span class="lang-pt">O que cada índice realmente mede</span></h2>
     <h3 style="margin-top:1.4rem;margin-bottom:.8rem;font-size:1rem;color:#00d4aa;letter-spacing:.04em;text-transform:uppercase;">CNN Fear &amp; Greed — US Stock Market (7 indicators)</h3>
     <div class="grid-2">
-      <div class="tile"><strong>Stock price momentum</strong><p>Compares the S&P 500 to its 125-day moving average. When the index is trading well above its average, momentum is bullish (greed). When it is below, momentum is bearish (fear).</p></div>
+      <div class="tile"><strong><span class="lang-en">Stock price momentum</span><span class="lang-pt">Momentum do preço das ações</span></strong><p>Compares the S&P 500 to its 125-day moving average. When the index is trading well above its average, momentum is bullish (greed). When it is below, momentum is bearish (fear).</p></div>
       <div class="tile"><strong>Stock price strength</strong><p>Measures the ratio of 52-week highs vs lows on the NYSE. More new highs than lows signals greed; the reverse signals fear.</p></div>
       <div class="tile"><strong>Stock price breadth</strong><p>Uses the McClellan Volume Summation Index — whether advancing stocks are supported by high trading volume (greed) or declining stocks are (fear).</p></div>
       <div class="tile"><strong>Put and call options ratio</strong><p>Compares the volume of put options (bets on price falls) to call options (bets on price rises). More puts than usual signals fear; more calls signals greed.</p></div>
@@ -181,7 +184,7 @@
   </section>
 
   <section class="section">
-    <h2>Using both together</h2>
+    <h2><span class="lang-en">Using both together</span><span class="lang-pt">Usando os dois juntos</span></h2>
     <table class="mini-table">
       <thead><tr><th>US stocks reading</th><th>Crypto reading</th><th>What it may suggest</th></tr></thead>
       <tbody>
@@ -196,7 +199,7 @@
   </section>
 
   <section class="section">
-    <h2>What the index does not tell you</h2>
+    <h2><span class="lang-en">What the index does not tell you</span><span class="lang-pt">O que o índice não te diz</span></h2>
     <div class="grid-2">
       <div class="tile"><strong>It does not predict timing</strong><p>Markets can remain in Extreme Fear for months (March 2020, November 2022) or in Extreme Greed for extended periods. A reading alone is not a reliable entry or exit trigger. Position sizing and patience matter more than the exact number.</p></div>
       <div class="tile"><strong>It does not measure value</strong><p>A 40 reading does not mean an asset is cheap. A 75 reading does not mean it is expensive. The index measures crowd psychology, not intrinsic value. Combine it with price history and your own research.</p></div>
@@ -206,12 +209,12 @@
   </section>
 
   <section class="section warning">
-    <h2>Disclaimer</h2>
+    <h2><span class="lang-en">Disclaimer</span><span class="lang-pt">Aviso importante</span></h2>
     <p>This page displays live market sentiment data from third-party APIs (CNN Business and Alternative.me). The indices reflect aggregated signals about investor behaviour — they are not financial advice, investment recommendations, or predictions of future prices. Plainvest uses this data for educational context only. Always do your own research before making any investment decision.</p>
   </section>
 
   <section class="section">
-    <h2>Deepen your study</h2>
+    <h2><span class="lang-en">Deepen your study</span><span class="lang-pt">Aprofunde seu estudo</span></h2>
     <div class="callout"><strong>Related guide:</strong> <a href="10-research-sources.html">Research &amp; Tools Library — full source list including API documentation, platform comparisons, and tax tools →</a></div>
   </section>
 </main>

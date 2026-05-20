@@ -21,18 +21,21 @@
 </head>
 <body>
 <main class="guide">
-  <nav class="guide-topnav">
-    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}">← Back to member area</a>
-    <img class="guide-logo" src="/assets/plainvest-app-icon.png" alt="Plainvest" width="32" height="32">
+    <nav class="guide-topnav">
+    <a class="platform-back" href="/index.html#member" onclick="if(window.parent&&window.parent.showPage){window.parent.showPage('member');return false;}"><span class="lang-en">← Back to member area</span><span class="lang-pt">← Voltar à área de membros</span></a>
+    <div class="guide-lang-switch">
+      <button class="guide-lang-btn" data-lang="en" onclick="setGuideLang('en')">EN</button>
+      <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">PT</button>
+    </div>
   </nav>
   <header class="hero">
-    <div class="kicker">Premium Sources</div>
+    <div class="kicker"><span class="lang-en">Premium Sources</span><span class="lang-pt">Fontes Premium</span></div>
     <h1>Research tools with <em>practical context.</em></h1>
     <p class="lead">This page tells you where to look, what to look for, and how to use each source. A link without context is just a bookmark. Use these when you want to verify an idea, go deeper on a subject, or prepare a better question for your support call.</p>
     <div class="quick-strip">
-      <div class="quick-card"><strong>Start with purpose</strong><span>Know what question you are trying to answer before opening a tool.</span></div>
-      <div class="quick-card"><strong>Verify before acting</strong><span>Cross-check important ideas across two or more independent sources.</span></div>
-      <div class="quick-card"><strong>Save what matters</strong><span>Bookmark sources you return to. One good source used well beats ten opened once.</span></div>
+      <div class="quick-card"><strong><span class="lang-en">Start with purpose</span><span class="lang-pt">Comece com propósito</span></strong><span>Know what question you are trying to answer before opening a tool.</span></div>
+      <div class="quick-card"><strong><span class="lang-en">Verify before acting</span><span class="lang-pt">Verifique antes de agir</span></strong><span>Cross-check important ideas across two or more independent sources.</span></div>
+      <div class="quick-card"><strong><span class="lang-en">Save what matters</span><span class="lang-pt">Salve o que importa</span></strong><span>Bookmark sources you return to. One good source used well beats ten opened once.</span></div>
     </div>
     <div class="stat-row">
       <div class="stat-block"><span class="stat-num">10</span><span class="stat-label">source categories: education, ETFs, crypto, charts, sentiment, macro, platforms, tax, super</span></div>
@@ -44,25 +47,25 @@
 
   <!-- 1. RESEARCH WORKFLOW -->
   <section class="section">
-    <h2>Research workflow for any new investment idea</h2>
+    <h2><span class="lang-en">Research workflow for any new investment idea</span><span class="lang-pt">Fluxo de pesquisa para qualquer nova ideia de investimento</span></h2>
     <p>Follow these five questions in order. If you cannot answer one clearly, that is the gap to research before acting.</p>
 
     <div class="process-flow">
       <div class="flow-step">
         <div class="step-num">1</div>
-        <strong>What is it?</strong>
+        <strong><span class="lang-en">What is it?</span><span class="lang-pt">O que é?</span></strong>
         <p>Read the official issuer page, fund fact sheet, or asset description — not social media</p>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="step-num">2</div>
-        <strong>What does it cost?</strong>
+        <strong><span class="lang-en">What does it cost?</span><span class="lang-pt">Quanto custa?</span></strong>
         <p>Expense ratio, brokerage, FX spread, tax treatment, and withdrawal conditions</p>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="step-num">3</div>
-        <strong>What is the history?</strong>
+        <strong><span class="lang-en">What is the history?</span><span class="lang-pt">Qual é o histórico?</span></strong>
         <p>TradingView monthly candles — full price history including worst drawdowns</p>
       </div>
       <div class="flow-arrow">→</div>
@@ -84,7 +87,7 @@
 
   <!-- 2. INVESTOR EDUCATION -->
   <section class="section">
-    <h2>Investor education and portfolio foundations</h2>
+    <h2><span class="lang-en">Investor education and portfolio foundations</span><span class="lang-pt">Educação financeira e fundamentos de portfólio</span></h2>
     <div class="grid-2">
       <div class="tile"><strong><a href="https://moneysmart.gov.au/" target="_blank" rel="noopener">ASIC Moneysmart</a></strong><p>Australian Government source. Use it to understand ETFs, diversification, scam warnings, platform regulation checks, and investor rights. The managed funds and ETF sections are beginner-friendly.</p></div>
       <div class="tile"><strong><a href="https://www.investor.gov/" target="_blank" rel="noopener">Investor.gov (SEC)</a></strong><p>US Government investor education. Use the compound interest calculator, fee comparison tool, and fund analyser. Good for understanding how small fee differences affect long-term outcomes.</p></div>
@@ -95,7 +98,7 @@
 
   <!-- 3. ETF RESEARCH -->
   <section class="section">
-    <h2>ETF and fund research tools</h2>
+    <h2><span class="lang-en">ETF and fund research tools</span><span class="lang-pt">Ferramentas de pesquisa de ETFs e fundos</span></h2>
     <div class="grid-2">
       <div class="tile"><strong><a href="https://etfdb.com/" target="_blank" rel="noopener">ETF Database (etfdb.com)</a></strong><p>Look up any ETF: expense ratio, holdings, sector breakdown, liquidity, dividend history, and performance. Use it to compare two similar ETFs before choosing one.</p></div>
       <div class="tile"><strong><a href="https://www.morningstar.com.au/" target="_blank" rel="noopener">Morningstar Australia</a></strong><p>Fund ratings, fee comparisons, ETF data, and analyst commentary. Good for comparing Australian ETFs and managed funds. Free data is sufficient for beginners.</p></div>
@@ -106,7 +109,7 @@
 
   <!-- 4. BITCOIN AND CRYPTO -->
   <section class="section">
-    <h2>Bitcoin and crypto research tools</h2>
+    <h2><span class="lang-en">Bitcoin and crypto research tools</span><span class="lang-pt">Ferramentas de pesquisa de Bitcoin e cripto</span></h2>
     <div class="grid-2">
       <div class="tile"><strong><a href="https://mempool.space/" target="_blank" rel="noopener">Mempool.space</a></strong><p>Live Bitcoin block explorer and mempool visualiser. Use it to check block height, fee levels, transaction confirmation times, and the real state of the Bitcoin network without needing an account.</p></div>
       <div class="tile"><strong><a href="https://academy.glassnode.com/" target="_blank" rel="noopener">Glassnode Academy</a></strong><p>On-chain analytics education. Learn what realized price, MVRV ratio, exchange balances, and long-term holder behaviour mean. Start with the free learning articles before interpreting the charts.</p></div>
@@ -120,7 +123,7 @@
 
   <!-- 5. CHART READING -->
   <section class="section">
-    <h2>Chart reading and market context</h2>
+    <h2><span class="lang-en">Chart reading and market context</span><span class="lang-pt">Leitura de gráficos e contexto de mercado</span></h2>
     <div class="grid-2">
       <div class="tile"><strong><a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></strong><p>The main chart platform recommended in Guide 07. Start with a free account, set monthly candles, search any symbol (SPY, QQQ, BTCUSD, VAS, IVV, BOVA11, GOLD), and compare long-term price history before you buy anything.</p></div>
       <div class="tile"><strong><a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">FRED (St. Louis Fed)</a></strong><p>Federal Reserve Economic Data. Charts for inflation (CPI), interest rates, money supply, unemployment, GDP, and more. Free, authoritative, and useful for understanding the macro context behind market moves.</p></div>
@@ -129,7 +132,7 @@
 
   <!-- 6. MARKET SENTIMENT -->
   <section class="section">
-    <h2>Market sentiment tools</h2>
+    <h2><span class="lang-en">Market sentiment tools</span><span class="lang-pt">Ferramentas de sentimento de mercado</span></h2>
     <p>Sentiment indices measure whether investors are driven by fear or greed at a given moment. They are contrarian context tools — not buy or sell signals — and are most useful when read alongside price charts and your own written plan. Both indices below power the live gauges on the Plainvest <strong>Sentiment</strong> page.</p>
     <div class="grid-2">
       <div class="tile">
@@ -160,7 +163,7 @@
 
   <!-- 7. MACRO -->
   <section class="section">
-    <h2>Macro, inflation, and monetary policy</h2>
+    <h2><span class="lang-en">Macro, inflation, and monetary policy</span><span class="lang-pt">Macro, inflação e política monetária</span></h2>
     <div class="grid-2">
       <div class="tile"><strong><a href="https://www.rba.gov.au/education/" target="_blank" rel="noopener">Reserve Bank of Australia Education</a></strong><p>Explains inflation, monetary policy, the cash rate, and how the RBA responds to economic conditions. Essential context for Australian investors trying to understand interest rate decisions.</p></div>
       <div class="tile"><strong><a href="https://www.federalreserveeducation.org/" target="_blank" rel="noopener">Federal Reserve Education</a></strong><p>Covers how the Fed sets rates, what inflation means, how money is created, and US monetary policy basics. Relevant for understanding US markets and global rate cycles that affect Australian assets.</p></div>
@@ -169,7 +172,7 @@
 
   <!-- 8. PLATFORM COMPARISON: AU, US & BRAZIL -->
   <section class="section">
-    <h2>Platform comparison: AU, US &amp; Brazil</h2>
+    <h2><span class="lang-en">Platform comparison: AU, US &amp; Brazil</span><span class="lang-pt">Comparação de plataformas: AU, EUA e Brasil</span></h2>
     <p>The right platform depends on your country of residence, the assets you want to buy, and how you plan to invest. These are the most commonly used options in each market, with the key factors that matter for a beginner investor.</p>
 
     <h3 style="margin-top:1.6rem;margin-bottom:.8rem;font-size:1rem;color:#00d4aa;letter-spacing:.04em;text-transform:uppercase;">Australia</h3>
@@ -211,7 +214,7 @@
 
   <!-- 9. SOURCES TO TREAT WITH CAUTION -->
   <section class="section">
-    <h2>Sources to treat with caution</h2>
+    <h2><span class="lang-en">Sources to treat with caution</span><span class="lang-pt">Fontes a tratar com cautela</span></h2>
     <p>Not all investing information is equally useful. Some sources are designed to drive action, not inform decisions. Recognising these patterns is part of research discipline — knowing what to ignore is as important as knowing where to look.</p>
     <table class="mini-table">
       <thead><tr><th>Source type</th><th>Why to be cautious</th><th>Better question to ask</th></tr></thead>
@@ -229,7 +232,7 @@
 
   <!-- 10. HOW TO USE SOURCES WELL -->
   <section class="section">
-    <h2>How to use sources well</h2>
+    <h2><span class="lang-en">How to use sources well</span><span class="lang-pt">Como usar as fontes bem</span></h2>
     <div class="grid-2">
       <div class="tile"><strong>Read the original, not the summary</strong><p>ATO guidance, white papers, fund fact sheets, and official product documents carry more weight than blog posts or social summaries of the same information.</p></div>
       <div class="tile"><strong>Ask: who published this and why?</strong><p>Government sources, academic research, and regulated issuers have different incentives than influencers, token promoters, or commission-based product comparisons.</p></div>
@@ -284,7 +287,7 @@
   </section>
 
   <section class="section">
-    <h2>Continue your learning path</h2>
+    <h2><span class="lang-en">Continue your learning path</span><span class="lang-pt">Continue sua trilha de aprendizado</span></h2>
     <div class="callout"><strong>Next recommended guide:</strong> <a href="06-books-and-reading-path.html">Books and Reading Path — the recommended reading sequence and how to get the most from each book →</a></div>
   </section>
 </main>
