@@ -10669,6 +10669,9 @@
         <button class="lang-btn" onclick="setLang('pt',this)" title="Português">🇧🇷 PT</button>
       </div>
     </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- ══════════════════════════════════════════
@@ -16802,6 +16805,115 @@
       }
     })();
 
+  </script>
+
+  <!-- ── Mobile hamburger nav ── -->
+  <style>
+  .nav-hamburger { display: none; }
+
+  @media (max-width: 768px) {
+    /* Single-row nav: logo left, lang + hamburger right */
+    nav {
+      flex-wrap: nowrap !important;
+      height: 60px !important;
+      min-height: 60px !important;
+      padding: 0 1rem !important;
+      gap: 0.5rem !important;
+    }
+    /* Hide the full link list by default */
+    nav ul { display: none !important; }
+    /* Hide login/create from top bar — accessible from Plans section */
+    .member-login-btn, .member-create-btn { display: none !important; }
+    .nav-actions {
+      order: 1 !important;
+      margin-left: auto !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+    }
+    /* Hamburger button */
+    .nav-hamburger {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      width: 44px !important;
+      height: 44px !important;
+      background: none !important;
+      border: none !important;
+      cursor: pointer !important;
+      padding: 11px !important;
+      color: #fff !important;
+      flex-shrink: 0 !important;
+      order: 2 !important;
+    }
+    .nav-hamburger span {
+      display: block !important;
+      width: 22px !important;
+      height: 2px !important;
+      background: currentColor !important;
+      border-radius: 1px !important;
+      transition: transform 0.2s, opacity 0.2s !important;
+    }
+    /* ☰ → ✕ */
+    nav.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
+    nav.menu-open .nav-hamburger span:nth-child(2) { opacity: 0 !important; transform: scaleX(0) !important; }
+    nav.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+    /* Full-screen link overlay */
+    nav.menu-open ul {
+      display: flex !important;
+      position: fixed !important;
+      top: 60px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      background: #06101f !important;
+      z-index: 8999 !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      gap: 0 !important;
+      padding: 0.5rem 0 2rem !important;
+      margin: 0 !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      border-top: 1px solid rgba(0, 212, 170, 0.2) !important;
+      order: 0 !important;
+    }
+    nav.menu-open ul li { list-style: none !important; width: 100% !important; }
+    nav.menu-open ul li a {
+      display: flex !important;
+      align-items: center !important;
+      padding: 0.95rem 1.75rem !important;
+      font-size: 1rem !important;
+      font-weight: 600 !important;
+      color: #a8c4d8 !important;
+      text-decoration: none !important;
+      min-height: 52px !important;
+      border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+      letter-spacing: 0.01em !important;
+    }
+    nav.menu-open ul li a.is-active { color: #00d4aa !important; background: rgba(0,212,170,0.06) !important; }
+  }
+  </style>
+
+  <script>
+  (function () {
+    var btn = document.getElementById('navHamburger');
+    var navEl = btn && btn.closest('nav');
+    if (!btn || !navEl) return;
+    btn.addEventListener('click', function () {
+      var open = navEl.classList.toggle('menu-open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    navEl.querySelectorAll('ul a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navEl.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
   </script>
 
 </body>
