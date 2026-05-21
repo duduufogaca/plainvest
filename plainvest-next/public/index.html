@@ -210,7 +210,6 @@
 
     html {
       scroll-behavior: smooth;
-      overflow-x: hidden;
     }
 
     #calculator {
@@ -16805,107 +16804,5 @@
 
   </script>
 
-  <!-- ── Mobile bottom navigation ── -->
-  <nav class="mobile-bottom-nav" id="mobileBottomNav">
-    <a href="#simulator" class="mob-nav-item" onclick="showPage('simulator'); return false;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      <span data-i18n="nav.simulator">Simulator</span>
-    </a>
-    <a href="#inflation" class="mob-nav-item" onclick="showPage('inflation'); return false;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      <span data-i18n="nav.inflation">Inflation</span>
-    </a>
-    <a href="#learn" class="mob-nav-item" onclick="showPage('learn'); return false;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      <span data-i18n="nav.learn">Learn</span>
-    </a>
-    <a href="#plans" class="mob-nav-item mob-nav-cta" onclick="showPage('plans'); return false;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span data-i18n="nav.plans">Plans</span>
-    </a>
-  </nav>
-
-  <style>
-  .mobile-bottom-nav {
-    display: none;
-  }
-  @media (max-width: 768px) {
-    /* Prevent content from being hidden behind the fixed bottom nav */
-    .app-page {
-      padding-bottom: calc(68px + env(safe-area-inset-bottom)) !important;
-    }
-    .mobile-bottom-nav {
-      display: flex;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 9999;
-      background: rgba(7, 17, 32, 0.97);
-      border-top: 1px solid rgba(0, 212, 170, 0.18);
-      padding: 0.4rem 0 calc(0.4rem + env(safe-area-inset-bottom));
-      justify-content: space-around;
-      align-items: stretch;
-    }
-    .mob-nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.22rem;
-      flex: 1;
-      text-decoration: none;
-      color: #7a99b8;
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.2rem;
-      transition: color 0.2s;
-    }
-    .mob-nav-item svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
-    .mob-nav-item:hover,
-    .mob-nav-item.is-active {
-      color: #00d4aa;
-    }
-    .mob-nav-item.mob-nav-cta {
-      color: #00d4aa;
-    }
-    .mob-nav-item.mob-nav-cta svg {
-      stroke: #00d4aa;
-    }
-  }
-  </style>
-
-  <script>
-  /* Highlight active mobile bottom nav item on scroll */
-  (function () {
-    var sections = ['simulator', 'inflation', 'learn', 'plans'];
-    var items = document.querySelectorAll('.mob-nav-item');
-    if (!items.length) return;
-    function updateActive() {
-      var scrollY = window.scrollY + window.innerHeight * 0.4;
-      var active = '';
-      sections.forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollY) active = id;
-      });
-      items.forEach(function (a) {
-        var href = a.getAttribute('href').replace('#', '');
-        a.classList.toggle('is-active', href === active);
-      });
-    }
-    window.addEventListener('scroll', updateActive, { passive: true });
-    updateActive();
-  })();
-  </script>
-
 </body>
-
-</body>
-
 </html>
