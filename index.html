@@ -10672,6 +10672,8 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+  <!-- Mobile menu overlay — sibling of nav so position:fixed works on iOS -->
+  <div id="mobMenuOverlay" class="mob-menu-overlay" aria-hidden="true"></div>
 
   <!-- ══════════════════════════════════════════
      SECTION 1: HOME
@@ -16808,10 +16810,11 @@
 
   <!-- ── Mobile hamburger nav ── -->
   <style>
+  /* Overlay hidden by default; shown only on mobile when open */
+  .mob-menu-overlay { display: none; }
   .nav-hamburger { display: none; }
 
   @media (max-width: 768px) {
-    /* Single-row nav: logo left, lang + hamburger right */
     nav {
       flex-wrap: nowrap !important;
       height: 60px !important;
@@ -16819,9 +16822,7 @@
       padding: 0 1rem !important;
       gap: 0.5rem !important;
     }
-    /* Hide the full link list by default */
     nav ul { display: none !important; }
-    /* Hide login/create from top bar — accessible from Plans section */
     .member-login-btn, .member-create-btn { display: none !important; }
     .nav-actions {
       order: 1 !important;
@@ -16830,7 +16831,6 @@
       align-items: center !important;
       gap: 0.4rem !important;
     }
-    /* Hamburger button */
     .nav-hamburger {
       display: flex !important;
       flex-direction: column !important;
@@ -16854,82 +16854,71 @@
       border-radius: 1px !important;
       transition: transform 0.2s, opacity 0.2s !important;
     }
-    /* ☰ → ✕ */
     nav.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
     nav.menu-open .nav-hamburger span:nth-child(2) { opacity: 0 !important; transform: scaleX(0) !important; }
     nav.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
-    /* Full-screen link overlay */
-    nav.menu-open ul {
+
+    /* Overlay is a direct child of body — no backdrop-filter ancestor, so position:fixed works on iOS */
+    .mob-menu-overlay.is-open {
       display: flex !important;
+      flex-direction: column !important;
       position: fixed !important;
       top: 60px !important;
       left: 0 !important;
       right: 0 !important;
       bottom: 0 !important;
-      width: 100% !important;
       background: #06101f !important;
       z-index: 8999 !important;
-      flex-direction: column !important;
-      align-items: stretch !important;
-      justify-content: flex-start !important;
-      gap: 0 !important;
-      padding: 0.5rem 0 2rem !important;
-      margin: 0 !important;
       overflow-y: auto !important;
       overflow-x: hidden !important;
-      border-top: 1px solid rgba(0, 212, 170, 0.2) !important;
-      order: 0 !important;
+      border-top: 1px solid rgba(0,212,170,0.2) !important;
+      padding: 0.5rem 0 2rem !important;
     }
-    nav.menu-open ul li {
-      list-style: none !important;
-      width: 100% !important;
+    .mob-menu-overlay .mob-item {
       display: flex !important;
       align-items: center !important;
+      text-decoration: none !important;
       border-bottom: 1px solid rgba(255,255,255,0.05) !important;
-      padding: 0 !important;
+      min-height: 64px !important;
+      -webkit-tap-highlight-color: rgba(0,212,170,0.08) !important;
     }
-    nav.menu-open ul li::before {
-      content: attr(data-mob-icon) !important;
-      font-size: 1.5rem !important;
+    .mob-menu-overlay .mob-item-icon {
       width: 60px !important;
       min-width: 60px !important;
       text-align: center !important;
+      font-size: 1.5rem !important;
       flex-shrink: 0 !important;
       line-height: 1 !important;
     }
-    nav.menu-open ul li a {
+    .mob-menu-overlay .mob-item-text {
       flex: 1 !important;
       display: flex !important;
       flex-direction: column !important;
-      align-items: flex-start !important;
       justify-content: center !important;
       padding: 0.85rem 1rem 0.85rem 0 !important;
+    }
+    .mob-menu-overlay .mob-item-label {
       font-size: 1rem !important;
       font-weight: 600 !important;
       color: #a8c4d8 !important;
-      text-decoration: none !important;
-      min-height: 64px !important;
-      border-bottom: none !important;
       letter-spacing: 0.01em !important;
     }
-    nav.menu-open ul li a.is-active { color: #00d4aa !important; }
-    nav.menu-open ul li a.is-active ~ * { color: #00d4aa !important; }
-    nav.menu-open ul li .mob-nav-desc {
+    .mob-menu-overlay .mob-item-desc {
       font-size: 0.73rem !important;
       color: #4a7080 !important;
       font-weight: 400 !important;
       margin-top: 3px !important;
       line-height: 1.3 !important;
-      letter-spacing: 0 !important;
     }
-    nav.menu-open ul li.mob-cta-item {
+    .mob-menu-overlay .mob-item.is-cta {
       background: rgba(0,212,170,0.06) !important;
       border-left: 3px solid #00d4aa !important;
     }
-    nav.menu-open ul li.mob-cta-item a {
+    .mob-menu-overlay .mob-item.is-cta .mob-item-label,
+    .mob-menu-overlay .mob-item.is-cta .mob-item-icon {
       color: #00d4aa !important;
     }
-    nav.menu-open ul li.mob-cta-item .mob-nav-desc {
+    .mob-menu-overlay .mob-item.is-cta .mob-item-desc {
       color: rgba(0,212,170,0.55) !important;
     }
   }
@@ -16939,27 +16928,59 @@
   (function () {
     var btn = document.getElementById('navHamburger');
     var navEl = btn && btn.closest('nav');
-    if (!btn || !navEl) return;
+    var overlay = document.getElementById('mobMenuOverlay');
+    if (!btn || !navEl || !overlay) return;
 
-    // Inject description spans into each nav link
-    navEl.querySelectorAll('ul li[data-mob-desc]').forEach(function (li) {
+    // Build overlay items from nav ul data
+    navEl.querySelectorAll('ul li').forEach(function (li) {
       var a = li.querySelector('a');
-      if (!a || a.querySelector('.mob-nav-desc')) return;
-      var desc = document.createElement('span');
-      desc.className = 'mob-nav-desc';
-      desc.textContent = li.getAttribute('data-mob-desc');
-      a.appendChild(desc);
+      if (!a) return;
+      var icon = li.getAttribute('data-mob-icon') || '';
+      var desc = li.getAttribute('data-mob-desc') || '';
+      var i18nEl = a.querySelector('[data-i18n]');
+      var labelText = i18nEl ? i18nEl.textContent.trim() : a.textContent.trim();
+      var i18nKey = i18nEl ? i18nEl.getAttribute('data-i18n') : null;
+
+      var item = document.createElement('a');
+      item.href = a.getAttribute('href') || '#';
+      item.className = 'mob-item' + (li.classList.contains('mob-cta-item') ? ' is-cta' : '');
+
+      var iconEl = document.createElement('span');
+      iconEl.className = 'mob-item-icon';
+      iconEl.textContent = icon;
+
+      var textEl = document.createElement('span');
+      textEl.className = 'mob-item-text';
+
+      var labelEl = document.createElement('span');
+      labelEl.className = 'mob-item-label';
+      labelEl.textContent = labelText;
+      if (i18nKey) labelEl.setAttribute('data-i18n', i18nKey);
+
+      textEl.appendChild(labelEl);
+      if (desc) {
+        var descEl = document.createElement('span');
+        descEl.className = 'mob-item-desc';
+        descEl.textContent = desc;
+        textEl.appendChild(descEl);
+      }
+      item.appendChild(iconEl);
+      item.appendChild(textEl);
+      overlay.appendChild(item);
+
+      item.addEventListener('click', function () {
+        overlay.classList.remove('is-open');
+        navEl.classList.remove('menu-open');
+        btn.setAttribute('aria-expanded', 'false');
+        overlay.setAttribute('aria-hidden', 'true');
+      });
     });
 
     btn.addEventListener('click', function () {
-      var open = navEl.classList.toggle('menu-open');
-      btn.setAttribute('aria-expanded', open);
-    });
-    navEl.querySelectorAll('ul a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navEl.classList.remove('menu-open');
-        btn.setAttribute('aria-expanded', 'false');
-      });
+      var open = overlay.classList.toggle('is-open');
+      navEl.classList.toggle('menu-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      overlay.setAttribute('aria-hidden', String(!open));
     });
   })();
   </script>
