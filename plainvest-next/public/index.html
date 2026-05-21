@@ -210,6 +210,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     #calculator {
@@ -11968,18 +11969,6 @@
           <button class="member-open-file" onclick="openMemberGuide('welcome')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">🗂️</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.cardLibraryTitle">Research &amp; Tools Library</h3>
-          <p data-i18n="member.cardLibraryText">10 categories of curated research tools, reference sources, and educational material. From ETF screeners and sentiment gauges to platform comparisons, tax basics, and sources to avoid.</p>
-          <ul>
-            <li data-i18n="member.cardLibraryItem1">ETF tools, crypto research, chart platforms, sentiment gauges</li>
-            <li data-i18n="member.cardLibraryItem2">Platform comparison: AU, US &amp; Brazil</li>
-            <li data-i18n="member.cardLibraryItem3">AU tax basics, superannuation tools, and red-flag sources</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('references')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
           <div class="member-icon">📚</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
           <h3 data-i18n="member.card1Title">Investment paths</h3>
@@ -11990,30 +11979,6 @@
             <li data-i18n="member.card1Item3">Country-specific beginner examples</li>
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('guides')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">₿</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card2Title">Crypto and self-custody</h3>
-          <p data-i18n="member.card2Text">Advanced crypto learning, wallet safety, self-custody principles, and common beginner mistakes to avoid.</p>
-          <ul>
-            <li data-i18n="member.card2Item1">Bitcoin, Ethereum, exchanges, wallets, and cold storage</li>
-            <li data-i18n="member.card2Item2">Self-custody basics explained simply</li>
-            <li data-i18n="member.card2Item3">Security checklist before buying or moving crypto</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('crypto')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🏦</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card3Title">Exchange setup help</h3>
-          <p data-i18n="member.card3Text">Help choosing an exchange, opening an account when needed, and understanding platform tools and settings.</p>
-          <ul>
-            <li data-i18n="member.card3Item1">Choose an exchange or platform for your country</li>
-            <li data-i18n="member.card3Item2">Account opening checklist</li>
-            <li data-i18n="member.card3Item3">Understand deposits, orders, fees, and settings</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('exchange')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
           <div class="member-icon">📈</div>
@@ -12028,88 +11993,16 @@
           <button class="member-open-file" onclick="openMemberGuide('dca')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">📖</div>
+          <div class="member-icon">🏦</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card5Title">Books and reading path</h3>
-          <p data-i18n="member.card5Text">Curated books, summaries, key takeaways, and reading order from beginner to advanced.</p>
+          <h3 data-i18n="member.card3Title">Exchange setup help</h3>
+          <p data-i18n="member.card3Text">Help choosing an exchange, opening an account when needed, and understanding platform tools and settings.</p>
           <ul>
-            <li data-i18n="member.card5Item1">Beginner, intermediate, and advanced reading order</li>
-            <li data-i18n="member.card5Item2">Book summaries and key lessons</li>
-            <li data-i18n="member.card5Item3">What to read next based on your goals</li>
+            <li data-i18n="member.card3Item1">Choose an exchange or platform for your country</li>
+            <li data-i18n="member.card3Item2">Account opening checklist</li>
+            <li data-i18n="member.card3Item3">Understand deposits, orders, fees, and settings</li>
           </ul>
-          <button class="member-open-file" onclick="openMemberBooks()" data-i18n="member.booksListBtn">Open book list</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">💬</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card6Title">Beginner support Zoom call</h3>
-          <p data-i18n="member.card6Text">One 60-minute Zoom call is included with your Premium access, with extra online calls available separately for AUD $39.90 if you want more support.</p>
-          <ul>
-            <li data-i18n="member.card6Item1">Use the included call for questions or platform setup</li>
-            <li data-i18n="member.card6Item2">Bring questions from the simulator or exchange setup</li>
-            <li data-i18n="member.card6Item3">Extra 60-minute Zoom calls available separately for AUD $39.90</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('zoom')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">₿</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card7Title">Bitcoin research section</h3>
-          <p data-i18n="member.card7Text">A structured Bitcoin area covering the white paper, halving cycles, on-chain metrics, and why Bitcoin was created.</p>
-          <ul>
-            <li data-i18n="member.card7Item1">Bitcoin white paper explained in plain English</li>
-            <li data-i18n="member.card7Item2">Halving, supply, fees, and security basics</li>
-            <li data-i18n="member.card7Item3">Simple on-chain metrics without hype</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('bitcoin')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">📊</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card8Title">Chart reading and research tools</h3>
-          <p data-i18n="member.card8Text">Guidance for reading price charts across stocks, crypto, indexes, and ETFs with a beginner-safe process.</p>
-          <ul>
-            <li data-i18n="member.card8Item1">Chart basics, watchlists, alerts, and indicators</li>
-            <li data-i18n="member.card8Item2">Relevant channels and content to watch</li>
-            <li data-i18n="member.card8Item3">Macro books and study options, including The Black Swan</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('tools')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🧭</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card9Title">Cycle lessons and member updates</h3>
-          <p data-i18n="member.card9Text">Market-cycle psychology, bull and bear market behaviour, plus new products, studies, and insights added for members over time.</p>
-          <ul>
-            <li data-i18n="member.card9Item1">Mistakes to avoid in bull and bear markets</li>
-            <li data-i18n="member.card9Item2">How to stay calm when narratives change</li>
-            <li data-i18n="member.card9Item3">Ongoing Premium updates as the project grows</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('cycles')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">📡</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.cardSentimentTitle">Market Sentiment: Fear &amp; Greed</h3>
-          <p data-i18n="member.cardSentimentText">Two live indices — US stocks and crypto — showing whether the market is in fear or greed right now. Includes full educational explanation of how each index is calculated and how to use it.</p>
-          <ul>
-            <li data-i18n="member.cardSentimentItem1">Live gauges: CNN Fear &amp; Greed (US) and Alternative.me (Crypto)</li>
-            <li data-i18n="member.cardSentimentItem2">How all 12 signals are calculated across both indices</li>
-            <li data-i18n="member.cardSentimentItem3">Score reference table, divergence scenarios, and what the index cannot tell you</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('sentiment')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🔤</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card13Title">Glossary of key terms</h3>
-          <p data-i18n="member.card13Text">A quick plain-English reference for the investing words beginners keep seeing in guides, books, and broker apps.</p>
-          <ul>
-            <li data-i18n="member.card13Item1">ETF, index fund, brokerage, liquidity, volatility, and more</li>
-            <li data-i18n="member.card13Item2">Australian terms like franking credits, CGT, and super</li>
-            <li data-i18n="member.card13Item3">Crypto terms without hype or confusion</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('glossary')" data-i18n="member.openFileBtn">Open file</button>
+          <button class="member-open-file" onclick="openMemberGuide('exchange')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
           <div class="member-icon">✅</div>
@@ -12134,6 +12027,126 @@
             <li data-i18n="member.card15Item3">The real cost of waiting — modelled over 20 years</li>
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('inflation')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">📊</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card8Title">Chart reading and research tools</h3>
+          <p data-i18n="member.card8Text">Guidance for reading price charts across stocks, crypto, indexes, and ETFs with a beginner-safe process.</p>
+          <ul>
+            <li data-i18n="member.card8Item1">Chart basics, watchlists, alerts, and indicators</li>
+            <li data-i18n="member.card8Item2">Relevant channels and content to watch</li>
+            <li data-i18n="member.card8Item3">Macro books and study options, including The Black Swan</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('tools')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">₿</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card7Title">Bitcoin research section</h3>
+          <p data-i18n="member.card7Text">A structured Bitcoin area covering the white paper, halving cycles, on-chain metrics, and why Bitcoin was created.</p>
+          <ul>
+            <li data-i18n="member.card7Item1">Bitcoin white paper explained in plain English</li>
+            <li data-i18n="member.card7Item2">Halving, supply, fees, and security basics</li>
+            <li data-i18n="member.card7Item3">Simple on-chain metrics without hype</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('bitcoin')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">₿</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card2Title">Crypto and self-custody</h3>
+          <p data-i18n="member.card2Text">Advanced crypto learning, wallet safety, self-custody principles, and common beginner mistakes to avoid.</p>
+          <ul>
+            <li data-i18n="member.card2Item1">Bitcoin, Ethereum, exchanges, wallets, and cold storage</li>
+            <li data-i18n="member.card2Item2">Self-custody basics explained simply</li>
+            <li data-i18n="member.card2Item3">Security checklist before buying or moving crypto</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('crypto')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🧭</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card9Title">Cycle lessons and member updates</h3>
+          <p data-i18n="member.card9Text">Market-cycle psychology, bull and bear market behaviour, plus new products, studies, and insights added for members over time.</p>
+          <ul>
+            <li data-i18n="member.card9Item1">Mistakes to avoid in bull and bear markets</li>
+            <li data-i18n="member.card9Item2">How to stay calm when narratives change</li>
+            <li data-i18n="member.card9Item3">Ongoing Premium updates as the project grows</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('cycles')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🧠</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card18Title">Don't panic sell</h3>
+          <p data-i18n="member.card18Text">The emotional investor framework — why panic selling destroys long-term results, how to recognise fear in disguise, and what to do instead during a market crash.</p>
+          <ul>
+            <li data-i18n="member.card18Item1">Five "reasons to sell" that are actually fear</li>
+            <li data-i18n="member.card18Item2">A 5-question decision framework before selling anything</li>
+            <li data-i18n="member.card18Item3">Every major crash recovery in history — the full table</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('panicsell')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">📡</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.cardSentimentTitle">Market Sentiment: Fear &amp; Greed</h3>
+          <p data-i18n="member.cardSentimentText">Two live indices — US stocks and crypto — showing whether the market is in fear or greed right now. Includes full educational explanation of how each index is calculated and how to use it.</p>
+          <ul>
+            <li data-i18n="member.cardSentimentItem1">Live gauges: CNN Fear &amp; Greed (US) and Alternative.me (Crypto)</li>
+            <li data-i18n="member.cardSentimentItem2">How all 12 signals are calculated across both indices</li>
+            <li data-i18n="member.cardSentimentItem3">Score reference table, divergence scenarios, and what the index cannot tell you</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('sentiment')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">📖</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card5Title">Books and reading path</h3>
+          <p data-i18n="member.card5Text">Curated books, summaries, key takeaways, and reading order from beginner to advanced.</p>
+          <ul>
+            <li data-i18n="member.card5Item1">Beginner, intermediate, and advanced reading order</li>
+            <li data-i18n="member.card5Item2">Book summaries and key lessons</li>
+            <li data-i18n="member.card5Item3">What to read next based on your goals</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberBooks()" data-i18n="member.booksListBtn">Open book list</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🔤</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card13Title">Glossary of key terms</h3>
+          <p data-i18n="member.card13Text">A quick plain-English reference for the investing words beginners keep seeing in guides, books, and broker apps.</p>
+          <ul>
+            <li data-i18n="member.card13Item1">ETF, index fund, brokerage, liquidity, volatility, and more</li>
+            <li data-i18n="member.card13Item2">Australian terms like franking credits, CGT, and super</li>
+            <li data-i18n="member.card13Item3">Crypto terms without hype or confusion</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('glossary')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🗂️</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.cardLibraryTitle">Research &amp; Tools Library</h3>
+          <p data-i18n="member.cardLibraryText">10 categories of curated research tools, reference sources, and educational material. From ETF screeners and sentiment gauges to platform comparisons, tax basics, and sources to avoid.</p>
+          <ul>
+            <li data-i18n="member.cardLibraryItem1">ETF tools, crypto research, chart platforms, sentiment gauges</li>
+            <li data-i18n="member.cardLibraryItem2">Platform comparison: AU, US &amp; Brazil</li>
+            <li data-i18n="member.cardLibraryItem3">AU tax basics, superannuation tools, and red-flag sources</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('references')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">💬</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <h3 data-i18n="member.card6Title">Beginner support Zoom call</h3>
+          <p data-i18n="member.card6Text">One 60-minute Zoom call is included with your Premium access, with extra online calls available separately for AUD $39.90 if you want more support.</p>
+          <ul>
+            <li data-i18n="member.card6Item1">Use the included call for questions or platform setup</li>
+            <li data-i18n="member.card6Item2">Bring questions from the simulator or exchange setup</li>
+            <li data-i18n="member.card6Item3">Extra 60-minute Zoom calls available separately for AUD $39.90</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('zoom')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
           <div class="member-icon">🌏</div>
@@ -12170,18 +12183,6 @@
             <li data-i18n="member.card11Item3">A calm checklist before making changes</li>
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('super')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🧠</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card18Title">Don't panic sell</h3>
-          <p data-i18n="member.card18Text">The emotional investor framework — why panic selling destroys long-term results, how to recognise fear in disguise, and what to do instead during a market crash.</p>
-          <ul>
-            <li data-i18n="member.card18Item1">Five "reasons to sell" that are actually fear</li>
-            <li data-i18n="member.card18Item2">A 5-question decision framework before selling anything</li>
-            <li data-i18n="member.card18Item3">Every major crash recovery in history — the full table</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('panicsell')" data-i18n="member.openFileBtn">Open file</button>
         </div>
       </div>
       <div class="member-next" data-i18n="member.next">Premium is designed to keep every next step clear: learn the idea, understand the tools, ask questions, and build confidence before taking action.</div>
@@ -16806,19 +16807,19 @@
 
   <!-- ── Mobile bottom navigation ── -->
   <nav class="mobile-bottom-nav" id="mobileBottomNav">
-    <a href="#simulator" class="mob-nav-item" data-i18n="nav.simulator">
+    <a href="#simulator" class="mob-nav-item" onclick="showPage('simulator'); return false;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       <span data-i18n="nav.simulator">Simulator</span>
     </a>
-    <a href="#inflation" class="mob-nav-item" data-i18n-label="nav.inflation">
+    <a href="#inflation" class="mob-nav-item" onclick="showPage('inflation'); return false;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       <span data-i18n="nav.inflation">Inflation</span>
     </a>
-    <a href="#learn" class="mob-nav-item">
+    <a href="#learn" class="mob-nav-item" onclick="showPage('learn'); return false;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       <span data-i18n="nav.learn">Learn</span>
     </a>
-    <a href="#plans" class="mob-nav-item mob-nav-cta">
+    <a href="#plans" class="mob-nav-item mob-nav-cta" onclick="showPage('plans'); return false;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       <span data-i18n="nav.plans">Plans</span>
     </a>
@@ -16829,6 +16830,10 @@
     display: none;
   }
   @media (max-width: 768px) {
+    /* Prevent content from being hidden behind the fixed bottom nav */
+    .app-page {
+      padding-bottom: calc(68px + env(safe-area-inset-bottom)) !important;
+    }
     .mobile-bottom-nav {
       display: flex;
       position: fixed;
@@ -16838,8 +16843,6 @@
       z-index: 9999;
       background: rgba(7, 17, 32, 0.97);
       border-top: 1px solid rgba(0, 212, 170, 0.18);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       padding: 0.4rem 0 calc(0.4rem + env(safe-area-inset-bottom));
       justify-content: space-around;
       align-items: stretch;
@@ -16875,8 +16878,6 @@
     .mob-nav-item.mob-nav-cta svg {
       stroke: #00d4aa;
     }
-    /* Push page content above bottom nav */
-    body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
   }
   </style>
 
