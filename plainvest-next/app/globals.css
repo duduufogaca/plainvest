@@ -138,6 +138,31 @@ a { color:inherit; text-decoration:none; }
   width:100%;
   margin-top:.4rem;
 }
+.pw-wrap {
+  position:relative;
+}
+.pw-wrap input {
+  padding-right:2.8rem;
+}
+.auth-card .pw-toggle {
+  position:absolute;
+  right:.75rem;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  padding:.25rem;
+  cursor:pointer;
+  color:rgba(255,255,255,.4);
+  width:auto;
+  margin:0;
+  display:flex;
+  align-items:center;
+  line-height:1;
+}
+.auth-card .pw-toggle:hover {
+  color:rgba(255,255,255,.8);
+}
 button:disabled,
 button[aria-disabled="true"] {
   cursor:not-allowed;

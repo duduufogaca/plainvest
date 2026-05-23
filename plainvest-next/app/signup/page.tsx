@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { signUp } from '../actions/auth';
 import { SubmitButton } from '../components/submit-button';
+import { PasswordInput } from '../components/password-input';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
@@ -17,7 +18,7 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
         <p className="muted">Use the same email you will use for your Plainvest Premium purchase.</p>
         {params.message ? <div className="notice">{params.message}</div> : null}
         <label>Email<input name="email" type="email" required /></label>
-        <label>Password<input name="password" type="password" minLength={6} required /></label>
+        <label>Password<PasswordInput name="password" minLength={6} required /></label>
         <SubmitButton pendingText="Creating account...">Create account</SubmitButton>
         <p className="switch">Already have an account? <Link href="/login?mode=manual">Login</Link></p>
       </form>
