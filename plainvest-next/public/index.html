@@ -342,15 +342,17 @@
     }
 
     .nav-logo {
-      height: 64px;
+      height: 44px;
       width: auto;
+      max-width: 240px;
       display: block;
       flex-shrink: 0;
     }
 
     .footer-logo-img {
-      height: 58px;
+      height: 48px;
       width: auto;
+      max-width: 260px;
       display: block;
     }
 
@@ -1308,9 +1310,9 @@
     }
 
     .hero-logo {
-      height: 120px;
+      height: 90px;
       width: auto;
-      max-width: 100%;
+      max-width: min(100%, 500px);
       display: block;
     }
 
@@ -10555,7 +10557,8 @@
       }
 
       .nav-logo {
-        height: 48px !important;
+        height: 36px !important;
+        max-width: 180px !important;
       }
 
       .lang-btn {
@@ -10647,7 +10650,7 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="#home">
-      <img src="assets/plainvest-wordmark-cropped.png" alt="Plainvest" class="nav-logo">
+      <img src="assets/plainvest-logo-new.png" alt="Plainvest" class="nav-logo">
     </a>
     <ul>
       <li data-mob-icon="🏠" data-mob-desc="Back to the start"><a href="#home"><span data-i18n="nav.home">Home</span></a></li>
@@ -10684,7 +10687,7 @@
       <div class="hs-copy">
         <div class="hs-badge" data-i18n="hero.kicker">Investing made for everyone</div>
         <div class="hs-brandline">
-          <img src="assets/plainvest-logo-cropped.png" alt="Plainvest" class="hero-logo">
+          <img src="assets/plainvest-logo-new.png" alt="Plainvest" class="hero-logo">
         </div>
         <h1 class="hs-h1" data-i18n-html="hero.h1">Watch your money <em>grow</em> in 60 seconds.</h1>
         <p class="hs-lead" data-i18n-html="hero.lead">Plainvest shows first-time investors what growth, inflation, and investment options actually look like — plain language, no experience needed.</p>
@@ -11342,7 +11345,7 @@
           <p class="story-para" id="story-p5">I'm Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that investing is for everyone, without pretending this is personal financial advice.</p>
         </div>
         <div class="story-signature">
-          <div class="story-sig-avatar"><img src="assets/plainvest-icon-cropped.png" alt="Plainvest"></div>
+          <div class="story-sig-avatar"><img src="assets/plainvest-icon-new.png" alt="Plainvest"></div>
           <div>
             <div class="story-sig-name" id="story-sig-name">Eduardo Fogaça, Plainvest founder</div>
             <div class="story-sig-role" id="story-sig-role">Built in Australia from the beginner questions I wish someone had answered earlier.</div>
@@ -12512,7 +12515,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="foot-logo"><img src="assets/plainvest-wordmark-cropped.png" alt="Plainvest" class="footer-logo-img"></div>
+        <div class="foot-logo"><img src="assets/plainvest-logo-new.png" alt="Plainvest" class="footer-logo-img"></div>
         <p data-i18n="footer.tagline">Helping everyday people understand the power of investing — one simulation at a time.</p>
         <p class="foot-disc" data-i18n="footer.disc">Plainvest is an educational tool, not a financial advisor. All projections are estimates based on historical average returns and are not guaranteed. Please consult a qualified financial professional before making investment decisions.</p>
       </div>
@@ -13257,11 +13260,11 @@
           sideNote: '<strong>Por que Plainvest?</strong> Primeiro você entende os números. Depois aprende os nomes.',
           previewLabel: 'O que o Plainvest mostra',
           previewValue: 'Pequenos hábitos mensais podem virar resultados visíveis no longo prazo.',
-          previewChip: 'AUD $300/mês · 20 anos',
+          previewChip: 'R$ 1.500/mês · 20 anos',
           previewStartLabel: 'Você aporta',
-          previewStartValue: 'AUD $72 mil',
+          previewStartValue: 'R$ 360 mil',
           previewResultLabel: 'Pode crescer para',
-          previewResultValue: 'AUD $176 mil',
+          previewResultValue: 'R$ 880 mil',
           previewLegend1: 'Aportes',
           previewLegend2: 'Crescimento potencial',
           previewCaption: 'O simulador separa o que você coloca do que tempo e juros compostos podem adicionar.',
@@ -13278,7 +13281,7 @@
           band3T: 'Entenda crescimento junto da pressão da inflação.',
           band3B: 'Você não vê apenas números maiores. Você vê o que esses números ainda conseguem comprar com o passar do tempo.',
           social: 'Criado com <strong>feedback de iniciantes</strong><br>de pessoas que queriam finalmente entender investimentos.',
-          cta1: 'Testar simulador grátis', cta2: 'Ver acesso Premium', cta3: 'Comprar Premium — AUD $89.90',
+          cta1: 'Testar simulador grátis', cta2: 'Ver acesso Premium', cta3: 'Comprar Premium — aprox. R$320',
           trust1: 'Crescimento e inflação em um gráfico', trust2: 'ETFs · Bitcoin · Ações · Ouro + 5 tipos', trust3: 'Austrália · Brasil · EUA',
           howLabel: 'Como funciona',
           how1T: 'Insira seus números', how1B: 'Valor mensal, horizonte de tempo e país.',
@@ -13461,7 +13464,7 @@
             leftT: 'AUD $200–$350',
             leftB: 'Uma faixa comum para uma sessão de educação ou orientação financeira na Austrália.',
             rightK: 'Plainvest Premium',
-            rightT: 'AUD $89,90 uma vez',
+            rightT: 'aprox. R$320,00 uma vez',
             rightB: 'Inclui a chamada de Zoom de 60 minutos, 15 guias, trilha de livros e acesso permanente ao hub.'
           },
           preview: {
@@ -13503,7 +13506,7 @@
             s1: '1. Crie sua conta gratuita',
             b1: 'Use o email que você quer conectar ao acesso Premium.',
             s2: '2. Finalize o checkout',
-            b2: 'Pague AUD $89,90 uma vez pelo checkout seguro do Stripe.',
+            b2: 'Pague via checkout seguro do Stripe (aprox. R$320,00 em pagamento único).',
             s3: '3. Acesse tudo',
             b3: 'Abra os 15 guias, a trilha de livros e agende sua chamada no Zoom.'
           },
@@ -13520,7 +13523,7 @@
             q3: 'O que acontece depois da compra?',
             a3: 'Imediatamente após a compra: 15 guias estruturados sobre noções de investimento, DCA, segurança em Bitcoin, autocustódia cripto, impostos e CGT na Austrália, superannuation, comparação de plataformas, livros, leitura de gráficos e mais — além do agendamento da sua chamada incluída de 60 minutos no Zoom.',
             q4: 'O preço é definitivo?',
-            a4: 'AUD $89,90 é o preço fundador em pagamento único enquanto o Plainvest cresce com os primeiros usuários.',
+            a4: 'Aprox. R$320,00 (AUD $89,90) é o preço fundador enquanto o Plainvest cresce com os primeiros usuários.',
             q5: 'Como acesso o conteúdo depois de pagar?',
             a5: 'Crie sua conta de membro, finalize o checkout no Stripe e volte para o hub de membros, onde os guias são liberados automaticamente.',
             q6: 'Como agendo a chamada no Zoom?',
@@ -13949,6 +13952,19 @@
       try { localStorage.setItem('plainvest-lang', lang); } catch(e) {}
       document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 
+      // Auto-switch inflation country to match language selection
+      if (lang === 'pt' && currentInflCountry === 'us') {
+        currentInflCountry = 'br';
+        document.querySelectorAll('.inf-tab').forEach(function(b) { b.classList.remove('active'); });
+        var brTab = document.querySelector('.inf-tab[onclick*="\'br\'"]');
+        if (brTab) brTab.classList.add('active');
+      } else if (lang === 'en' && currentInflCountry === 'br') {
+        currentInflCountry = 'us';
+        document.querySelectorAll('.inf-tab').forEach(function(b) { b.classList.remove('active'); });
+        var usTab = document.querySelector('.inf-tab[onclick*="\'us\'"]');
+        if (usTab) usTab.classList.add('active');
+      }
+
       // Update active button
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -14362,6 +14378,40 @@
       if (typeof renderInflationChart === 'function') { renderInflationChart(); updateInflationStats(); }
       if (typeof simulate === 'function') { try { simulate(); } catch (e) { } }
       if (typeof syncMemberNavState === 'function') { try { syncMemberNavState(); } catch (e) { } }
+
+      // Update mobile overlay item descriptions
+      var mobDescMap = {
+        en: {
+          '#home': 'Back to the start',
+          '#simulator': 'Test your investment plan',
+          '#inflation': 'See how inflation affects your money',
+          '#learn': 'Start learning the basics',
+          '#story': 'Why Plainvest was built',
+          '#books': 'Recommended reading list',
+          '#member': 'Your premium guides',
+          '#plans': 'Get lifetime Premium access',
+          '#contact': 'Questions or feedback'
+        },
+        pt: {
+          '#home': 'Voltar ao início',
+          '#simulator': 'Teste seu plano de investimento',
+          '#inflation': 'Veja como a inflação afeta seu dinheiro',
+          '#learn': 'Comece a aprender o básico',
+          '#story': 'Por que o Plainvest foi criado',
+          '#books': 'Lista de leitura recomendada',
+          '#member': 'Seus guias Premium',
+          '#plans': 'Obter acesso Premium vitalício',
+          '#contact': 'Dúvidas ou feedback'
+        }
+      };
+      var descTranslations = mobDescMap[lang] || mobDescMap['en'];
+      document.querySelectorAll('#mobMenuOverlay .mob-item').forEach(function(item) {
+        var descEl = item.querySelector('.mob-item-desc');
+        if (!descEl) return;
+        var href = item.getAttribute('href') || '';
+        var newDesc = descTranslations[href];
+        if (newDesc) descEl.textContent = newDesc;
+      });
     }
 
     const COUNTRIES = {
@@ -16449,6 +16499,10 @@
         var target = pageFromHash(link.getAttribute('href'));
         link.classList.toggle('is-active', target === page && !link.classList.contains('nav-cta'));
       });
+      document.querySelectorAll('#mobMenuOverlay .mob-item').forEach(function(item) {
+        var target = pageFromHash(item.getAttribute('href') || '');
+        item.classList.toggle('is-active', target === page && !item.classList.contains('is-cta'));
+      });
     }
 
     function afterPageShown(page) {
@@ -16920,6 +16974,13 @@
     }
     .mob-menu-overlay .mob-item.is-cta .mob-item-desc {
       color: rgba(0,212,170,0.55) !important;
+    }
+    .mob-menu-overlay .mob-item.is-active {
+      background: rgba(255,255,255,0.04) !important;
+      border-left: 3px solid rgba(255,255,255,0.25) !important;
+    }
+    .mob-menu-overlay .mob-item.is-active .mob-item-label {
+      color: #f5f7fa !important;
     }
   }
   </style>
