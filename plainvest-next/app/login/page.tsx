@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { SubmitButton } from '../components/submit-button';
+import { PasswordInput } from '../components/password-input';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
@@ -64,7 +65,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         <p className="muted">Log in to continue your Plainvest Premium learning path.</p>
         {params.message ? <div className="notice">{params.message}</div> : null}
         <label>Email<input name="email" type="email" required /></label>
-        <label>Password<input name="password" type="password" minLength={6} required /></label>
+        <label>Password<PasswordInput name="password" minLength={6} required /></label>
         <SubmitButton pendingText="Logging in...">Login</SubmitButton>
         <p className="switch"><Link href="/forgot-password">Forgot password?</Link></p>
         <p className="switch">New member? <Link href="/signup">Create an account</Link></p>
