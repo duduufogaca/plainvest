@@ -16710,7 +16710,8 @@
 
       const navProfileBtn = document.getElementById('nav-profile-btn');
       if (navProfileBtn) {
-        navProfileBtn.href = isMemberAppHost() ? '/profile' : 'https://members.plainvest.app/profile';
+        var isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        navProfileBtn.href = (isMemberAppHost() || isLocalHost) ? '/profile' : 'https://members.plainvest.app/profile';
         navProfileBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
       }
     }
