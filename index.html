@@ -11995,7 +11995,6 @@
         <div class="member-head-actions">
           <div class="member-welcome-badge" id="member-welcome-badge" style="display:none"></div>
           <div class="member-status" data-i18n="member.status">Premium member</div>
-          <a id="member-profile-btn" class="member-logout-link" data-i18n="member.profileBtn">My Profile</a>
         </div>
       </div>
       <div class="member-hero-visual">
@@ -16773,6 +16772,7 @@
       if (isLocalPlainvestPreview()) {
         document.body.classList.add('premium-access-granted');
         syncMemberNavState();
+        updateWelcomeBadge();
         return true;
       }
 
