@@ -4984,14 +4984,16 @@
       white-space: nowrap;
     }
 
-    .member-welcome-badge {
-      color: var(--white, #fff);
-      font-size: 1rem;
-      font-weight: 800;
-      white-space: nowrap;
+    .member-welcome-greeting {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin: .5rem 0 .6rem;
+      color: #e8f4ff;
+      letter-spacing: -.01em;
     }
 
-    .member-welcome-badge span {
+    .member-welcome-greeting span {
       color: #61d5b4;
     }
 
@@ -11989,11 +11991,11 @@
       <div class="member-head">
         <div>
           <div class="section-eyebrow" data-i18n="member.eyebrow">Premium member area</div>
+          <div class="member-welcome-greeting" id="member-welcome-greeting" style="display:none"></div>
           <div class="section-h2" data-i18n-html="member.h2">Your Plainvest <em>learning hub.</em></div>
           <p class="section-lead" data-i18n="member.lead">Your Premium content is ready here after login: guides, books, exchange help, meetings, and saved learning paths in one place.</p>
         </div>
         <div class="member-head-actions">
-          <div class="member-welcome-badge" id="member-welcome-badge" style="display:none"></div>
           <div class="member-status" data-i18n="member.status">Premium member</div>
         </div>
       </div>
@@ -14085,6 +14087,8 @@
         const val = getNestedKey(t, el.dataset.i18n);
         if (val !== undefined) el.textContent = val;
       });
+
+      updateWelcomeBadge();
 
       // ── data-i18n-html (innerHTML)
       document.querySelectorAll('[data-i18n-html]').forEach(el => {
@@ -16652,14 +16656,18 @@
     }
 
     function updateWelcomeBadge() {
-      var badge = document.getElementById('member-welcome-badge');
-      if (!badge) return;
+      var el = document.getElementById('member-welcome-greeting');
+      if (!el) return;
       var name = getMemberName();
       if (name) {
-        badge.innerHTML = 'Welcome, <span>' + name.split(' ')[0] + '</span>';
-        badge.style.display = 'block';
+        var firstName = name.split(' ')[0];
+        var greeting = currentLang === 'pt'
+          ? 'Bem-vindo(a) de volta, <span>' + firstName + '</span>'
+          : 'Welcome back, <span>' + firstName + '</span>';
+        el.innerHTML = greeting;
+        el.style.display = 'block';
       } else {
-        badge.style.display = 'none';
+        el.style.display = 'none';
       }
     }
 
