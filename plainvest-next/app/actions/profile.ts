@@ -6,13 +6,14 @@ import { redirect } from 'next/navigation';
 export async function updateProfile(formData: FormData) {
   const fullName = String(formData.get('full_name') || '').trim();
   const dateOfBirth = String(formData.get('date_of_birth') || '').trim();
+  const gender = String(formData.get('gender') || '').trim();
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
   const { error } = await supabase.auth.updateUser({
-    data: { full_name: fullName, date_of_birth: dateOfBirth },
+    data: { full_name: fullName, date_of_birth: dateOfBirth, gender },
   });
 
   if (error) {

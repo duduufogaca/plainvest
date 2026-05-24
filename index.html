@@ -16655,15 +16655,30 @@
       catch (e) { }
     }
 
+    function getMemberGender() {
+      try { return sessionStorage.getItem('plainvestMemberGender') || ''; }
+      catch (e) { return ''; }
+    }
+
+    function rememberMemberGender(gender) {
+      try { sessionStorage.setItem('plainvestMemberGender', gender || ''); }
+      catch (e) { }
+    }
+
     function updateWelcomeBadge() {
       var el = document.getElementById('member-welcome-greeting');
       if (!el) return;
       var name = getMemberName();
       if (name) {
         var firstName = name.split(' ')[0];
-        var greeting = currentLang === 'pt'
-          ? 'Bem-vindo(a) de volta, <span>' + firstName + '</span>'
-          : 'Welcome back, <span>' + firstName + '</span>';
+        var gender = getMemberGender();
+        var greeting;
+        if (currentLang === 'pt') {
+          var ptWord = gender === 'female' ? 'Bem-vinda' : 'Bem-vindo';
+          greeting = ptWord + ' de volta, <span>' + firstName + '</span>';
+        } else {
+          greeting = 'Welcome back, <span>' + firstName + '</span>';
+        }
         el.innerHTML = greeting;
         el.style.display = 'block';
       } else {
@@ -16816,6 +16831,7 @@
             document.body.classList.add('premium-access-granted');
             rememberPremiumSessionAccess();
             rememberMemberName(status.name || '');
+            rememberMemberGender(status.gender || '');
             updateWelcomeBadge();
             return true;
           }

@@ -26,6 +26,7 @@ export default async function ProfilePage({
   const meta = user.user_metadata || {};
   const fullName: string = meta.full_name || '';
   const dateOfBirth: string = meta.date_of_birth || '';
+  const gender: string = meta.gender || '';
   const memberSince = new Date(user.created_at).toLocaleDateString('en-AU', {
     day: 'numeric', month: 'long', year: 'numeric',
   });
@@ -64,6 +65,14 @@ export default async function ProfilePage({
             <label>
               Date of birth
               <input name="date_of_birth" type="date" defaultValue={dateOfBirth} />
+            </label>
+            <label>
+              Gender
+              <select name="gender" defaultValue={gender}>
+                <option value="">Prefer not to say</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
             </label>
             <label>
               Email address
