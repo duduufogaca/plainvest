@@ -435,6 +435,14 @@
       box-shadow: 0 12px 30px rgba(0, 212, 170, .28);
     }
 
+    .nav-profile-btn {
+      display: none !important;
+    }
+
+    body.premium-session-active .nav-profile-btn {
+      display: inline-flex !important;
+    }
+
     body.premium-session-active .member-create-btn {
       display: none !important;
     }
@@ -10665,6 +10673,7 @@
     </ul>
     <div class="nav-actions">
       <a class="member-login-btn member-create-btn" href="https://members.plainvest.app/signup" id="nav-create-member-btn" data-i18n="nav.createMember">Create member</a>
+      <a class="member-login-btn nav-profile-btn" href="#" id="nav-profile-btn" data-i18n="nav.profile">My Profile</a>
       <a class="member-login-btn" href="https://members.plainvest.app/login?mode=manual" id="nav-login-btn" data-i18n="nav.login">Login</a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-btn active" onclick="setLang('en',this)" title="English">🇺🇸 EN</button>
@@ -11898,6 +11907,7 @@
         </div>
         <div class="member-head-actions">
           <div class="member-status" data-i18n="member.status">Premium member</div>
+          <a id="member-profile-btn" class="member-logout-link" data-i18n="member.profileBtn">My Profile</a>
         </div>
       </div>
       <div class="member-hero-visual">
@@ -12579,7 +12589,7 @@
     // ══════════════════════════════════════════════════════
     const LANG = {
       en: {
-        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub' },
+        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub', profile: 'My Profile' },
         hero: {
           kicker: 'Investing made for everyone',
           h1: 'Watch your money <em>grow</em> in 60 seconds.',
@@ -12943,6 +12953,7 @@
           extraPaidText: 'Now send your preferred days, times, timezone, and the questions you want to cover. We will reply with confirmation and the Zoom details.',
           extraPaidBtn: 'Send call details',
           logoutBtn: 'Logout',
+          profileBtn: 'My Profile',
           path1Title: 'Start with your goal',
           path1Text: 'Choose what you want to understand first: investing basics, Bitcoin, DCA, books, or exchange setup.',
           path2Title: 'Follow one module',
@@ -13243,7 +13254,7 @@
       },
 
       pt: {
-        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium' },
+        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil' },
         hero: {
           kicker: 'Investimento para todo mundo',
           h1: 'Veja seu dinheiro <em>crescer</em> em 60 segundos.',
@@ -13607,6 +13618,7 @@
           extraPaidText: 'Agora envie seus dias, horários, fuso horário e as perguntas que quer conversar. Vamos responder com a confirmação e os detalhes do Zoom.',
           extraPaidBtn: 'Enviar detalhes da chamada',
           logoutBtn: 'Sair',
+          profileBtn: 'Meu Perfil',
           path1Title: 'Comece pelo seu objetivo',
           path1Text: 'Escolha o que quer entender primeiro: básico de investimentos, Bitcoin, DCA, livros ou configuração de exchange.',
           path2Title: 'Siga um módulo',
@@ -16611,6 +16623,16 @@
           ? (isMemberAppHost() ? '/logout' : 'https://members.plainvest.app/logout')
           : 'https://members.plainvest.app/login?mode=manual';
         loginBtn.onclick = active ? logoutMemberSession : null;
+      }
+
+      const profileBtn = document.getElementById('member-profile-btn');
+      if (profileBtn) {
+        profileBtn.href = isMemberAppHost() ? '/profile' : 'https://members.plainvest.app/profile';
+      }
+
+      const navProfileBtn = document.getElementById('nav-profile-btn');
+      if (navProfileBtn) {
+        navProfileBtn.href = isMemberAppHost() ? '/profile' : 'https://members.plainvest.app/profile';
       }
     }
 
