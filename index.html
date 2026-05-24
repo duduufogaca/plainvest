@@ -435,14 +435,6 @@
       box-shadow: 0 12px 30px rgba(0, 212, 170, .28);
     }
 
-    .nav-profile-btn {
-      display: none !important;
-    }
-
-    body.premium-session-active .nav-profile-btn {
-      display: inline-flex !important;
-    }
-
     body.premium-session-active .member-create-btn {
       display: none !important;
     }
@@ -10757,7 +10749,7 @@
     </ul>
     <div class="nav-actions">
       <a class="member-login-btn member-create-btn" href="https://members.plainvest.app/signup" id="nav-create-member-btn" data-i18n="nav.createMember">Create member</a>
-      <a class="member-login-btn nav-profile-btn" href="#" id="nav-profile-btn" data-i18n="nav.profile">My Profile</a>
+      <a class="member-login-btn nav-profile-btn" href="/profile" id="nav-profile-btn" data-i18n="nav.profile" style="display:none">My Profile</a>
       <a class="member-login-btn" href="https://members.plainvest.app/login?mode=manual" id="nav-login-btn" data-i18n="nav.login">Login</a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-btn active" onclick="setLang('en',this)" title="English">🇺🇸 EN</button>
@@ -16718,7 +16710,9 @@
 
       const navProfileBtn = document.getElementById('nav-profile-btn');
       if (navProfileBtn) {
-        navProfileBtn.href = isMemberAppHost() ? '/profile' : 'https://members.plainvest.app/profile';
+        var isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        navProfileBtn.href = (isMemberAppHost() || isLocalHost) ? '/profile' : 'https://members.plainvest.app/profile';
+        navProfileBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
       }
     }
 
