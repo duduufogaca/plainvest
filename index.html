@@ -4984,6 +4984,17 @@
       white-space: nowrap;
     }
 
+    .member-welcome-badge {
+      color: var(--white, #fff);
+      font-size: 1rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .member-welcome-badge span {
+      color: #61d5b4;
+    }
+
     .member-head-actions {
       display: flex;
       align-items: center;
@@ -11982,6 +11993,7 @@
           <p class="section-lead" data-i18n="member.lead">Your Premium content is ready here after login: guides, books, exchange help, meetings, and saved learning paths in one place.</p>
         </div>
         <div class="member-head-actions">
+          <div class="member-welcome-badge" id="member-welcome-badge" style="display:none"></div>
           <div class="member-status" data-i18n="member.status">Premium member</div>
           <a id="member-profile-btn" class="member-logout-link" data-i18n="member.profileBtn">My Profile</a>
         </div>
@@ -16630,6 +16642,28 @@
       catch (e) { return false; }
     }
 
+    function getMemberName() {
+      try { return sessionStorage.getItem('plainvestMemberName') || ''; }
+      catch (e) { return ''; }
+    }
+
+    function rememberMemberName(name) {
+      try { if (name) sessionStorage.setItem('plainvestMemberName', name); }
+      catch (e) { }
+    }
+
+    function updateWelcomeBadge() {
+      var badge = document.getElementById('member-welcome-badge');
+      if (!badge) return;
+      var name = getMemberName();
+      if (name) {
+        badge.innerHTML = 'Welcome, <span>' + name.split(' ')[0] + '</span>';
+        badge.style.display = 'block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
     function rememberPremiumSessionAccess() {
       try { sessionStorage.setItem('plainvestPremiumAccess', 'granted'); }
       catch (e) { }
@@ -16746,6 +16780,7 @@
         document.body.classList.remove('premium-access-checking', 'premium-access-denied');
         document.body.classList.add('premium-access-granted');
         syncMemberNavState();
+        updateWelcomeBadge();
         return true;
       }
 
@@ -16772,6 +16807,8 @@
             document.body.classList.remove('premium-access-checking', 'premium-access-denied');
             document.body.classList.add('premium-access-granted');
             rememberPremiumSessionAccess();
+            rememberMemberName(status.name || '');
+            updateWelcomeBadge();
             return true;
           }
 

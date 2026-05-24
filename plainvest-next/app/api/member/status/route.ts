@@ -16,10 +16,13 @@ export async function GET() {
 
     const { isPremium } = await getPremiumAccess(supabase, user.id);
 
+    const fullName = user.user_metadata?.full_name || '';
+
     return NextResponse.json({
       authenticated: true,
       premium: isPremium,
       email: user.email,
+      name: fullName,
     }, {
       headers: { 'Cache-Control': 'no-store, max-age=0' },
     });
