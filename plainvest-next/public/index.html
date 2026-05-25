@@ -435,14 +435,6 @@
       box-shadow: 0 12px 30px rgba(0, 212, 170, .28);
     }
 
-    .nav-profile-btn {
-      display: none !important;
-    }
-
-    body.premium-session-active .nav-profile-btn {
-      display: inline-flex !important;
-    }
-
     body.premium-session-active .member-create-btn {
       display: none !important;
     }
@@ -4915,6 +4907,19 @@
       white-space: nowrap;
     }
 
+    .member-welcome-greeting {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin: .5rem 0 .6rem;
+      color: #e8f4ff;
+      letter-spacing: -.01em;
+    }
+
+    .member-welcome-greeting span {
+      color: #61d5b4;
+    }
+
     .member-head-actions {
       display: flex;
       align-items: center;
@@ -5152,54 +5157,101 @@
 
     .member-card {
       min-height: 240px;
-      border: 1px solid rgba(255, 255, 255, .09);
-      background: linear-gradient(145deg, rgba(22, 40, 66, .94), rgba(9, 21, 39, .96));
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: linear-gradient(160deg, rgba(18, 34, 58, .97), rgba(8, 17, 34, .98));
       border-radius: 22px;
-      padding: 1.25rem;
+      padding: 1.35rem;
       display: flex;
       flex-direction: column;
-      gap: .75rem;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
+      gap: .7rem;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .22);
+      transition: transform .22s cubic-bezier(.25,.46,.45,.94),
+                  box-shadow .22s ease,
+                  border-color .22s ease;
     }
+
+    .member-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 32px 64px rgba(0, 0, 0, .38), 0 0 0 1px rgba(97, 213, 180, .1);
+      border-color: rgba(97, 213, 180, .2);
+    }
+
+    /* Featured "Start Here" card — full width */
+    .member-card.member-card-featured {
+      grid-column: span 3;
+      background: linear-gradient(135deg, rgba(22, 44, 76, .98), rgba(10, 22, 44, .98));
+      border-color: rgba(97, 213, 180, .25);
+      border-top: 3px solid rgba(97, 213, 180, .9) !important;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.25rem;
+      min-height: auto;
+    }
+    .member-card.member-card-featured .member-card-cat-tag { width: 100%; flex-basis: 100%; }
+    .member-card.member-card-featured .member-icon { width: 56px; height: 56px; font-size: 1.6rem; flex-shrink: 0; }
+    .member-card.member-card-featured .member-card-featured-body { flex: 1; min-width: 200px; }
+    .member-card.member-card-featured h3 { font-size: 1.5rem; margin: 0 0 .4rem; }
+    .member-card.member-card-featured .member-unlocked { display: none; }
+    .member-card.member-card-featured ul { columns: 2; gap: .5rem; }
+    .member-card.member-card-featured .member-open-file { margin-top: .75rem; }
 
     .member-card:nth-child(3n+1) {
-      border-top: 3px solid rgba(0, 212, 170, .75);
+      border-top: 3px solid rgba(0, 212, 170, .7);
     }
-
     .member-card:nth-child(3n+2) {
-      border-top: 3px solid rgba(232, 184, 75, .75);
+      border-top: 3px solid rgba(244, 200, 106, .7);
     }
-
     .member-card:nth-child(3n) {
-      border-top: 3px solid rgba(114, 154, 255, .65);
+      border-top: 3px solid rgba(129, 140, 248, .65);
     }
 
     .member-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(0, 212, 170, .1);
       border: 1px solid rgba(0, 212, 170, .18);
-      font-size: 1.25rem;
+      font-size: 1.35rem;
+      flex-shrink: 0;
     }
-
     .member-card:nth-child(3n+2) .member-icon {
-      background: rgba(232, 184, 75, .11);
-      border-color: rgba(232, 184, 75, .22);
+      background: rgba(244, 200, 106, .1);
+      border-color: rgba(244, 200, 106, .2);
+    }
+    .member-card:nth-child(3n) .member-icon {
+      background: rgba(129, 140, 248, .1);
+      border-color: rgba(129, 140, 248, .2);
     }
 
-    .member-card:nth-child(3n) .member-icon {
-      background: rgba(114, 154, 255, .1);
-      border-color: rgba(114, 154, 255, .2);
+    /* Category chip added by JS */
+    .member-card-cat-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 8px;
+      padding: .15rem .5rem;
+      font-size: .66rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .1rem;
     }
+    .cat-tag-crypto   { background: rgba(244,200,106,.13); color: #f4c86a; }
+    .cat-tag-stocks   { background: rgba(97,213,180,.12);  color: #61d5b4; }
+    .cat-tag-dca      { background: rgba(97,213,180,.1);   color: #61d5b4; }
+    .cat-tag-exchange { background: rgba(129,140,248,.13); color: #a0afff; }
+    .cat-tag-mindset  { background: rgba(251,113,133,.12); color: #fb7185; }
+    .cat-tag-tools    { background: rgba(148,163,184,.1);  color: #94a3b8; }
+    .cat-tag-start    { background: rgba(244,200,106,.12); color: #f4c86a; }
 
     .member-card h3 {
       color: var(--white);
       font-family: 'Lora', serif;
-      font-size: 1.18rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
     }
 
     .member-card p {
@@ -5287,7 +5339,22 @@
       white-space: nowrap;
     }
     .member-card.guide-read {
-      border-color: rgba(0, 212, 170, .28);
+      border-color: rgba(0, 212, 170, .3);
+      background: linear-gradient(160deg, rgba(20, 40, 64, .97), rgba(9, 19, 36, .98));
+    }
+    .member-card.guide-read::after {
+      content: '✓';
+      position: absolute;
+      top: .85rem;
+      right: 2.6rem;
+      font-size: .72rem;
+      font-weight: 900;
+      color: #61d5b4;
+      background: rgba(97, 213, 180, .12);
+      border-radius: 99px;
+      padding: .15rem .45rem;
+      line-height: 1.4;
+      pointer-events: none;
     }
     .member-card.guide-read .member-open-file {
       background: rgba(0, 212, 170, .12);
@@ -5296,6 +5363,104 @@
     .member-card.guide-read .member-open-file::before {
       content: "✓ ";
     }
+
+    /* ── Hub filter bar ── */
+    .member-filter-bar {
+      display: flex;
+      gap: .45rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+    .member-filter-btn {
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 999px;
+      padding: .35rem .9rem;
+      background: rgba(255,255,255,.04);
+      color: #7a8fa8;
+      font-size: .78rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: inherit;
+      line-height: 1.4;
+    }
+    .member-filter-btn:hover {
+      border-color: rgba(97,213,180,.35);
+      color: #c5dff0;
+      background: rgba(97,213,180,.06);
+    }
+    .member-filter-btn.active {
+      border-color: rgba(97,213,180,.55);
+      background: rgba(97,213,180,.13);
+      color: #61d5b4;
+    }
+    /* ── Card star / favourite ── */
+    .member-card { position: relative; }
+    .member-card-star {
+      position: absolute;
+      top: .85rem;
+      right: .85rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.16);
+      transition: color .18s, transform .15s;
+      padding: .2rem;
+      line-height: 1;
+      font-family: inherit;
+    }
+    .member-card-star:hover {
+      color: rgba(244,200,106,.75);
+      transform: scale(1.25);
+    }
+    .member-card-star.starred { color: #f4c86a; }
+    /* ── Member stats strip ── */
+    .member-stats-strip {
+      display: none;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    body.premium-session-active .member-stats-strip {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .member-stat-box {
+      flex: 1;
+      min-width: 140px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: .85rem 1.1rem;
+      background: rgba(255,255,255,.03);
+      display: grid;
+      gap: .2rem;
+      text-decoration: none;
+    }
+    .member-stat-box.portfolio-stat {
+      border-color: rgba(97,213,180,.2);
+      background: rgba(97,213,180,.04);
+      transition: background .2s;
+    }
+    .member-stat-box.portfolio-stat:hover {
+      background: rgba(97,213,180,.1);
+    }
+    .member-stat-label {
+      font-size: .67rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #5d7490;
+    }
+    .member-stat-value {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #ddeeff;
+      line-height: 1.1;
+    }
+    .member-stat-value.teal { color: #61d5b4; }
+    .member-stat-sub { font-size: .72rem; color: #5d7490; }
+    .member-stat-sub a { color: #61d5b4; font-weight: 800; }
 
     .member-library {
       margin-top: 1rem;
@@ -10673,7 +10838,8 @@
     </ul>
     <div class="nav-actions">
       <a class="member-login-btn member-create-btn" href="https://members.plainvest.app/signup" id="nav-create-member-btn" data-i18n="nav.createMember">Create member</a>
-      <a class="member-login-btn nav-profile-btn" href="#" id="nav-profile-btn" data-i18n="nav.profile">My Profile</a>
+      <a class="member-login-btn nav-profile-btn" href="/profile" id="nav-profile-btn" data-i18n="nav.profile" style="display:none">My Profile</a>
+      <a class="member-login-btn" href="/portfolio" id="nav-portfolio-btn" data-i18n="nav.portfolio" style="display:none">Portfolio</a>
       <a class="member-login-btn" href="https://members.plainvest.app/login?mode=manual" id="nav-login-btn" data-i18n="nav.login">Login</a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-btn active" onclick="setLang('en',this)" title="English">🇺🇸 EN</button>
@@ -11902,13 +12068,31 @@
       <div class="member-head">
         <div>
           <div class="section-eyebrow" data-i18n="member.eyebrow">Premium member area</div>
+          <div class="member-welcome-greeting" id="member-welcome-greeting" style="display:none"></div>
           <div class="section-h2" data-i18n-html="member.h2">Your Plainvest <em>learning hub.</em></div>
           <p class="section-lead" data-i18n="member.lead">Your Premium content is ready here after login: guides, books, exchange help, meetings, and saved learning paths in one place.</p>
         </div>
         <div class="member-head-actions">
           <div class="member-status" data-i18n="member.status">Premium member</div>
-          <a id="member-profile-btn" class="member-logout-link" data-i18n="member.profileBtn">My Profile</a>
         </div>
+      </div>
+      <!-- Member quick stats -->
+      <div class="member-stats-strip" id="member-stats-strip">
+        <div class="member-stat-box">
+          <div class="member-stat-label" data-i18n="member.statGuidesLabel">Guides opened</div>
+          <div class="member-stat-value" id="stat-guides-opened">0</div>
+          <div class="member-stat-sub" id="stat-guides-sub">of 18 guides</div>
+        </div>
+        <div class="member-stat-box">
+          <div class="member-stat-label" data-i18n="member.statFavsLabel">Saved favourites</div>
+          <div class="member-stat-value" id="stat-favs-count">0</div>
+          <div class="member-stat-sub" data-i18n="member.statFavsSub">topics starred</div>
+        </div>
+        <a class="member-stat-box portfolio-stat" href="/portfolio" id="stat-portfolio-link">
+          <div class="member-stat-label" data-i18n="member.statPortfolioLabel">My Portfolio</div>
+          <div class="member-stat-value teal">→</div>
+          <div class="member-stat-sub" data-i18n="member.statPortfolioSub">Track investments</div>
+        </a>
       </div>
       <div class="member-hero-visual">
         <div class="member-hero-copy">
@@ -11970,6 +12154,16 @@
       <div class="member-progress-strip">
         <div class="member-progress-bar-wrap" aria-hidden="true"><div class="member-progress-bar" id="member-progress-bar"></div></div>
         <span id="member-progress-counter" class="member-progress-label">0 of 18 guides opened</span>
+      </div>
+      <!-- Hub filter bar -->
+      <div class="member-filter-bar" id="member-filter-bar" role="toolbar" aria-label="Filter guides by topic">
+        <button class="member-filter-btn active" data-cat="all" onclick="setHubFilter('all')" data-i18n="member.filterAll">All</button>
+        <button class="member-filter-btn" data-cat="fav" onclick="setHubFilter('fav')" data-i18n="member.filterFav">⭐ Favourites</button>
+        <button class="member-filter-btn" data-cat="crypto" onclick="setHubFilter('crypto')" data-i18n="member.filterCrypto">₿ Crypto</button>
+        <button class="member-filter-btn" data-cat="stocks" onclick="setHubFilter('stocks')" data-i18n="member.filterStocks">📈 Stocks &amp; ETFs</button>
+        <button class="member-filter-btn" data-cat="exchange" onclick="setHubFilter('exchange')" data-i18n="member.filterExchange">🏦 Exchange</button>
+        <button class="member-filter-btn" data-cat="mindset" onclick="setHubFilter('mindset')" data-i18n="member.filterMindset">🧠 Mindset</button>
+        <button class="member-filter-btn" data-cat="tools" onclick="setHubFilter('tools')" data-i18n="member.filterTools">🔧 Tools</button>
       </div>
       <div class="member-grid">
         <div class="member-card">
@@ -12589,7 +12783,7 @@
     // ══════════════════════════════════════════════════════
     const LANG = {
       en: {
-        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub', profile: 'My Profile' },
+        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub', profile: 'My Profile', portfolio: 'Portfolio' },
         hero: {
           kicker: 'Investing made for everyone',
           h1: 'Watch your money <em>grow</em> in 60 seconds.',
@@ -13067,7 +13261,13 @@
           book5Text: 'Practical personal finance systems, automation, and consistent investing habits.',
           book6Title: 'The Intelligent Investor',
           book6Text: 'A deeper classic for valuation, risk, discipline, and long-term investor thinking.',
-          next: 'Premium is designed to keep every next step clear: learn the idea, understand the tools, ask questions, and build confidence before taking action.'
+          next: 'Premium is designed to keep every next step clear: learn the idea, understand the tools, ask questions, and build confidence before taking action.',
+          filterAll: 'All', filterFav: '⭐ Favourites', filterCrypto: '₿ Crypto',
+          filterStocks: '📈 Stocks & ETFs', filterExchange: '🏦 Exchange',
+          filterMindset: '🧠 Mindset', filterTools: '🔧 Tools',
+          statGuidesLabel: 'Guides opened', statFavsLabel: 'Saved favourites',
+          statFavsSub: 'topics starred', statPortfolioLabel: 'My Portfolio',
+          statPortfolioSub: 'Track investments'
         },
         memberGuide: {
           eyebrow: 'Premium file',
@@ -13254,7 +13454,7 @@
       },
 
       pt: {
-        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil' },
+        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil', portfolio: 'Portfólio' },
         hero: {
           kicker: 'Investimento para todo mundo',
           h1: 'Veja seu dinheiro <em>crescer</em> em 60 segundos.',
@@ -13732,7 +13932,13 @@
           book5Text: 'Sistemas práticos de finanças pessoais, automação e hábitos consistentes de investimento.',
           book6Title: 'O Investidor Inteligente',
           book6Text: 'Um clássico mais profundo sobre valuation, risco, disciplina e pensamento de investidor de longo prazo.',
-          next: 'O Premium foi pensado para deixar cada próximo passo claro: aprender a ideia, entender as ferramentas, tirar dúvidas e construir confiança antes de agir.'
+          next: 'O Premium foi pensado para deixar cada próximo passo claro: aprender a ideia, entender as ferramentas, tirar dúvidas e construir confiança antes de agir.',
+          filterAll: 'Tudo', filterFav: '⭐ Favoritos', filterCrypto: '₿ Cripto',
+          filterStocks: '📈 Ações & ETFs', filterExchange: '🏦 Corretora',
+          filterMindset: '🧠 Mentalidade', filterTools: '🔧 Ferramentas',
+          statGuidesLabel: 'Guias abertos', statFavsLabel: 'Favoritos salvos',
+          statFavsSub: 'tópicos marcados', statPortfolioLabel: 'Meu Portfólio',
+          statPortfolioSub: 'Acompanhar investimentos'
         },
         memberGuide: {
           eyebrow: 'Arquivo Premium',
@@ -13996,6 +14202,8 @@
         const val = getNestedKey(t, el.dataset.i18n);
         if (val !== undefined) el.textContent = val;
       });
+
+      updateWelcomeBadge();
 
       // ── data-i18n-html (innerHTML)
       document.querySelectorAll('[data-i18n-html]').forEach(el => {
@@ -15752,6 +15960,7 @@
         ? read.length + ' de ' + total + ' guias abertos'
         : read.length + ' of ' + total + ' guides opened';
       if (bar) bar.style.width = (total > 0 ? Math.round((read.length / total) * 100) : 0) + '%';
+      if (typeof updateHubStats === 'function') updateHubStats();
     }
 
     function getMemberGuideFiles() {
@@ -16552,6 +16761,47 @@
       catch (e) { return false; }
     }
 
+    function getMemberName() {
+      try { return sessionStorage.getItem('plainvestMemberName') || ''; }
+      catch (e) { return ''; }
+    }
+
+    function rememberMemberName(name) {
+      try { if (name) sessionStorage.setItem('plainvestMemberName', name); }
+      catch (e) { }
+    }
+
+    function getMemberGender() {
+      try { return sessionStorage.getItem('plainvestMemberGender') || ''; }
+      catch (e) { return ''; }
+    }
+
+    function rememberMemberGender(gender) {
+      try { sessionStorage.setItem('plainvestMemberGender', gender || ''); }
+      catch (e) { }
+    }
+
+    function updateWelcomeBadge() {
+      var el = document.getElementById('member-welcome-greeting');
+      if (!el) return;
+      var name = getMemberName();
+      if (name) {
+        var firstName = name.split(' ')[0];
+        var gender = getMemberGender();
+        var greeting;
+        if (currentLang === 'pt') {
+          var ptWord = gender === 'female' ? 'Bem-vinda' : 'Bem-vindo';
+          greeting = ptWord + ' de volta, <span>' + firstName + '</span>';
+        } else {
+          greeting = 'Welcome back, <span>' + firstName + '</span>';
+        }
+        el.innerHTML = greeting;
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
+      }
+    }
+
     function rememberPremiumSessionAccess() {
       try { sessionStorage.setItem('plainvestPremiumAccess', 'granted'); }
       catch (e) { }
@@ -16587,6 +16837,167 @@
       var cleanUrl = window.location.pathname + (cleanSearch ? '?' + cleanSearch : '') + window.location.hash;
       try { history.replaceState(null, '', cleanUrl); }
       catch (e) { }
+    }
+
+    /* ── Hub filter + favourites ── */
+    var hubFilter = 'all';
+
+    var CARD_CATS = {
+      welcome:   ['start'],
+      guides:    ['stocks'],
+      dca:       ['stocks'],
+      exchange:  ['exchange'],
+      firsttrade:['exchange'],
+      inflation: ['mindset'],
+      tools:     ['tools'],
+      bitcoin:   ['crypto'],
+      crypto:    ['crypto'],
+      cycles:    ['mindset'],
+      panicsell: ['mindset'],
+      sentiment: ['mindset', 'tools'],
+      books:     ['tools'],
+      glossary:  ['start', 'tools'],
+      references:['tools'],
+      zoom:      ['tools'],
+      platforms: ['exchange'],
+      tax:       ['stocks'],
+      super:     ['stocks']
+    };
+
+    function getStarred() {
+      try { return JSON.parse(localStorage.getItem('pv_starred') || '[]'); }
+      catch (e) { return []; }
+    }
+
+    function isStarred(guide) {
+      return getStarred().indexOf(guide) > -1;
+    }
+
+    function toggleStar(guide, btn) {
+      var arr = getStarred();
+      var idx = arr.indexOf(guide);
+      if (idx > -1) arr.splice(idx, 1);
+      else arr.push(guide);
+      try { localStorage.setItem('pv_starred', JSON.stringify(arr)); } catch (e) {}
+      btn.classList.toggle('starred', idx === -1);
+      updateHubStats();
+      if (hubFilter === 'fav') setHubFilter('fav');
+    }
+
+    function initStarButtons() {
+      var starred = getStarred();
+      document.querySelectorAll('.member-card-star').forEach(function (btn) {
+        btn.classList.toggle('starred', starred.indexOf(btn.dataset.guide) > -1);
+      });
+    }
+
+    function setHubFilter(cat) {
+      hubFilter = cat;
+      document.querySelectorAll('.member-filter-btn').forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.cat === cat);
+      });
+      var anyVisible = false;
+      document.querySelectorAll('.member-card').forEach(function (card) {
+        var cats = (card.dataset.cats || '').split(',');
+        var guide = card.dataset.guide || '';
+        var show;
+        if (cat === 'all') show = true;
+        else if (cat === 'fav') show = isStarred(guide);
+        else show = cats.indexOf(cat) > -1;
+        card.style.display = show ? '' : 'none';
+        if (show) anyVisible = true;
+      });
+      var grid = document.querySelector('.member-grid');
+      var noFav = document.getElementById('hub-no-favs');
+      if (cat === 'fav' && !anyVisible) {
+        if (!noFav && grid) {
+          noFav = document.createElement('div');
+          noFav.id = 'hub-no-favs';
+          noFav.style.cssText = 'padding:2rem 1rem;color:#7a8fa8;font-size:.9rem;grid-column:1/-1;text-align:center';
+          noFav.textContent = 'No favourites yet. Click the ★ on any guide to save it here.';
+          grid.appendChild(noFav);
+        }
+        if (noFav) noFav.style.display = '';
+      } else {
+        if (noFav) noFav.style.display = 'none';
+      }
+    }
+
+    function updateHubStats() {
+      var read = (typeof getReadGuides === 'function') ? getReadGuides() : [];
+      var total = Object.keys(CARD_CATS).length;
+      var starred = getStarred();
+      var elOpened = document.getElementById('stat-guides-opened');
+      var elSub = document.getElementById('stat-guides-sub');
+      var elFavs = document.getElementById('stat-favs-count');
+      var isPt = typeof currentLang !== 'undefined' && currentLang === 'pt';
+      if (elOpened) elOpened.textContent = read.length;
+      if (elSub) elSub.textContent = isPt ? 'de ' + total + ' guias' : 'of ' + total + ' guides';
+      if (elFavs) elFavs.textContent = starred.length;
+    }
+
+    var CAT_TAG_LABELS = {
+      crypto: '₿ Crypto', stocks: '📈 Stocks & ETFs', dca: '📈 DCA',
+      exchange: '🏦 Exchange', mindset: '🧠 Mindset', tools: '🔧 Tools', start: '🚀 Start here'
+    };
+    var CAT_TAG_CLASS = {
+      crypto: 'cat-tag-crypto', stocks: 'cat-tag-stocks', dca: 'cat-tag-dca',
+      exchange: 'cat-tag-exchange', mindset: 'cat-tag-mindset', tools: 'cat-tag-tools', start: 'cat-tag-start'
+    };
+
+    function initMemberHub() {
+      var isFirst = true;
+      document.querySelectorAll('.member-card').forEach(function (card) {
+        var btn = card.querySelector('.member-open-file');
+        if (!btn) return;
+        var onclick = btn.getAttribute('onclick') || '';
+        var m = onclick.match(/openMemberGuide\(['"]([^'"]+)['"]\)/);
+        var key = m ? m[1] : (onclick.indexOf('openMemberBooks') >= 0 ? 'books' : null);
+        if (!key) return;
+        card.dataset.guide = key;
+        var cats = CARD_CATS[key] || [];
+        if (cats.length) card.dataset.cats = cats.join(',');
+
+        // Featured card for first (Start Here) — wrap content in body div for horizontal layout
+        if (isFirst) {
+          card.classList.add('member-card-featured');
+          isFirst = false;
+          if (!card.querySelector('.member-card-featured-body')) {
+            var icon = card.querySelector('.member-icon');
+            var body = document.createElement('div');
+            body.className = 'member-card-featured-body';
+            var children = Array.from(card.childNodes);
+            children.forEach(function(child) {
+              if (child !== icon) body.appendChild(child);
+            });
+            if (icon) card.appendChild(body);
+            else card.appendChild(body);
+          }
+        }
+
+        // Category chip (above icon)
+        if (cats.length && !card.querySelector('.member-card-cat-tag')) {
+          var chip = document.createElement('span');
+          var primaryCat = cats[0];
+          chip.className = 'member-card-cat-tag ' + (CAT_TAG_CLASS[primaryCat] || '');
+          chip.textContent = CAT_TAG_LABELS[primaryCat] || primaryCat;
+          card.insertBefore(chip, card.firstChild);
+        }
+
+        // Star button
+        if (!card.querySelector('.member-card-star')) {
+          var star = document.createElement('button');
+          star.className = 'member-card-star';
+          star.dataset.guide = key;
+          star.setAttribute('title', 'Save to favourites');
+          star.setAttribute('aria-label', 'Save to favourites');
+          star.innerHTML = '&#9733;';
+          star.setAttribute('onclick', 'toggleStar("' + key + '", this)');
+          card.appendChild(star);
+        }
+      });
+      initStarButtons();
+      updateHubStats();
     }
 
     function syncSupportCallPaidState(page) {
@@ -16632,7 +17043,22 @@
 
       const navProfileBtn = document.getElementById('nav-profile-btn');
       if (navProfileBtn) {
-        navProfileBtn.href = isMemberAppHost() ? '/profile' : 'https://members.plainvest.app/profile';
+        var isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        navProfileBtn.href = (isMemberAppHost() || isLocalHost) ? '/profile' : 'https://members.plainvest.app/profile';
+        navProfileBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
+      }
+
+      const navPortfolioBtn = document.getElementById('nav-portfolio-btn');
+      if (navPortfolioBtn) {
+        var isLocalH = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        navPortfolioBtn.href = (isMemberAppHost() || isLocalH) ? '/portfolio' : 'https://members.plainvest.app/portfolio';
+        navPortfolioBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
+      }
+
+      const statPortfolioLink = document.getElementById('stat-portfolio-link');
+      if (statPortfolioLink) {
+        var isLocalH2 = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        statPortfolioLink.href = (isMemberAppHost() || isLocalH2) ? '/portfolio' : 'https://members.plainvest.app/portfolio';
       }
     }
 
@@ -16659,6 +17085,8 @@
       if (isLocalPlainvestPreview()) {
         document.body.classList.add('premium-access-granted');
         syncMemberNavState();
+        updateWelcomeBadge();
+        initMemberHub();
         return true;
       }
 
@@ -16666,6 +17094,8 @@
         document.body.classList.remove('premium-access-checking', 'premium-access-denied');
         document.body.classList.add('premium-access-granted');
         syncMemberNavState();
+        updateWelcomeBadge();
+        initMemberHub();
         return true;
       }
 
@@ -16692,6 +17122,10 @@
             document.body.classList.remove('premium-access-checking', 'premium-access-denied');
             document.body.classList.add('premium-access-granted');
             rememberPremiumSessionAccess();
+            rememberMemberName(status.name || '');
+            rememberMemberGender(status.gender || '');
+            updateWelcomeBadge();
+            initMemberHub();
             return true;
           }
 
