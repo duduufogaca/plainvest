@@ -17099,13 +17099,6 @@
         return true;
       }
 
-      if (!isMemberAppHost()) {
-        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
-        document.body.classList.add('premium-access-denied');
-        window.location.replace('https://members.plainvest.app/login?mode=manual');
-        return false;
-      }
-
       if (premiumSessionUrlRequested) {
         document.body.classList.remove('premium-access-denied', 'premium-access-granted');
         document.body.classList.add('premium-access-checking');
@@ -17139,6 +17132,13 @@
           window.location.replace('/login?mode=manual');
           return false;
         }
+      }
+
+      if (!isMemberAppHost()) {
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        window.location.replace('https://members.plainvest.app/login?mode=manual');
+        return false;
       }
 
       document.body.classList.remove('premium-access-checking', 'premium-access-granted');
