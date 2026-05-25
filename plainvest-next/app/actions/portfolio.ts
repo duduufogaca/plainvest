@@ -14,8 +14,6 @@ export async function addPortfolioEntry(formData: FormData) {
   const currency = String(formData.get('currency') || 'AUD');
   const quantity = parseFloat(String(formData.get('quantity') || '0'));
   const buyPrice = parseFloat(String(formData.get('buy_price') || '0'));
-  const currentPriceRaw = String(formData.get('current_price') || '').trim();
-  const currentPrice = currentPriceRaw ? parseFloat(currentPriceRaw) : null;
   const buyDate = String(formData.get('buy_date') || '').trim() || null;
   const notes = String(formData.get('notes') || '').trim() || null;
 
@@ -31,7 +29,7 @@ export async function addPortfolioEntry(formData: FormData) {
     currency,
     quantity,
     buy_price: buyPrice,
-    current_price: currentPrice,
+    current_price: null,
     buy_date: buyDate,
     notes,
   });
@@ -46,12 +44,42 @@ export async function addPortfolioEntry(formData: FormData) {
   redirect('/portfolio?success=Position added successfully.');
 }
 
+export async function updatePortfolioEntry(formData: FormData) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect('/login');
+
+  const id = String(formData.get('id') || '');
+  const redirectTo = String(formData.get('redirect_to') || '/portfolio');
+  const quantity = parseFloat(String(formData.get('quantity') || '0'));
+  const buyPrice = parseFloat(String(formData.get('buy_price') || '0'));
+  const buyDate = String(formData.get('buy_date') || '').trim() || null;
+  const notes = String(formData.get('notes') || '').trim() || null;
+
+  if (!id || quantity <= 0 || buyPrice <= 0) {
+    redirect(`${redirectTo}?message=Invalid data. Check quantity and price.`);
+  }
+
+  const { error } = await supabase
+    .from('portfolio_entries')
+    .update({ quantity, buy_price: buyPrice, buy_date: buyDate, notes })
+    .eq('id', id)
+    .eq('user_id', user.id);
+
+  if (error) {
+    redirect(`${redirectTo}?message=Could not update entry. Please try again.`);
+  }
+
+  redirect(`${redirectTo}?success=Purchase updated.`);
+}
+
 export async function deletePortfolioEntry(formData: FormData) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
   const id = String(formData.get('id') || '');
+  const redirectTo = String(formData.get('redirect_to') || '/portfolio');
   if (!id) redirect('/portfolio');
 
   const { error } = await supabase
@@ -61,10 +89,10 @@ export async function deletePortfolioEntry(formData: FormData) {
     .eq('user_id', user.id);
 
   if (error) {
-    redirect('/portfolio?message=Could not remove position. Please try again.');
+    redirect(`${redirectTo}?message=Could not remove position. Please try again.`);
   }
 
-  redirect('/portfolio?success=Position removed.');
+  redirect(`${redirectTo}?success=Purchase removed.`);
 }
 
 export async function updateCurrentPrice(formData: FormData) {
@@ -75,6 +103,7 @@ export async function updateCurrentPrice(formData: FormData) {
   const id = String(formData.get('id') || '');
   const rawPrice = String(formData.get('current_price') || '').trim();
   const currentPrice = rawPrice ? parseFloat(rawPrice) : null;
+  const redirectTo = String(formData.get('redirect_to') || '/portfolio');
 
   if (!id) redirect('/portfolio');
 
@@ -85,8 +114,8 @@ export async function updateCurrentPrice(formData: FormData) {
     .eq('user_id', user.id);
 
   if (error) {
-    redirect('/portfolio?message=Could not update price. Please try again.');
+    redirect(`${redirectTo}?message=Could not update price. Please try again.`);
   }
 
-  redirect('/portfolio?success=Price updated.');
+  redirect(`${redirectTo}?success=Market price updated.`);
 }

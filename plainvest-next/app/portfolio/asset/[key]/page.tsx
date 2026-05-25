@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { signOut } from '../../../actions/auth';
-import { deletePortfolioEntry, updateCurrentPrice } from '../../../actions/portfolio';
+import { deletePortfolioEntry, updateCurrentPrice, updatePortfolioEntry } from '../../../actions/portfolio';
 import { SubmitButton } from '../../../components/submit-button';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { T, getLang } from '@/lib/portfolio-i18n';
@@ -18,23 +18,21 @@ export const metadata: Metadata = {
 const VALID_CURRENCIES = ['AUD', 'USD', 'BRL'] as const;
 type Currency = typeof VALID_CURRENCIES[number];
 
-const TYPE_CHIP: Record<string, string> = {
-  crypto: 'chip-crypto', stock: 'chip-stock', etf: 'chip-etf', other: 'chip-other',
-};
 const TYPE_COLORS: Record<string, string> = {
   crypto: '#f4c86a', stock: '#61d5b4', etf: '#818cf8', other: '#64748b',
+};
+const TYPE_CHIP: Record<string, string> = {
+  crypto: 'chip-crypto', stock: 'chip-stock', etf: 'chip-etf', other: 'chip-other',
 };
 
 function getLocale(c: string) {
   return c === 'BRL' ? 'pt-BR' : c === 'USD' ? 'en-US' : 'en-AU';
 }
-
 function fmt(n: number, currency = 'AUD') {
   return new Intl.NumberFormat(getLocale(currency), {
     style: 'currency', currency, minimumFractionDigits: 2, maximumFractionDigits: 2,
   }).format(n);
 }
-
 function fmtQty(n: number) {
   return n % 1 === 0
     ? n.toLocaleString('en-AU')
@@ -46,7 +44,7 @@ export default async function AssetDetailPage({
   searchParams,
 }: {
   params: Promise<{ key: string }>;
-  searchParams: Promise<{ currency?: string; lang?: string }>;
+  searchParams: Promise<{ currency?: string; lang?: string; edit?: string; success?: string; message?: string }>;
 }) {
   const { key: rawKey } = await params;
   const assetKey = decodeURIComponent(rawKey);
@@ -58,6 +56,7 @@ export default async function AssetDetailPage({
       : 'AUD';
   const lang = getLang(sp.lang);
   const tx = T[lang];
+  const editId = sp.edit || null;
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -79,7 +78,6 @@ export default async function AssetDetailPage({
     .eq('user_id', user.id)
     .order('buy_date', { ascending: false });
 
-  // Filter to this asset
   const entries = (allEntries || []).filter(e => {
     const k = (e.ticker || e.asset_name).toLowerCase().trim();
     return k === assetKey;
@@ -93,6 +91,13 @@ export default async function AssetDetailPage({
   const assetType = sample.asset_type;
   const nativeCurrency = sample.currency;
 
+  // Find earliest purchase date for "since" display
+  const dates = entries.map(e => e.buy_date).filter(Boolean).sort();
+  const sinceDateRaw = dates[0] || null;
+  const sinceDate = sinceDateRaw
+    ? new Date(sinceDateRaw + 'T00:00:00').toLocaleDateString(getLocale(displayCurrency), { month: 'short', year: 'numeric' })
+    : null;
+
   // Totals
   const totalQty = entries.reduce((s, e) => s + Number(e.quantity), 0);
   const totalInvestedNative = entries.reduce((s, e) => s + Number(e.quantity) * Number(e.buy_price), 0);
@@ -100,8 +105,13 @@ export default async function AssetDetailPage({
   const avgBuyNative = totalQty > 0 ? totalInvestedNative / totalQty : 0;
   const avgBuyDisplay = toDisplay(avgBuyNative, nativeCurrency);
 
-  // Current price / P&L
-  const currentPriceNative = entries[0].current_price ? Number(entries[0].current_price) : null;
+  // Current price — use most recent non-null
+  const currentPriceNative = (() => {
+    for (const e of entries) {
+      if (e.current_price != null) return Number(e.current_price);
+    }
+    return null;
+  })();
   const currentValueDisplay = currentPriceNative != null
     ? toDisplay(totalQty * currentPriceNative, nativeCurrency) : null;
   const pnlDisplay = currentValueDisplay != null
@@ -109,6 +119,7 @@ export default async function AssetDetailPage({
   const pnlPct = pnlDisplay != null && totalInvestedDisplay > 0
     ? (pnlDisplay / totalInvestedDisplay) * 100 : null;
 
+  const baseHref = `/portfolio/asset/${encodeURIComponent(assetKey)}?currency=${displayCurrency}&lang=${lang}`;
   const backHref = `/portfolio?currency=${displayCurrency}&lang=${lang}`;
   const hubHref = '/index.html?member_session=1#member';
 
@@ -129,81 +140,113 @@ export default async function AssetDetailPage({
       </nav>
 
       <div className="portfolio-content portfolio-content-wide">
-        {/* Header */}
-        <div className="detail-header">
-          <div className="detail-header-icon" style={{ background: typeColor }}>
-            {initials}
-          </div>
-          <div className="detail-header-text">
-            <p className="eyebrow">{tx.detailEyebrow}</p>
-            <h1>{assetName}{ticker && <span className="detail-ticker">{ticker.toUpperCase()}</span>}</h1>
-            <span className={`portfolio-type-chip ${TYPE_CHIP[assetType] || 'chip-other'}`}>{assetType}</span>
+
+        {sp.success && <div className="notice notice-success">{sp.success}</div>}
+        {sp.message && <div className="notice">{sp.message}</div>}
+
+        {/* ── Asset hero header ── */}
+        <div className="asset-hero">
+          <div className="asset-hero-icon" style={{ background: typeColor }}>{initials}</div>
+          <div className="asset-hero-body">
+            <div className="asset-hero-title">
+              <h1>{assetName}</h1>
+              {ticker && <span className="detail-ticker">{ticker.toUpperCase()}</span>}
+              <span className={`portfolio-type-chip ${TYPE_CHIP[assetType] || 'chip-other'}`}>{assetType}</span>
+            </div>
+            <div className="asset-hero-meta">
+              <span>{entries.length} {entries.length !== 1 ? tx.purchases : tx.purchase}</span>
+              {sinceDate && <><span className="asset-hero-sep">·</span><span>{tx.since} {sinceDate}</span></>}
+              <span className="asset-hero-sep">·</span>
+              <span>{nativeCurrency}</span>
+            </div>
           </div>
         </div>
 
-        {/* KPI row */}
-        <div className="portfolio-kpi-row">
-          <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">{tx.totalQty}</span>
-            <strong className="portfolio-kpi-value" style={{ fontSize: '1.4rem' }}>{fmtQty(totalQty)}</strong>
-            <span className="portfolio-kpi-sub">{tx.nBuys(entries.length)}</span>
+        {/* ── KPI grid ── */}
+        <div className="detail-kpi-grid">
+          {/* Holdings */}
+          <div className="detail-kpi-card">
+            <div className="detail-kpi-icon">📦</div>
+            <span className="detail-kpi-label">{tx.totalQty}</span>
+            <strong className="detail-kpi-val">{fmtQty(totalQty)}</strong>
+            <span className="detail-kpi-sub">{entries.length} {entries.length !== 1 ? tx.purchases : tx.purchase}</span>
           </div>
-          <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">{tx.avgBuy}</span>
-            <strong className="portfolio-kpi-value" style={{ fontSize: '1.35rem' }}>
-              {fmt(avgBuyDisplay, displayCurrency)}
+
+          {/* Avg buy price */}
+          <div className="detail-kpi-card">
+            <div className="detail-kpi-icon">💰</div>
+            <span className="detail-kpi-label">{tx.avgBuy}</span>
+            <strong className="detail-kpi-val">{fmt(avgBuyDisplay, displayCurrency)}</strong>
+            <span className="detail-kpi-sub">{nativeCurrency !== displayCurrency ? `${fmt(avgBuyNative, nativeCurrency)} ${nativeCurrency}` : tx.perUnit}</span>
+          </div>
+
+          {/* Cost basis */}
+          <div className="detail-kpi-card">
+            <div className="detail-kpi-icon">🧾</div>
+            <span className="detail-kpi-label">{tx.costBasis}</span>
+            <strong className="detail-kpi-val">{fmt(totalInvestedDisplay, displayCurrency)}</strong>
+            <span className="detail-kpi-sub">{nativeCurrency !== displayCurrency ? `${fmt(totalInvestedNative, nativeCurrency)} ${nativeCurrency}` : tx.totalPaid}</span>
+          </div>
+
+          {/* Market price — with inline update form */}
+          <div className="detail-kpi-card detail-kpi-price-card">
+            <div className="detail-kpi-icon">📈</div>
+            <span className="detail-kpi-label">{tx.marketPrice}</span>
+            {currentPriceNative != null && (
+              <strong className="detail-kpi-val">{fmt(currentPriceNative, nativeCurrency)}</strong>
+            )}
+            <form action={updateCurrentPrice} className="detail-market-form">
+              <input type="hidden" name="id" value={entries[0].id} />
+              <input type="hidden" name="redirect_to" value={baseHref} />
+              <div className="detail-market-input-row">
+                <input
+                  type="number"
+                  name="current_price"
+                  step="any"
+                  placeholder={currentPriceNative != null ? tx.updatePrice : tx.enterMarketPrice}
+                  defaultValue={currentPriceNative != null ? String(currentPriceNative) : ''}
+                  className="detail-market-input"
+                />
+                <SubmitButton pendingText="…" className="detail-market-btn">✓</SubmitButton>
+              </div>
+            </form>
+            <span className="detail-kpi-sub">{tx.marketPriceHint}</span>
+          </div>
+
+          {/* Current value */}
+          <div className={`detail-kpi-card${currentValueDisplay == null ? ' detail-kpi-muted' : ''}`}>
+            <div className="detail-kpi-icon">{currentValueDisplay == null ? '⏳' : '💼'}</div>
+            <span className="detail-kpi-label">{tx.kpiValue}</span>
+            <strong className="detail-kpi-val" style={currentValueDisplay == null ? { color: 'var(--muted)' } : {}}>
+              {currentValueDisplay != null ? fmt(currentValueDisplay, displayCurrency) : '—'}
             </strong>
-            <span className="portfolio-kpi-sub">{nativeCurrency} → {displayCurrency}</span>
+            <span className="detail-kpi-sub">
+              {currentValueDisplay == null ? tx.kpiAddPrices : `${fmtQty(totalQty)} × ${fmt(currentPriceNative!, nativeCurrency)}`}
+            </span>
           </div>
-          <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">{tx.totalInvested}</span>
-            <strong className="portfolio-kpi-value" style={{ fontSize: '1.35rem' }}>
-              {fmt(totalInvestedDisplay, displayCurrency)}
-            </strong>
-            <span className="portfolio-kpi-sub">{nativeCurrency}</span>
-          </div>
-          <div className={`portfolio-kpi-card${pnlDisplay == null ? '' : pnlDisplay >= 0 ? ' kpi-positive' : ' kpi-negative'}`}>
-            <span className="portfolio-kpi-label">{tx.pnl}</span>
-            <strong className={`portfolio-kpi-value${pnlDisplay == null ? '' : pnlDisplay >= 0 ? ' positive' : ' negative'}`}
-              style={{ fontSize: '1.35rem' }}>
+
+          {/* P&L */}
+          <div className={`detail-kpi-card${pnlDisplay == null ? ' detail-kpi-muted' : pnlDisplay >= 0 ? ' kpi-positive' : ' kpi-negative'}`}>
+            <div className="detail-kpi-icon">{pnlDisplay == null ? '⏳' : pnlDisplay >= 0 ? '🚀' : '📉'}</div>
+            <span className="detail-kpi-label">{tx.pnl}</span>
+            <strong className={`detail-kpi-val${pnlDisplay == null ? '' : pnlDisplay >= 0 ? ' positive' : ' negative'}`}>
               {pnlDisplay == null ? '—' : (pnlDisplay >= 0 ? '+' : '') + fmt(pnlDisplay, displayCurrency)}
             </strong>
-            <span className="portfolio-kpi-sub">
+            <span className="detail-kpi-sub">
               {pnlPct == null ? tx.kpiAddPrices : (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(2) + '%'}
             </span>
           </div>
         </div>
 
-        {/* Update current price */}
-        <section className="portfolio-card detail-price-card">
-          <p className="eyebrow">{tx.colPrice}</p>
-          <h2>{tx.updatePrice}</h2>
-          <form action={updateCurrentPrice} className="detail-price-form">
-            <input type="hidden" name="id" value={entries[0].id} />
-            <input
-              type="number"
-              name="current_price"
-              step="any"
-              placeholder={`${nativeCurrency} —`}
-              defaultValue={currentPriceNative != null ? String(currentPriceNative) : ''}
-              className="detail-price-input"
-            />
-            <SubmitButton pendingText="..." className="detail-price-btn">✓ Update</SubmitButton>
-          </form>
-          {currentPriceNative != null && (
-            <p className="detail-price-hint">
-              Current: {fmt(currentPriceNative, nativeCurrency)} {nativeCurrency}
-              {nativeCurrency !== displayCurrency && (
-                <> → {fmt(toDisplay(currentPriceNative, nativeCurrency), displayCurrency)} {displayCurrency}</>
-              )}
-            </p>
-          )}
-        </section>
-
-        {/* Purchase history */}
+        {/* ── Purchase history ── */}
         <section className="portfolio-card">
-          <p className="eyebrow">{tx.detailEyebrow}</p>
-          <h2>{tx.detailTitle}</h2>
+          <div className="detail-history-header">
+            <div>
+              <p className="eyebrow">{tx.detailEyebrow}</p>
+              <h2>{tx.detailTitle}</h2>
+            </div>
+          </div>
+
           <div className="portfolio-table-wrap">
             <table className="portfolio-table portfolio-table-v2 detail-table">
               <thead>
@@ -211,37 +254,122 @@ export default async function AssetDetailPage({
                   <th>{tx.colDate}</th>
                   <th className="num">{tx.colQty}</th>
                   <th className="num">{tx.colBuyPrice} ({nativeCurrency})</th>
-                  <th className="num">{tx.colBuyPrice} ({displayCurrency})</th>
+                  {nativeCurrency !== displayCurrency && (
+                    <th className="num">{tx.colBuyPrice} ({displayCurrency})</th>
+                  )}
                   <th className="num">{tx.colCost} ({displayCurrency})</th>
                   <th>{tx.colNotes}</th>
-                  <th></th>
+                  <th className="detail-actions-col"></th>
                 </tr>
               </thead>
               <tbody>
                 {entries.map(e => {
                   const buyPriceDisplay = toDisplay(Number(e.buy_price), e.currency);
                   const costDisplay = toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency);
+                  const isEditing = editId === e.id;
+                  const cancelHref = baseHref;
+
+                  if (isEditing) {
+                    return (
+                      <tr key={e.id} className="detail-edit-row">
+                        <td colSpan={nativeCurrency !== displayCurrency ? 7 : 6}>
+                          <form action={updatePortfolioEntry} className="detail-edit-form">
+                            <input type="hidden" name="id" value={e.id} />
+                            <input type="hidden" name="redirect_to" value={baseHref} />
+                            <div className="detail-edit-grid">
+                              <label className="detail-edit-label">
+                                {tx.colDate}
+                                <input
+                                  type="date"
+                                  name="buy_date"
+                                  defaultValue={e.buy_date || ''}
+                                  className="detail-edit-input"
+                                />
+                              </label>
+                              <label className="detail-edit-label">
+                                {tx.colQty}
+                                <input
+                                  type="number"
+                                  name="quantity"
+                                  step="any"
+                                  min="0"
+                                  required
+                                  defaultValue={String(e.quantity)}
+                                  className="detail-edit-input"
+                                />
+                              </label>
+                              <label className="detail-edit-label">
+                                {tx.colBuyPrice} ({nativeCurrency})
+                                <input
+                                  type="number"
+                                  name="buy_price"
+                                  step="any"
+                                  min="0"
+                                  required
+                                  defaultValue={String(e.buy_price)}
+                                  className="detail-edit-input"
+                                />
+                              </label>
+                              <label className="detail-edit-label" style={{ gridColumn: '1 / -1' }}>
+                                {tx.colNotes}
+                                <input
+                                  type="text"
+                                  name="notes"
+                                  defaultValue={e.notes || ''}
+                                  placeholder="e.g. DCA buy"
+                                  className="detail-edit-input"
+                                />
+                              </label>
+                            </div>
+                            <div className="detail-edit-actions">
+                              <SubmitButton pendingText="…" className="detail-save-btn">{tx.saveChanges}</SubmitButton>
+                              <a href={cancelHref} className="detail-cancel-link">{tx.cancelEdit}</a>
+                            </div>
+                          </form>
+                        </td>
+                      </tr>
+                    );
+                  }
+
                   return (
-                    <tr key={e.id}>
+                    <tr key={e.id} className="detail-data-row">
                       <td>
                         <span className="detail-date">
-                          {e.buy_date || <span className="muted">{tx.noDate}</span>}
+                          {e.buy_date
+                            ? new Date(e.buy_date + 'T00:00:00').toLocaleDateString(getLocale(displayCurrency), { day: 'numeric', month: 'short', year: 'numeric' })
+                            : <span className="muted">{tx.noDate}</span>}
                         </span>
                       </td>
-                      <td className="num">{fmtQty(Number(e.quantity))}</td>
+                      <td className="num"><strong>{fmtQty(Number(e.quantity))}</strong></td>
                       <td className="num muted">{fmt(Number(e.buy_price), e.currency)}</td>
-                      <td className="num">{fmt(buyPriceDisplay, displayCurrency)}</td>
+                      {nativeCurrency !== displayCurrency && (
+                        <td className="num">{fmt(buyPriceDisplay, displayCurrency)}</td>
+                      )}
                       <td className="num"><strong>{fmt(costDisplay, displayCurrency)}</strong></td>
                       <td>
                         {e.notes
                           ? <span className="detail-note">{e.notes}</span>
                           : <span className="muted">—</span>}
                       </td>
-                      <td>
-                        <form action={deletePortfolioEntry}>
-                          <input type="hidden" name="id" value={e.id} />
-                          <button type="submit" className="delete-btn" title="Remove">✕</button>
-                        </form>
+                      <td className="detail-actions-col">
+                        <div className="detail-row-actions">
+                          <a
+                            href={`${baseHref}&edit=${e.id}`}
+                            className="detail-edit-btn"
+                            title={tx.editPurchase}
+                          >✎</a>
+                          <form action={deletePortfolioEntry}>
+                            <input type="hidden" name="id" value={e.id} />
+                            <input type="hidden" name="redirect_to" value={
+                              entries.length <= 1 ? backHref : baseHref
+                            } />
+                            <button
+                              type="submit"
+                              className="delete-btn"
+                              title={tx.deletePurchase}
+                            >✕</button>
+                          </form>
+                        </div>
                       </td>
                     </tr>
                   );
