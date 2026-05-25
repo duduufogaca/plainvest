@@ -342,7 +342,7 @@ export default async function PortfolioPage({
 
             {/* Overview row: donut + performance */}
             <div className="portfolio-overview-v2">
-              <section className="portfolio-card">
+              <section className="portfolio-card portfolio-dark-card">
                 <p className="eyebrow">{tx.sectionAlloc}</p>
                 <h2>{tx.sectionBreakdown}</h2>
                 <DonutChart segments={donutSegments} totalValue={totalInvested} currency={displayCurrency} />
@@ -353,31 +353,35 @@ export default async function PortfolioPage({
                 <h2>{tx.sectionHighlights}</h2>
 
                 {performingGroups.length > 0 && best && worst ? (
-                  <div className="perf-grid">
+                  <div className={`perf-grid${best.key === worst.key ? ' perf-grid-single' : ''}`}>
                     <div className="perf-card perf-best">
                       <div className="perf-card-eyebrow">{tx.perfBest}</div>
                       <div className="perf-card-asset">
                         <strong>{best.ticker || best.asset_name}</strong>
                         {best.ticker && <span className="perf-card-name">{best.asset_name}</span>}
                       </div>
-                      <div className="perf-card-return positive">+{best.pnlPct!.toFixed(2)}%</div>
-                      <div className="perf-card-abs positive">
-                        +{fmt(toDisplay(best.pnl!, best.currency), displayCurrency)}
+                      <div className={`perf-card-return${best.pnlPct! >= 0 ? ' positive' : ' negative'}`}>
+                        {fmtPct(best.pnlPct!)}
+                      </div>
+                      <div className={`perf-card-abs${best.pnl! >= 0 ? ' positive' : ' negative'}`}>
+                        {best.pnl! >= 0 ? '+' : ''}{fmt(toDisplay(best.pnl!, best.currency), displayCurrency)}
                       </div>
                     </div>
-                    <div className="perf-card perf-worst">
-                      <div className="perf-card-eyebrow">{tx.perfWorst}</div>
-                      <div className="perf-card-asset">
-                        <strong>{worst.ticker || worst.asset_name}</strong>
-                        {worst.ticker && <span className="perf-card-name">{worst.asset_name}</span>}
+                    {best.key !== worst.key && (
+                      <div className="perf-card perf-worst">
+                        <div className="perf-card-eyebrow">{tx.perfWorst}</div>
+                        <div className="perf-card-asset">
+                          <strong>{worst.ticker || worst.asset_name}</strong>
+                          {worst.ticker && <span className="perf-card-name">{worst.asset_name}</span>}
+                        </div>
+                        <div className={`perf-card-return${worst.pnlPct! >= 0 ? ' positive' : ' negative'}`}>
+                          {fmtPct(worst.pnlPct!)}
+                        </div>
+                        <div className={`perf-card-abs${worst.pnl! >= 0 ? ' positive' : ' negative'}`}>
+                          {worst.pnl! >= 0 ? '+' : ''}{fmt(toDisplay(worst.pnl!, worst.currency), displayCurrency)}
+                        </div>
                       </div>
-                      <div className={`perf-card-return${worst.pnlPct! >= 0 ? ' positive' : ' negative'}`}>
-                        {fmtPct(worst.pnlPct!)}
-                      </div>
-                      <div className={`perf-card-abs${worst.pnl! >= 0 ? ' positive' : ' negative'}`}>
-                        {worst.pnl! >= 0 ? '+' : ''}{fmt(toDisplay(worst.pnl!, worst.currency), displayCurrency)}
-                      </div>
-                    </div>
+                    )}
                   </div>
                 ) : (
                   <p className="muted" style={{ fontSize: '.83rem', marginBottom: '1.5rem' }}>
