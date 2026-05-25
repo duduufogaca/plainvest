@@ -35,9 +35,6 @@ export async function signIn(formData: FormData) {
     redirect('/login?message=Login is not available right now. Please try again shortly.');
   }
 
-  // Clear any existing session so switching accounts always starts fresh
-  try { await supabase.auth.signOut(); } catch { /* ignore — no active session is fine */ }
-
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
