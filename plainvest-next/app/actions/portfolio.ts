@@ -37,7 +37,10 @@ export async function addPortfolioEntry(formData: FormData) {
   });
 
   if (error) {
-    redirect('/portfolio?message=Could not add position. Please try again.');
+    const msg = error.code === '42P01'
+      ? 'Portfolio table not found. Please run the Supabase setup SQL first.'
+      : `Could not add position: ${error.message}`;
+    redirect(`/portfolio?message=${encodeURIComponent(msg)}`);
   }
 
   redirect('/portfolio?success=Position added successfully.');

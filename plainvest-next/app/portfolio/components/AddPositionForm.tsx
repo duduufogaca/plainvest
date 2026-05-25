@@ -1,26 +1,18 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { addPortfolioEntry } from '@/app/actions/portfolio';
 import { AssetSearchInput } from './AssetSearchInput';
+import { SubmitButton } from '@/app/components/submit-button';
 
 export function AddPositionForm() {
   const [assetType, setAssetType] = useState('stock');
-  const [isPending, startTransition] = useTransition();
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    startTransition(async () => {
-      await addPortfolioEntry(fd);
-    });
-  };
 
   return (
     <section className="portfolio-card">
       <p className="eyebrow">Add position</p>
       <h2>Log a new purchase</h2>
-      <form onSubmit={handleSubmit} className="portfolio-add-form">
+      <form action={addPortfolioEntry} className="portfolio-add-form">
         {/* Type + Currency row */}
         <div className="portfolio-form-grid-top">
           <label className="portfolio-label">
@@ -50,39 +42,19 @@ export function AddPositionForm() {
         {/* Asset name + ticker with autocomplete */}
         <AssetSearchInput assetType={assetType} />
 
-        {/* Numbers row */}
+        {/* Numbers */}
         <div className="portfolio-form-grid">
           <label className="portfolio-label">
             Quantity *
-            <input
-              name="quantity"
-              type="number"
-              step="any"
-              required
-              min="0"
-              placeholder="e.g. 0.05, 10, 100"
-            />
+            <input name="quantity" type="number" step="any" required min="0" placeholder="e.g. 0.05, 10, 100" />
           </label>
           <label className="portfolio-label">
             Buy price per unit *
-            <input
-              name="buy_price"
-              type="number"
-              step="any"
-              required
-              min="0"
-              placeholder="e.g. 42000.00"
-            />
+            <input name="buy_price" type="number" step="any" required min="0" placeholder="e.g. 42000.00" />
           </label>
           <label className="portfolio-label">
-            Current price <span className="field-note">(optional, for P&L)</span>
-            <input
-              name="current_price"
-              type="number"
-              step="any"
-              min="0"
-              placeholder="Add now or update later"
-            />
+            Current price <span className="field-note">(optional)</span>
+            <input name="current_price" type="number" step="any" min="0" placeholder="Add now or update later" />
           </label>
           <label className="portfolio-label">
             Buy date
@@ -95,9 +67,9 @@ export function AddPositionForm() {
           <input name="notes" type="text" placeholder="e.g. DCA buy, long-term hold" />
         </label>
 
-        <button type="submit" className="portfolio-submit-btn" disabled={isPending}>
-          {isPending ? 'Adding…' : '+ Add position'}
-        </button>
+        <SubmitButton pendingText="Adding…" className="portfolio-submit-btn">
+          + Add position
+        </SubmitButton>
       </form>
     </section>
   );

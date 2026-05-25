@@ -5176,14 +5176,25 @@
       border-color: rgba(97, 213, 180, .2);
     }
 
-    /* Featured "Start Here" card — spans 2 cols */
+    /* Featured "Start Here" card — full width */
     .member-card.member-card-featured {
-      grid-column: span 2;
+      grid-column: span 3;
       background: linear-gradient(135deg, rgba(22, 44, 76, .98), rgba(10, 22, 44, .98));
       border-color: rgba(97, 213, 180, .25);
       border-top: 3px solid rgba(97, 213, 180, .9) !important;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.25rem;
+      min-height: auto;
     }
-    .member-card.member-card-featured h3 { font-size: 1.35rem; }
+    .member-card.member-card-featured .member-card-cat-tag { width: 100%; flex-basis: 100%; }
+    .member-card.member-card-featured .member-icon { width: 56px; height: 56px; font-size: 1.6rem; flex-shrink: 0; }
+    .member-card.member-card-featured .member-card-featured-body { flex: 1; min-width: 200px; }
+    .member-card.member-card-featured h3 { font-size: 1.5rem; margin: 0 0 .4rem; }
+    .member-card.member-card-featured .member-unlocked { display: none; }
+    .member-card.member-card-featured ul { columns: 2; gap: .5rem; }
+    .member-card.member-card-featured .member-open-file { margin-top: .75rem; }
 
     .member-card:nth-child(3n+1) {
       border-top: 3px solid rgba(0, 212, 170, .7);
@@ -16947,10 +16958,21 @@
         var cats = CARD_CATS[key] || [];
         if (cats.length) card.dataset.cats = cats.join(',');
 
-        // Featured card for first (Start Here)
+        // Featured card for first (Start Here) — wrap content in body div for horizontal layout
         if (isFirst) {
           card.classList.add('member-card-featured');
           isFirst = false;
+          if (!card.querySelector('.member-card-featured-body')) {
+            var icon = card.querySelector('.member-icon');
+            var body = document.createElement('div');
+            body.className = 'member-card-featured-body';
+            var children = Array.from(card.childNodes);
+            children.forEach(function(child) {
+              if (child !== icon) body.appendChild(child);
+            });
+            if (icon) card.appendChild(body);
+            else card.appendChild(body);
+          }
         }
 
         // Category chip (above icon)
