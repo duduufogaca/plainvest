@@ -31,6 +31,7 @@ type Entry = {
   buy_date: string | null;
   current_price: number | null;
   notes: string | null;
+  created_at: string;
 };
 
 type GroupedAsset = {
@@ -123,8 +124,10 @@ function buildChartData(
 ): ChartPoint[] {
   const byMonth: Record<string, number> = {};
   rows.forEach(e => {
-    if (!e.buy_date) return;
-    const d = new Date(e.buy_date + 'T00:00:00');
+    // Use buy_date if set, fall back to created_at (strip time portion)
+    const rawDate = e.buy_date || (e.created_at ? e.created_at.slice(0, 10) : null);
+    if (!rawDate) return;
+    const d = new Date(rawDate + 'T00:00:00');
     if (isNaN(d.getTime())) return;
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
     byMonth[key] = (byMonth[key] || 0) + toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency);

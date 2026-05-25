@@ -53,10 +53,6 @@ export function AddPositionForm() {
             <input name="buy_price" type="number" step="any" required min="0" placeholder="e.g. 42000.00" />
           </label>
           <label className="portfolio-label">
-            Current price <span className="field-note">(optional)</span>
-            <input name="current_price" type="number" step="any" min="0" placeholder="Add now or update later" />
-          </label>
-          <label className="portfolio-label">
             Buy date
             <input name="buy_date" type="date" />
           </label>
