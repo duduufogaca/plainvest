@@ -2,12 +2,14 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { signOut } from '../actions/auth';
-import { deletePortfolioEntry, updateCurrentPrice } from '../actions/portfolio';
+import { updateCurrentPrice } from '../actions/portfolio';
 import { SubmitButton } from '../components/submit-button';
 import { DonutChart, type DonutSegment } from './components/DonutChart';
 import { AddPositionForm } from './components/AddPositionForm';
 import { CurrencySwitcher } from './components/CurrencySwitcher';
+import { LangSwitcher } from './components/LangSwitcher';
 import { getExchangeRates } from '@/lib/exchange-rates';
+import { T, getLang } from '@/lib/portfolio-i18n';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
@@ -54,7 +56,6 @@ const PALETTE = [
   '#34d399','#60a5fa','#f97316','#a78bfa',
   '#14b8a6','#f59e0b','#e879f9','#4ade80',
 ];
-
 const TYPE_COLORS: Record<string, string> = {
   crypto: '#f4c86a', stock: '#61d5b4', etf: '#818cf8', other: '#64748b',
 };
@@ -62,30 +63,24 @@ const TYPE_CHIP: Record<string, string> = {
   crypto: 'chip-crypto', stock: 'chip-stock', etf: 'chip-etf', other: 'chip-other',
 };
 
-function getLocale(currency: string) {
-  return currency === 'BRL' ? 'pt-BR' : currency === 'USD' ? 'en-US' : 'en-AU';
+function getLocale(c: string) {
+  return c === 'BRL' ? 'pt-BR' : c === 'USD' ? 'en-US' : 'en-AU';
 }
-
 function fmt(n: number, currency = 'AUD') {
   return new Intl.NumberFormat(getLocale(currency), {
-    style: 'currency', currency,
-    minimumFractionDigits: 2, maximumFractionDigits: 2,
+    style: 'currency', currency, minimumFractionDigits: 2, maximumFractionDigits: 2,
   }).format(n);
 }
-
 function fmtShort(n: number, currency = 'AUD') {
   return new Intl.NumberFormat(getLocale(currency), {
-    style: 'currency', currency,
-    minimumFractionDigits: 0, maximumFractionDigits: 0,
+    style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0,
   }).format(n);
 }
-
 function fmtQty(n: number) {
   return n % 1 === 0
     ? n.toLocaleString('en-AU')
     : n.toLocaleString('en-AU', { maximumFractionDigits: 8 });
 }
-
 function fmtPct(n: number) {
   return (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
 }
@@ -121,7 +116,7 @@ function groupEntries(rows: Entry[]): GroupedAsset[] {
 export default async function PortfolioPage({
   searchParams,
 }: {
-  searchParams: Promise<{ message?: string; success?: string; currency?: string }>;
+  searchParams: Promise<{ message?: string; success?: string; currency?: string; lang?: string }>;
 }) {
   const params = await searchParams;
 
@@ -129,6 +124,8 @@ export default async function PortfolioPage({
     VALID_CURRENCIES.includes(params.currency as Currency)
       ? (params.currency as Currency)
       : 'AUD';
+  const lang = getLang(params.lang);
+  const tx = T[lang];
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -138,8 +135,6 @@ export default async function PortfolioPage({
   if (!isPremium) redirect('/dashboard');
 
   const rates = await getExchangeRates(displayCurrency);
-
-  // Convert any currency amount → display currency
   const toDisplay = (amount: number, fromCurrency: string): number => {
     if (fromCurrency === displayCurrency) return amount;
     const rate = rates[fromCurrency];
@@ -158,7 +153,6 @@ export default async function PortfolioPage({
   // Totals in display currency
   const totalInvested = rows.reduce(
     (s, e) => s + toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency), 0);
-
   const pricedGroups = grouped.filter(g => g.currentValue != null);
   const currentValue = pricedGroups.reduce(
     (s, g) => s + toDisplay(g.currentValue!, g.currency), 0);
@@ -174,20 +168,19 @@ export default async function PortfolioPage({
   const worst = performingGroups.length > 0
     ? performingGroups.reduce((a, b) => a.pnlPct! < b.pnlPct! ? a : b) : null;
 
-  // By-type totals in display currency
+  // By-type
   const byType: Record<string, number> = {};
   rows.forEach(e => {
     byType[e.asset_type] = (byType[e.asset_type] || 0) +
       toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency);
   });
 
-  // Donut segments (top 8 by invested, rest grouped)
+  // Donut
   const sorted = [...grouped].sort(
     (a, b) => toDisplay(b.totalInvested, b.currency) - toDisplay(a.totalInvested, a.currency));
   const top8 = sorted.slice(0, 8);
   const rest = sorted.slice(8);
   const restTotal = rest.reduce((s, g) => s + toDisplay(g.totalInvested, g.currency), 0);
-
   const donutSegments: DonutSegment[] = [
     ...top8.map((g, i) => ({
       label: g.asset_name,
@@ -198,35 +191,36 @@ export default async function PortfolioPage({
       pnlPct: g.pnlPct,
     })),
     ...(restTotal > 0 ? [{
-      label: 'Other assets', value: restTotal,
+      label: 'Other', value: restTotal,
       pct: totalInvested > 0 ? (restTotal / totalInvested) * 100 : 0,
       color: '#475569',
     }] : []),
   ];
 
   const backHref = '/index.html?member_session=1#member';
+  const detailBase = `?currency=${displayCurrency}&lang=${lang}`;
 
   return (
     <main className="portfolio-shell">
       <nav className="portfolio-topbar">
         <a href={backHref} className="brand">Plainvest</a>
         <div className="portfolio-topbar-actions">
-          <CurrencySwitcher current={displayCurrency} />
-          <a href={backHref} className="ghost-nav-link">← Hub</a>
-          <a href="/profile" className="ghost-nav-link">Profile</a>
+          <CurrencySwitcher current={displayCurrency} lang={lang} />
+          <LangSwitcher current={lang} currency={displayCurrency} />
+          <a href={backHref} className="ghost-nav-link">{tx.hub}</a>
+          <a href="/profile" className="ghost-nav-link">{tx.profile}</a>
           <form action={signOut}>
-            <SubmitButton className="ghost" pendingText="...">Logout</SubmitButton>
+            <SubmitButton className="ghost" pendingText="...">{tx.logout}</SubmitButton>
           </form>
         </div>
       </nav>
 
-      <div className="portfolio-content">
-        <div className="portfolio-header">
-          <p className="eyebrow">Investment tracker</p>
-          <h1>My Portfolio</h1>
-          <p className="muted portfolio-header-sub">
-            Track your investments across currencies. Add a current price to see live P&amp;L.
-          </p>
+      <div className="portfolio-content portfolio-content-wide">
+        <div className="portfolio-header-row">
+          <div>
+            <p className="eyebrow">{tx.eyebrow}</p>
+            <h1>{tx.title}</h1>
+          </div>
         </div>
 
         {params.success && <div className="notice notice-success">{params.success}</div>}
@@ -235,82 +229,70 @@ export default async function PortfolioPage({
         {/* KPI row */}
         <div className="portfolio-kpi-row">
           <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">Total Invested</span>
+            <span className="portfolio-kpi-label">{tx.kpiInvested}</span>
             <strong className="portfolio-kpi-value">{fmtShort(totalInvested, displayCurrency)}</strong>
             <span className="portfolio-kpi-sub">
-              {rows.length} purchase{rows.length !== 1 ? 's' : ''} · {grouped.length} asset{grouped.length !== 1 ? 's' : ''}
+              {rows.length} {rows.length !== 1 ? tx.purchases : tx.purchase}
+              {' · '}{grouped.length} {grouped.length !== 1 ? tx.assets : tx.asset}
             </span>
           </div>
-
           <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">Current Value</span>
+            <span className="portfolio-kpi-label">{tx.kpiValue}</span>
             <strong className="portfolio-kpi-value" style={pricedGroups.length === 0 ? { color: 'var(--muted)' } : {}}>
               {pricedGroups.length > 0 ? fmtShort(currentValue, displayCurrency) : '—'}
             </strong>
             <span className="portfolio-kpi-sub">
               {pricedGroups.length === 0
-                ? 'Add prices below'
-                : `${pricedGroups.length} of ${grouped.length} priced`}
+                ? tx.kpiAddPrices
+                : tx.kpiPriced(pricedGroups.length, grouped.length)}
             </span>
           </div>
-
           <div className={`portfolio-kpi-card${pnl == null ? '' : pnl >= 0 ? ' kpi-positive' : ' kpi-negative'}`}>
-            <span className="portfolio-kpi-label">Total Return</span>
+            <span className="portfolio-kpi-label">{tx.kpiReturn}</span>
             <strong className={`portfolio-kpi-value${pnl == null ? '' : pnl >= 0 ? ' positive' : ' negative'}`}>
               {pnl == null ? '—' : (pnl >= 0 ? '+' : '') + fmtShort(pnl, displayCurrency)}
             </strong>
             <span className="portfolio-kpi-sub">
-              {pnlPct == null
-                ? 'Add current prices'
-                : (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(2) + '% total gain'}
+              {pnlPct == null ? tx.kpiAddPrices
+                : (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(2) + '% ' + tx.kpiGainSuffix}
             </span>
           </div>
-
           <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">Positions</span>
+            <span className="portfolio-kpi-label">{tx.kpiPositions}</span>
             <strong className="portfolio-kpi-value">{grouped.length}</strong>
-            <span className="portfolio-kpi-sub">
-              {Object.keys(byType).length} asset class{Object.keys(byType).length !== 1 ? 'es' : ''}
-            </span>
+            <span className="portfolio-kpi-sub">{tx.kpiClasses(Object.keys(byType).length)}</span>
           </div>
         </div>
 
         {rows.length > 0 && (
           <>
-            {/* Overview: chart + performance */}
+            {/* Chart + performance */}
             <div className="portfolio-overview-v2">
               <section className="portfolio-card">
-                <p className="eyebrow">Allocation</p>
-                <h2>Portfolio breakdown</h2>
-                <DonutChart
-                  segments={donutSegments}
-                  totalValue={totalInvested}
-                  currency={displayCurrency}
-                />
+                <p className="eyebrow">{tx.sectionAlloc}</p>
+                <h2>{tx.sectionBreakdown}</h2>
+                <DonutChart segments={donutSegments} totalValue={totalInvested} currency={displayCurrency} />
               </section>
 
               <section className="portfolio-card portfolio-perf-card">
-                <p className="eyebrow">Performance</p>
-                <h2>Highlights</h2>
+                <p className="eyebrow">{tx.sectionPerf}</p>
+                <h2>{tx.sectionHighlights}</h2>
 
                 {performingGroups.length > 0 && best && worst ? (
                   <div className="perf-grid">
                     <div className="perf-card perf-best">
-                      <div className="perf-card-eyebrow">Best performer</div>
+                      <div className="perf-card-eyebrow">{tx.perfBest}</div>
                       <div className="perf-card-asset">
                         <strong>{best.ticker || best.asset_name}</strong>
                         {best.ticker && <span className="perf-card-name">{best.asset_name}</span>}
                       </div>
-                      <div className="perf-card-return positive">
-                        +{best.pnlPct!.toFixed(2)}%
-                      </div>
+                      <div className="perf-card-return positive">+{best.pnlPct!.toFixed(2)}%</div>
                       <div className="perf-card-abs positive">
                         +{fmt(toDisplay(best.pnl!, best.currency), displayCurrency)}
                       </div>
                     </div>
-
                     <div className="perf-card perf-worst">
-                      <div className="perf-card-eyebrow">Worst performer</div>
+                      <div className="perf-card-eyebrow">{tx.perfWorst}</div>
                       <div className="perf-card-asset">
                         <strong>{worst.ticker || worst.asset_name}</strong>
                         {worst.ticker && <span className="perf-card-name">{worst.asset_name}</span>}
@@ -324,74 +306,49 @@ export default async function PortfolioPage({
                     </div>
                   </div>
                 ) : (
-                  <p className="muted" style={{ fontSize: '.85rem', marginBottom: '1.5rem' }}>
-                    Add a current price to any position to see performance highlights.
+                  <p className="muted" style={{ fontSize: '.83rem', marginBottom: '1.5rem' }}>
+                    {tx.perfAddPrices}
                   </p>
                 )}
 
-                <p className="eyebrow" style={{ marginTop: '1.5rem', marginBottom: '.75rem' }}>Asset classes</p>
+                <p className="eyebrow" style={{ marginTop: '1.5rem', marginBottom: '.65rem' }}>{tx.sectionClasses}</p>
                 <div className="type-breakdown-v2">
-                  {Object.entries(byType)
-                    .sort((a, b) => b[1] - a[1])
-                    .map(([type, val]) => {
-                      const pct = totalInvested > 0 ? (val / totalInvested) * 100 : 0;
-                      return (
-                        <div key={type} className="type-row-v2">
-                          <div className="type-row-head">
-                            <span className={`portfolio-type-chip ${TYPE_CHIP[type] || 'chip-other'}`}>
-                              {type}
-                            </span>
-                            <span className="type-row-pct">{pct.toFixed(1)}%</span>
-                            <span className="type-row-val">{fmtShort(val, displayCurrency)}</span>
-                          </div>
-                          <div className="type-row-bar-bg">
-                            <div
-                              className="type-row-bar-fill"
-                              style={{ width: `${pct}%`, background: TYPE_COLORS[type] || '#64748b' }}
-                            />
-                          </div>
+                  {Object.entries(byType).sort((a, b) => b[1] - a[1]).map(([type, val]) => {
+                    const pct = totalInvested > 0 ? (val / totalInvested) * 100 : 0;
+                    return (
+                      <div key={type} className="type-row-v2">
+                        <div className="type-row-head">
+                          <span className={`portfolio-type-chip ${TYPE_CHIP[type] || 'chip-other'}`}>{type}</span>
+                          <span className="type-row-pct">{pct.toFixed(1)}%</span>
+                          <span className="type-row-val">{fmtShort(val, displayCurrency)}</span>
                         </div>
-                      );
-                    })}
-                </div>
-
-                {/* Average buy prices */}
-                <p className="eyebrow" style={{ marginTop: '1.75rem', marginBottom: '.75rem' }}>Avg buy prices</p>
-                <div className="avg-price-v2">
-                  {grouped.map(g => (
-                    <div key={g.key} className="avg-price-row-v2">
-                      <div className="avg-price-asset-v2">
-                        <strong>{g.ticker || g.asset_name}</strong>
-                        {g.ticker && <span>{g.asset_name}</span>}
+                        <div className="type-row-bar-bg">
+                          <div className="type-row-bar-fill"
+                            style={{ width: `${pct}%`, background: TYPE_COLORS[type] || '#64748b' }} />
+                        </div>
                       </div>
-                      <div className="avg-price-right">
-                        <span className="avg-price-num-v2">
-                          {fmt(toDisplay(g.avgBuyPrice, g.currency), displayCurrency)}
-                        </span>
-                        <span className="avg-price-qty-v2">{fmtQty(g.totalQty)} units</span>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             </div>
 
-            {/* Holdings table */}
+            {/* Holdings — one row per asset, no sub-rows */}
             <section className="portfolio-card">
-              <p className="eyebrow">Holdings</p>
-              <h2>All positions</h2>
+              <p className="eyebrow">{tx.sectionHoldings}</p>
+              <h2>{tx.sectionAllPositions}</h2>
               <div className="portfolio-table-wrap">
-                <table className="portfolio-table portfolio-table-v2">
+                <table className="portfolio-table portfolio-table-v2 holdings-table-v3">
                   <thead>
                     <tr>
-                      <th>Asset</th>
-                      <th>Type</th>
-                      <th className="num">Qty</th>
-                      <th className="num">Avg Buy</th>
-                      <th className="num">Invested</th>
-                      <th className="num">Update Price</th>
-                      <th className="num">Current Value</th>
-                      <th className="num">P&amp;L</th>
+                      <th>{tx.colAsset}</th>
+                      <th>{tx.colType}</th>
+                      <th className="num">{tx.colQty}</th>
+                      <th className="num">{tx.colAvgBuy}</th>
+                      <th className="num">{tx.colInvested}</th>
+                      <th className="num">{tx.colPrice}</th>
+                      <th className="num">{tx.colValue}</th>
+                      <th className="num">{tx.colPnl}</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -401,113 +358,79 @@ export default async function PortfolioPage({
                       const allocPct = totalInvested > 0 ? (investedDisp / totalInvested) * 100 : 0;
                       const valueDisp = g.currentValue != null
                         ? toDisplay(g.currentValue, g.currency) : null;
-                      const pnlDisp = g.pnl != null
-                        ? toDisplay(g.pnl, g.currency) : null;
+                      const pnlDisp = g.pnl != null ? toDisplay(g.pnl, g.currency) : null;
                       const avgDisp = toDisplay(g.avgBuyPrice, g.currency);
+                      const initials = (g.ticker || g.asset_name).slice(0, 2).toUpperCase();
+                      const typeColor = TYPE_COLORS[g.asset_type] || '#64748b';
+                      const detailHref = `/portfolio/asset/${encodeURIComponent(g.key)}${detailBase}`;
 
                       return (
-                        <>
-                          <tr key={g.key} className="holdings-group-row">
-                            <td>
-                              <div className="holdings-asset-block">
-                                <div className="portfolio-asset-name">{g.asset_name}</div>
-                                {g.ticker && <div className="portfolio-ticker">{g.ticker.toUpperCase()}</div>}
+                        <tr key={g.key} className="holdings-row-v3">
+                          <td>
+                            <div className="holdings-asset-cell">
+                              <div className="asset-initials" style={{ background: typeColor }}>
+                                {initials}
                               </div>
-                              <div className="alloc-bar-wrap" title={`${allocPct.toFixed(1)}% of portfolio`}>
-                                <div
-                                  className="alloc-bar-fill"
-                                  style={{ width: `${Math.min(allocPct, 100)}%` }}
-                                />
-                              </div>
-                              <div className="alloc-pct-label">{allocPct.toFixed(1)}% of portfolio</div>
-                            </td>
-                            <td>
-                              <span className={`portfolio-type-chip ${TYPE_CHIP[g.asset_type] || 'chip-other'}`}>
-                                {g.asset_type}
-                              </span>
-                            </td>
-                            <td className="num">{fmtQty(g.totalQty)}</td>
-                            <td className="num">{fmt(avgDisp, displayCurrency)}</td>
-                            <td className="num muted">{fmt(investedDisp, displayCurrency)}</td>
-                            <td className="num">
-                              <form action={updateCurrentPrice} className="price-update-form">
-                                <input type="hidden" name="id" value={g.entries[0].id} />
-                                <div className="price-input-wrap">
-                                  <input
-                                    type="number"
-                                    name="current_price"
-                                    step="any"
-                                    placeholder="—"
-                                    defaultValue={g.currentPrice != null ? String(g.currentPrice) : ''}
-                                    className="price-input"
-                                  />
-                                  <button type="submit" className="price-update-btn" title="Update">✓</button>
+                              <div className="holdings-asset-info">
+                                <span className="portfolio-asset-name">{g.asset_name}</span>
+                                {g.ticker && <span className="portfolio-ticker">{g.ticker.toUpperCase()}</span>}
+                                <div className="alloc-bar-wrap">
+                                  <div className="alloc-bar-fill" style={{ width: `${Math.min(allocPct, 100)}%` }} />
                                 </div>
-                                <div className="price-currency-hint">{g.currency}</div>
-                              </form>
-                            </td>
-                            <td className="num">
-                              {valueDisp != null
-                                ? <strong>{fmt(valueDisp, displayCurrency)}</strong>
-                                : <span className="muted">—</span>}
-                            </td>
-                            <td className={`num${pnlDisp == null ? '' : pnlDisp >= 0 ? ' positive' : ' negative'}`}>
-                              {pnlDisp == null ? (
-                                <span className="muted">—</span>
-                              ) : (
-                                <>
-                                  <div className="pnl-main">
-                                    {pnlDisp >= 0 ? '▲' : '▼'} {pnlDisp >= 0 ? '+' : ''}{fmtShort(pnlDisp, displayCurrency)}
-                                  </div>
-                                  <div className="pnl-pct">{fmtPct(g.pnlPct!)}</div>
-                                </>
-                              )}
-                            </td>
-                            <td></td>
-                          </tr>
-
-                          {g.entries.length > 1 && g.entries.map(e => {
-                            const inv = toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency);
-                            return (
-                              <tr key={e.id} className="holdings-sub-row">
-                                <td>
-                                  <div className="sub-row-date">{e.buy_date || 'No date'}</div>
-                                  {e.notes && <div className="sub-row-note">{e.notes}</div>}
-                                </td>
-                                <td></td>
-                                <td className="num muted">{fmtQty(Number(e.quantity))}</td>
-                                <td className="num muted">
-                                  {fmt(toDisplay(Number(e.buy_price), e.currency), displayCurrency)}
-                                </td>
-                                <td className="num muted">{fmt(inv, displayCurrency)}</td>
-                                <td></td><td></td><td></td>
-                                <td>
-                                  <form action={deletePortfolioEntry}>
-                                    <input type="hidden" name="id" value={e.id} />
-                                    <button type="submit" className="delete-btn" title="Remove">✕</button>
-                                  </form>
-                                </td>
-                              </tr>
-                            );
-                          })}
-
-                          {g.entries.length === 1 && (
-                            <tr key={`del-${g.key}`} className="holdings-sub-row">
-                              <td>
-                                {g.entries[0].buy_date && <div className="sub-row-date">{g.entries[0].buy_date}</div>}
-                                {g.entries[0].notes && <div className="sub-row-note">{g.entries[0].notes}</div>}
-                              </td>
-                              <td colSpan={6}></td>
-                              <td></td>
-                              <td>
-                                <form action={deletePortfolioEntry}>
-                                  <input type="hidden" name="id" value={g.entries[0].id} />
-                                  <button type="submit" className="delete-btn" title="Remove">✕</button>
-                                </form>
-                              </td>
-                            </tr>
-                          )}
-                        </>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <span className={`portfolio-type-chip ${TYPE_CHIP[g.asset_type] || 'chip-other'}`}>
+                              {g.asset_type}
+                            </span>
+                          </td>
+                          <td className="num">
+                            <div>{fmtQty(g.totalQty)}</div>
+                            {g.entries.length > 1 && (
+                              <div className="buys-badge">{tx.nBuys(g.entries.length)}</div>
+                            )}
+                          </td>
+                          <td className="num">{fmt(avgDisp, displayCurrency)}</td>
+                          <td className="num muted">{fmt(investedDisp, displayCurrency)}</td>
+                          <td className="num">
+                            <form action={updateCurrentPrice} className="price-update-form">
+                              <input type="hidden" name="id" value={g.entries[0].id} />
+                              <div className="price-input-wrap">
+                                <input
+                                  type="number"
+                                  name="current_price"
+                                  step="any"
+                                  placeholder="—"
+                                  defaultValue={g.currentPrice != null ? String(g.currentPrice) : ''}
+                                  className="price-input price-input-sm"
+                                />
+                                <button type="submit" className="price-update-btn" title="Update">✓</button>
+                              </div>
+                              <div className="price-currency-hint">{g.currency}</div>
+                            </form>
+                          </td>
+                          <td className="num">
+                            {valueDisp != null
+                              ? <strong>{fmt(valueDisp, displayCurrency)}</strong>
+                              : <span className="muted">—</span>}
+                          </td>
+                          <td className={`num${pnlDisp == null ? '' : pnlDisp >= 0 ? ' positive' : ' negative'}`}>
+                            {pnlDisp == null ? (
+                              <span className="muted">—</span>
+                            ) : (
+                              <>
+                                <div className="pnl-main">
+                                  {pnlDisp >= 0 ? '▲' : '▼'} {pnlDisp >= 0 ? '+' : ''}{fmtShort(pnlDisp, displayCurrency)}
+                                </div>
+                                <div className="pnl-pct">{fmtPct(g.pnlPct!)}</div>
+                              </>
+                            )}
+                          </td>
+                          <td>
+                            <a href={detailHref} className="detail-link" title="View details">→</a>
+                          </td>
+                        </tr>
                       );
                     })}
                   </tbody>
@@ -520,8 +443,8 @@ export default async function PortfolioPage({
         {rows.length === 0 && (
           <div className="portfolio-empty">
             <div className="portfolio-empty-icon">📊</div>
-            <h3>No positions yet</h3>
-            <p>Add your first investment below to start tracking your portfolio.</p>
+            <h3>{tx.emptyTitle}</h3>
+            <p>{tx.emptyText}</p>
           </div>
         )}
 
