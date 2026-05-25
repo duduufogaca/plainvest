@@ -5157,54 +5157,90 @@
 
     .member-card {
       min-height: 240px;
-      border: 1px solid rgba(255, 255, 255, .09);
-      background: linear-gradient(145deg, rgba(22, 40, 66, .94), rgba(9, 21, 39, .96));
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: linear-gradient(160deg, rgba(18, 34, 58, .97), rgba(8, 17, 34, .98));
       border-radius: 22px;
-      padding: 1.25rem;
+      padding: 1.35rem;
       display: flex;
       flex-direction: column;
-      gap: .75rem;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
+      gap: .7rem;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .22);
+      transition: transform .22s cubic-bezier(.25,.46,.45,.94),
+                  box-shadow .22s ease,
+                  border-color .22s ease;
     }
+
+    .member-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 32px 64px rgba(0, 0, 0, .38), 0 0 0 1px rgba(97, 213, 180, .1);
+      border-color: rgba(97, 213, 180, .2);
+    }
+
+    /* Featured "Start Here" card — spans 2 cols */
+    .member-card.member-card-featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(22, 44, 76, .98), rgba(10, 22, 44, .98));
+      border-color: rgba(97, 213, 180, .25);
+      border-top: 3px solid rgba(97, 213, 180, .9) !important;
+    }
+    .member-card.member-card-featured h3 { font-size: 1.35rem; }
 
     .member-card:nth-child(3n+1) {
-      border-top: 3px solid rgba(0, 212, 170, .75);
+      border-top: 3px solid rgba(0, 212, 170, .7);
     }
-
     .member-card:nth-child(3n+2) {
-      border-top: 3px solid rgba(232, 184, 75, .75);
+      border-top: 3px solid rgba(244, 200, 106, .7);
     }
-
     .member-card:nth-child(3n) {
-      border-top: 3px solid rgba(114, 154, 255, .65);
+      border-top: 3px solid rgba(129, 140, 248, .65);
     }
 
     .member-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(0, 212, 170, .1);
       border: 1px solid rgba(0, 212, 170, .18);
-      font-size: 1.25rem;
+      font-size: 1.35rem;
+      flex-shrink: 0;
     }
-
     .member-card:nth-child(3n+2) .member-icon {
-      background: rgba(232, 184, 75, .11);
-      border-color: rgba(232, 184, 75, .22);
+      background: rgba(244, 200, 106, .1);
+      border-color: rgba(244, 200, 106, .2);
+    }
+    .member-card:nth-child(3n) .member-icon {
+      background: rgba(129, 140, 248, .1);
+      border-color: rgba(129, 140, 248, .2);
     }
 
-    .member-card:nth-child(3n) .member-icon {
-      background: rgba(114, 154, 255, .1);
-      border-color: rgba(114, 154, 255, .2);
+    /* Category chip added by JS */
+    .member-card-cat-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 8px;
+      padding: .15rem .5rem;
+      font-size: .66rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .1rem;
     }
+    .cat-tag-crypto   { background: rgba(244,200,106,.13); color: #f4c86a; }
+    .cat-tag-stocks   { background: rgba(97,213,180,.12);  color: #61d5b4; }
+    .cat-tag-dca      { background: rgba(97,213,180,.1);   color: #61d5b4; }
+    .cat-tag-exchange { background: rgba(129,140,248,.13); color: #a0afff; }
+    .cat-tag-mindset  { background: rgba(251,113,133,.12); color: #fb7185; }
+    .cat-tag-tools    { background: rgba(148,163,184,.1);  color: #94a3b8; }
+    .cat-tag-start    { background: rgba(244,200,106,.12); color: #f4c86a; }
 
     .member-card h3 {
       color: var(--white);
       font-family: 'Lora', serif;
-      font-size: 1.18rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
     }
 
     .member-card p {
@@ -5292,7 +5328,22 @@
       white-space: nowrap;
     }
     .member-card.guide-read {
-      border-color: rgba(0, 212, 170, .28);
+      border-color: rgba(0, 212, 170, .3);
+      background: linear-gradient(160deg, rgba(20, 40, 64, .97), rgba(9, 19, 36, .98));
+    }
+    .member-card.guide-read::after {
+      content: '✓';
+      position: absolute;
+      top: .85rem;
+      right: 2.6rem;
+      font-size: .72rem;
+      font-weight: 900;
+      color: #61d5b4;
+      background: rgba(97, 213, 180, .12);
+      border-radius: 99px;
+      padding: .15rem .45rem;
+      line-height: 1.4;
+      pointer-events: none;
     }
     .member-card.guide-read .member-open-file {
       background: rgba(0, 212, 170, .12);
@@ -16874,7 +16925,17 @@
       if (elFavs) elFavs.textContent = starred.length;
     }
 
+    var CAT_TAG_LABELS = {
+      crypto: '₿ Crypto', stocks: '📈 Stocks & ETFs', dca: '📈 DCA',
+      exchange: '🏦 Exchange', mindset: '🧠 Mindset', tools: '🔧 Tools', start: '🚀 Start here'
+    };
+    var CAT_TAG_CLASS = {
+      crypto: 'cat-tag-crypto', stocks: 'cat-tag-stocks', dca: 'cat-tag-dca',
+      exchange: 'cat-tag-exchange', mindset: 'cat-tag-mindset', tools: 'cat-tag-tools', start: 'cat-tag-start'
+    };
+
     function initMemberHub() {
+      var isFirst = true;
       document.querySelectorAll('.member-card').forEach(function (card) {
         var btn = card.querySelector('.member-open-file');
         if (!btn) return;
@@ -16883,8 +16944,25 @@
         var key = m ? m[1] : (onclick.indexOf('openMemberBooks') >= 0 ? 'books' : null);
         if (!key) return;
         card.dataset.guide = key;
-        var cats = CARD_CATS[key];
-        if (cats) card.dataset.cats = cats.join(',');
+        var cats = CARD_CATS[key] || [];
+        if (cats.length) card.dataset.cats = cats.join(',');
+
+        // Featured card for first (Start Here)
+        if (isFirst) {
+          card.classList.add('member-card-featured');
+          isFirst = false;
+        }
+
+        // Category chip (above icon)
+        if (cats.length && !card.querySelector('.member-card-cat-tag')) {
+          var chip = document.createElement('span');
+          var primaryCat = cats[0];
+          chip.className = 'member-card-cat-tag ' + (CAT_TAG_CLASS[primaryCat] || '');
+          chip.textContent = CAT_TAG_LABELS[primaryCat] || primaryCat;
+          card.insertBefore(chip, card.firstChild);
+        }
+
+        // Star button
         if (!card.querySelector('.member-card-star')) {
           var star = document.createElement('button');
           star.className = 'member-card-star';
