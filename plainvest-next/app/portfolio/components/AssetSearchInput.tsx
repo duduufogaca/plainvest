@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { T } from '@/lib/portfolio-i18n';
+import type { Lang } from '@/lib/portfolio-i18n';
 
 type Result = { name: string; ticker: string; type: string; rank?: number | null; thumb?: string };
 
@@ -8,10 +10,12 @@ export function AssetSearchInput({
   assetType,
   defaultName = '',
   defaultTicker = '',
+  lang = 'en',
 }: {
   assetType: string;
   defaultName?: string;
   defaultTicker?: string;
+  lang?: Lang;
 }) {
   const [name, setName] = useState(defaultName);
   const [ticker, setTicker] = useState(defaultTicker);
@@ -68,11 +72,18 @@ export function AssetSearchInput({
     setTicker(defaultTicker);
   }, [assetType, defaultName, defaultTicker]);
 
+  const tx = T[lang];
+  const namePlaceholder = assetType === 'crypto'
+    ? tx.formPlaceholderCrypto
+    : assetType === 'etf'
+    ? tx.formPlaceholderETF
+    : tx.formPlaceholderStock;
+
   return (
     <div className="asset-search-wrap" ref={wrapRef}>
       <div className="asset-search-row">
         <label className="portfolio-label asset-name-label">
-          Asset name *
+          {tx.formAssetName} *
           <div className="asset-input-wrap">
             <input
               name="asset_name"
@@ -82,28 +93,15 @@ export function AssetSearchInput({
               value={name}
               onChange={e => handleNameChange(e.target.value)}
               onFocus={() => name.length >= 2 && results.length > 0 && setOpen(true)}
-              placeholder={
-                assetType === 'crypto'
-                  ? 'e.g. Bitcoin, Ethereum…'
-                  : assetType === 'etf'
-                  ? 'e.g. VAS, SPY, BOVA11…'
-                  : 'e.g. Apple, Petrobras…'
-              }
+              placeholder={namePlaceholder}
             />
             {loading && <span className="asset-spinner" />}
           </div>
           {open && results.length > 0 && (
             <ul className="asset-dropdown" role="listbox">
               {results.map((r, i) => (
-                <li
-                  key={i}
-                  role="option"
-                  className="asset-dropdown-item"
-                  onMouseDown={() => pick(r)}
-                >
-                  {r.thumb && (
-                    <img src={r.thumb} alt="" className="asset-thumb" width={20} height={20} />
-                  )}
+                <li key={i} role="option" className="asset-dropdown-item" onMouseDown={() => pick(r)}>
+                  {r.thumb && <img src={r.thumb} alt="" className="asset-thumb" width={20} height={20} />}
                   <span className="asset-dd-name">{r.name}</span>
                   <span className="asset-dd-ticker">{r.ticker}</span>
                   {r.rank && <span className="asset-dd-rank">#{r.rank}</span>}
@@ -114,13 +112,13 @@ export function AssetSearchInput({
         </label>
 
         <label className="portfolio-label">
-          Ticker / Symbol
+          {tx.formTicker}
           <input
             name="ticker"
             type="text"
             value={ticker}
             onChange={e => setTicker(e.target.value.toUpperCase())}
-            placeholder={assetType === 'crypto' ? 'e.g. BTC' : 'e.g. AAPL'}
+            placeholder={assetType === 'crypto' ? tx.formPlaceholderTicker : tx.formPlaceholderTickerStock}
           />
         </label>
       </div>

@@ -9,7 +9,12 @@ import { AddPositionForm } from './components/AddPositionForm';
 import { CurrencySwitcher } from './components/CurrencySwitcher';
 import { LangSwitcher } from './components/LangSwitcher';
 import { PortfolioLineChart, type ChartPoint } from './components/PortfolioLineChart';
+import { MiniSparkline } from './components/MiniSparkline';
+import { AssetLogo } from './components/AssetLogo';
+import { ProjectionEngine } from './components/ProjectionEngine';
 import { getExchangeRates } from '@/lib/exchange-rates';
+import { fetchLivePrices } from '@/lib/live-prices';
+import type { LivePrices } from '@/lib/live-prices';
 import { T, getLang } from '@/lib/portfolio-i18n';
 import type { Metadata } from 'next';
 
@@ -192,6 +197,23 @@ export default async function PortfolioPage({
   const rows: Entry[] = entries || [];
   const grouped = groupEntries(rows);
 
+  // Fetch live prices (Yahoo Finance, 5-min server cache)
+  const livePrices: LivePrices = await fetchLivePrices(
+    grouped.map(g => ({ key: g.key, ticker: g.ticker, assetType: g.asset_type, currency: g.currency }))
+  );
+
+  // Apply live prices: override currentPrice / currentValue / pnl on grouped assets
+  // Formula: nativePrice = (livePrice / rates[lp.priceCurrency]) * rates[g.currency]
+  grouped.forEach(g => {
+    const lp = livePrices[g.key];
+    if (!lp) return;
+    const nativePrice = (lp.price / (rates[lp.priceCurrency] ?? 1)) * (rates[g.currency] ?? 1);
+    g.currentPrice = nativePrice;
+    g.currentValue = g.totalQty * nativePrice;
+    g.pnl = g.currentValue - g.totalInvested;
+    g.pnlPct = g.totalInvested > 0 ? (g.pnl / g.totalInvested) * 100 : null;
+  });
+
   // Totals in display currency
   const totalInvested = rows.reduce(
     (s, e) => s + toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency), 0);
@@ -247,68 +269,123 @@ export default async function PortfolioPage({
 
   const unpricedCount = grouped.length - pricedGroups.length;
 
+  const sparkValues = chartData.map(d => d.cumulative);
+  const sparkFirst = chartData.length > 0 ? chartData[0].label.replace('-', '/') : '';
+  const sparkLast  = chartData.length > 0 ? chartData[chartData.length - 1].label.replace('-', '/') : '';
+
+  // Projection inputs
+  const projCurrentValue = pricedGroups.length > 0 ? currentValue : totalInvested;
+  const monthsActive = Math.max(chartData.length, 1);
+  const projMonthlyContrib = totalInvested / monthsActive;
+
+  // CAGR (annualised return since first buy)
+  const yearsActive = monthsActive / 12;
+  const cagr = (pnl != null && pricedCost > 0 && yearsActive >= 0.1)
+    ? (Math.pow(currentValue / pricedCost, 1 / yearsActive) - 1) * 100
+    : null;
+
   return (
     <main className="portfolio-shell">
-      <nav className="portfolio-topbar">
-        <a href={backHref} className="brand">Plainvest</a>
-        <div className="portfolio-topbar-actions">
+
+      {/* ── Sidebar ─────────────────────────────────────── */}
+      <aside className="portfolio-sidebar">
+        <a href={backHref} className="sidebar-brand">Plainvest</a>
+        <nav className="sidebar-nav">
+          <span className="sidebar-link sidebar-active">
+            <span className="sidebar-icon">◈</span>Portfolio
+          </span>
+          <a href={backHref} className="sidebar-link">
+            <span className="sidebar-icon">⌂</span>Hub
+          </a>
+          <a href="/profile" className="sidebar-link">
+            <span className="sidebar-icon">◯</span>{tx.profile}
+          </a>
+        </nav>
+        <div className="sidebar-footer">
+          <span className="sidebar-footer-label">Display</span>
           <CurrencySwitcher current={displayCurrency} lang={lang} />
           <LangSwitcher current={lang} currency={displayCurrency} />
-          <a href={backHref} className="ghost-nav-link">{tx.hub}</a>
-          <a href="/profile" className="ghost-nav-link">{tx.profile}</a>
           <form action={signOut}>
-            <SubmitButton className="ghost" pendingText="...">{tx.logout}</SubmitButton>
+            <SubmitButton className="sidebar-logout-btn" pendingText="...">{tx.logout}</SubmitButton>
           </form>
         </div>
-      </nav>
+      </aside>
 
-      <div className="portfolio-content portfolio-content-wide">
-        <div className="portfolio-header-row">
+      {/* ── Main ────────────────────────────────────────── */}
+      <div className="portfolio-main">
+        <header className="portfolio-topbar">
           <div>
             <p className="eyebrow">{tx.eyebrow}</p>
-            <h1>{tx.title}</h1>
+            <h1 className="portfolio-page-title">{tx.title}</h1>
           </div>
-        </div>
+        </header>
+
+      <div className="portfolio-content portfolio-content-wide">
 
         {params.success && <div className="notice notice-success">{params.success}</div>}
         {params.message && <div className="notice">{params.message}</div>}
 
-        {/* KPI row */}
+        {/* ── 3 KPI cards with sparklines ── */}
         <div className="portfolio-kpi-row">
+
+          {/* Invested */}
           <div className="portfolio-kpi-card">
             <span className="portfolio-kpi-label">{tx.kpiInvested}</span>
-            <strong className="portfolio-kpi-value">{rows.length > 0 ? fmtShort(totalInvested, displayCurrency) : '—'}</strong>
+            <strong className="portfolio-kpi-value">
+              {rows.length > 0 ? fmtShort(totalInvested, displayCurrency) : '—'}
+            </strong>
             <span className="portfolio-kpi-sub">
               {rows.length} {rows.length !== 1 ? tx.purchases : tx.purchase}
               {' · '}{grouped.length} {grouped.length !== 1 ? tx.assets : tx.asset}
             </span>
+            {sparkValues.length >= 2 && (
+              <div className="kpi-sparkline">
+                <MiniSparkline data={sparkValues} color="#f4c86a" gradientId="sg1" />
+                <div className="kpi-spark-dates"><span>{sparkFirst}</span><span>{sparkLast}</span></div>
+              </div>
+            )}
           </div>
+
+          {/* Current Value */}
           <div className="portfolio-kpi-card">
             <span className="portfolio-kpi-label">{tx.kpiValue}</span>
             <strong className="portfolio-kpi-value" style={pricedGroups.length === 0 ? { color: 'var(--muted)' } : {}}>
               {pricedGroups.length > 0 ? fmtShort(currentValue, displayCurrency) : '—'}
             </strong>
             <span className="portfolio-kpi-sub">
-              {pricedGroups.length === 0
-                ? tx.kpiAddPrices
-                : tx.kpiPriced(pricedGroups.length, grouped.length)}
+              {pricedGroups.length === 0 ? tx.kpiAddPrices : tx.kpiPriced(pricedGroups.length, grouped.length)}
             </span>
+            {sparkValues.length >= 2 && (
+              <div className="kpi-sparkline">
+                <MiniSparkline data={sparkValues} color="#4ade80" gradientId="sg2" />
+                <div className="kpi-spark-dates"><span>{sparkFirst}</span><span>{sparkLast}</span></div>
+              </div>
+            )}
           </div>
+
+          {/* P&L */}
           <div className={`portfolio-kpi-card${pnl == null ? '' : pnl >= 0 ? ' kpi-positive' : ' kpi-negative'}`}>
             <span className="portfolio-kpi-label">{tx.kpiReturn}</span>
             <strong className={`portfolio-kpi-value${pnl == null ? '' : pnl >= 0 ? ' positive' : ' negative'}`}>
               {pnl == null ? '—' : (pnl >= 0 ? '+' : '') + fmtShort(pnl, displayCurrency)}
             </strong>
             <span className="portfolio-kpi-sub">
-              {pnlPct == null ? tx.kpiAddPrices
+              {pnlPct == null
+                ? tx.kpiAddPrices
                 : (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(2) + '% ' + tx.kpiGainSuffix}
             </span>
+            {sparkValues.length >= 2 && (
+              <div className="kpi-sparkline">
+                <MiniSparkline
+                  data={sparkValues}
+                  color={pnl == null || pnl >= 0 ? '#4ade80' : '#f87171'}
+                  gradientId="sg3"
+                />
+                <div className="kpi-spark-dates"><span>{sparkFirst}</span><span>{sparkLast}</span></div>
+              </div>
+            )}
           </div>
-          <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">{tx.kpiPositions}</span>
-            <strong className="portfolio-kpi-value">{grouped.length}</strong>
-            <span className="portfolio-kpi-sub">{tx.kpiClasses(Object.keys(byType).length)}</span>
-          </div>
+
         </div>
 
         {/* Prices notice */}
@@ -389,6 +466,19 @@ export default async function PortfolioPage({
                   </p>
                 )}
 
+                {/* CAGR stat */}
+                {cagr !== null && (
+                  <div className="cagr-row">
+                    <span className="cagr-label">CAGR</span>
+                    <span className={`cagr-val${cagr >= 0 ? ' positive' : ' negative'}`}>
+                      {cagr >= 0 ? '+' : ''}{cagr.toFixed(2)}%
+                    </span>
+                    <span className="cagr-sub">
+                      {lang === 'pt' ? 'retorno anualizado' : 'annualised return'} · {yearsActive.toFixed(1)}{lang === 'pt' ? ' anos' : ' yrs'}
+                    </span>
+                  </div>
+                )}
+
                 <p className="eyebrow" style={{ marginTop: '1.5rem', marginBottom: '.65rem' }}>{tx.sectionClasses}</p>
                 <div className="type-breakdown-v2">
                   {Object.entries(byType).sort((a, b) => b[1] - a[1]).map(([type, val]) => {
@@ -446,9 +536,12 @@ export default async function PortfolioPage({
                         <tr key={g.key} className="holdings-row-v3">
                           <td>
                             <div className="holdings-asset-cell">
-                              <div className="asset-initials" style={{ background: typeColor }}>
-                                {initials}
-                              </div>
+                              <AssetLogo
+                                ticker={g.ticker}
+                                assetType={g.asset_type}
+                                initials={initials}
+                                color={typeColor}
+                              />
                               <div className="holdings-asset-info">
                                 <span className="portfolio-asset-name">{g.asset_name}</span>
                                 {g.ticker && <span className="portfolio-ticker">{g.ticker.toUpperCase()}</span>}
@@ -472,21 +565,29 @@ export default async function PortfolioPage({
                           <td className="num">{fmt(avgDisp, displayCurrency)}</td>
                           <td className="num muted">{fmt(investedDisp, displayCurrency)}</td>
                           <td className="num">
-                            <form action={updateCurrentPrice} className="price-update-form">
-                              <input type="hidden" name="id" value={g.entries[0].id} />
-                              <div className="price-input-wrap">
-                                <input
-                                  type="number"
-                                  name="current_price"
-                                  step="any"
-                                  placeholder="—"
-                                  defaultValue={g.currentPrice != null ? String(g.currentPrice) : ''}
-                                  className="price-input price-input-sm"
-                                />
-                                <button type="submit" className="price-update-btn" title="Update">✓</button>
+                            {g.currentPrice != null ? (
+                              <div className="price-display-cell">
+                                <span className="price-display-val">{fmt(g.currentPrice, g.currency)}</span>
+                                {livePrices[g.key]
+                                  ? <span className="price-live-badge">{tx.livePrice}</span>
+                                  : <span className="price-manual-badge">{tx.manualPrice}</span>}
                               </div>
-                              <div className="price-currency-hint">{g.currency}</div>
-                            </form>
+                            ) : (
+                              <form action={updateCurrentPrice} className="price-update-form">
+                                <input type="hidden" name="id" value={g.entries[0].id} />
+                                <div className="price-input-wrap">
+                                  <input
+                                    type="number"
+                                    name="current_price"
+                                    step="any"
+                                    placeholder="—"
+                                    className="price-input price-input-sm"
+                                  />
+                                  <button type="submit" className="price-update-btn" title="Update">✓</button>
+                                </div>
+                                <div className="price-currency-hint">{g.currency}</div>
+                              </form>
+                            )}
                           </td>
                           <td className="num">
                             {valueDisp != null
@@ -526,7 +627,18 @@ export default async function PortfolioPage({
           </div>
         )}
 
-        <AddPositionForm />
+        {/* ── Future Projection ── */}
+        {rows.length > 0 && (
+          <ProjectionEngine
+            currentValue={projCurrentValue}
+            monthlyContribution={projMonthlyContrib}
+            currency={displayCurrency}
+            lang={lang}
+          />
+        )}
+
+        <AddPositionForm lang={lang} />
+      </div>
       </div>
     </main>
   );
