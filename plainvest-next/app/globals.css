@@ -1113,6 +1113,41 @@ td.muted { color:var(--muted) !important; }
 .price-currency-hint { font-size:.65rem; color:#7a8fa8; margin-top:.2rem; text-align:right; }
 .pnl-main { font-weight:800; font-size:.85rem; }
 
+/* ─── Prices notice banner ───────────────────────────────── */
+.prices-notice {
+  display:flex; align-items:center; gap:.6rem;
+  padding:.65rem 1rem; border-radius:12px; margin-bottom:1rem;
+  background:rgba(244,200,106,.06); border:1px solid rgba(244,200,106,.2);
+  font-size:.78rem; color:#c5a84a; line-height:1.4;
+}
+.prices-notice-icon { font-size:1rem; flex-shrink:0; }
+
+/* ─── Portfolio chart card ───────────────────────────────── */
+.portfolio-chart-card { margin-bottom:1.25rem; }
+.pchart-header {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:1rem; margin-bottom:1rem; flex-wrap:wrap;
+}
+.pchart-summary { display:flex; flex-direction:column; align-items:flex-end; gap:.15rem; }
+.pchart-summary-label { font-size:.65rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#7a8fa8; }
+.pchart-summary-val { font-size:.78rem; font-weight:800; color:#c5dff0; }
+.pchart-empty { font-size:.83rem; padding:1.5rem 0; }
+
+/* ─── Line chart ─────────────────────────────────────────── */
+.pchart-wrap { position:relative; }
+.pchart-controls { display:flex; gap:.3rem; margin-bottom:.85rem; }
+.pchart-btn {
+  font-size:.7rem; font-weight:800; letter-spacing:.06em;
+  padding:.26rem .65rem; border-radius:7px;
+  border:1px solid rgba(255,255,255,.1); background:transparent;
+  color:#7a8fa8; cursor:pointer; transition:background .15s,color .15s,border-color .15s;
+}
+.pchart-btn:hover { background:rgba(255,255,255,.05); color:#c5dff0; }
+.pchart-btn.active {
+  background:rgba(97,213,180,.1); border-color:rgba(97,213,180,.3); color:#61d5b4;
+}
+.pchart-svg { width:100%; height:auto; display:block; overflow:visible; }
+
 /* ─── Language switcher ──────────────────────────────────── */
 .lang-switcher { display:flex; gap:.25rem; }
 .lang-btn {

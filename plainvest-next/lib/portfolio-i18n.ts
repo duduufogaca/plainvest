@@ -60,6 +60,10 @@ export const T = {
     purchases: 'purchases',
     asset: 'asset',
     assets: 'assets',
+    pricesNotice: (n: number) => `${n} position${n !== 1 ? 's' : ''} missing a current price — update them in the table below to see value & returns.`,
+    chartEyebrow: 'Evolution',
+    chartTitle: 'Portfolio growth over time',
+    chartSince: 'Since',
   },
   pt: {
     eyebrow: 'Rastreador de investimentos',
@@ -119,6 +123,10 @@ export const T = {
     purchases: 'compras',
     asset: 'ativo',
     assets: 'ativos',
+    pricesNotice: (n: number) => `${n} posição${n !== 1 ? 's' : ''} sem preço atual — atualize na tabela abaixo para ver valor e retorno.`,
+    chartEyebrow: 'Evolução',
+    chartTitle: 'Crescimento do portfólio ao longo do tempo',
+    chartSince: 'Desde',
   },
 } as const;
 

@@ -8,6 +8,7 @@ import { DonutChart, type DonutSegment } from './components/DonutChart';
 import { AddPositionForm } from './components/AddPositionForm';
 import { CurrencySwitcher } from './components/CurrencySwitcher';
 import { LangSwitcher } from './components/LangSwitcher';
+import { PortfolioLineChart, type ChartPoint } from './components/PortfolioLineChart';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { T, getLang } from '@/lib/portfolio-i18n';
 import type { Metadata } from 'next';
@@ -52,9 +53,9 @@ const VALID_CURRENCIES = ['AUD', 'USD', 'BRL'] as const;
 type Currency = typeof VALID_CURRENCIES[number];
 
 const PALETTE = [
-  '#61d5b4','#f4c86a','#818cf8','#fb7185',
-  '#34d399','#60a5fa','#f97316','#a78bfa',
-  '#14b8a6','#f59e0b','#e879f9','#4ade80',
+  '#61d5b4', '#f4c86a', '#818cf8', '#fb7185',
+  '#34d399', '#60a5fa', '#f97316', '#a78bfa',
+  '#14b8a6', '#f59e0b', '#e879f9', '#4ade80',
 ];
 const TYPE_COLORS: Record<string, string> = {
   crypto: '#f4c86a', stock: '#61d5b4', etf: '#818cf8', other: '#64748b',
@@ -101,7 +102,10 @@ function groupEntries(rows: Entry[]): GroupedAsset[] {
     const g = map[key];
     g.totalQty += Number(e.quantity);
     g.totalInvested += Number(e.quantity) * Number(e.buy_price);
-    if (e.current_price != null) g.currentPrice = Number(e.current_price);
+    // Keep the first non-null price encountered (rows are newest-first)
+    if (e.current_price != null && g.currentPrice === null) {
+      g.currentPrice = Number(e.current_price);
+    }
     g.entries.push(e);
   });
   return Object.values(map).map(g => {
@@ -111,6 +115,41 @@ function groupEntries(rows: Entry[]): GroupedAsset[] {
     g.pnlPct = g.pnl != null && g.totalInvested > 0 ? (g.pnl / g.totalInvested) * 100 : null;
     return g;
   });
+}
+
+function buildChartData(
+  rows: Entry[],
+  toDisplay: (amount: number, currency: string) => number,
+): ChartPoint[] {
+  const byMonth: Record<string, number> = {};
+  rows.forEach(e => {
+    if (!e.buy_date) return;
+    const d = new Date(e.buy_date + 'T00:00:00');
+    if (isNaN(d.getTime())) return;
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+    byMonth[key] = (byMonth[key] || 0) + toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency);
+  });
+
+  const keys = Object.keys(byMonth).sort();
+  if (keys.length === 0) return [];
+
+  const result: ChartPoint[] = [];
+  let cumulative = 0;
+  const first = new Date(keys[0] + '-01');
+  const now = new Date();
+
+  const cur = new Date(first);
+  while (
+    cur.getFullYear() < now.getFullYear() ||
+    (cur.getFullYear() === now.getFullYear() && cur.getMonth() <= now.getMonth())
+  ) {
+    const key = `${cur.getFullYear()}-${String(cur.getMonth() + 1).padStart(2, '0')}`;
+    const added = byMonth[key] || 0;
+    cumulative += added;
+    if (cumulative > 0) result.push({ label: key, cumulative, added });
+    cur.setMonth(cur.getMonth() + 1);
+  }
+  return result;
 }
 
 export default async function PortfolioPage({
@@ -168,7 +207,7 @@ export default async function PortfolioPage({
   const worst = performingGroups.length > 0
     ? performingGroups.reduce((a, b) => a.pnlPct! < b.pnlPct! ? a : b) : null;
 
-  // By-type
+  // By-type invested
   const byType: Record<string, number> = {};
   rows.forEach(e => {
     byType[e.asset_type] = (byType[e.asset_type] || 0) +
@@ -197,8 +236,13 @@ export default async function PortfolioPage({
     }] : []),
   ];
 
+  // Chart data
+  const chartData = buildChartData(rows, toDisplay);
+
   const backHref = '/index.html?member_session=1#member';
   const detailBase = `?currency=${displayCurrency}&lang=${lang}`;
+
+  const unpricedCount = grouped.length - pricedGroups.length;
 
   return (
     <main className="portfolio-shell">
@@ -230,7 +274,7 @@ export default async function PortfolioPage({
         <div className="portfolio-kpi-row">
           <div className="portfolio-kpi-card">
             <span className="portfolio-kpi-label">{tx.kpiInvested}</span>
-            <strong className="portfolio-kpi-value">{fmtShort(totalInvested, displayCurrency)}</strong>
+            <strong className="portfolio-kpi-value">{rows.length > 0 ? fmtShort(totalInvested, displayCurrency) : '—'}</strong>
             <span className="portfolio-kpi-sub">
               {rows.length} {rows.length !== 1 ? tx.purchases : tx.purchase}
               {' · '}{grouped.length} {grouped.length !== 1 ? tx.assets : tx.asset}
@@ -264,9 +308,36 @@ export default async function PortfolioPage({
           </div>
         </div>
 
+        {/* Prices notice */}
+        {rows.length > 0 && unpricedCount > 0 && (
+          <div className="prices-notice">
+            <span className="prices-notice-icon">💡</span>
+            <span>{tx.pricesNotice(unpricedCount)}</span>
+          </div>
+        )}
+
         {rows.length > 0 && (
           <>
-            {/* Chart + performance */}
+            {/* Portfolio evolution chart */}
+            <section className="portfolio-card portfolio-chart-card">
+              <div className="pchart-header">
+                <div>
+                  <p className="eyebrow">{tx.chartEyebrow}</p>
+                  <h2>{tx.chartTitle}</h2>
+                </div>
+                {chartData.length > 0 && (
+                  <div className="pchart-summary">
+                    <span className="pchart-summary-label">{tx.chartSince}</span>
+                    <span className="pchart-summary-val">
+                      {chartData[0].label.replace('-', '/')}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <PortfolioLineChart monthly={chartData} currency={displayCurrency} lang={lang} />
+            </section>
+
+            {/* Overview row: donut + performance */}
             <div className="portfolio-overview-v2">
               <section className="portfolio-card">
                 <p className="eyebrow">{tx.sectionAlloc}</p>
@@ -333,7 +404,7 @@ export default async function PortfolioPage({
               </section>
             </div>
 
-            {/* Holdings — one row per asset, no sub-rows */}
+            {/* Holdings — one row per asset */}
             <section className="portfolio-card">
               <p className="eyebrow">{tx.sectionHoldings}</p>
               <h2>{tx.sectionAllPositions}</h2>
