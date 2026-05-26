@@ -11090,21 +11090,220 @@
     .hcta-note span { color: var(--teal); font-weight: 600; }
 
     /* ═══════════════════════════════════════════════
+       THE PROBLEM SECTION
+    ═══════════════════════════════════════════════ */
+    .the-problem {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4.5rem;
+      text-align: center;
+    }
+    .prob-inner { width: 100%; }
+    .prob-eyebrow { text-align: center; color: rgba(248, 113, 113, .7); }
+    .prob-eyebrow::before { background: rgba(248, 113, 113, .5) !important; }
+    .prob-quote {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.38;
+      color: #d8e8f5;
+      margin: 1.25rem 0 3rem;
+      border: none;
+      padding: 0;
+      letter-spacing: -.01em;
+    }
+    .prob-truths {
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+      text-align: left;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .prob-truth {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .025);
+      border: 1px solid rgba(255, 255, 255, .06);
+    }
+    .prob-truth--teal {
+      background: rgba(97, 213, 180, .06);
+      border-color: rgba(97, 213, 180, .2);
+    }
+    .prob-truth-mark {
+      flex-shrink: 0;
+      font-size: .85rem;
+      font-weight: 800;
+      color: rgba(248, 113, 113, .7);
+      margin-top: .15rem;
+      width: 18px;
+    }
+    .prob-truth--teal .prob-truth-mark { color: var(--teal); }
+    .prob-truth p {
+      margin: 0;
+      font-size: .92rem;
+      line-height: 1.72;
+      color: #96b0c8;
+    }
+    .prob-truth--teal p { color: #b8d4e8; }
+    .prob-truth p strong { color: #dde8f5; font-weight: 700; }
+
+    /* ═══════════════════════════════════════════════
+       TRANSFORMATION SECTION
+    ═══════════════════════════════════════════════ */
+    .transformation {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4.5rem;
+    }
+    .tf-inner { width: 100%; }
+    .tf-eyebrow { text-align: center; }
+    .tf-h2 { max-width: 600px; margin: .4rem auto 0; text-align: center; }
+    .tf-h2 em { font-style: italic; }
+    .tf-h2 em:first-of-type { color: rgba(248, 113, 113, .8); }
+    .tf-h2 em:last-of-type  { color: var(--teal); }
+    .tf-lead { max-width: 520px; margin: 1rem auto 2.75rem; text-align: center; }
+    .tf-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 2.75rem;
+    }
+    .tf-col-label {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .tf-col--before .tf-col-label { color: rgba(248, 113, 113, .65); }
+    .tf-col--after  .tf-col-label { color: var(--teal); }
+    .tf-items { display: flex; flex-direction: column; gap: .65rem; }
+    .tf-item {
+      padding: .85rem 1.1rem;
+      border-radius: 12px;
+      font-size: .9rem;
+      line-height: 1.55;
+    }
+    .tf-col--before .tf-item {
+      background: rgba(248, 113, 113, .05);
+      border: 1px solid rgba(248, 113, 113, .14);
+      color: #8aa0b6;
+      font-style: italic;
+    }
+    .tf-col--after .tf-item {
+      background: rgba(97, 213, 180, .06);
+      border: 1px solid rgba(97, 213, 180, .18);
+      color: #b8d4e4;
+      font-weight: 500;
+    }
+    .tf-arrow {
+      font-size: 2rem;
+      color: rgba(255, 255, 255, .18);
+      font-weight: 300;
+      text-align: center;
+      padding: 0 .5rem;
+    }
+    .tf-cta { text-align: center; }
+
+    /* ═══════════════════════════════════════════════
+       ATMOSPHERIC IMPROVEMENTS — ALL HOME SECTIONS
+    ═══════════════════════════════════════════════ */
+
+    /* Alternating subtle backgrounds for visual rhythm */
+    .the-problem {
+      position: relative;
+    }
+    .the-problem::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(248, 113, 113, .06), transparent 65%);
+      pointer-events: none;
+    }
+    .why-exists {
+      position: relative;
+    }
+    .why-exists::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(244, 200, 106, .07), transparent 55%);
+      pointer-events: none;
+    }
+    .future-vis {
+      position: relative;
+    }
+    .future-vis::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(97, 213, 180, .08), transparent 45%),
+        radial-gradient(ellipse at 15% 80%, rgba(92, 154, 245, .07), transparent 45%);
+      pointer-events: none;
+    }
+    .transformation {
+      position: relative;
+    }
+    .transformation::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(97, 213, 180, .05), transparent 60%);
+      pointer-events: none;
+    }
+    .home-cta {
+      position: relative;
+    }
+    .home-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(244, 200, 106, .09), transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(97, 213, 180, .06), transparent 50%);
+      pointer-events: none;
+    }
+    .home-cta .hcta-inner { position: relative; z-index: 1; }
+    .why-inner, .fv-inner, .hs-social-inner, .prob-inner, .tf-inner { position: relative; z-index: 1; }
+
+    /* Section dividers — subtle horizontal separators */
+    .the-problem, .why-exists, .future-vis, .transformation, .home-social, .home-cta {
+      border-top: 1px solid rgba(255, 255, 255, .05);
+    }
+
+    /* Larger section h2s for the emotional home sections */
+    .prob-h2, .tf-h2, .why-h2, .fv-h2, .hs-social-h2, .hcta-h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+    }
+
+    /* ═══════════════════════════════════════════════
        MOBILE — NEW HOME SECTIONS
     ═══════════════════════════════════════════════ */
     @media (max-width: 768px) {
-      .why-exists, .future-vis, .home-social, .home-cta {
+      .the-problem, .why-exists, .future-vis, .transformation, .home-social, .home-cta {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
         padding-top: 3.5rem;
+        padding-bottom: 3rem;
       }
       .why-grid, .fv-stats-grid, .hs-testi-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
       }
-      .why-h2, .fv-h2, .hs-social-h2 {
-        font-size: clamp(1.7rem, 6vw, 2.2rem);
+      .tf-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
+      .tf-arrow { transform: rotate(90deg); font-size: 1.5rem; }
+      .prob-quote { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+      .why-h2, .fv-h2, .hs-social-h2, .tf-h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
       .hcta-h2 { font-size: clamp(1.85rem, 7vw, 2.6rem); }
       .fv-stat-num { font-size: 2.6rem; }
       .why-mission-wrap { gap: 1rem; }
@@ -11203,40 +11402,26 @@
           </div>
           <div class="hs-sim-caption" data-i18n="hero.previewCaption">The simulator separates what you put in from what time and compounding may add.</div>
         </div>
-        <div class="hs-side-grid">
-          <div class="hs-side-item">
-            <strong data-i18n="hero.side1Title">Live simulation</strong>
-            <span data-i18n="hero.side1Body">Every amount, contribution, country and horizon updates the charts instantly.</span>
-          </div>
-          <div class="hs-side-item">
-            <strong data-i18n="hero.side2Title">Real-world context</strong>
-            <span data-i18n="hero.side2Body">Compare investment growth against inflation so returns actually mean something.</span>
-          </div>
-          <div class="hs-side-item">
-            <strong data-i18n="hero.side3Title">Beginner-safe language</strong>
-            <span data-i18n="hero.side3Body">The page explains ideas in plain English instead of sounding like a broker dashboard.</span>
-          </div>
-        </div>
         <div class="hs-side-note" data-i18n-html="hero.sideNote"><strong>Begin with the numbers.</strong> When they make sense, everything else becomes clearer.</div>
       </div>
       <div class="hs-feature-band">
         <div class="hs-feature-card">
           <div class="hs-fc-icon hs-fc-icon--start" aria-hidden="true"></div>
-          <div class="hs-feature-k" data-i18n="hero.band1K">Start anywhere</div>
-          <strong data-i18n="hero.band1T">Test small amounts without feeling behind.</strong>
-          <p data-i18n="hero.band1B">See how a one-time amount, monthly contribution, and longer horizon can change the result.</p>
+          <div class="hs-feature-k" data-i18n="hero.band1K">Start where you are</div>
+          <strong data-i18n="hero.band1T">You don't need a lot. You just need to begin.</strong>
+          <p data-i18n="hero.band1B">See what even a small monthly habit can become over 10, 20, or 30 years — no commitment required to explore.</p>
         </div>
         <div class="hs-feature-card">
           <div class="hs-fc-icon hs-fc-icon--compare" aria-hidden="true"></div>
-          <div class="hs-feature-k" data-i18n="hero.band2K">Compare clearly</div>
-          <strong data-i18n="hero.band2T">Compare country-specific money paths side by side.</strong>
-          <p data-i18n="hero.band2B">The simulator shows contribution, projected value, multiplier, return, and a visible chart in one place.</p>
+          <div class="hs-feature-k" data-i18n="hero.band2K">See, don't guess</div>
+          <strong data-i18n="hero.band2T">Watching your money grow visually changes how you think.</strong>
+          <p data-i18n="hero.band2B">When abstract numbers become visible outcomes, investing stops feeling like a gamble and starts feeling like a decision.</p>
         </div>
         <div class="hs-feature-card">
           <div class="hs-fc-icon hs-fc-icon--context" aria-hidden="true"></div>
-          <div class="hs-feature-k" data-i18n="hero.band3K">Use real context</div>
-          <strong data-i18n="hero.band3T">Understand growth next to inflation pressure.</strong>
-          <p data-i18n="hero.band3B">You are not just seeing bigger numbers. You are seeing what those numbers still buy over time.</p>
+          <div class="hs-feature-k" data-i18n="hero.band3K">Understand your future</div>
+          <strong data-i18n="hero.band3T">Not just bigger numbers — but what they actually buy you.</strong>
+          <p data-i18n="hero.band3B">Growth only matters if it outpaces inflation. Plainvest shows both together so the picture is always honest and complete.</p>
         </div>
       </div>
     </div>
@@ -11459,12 +11644,40 @@
 
   <!-- STRIP -->
   <div class="strip app-page" data-page="home">
-    <div class="strip-item"><span data-i18n="strip.free">Free</span> — <span data-i18n="strip.free2">no credit card, ever</span></div>
-    <div class="strip-item"><span data-i18n="strip.sec">60 seconds</span> <span data-i18n="strip.sec2">to your first result</span></div>
-    <div class="strip-item"><span data-i18n="strip.plain">Plain language</span>, <span data-i18n="strip.nojargon">no jargon</span></div>
+    <div class="strip-item"><span data-i18n="strip.free">Calm</span> · <span data-i18n="strip.free2">not overwhelming</span></div>
+    <div class="strip-item"><span data-i18n="strip.plain">No experience</span> <span data-i18n="strip.nojargon">needed</span></div>
     <div class="strip-item"><span data-i18n="strip.built">Built for</span> <span data-i18n="strip.beginners">complete beginners</span></div>
-    <div class="strip-item"><span data-i18n="strip.edu">Educational</span>, <span data-i18n="strip.notadvice">not advice</span></div>
+    <div class="strip-item"><span data-i18n="strip.sec">Free</span> <span data-i18n="strip.sec2">to explore — no card, ever</span></div>
+    <div class="strip-item"><span data-i18n="strip.edu">Education</span>, <span data-i18n="strip.notadvice">not advice</span></div>
   </div>
+
+  <!-- ══════════════════════════════════════════
+     HOME: THE PROBLEM
+══════════════════════════════════════════ -->
+  <section class="the-problem app-page" data-page="home">
+    <div class="prob-inner">
+      <div class="section-eyebrow prob-eyebrow">The reality nobody tells you</div>
+      <blockquote class="prob-quote">"The longer you wait to understand money,<br>the more it quietly costs you."</blockquote>
+      <div class="prob-truths">
+        <div class="prob-truth">
+          <span class="prob-truth-mark">→</span>
+          <p>Inflation erodes the value of cash every single year — whether you're paying attention or not. Most savings accounts don't keep up.</p>
+        </div>
+        <div class="prob-truth">
+          <span class="prob-truth-mark">→</span>
+          <p>Schools never taught this. Most people reach their 30s still guessing — and feeling guilty about it.</p>
+        </div>
+        <div class="prob-truth">
+          <span class="prob-truth-mark">→</span>
+          <p>Waiting until you "know enough" is itself a financial decision — and compounding doesn't wait with you.</p>
+        </div>
+        <div class="prob-truth prob-truth--teal">
+          <span class="prob-truth-mark">✓</span>
+          <p><strong>Understanding it clearly changes everything.</strong> You don't need to be an expert. You just need a clear starting point.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ══════════════════════════════════════════
      HOME: WHY PLAINVEST EXISTS
@@ -11526,6 +11739,41 @@
       <div class="fv-note">
         <span>Projections are illustrative only. Past performance does not guarantee future results.</span>
         <button class="btn-primary" onclick="showPage('simulator')">See your own numbers →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+     HOME: TRANSFORMATION
+══════════════════════════════════════════ -->
+  <section class="transformation app-page" data-page="home">
+    <div class="tf-inner">
+      <div class="section-eyebrow tf-eyebrow">The Plainvest effect</div>
+      <h2 class="section-h2 tf-h2">From <em>confused</em> to <em>clear.</em></h2>
+      <p class="section-lead tf-lead">This is what happens when investing finally stops feeling overwhelming.</p>
+      <div class="tf-grid">
+        <div class="tf-col tf-col--before">
+          <div class="tf-col-label">Before</div>
+          <div class="tf-items">
+            <div class="tf-item">"I'll figure it out later."</div>
+            <div class="tf-item">"I don't have enough money to start."</div>
+            <div class="tf-item">"I don't understand any of this."</div>
+            <div class="tf-item">"I'm scared of making the wrong decision."</div>
+          </div>
+        </div>
+        <div class="tf-arrow">→</div>
+        <div class="tf-col tf-col--after">
+          <div class="tf-col-label">After Plainvest</div>
+          <div class="tf-items">
+            <div class="tf-item">"I can see exactly what starting today could mean."</div>
+            <div class="tf-item">"$50 a month is already enough to begin building."</div>
+            <div class="tf-item">"Inflation, compound growth — I finally understand."</div>
+            <div class="tf-item">"I know what to do next. And I feel ready."</div>
+          </div>
+        </div>
+      </div>
+      <div class="tf-cta">
+        <button class="btn-primary" onclick="showPage('simulator')">Start your transformation →</button>
       </div>
     </div>
   </section>
@@ -13838,19 +14086,19 @@
       pt: {
         nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil', portfolio: 'Portfólio' },
         hero: {
-          kicker: 'Investimento para todo mundo',
-          h1: 'Veja seu dinheiro <em>crescer</em> em 60 segundos.',
-          lead: 'O Plainvest mostra ao investidor iniciante como crescimento, inflação e opções de investimento realmente funcionam — linguagem simples, sem experiência necessária.',
-          brandSub: 'Simulador de investimentos em linguagem simples',
-          sideKicker: 'Feito para quem está começando',
-          sideTitle: 'Uma forma mais clara de entender no que o seu dinheiro pode se transformar.',
+          kicker: 'Clareza financeira para iniciantes',
+          h1: 'A maioria das pessoas nunca aprendeu <em>como o dinheiro funciona.</em>',
+          lead: 'O Plainvest é uma plataforma calma e acessível, criada para ajudar você a entender investimentos, inflação e seu futuro financeiro — <strong>de forma visual e simples.</strong>',
+          brandSub: 'Clareza financeira para iniciantes',
+          sideKicker: 'A plataforma de clareza financeira',
+          sideTitle: 'Veja no que o seu dinheiro pode se transformar — antes de tomar qualquer decisão.',
           side1Title: 'Simulação ao vivo',
           side1Body: 'Cada valor, aporte, país e prazo atualiza os gráficos na hora.',
           side2Title: 'Contexto do mundo real',
           side2Body: 'Compare o crescimento do investimento com a inflação para que o retorno faça sentido de verdade.',
           side3Title: 'Linguagem segura para iniciantes',
           side3Body: 'A página explica as ideias de forma simples, sem parecer um painel complicado de corretora.',
-          sideNote: '<strong>Por que Plainvest?</strong> Primeiro você entende os números. Depois aprende os nomes.',
+          sideNote: '<strong>Comece pelos números.</strong> Quando eles fazem sentido, tudo o mais fica mais claro.',
           previewLabel: 'O que o Plainvest mostra',
           previewValue: 'Pequenos hábitos mensais podem virar resultados visíveis no longo prazo.',
           previewChip: 'R$ 1.500/mês · 20 anos',
@@ -13861,27 +14109,27 @@
           previewLegend1: 'Aportes',
           previewLegend2: 'Crescimento potencial',
           previewCaption: 'O simulador separa o que você coloca do que tempo e juros compostos podem adicionar.',
-          visualTitle: 'Veja o dinheiro crescer de forma simples.',
-          visualSub: 'Um primeiro passo mais calmo antes de decisões reais de investimento.',
+          visualTitle: 'Veja seu futuro com clareza.',
+          visualSub: 'Um primeiro passo mais calmo antes de qualquer decisão real de investimento.',
           visualPill: 'Grátis',
-          band1K: 'Comece de onde estiver',
-          band1T: 'Teste valores pequenos sem sentir que ficou para trás.',
-          band1B: 'Veja como um valor inicial, aportes mensais e mais tempo podem mudar totalmente o resultado.',
-          band2K: 'Compare com clareza',
-          band2T: 'Compare caminhos de investimento por país lado a lado.',
-          band2B: 'O simulador mostra aportes, valor projetado, multiplicador, retorno e gráfico visível em um só lugar.',
-          band3K: 'Use contexto real',
-          band3T: 'Entenda crescimento junto da pressão da inflação.',
-          band3B: 'Você não vê apenas números maiores. Você vê o que esses números ainda conseguem comprar com o passar do tempo.',
-          social: 'Criado com <strong>feedback de iniciantes</strong><br>de pessoas que queriam finalmente entender investimentos.',
-          cta1: 'Testar simulador grátis', cta2: 'Ver acesso Premium', cta3: 'Comprar Premium — aprox. R$320',
-          trust1: 'Crescimento e inflação em um gráfico', trust2: 'ETFs · Bitcoin · Ações · Ouro + 5 tipos', trust3: 'Austrália · Brasil · EUA',
+          band1K: 'Comece de onde você está',
+          band1T: 'Você não precisa de muito. Só precisa começar.',
+          band1B: 'Veja o que mesmo um pequeno hábito mensal pode se tornar em 10, 20 ou 30 anos — sem precisar se comprometer com nada.',
+          band2K: 'Veja, não adivinhe',
+          band2T: 'Visualizar o crescimento do dinheiro muda como você pensa.',
+          band2B: 'Quando números abstratos viram resultados visíveis, investir deixa de parecer uma aposta e passa a ser uma decisão.',
+          band3K: 'Entenda seu futuro',
+          band3T: 'Não apenas números maiores — mas o que eles compram de verdade.',
+          band3B: 'O crescimento só importa se for maior que a inflação. O Plainvest mostra os dois juntos para que a imagem seja sempre honesta.',
+          social: 'Criado com <strong>clareza para iniciantes</strong><br>para quem quer finalmente entender investimentos.',
+          cta1: 'Explore Seu Futuro →', cta2: 'Ver acesso Premium', cta3: 'Ver Premium →',
+          trust1: 'Sem experiência necessária', trust2: 'Grátis para explorar — sem cartão', trust3: 'Austrália · Brasil · EUA',
           howLabel: 'Como funciona',
           how1T: 'Insira seus números', how1B: 'Valor mensal, horizonte de tempo e país.',
           how2T: 'Veja crescimento vs inflação', how2B: 'Gráficos atualizam na hora — sem cadastro.',
           how3T: 'Entenda o que significa', how3B: 'Contexto em linguagem simples, sem jargão.'
         },
-        strip: { free: 'Grátis', free2: 'sem cartão de crédito', sec: '60 segundos', sec2: 'para o primeiro resultado', plain: 'Linguagem simples', nojargon: 'sem jargão', built: 'Feito para', beginners: 'iniciantes completos', edu: 'Educacional', notadvice: 'não é conselho financeiro' },
+        strip: { free: 'Calmo', free2: 'não sobrecarregador', plain: 'Sem experiência', nojargon: 'necessária', built: 'Feito para', beginners: 'iniciantes completos', sec: 'Grátis', sec2: 'para explorar — sem cartão', edu: 'Educação', notadvice: 'não é conselho financeiro' },
         trustLaunch: {
           t1: 'Premissas transparentes',
           b1: 'Cada projeção é educativa e baseada em premissas simplificadas de longo prazo — não são promessas nem sinais ocultos.',
