@@ -276,7 +276,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2.5rem;
-      height: 72px;
+      height: 76px;
       background: rgba(8, 17, 31, 0.82);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-dark);
@@ -342,9 +342,9 @@
     }
 
     .nav-logo {
-      height: 52px;
+      height: 58px;
       width: auto;
-      max-width: 260px;
+      max-width: 320px;
       display: block;
       flex-shrink: 0;
     }
@@ -12305,7 +12305,7 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="#home">
-      <img src="assets/plainvest-logo-compact.png" alt="Plainvest" class="nav-logo">
+      <img src="assets/plainvest-logo-transparent.png" alt="Plainvest" class="nav-logo">
     </a>
     <ul>
       <li data-mob-icon="🏠" data-mob-desc="Back to the start"><a href="#home"><span data-i18n="nav.home">Home</span></a></li>
@@ -14512,7 +14512,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="foot-logo"><img src="assets/plainvest-logo-compact.png" alt="Plainvest" class="footer-logo-img"></div>
+        <div class="foot-logo"><img src="assets/plainvest-logo-transparent.png" alt="Plainvest" class="footer-logo-img"></div>
         <p data-i18n="footer.tagline">Helping everyday people understand the power of investing — one simulation at a time.</p>
         <p class="foot-disc" data-i18n="footer.disc">Plainvest is an educational tool, not a financial advisor. All projections are estimates based on historical average returns and are not guaranteed. Please consult a qualified financial professional before making investment decisions.</p>
       </div>
@@ -17250,7 +17250,8 @@
       // Tip — pick from bilingual tips using currentLang
       const langTips = tips[currentLang] || tips['en'];
       const tipKey = inv.key in langTips ? inv.key : (inv.modalKey in langTips ? inv.modalKey : 'indexfund');
-      document.getElementById('tipTxt').innerHTML = langTips[tipKey] || langTips['indexfund'];
+      const tipEl = document.getElementById('tipTxt');
+      if (tipEl) tipEl.innerHTML = langTips[tipKey] || langTips['indexfund'];
 
       // Chart data — yearly keeps the simple view, monthly reveals compounding in more detail.
       let chartLabels = labels.map((l, idx) => idx === 0 ? `${yrWord} 0` : l.replace('Yr ', yrWord + ' '));
