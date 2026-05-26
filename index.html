@@ -4049,7 +4049,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
-      margin-top: 2.2rem;
+      margin-top: 0;
       max-width: 1180px;
       margin-left: auto;
       margin-right: auto;
@@ -4089,7 +4089,7 @@
     /* ---- Premium promise block ---- */
     .plans-promise {
       max-width: 780px;
-      margin: 2.4rem auto 0;
+      margin: 2.4rem auto 2.4rem;
       background: linear-gradient(135deg, rgba(97, 213, 180, .06), rgba(20, 36, 60, .5));
       border: 1px solid rgba(97, 213, 180, .15);
       border-radius: 22px;
@@ -4174,7 +4174,7 @@
     .lps-step {
       display: grid;
       grid-template-columns: 3rem 1fr auto;
-      align-items: center;
+      align-items: start;
       gap: 1.2rem;
       background: rgba(255,255,255,.03);
       border: 1px solid rgba(255,255,255,.07);
@@ -4204,10 +4204,9 @@
 
     .lps-connector {
       width: 2px;
-      height: 1rem;
+      height: .9rem;
       background: linear-gradient(to bottom, rgba(97, 213, 180, .22), rgba(97, 213, 180, .04));
-      margin: 0 auto;
-      margin-left: calc(3rem / 2 + 1.2rem - 1px + 2rem);
+      margin-left: calc(1.4rem + 3rem / 2 - 1px);
     }
 
     .lps-num {
@@ -4223,6 +4222,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      margin-top: .1rem;
     }
 
     .lps-step--premium .lps-num {
@@ -4274,6 +4274,7 @@
 
     .lps-cta {
       flex-shrink: 0;
+      margin-top: .15rem;
     }
 
     .lps-btn {
@@ -10590,7 +10591,7 @@
       }
 
       .lps-connector {
-        margin-left: calc(2.4rem / 2 + .85rem - 1px + .9rem) !important;
+        margin-left: calc(.9rem + 2.4rem / 2 - 1px) !important;
       }
 
       .lps-title {
@@ -11585,12 +11586,23 @@
       padding-top: 2rem;
       border-top: 1px solid rgba(255,255,255,.07);
     }
+    .irl-section-head {
+      margin-bottom: 1.4rem;
+    }
     .irl-eyebrow {
       font-size: .62rem; font-weight: 800; letter-spacing: .13em;
-      text-transform: uppercase; color: var(--gold); opacity: .75;
-      margin-bottom: .4rem;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: .5rem; display: block;
     }
-    .irl-lead { font-size: .875rem; color: #6a8aaa; margin: 0 0 1.35rem; line-height: 1.6; }
+    .irl-h3 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-weight: 700;
+      color: var(--white);
+      margin: 0 0 .5rem;
+      line-height: 1.3;
+    }
+    .irl-lead { font-size: .88rem; color: #6a8aaa; margin: 0; line-height: 1.65; }
     .irl-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
     .irl-card {
       background: rgba(255,255,255,.025);
@@ -11601,10 +11613,12 @@
     .irl-card--gold { border-color: rgba(244,200,106,.2); background: rgba(244,200,106,.04); }
     .irl-card--red  { border-color: rgba(248,113,113,.18); background: rgba(248,113,113,.04); }
     .irl-icon { font-size: 1.35rem; margin-bottom: .45rem; }
-    .irl-item { font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #5a7a96; margin-bottom: .5rem; }
-    .irl-now  { font-size: .9rem; font-weight: 700; color: #c0d5e8; }
-    .irl-future { font-size: .9rem; font-weight: 700; color: rgba(248,113,113,.85); margin-top: .2rem; }
-    .irl-note { font-size: .76rem; line-height: 1.58; color: #5a7a96; margin: .6rem 0 0; }
+    .irl-item { font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #5a7a96; margin-bottom: .65rem; }
+    .irl-price-row { display: flex; justify-content: space-between; align-items: baseline; gap: .4rem; margin-bottom: .22rem; }
+    .irl-label { font-size: .65rem; color: #4a6585; flex-shrink: 0; }
+    .irl-now  { font-size: .88rem; font-weight: 700; color: #c0d5e8; }
+    .irl-future { font-size: .88rem; font-weight: 700; color: rgba(248,113,113,.85); }
+    .irl-note { font-size: .74rem; line-height: 1.58; color: #4a6585; margin: .65rem 0 0; border-top: 1px solid rgba(255,255,255,.05); padding-top: .55rem; }
 
     /* ── DO NOTHING COST ── */
     .do-nothing-cost {
@@ -11649,7 +11663,7 @@
     .dnc-bar--red { background: rgba(248,113,113,.8); }
     .dnc-loss { font-size: .78rem; font-weight: 700; color: #7a9ab5; text-align: right; }
     .dnc-loss--red { color: rgba(248,113,113,.8); }
-    .dnc-note { font-size: .7rem; color: #354f66; font-style: italic; margin: 0 0 1.25rem; }
+    .dnc-note { font-size: .7rem; color: rgba(255,255,255,.3); font-style: italic; margin: 0 0 1.25rem; }
 
     @media (max-width: 768px) {
       .irl-grid { grid-template-columns: 1fr 1fr; }
@@ -11664,9 +11678,11 @@
        SIMULATOR — FUTURE INSIGHTS
     ═══════════════════════════════════════════════ */
     .future-insights {
-      margin-top: 2.2rem;
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding-top: 1.8rem;
+      background: linear-gradient(180deg, rgba(22, 38, 64, .98) 0%, rgba(12, 24, 43, .98) 100%);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 22px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, .24);
     }
     .fi-eyebrow {
       font-size: .62rem;
@@ -11701,9 +11717,11 @@
        SIMULATOR — SCENARIO COMPARISON
     ═══════════════════════════════════════════════ */
     .sim-scenarios {
-      margin-top: 2.2rem;
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding-top: 1.8rem;
+      background: linear-gradient(180deg, rgba(22, 38, 64, .98) 0%, rgba(12, 24, 43, .98) 100%);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 22px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, .24);
     }
     .sc-eyebrow {
       font-size: .62rem;
@@ -12090,38 +12108,39 @@
               <button type="button" id="sim-nudge-btn" onclick="handlePremiumSupportClick()">Use Premium support →</button>
             </div>
 
-            <!-- ── FUTURE INSIGHTS ── -->
-            <div class="future-insights" id="futureInsights">
-              <div class="fi-eyebrow">What this result means</div>
-              <div class="fi-items" id="fiItems">
-                <div class="fi-item fi-item--teal">
-                  <span class="fi-icon">⏳</span>
-                  <p>Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."</p>
-                </div>
-                <div class="fi-item fi-item--gold">
-                  <span class="fi-icon">📈</span>
-                  <p>Most portfolio growth happens in the later years. The first years are planting the seed — the last years are the harvest.</p>
-                </div>
-                <div class="fi-item fi-item--blue">
-                  <span class="fi-icon">🛡️</span>
-                  <p>Inflation may quietly reduce the purchasing power of what you see here. Investing is how you protect your future self.</p>
-                </div>
-                <div class="fi-item fi-item--teal">
-                  <span class="fi-icon">🌱</span>
-                  <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
-                </div>
-              </div>
-            </div>
+          </div>
 
-            <!-- ── SCENARIO COMPARISON ── -->
-            <div class="sim-scenarios" id="simScenarios">
-              <div class="sc-eyebrow">What if you invested more?</div>
-              <p class="sc-lead">See how different monthly amounts change the picture over the same time horizon.</p>
-              <div class="sc-grid" id="scGrid">
-                <!-- populated by JS -->
+          <!-- ── FUTURE INSIGHTS ── -->
+          <div class="future-insights" id="futureInsights">
+            <div class="fi-eyebrow">What this result means</div>
+            <div class="fi-items" id="fiItems">
+              <div class="fi-item fi-item--teal">
+                <span class="fi-icon">⏳</span>
+                <p>Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."</p>
               </div>
-              <p class="sc-note">Projections are illustrative only and use the same return rate and time horizon as your current selection.</p>
+              <div class="fi-item fi-item--gold">
+                <span class="fi-icon">📈</span>
+                <p>Most portfolio growth happens in the later years. The first years are planting the seed — the last years are the harvest.</p>
+              </div>
+              <div class="fi-item fi-item--blue">
+                <span class="fi-icon">🛡️</span>
+                <p>Inflation may quietly reduce the purchasing power of what you see here. Investing is how you protect your future self.</p>
+              </div>
+              <div class="fi-item fi-item--teal">
+                <span class="fi-icon">🌱</span>
+                <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
+              </div>
             </div>
+          </div>
+
+          <!-- ── SCENARIO COMPARISON ── -->
+          <div class="sim-scenarios" id="simScenarios">
+            <div class="sc-eyebrow">What if you invested more?</div>
+            <p class="sc-lead">See how different monthly amounts change the picture over the same time horizon.</p>
+            <div class="sc-grid" id="scGrid">
+              <!-- populated by JS -->
+            </div>
+            <p class="sc-note">Projections are illustrative only and use the same return rate and time horizon as your current selection.</p>
           </div>
         </div>
       </div>
@@ -12457,50 +12476,53 @@
 
       <!-- ── REAL-LIFE EXAMPLES ───────────────────────── -->
       <div class="inf-real-life">
-        <div class="irl-eyebrow">What inflation actually costs — in real life</div>
-        <p class="irl-lead">These aren't just percentages. This is what inflation looks like in everyday things you buy.</p>
+        <div class="irl-section-head">
+          <span class="irl-eyebrow">Real-life impact</span>
+          <h3 class="irl-h3">What inflation actually costs — in everyday life.</h3>
+          <p class="irl-lead">These aren't just percentages. This is what inflation looks like in the things you buy every day.</p>
+        </div>
         <div class="irl-grid">
           <div class="irl-card">
             <div class="irl-icon">☕</div>
-            <div class="irl-item">Coffee</div>
-            <div class="irl-now">$5 today</div>
-            <div class="irl-future">~$8–9 in 20 years</div>
-            <p class="irl-note">At 3% inflation, your daily coffee costs ~75% more by the time you retire.</p>
+            <div class="irl-item">Daily coffee</div>
+            <div class="irl-price-row"><span class="irl-label">Today</span><span class="irl-now">$5</span></div>
+            <div class="irl-price-row"><span class="irl-label">In 20 yrs</span><span class="irl-future">~$8–9</span></div>
+            <p class="irl-note">At 3% inflation, your daily coffee costs ~75% more by retirement.</p>
           </div>
           <div class="irl-card">
             <div class="irl-icon">🛒</div>
-            <div class="irl-item">Groceries</div>
-            <div class="irl-now">$200/week today</div>
-            <div class="irl-future">~$360/week in 20 years</div>
+            <div class="irl-item">Weekly groceries</div>
+            <div class="irl-price-row"><span class="irl-label">Today</span><span class="irl-now">$200/wk</span></div>
+            <div class="irl-price-row"><span class="irl-label">In 20 yrs</span><span class="irl-future">~$360/wk</span></div>
             <p class="irl-note">The same shopping basket quietly gets more expensive every year.</p>
           </div>
           <div class="irl-card irl-card--gold">
             <div class="irl-icon">🏠</div>
-            <div class="irl-item">Rent</div>
-            <div class="irl-now">$2,000/month today</div>
-            <div class="irl-future">~$3,600/month in 20 years</div>
-            <p class="irl-note">Housing costs have historically outpaced general inflation in many major cities.</p>
+            <div class="irl-item">Monthly rent</div>
+            <div class="irl-price-row"><span class="irl-label">Today</span><span class="irl-now">$2,000/mo</span></div>
+            <div class="irl-price-row"><span class="irl-label">In 20 yrs</span><span class="irl-future">~$3,600/mo</span></div>
+            <p class="irl-note">Housing costs have historically outpaced general inflation in many cities.</p>
           </div>
           <div class="irl-card">
             <div class="irl-icon">✈️</div>
-            <div class="irl-item">Holiday travel</div>
-            <div class="irl-now">$3,000 today</div>
-            <div class="irl-future">~$5,400 in 20 years</div>
-            <p class="irl-note">The experiences you plan for your future self will cost significantly more than today.</p>
+            <div class="irl-item">Holiday trip</div>
+            <div class="irl-price-row"><span class="irl-label">Today</span><span class="irl-now">$3,000</span></div>
+            <div class="irl-price-row"><span class="irl-label">In 20 yrs</span><span class="irl-future">~$5,400</span></div>
+            <p class="irl-note">The experiences you plan for your future self will cost significantly more.</p>
           </div>
           <div class="irl-card irl-card--red">
             <div class="irl-icon">💰</div>
-            <div class="irl-item">$10,000 in cash</div>
-            <div class="irl-now">$10,000 buying power today</div>
-            <div class="irl-future">~$5,500 in real value in 20 years</div>
+            <div class="irl-item">Cash in savings</div>
+            <div class="irl-price-row"><span class="irl-label">Today</span><span class="irl-now">$10,000</span></div>
+            <div class="irl-price-row"><span class="irl-label">Real value in 20 yrs</span><span class="irl-future">~$5,500</span></div>
             <p class="irl-note">Doing nothing has a cost. Cash sitting still silently loses purchasing power.</p>
           </div>
           <div class="irl-card">
             <div class="irl-icon">🏡</div>
-            <div class="irl-item">House deposit</div>
-            <div class="irl-now">$80,000 goal today</div>
-            <div class="irl-future">~$144,000 needed in 20 years</div>
-            <p class="irl-note">If you're saving toward a goal, inflation raises the target while you save.</p>
+            <div class="irl-item">House deposit goal</div>
+            <div class="irl-price-row"><span class="irl-label">Target today</span><span class="irl-now">$80,000</span></div>
+            <div class="irl-price-row"><span class="irl-label">Target in 20 yrs</span><span class="irl-future">~$144,000</span></div>
+            <p class="irl-note">Inflation raises the target while you save. The goal moves further away.</p>
           </div>
         </div>
       </div>
@@ -12508,7 +12530,7 @@
       <!-- ── DO NOTHING COST ───────────────────────── -->
       <div class="do-nothing-cost">
         <div class="dnc-inner">
-          <div class="dnc-eyebrow">What happens if money stays still?</div>
+          <span class="dnc-eyebrow">The silent cost</span>
           <h3 class="dnc-h3">Doing nothing<br>is still a <em>financial decision.</em></h3>
           <p class="dnc-lead">Every year your money sits in a low-interest account while inflation runs above it, you lose real purchasing power — silently, automatically, without a single transaction.</p>
           <div class="dnc-rows">
