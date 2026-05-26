@@ -136,9 +136,9 @@ export function PortfolioLineChart({
       >
         <defs>
           <linearGradient id="pcGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#61d5b4" stopOpacity="0.22" />
-            <stop offset="75%" stopColor="#61d5b4" stopOpacity="0.04" />
-            <stop offset="100%" stopColor="#61d5b4" stopOpacity="0" />
+            <stop offset="0%" stopColor="#e8b84b" stopOpacity="0.28" />
+            <stop offset="70%" stopColor="#e8b84b" stopOpacity="0.05" />
+            <stop offset="100%" stopColor="#e8b84b" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -162,7 +162,7 @@ export function PortfolioLineChart({
         {areaPath && <path d={areaPath} fill="url(#pcGrad)" />}
 
         {/* Line */}
-        <path d={linePath} fill="none" stroke="#61d5b4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d={linePath} fill="none" stroke="#e8b84b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
 
         {/* X labels */}
         {xLabels.map(({ i, label }) => (
@@ -196,15 +196,15 @@ export function PortfolioLineChart({
             <g>
               <line
                 x1={hx} y1={PAD.t} x2={hx} y2={PAD.t + ph}
-                stroke="rgba(97,213,180,0.2)" strokeWidth="1" strokeDasharray="3 3"
+                stroke="rgba(232,184,75,0.25)" strokeWidth="1" strokeDasharray="3 3"
               />
-              <circle cx={hx} cy={hy} r="9" fill="rgba(97,213,180,0.12)" />
-              <circle cx={hx} cy={hy} r="4.5" fill="#61d5b4" />
+              <circle cx={hx} cy={hy} r="9" fill="rgba(232,184,75,0.15)" />
+              <circle cx={hx} cy={hy} r="4.5" fill="#e8b84b" />
               <rect
                 x={tx} y={ty} width={TW} height={TH} rx="8"
-                fill="#0d1a26" stroke="rgba(97,213,180,0.28)" strokeWidth="1"
+                fill="#0d1a26" stroke="rgba(232,184,75,0.3)" strokeWidth="1"
               />
-              <text x={tx + 10} y={ty + 15} fontSize="9" fill="#61d5b4" fontWeight="800">
+              <text x={tx + 10} y={ty + 15} fontSize="9" fill="#e8b84b" fontWeight="800">
                 {fmtLabel(hp.label)}
               </text>
               <text x={tx + 10} y={ty + 31} fontSize="12" fill="#e2eaf3" fontWeight="700">

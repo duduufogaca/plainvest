@@ -1,3 +1,8 @@
+const LANGS = [
+  { code: 'en', flag: '🇺🇸', label: 'English' },
+  { code: 'pt', flag: '🇧🇷', label: 'Português' },
+] as const;
+
 export function LangSwitcher({
   current,
   currency,
@@ -7,13 +12,14 @@ export function LangSwitcher({
 }) {
   return (
     <div className="lang-switcher">
-      {(['en', 'pt'] as const).map(l => (
+      {LANGS.map(l => (
         <a
-          key={l}
-          href={`/portfolio?currency=${currency}&lang=${l}`}
-          className={`lang-btn${l === current ? ' active' : ''}`}
+          key={l.code}
+          href={`/portfolio?currency=${currency}&lang=${l.code}`}
+          className={`lang-btn${l.code === current ? ' active' : ''}`}
         >
-          {l.toUpperCase()}
+          <span className="lang-flag">{l.flag}</span>
+          {l.label}
         </a>
       ))}
     </div>
