@@ -119,7 +119,7 @@ export function DonutChart({
             textAnchor="middle" fontSize="11" fontWeight="700" fontFamily="inherit"
             fill={
               active && active.pnlPct != null
-                ? active.pnlPct >= 0 ? '#61d5b4' : '#fb7185'
+                ? active.pnlPct >= 0 ? '#34d399' : '#fb7185'
                 : 'rgba(255,255,255,0.35)'
             }
           >

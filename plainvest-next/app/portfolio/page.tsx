@@ -1,16 +1,14 @@
 import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
-import { signOut } from '../actions/auth';
 import { updateCurrentPrice } from '../actions/portfolio';
-import { SubmitButton } from '../components/submit-button';
 import { DonutChart, type DonutSegment } from './components/DonutChart';
-import { AddPositionForm } from './components/AddPositionForm';
-import { CurrencySwitcher } from './components/CurrencySwitcher';
-import { LangSwitcher } from './components/LangSwitcher';
+import { SidebarClient } from './components/SidebarClient';
 import { PortfolioLineChart, type ChartPoint } from './components/PortfolioLineChart';
-import { MiniSparkline } from './components/MiniSparkline';
 import { AssetLogo } from './components/AssetLogo';
+import { ClickableRow } from './components/ClickableRow';
+import { KpiCard } from './components/KpiCard';
+import { AddPositionModal } from './components/AddPositionModal';
 import { ProjectionEngine } from './components/ProjectionEngine';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { fetchLivePrices } from '@/lib/live-prices';
@@ -59,12 +57,21 @@ const VALID_CURRENCIES = ['AUD', 'USD', 'BRL'] as const;
 type Currency = typeof VALID_CURRENCIES[number];
 
 const PALETTE = [
-  '#61d5b4', '#f4c86a', '#818cf8', '#fb7185',
-  '#34d399', '#60a5fa', '#f97316', '#a78bfa',
-  '#14b8a6', '#f59e0b', '#e879f9', '#4ade80',
+  '#f7931a', // BTC orange
+  '#5c9af5', // royal blue
+  '#a78bfa', // violet
+  '#34d399', // emerald
+  '#e8b84b', // warm gold
+  '#e879f9', // fuchsia
+  '#60a5fa', // sky
+  '#fb923c', // tangerine
+  '#c084fc', // lavender
+  '#4ade80', // vivid green
+  '#38bdf8', // cyan
+  '#94a3b8', // slate
 ];
 const TYPE_COLORS: Record<string, string> = {
-  crypto: '#f4c86a', stock: '#61d5b4', etf: '#818cf8', other: '#64748b',
+  crypto: '#f7931a', stock: '#5c9af5', etf: '#a78bfa', other: '#64748b',
 };
 const TYPE_CHIP: Record<string, string> = {
   crypto: 'chip-crypto', stock: 'chip-stock', etf: 'chip-etf', other: 'chip-other',
@@ -181,6 +188,9 @@ export default async function PortfolioPage({
   const { isPremium } = await getPremiumAccess(supabase, user.id);
   if (!isPremium) redirect('/dashboard');
 
+  const fullName: string = user.user_metadata?.full_name || '';
+  const firstName = fullName.split(' ')[0] || user.email?.split('@')[0] || '';
+
   const rates = await getExchangeRates(displayCurrency);
   const toDisplay = (amount: number, fromCurrency: string): number => {
     if (fromCurrency === displayCurrency) return amount;
@@ -269,14 +279,12 @@ export default async function PortfolioPage({
 
   const unpricedCount = grouped.length - pricedGroups.length;
 
-  const sparkValues = chartData.map(d => d.cumulative);
-  const sparkFirst = chartData.length > 0 ? chartData[0].label.replace('-', '/') : '';
-  const sparkLast  = chartData.length > 0 ? chartData[chartData.length - 1].label.replace('-', '/') : '';
-
   // Projection inputs
   const projCurrentValue = pricedGroups.length > 0 ? currentValue : totalInvested;
   const monthsActive = Math.max(chartData.length, 1);
-  const projMonthlyContrib = totalInvested / monthsActive;
+  // Only calculate avg monthly contribution when we have 2+ months of data;
+  // a single-month portfolio would produce a nonsensically high number.
+  const projMonthlyContrib = monthsActive >= 2 ? totalInvested / monthsActive : 0;
 
   // CAGR (annualised return since first buy)
   const yearsActive = monthsActive / 12;
@@ -288,35 +296,28 @@ export default async function PortfolioPage({
     <main className="portfolio-shell">
 
       {/* ── Sidebar ─────────────────────────────────────── */}
-      <aside className="portfolio-sidebar">
-        <a href={backHref} className="sidebar-brand">Plainvest</a>
-        <nav className="sidebar-nav">
-          <span className="sidebar-link sidebar-active">
-            <span className="sidebar-icon">◈</span>Portfolio
-          </span>
-          <a href={backHref} className="sidebar-link">
-            <span className="sidebar-icon">⌂</span>Hub
-          </a>
-          <a href="/profile" className="sidebar-link">
-            <span className="sidebar-icon">◯</span>{tx.profile}
-          </a>
-        </nav>
-        <div className="sidebar-footer">
-          <span className="sidebar-footer-label">Display</span>
-          <CurrencySwitcher current={displayCurrency} lang={lang} />
-          <LangSwitcher current={lang} currency={displayCurrency} />
-          <form action={signOut}>
-            <SubmitButton className="sidebar-logout-btn" pendingText="...">{tx.logout}</SubmitButton>
-          </form>
-        </div>
-      </aside>
+      <SidebarClient
+        displayCurrency={displayCurrency}
+        lang={lang}
+        backHref={backHref}
+        profileLabel={tx.profile}
+        logoutLabel={tx.logout}
+        userName={firstName}
+      />
 
       {/* ── Main ────────────────────────────────────────── */}
       <div className="portfolio-main">
         <header className="portfolio-topbar">
-          <div>
-            <p className="eyebrow">{tx.eyebrow}</p>
-            <h1 className="portfolio-page-title">{tx.title}</h1>
+          <div className="topbar-brand-block">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/LOGO%20TRANSPARENTE%20BACK.png"
+              alt="Plainvest"
+              className="topbar-logo-img"
+            />
+            <h1 className="topbar-portfolio-heading">
+              {lang === 'pt' ? 'Portfólio' : 'Portfolio'}
+            </h1>
           </div>
         </header>
 
@@ -325,67 +326,26 @@ export default async function PortfolioPage({
         {params.success && <div className="notice notice-success">{params.success}</div>}
         {params.message && <div className="notice">{params.message}</div>}
 
-        {/* ── 3 KPI cards with sparklines ── */}
+        {/* ── 3 KPI cards ── */}
         <div className="portfolio-kpi-row">
-
-          {/* Invested */}
-          <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">{tx.kpiInvested}</span>
-            <strong className="portfolio-kpi-value">
-              {rows.length > 0 ? fmtShort(totalInvested, displayCurrency) : '—'}
-            </strong>
-            <span className="portfolio-kpi-sub">
-              {rows.length} {rows.length !== 1 ? tx.purchases : tx.purchase}
-              {' · '}{grouped.length} {grouped.length !== 1 ? tx.assets : tx.asset}
-            </span>
-            {sparkValues.length >= 2 && (
-              <div className="kpi-sparkline">
-                <MiniSparkline data={sparkValues} color="#f4c86a" gradientId="sg1" />
-                <div className="kpi-spark-dates"><span>{sparkFirst}</span><span>{sparkLast}</span></div>
-              </div>
-            )}
-          </div>
-
-          {/* Current Value */}
-          <div className="portfolio-kpi-card">
-            <span className="portfolio-kpi-label">{tx.kpiValue}</span>
-            <strong className="portfolio-kpi-value" style={pricedGroups.length === 0 ? { color: 'var(--muted)' } : {}}>
-              {pricedGroups.length > 0 ? fmtShort(currentValue, displayCurrency) : '—'}
-            </strong>
-            <span className="portfolio-kpi-sub">
-              {pricedGroups.length === 0 ? tx.kpiAddPrices : tx.kpiPriced(pricedGroups.length, grouped.length)}
-            </span>
-            {sparkValues.length >= 2 && (
-              <div className="kpi-sparkline">
-                <MiniSparkline data={sparkValues} color="#4ade80" gradientId="sg2" />
-                <div className="kpi-spark-dates"><span>{sparkFirst}</span><span>{sparkLast}</span></div>
-              </div>
-            )}
-          </div>
-
-          {/* P&L */}
-          <div className={`portfolio-kpi-card${pnl == null ? '' : pnl >= 0 ? ' kpi-positive' : ' kpi-negative'}`}>
-            <span className="portfolio-kpi-label">{tx.kpiReturn}</span>
-            <strong className={`portfolio-kpi-value${pnl == null ? '' : pnl >= 0 ? ' positive' : ' negative'}`}>
-              {pnl == null ? '—' : (pnl >= 0 ? '+' : '') + fmtShort(pnl, displayCurrency)}
-            </strong>
-            <span className="portfolio-kpi-sub">
-              {pnlPct == null
-                ? tx.kpiAddPrices
-                : (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(2) + '% ' + tx.kpiGainSuffix}
-            </span>
-            {sparkValues.length >= 2 && (
-              <div className="kpi-sparkline">
-                <MiniSparkline
-                  data={sparkValues}
-                  color={pnl == null || pnl >= 0 ? '#4ade80' : '#f87171'}
-                  gradientId="sg3"
-                />
-                <div className="kpi-spark-dates"><span>{sparkFirst}</span><span>{sparkLast}</span></div>
-              </div>
-            )}
-          </div>
-
+          <KpiCard
+            label={tx.kpiInvested}
+            value={rows.length > 0 ? fmtShort(totalInvested, displayCurrency) : '—'}
+            sub={`${rows.length} ${rows.length !== 1 ? tx.purchases : tx.purchase} · ${grouped.length} ${grouped.length !== 1 ? tx.assets : tx.asset}`}
+          />
+          <KpiCard
+            label={tx.kpiValue}
+            value={pricedGroups.length > 0 ? fmtShort(currentValue, displayCurrency) : '—'}
+            valueCls={pricedGroups.length === 0 ? 'kpi-muted' : ''}
+            sub={pricedGroups.length === 0 ? tx.kpiAddPrices : tx.kpiPriced(pricedGroups.length, grouped.length)}
+          />
+          <KpiCard
+            label={tx.kpiReturn}
+            value={pnl == null ? '—' : (pnl >= 0 ? '+' : '') + fmtShort(pnl, displayCurrency)}
+            valueCls={pnl == null ? '' : pnl >= 0 ? 'positive' : 'negative'}
+            sub={pnlPct == null ? tx.kpiAddPrices : (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(2) + '% ' + tx.kpiGainSuffix}
+            cardCls={pnl == null ? '' : pnl >= 0 ? 'kpi-positive' : 'kpi-negative'}
+          />
         </div>
 
         {/* Prices notice */}
@@ -398,30 +358,16 @@ export default async function PortfolioPage({
 
         {rows.length > 0 && (
           <>
-            {/* Portfolio evolution chart */}
-            <section className="portfolio-card portfolio-chart-card">
-              <div className="pchart-header">
-                <div>
-                  <p className="eyebrow">{tx.chartEyebrow}</p>
-                  <h2>{tx.chartTitle}</h2>
-                </div>
-                {chartData.length > 0 && (
-                  <div className="pchart-summary">
-                    <span className="pchart-summary-label">{tx.chartSince}</span>
-                    <span className="pchart-summary-val">
-                      {chartData[0].label.replace('-', '/')}
-                    </span>
-                  </div>
-                )}
-              </div>
-              <PortfolioLineChart monthly={chartData} currency={displayCurrency} lang={lang} />
-            </section>
-
-            {/* Overview row: donut + performance */}
+            {/* ── 1. Allocation + Performance ── */}
             <div className="portfolio-overview-v2">
               <section className="portfolio-card portfolio-dark-card">
-                <p className="eyebrow">{tx.sectionAlloc}</p>
-                <h2>{tx.sectionBreakdown}</h2>
+                <div className="card-header-row">
+                  <div>
+                    <p className="eyebrow">{tx.sectionAlloc}</p>
+                    <h2>{tx.sectionBreakdown}</h2>
+                  </div>
+                  <AddPositionModal lang={lang} />
+                </div>
                 <DonutChart segments={donutSegments} totalValue={totalInvested} currency={displayCurrency} />
               </section>
 
@@ -501,10 +447,34 @@ export default async function PortfolioPage({
               </section>
             </div>
 
-            {/* Holdings — one row per asset */}
+            {/* ── 2. Portfolio Evolution ── */}
+            <section className="portfolio-card portfolio-chart-card">
+              <div className="pchart-header">
+                <div>
+                  <p className="eyebrow">{tx.chartEyebrow}</p>
+                  <h2>{tx.chartTitle}</h2>
+                </div>
+                {chartData.length > 0 && (
+                  <div className="pchart-summary">
+                    <span className="pchart-summary-label">{tx.chartSince}</span>
+                    <span className="pchart-summary-val">
+                      {chartData[0].label.replace('-', '/')}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <PortfolioLineChart monthly={chartData} currency={displayCurrency} lang={lang} />
+            </section>
+
+            {/* ── 3. Holdings ── */}
             <section className="portfolio-card">
-              <p className="eyebrow">{tx.sectionHoldings}</p>
-              <h2>{tx.sectionAllPositions}</h2>
+              <div className="card-header-row">
+                <div>
+                  <p className="eyebrow">{tx.sectionHoldings}</p>
+                  <h2>{tx.sectionAllPositions}</h2>
+                </div>
+                <span className="holdings-count-badge">{grouped.length} {grouped.length !== 1 ? tx.assets : tx.asset}</span>
+              </div>
               <div className="portfolio-table-wrap">
                 <table className="portfolio-table portfolio-table-v2 holdings-table-v3">
                   <thead>
@@ -533,7 +503,7 @@ export default async function PortfolioPage({
                       const detailHref = `/portfolio/asset/${encodeURIComponent(g.key)}${detailBase}`;
 
                       return (
-                        <tr key={g.key} className="holdings-row-v3">
+                        <ClickableRow key={g.key} href={detailHref} className="holdings-row-v3">
                           <td>
                             <div className="holdings-asset-cell">
                               <AssetLogo
@@ -607,9 +577,9 @@ export default async function PortfolioPage({
                             )}
                           </td>
                           <td>
-                            <a href={detailHref} className="detail-link" title="View details">→</a>
+                            <a href={detailHref} className="row-arrow-link" aria-label={`View ${g.asset_name}`}>→</a>
                           </td>
-                        </tr>
+                        </ClickableRow>
                       );
                     })}
                   </tbody>
@@ -624,6 +594,7 @@ export default async function PortfolioPage({
             <div className="portfolio-empty-icon">📊</div>
             <h3>{tx.emptyTitle}</h3>
             <p>{tx.emptyText}</p>
+            <AddPositionModal lang={lang} />
           </div>
         )}
 
@@ -636,8 +607,6 @@ export default async function PortfolioPage({
             lang={lang}
           />
         )}
-
-        <AddPositionForm lang={lang} />
       </div>
       </div>
     </main>

@@ -1,9 +1,10 @@
 import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
-import { signOut } from '../../../actions/auth';
 import { deletePortfolioEntry, updateCurrentPrice, updatePortfolioEntry } from '../../../actions/portfolio';
 import { SubmitButton } from '../../../components/submit-button';
+import { SidebarClient } from '../../components/SidebarClient';
+import { AssetLogo } from '../../components/AssetLogo';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { T, getLang } from '@/lib/portfolio-i18n';
 import type { Metadata } from 'next';
@@ -64,6 +65,9 @@ export default async function AssetDetailPage({
 
   const { isPremium } = await getPremiumAccess(supabase, user.id);
   if (!isPremium) redirect('/dashboard');
+
+  const fullName: string = user.user_metadata?.full_name || '';
+  const firstName = fullName.split(' ')[0] || user.email?.split('@')[0] || '';
 
   const rates = await getExchangeRates(displayCurrency);
   const toDisplay = (amount: number, fromCurrency: string) => {
@@ -128,17 +132,26 @@ export default async function AssetDetailPage({
 
   return (
     <main className="portfolio-shell">
-      <nav className="portfolio-topbar">
-        <a href={hubHref} className="brand">Plainvest</a>
-        <div className="portfolio-topbar-actions">
-          <a href={backHref} className="ghost-nav-link">{tx.backPortfolio}</a>
-          <a href={hubHref} className="ghost-nav-link">{tx.hub}</a>
-          <form action={signOut}>
-            <SubmitButton className="ghost" pendingText="...">{tx.logout}</SubmitButton>
-          </form>
-        </div>
-      </nav>
+      <SidebarClient
+        displayCurrency={displayCurrency}
+        lang={lang}
+        backHref={hubHref}
+        portfolioHref={backHref}
+        profileLabel={tx.profile}
+        logoutLabel={tx.logout}
+        userName={firstName}
+      />
 
+      <div className="portfolio-main">
+      <header className="portfolio-topbar detail-topbar">
+        <a href={backHref} className="detail-back-btn">
+          ← {lang === 'pt' ? 'Voltar ao portfólio' : 'Back to portfolio'}
+        </a>
+        <div className="detail-topbar-title">
+          <h1 className="portfolio-page-title">{assetName}</h1>
+          {ticker && <span className="detail-ticker">{ticker.toUpperCase()}</span>}
+        </div>
+      </header>
       <div className="portfolio-content portfolio-content-wide">
 
         {sp.success && <div className="notice notice-success">{sp.success}</div>}
@@ -146,7 +159,7 @@ export default async function AssetDetailPage({
 
         {/* ── Asset hero header ── */}
         <div className="asset-hero">
-          <div className="asset-hero-icon" style={{ background: typeColor }}>{initials}</div>
+          <AssetLogo ticker={ticker} assetType={assetType} initials={initials} color={typeColor} />
           <div className="asset-hero-body">
             <div className="asset-hero-title">
               <h1>{assetName}</h1>
@@ -378,6 +391,7 @@ export default async function AssetDetailPage({
             </table>
           </div>
         </section>
+      </div>
       </div>
     </main>
   );
