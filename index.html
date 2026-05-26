@@ -11091,8 +11091,6 @@
 
 
     @keyframes orb1 {
-
-    @keyframes orb1 {
       0% {
         transform: translate(0, 0) scale(1)
       }
@@ -11778,6 +11776,298 @@
       .fv-stat-num { font-size: 2.6rem; }
       .why-mission-wrap { gap: 1rem; }
       .fv-note { flex-direction: column; gap: 1.25rem; text-align: center; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       FINAL LAYOUT REPAIR — HOME / LEARN / SIM / INFLATION
+       Keeps new content in polished cards instead of raw page flow.
+    ═══════════════════════════════════════════════ */
+    .the-problem.app-page,
+    .why-exists.app-page,
+    .future-vis.app-page,
+    .transformation.app-page,
+    .home-cta.app-page {
+      width: min(100% - 2rem, 1180px) !important;
+      margin-inline: auto !important;
+      box-sizing: border-box !important;
+    }
+
+    .the-problem.app-page {
+      max-width: 960px !important;
+      padding: clamp(3.8rem, 6vw, 5.8rem) clamp(1rem, 3vw, 2rem) !important;
+      text-align: center !important;
+    }
+
+    .prob-inner,
+    .why-inner,
+    .fv-inner,
+    .tf-inner {
+      width: 100% !important;
+      margin-inline: auto !important;
+      box-sizing: border-box !important;
+    }
+
+    .prob-quote {
+      max-width: 760px !important;
+      margin: 1.25rem auto 2.2rem !important;
+    }
+
+    .prob-truths {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: .9rem !important;
+      max-width: 760px !important;
+      margin-inline: auto !important;
+    }
+
+    .prob-truth {
+      display: grid !important;
+      grid-template-columns: 28px 1fr !important;
+      align-items: start !important;
+      gap: .95rem !important;
+      padding: 1rem 1.15rem !important;
+      border-radius: 16px !important;
+      background: rgba(255, 255, 255, .035) !important;
+      border: 1px solid rgba(255, 255, 255, .08) !important;
+      text-align: left !important;
+    }
+
+    .prob-truth--teal {
+      background: rgba(0, 212, 170, .075) !important;
+      border-color: rgba(0, 212, 170, .24) !important;
+    }
+
+    .prob-truth-mark {
+      width: 28px !important;
+      height: 28px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 999px !important;
+      background: rgba(248, 113, 113, .09) !important;
+      color: rgba(248, 113, 113, .88) !important;
+      margin: 0 !important;
+    }
+
+    .prob-truth--teal .prob-truth-mark {
+      background: rgba(0, 212, 170, .12) !important;
+      color: var(--teal) !important;
+    }
+
+    .prob-truth p {
+      margin: 0 !important;
+      font-size: .95rem !important;
+      line-height: 1.65 !important;
+    }
+
+    .why-exists.app-page,
+    .future-vis.app-page {
+      padding: clamp(4rem, 6vw, 6rem) clamp(1rem, 3vw, 2rem) !important;
+    }
+
+    .why-h2,
+    .fv-h2 {
+      max-width: 780px !important;
+      margin-inline: auto !important;
+      text-align: center !important;
+    }
+
+    .why-lead,
+    .fv-lead {
+      max-width: 680px !important;
+      margin-inline: auto !important;
+      text-align: center !important;
+    }
+
+    .why-grid,
+    .fv-stats-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 1.2rem !important;
+      width: 100% !important;
+      margin-inline: auto !important;
+    }
+
+    .why-card,
+    .fv-stat {
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    #learn.app-page {
+      padding: clamp(4.5rem, 7vw, 7rem) max(1.25rem, calc((100vw - 1240px) / 2)) !important;
+      overflow: hidden !important;
+    }
+
+    #learn > .section-eyebrow,
+    #learn > .section-h2,
+    #learn > .section-lead,
+    .learn-cards-eyebrow {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+    }
+
+    #learn > .section-lead {
+      max-width: 720px !important;
+    }
+
+    .learn-path {
+      width: min(100%, 960px) !important;
+      max-width: 960px !important;
+      margin: 2.8rem auto 3.4rem !important;
+      box-sizing: border-box !important;
+    }
+
+    .learn-grid,
+    .learn-row2,
+    .learn-row3 {
+      width: min(100%, 1240px) !important;
+      max-width: 1240px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      align-items: stretch !important;
+    }
+
+    .learn-card {
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .inf-real-life,
+    .do-nothing-cost {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      border-radius: 24px !important;
+      border: 1px solid rgba(255, 255, 255, .08) !important;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(0, 212, 170, .075), transparent 32%),
+        linear-gradient(180deg, rgba(17, 33, 55, .92), rgba(8, 20, 36, .94)) !important;
+      padding: clamp(1.25rem, 3vw, 2rem) !important;
+      margin-top: 2rem !important;
+    }
+
+    .irl-section-head {
+      max-width: 760px !important;
+      margin: 0 0 1.35rem !important;
+    }
+
+    .irl-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: .9rem !important;
+    }
+
+    .irl-card {
+      min-width: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: .35rem !important;
+    }
+
+    .irl-price-row {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: baseline !important;
+      gap: .75rem !important;
+    }
+
+    .dnc-inner {
+      max-width: 840px !important;
+      margin-inline: auto !important;
+    }
+
+    .dnc-rows {
+      max-width: 760px !important;
+      margin-inline: auto !important;
+    }
+
+    .future-insights,
+    .sim-scenarios {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      margin-top: 1rem !important;
+      overflow: hidden !important;
+    }
+
+    .fi-items {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: .85rem !important;
+    }
+
+    .fi-item {
+      min-width: 0 !important;
+      display: grid !important;
+      grid-template-columns: 32px 1fr !important;
+      align-items: start !important;
+    }
+
+    .fi-icon {
+      width: 32px !important;
+      height: 32px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 12px !important;
+      background: rgba(255, 255, 255, .06) !important;
+      margin: 0 !important;
+    }
+
+    .sc-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: .85rem !important;
+    }
+
+    @media (max-width: 900px) {
+      .why-grid,
+      .fv-stats-grid,
+      .learn-grid,
+      .learn-row2,
+      .learn-row3,
+      .irl-grid,
+      .sc-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .fi-items {
+        grid-template-columns: 1fr !important;
+      }
+
+      .lps-step {
+        grid-template-columns: 2.5rem 1fr !important;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .the-problem.app-page,
+      .why-exists.app-page,
+      .future-vis.app-page,
+      .transformation.app-page,
+      .home-cta.app-page {
+        width: min(100% - 1rem, 1180px) !important;
+      }
+
+      .prob-truth {
+        grid-template-columns: 24px 1fr !important;
+        padding: .95rem !important;
+      }
+
+      .prob-truth-mark {
+        width: 24px !important;
+        height: 24px !important;
+      }
+
+      .learn-path {
+        padding: 1.25rem 1rem !important;
+      }
+
+      .irl-price-row,
+      .dnc-row {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
