@@ -1032,12 +1032,12 @@
 
     .section-h2 {
       font-family: 'Lora', serif;
-      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      font-size: clamp(1.85rem, 2.8vw, 2.65rem);
       font-weight: 700;
       color: var(--white);
-      line-height: 1.12;
+      line-height: 1.15;
       letter-spacing: -0.4px;
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
       max-width: 16ch;
     }
 
@@ -1048,9 +1048,9 @@
 
     .section-lead {
       color: var(--ink-soft);
-      font-size: 0.95rem;
-      line-height: 1.78;
-      max-width: 690px;
+      font-size: 1rem;
+      line-height: 1.82;
+      max-width: 760px;
     }
 
     .sim-intro,
@@ -4086,6 +4086,251 @@
       color: #8fa6bf;
     }
 
+    /* ---- Premium promise block ---- */
+    .plans-promise {
+      max-width: 780px;
+      margin: 2.4rem auto 0;
+      background: linear-gradient(135deg, rgba(97, 213, 180, .06), rgba(20, 36, 60, .5));
+      border: 1px solid rgba(97, 213, 180, .15);
+      border-radius: 22px;
+      padding: 2rem 2.4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plans-promise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(97, 213, 180, .08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .plans-promise-quote {
+      font-family: 'Lora', serif;
+      font-size: 1.12rem;
+      line-height: 1.65;
+      color: #ddf0ee;
+      margin-bottom: .9rem;
+    }
+
+    .plans-promise-quote em {
+      color: var(--teal);
+      font-style: italic;
+    }
+
+    .plans-promise-note {
+      font-size: .82rem;
+      color: var(--ink-soft);
+      letter-spacing: .02em;
+    }
+
+    /* ---- Learning path roadmap ---- */
+    .learn-path {
+      max-width: 820px;
+      margin: 2.8rem auto 3.2rem;
+      background: linear-gradient(180deg, #0d1e35, #0a1828);
+      border-radius: 26px;
+      padding: 2.2rem 2rem 2rem;
+      box-shadow: 0 24px 50px rgba(0,0,0,.22);
+    }
+
+    .learn-path-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .learn-path-eyebrow {
+      display: block;
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .55rem;
+    }
+
+    .learn-path-title {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .learn-path-title em {
+      color: var(--teal);
+      font-style: italic;
+    }
+
+    .learn-path-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .lps-step {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      align-items: center;
+      gap: 1.2rem;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      transition: border-color .22s, background .22s;
+    }
+
+    .lps-step:hover {
+      border-color: rgba(97, 213, 180, .2);
+      background: rgba(97, 213, 180, .04);
+    }
+
+    .lps-step--active {
+      border-color: rgba(97, 213, 180, .22);
+      background: rgba(97, 213, 180, .05);
+    }
+
+    .lps-step--premium {
+      border-color: rgba(244, 200, 106, .12);
+    }
+
+    .lps-step--final {
+      border-color: rgba(244, 200, 106, .22);
+      background: rgba(244, 200, 106, .04);
+    }
+
+    .lps-connector {
+      width: 2px;
+      height: 1rem;
+      background: linear-gradient(to bottom, rgba(97, 213, 180, .22), rgba(97, 213, 180, .04));
+      margin: 0 auto;
+      margin-left: calc(3rem / 2 + 1.2rem - 1px + 2rem);
+    }
+
+    .lps-num {
+      font-size: .65rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      color: var(--teal);
+      width: 3rem;
+      height: 3rem;
+      border: 1.5px solid rgba(97, 213, 180, .25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lps-step--premium .lps-num {
+      color: var(--gold);
+      border-color: rgba(244, 200, 106, .3);
+    }
+
+    .lps-body {
+      flex: 1;
+    }
+
+    .lps-title {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .25rem;
+    }
+
+    .lps-desc {
+      font-size: .78rem;
+      line-height: 1.55;
+      color: #7a9ab8;
+      margin-bottom: .55rem;
+    }
+
+    .lps-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+
+    .lps-tags span {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(97, 213, 180, .75);
+      background: rgba(97, 213, 180, .07);
+      border: 1px solid rgba(97, 213, 180, .15);
+      border-radius: 6px;
+      padding: .18rem .5rem;
+    }
+
+    .lps-step--premium .lps-tags span {
+      color: rgba(244, 200, 106, .75);
+      background: rgba(244, 200, 106, .07);
+      border-color: rgba(244, 200, 106, .15);
+    }
+
+    .lps-cta {
+      flex-shrink: 0;
+    }
+
+    .lps-btn {
+      background: rgba(97, 213, 180, .1);
+      border: 1px solid rgba(97, 213, 180, .28);
+      color: var(--teal);
+      border-radius: 10px;
+      padding: .45rem .9rem;
+      font-size: .72rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s, border-color .2s;
+    }
+
+    .lps-btn:hover {
+      background: rgba(97, 213, 180, .18);
+      border-color: rgba(97, 213, 180, .5);
+    }
+
+    .lps-btn--premium {
+      background: rgba(244, 200, 106, .1);
+      border-color: rgba(244, 200, 106, .3);
+      color: var(--gold);
+    }
+
+    .lps-btn--premium:hover {
+      background: rgba(244, 200, 106, .18);
+      border-color: rgba(244, 200, 106, .55);
+    }
+
+    .lps-badge {
+      font-size: .65rem;
+      font-weight: 700;
+      color: rgba(97,213,180,.55);
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    .lps-badge--premium {
+      color: var(--gold);
+      background: rgba(244, 200, 106, .08);
+      border: 1px solid rgba(244, 200, 106, .2);
+      border-radius: 8px;
+      padding: .3rem .7rem;
+    }
+
+    .learn-cards-eyebrow {
+      text-align: center;
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.35);
+      margin-bottom: 1.6rem;
+    }
+
     .plan-card {
       background: linear-gradient(180deg, rgba(21, 36, 60, .98) 0%, rgba(12, 24, 43, .98) 100%);
       border: 1px solid rgba(255, 255, 255, .08);
@@ -4110,8 +4355,8 @@
     }
 
     .plan-card.star {
-      border-color: rgba(0, 212, 170, 0.3);
-      box-shadow: 0 0 30px rgba(0, 212, 170, 0.08);
+      border-color: rgba(0, 212, 170, 0.35);
+      box-shadow: 0 0 50px rgba(0, 212, 170, 0.11), 0 28px 56px rgba(0, 0, 0, 0.35);
     }
 
     .plan-card.star .plan-badge {
@@ -10307,6 +10552,55 @@
         gap: .8rem !important;
       }
 
+      .plans-promise {
+        padding: 1.4rem 1.2rem !important;
+        margin-top: 1.8rem !important;
+      }
+
+      .plans-promise-quote {
+        font-size: .95rem !important;
+      }
+
+      .learn-path {
+        margin: 1.8rem auto 2.4rem !important;
+        padding: 1.4rem 1rem 1.4rem !important;
+        border-radius: 18px !important;
+      }
+
+      .learn-path-title {
+        font-size: 1.05rem !important;
+      }
+
+      .lps-step {
+        grid-template-columns: 2.4rem 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: .7rem .85rem !important;
+        padding: .9rem .9rem !important;
+      }
+
+      .lps-cta {
+        grid-column: 1 / -1 !important;
+        padding-left: calc(2.4rem + .85rem) !important;
+      }
+
+      .lps-num {
+        width: 2.4rem !important;
+        height: 2.4rem !important;
+        font-size: .6rem !important;
+      }
+
+      .lps-connector {
+        margin-left: calc(2.4rem / 2 + .85rem - 1px + .9rem) !important;
+      }
+
+      .lps-title {
+        font-size: .84rem !important;
+      }
+
+      .lps-desc {
+        font-size: .74rem !important;
+      }
+
       .plan-card {
         padding: 1.35rem !important;
       }
@@ -11284,6 +11578,164 @@
     }
 
     /* ═══════════════════════════════════════════════
+       INFLATION — REAL-LIFE EXAMPLES
+    ═══════════════════════════════════════════════ */
+    .inf-real-life {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .irl-eyebrow {
+      font-size: .62rem; font-weight: 800; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--gold); opacity: .75;
+      margin-bottom: .4rem;
+    }
+    .irl-lead { font-size: .875rem; color: #6a8aaa; margin: 0 0 1.35rem; line-height: 1.6; }
+    .irl-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
+    .irl-card {
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      padding: 1.1rem 1.05rem 1rem;
+    }
+    .irl-card--gold { border-color: rgba(244,200,106,.2); background: rgba(244,200,106,.04); }
+    .irl-card--red  { border-color: rgba(248,113,113,.18); background: rgba(248,113,113,.04); }
+    .irl-icon { font-size: 1.35rem; margin-bottom: .45rem; }
+    .irl-item { font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #5a7a96; margin-bottom: .5rem; }
+    .irl-now  { font-size: .9rem; font-weight: 700; color: #c0d5e8; }
+    .irl-future { font-size: .9rem; font-weight: 700; color: rgba(248,113,113,.85); margin-top: .2rem; }
+    .irl-note { font-size: .76rem; line-height: 1.58; color: #5a7a96; margin: .6rem 0 0; }
+
+    /* ── DO NOTHING COST ── */
+    .do-nothing-cost {
+      margin-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 2rem;
+    }
+    .dnc-inner {
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .dnc-eyebrow {
+      font-size: .62rem; font-weight: 800; letter-spacing: .13em;
+      text-transform: uppercase; color: rgba(248,113,113,.65);
+      margin-bottom: .5rem;
+    }
+    .dnc-h3 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700;
+      line-height: 1.22;
+      color: #dde8f5;
+      margin: 0 0 .85rem;
+    }
+    .dnc-h3 em { color: rgba(248,113,113,.8); font-style: italic; }
+    .dnc-lead { font-size: .92rem; line-height: 1.72; color: #8aa5c0; margin: 0 0 1.75rem; }
+    .dnc-rows { display: flex; flex-direction: column; gap: .65rem; text-align: left; margin-bottom: 1.25rem; }
+    .dnc-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 220px;
+      gap: .75rem;
+      align-items: center;
+      padding: .75rem 1rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+    }
+    .dnc-row--accent { background: rgba(248,113,113,.05); border: 1px solid rgba(248,113,113,.14); }
+    .dnc-years { font-size: .78rem; font-weight: 700; color: #7a9ab5; }
+    .dnc-bar-wrap { height: 6px; background: rgba(255,255,255,.07); border-radius: 99px; overflow: hidden; }
+    .dnc-bar { height: 100%; width: var(--w); border-radius: 99px; background: rgba(248,113,113,.5); }
+    .dnc-bar--red { background: rgba(248,113,113,.8); }
+    .dnc-loss { font-size: .78rem; font-weight: 700; color: #7a9ab5; text-align: right; }
+    .dnc-loss--red { color: rgba(248,113,113,.8); }
+    .dnc-note { font-size: .7rem; color: #354f66; font-style: italic; margin: 0 0 1.25rem; }
+
+    @media (max-width: 768px) {
+      .irl-grid { grid-template-columns: 1fr 1fr; }
+      .dnc-row { grid-template-columns: 70px 1fr; }
+      .dnc-loss { grid-column: 1/-1; text-align: left; }
+    }
+    @media (max-width: 480px) {
+      .irl-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       SIMULATOR — FUTURE INSIGHTS
+    ═══════════════════════════════════════════════ */
+    .future-insights {
+      margin-top: 2.2rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1.8rem;
+    }
+    .fi-eyebrow {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--teal);
+      opacity: .85;
+      margin-bottom: 1.1rem;
+    }
+    .fi-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+    .fi-item {
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+      padding: .9rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .fi-item--teal { border-color: rgba(97,213,180,.18); background: rgba(97,213,180,.04); }
+    .fi-item--gold  { border-color: rgba(244,200,106,.18); background: rgba(244,200,106,.04); }
+    .fi-item--blue  { border-color: rgba(92,154,245,.18); background: rgba(92,154,245,.04); }
+    .fi-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+    .fi-item p { margin: 0; font-size: .82rem; line-height: 1.65; color: #96b0c8; }
+
+    /* ═══════════════════════════════════════════════
+       SIMULATOR — SCENARIO COMPARISON
+    ═══════════════════════════════════════════════ */
+    .sim-scenarios {
+      margin-top: 2.2rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1.8rem;
+    }
+    .sc-eyebrow {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: .9;
+      margin-bottom: .4rem;
+    }
+    .sc-lead { font-size: .85rem; color: #6a8aaa; margin: 0 0 1.2rem; line-height: 1.6; }
+    .sc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; }
+    .sc-card {
+      border-radius: 16px;
+      padding: 1.15rem 1.05rem 1rem;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.025);
+      text-align: center;
+      transition: border-color .2s, background .2s;
+    }
+    .sc-card.sc-highlight {
+      border-color: rgba(97,213,180,.35);
+      background: rgba(97,213,180,.08);
+      box-shadow: 0 0 18px rgba(97,213,180,.06);
+    }
+    .sc-mo { font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #5a7a96; margin-bottom: .45rem; }
+    .sc-val { font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: .3rem; }
+    .sc-card.sc-highlight .sc-val { color: var(--teal); }
+    .sc-sub { font-size: .72rem; color: #5a7a96; }
+    .sc-note { font-size: .68rem; color: #354f66; font-style: italic; margin-top: .85rem; }
+
+    /* ═══════════════════════════════════════════════
        MOBILE — NEW HOME SECTIONS
     ═══════════════════════════════════════════════ */
     @media (max-width: 768px) {
@@ -11357,7 +11809,7 @@
         <div class="hs-brandline">
           <img src="assets/plainvest-logo-new.png" alt="Plainvest" class="hero-logo">
         </div>
-        <h1 class="hs-h1" data-i18n-html="hero.h1">Most people were never taught <em>how money works.</em></h1>
+        <h1 class="hs-h1" data-i18n-html="hero.h1">Investing was never meant<br>to feel this <em>confusing.</em></h1>
         <p class="hs-lead" data-i18n-html="hero.lead">Plainvest is a calm, beginner-friendly platform designed to help you understand investing, inflation, and your financial future — <strong>visually and simply.</strong></p>
         <div class="hs-trust">
           <span class="hs-trust-item" data-i18n="hero.trust1">No experience needed</span>
@@ -11637,6 +12089,39 @@
               </div>
               <button type="button" id="sim-nudge-btn" onclick="handlePremiumSupportClick()">Use Premium support →</button>
             </div>
+
+            <!-- ── FUTURE INSIGHTS ── -->
+            <div class="future-insights" id="futureInsights">
+              <div class="fi-eyebrow">What this result means</div>
+              <div class="fi-items" id="fiItems">
+                <div class="fi-item fi-item--teal">
+                  <span class="fi-icon">⏳</span>
+                  <p>Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."</p>
+                </div>
+                <div class="fi-item fi-item--gold">
+                  <span class="fi-icon">📈</span>
+                  <p>Most portfolio growth happens in the later years. The first years are planting the seed — the last years are the harvest.</p>
+                </div>
+                <div class="fi-item fi-item--blue">
+                  <span class="fi-icon">🛡️</span>
+                  <p>Inflation may quietly reduce the purchasing power of what you see here. Investing is how you protect your future self.</p>
+                </div>
+                <div class="fi-item fi-item--teal">
+                  <span class="fi-icon">🌱</span>
+                  <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── SCENARIO COMPARISON ── -->
+            <div class="sim-scenarios" id="simScenarios">
+              <div class="sc-eyebrow">What if you invested more?</div>
+              <p class="sc-lead">See how different monthly amounts change the picture over the same time horizon.</p>
+              <div class="sc-grid" id="scGrid">
+                <!-- populated by JS -->
+              </div>
+              <p class="sc-note">Projections are illustrative only and use the same return rate and time horizon as your current selection.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -11775,40 +12260,6 @@
       <div class="tf-cta">
         <button class="btn-primary" onclick="showPage('simulator')">Start your transformation →</button>
       </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
-     HOME: SOCIAL PROOF
-══════════════════════════════════════════ -->
-  <section class="home-social app-page" data-page="home">
-    <div class="hs-social-inner">
-      <div class="section-eyebrow hs-social-eyebrow">What beginners say</div>
-      <h2 class="section-h2 hs-social-h2">Real moments where money <em>finally</em> clicked.</h2>
-      <div class="hs-testi-grid">
-        <div class="hs-testi-card">
-          <div class="hs-testi-quote">"I spent years avoiding this topic. Then I opened Plainvest, moved one slider, and suddenly 20 years of investing made sense visually. I finally felt like I could actually start."</div>
-          <div class="hs-testi-author">
-            <div class="hs-testi-name">Sarah M.</div>
-            <div class="hs-testi-role">Nurse, Australia</div>
-          </div>
-        </div>
-        <div class="hs-testi-card hs-testi-card--gold">
-          <div class="hs-testi-quote">"I always thought I needed more money to begin. Seeing $50/month grow to $29,000 on the chart changed my whole perspective. I started investing the week after."</div>
-          <div class="hs-testi-author">
-            <div class="hs-testi-name">Lucas B.</div>
-            <div class="hs-testi-role">Teacher, Brazil</div>
-          </div>
-        </div>
-        <div class="hs-testi-card">
-          <div class="hs-testi-quote">"No jargon. No pressure. Just clean visuals that showed me what inflation was quietly doing to my savings. This is what financial education should feel like."</div>
-          <div class="hs-testi-author">
-            <div class="hs-testi-name">James T.</div>
-            <div class="hs-testi-role">Graphic designer, USA</div>
-          </div>
-        </div>
-      </div>
-      <p class="hs-testi-note">Testimonials represent the kinds of experiences Plainvest is designed for. Individual results vary.</p>
     </div>
   </section>
 
@@ -12004,8 +12455,86 @@
         <div class="currency-loss-grid" id="inflationCurrencyLoss"></div>
       </div>
 
+      <!-- ── REAL-LIFE EXAMPLES ───────────────────────── -->
+      <div class="inf-real-life">
+        <div class="irl-eyebrow">What inflation actually costs — in real life</div>
+        <p class="irl-lead">These aren't just percentages. This is what inflation looks like in everyday things you buy.</p>
+        <div class="irl-grid">
+          <div class="irl-card">
+            <div class="irl-icon">☕</div>
+            <div class="irl-item">Coffee</div>
+            <div class="irl-now">$5 today</div>
+            <div class="irl-future">~$8–9 in 20 years</div>
+            <p class="irl-note">At 3% inflation, your daily coffee costs ~75% more by the time you retire.</p>
+          </div>
+          <div class="irl-card">
+            <div class="irl-icon">🛒</div>
+            <div class="irl-item">Groceries</div>
+            <div class="irl-now">$200/week today</div>
+            <div class="irl-future">~$360/week in 20 years</div>
+            <p class="irl-note">The same shopping basket quietly gets more expensive every year.</p>
+          </div>
+          <div class="irl-card irl-card--gold">
+            <div class="irl-icon">🏠</div>
+            <div class="irl-item">Rent</div>
+            <div class="irl-now">$2,000/month today</div>
+            <div class="irl-future">~$3,600/month in 20 years</div>
+            <p class="irl-note">Housing costs have historically outpaced general inflation in many major cities.</p>
+          </div>
+          <div class="irl-card">
+            <div class="irl-icon">✈️</div>
+            <div class="irl-item">Holiday travel</div>
+            <div class="irl-now">$3,000 today</div>
+            <div class="irl-future">~$5,400 in 20 years</div>
+            <p class="irl-note">The experiences you plan for your future self will cost significantly more than today.</p>
+          </div>
+          <div class="irl-card irl-card--red">
+            <div class="irl-icon">💰</div>
+            <div class="irl-item">$10,000 in cash</div>
+            <div class="irl-now">$10,000 buying power today</div>
+            <div class="irl-future">~$5,500 in real value in 20 years</div>
+            <p class="irl-note">Doing nothing has a cost. Cash sitting still silently loses purchasing power.</p>
+          </div>
+          <div class="irl-card">
+            <div class="irl-icon">🏡</div>
+            <div class="irl-item">House deposit</div>
+            <div class="irl-now">$80,000 goal today</div>
+            <div class="irl-future">~$144,000 needed in 20 years</div>
+            <p class="irl-note">If you're saving toward a goal, inflation raises the target while you save.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DO NOTHING COST ───────────────────────── -->
+      <div class="do-nothing-cost">
+        <div class="dnc-inner">
+          <div class="dnc-eyebrow">What happens if money stays still?</div>
+          <h3 class="dnc-h3">Doing nothing<br>is still a <em>financial decision.</em></h3>
+          <p class="dnc-lead">Every year your money sits in a low-interest account while inflation runs above it, you lose real purchasing power — silently, automatically, without a single transaction.</p>
+          <div class="dnc-rows">
+            <div class="dnc-row">
+              <div class="dnc-years">10 years</div>
+              <div class="dnc-bar-wrap"><div class="dnc-bar" style="--w:28%"></div></div>
+              <div class="dnc-loss">~26% purchasing power lost</div>
+            </div>
+            <div class="dnc-row">
+              <div class="dnc-years">20 years</div>
+              <div class="dnc-bar-wrap"><div class="dnc-bar" style="--w:54%"></div></div>
+              <div class="dnc-loss">~45% purchasing power lost</div>
+            </div>
+            <div class="dnc-row dnc-row--accent">
+              <div class="dnc-years">30 years</div>
+              <div class="dnc-bar-wrap"><div class="dnc-bar dnc-bar--red" style="--w:85%"></div></div>
+              <div class="dnc-loss dnc-loss--red">~59% purchasing power lost</div>
+            </div>
+          </div>
+          <p class="dnc-note">Based on ~3% average annual inflation. Illustrative only.</p>
+          <button class="btn-primary" onclick="showPage('simulator')">See what investing instead could look like →</button>
+        </div>
+      </div>
+
       <div class="inf-cta-row">
-        <p id="inf-cta-p" data-i18n="inflation.ctaP">The best defence against inflation is investing. Even a simple index fund has historically returned ~8%/yr — far above inflation.</p>
+        <p id="inf-cta-p" data-i18n="inflation.ctaP">The best protection against inflation is growth. Even a simple index fund has historically returned far more than inflation over the long term.</p>
         <a href="#simulator" class="btn-primary" id="inf-cta-btn" data-i18n="inflation.ctaBtn">Run your own projection →</a>
       </div>
     </div>
@@ -12015,8 +12544,88 @@
   <section id="learn" class="app-page" data-page="learn">
     <div class="section-eyebrow" data-i18n="learn.eyebrow">Investment starter guide</div>
     <div class="section-h2" data-i18n-html="learn.h2">New to investing? <em>Start here.</em></div>
-    <p class="section-lead" data-i18n="learn.lead">Click any card to get a plain-English explanation of what that investment is, how it works, and whether it might suit you.</p>
+    <p class="section-lead" data-i18n="learn.lead">Learning about money shouldn't feel overwhelming. Follow the path below — one step at a time — and go as far as you're ready to go today.</p>
 
+    <!-- Learning Path Roadmap -->
+    <div class="learn-path">
+      <div class="learn-path-header">
+        <span class="learn-path-eyebrow" data-i18n="learn.path.eyebrow">Beginner investing roadmap</span>
+        <h3 class="learn-path-title" data-i18n-html="learn.path.title">A clear path forward — <em>no experience needed.</em></h3>
+      </div>
+      <div class="learn-path-steps">
+        <div class="lps-step lps-step--active">
+          <div class="lps-num">01</div>
+          <div class="lps-body">
+            <div class="lps-title" data-i18n="learn.path.s1t">Start here</div>
+            <div class="lps-desc" data-i18n="learn.path.s1d">Understand what investing is — and why doing nothing with your money is also a financial decision.</div>
+            <div class="lps-tags"><span>Why invest?</span><span>Inflation</span><span>Time horizon</span></div>
+          </div>
+          <div class="lps-cta"><button class="lps-btn" onclick="showPage('inflation')" data-i18n="learn.path.s1btn">See inflation →</button></div>
+        </div>
+        <div class="lps-connector"></div>
+        <div class="lps-step">
+          <div class="lps-num">02</div>
+          <div class="lps-body">
+            <div class="lps-title" data-i18n="learn.path.s2t">Investing basics</div>
+            <div class="lps-desc" data-i18n="learn.path.s2d">Learn what stocks, bonds, and ETFs actually are. No jargon — just plain English with real examples.</div>
+            <div class="lps-tags"><span>Stocks</span><span>Bonds</span><span>Index Funds</span><span>ETFs</span></div>
+          </div>
+          <div class="lps-cta"><span class="lps-badge" data-i18n="learn.path.s2badge">Cards below →</span></div>
+        </div>
+        <div class="lps-connector"></div>
+        <div class="lps-step">
+          <div class="lps-num">03</div>
+          <div class="lps-body">
+            <div class="lps-title" data-i18n="learn.path.s3t">See the numbers</div>
+            <div class="lps-desc" data-i18n="learn.path.s3d">Run the simulator. Watch what a small monthly habit becomes over 10, 20, or 30 years — and feel the difference.</div>
+            <div class="lps-tags"><span>Simulator</span><span>Compound growth</span><span>Long-term wealth</span></div>
+          </div>
+          <div class="lps-cta"><button class="lps-btn" onclick="showPage('simulator')" data-i18n="learn.path.s3btn">Open simulator →</button></div>
+        </div>
+        <div class="lps-connector"></div>
+        <div class="lps-step">
+          <div class="lps-num">04</div>
+          <div class="lps-body">
+            <div class="lps-title" data-i18n="learn.path.s4t">ETFs and index funds</div>
+            <div class="lps-desc" data-i18n="learn.path.s4d">Why most beginner investors start here — and how a single fund can give you instant global diversification.</div>
+            <div class="lps-tags"><span>ETF</span><span>S&P 500</span><span>NASDAQ-100</span><span>Diversification</span></div>
+          </div>
+          <div class="lps-cta"><span class="lps-badge" data-i18n="learn.path.s4badge">Cards below →</span></div>
+        </div>
+        <div class="lps-connector"></div>
+        <div class="lps-step lps-step--premium">
+          <div class="lps-num">05</div>
+          <div class="lps-body">
+            <div class="lps-title" data-i18n="learn.path.s5t">Bitcoin and crypto</div>
+            <div class="lps-desc" data-i18n="learn.path.s5d">Understand what Bitcoin is, how the halving works, and what self-custody means — before touching anything.</div>
+            <div class="lps-tags"><span>Bitcoin</span><span>Halving</span><span>Self-custody</span><span>Safety</span></div>
+          </div>
+          <div class="lps-cta"><span class="lps-badge lps-badge--premium" data-i18n="learn.path.s5badge">Premium guide</span></div>
+        </div>
+        <div class="lps-connector"></div>
+        <div class="lps-step lps-step--premium">
+          <div class="lps-num">06</div>
+          <div class="lps-body">
+            <div class="lps-title" data-i18n="learn.path.s6t">Long-term wealth</div>
+            <div class="lps-desc" data-i18n="learn.path.s6d">Dollar-cost averaging, choosing a brokerage, tax basics, super, and building a portfolio that fits your life.</div>
+            <div class="lps-tags"><span>DCA</span><span>Brokerage</span><span>Tax basics</span><span>Super</span></div>
+          </div>
+          <div class="lps-cta"><span class="lps-badge lps-badge--premium" data-i18n="learn.path.s6badge">Premium guide</span></div>
+        </div>
+        <div class="lps-connector"></div>
+        <div class="lps-step lps-step--premium lps-step--final">
+          <div class="lps-num">07</div>
+          <div class="lps-body">
+            <div class="lps-title" data-i18n="learn.path.s7t">Your first real investment</div>
+            <div class="lps-desc" data-i18n="learn.path.s7d">A step-by-step walkthrough — picking a platform, opening an account, placing your first trade with confidence.</div>
+            <div class="lps-tags"><span>Exchange setup</span><span>First buy</span><span>Zoom support</span></div>
+          </div>
+          <div class="lps-cta"><button class="lps-btn lps-btn--premium" onclick="showPage('plans')" data-i18n="learn.path.s7btn">Get Premium →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="learn-cards-eyebrow" data-i18n="learn.cardsLabel">Explore investment types — free explanations</div>
     <div class="learn-grid">
       <div class="learn-card lc-teal reveal reveal-delay-1" onclick="openModal('indexfund')">
         <div class="learn-card-icon">📊</div>
@@ -12395,25 +13004,34 @@
   </section>
 
   <!-- PLANS -->
-  <section id="plans" class="app-page" data-page="plans">
-    <div class="section-eyebrow" data-i18n="plans.eyebrow">Pricing</div>
-    <div class="section-h2" data-i18n-html="plans.h2">Start free.<br>Upgrade when ready.</div>
-    <p class="section-lead" data-i18n="plans.lead">The simulator stays free. Premium is for people who want help turning a clear projection into a clear first move.</p>
-    <div class="plans-prelude">
-      <div class="plans-pre-card">
-        <div class="plans-pre-k" id="plans-pre-k1">What premium changes</div>
-        <strong id="plans-pre-t1">From “interesting chart” to real investing plan</strong>
-        <span id="plans-pre-b1">Premium turns the simulator into a practical next-step system with country-specific guidance and decision support.</span>
+  <section id=”plans” class=”app-page” data-page=”plans”>
+    <div class=”section-eyebrow” data-i18n=”plans.eyebrow”>Premium — financial clarity</div>
+    <div class=”section-h2” data-i18n-html=”plans.h2”>You don't need more information.<br>You need <em>clarity.</em></div>
+    <p class=”section-lead” data-i18n=”plans.lead”>The simulator and free explanations are yours, forever. Premium is for the moment you want to go further — understand more deeply, act with more confidence, and build toward something real.</p>
+
+    <!-- Premium emotional promise -->
+    <div class=”plans-promise”>
+      <div class=”plans-promise-inner”>
+        <div class=”plans-promise-quote” data-i18n-html=”plans.promise.q”>Most people spend years watching from the sidelines — not because they can't invest, but because nobody made it feel <em>safe to start.</em></div>
+        <div class=”plans-promise-note” data-i18n=”plans.promise.note”>Premium is built to change that — one clear step at a time.</div>
       </div>
-      <div class="plans-pre-card">
-        <div class="plans-pre-k" id="plans-pre-k2">Built for beginners</div>
-        <strong id="plans-pre-t2">Clarity first, not complexity first</strong>
-        <span id="plans-pre-b2">Everything stays plain-English, structured, and focused on helping first-time investors act without feeling lost.</span>
+    </div>
+
+    <div class=”plans-prelude”>
+      <div class=”plans-pre-card”>
+        <div class=”plans-pre-k” id=”plans-pre-k1”>What changes</div>
+        <strong id=”plans-pre-t1”>From “I understand” to “I'm ready to act”</strong>
+        <span id=”plans-pre-b1”>The simulator shows you the potential. Premium helps you believe it — with guided lessons, country-specific steps, and a human being in your corner.</span>
       </div>
-      <div class="plans-pre-card">
-        <div class="plans-pre-k" id="plans-pre-k3">Why it matters</div>
-        <strong id="plans-pre-t3">Confidence is what unlocks action</strong>
-        <span id="plans-pre-b3">Most people do not need more financial noise. They need simpler decisions, better framing, and a clear starting point.</span>
+      <div class=”plans-pre-card”>
+        <div class=”plans-pre-k” id=”plans-pre-k2”>What you actually get</div>
+        <strong id=”plans-pre-t2”>Confidence, not just content</strong>
+        <span id=”plans-pre-b2”>Every guide is written to reduce anxiety, not add to it. Plain English, structured paths, no jargon — built for people who are starting from scratch.</span>
+      </div>
+      <div class=”plans-pre-card”>
+        <div class=”plans-pre-k” id=”plans-pre-k3”>Why this matters</div>
+        <strong id=”plans-pre-t3”>The cost of waiting is real</strong>
+        <span id=”plans-pre-b3”>Every year you wait is compound growth you don't get back. Premium isn't a luxury — it's clarity delivered at the exact moment it's most valuable.</span>
       </div>
     </div>
     <div class="plan-who" aria-label="Who Premium is for">
@@ -12478,9 +13096,9 @@
       </div>
       <div class="plan-card star">
         <div class="plan-badge" data-i18n="plans.prem.badge">Founding one-time price</div>
-        <div class="plan-tier" data-i18n="plans.prem.tier">Premium Learning Pass</div>
+        <div class="plan-tier" data-i18n="plans.prem.tier">Premium — Clarity Pass</div>
         <div class="plan-price" id="plans-prem-price">AUD $89.90</div>
-        <div class="plan-desc" data-i18n="plans.prem.desc">Premium guides, DCA learning, crypto self-custody basics, book paths, exchange setup help, and beginner support.</div>
+        <div class="plan-desc" data-i18n="plans.prem.desc">Everything you need to go from curious to confident — structured lessons, guided investing paths, crypto clarity, and a real human to help you take your first step.</div>
         <div class="plan-zoom-callout">
           <strong id="plans-zoom-title" data-i18n="plans.zoom.title">Includes a 60-minute Zoom support call</strong>
           <span id="plans-zoom-text" data-i18n="plans.zoom.text">Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.</span>
@@ -12488,33 +13106,33 @@
         <div class="plan-founding-note" id="plans-founding-note" data-i18n="plans.foundingNote">Founding price for the first 50 members. Manually updated as early spots fill.</div>
         <div class="plan-bestfor">
           <div class="plan-bestfor-label" id="plans-prem-bestfor-label">Best for</div>
-          <div class="plan-bestfor-text" id="plans-prem-bestfor-text">People who already like the simulator and now want step-by-step help choosing, buying, and building with more confidence.</div>
+          <div class="plan-bestfor-text" id="plans-prem-bestfor-text">People who are curious, a little nervous, and just want someone to show them the path — clearly, without pressure, and without making them feel like they missed something obvious.</div>
         </div>
-        <div class="plan-section-label" id="plans-prem-includes-label">Unlocks</div>
+        <div class="plan-section-label" id="plans-prem-includes-label">What you unlock</div>
         <div class="premium-value-grid">
           <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f1">Guided investing lessons</strong>
-            <span data-i18n="plans.prem.f2">Deep-dive guides, DCA method, and how-to-buy steps by country.</span>
+            <strong data-i18n="plans.prem.f1">Structured learning paths</strong>
+            <span data-i18n="plans.prem.f2">Step-by-step guides that take you from "I've heard of ETFs" to "I know how to buy one" — in plain English.</span>
           </div>
           <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f3">Bitcoin and crypto safety</strong>
-            <span data-i18n="plans.prem.f4">White paper, halving, on-chain basics, self-custody, wallets, and cycle mistakes.</span>
+            <strong data-i18n="plans.prem.f3">Bitcoin clarity</strong>
+            <span data-i18n="plans.prem.f4">Understand Bitcoin before touching it. White paper, halving, self-custody, wallets — without the hype or the fear.</span>
           </div>
           <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f5">Book and content library</strong>
-            <span data-i18n="plans.prem.f6">Curated investing, macro, Bitcoin, business, and wealth books with reading order.</span>
+            <strong data-i18n="plans.prem.f5">Books that changed how people think</strong>
+            <span data-i18n="plans.prem.f6">A curated reading path — investing, wealth, mindset — ordered so each one builds on the last.</span>
           </div>
           <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f7">Exchange setup help</strong>
-            <span data-i18n="plans.prem.f8">Help choosing a platform, opening an account, and understanding settings and tools.</span>
+            <strong data-i18n="plans.prem.f7">Your first account, done right</strong>
+            <span data-i18n="plans.prem.f8">How to choose a platform, open it, and place your first trade — with guidance, not guesswork.</span>
           </div>
           <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f9">One included Zoom call</strong>
-            <span data-i18n="plans.prem.f10">A 60-minute beginner support call to help answer questions and guide your next steps.</span>
+            <strong data-i18n="plans.prem.f9">60 minutes with a real human</strong>
+            <span data-i18n="plans.prem.f10">Bring your questions, your plan, your fears. One Zoom call to clear everything up and help you move forward.</span>
           </div>
           <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f11">Growing member hub</strong>
-            <span data-i18n="plans.prem.f12">New studies, insights, chart-reading lessons, and member resources added over time.</span>
+            <strong data-i18n="plans.prem.f11">A hub that keeps growing</strong>
+            <span data-i18n="plans.prem.f12">New lessons, market insights, chart-reading guides, and member resources — added as the platform grows.</span>
           </div>
         </div>
         <div class="plan-proof">
@@ -12575,18 +13193,18 @@
         <div class="plan-flow" aria-label="How Premium works">
           <div class="plan-flow-step">
             <strong data-i18n="plans.flow.s1">1. Create your free account</strong>
-            <span data-i18n="plans.flow.b1">Use the email you want connected to Premium access.</span>
+            <span data-i18n="plans.flow.b1">Takes under a minute. This is the email connected to your member hub.</span>
           </div>
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s2">2. Complete checkout</strong>
-            <span data-i18n="plans.flow.b2">Pay AUD $89.90 once through Stripe secure checkout.</span>
+            <strong data-i18n="plans.flow.s2">2. One simple payment</strong>
+            <span data-i18n="plans.flow.b2">AUD $89.90 once — no subscriptions, no hidden fees. Secured by Stripe.</span>
           </div>
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s3">3. Access everything</strong>
-            <span data-i18n="plans.flow.b3">Open all 15 guides, the book path, and book your Zoom call.</span>
+            <strong data-i18n="plans.flow.s3">3. Start your path</strong>
+            <span data-i18n="plans.flow.b3">Land in the member hub, open any guide instantly, and book your included Zoom call when you're ready.</span>
           </div>
         </div>
-        <div class="plan-after-purchase" data-i18n-html="plans.afterPurchase"><strong>After payment:</strong> you land in the member hub, open any guide immediately, and book your included Zoom call from the support guide.</div>
+        <div class="plan-after-purchase" data-i18n-html="plans.afterPurchase"><strong>No waiting, no approval.</strong> The moment payment goes through, every guide, the book path, and the Zoom booking link are yours — immediately.</div>
         <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
         <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.86rem;line-height:1.45;" data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
       </div>
@@ -13416,7 +14034,7 @@
         nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub', profile: 'My Profile', portfolio: 'Portfolio' },
         hero: {
           kicker: 'Financial clarity for beginners',
-          h1: 'Most people were never taught <em>how money works.</em>',
+          h1: 'Investing was never meant<br>to feel this <em>confusing.</em>',
           lead: 'Plainvest is a calm, beginner-friendly platform designed to help you understand investing, inflation, and your financial future — <strong>visually and simply.</strong>',
           brandSub: 'Financial clarity for beginners',
           sideKicker: 'The financial clarity platform',
@@ -13531,9 +14149,21 @@
         learn: {
           eyebrow: 'Investment starter guide',
           h2: 'New to investing? <em>Start here.</em>',
-          lead: 'Click any card to get a plain-English explanation of what that investment is, how it works, and whether it might suit you.',
+          lead: 'Learning about money shouldn\'t feel overwhelming. Follow the path below — one step at a time — and go as far as you\'re ready to go today.',
           cta: 'Read the explanation →',
           freeTag: '✓ Free explanation',
+          cardsLabel: 'Explore investment types — free explanations',
+          path: {
+            eyebrow: 'Beginner investing roadmap',
+            title: 'A clear path forward — <em>no experience needed.</em>',
+            s1t: 'Start here', s1d: 'Understand what investing is — and why doing nothing with your money is also a financial decision.', s1btn: 'See inflation →',
+            s2t: 'Investing basics', s2d: 'Learn what stocks, bonds, and ETFs actually are. No jargon — just plain English with real examples.', s2badge: 'Cards below →',
+            s3t: 'See the numbers', s3d: 'Run the simulator. Watch what a small monthly habit becomes over 10, 20, or 30 years — and feel the difference.', s3btn: 'Open simulator →',
+            s4t: 'ETFs and index funds', s4d: 'Why most beginner investors start here — and how a single fund can give you instant global diversification.', s4badge: 'Cards below →',
+            s5t: 'Bitcoin and crypto', s5d: 'Understand what Bitcoin is, how the halving works, and what self-custody means — before touching anything.', s5badge: 'Premium guide',
+            s6t: 'Long-term wealth', s6d: 'Dollar-cost averaging, choosing a brokerage, tax basics, super, and building a portfolio that fits your life.', s6badge: 'Premium guide',
+            s7t: 'Your first real investment', s7d: 'A step-by-step walkthrough — picking a platform, opening an account, placing your first trade with confidence.', s7btn: 'Get Premium →'
+          },
           cards: {
             indexfund: { name: 'Index Fund', tagline: 'Own a tiny piece of hundreds of companies at once. The beginner favourite for a reason.' },
             stocks: { name: 'Stocks', tagline: 'Buy a share of a real company. Higher potential, but more ups and downs.' },
@@ -13604,26 +14234,30 @@
           btn1: 'Get Premium access', btn2: 'See exchange options',
         },
         plans: {
-          eyebrow: 'Pricing',
-          h2: 'Start free.<br>Upgrade when ready.',
-          lead: 'The simulator stays free. Premium is for people who want help turning a clear projection into a clear first move.',
+          eyebrow: 'Premium — financial clarity',
+          h2: 'You don\'t need more information.<br>You need <em>clarity.</em>',
+          lead: 'The simulator and free explanations are yours, forever. Premium is for the moment you want to go further — understand more deeply, act with more confidence, and build toward something real.',
+          promise: {
+            q: 'Most people spend years watching from the sidelines — not because they can\'t invest, but because nobody made it feel <em>safe to start.</em>',
+            note: 'Premium is built to change that — one clear step at a time.'
+          },
           pre: {
-            k1: 'What premium changes',
-            t1: 'From “interesting chart” to real investing plan',
-            b1: 'Premium turns the simulator into a practical next-step system with country-specific guidance and decision support.',
-            k2: 'Built for beginners',
-            t2: 'Clarity first, not complexity first',
-            b2: 'Everything stays plain-English, structured, and focused on helping first-time investors act without feeling lost.',
-            k3: 'Why it matters',
-            t3: 'Confidence is what unlocks action',
-            b3: 'Most people do not need more financial content. They need simpler decisions, better framing, and a clear starting point.'
+            k1: 'What changes',
+            t1: 'From “I understand” to “I\'m ready to act”',
+            b1: 'The simulator shows you the potential. Premium helps you believe it — with guided lessons, country-specific steps, and a human being in your corner.',
+            k2: 'What you actually get',
+            t2: 'Confidence, not just content',
+            b2: 'Every guide is written to reduce anxiety, not add to it. Plain English, structured paths, no jargon — built for people who are starting from scratch.',
+            k3: 'Why this matters',
+            t3: 'The cost of waiting is real',
+            b3: 'Every year you wait is compound growth you don\'t get back. Premium isn\'t a luxury — it\'s clarity delivered at the exact moment it\'s most valuable.'
           },
           freeBestForLabel: 'Best for',
           freeBestForText: 'People who want to explore investing, compare options, and understand the basic idea before taking action.',
           freeIncludesLabel: 'Includes',
           premBestForLabel: 'Best for',
-          premBestForText: 'People who already like the simulator and now want help choosing, buying, and learning with more confidence.',
-          premIncludesLabel: 'Unlocks',
+          premBestForText: 'People who are curious, a little nervous, and just want someone to show them the path — clearly, without pressure.',
+          premIncludesLabel: 'What you unlock',
           proof1: 'AUD $89.90 one-time',
           proof2: '1 x 60-min Zoom call',
           proof3: 'Extra calls AUD $39.90',
@@ -14087,7 +14721,7 @@
         nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil', portfolio: 'Portfólio' },
         hero: {
           kicker: 'Clareza financeira para iniciantes',
-          h1: 'A maioria das pessoas nunca aprendeu <em>como o dinheiro funciona.</em>',
+          h1: 'Investir nunca deveria ser<br>tão <em>confuso assim.</em>',
           lead: 'O Plainvest é uma plataforma calma e acessível, criada para ajudar você a entender investimentos, inflação e seu futuro financeiro — <strong>de forma visual e simples.</strong>',
           brandSub: 'Clareza financeira para iniciantes',
           sideKicker: 'A plataforma de clareza financeira',
@@ -14202,9 +14836,21 @@
         learn: {
           eyebrow: 'Guia inicial de investimentos',
           h2: 'Nunca investiu? <em>Comece aqui.</em>',
-          lead: 'Clique em qualquer card para entender o que é aquele investimento, como funciona e se pode ser uma boa opção para você.',
+          lead: 'Aprender sobre dinheiro não precisa ser assustador. Siga o caminho abaixo — um passo de cada vez — e vá até onde você se sentir pronto hoje.',
           cta: 'Ler a explicação →',
           freeTag: '✓ Explicação gratuita',
+          cardsLabel: 'Explore os tipos de investimento — explicações gratuitas',
+          path: {
+            eyebrow: 'Roteiro de investimento para iniciantes',
+            title: 'Um caminho claro à sua frente — <em>sem experiência prévia necessária.</em>',
+            s1t: 'Comece aqui', s1d: 'Entenda o que é investir — e por que deixar o dinheiro parado também é uma decisão financeira.', s1btn: 'Ver inflação →',
+            s2t: 'Fundamentos de investimento', s2d: 'Aprenda o que são ações, títulos e ETFs de forma simples. Sem jargões — apenas exemplos reais.', s2badge: 'Cards abaixo →',
+            s3t: 'Veja os números', s3d: 'Use o simulador. Veja o que um pequeno hábito mensal pode se tornar em 10, 20 ou 30 anos — e sinta a diferença.', s3btn: 'Abrir simulador →',
+            s4t: 'ETFs e fundos de índice', s4d: 'Por que a maioria dos iniciantes começa aqui — e como um único fundo pode dar diversificação global instantânea.', s4badge: 'Cards abaixo →',
+            s5t: 'Bitcoin e criptomoedas', s5d: 'Entenda o que é o Bitcoin, como o halving funciona e o que é autocustódia — antes de tocar em qualquer coisa.', s5badge: 'Guia Premium',
+            s6t: 'Riqueza no longo prazo', s6d: 'Aportes regulares, escolha de corretora, noções de imposto e como montar uma carteira que caiba na sua vida.', s6badge: 'Guia Premium',
+            s7t: 'Seu primeiro investimento real', s7d: 'Um passo a passo completo — escolher uma plataforma, abrir a conta e fazer sua primeira compra com confiança.', s7btn: 'Acessar Premium →'
+          },
           cards: {
             indexfund: { name: 'Fundo de Índice', tagline: 'Tenha uma fração de centenas de empresas ao mesmo tempo. O favorito dos iniciantes, e por boas razões.' },
             stocks: { name: 'Ações', tagline: 'Compre uma parte de uma empresa real. Maior potencial, mas com mais altos e baixos.' },
@@ -14275,19 +14921,23 @@
           btn1: 'Acessar Premium', btn2: 'Ver opções de exchanges',
         },
         plans: {
-          eyebrow: 'Preços',
-          h2: 'Comece grátis.<br>Avance quando estiver pronto.',
-          lead: 'O simulador continua gratuito. O Premium é para quem quer ajuda para transformar uma projeção clara em um primeiro passo claro.',
+          eyebrow: 'Premium — clareza financeira',
+          h2: 'Você não precisa de mais informação.<br>Você precisa de <em>clareza.</em>',
+          lead: 'O simulador e as explicações gratuitas são seus, para sempre. O Premium é para o momento em que você quer ir além — entender mais fundo, agir com mais confiança e construir algo real.',
+          promise: {
+            q: 'A maioria das pessoas passa anos observando de longe — não porque não conseguem investir, mas porque ninguém tornou isso <em>seguro para começar.</em>',
+            note: 'O Premium foi criado para mudar isso — um passo claro de cada vez.'
+          },
           pre: {
-            k1: 'O que o premium muda',
-            t1: 'De “gráfico interessante” para um plano real de investimento',
-            b1: 'O Premium transforma o simulador em um sistema prático de próximos passos, com orientação por país e apoio para decidir melhor.',
-            k2: 'Feito para iniciantes',
-            t2: 'Clareza antes de complexidade',
-            b2: 'Tudo continua em linguagem simples, estruturado e focado em ajudar quem está começando a agir sem se sentir perdido.',
+            k1: 'O que muda',
+            t1: 'De “entendo” para “estou pronto para agir”',
+            b1: 'O simulador mostra o potencial. O Premium te ajuda a acreditar nele — com aulas guiadas, passos por país e um ser humano de verdade ao seu lado.',
+            k2: 'O que você realmente recebe',
+            t2: 'Confiança, não só conteúdo',
+            b2: 'Cada guia foi escrito para reduzir a ansiedade, não aumentá-la. Linguagem simples, caminhos estruturados, sem jargões — feito para quem está começando do zero.',
             k3: 'Por que isso importa',
-            t3: 'Confiança é o que libera a ação',
-            b3: 'A maioria das pessoas não precisa de mais conteúdo financeiro. Precisa de decisões mais simples, melhor contexto e um ponto de partida claro.'
+            t3: 'O custo de esperar é real',
+            b3: 'Cada ano que você espera é crescimento composto que não volta. O Premium não é um luxo — é clareza entregue no exato momento em que ela tem mais valor.'
           },
           freeBestForLabel: 'Ideal para',
           freeBestForText: 'Pessoas que querem explorar investimentos, comparar opções e entender o básico antes de dar qualquer passo.',
@@ -16075,6 +16725,49 @@
         totalYears: yrs,
         totalMonths: totalMonths
       });
+
+      // ── Scenario comparison grid ──────────────────────────────────────────
+      const scGrid = document.getElementById('scGrid');
+      if (scGrid && (mo > 0 || init > 0)) {
+        // Generate 3 scenarios: roughly half current, current, double current
+        const scenarios = mo > 0
+          ? [Math.round(mo * 0.5 / 10) * 10 || 50, mo, Math.round(mo * 2 / 10) * 10]
+          : [Math.round(c.symbol === 'R$' ? 300 : 50), Math.round(c.symbol === 'R$' ? 1000 : 200), Math.round(c.symbol === 'R$' ? 2000 : 500)];
+        // deduplicate
+        const uniq = [...new Set(scenarios)].sort((a, b) => a - b);
+        scGrid.innerHTML = uniq.map(amt => {
+          const val = Math.round(fv(init, amt, inv.rate, yrs));
+          const isActive = amt === mo;
+          const label = c.symbol + amt.toLocaleString() + (isPt ? '/mês' : '/mo');
+          return `<div class="sc-card${isActive ? ' sc-highlight' : ''}">
+            <div class="sc-mo">${label}</div>
+            <div class="sc-val">${fmt(val)}</div>
+            <div class="sc-sub">${isPt ? 'em ' + yrs + ' anos' : 'in ' + yrs + ' yrs'}</div>
+          </div>`;
+        }).join('');
+        document.getElementById('simScenarios').style.display = '';
+      } else {
+        const sc = document.getElementById('simScenarios');
+        if (sc) sc.style.display = 'none';
+      }
+
+      // ── Dynamic future insights ──────────────────────────────────────────
+      const fiItems = document.getElementById('fiItems');
+      if (fiItems && finalV > 0) {
+        const growthRatio = totalIn > 0 ? finalV / totalIn : 1;
+        const insights = isPt ? [
+          { cls: 'fi-item--teal', icon: '⏳', txt: 'O tempo importa mais do que o momento certo. Começar com qualquer valor hoje supera esperar pelo "momento perfeito".' },
+          { cls: 'fi-item--gold', icon: '📈', txt: growthRatio >= 2 ? `Seu dinheiro pode crescer ${(growthRatio).toFixed(1)}× o valor aportado. A maior parte do crescimento acontece nos últimos anos.` : 'A maior parte do crescimento de uma carteira acontece nos anos finais. Os primeiros anos são a semente — os últimos são a colheita.' },
+          { cls: 'fi-item--blue', icon: '🛡️', txt: 'A inflação pode reduzir o poder de compra do que você vê aqui. Investir é como proteger seu "eu" do futuro.' },
+          { cls: 'fi-item--teal', icon: '🌱', txt: 'A consistência é sua maior vantagem. O hábito importa muito mais do que o valor inicial.' }
+        ] : [
+          { cls: 'fi-item--teal', icon: '⏳', txt: 'Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."' },
+          { cls: 'fi-item--gold', icon: '📈', txt: growthRatio >= 2 ? `Your money could grow to ${(growthRatio).toFixed(1)}× what you put in. Most of that growth happens in the later years.` : 'Most portfolio growth happens in the final years. The early years are the foundation — the later years are where compounding accelerates.' },
+          { cls: 'fi-item--blue', icon: '🛡️', txt: 'Inflation may quietly reduce the real purchasing power of this result. Investing is how you protect your future self.' },
+          { cls: 'fi-item--teal', icon: '🌱', txt: 'Consistency is your strongest advantage. The habit matters far more than the starting amount.' }
+        ];
+        fiItems.innerHTML = insights.map(i => `<div class="fi-item ${i.cls}"><span class="fi-icon">${i.icon}</span><p>${i.txt}</p></div>`).join('');
+      }
     }
 
     // ══════════════════════════════════════════════════════
