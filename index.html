@@ -9105,6 +9105,55 @@
       position: relative;
     }
 
+    /* ── Hero brand mark above card ────────────────────────────── */
+    .hero-brand-mark {
+      max-width: calc(1320px + 3rem);
+      margin: 0 auto 1.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .hero-brand-mark .hero-logo {
+      height: clamp(90px, 13vw, 155px) !important;
+    }
+
+    /* Remove old brandline from inside card */
+    .hs-brandline { display: none !important; }
+
+    /* Headline — much bigger and more dominant */
+    .hs-h1 {
+      font-size: clamp(2.4rem, 4.8vw, 4rem) !important;
+      line-height: 1.05 !important;
+      letter-spacing: -.04em !important;
+      margin-top: .4rem !important;
+      margin-bottom: .8rem !important;
+    }
+
+    /* Emotional eyebrow above headline */
+    .hs-pre-headline {
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      color: rgba(255,255,255,.32);
+      margin: 0 0 .55rem;
+      padding-left: .85rem;
+      border-left: 2px solid rgba(97,213,180,.4);
+      line-height: 1.4;
+    }
+
+    /* Tension paragraph */
+    .hs-tension {
+      font-size: .95rem;
+      line-height: 1.68;
+      color: #7a95b0;
+      margin: 0 0 .7rem;
+      max-width: 580px;
+    }
+
+    .hs-tension strong { color: #c8dff2; font-weight: 700; }
+
+    /* Tighten hs-intro top padding since logo is above it */
+    .hs-intro { padding-top: 1rem !important; }
+
     /* ── Hero emotional milestone card ─────────────────────────── */
     .hs-story-intro { margin-bottom: .15rem; }
     .hs-side-title em { color: var(--teal); font-style: italic; }
@@ -12265,14 +12314,17 @@
      SECTION 1: HOME
 ══════════════════════════════════════════ -->
   <section id="home" class="hero-sim app-page" data-page="home">
-    <!-- Hero intro banner at the top -->
+    <!-- Logo — above card, top-left, large -->
+    <div class="hero-brand-mark">
+      <img src="assets/plainvest-logo.png" alt="Plainvest" class="hero-logo">
+    </div>
+    <!-- Hero card -->
     <div class="hs-intro">
       <div class="hs-copy">
-        <div class="hs-brandline">
-          <img src="assets/plainvest-logo.png" alt="Plainvest" class="hero-logo">
-        </div>
+        <p class="hs-pre-headline">For anyone who was never taught how money actually works</p>
         <h1 class="hs-h1" data-i18n-html="hero.h1">Investing was never meant<br>to feel this <em>confusing.</em></h1>
-        <p class="hs-lead" data-i18n-html="hero.lead">Plainvest is a calm, beginner-friendly platform designed to help you understand investing, inflation, and your financial future — <strong>visually and simply.</strong></p>
+        <p class="hs-tension">Schools never taught this. Banks profit from the confusion. Most platforms were built for people who already know what they're doing. <strong>Plainvest wasn't.</strong></p>
+        <p class="hs-lead">See what even a small monthly amount can become over 10, 20, or 30 years — in numbers you can actually understand. <strong>No experience. No commitment. Just clarity.</strong></p>
         <div class="hs-trust">
           <span class="hs-trust-item" data-i18n="hero.trust1">No experience needed</span>
           <span class="hs-trust-item" data-i18n="hero.trust2">Free to explore — no card required</span>
