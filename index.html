@@ -1310,9 +1310,9 @@
     }
 
     .hero-logo {
-      height: 90px;
+      height: clamp(100px, 14vw, 160px);
       width: auto;
-      max-width: min(100%, 500px);
+      max-width: min(100%, 560px);
       display: block;
     }
 
@@ -9105,6 +9105,89 @@
       position: relative;
     }
 
+    /* ── Hero emotional milestone card ─────────────────────────── */
+    .hs-story-intro { margin-bottom: .15rem; }
+    .hs-side-title em { color: var(--teal); font-style: italic; }
+
+    .hs-milestones {
+      display: flex;
+      flex-direction: column;
+      gap: .72rem;
+    }
+
+    .hs-milestone {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: .85rem;
+      align-items: center;
+      padding: .72rem .9rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .hs-milestone--mid  { background: rgba(97,213,180,.05);  border-color: rgba(97,213,180,.1); }
+    .hs-milestone--peak { background: rgba(97,213,180,.09);  border-color: rgba(97,213,180,.22); }
+
+    .hs-milestone-yr {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #5a7a96;
+      margin-bottom: .32rem;
+    }
+
+    .hs-milestone--mid  .hs-milestone-yr { color: rgba(97,213,180,.6); }
+    .hs-milestone--peak .hs-milestone-yr { color: var(--teal); }
+
+    .hs-milestone-bar {
+      height: 4px;
+      background: rgba(255,255,255,.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .hs-milestone-fill {
+      height: 100%;
+      width: var(--w);
+      border-radius: 99px;
+      background: rgba(97,213,180,.5);
+    }
+
+    .hs-milestone--peak .hs-milestone-fill { background: var(--teal); }
+
+    .hs-milestone-val {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #c8dff2;
+      font-family: 'Lora', serif;
+      line-height: 1;
+    }
+
+    .hs-milestone-val.teal { color: var(--teal); }
+
+    .hs-milestone-life {
+      font-size: .72rem;
+      color: #5a7a96;
+      line-height: 1.4;
+      margin-top: .22rem;
+    }
+
+    .hs-milestone--mid  .hs-milestone-life { color: rgba(97,213,180,.55); }
+    .hs-milestone--peak .hs-milestone-life { color: rgba(97,213,180,.75); }
+
+    .hs-story-footer {
+      margin-top: .3rem;
+    }
+
+    .hs-story-assumption {
+      font-size: .6rem;
+      color: rgba(255,255,255,.2);
+      letter-spacing: .06em;
+      margin-bottom: .55rem;
+    }
+
     /* scroll indicator */
     .hero-scroll-hint {
       position: absolute;
@@ -11940,7 +12023,30 @@
     .learn-card {
       min-width: 0 !important;
       box-sizing: border-box !important;
+      background: rgba(255,255,255,.03) !important;
+      border: 1px solid rgba(255,255,255,.08) !important;
+      border-top: 3px solid transparent !important;
+      color: #dde8f5 !important;
     }
+    .learn-card.lc-teal  { border-top-color: var(--teal) !important; background: rgba(97,213,180,.04) !important; }
+    .learn-card.lc-gold  { border-top-color: var(--gold) !important; background: rgba(244,200,106,.04) !important; }
+    .learn-card.lc-bitcoin { border-top-color: #f7931a !important; background: rgba(247,147,26,.04) !important; }
+    .learn-card.lc-etf   { border-top-color: #00b8a0 !important; background: rgba(0,184,160,.04) !important; }
+    .learn-card.lc-reit  { border-top-color: #7b9fd4 !important; background: rgba(123,159,212,.04) !important; }
+    .learn-card.lc-nasdaq{ border-top-color: #6fa8ff !important; background: rgba(111,168,255,.04) !important; }
+    .learn-card .learn-card-name    { color: #dde8f5 !important; }
+    .learn-card .learn-card-tagline { color: #7a95b0 !important; }
+    .learn-card .lc-free-tag { background: rgba(97,213,180,.12) !important; color: var(--teal) !important; }
+    .learn-card .learn-card-cta { color: var(--teal) !important; }
+    .learn-card.lc-gold  .learn-card-cta  { color: var(--gold) !important; }
+    .learn-card.lc-bitcoin .learn-card-name { color: #f7a83a !important; }
+    .learn-card.lc-bitcoin .learn-card-cta  { color: #f7a83a !important; }
+    .learn-card.lc-etf   .learn-card-name  { color: #5ad5c4 !important; }
+    .learn-card.lc-etf   .learn-card-cta   { color: #5ad5c4 !important; }
+    .learn-card.lc-reit  .learn-card-name  { color: #8ab4e8 !important; }
+    .learn-card.lc-reit  .learn-card-cta   { color: #8ab4e8 !important; }
+    .learn-card.lc-nasdaq .learn-card-name { color: #90bfff !important; }
+    .learn-card.lc-nasdaq .learn-card-cta  { color: #90bfff !important; }
 
     .inf-real-life,
     .do-nothing-cost {
@@ -12162,7 +12268,6 @@
     <!-- Hero intro banner at the top -->
     <div class="hs-intro">
       <div class="hs-copy">
-        <div class="hs-badge" data-i18n="hero.kicker">Financial clarity for beginners</div>
         <div class="hs-brandline">
           <img src="assets/plainvest-logo.png" alt="Plainvest" class="hero-logo">
         </div>
@@ -12179,39 +12284,46 @@
         </div>
       </div>
       <div class="hs-sidecard">
-        <div>
-          <div class="hs-side-kicker" data-i18n="hero.sideKicker">The financial clarity platform</div>
-          <div class="hs-side-title" data-i18n="hero.sideTitle">See what your money could become — before making any decision.</div>
+        <div class="hs-story-intro">
+          <div class="hs-side-kicker">What $300/month looks like over time</div>
+          <div class="hs-side-title">Your money, quietly<br><em>working in the background.</em></div>
         </div>
-        <div class="hs-sim-preview" aria-label="Simulator result preview">
-          <div class="hs-sim-preview-top">
-            <div>
-              <div class="hs-sim-label" data-i18n="hero.previewLabel">What Plainvest shows</div>
-              <div class="hs-sim-value" data-i18n="hero.previewValue">Small monthly habits can become visible long-term outcomes.</div>
+        <div class="hs-milestones" aria-label="Illustrative growth milestones">
+          <div class="hs-milestone">
+            <div class="hs-milestone-left">
+              <div class="hs-milestone-yr">5 years</div>
+              <div class="hs-milestone-bar"><div class="hs-milestone-fill" style="--w:28%"></div></div>
             </div>
-            <div class="hs-sim-chip" data-i18n="hero.previewChip">AUD $300/mo · 20 years</div>
-          </div>
-          <div class="hs-sim-steps" aria-hidden="true">
-            <div class="hs-sim-step">
-              <span data-i18n="hero.previewStartLabel">You add</span>
-              <strong data-i18n="hero.previewStartValue">AUD $72k</strong>
-            </div>
-            <div class="hs-sim-arrow">→</div>
-            <div class="hs-sim-step result">
-              <span data-i18n="hero.previewResultLabel">Could grow to</span>
-              <strong data-i18n="hero.previewResultValue">AUD $176k</strong>
-              <em class="hs-sim-mult">2.4× your contribution</em>
+            <div class="hs-milestone-right">
+              <div class="hs-milestone-val">~$22k</div>
+              <div class="hs-milestone-life">A real emergency fund. Or a first deposit.</div>
             </div>
           </div>
-          <div class="hs-sim-chart" aria-hidden="true"></div>
-          <div class="hs-sim-growthbar" aria-hidden="true"><span></span><span></span></div>
-          <div class="hs-sim-legend" aria-hidden="true">
-            <span><i class="contrib-dot"></i><span data-i18n="hero.previewLegend1">Contributions</span></span>
-            <span><i class="growth-dot"></i><span data-i18n="hero.previewLegend2">Potential growth</span></span>
+          <div class="hs-milestone hs-milestone--mid">
+            <div class="hs-milestone-left">
+              <div class="hs-milestone-yr">10 years</div>
+              <div class="hs-milestone-bar"><div class="hs-milestone-fill" style="--w:56%"></div></div>
+            </div>
+            <div class="hs-milestone-right">
+              <div class="hs-milestone-val">~$52k</div>
+              <div class="hs-milestone-life">Enough to change your options.</div>
+            </div>
           </div>
-          <div class="hs-sim-caption" data-i18n="hero.previewCaption">The simulator separates what you put in from what time and compounding may add.</div>
+          <div class="hs-milestone hs-milestone--peak">
+            <div class="hs-milestone-left">
+              <div class="hs-milestone-yr">20 years</div>
+              <div class="hs-milestone-bar"><div class="hs-milestone-fill" style="--w:100%"></div></div>
+            </div>
+            <div class="hs-milestone-right">
+              <div class="hs-milestone-val teal">~$176k</div>
+              <div class="hs-milestone-life">Financial security, built quietly.</div>
+            </div>
+          </div>
         </div>
-        <div class="hs-side-note" data-i18n-html="hero.sideNote"><strong>Begin with the numbers.</strong> When they make sense, everything else becomes clearer.</div>
+        <div class="hs-story-footer">
+          <div class="hs-story-assumption">Illustrative · AUD $300/month · 7% avg. annual return</div>
+          <div class="hs-side-note"><strong>Begin with the numbers.</strong> When they make sense, everything else becomes clearer.</div>
+        </div>
       </div>
       <div class="hs-feature-band">
         <div class="hs-feature-card">
