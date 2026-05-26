@@ -276,7 +276,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2.5rem;
-      height: 76px;
+      height: 110px;
       background: rgba(8, 17, 31, 0.82);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-dark);
@@ -342,9 +342,9 @@
     }
 
     .nav-logo {
-      height: 58px;
+      height: 88px;
       width: auto;
-      max-width: 320px;
+      max-width: 440px;
       display: block;
       flex-shrink: 0;
     }
@@ -9090,7 +9090,7 @@
         linear-gradient(100deg, rgba(8, 17, 31, .97) 0%, rgba(8, 17, 31, .89) 42%, rgba(8, 17, 31, .52) 68%, rgba(8, 17, 31, .44) 100%),
         url('assets/hero-seed-growth.png') right 8% center / cover no-repeat,
         var(--navy-deep);
-      padding-top: 5rem !important;
+      padding-top: 8rem !important;
     }
 
     #home {
@@ -11165,8 +11165,8 @@
       }
 
       .nav-logo {
-        height: 36px !important;
-        max-width: 180px !important;
+        height: 48px !important;
+        max-width: 240px !important;
       }
 
       .lang-btn {
@@ -11922,12 +11922,25 @@
        FINAL LAYOUT REPAIR — HOME / LEARN / SIM / INFLATION
        Keeps new content in polished cards instead of raw page flow.
     ═══════════════════════════════════════════════ */
+
+    .section-eyebrow { display: none !important; }
+
+    /* ── Clear the taller nav (110px) on all non-hero pages ── */
+    #inflation.app-page,
+    #learn.app-page,
+    #story.app-page,
+    #books.app-page,
+    #plans.app-page,
+    #contact.app-page {
+      padding-top: 8.5rem !important;
+    }
+
     .the-problem.app-page,
     .why-exists.app-page,
     .future-vis.app-page,
     .transformation.app-page,
     .home-cta.app-page {
-      width: min(100% - 2rem, 1180px) !important;
+      width: min(100% - 2rem, 1440px) !important;
       margin-inline: auto !important;
       box-sizing: border-box !important;
     }
@@ -12035,17 +12048,42 @@
     }
 
     #learn.app-page {
-      padding: clamp(4.5rem, 7vw, 7rem) max(1.25rem, calc((100vw - 1240px) / 2)) !important;
+      padding-top: 8.5rem !important;
+      padding-bottom: clamp(4.5rem, 7vw, 7rem) !important;
+      padding-left: max(1.25rem, calc((100vw - 1480px) / 2)) !important;
+      padding-right: max(1.25rem, calc((100vw - 1480px) / 2)) !important;
       overflow: hidden !important;
     }
 
     #learn > .section-eyebrow,
     #learn > .section-h2,
-    #learn > .section-lead,
-    .learn-cards-eyebrow {
+    #learn > .section-lead {
       margin-left: auto !important;
       margin-right: auto !important;
       text-align: center !important;
+    }
+
+    .learn-two-col {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 3rem !important;
+      align-items: start !important;
+      width: 100% !important;
+      margin-top: 3rem !important;
+    }
+
+    .learn-left {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .learn-right {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .learn-cards-eyebrow {
+      text-align: left !important;
     }
 
     #learn > .section-eyebrow {
@@ -12077,28 +12115,89 @@
     }
 
     .learn-path {
-      width: min(100%, 960px) !important;
-      max-width: 960px !important;
-      margin: 2.8rem auto 3.4rem !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 0 1rem !important;
       box-sizing: border-box !important;
     }
 
-    .learn-grid,
-    .learn-row2,
-    .learn-row3 {
-      width: min(100%, 1240px) !important;
-      max-width: 1240px !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    .learn-all-cards {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: .6rem !important;
+      width: 100% !important;
+      margin-top: .75rem !important;
       align-items: stretch !important;
+    }
+
+    /* ── Unified card border for all cards in the grid ── */
+    .learn-all-cards .learn-card,
+    .learn-all-cards .learn-premium-banner {
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      border-radius: 24px !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
+      border-top-width: 3px !important;
+      padding: 1.8rem 1.6rem !important;
+      background: rgba(255,255,255,.03) !important;
+      box-shadow: none !important;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    .learn-all-cards .learn-card:hover,
+    .learn-all-cards .learn-premium-banner:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 16px 40px rgba(0,0,0,.3) !important;
+      border-color: rgba(255,255,255,.22) !important;
+    }
+
+    .learn-all-cards .learn-premium-banner {
+      border-top-color: var(--gold) !important;
+      background: rgba(244,200,106,.04) !important;
+      cursor: pointer !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      justify-content: space-between !important;
+      margin-top: 0 !important;
+    }
+
+    .learn-all-cards .learn-premium-banner::before {
+      display: none !important;
+    }
+
+    .learn-all-cards .learn-premium-banner .lpb-pills {
+      display: none !important;
+    }
+
+    .learn-all-cards .learn-premium-banner .lpb-left {
+      width: 100% !important;
+      margin-bottom: .75rem !important;
+    }
+
+    .learn-all-cards .learn-premium-banner .lpb-left h4 {
+      color: #dde8f5 !important;
+      font-size: 1rem !important;
+      margin-bottom: .5rem !important;
+    }
+
+    .learn-all-cards .learn-premium-banner .lpb-left p {
+      color: #7a95b0 !important;
+      font-size: .88rem !important;
+    }
+
+    .learn-all-cards .learn-premium-banner .lpb-btn {
+      width: 100% !important;
+      text-align: center !important;
+      margin-top: auto !important;
     }
 
     .learn-card {
       min-width: 0 !important;
       box-sizing: border-box !important;
       background: rgba(255,255,255,.03) !important;
-      border: 1px solid rgba(255,255,255,.08) !important;
+      border: 1px solid rgba(255,255,255,.10) !important;
       border-top: 3px solid transparent !important;
       color: #dde8f5 !important;
     }
@@ -12268,6 +12367,15 @@
       .lps-step {
         grid-template-columns: 2.5rem 1fr !important;
       }
+
+      .learn-two-col {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+
+      .learn-all-cards {
+        grid-template-columns: 1fr !important;
+      }
     }
 
     @media (max-width: 560px) {
@@ -12342,10 +12450,10 @@
     <!-- Hero card -->
     <div class="hs-intro">
       <div class="hs-copy">
-        <p class="hs-pre-headline">For everyone who was never taught how money actually works</p>
+        <p class="hs-pre-headline" data-i18n="hero.preHead">For everyone who was never taught how money actually works</p>
         <h1 class="hs-h1" data-i18n-html="hero.h1">Investing was never meant<br>to feel this <em>confusing.</em></h1>
-        <p class="hs-tension">Nobody taught us this in school. Banks make money from the confusion. Most platforms were built for people who already know what they're doing. <strong>Plainvest wasn't.</strong></p>
-        <p class="hs-lead">See what even $200 a month, started today, quietly becomes over 10, 20, or 30 years — in real numbers you can actually feel. <strong>No experience. No commitment. Just clarity.</strong></p>
+        <p class="hs-tension" data-i18n-html="hero.tension">Nobody taught us this in school. Banks make money from the confusion. Most platforms were built for people who already know what they're doing. <strong>Plainvest wasn't.</strong></p>
+        <p class="hs-lead" data-i18n-html="hero.lead">See what even $200 a month, started today, quietly becomes over 10, 20, or 30 years — in real numbers you can actually feel. <strong>No experience. No commitment. Just clarity.</strong></p>
         <div class="hs-trust">
           <span class="hs-trust-item" data-i18n="hero.trust1">No experience needed</span>
           <span class="hs-trust-item" data-i18n="hero.trust2">Free to explore — no card required</span>
@@ -12358,44 +12466,44 @@
       </div>
       <div class="hs-sidecard">
         <div class="hs-story-intro">
-          <div class="hs-side-kicker">What starting today actually looks like</div>
-          <div class="hs-side-title">Your money, quietly<br><em>doing the work for you.</em></div>
+          <div class="hs-side-kicker" data-i18n="hero.storyKicker">What starting today actually looks like</div>
+          <div class="hs-side-title" data-i18n-html="hero.storyTitle">Your money, quietly<br><em>doing the work for you.</em></div>
         </div>
         <div class="hs-milestones" aria-label="Illustrative growth milestones">
           <div class="hs-milestone">
             <div class="hs-milestone-left">
-              <div class="hs-milestone-yr">5 years</div>
+              <div class="hs-milestone-yr" data-i18n="hero.m1yr">5 years</div>
               <div class="hs-milestone-bar"><div class="hs-milestone-fill" style="--w:28%"></div></div>
             </div>
             <div class="hs-milestone-right">
-              <div class="hs-milestone-val">~$22k</div>
-              <div class="hs-milestone-life">Real breathing room. Enough to say no when it matters.</div>
+              <div class="hs-milestone-val" data-i18n="hero.m1val">~$22k</div>
+              <div class="hs-milestone-life" data-i18n="hero.m1life">Real breathing room. Enough to say no when it matters.</div>
             </div>
           </div>
           <div class="hs-milestone hs-milestone--mid">
             <div class="hs-milestone-left">
-              <div class="hs-milestone-yr">10 years</div>
+              <div class="hs-milestone-yr" data-i18n="hero.m2yr">10 years</div>
               <div class="hs-milestone-bar"><div class="hs-milestone-fill" style="--w:56%"></div></div>
             </div>
             <div class="hs-milestone-right">
-              <div class="hs-milestone-val">~$52k</div>
-              <div class="hs-milestone-life">More choices in life. Not luck — just patience.</div>
+              <div class="hs-milestone-val" data-i18n="hero.m2val">~$52k</div>
+              <div class="hs-milestone-life" data-i18n="hero.m2life">More choices in life. Not luck — just patience.</div>
             </div>
           </div>
           <div class="hs-milestone hs-milestone--peak">
             <div class="hs-milestone-left">
-              <div class="hs-milestone-yr">20 years</div>
+              <div class="hs-milestone-yr" data-i18n="hero.m3yr">20 years</div>
               <div class="hs-milestone-bar"><div class="hs-milestone-fill" style="--w:100%"></div></div>
             </div>
             <div class="hs-milestone-right">
-              <div class="hs-milestone-val teal">~$176k</div>
-              <div class="hs-milestone-life">The kind of number that changes how you walk through life.</div>
+              <div class="hs-milestone-val teal" data-i18n="hero.m3val">~$176k</div>
+              <div class="hs-milestone-life" data-i18n="hero.m3life">The kind of number that changes how you walk through life.</div>
             </div>
           </div>
         </div>
         <div class="hs-story-footer">
-          <div class="hs-story-assumption">$300/month from $0 · 7% avg. annual return · AUD</div>
-          <div class="hs-side-note"><strong>The hardest part is starting.</strong> You're already here.</div>
+          <div class="hs-story-assumption" data-i18n="hero.storyAssume">$300/month from $0 · 7% avg. annual return · AUD</div>
+          <div class="hs-side-note" data-i18n-html="hero.storyNote"><strong>The hardest part is starting.</strong> You're already here.</div>
         </div>
       </div>
       <div class="hs-feature-band">
@@ -12674,24 +12782,23 @@
 ══════════════════════════════════════════ -->
   <section class="the-problem app-page" data-page="home">
     <div class="prob-inner">
-      <div class="section-eyebrow prob-eyebrow">The reality nobody tells you</div>
-      <blockquote class="prob-quote">"The longer you wait to understand money,<br>the more it quietly costs you."</blockquote>
+      <blockquote class="prob-quote" data-i18n-html="prob.quote">"The longer you wait to understand money,<br>the more it quietly costs you."</blockquote>
       <div class="prob-truths">
         <div class="prob-truth">
           <span class="prob-truth-mark">→</span>
-          <p>Inflation erodes the value of cash every single year — whether you're paying attention or not. Most savings accounts don't keep up.</p>
+          <p data-i18n="prob.t1">Inflation erodes the value of cash every single year — whether you're paying attention or not. Most savings accounts don't keep up.</p>
         </div>
         <div class="prob-truth">
           <span class="prob-truth-mark">→</span>
-          <p>Schools never taught this. Most people reach their 30s still guessing — and feeling guilty about it.</p>
+          <p data-i18n="prob.t2">Schools never taught this. Most people reach their 30s still guessing — and feeling guilty about it.</p>
         </div>
         <div class="prob-truth">
           <span class="prob-truth-mark">→</span>
-          <p>Waiting until you "know enough" is itself a financial decision — and compounding doesn't wait with you.</p>
+          <p data-i18n="prob.t3">Waiting until you "know enough" is itself a financial decision — and compounding doesn't wait with you.</p>
         </div>
         <div class="prob-truth prob-truth--teal">
           <span class="prob-truth-mark">✓</span>
-          <p><strong>Understanding it clearly changes everything.</strong> You don't need to be an expert. You just need a clear starting point.</p>
+          <p data-i18n-html="prob.t4"><strong>Understanding it clearly changes everything.</strong> You don't need to be an expert. You just need a clear starting point.</p>
         </div>
       </div>
     </div>
@@ -12702,29 +12809,28 @@
 ══════════════════════════════════════════ -->
   <section class="why-exists app-page" data-page="home">
     <div class="why-inner">
-      <div class="section-eyebrow why-eyebrow">Why Plainvest Exists</div>
-      <h2 class="section-h2 why-h2">Investing was never meant<br>to feel this <em>confusing.</em></h2>
-      <p class="section-lead why-lead">Schools don't teach it. Banks make it complicated. Most platforms feel built for people who already know what they're doing.</p>
+      <h2 class="section-h2 why-h2" data-i18n-html="why.h2">Investing was never meant<br>to feel this <em>confusing.</em></h2>
+      <p class="section-lead why-lead" data-i18n="why.lead">Schools don't teach it. Banks make it complicated. Most platforms feel built for people who already know what they're doing.</p>
       <div class="why-grid">
         <div class="why-card">
           <div class="why-num">01</div>
-          <h4 class="why-card-h">Nobody taught us this</h4>
-          <p class="why-card-p">Most people reach adulthood without ever learning how inflation, compound growth, or basic investing work. It was never part of the curriculum — and that wasn't your fault.</p>
+          <h4 class="why-card-h" data-i18n="why.c1h">Nobody taught us this</h4>
+          <p class="why-card-p" data-i18n="why.c1p">Most people reach adulthood without ever learning how inflation, compound growth, or basic investing work. It was never part of the curriculum — and that wasn't your fault.</p>
         </div>
         <div class="why-card why-card--gold">
           <div class="why-num">02</div>
-          <h4 class="why-card-h">Finance became intimidating</h4>
-          <p class="why-card-p">Between the jargon, broker dashboards, and endless conflicting advice — most beginners feel confused and behind before they even open an account.</p>
+          <h4 class="why-card-h" data-i18n="why.c2h">Finance became intimidating</h4>
+          <p class="why-card-p" data-i18n="why.c2p">Between the jargon, broker dashboards, and endless conflicting advice — most beginners feel confused and behind before they even open an account.</p>
         </div>
         <div class="why-card why-card--blue">
           <div class="why-num">03</div>
-          <h4 class="why-card-h">Clarity changes everything</h4>
-          <p class="why-card-p">When you can finally <em>see</em> what small monthly amounts become over time, investing stops feeling like gambling and starts feeling like a patient, powerful habit.</p>
+          <h4 class="why-card-h" data-i18n="why.c3h">Clarity changes everything</h4>
+          <p class="why-card-p" data-i18n-html="why.c3p">When you can finally <em>see</em> what small monthly amounts become over time, investing stops feeling like gambling and starts feeling like a patient, powerful habit.</p>
         </div>
       </div>
       <div class="why-mission-wrap">
-        <p class="why-mission-p"><strong>Plainvest was built for this.</strong> A calm, visual platform where beginners can understand their financial future — without feeling judged, rushed, or overwhelmed.</p>
-        <button class="btn-primary" onclick="showPage('simulator')">Explore Your Future →</button>
+        <p class="why-mission-p" data-i18n-html="why.mission"><strong>Plainvest was built for this.</strong> A calm, visual platform where beginners can understand their financial future — without feeling judged, rushed, or overwhelmed.</p>
+        <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Explore Your Future →</button>
       </div>
     </div>
   </section>
@@ -12734,29 +12840,28 @@
 ══════════════════════════════════════════ -->
   <section class="future-vis app-page" data-page="home">
     <div class="fv-inner">
-      <div class="section-eyebrow fv-eyebrow">What investing can look like</div>
-      <h2 class="section-h2 fv-h2">Small decisions, <em>big future.</em></h2>
-      <p class="section-lead fv-lead">These aren't promises. They're what consistent, patient investing has historically made possible for regular people.</p>
+      <h2 class="section-h2 fv-h2" data-i18n-html="fv.h2">Small decisions, <em>big future.</em></h2>
+      <p class="section-lead fv-lead" data-i18n="fv.lead">These aren't promises. They're what consistent, patient investing has historically made possible for regular people.</p>
       <div class="fv-stats-grid">
         <div class="fv-stat">
           <div class="fv-stat-num">2.4×</div>
-          <div class="fv-stat-label">Potential multiplier</div>
-          <p class="fv-stat-body">$300/month over 20 years at a historical 7% return could grow to over $176,000 — more than double what you put in.</p>
+          <div class="fv-stat-label" data-i18n="fv.s1l">Potential multiplier</div>
+          <p class="fv-stat-body" data-i18n="fv.s1b">$300/month over 20 years at a historical 7% return could grow to over $176,000 — more than double what you put in.</p>
         </div>
         <div class="fv-stat fv-stat--amber">
           <div class="fv-stat-num">40%</div>
-          <div class="fv-stat-label">Purchasing power lost to inflation</div>
-          <p class="fv-stat-body">Cash sitting in a low-interest savings account can lose up to 40% of its real buying power over 20 years. Doing nothing has a cost.</p>
+          <div class="fv-stat-label" data-i18n="fv.s2l">Purchasing power lost to inflation</div>
+          <p class="fv-stat-body" data-i18n="fv.s2b">Cash sitting in a low-interest savings account can lose up to 40% of its real buying power over 20 years. Doing nothing has a cost.</p>
         </div>
         <div class="fv-stat fv-stat--blue">
           <div class="fv-stat-num">$50</div>
-          <div class="fv-stat-label">Is all it takes to start</div>
-          <p class="fv-stat-body">$50 a month invested consistently at historical averages could grow past $29,000 over 20 years. The habit matters far more than the starting amount.</p>
+          <div class="fv-stat-label" data-i18n="fv.s3l">Is all it takes to start</div>
+          <p class="fv-stat-body" data-i18n="fv.s3b">$50 a month invested consistently at historical averages could grow past $29,000 over 20 years. The habit matters far more than the starting amount.</p>
         </div>
       </div>
       <div class="fv-note">
-        <span>Projections are illustrative only. Past performance does not guarantee future results.</span>
-        <button class="btn-primary" onclick="showPage('simulator')">See your own numbers →</button>
+        <span data-i18n="fv.note">Projections are illustrative only. Past performance does not guarantee future results.</span>
+        <button class="btn-primary" onclick="showPage('simulator')" data-i18n="fv.btn">See your own numbers →</button>
       </div>
     </div>
   </section>
@@ -12766,32 +12871,31 @@
 ══════════════════════════════════════════ -->
   <section class="transformation app-page" data-page="home">
     <div class="tf-inner">
-      <div class="section-eyebrow tf-eyebrow">The Plainvest effect</div>
-      <h2 class="section-h2 tf-h2">From <em>confused</em> to <em>clear.</em></h2>
-      <p class="section-lead tf-lead">This is what happens when investing finally stops feeling overwhelming.</p>
+      <h2 class="section-h2 tf-h2" data-i18n-html="tf.h2">From <em>confused</em> to <em>clear.</em></h2>
+      <p class="section-lead tf-lead" data-i18n="tf.lead">This is what happens when investing finally stops feeling overwhelming.</p>
       <div class="tf-grid">
         <div class="tf-col tf-col--before">
-          <div class="tf-col-label">Before</div>
+          <div class="tf-col-label" data-i18n="tf.beforeLabel">Before</div>
           <div class="tf-items">
-            <div class="tf-item">"I'll figure it out later."</div>
-            <div class="tf-item">"I don't have enough money to start."</div>
-            <div class="tf-item">"I don't understand any of this."</div>
-            <div class="tf-item">"I'm scared of making the wrong decision."</div>
+            <div class="tf-item" data-i18n="tf.b1">"I'll figure it out later."</div>
+            <div class="tf-item" data-i18n="tf.b2">"I don't have enough money to start."</div>
+            <div class="tf-item" data-i18n="tf.b3">"I don't understand any of this."</div>
+            <div class="tf-item" data-i18n="tf.b4">"I'm scared of making the wrong decision."</div>
           </div>
         </div>
         <div class="tf-arrow">→</div>
         <div class="tf-col tf-col--after">
-          <div class="tf-col-label">After Plainvest</div>
+          <div class="tf-col-label" data-i18n="tf.afterLabel">After Plainvest</div>
           <div class="tf-items">
-            <div class="tf-item">"I can see exactly what starting today could mean."</div>
-            <div class="tf-item">"$50 a month is already enough to begin building."</div>
-            <div class="tf-item">"Inflation, compound growth — I finally understand."</div>
-            <div class="tf-item">"I know what to do next. And I feel ready."</div>
+            <div class="tf-item" data-i18n="tf.a1">"I can see exactly what starting today could mean."</div>
+            <div class="tf-item" data-i18n="tf.a2">"$50 a month is already enough to begin building."</div>
+            <div class="tf-item" data-i18n="tf.a3">"Inflation, compound growth — I finally understand."</div>
+            <div class="tf-item" data-i18n="tf.a4">"I know what to do next. And I feel ready."</div>
           </div>
         </div>
       </div>
       <div class="tf-cta">
-        <button class="btn-primary" onclick="showPage('simulator')">Start your transformation →</button>
+        <button class="btn-primary" onclick="showPage('simulator')" data-i18n="tf.btn">Start your transformation →</button>
       </div>
     </div>
   </section>
@@ -12810,14 +12914,13 @@
 ══════════════════════════════════════════ -->
   <section class="home-cta app-page" data-page="home">
     <div class="hcta-inner">
-      <div class="hcta-badge">Free to start</div>
-      <h2 class="hcta-h2">Your future deserves more<br>than <em>guessing.</em></h2>
-      <p class="hcta-sub">Start with the numbers. See what your money could become. Then decide — when you're ready, on your own terms.</p>
+      <h2 class="hcta-h2" data-i18n-html="hcta.h2">Your future deserves more<br>than <em>guessing.</em></h2>
+      <p class="hcta-sub" data-i18n="hcta.sub">Start with the numbers. See what your money could become. Then decide — when you're ready, on your own terms.</p>
       <div class="hcta-actions">
-        <button class="btn-primary" onclick="showPage('simulator')">Explore Your Future →</button>
-        <button class="btn-ghost" onclick="showPage('plans')">See Premium →</button>
+        <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Explore Your Future →</button>
+        <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta3">See Premium →</button>
       </div>
-      <p class="hcta-note">No account needed to explore the simulator. <span>Completely free.</span></p>
+      <p class="hcta-note" data-i18n-html="hcta.note">No account needed to explore the simulator. <span>Completely free.</span></p>
     </div>
   </section>
 
@@ -13087,11 +13190,12 @@
 
 
   <section id="learn" class="app-page" data-page="learn">
-    <div class="section-eyebrow" data-i18n="learn.eyebrow">Investment starter guide</div>
     <div class="section-h2" data-i18n-html="learn.h2">New to investing? <em>Start here.</em></div>
     <p class="section-lead" data-i18n="learn.lead">Learning about money shouldn't feel overwhelming. Follow the path below — one step at a time — and go as far as you're ready to go today.</p>
 
-    <!-- Learning Path Roadmap -->
+    <div class="learn-two-col">
+    <!-- LEFT: Learning Path Roadmap -->
+    <div class="learn-left">
     <div class="learn-path">
       <div class="learn-path-header">
         <span class="learn-path-eyebrow" data-i18n="learn.path.eyebrow">Beginner investing roadmap</span>
@@ -13169,9 +13273,11 @@
         </div>
       </div>
     </div>
-
+    </div><!-- /learn-left -->
+    <!-- RIGHT: Investment type cards -->
+    <div class="learn-right">
     <div class="learn-cards-eyebrow" data-i18n="learn.cardsLabel">Explore investment types — free explanations</div>
-    <div class="learn-grid">
+    <div class="learn-all-cards">
       <div class="learn-card lc-teal reveal reveal-delay-1" onclick="openModal('indexfund')">
         <div class="learn-card-icon">📊</div>
         <div class="learn-card-name" id="lc-indexfund-name">Index Fund</div>
@@ -13193,8 +13299,6 @@
         <div class="learn-card-tagline" id="lc-sp500-tag">The most famous market index in the world. If you've heard "the market went up today" — this is usually what they mean.</div>
         <div class="learn-card-cta" id="lc-sp500-cta">Read the explanation →</div>
       </div>
-    </div>
-    <div class="learn-row2">
       <div class="learn-card lc-teal" onclick="openModal('bonds')">
         <div class="learn-card-icon">🏦</div>
         <div class="learn-card-name" id="lc-bonds-name">Bonds</div>
@@ -13216,9 +13320,6 @@
         <div class="learn-card-tagline" id="lc-gold-tag">The oldest store of value in human history. A classic hedge against uncertainty and inflation.</div>
         <div class="learn-card-cta" id="lc-gold-cta">Read the explanation →</div>
       </div>
-    </div>
-
-    <div class="learn-row3">
       <div class="learn-card lc-etf" onclick="openModal('etf')">
         <div class="learn-card-icon">🗂️</div>
         <div class="learn-card-name" id="lc-etf-name">ETF</div>
@@ -13240,23 +13341,24 @@
         <div class="learn-card-tagline" id="lc-reit-tag">Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.</div>
         <div class="learn-card-cta" id="lc-reit-cta">Read the explanation →</div>
       </div>
-    </div>
-
-    <div class="learn-premium-banner">
-      <div class="lpb-left">
-        <h4 id="lpb-title">Premium guides are live</h4>
-        <p id="lpb-text">Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.</p>
-        <div class="lpb-pills">
-          <div class="lpb-pill" id="lpb-p1">Premium topic: how to buy your first Index Fund</div>
-          <div class="lpb-pill" id="lpb-p2">Premium topic: what is a brokerage account?</div>
-          <div class="lpb-pill" id="lpb-p3">Premium topic: dollar-cost averaging explained</div>
-          <div class="lpb-pill" id="lpb-p4">Premium topic: tax basics for investors</div>
-          <div class="lpb-pill" id="lpb-p5">Premium topic: building a diversified portfolio</div>
-          <div class="lpb-pill" id="lpb-p6">Premium topic: when to sell — and when not to</div>
+      <div class="learn-premium-banner" onclick="showPage('plans')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')showPage('plans')">
+        <div class="lpb-left">
+          <h4 id="lpb-title">Premium guides are live</h4>
+          <p id="lpb-text">Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.</p>
+          <div class="lpb-pills">
+            <div class="lpb-pill" id="lpb-p1">Premium topic: how to buy your first Index Fund</div>
+            <div class="lpb-pill" id="lpb-p2">Premium topic: what is a brokerage account?</div>
+            <div class="lpb-pill" id="lpb-p3">Premium topic: dollar-cost averaging explained</div>
+            <div class="lpb-pill" id="lpb-p4">Premium topic: tax basics for investors</div>
+            <div class="lpb-pill" id="lpb-p5">Premium topic: building a diversified portfolio</div>
+            <div class="lpb-pill" id="lpb-p6">Premium topic: when to sell — and when not to</div>
+          </div>
         </div>
+        <button class="lpb-btn" id="lpb-btn" onclick="event.stopPropagation();showPage('plans')">Get Premium access →</button>
       </div>
-      <button class="lpb-btn" id="lpb-btn" onclick="showPage('plans')">Get Premium access →</button>
-    </div>
+    </div><!-- /learn-all-cards -->
+    </div><!-- /learn-right -->
+    </div><!-- /learn-two-col -->
   </section>
 
 
@@ -14619,7 +14721,16 @@
           howLabel: 'How it works',
           how1T: 'Enter your numbers', how1B: 'Monthly amount, time horizon, and country.',
           how2T: 'See growth vs inflation', how2B: 'Charts update instantly — no account needed.',
-          how3T: 'Understand what it means', how3B: 'Plain-English context, no jargon, no advice.'
+          how3T: 'Understand what it means', how3B: 'Plain-English context, no jargon, no advice.',
+          preHead: 'For everyone who was never taught how money actually works',
+          tension: 'Nobody taught us this in school. Banks make money from the confusion. Most platforms were built for people who already know what they\'re doing. <strong>Plainvest wasn\'t.</strong>',
+          storyKicker: 'What starting today actually looks like',
+          storyTitle: 'Your money, quietly<br><em>doing the work for you.</em>',
+          m1yr: '5 years', m1val: '~$22k', m1life: 'Real breathing room. Enough to say no when it matters.',
+          m2yr: '10 years', m2val: '~$52k', m2life: 'More choices in life. Not luck — just patience.',
+          m3yr: '20 years', m3val: '~$176k', m3life: 'The kind of number that changes how you walk through life.',
+          storyAssume: '$300/month from $0 · 7% avg. annual return · AUD',
+          storyNote: '<strong>The hardest part is starting.</strong> You\'re already here.'
         },
         strip: { free: 'Free', free2: 'no credit card, ever', sec: '60 seconds', sec2: 'to your first result', plain: 'Plain language', nojargon: 'no jargon', built: 'Built for', beginners: 'complete beginners', edu: 'Educational', notadvice: 'not advice' },
         trustLaunch: {
@@ -14759,6 +14870,57 @@
           'Plainvest exists for every person who felt like I did. For anyone who ever thought "I\'ll figure it out later" or "I don\'t have enough to start." You don\'t need a finance degree. You don\'t need thousands in the bank. You just need to <strong>see what\'s possible</strong> — and that\'s what this is for.',
           'I\'m Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that <strong>investing is for everyone</strong>, without pretending this is personal financial advice.'
         ],
+        prob: {
+          quote: '"The longer you wait to understand money,<br>the more it quietly costs you."',
+          t1: 'Inflation erodes the value of cash every single year — whether you\'re paying attention or not. Most savings accounts don\'t keep up.',
+          t2: 'Schools never taught this. Most people reach their 30s still guessing — and feeling guilty about it.',
+          t3: 'Waiting until you "know enough" is itself a financial decision — and compounding doesn\'t wait with you.',
+          t4: '<strong>Understanding it clearly changes everything.</strong> You don\'t need to be an expert. You just need a clear starting point.'
+        },
+        why: {
+          h2: 'Investing was never meant<br>to feel this <em>confusing.</em>',
+          lead: 'Schools don\'t teach it. Banks make it complicated. Most platforms feel built for people who already know what they\'re doing.',
+          c1h: 'Nobody taught us this',
+          c1p: 'Most people reach adulthood without ever learning how inflation, compound growth, or basic investing work. It was never part of the curriculum — and that wasn\'t your fault.',
+          c2h: 'Finance became intimidating',
+          c2p: 'Between the jargon, broker dashboards, and endless conflicting advice — most beginners feel confused and behind before they even open an account.',
+          c3h: 'Clarity changes everything',
+          c3p: 'When you can finally <em>see</em> what small monthly amounts become over time, investing stops feeling like gambling and starts feeling like a patient, powerful habit.',
+          mission: '<strong>Plainvest was built for this.</strong> A calm, visual platform where beginners can understand their financial future — without feeling judged, rushed, or overwhelmed.'
+        },
+        fv: {
+          h2: 'Small decisions, <em>big future.</em>',
+          lead: 'These aren\'t promises. They\'re what consistent, patient investing has historically made possible for regular people.',
+          s1l: 'Potential multiplier',
+          s1b: '$300/month over 20 years at a historical 7% return could grow to over $176,000 — more than double what you put in.',
+          s2l: 'Purchasing power lost to inflation',
+          s2b: 'Cash sitting in a low-interest savings account can lose up to 40% of its real buying power over 20 years. Doing nothing has a cost.',
+          s3l: 'Is all it takes to start',
+          s3b: '$50 a month invested consistently at historical averages could grow past $29,000 over 20 years. The habit matters far more than the starting amount.',
+          note: 'Projections are illustrative only. Past performance does not guarantee future results.',
+          btn: 'See your own numbers →'
+        },
+        tf: {
+          h2: 'From <em>confused</em> to <em>clear.</em>',
+          lead: 'This is what happens when investing finally stops feeling overwhelming.',
+          beforeLabel: 'Before',
+          afterLabel: 'After Plainvest',
+          b1: '"I\'ll figure it out later."',
+          b2: '"I don\'t have enough money to start."',
+          b3: '"I don\'t understand any of this."',
+          b4: '"I\'m scared of making the wrong decision."',
+          a1: '"I can see exactly what starting today could mean."',
+          a2: '"$50 a month is already enough to begin building."',
+          a3: '"Inflation, compound growth — I finally understand."',
+          a4: '"I know what to do next. And I feel ready."',
+          btn: 'Start your transformation →'
+        },
+        hcta: {
+          badge: 'Free to start',
+          h2: 'Your future deserves more<br>than <em>guessing.</em>',
+          sub: 'Start with the numbers. See what your money could become. Then decide — when you\'re ready, on your own terms.',
+          note: 'No account needed to explore the simulator. <span>Completely free.</span>'
+        },
         missionPillars: [
           { h: 'Investing is for everyone', p: 'Not just the wealthy or the financially educated. Anyone with $10 and a smartphone can start. Plainvest was built to make that feel real — not just possible.' },
           { h: 'See it before you believe it', p: 'Reading about compound interest is one thing. Watching your $200/month turn into $82,000 on a chart is another. Visualization changes how people think — and act.' },
@@ -15306,7 +15468,16 @@
           howLabel: 'Como funciona',
           how1T: 'Insira seus números', how1B: 'Valor mensal, horizonte de tempo e país.',
           how2T: 'Veja crescimento vs inflação', how2B: 'Gráficos atualizam na hora — sem cadastro.',
-          how3T: 'Entenda o que significa', how3B: 'Contexto em linguagem simples, sem jargão.'
+          how3T: 'Entenda o que significa', how3B: 'Contexto em linguagem simples, sem jargão.',
+          preHead: 'Para quem nunca aprendeu como o dinheiro realmente funciona',
+          tension: 'Ninguém nos ensinou isso na escola. Os bancos ganham com a confusão. A maioria das plataformas foi feita para quem já sabe o que está fazendo. <strong>O Plainvest não.</strong>',
+          storyKicker: 'O que começar hoje realmente parece',
+          storyTitle: 'O seu dinheiro, silenciosamente<br><em>trabalhando por você.</em>',
+          m1yr: '5 anos', m1val: '~R$22k', m1life: 'Folga de verdade. Liberdade para dizer não quando importa.',
+          m2yr: '10 anos', m2val: '~R$52k', m2life: 'Mais escolhas na vida. Não é sorte — é paciência.',
+          m3yr: '20 anos', m3val: '~R$176k', m3life: 'O tipo de número que muda como você caminha pela vida.',
+          storyAssume: 'R$1.500/mês do zero · 7% retorno médio ao ano · BRL',
+          storyNote: '<strong>A parte mais difícil é começar.</strong> Você já está aqui.'
         },
         strip: { free: 'Calmo', free2: 'não sobrecarregador', plain: 'Sem experiência', nojargon: 'necessária', built: 'Feito para', beginners: 'iniciantes completos', sec: 'Grátis', sec2: 'para explorar — sem cartão', edu: 'Educação', notadvice: 'não é conselho financeiro' },
         trustLaunch: {
@@ -15446,6 +15617,57 @@
           'O Plainvest existe para cada pessoa que se sentiu como eu me senti. Para quem já pensou "vou deixar para depois" ou "não tenho dinheiro suficiente para começar". Você não precisa de diploma em finanças. Não precisa de milhares na conta. Só precisa <strong>ver o que é possível</strong> — e é exatamente para isso que o Plainvest existe.',
           'Eu sou Eduardo, a pessoa construindo o Plainvest na Austrália. Meu objetivo é simples: ajudar o máximo de pessoas possível a entenderem que <strong>investir é para todo mundo</strong>, sem fingir que isso é recomendação financeira pessoal.'
         ],
+        prob: {
+          quote: '"Quanto mais você espera entender sobre dinheiro,<br>mais ele silenciosamente te custa."',
+          t1: 'A inflação corrói o valor do dinheiro todo ano — quer você preste atenção ou não. A maioria das poupanças não consegue acompanhar.',
+          t2: 'A escola nunca ensinou isso. A maioria das pessoas chega aos 30 anos ainda sem saber — e se sentindo culpada por isso.',
+          t3: 'Esperar até "saber o suficiente" é em si uma decisão financeira — e os juros compostos não esperam por você.',
+          t4: '<strong>Entender claramente muda tudo.</strong> Você não precisa ser especialista. Só precisa de um ponto de partida claro.'
+        },
+        why: {
+          h2: 'Investir nunca deveria ser<br>tão <em>confuso assim.</em>',
+          lead: 'A escola não ensina. Os bancos tornam tudo complicado. A maioria das plataformas parece feita para quem já sabe o que está fazendo.',
+          c1h: 'Ninguém nos ensinou isso',
+          c1p: 'A maioria das pessoas chega à vida adulta sem nunca ter aprendido como funcionam a inflação, o crescimento composto ou o investimento básico. Isso nunca fez parte do currículo — e não foi culpa sua.',
+          c2h: 'O mercado financeiro se tornou intimidador',
+          c2p: 'Entre o jargão, os painéis de corretoras e os conselhos contraditórios — a maioria dos iniciantes se sente confusa e atrasada antes mesmo de abrir uma conta.',
+          c3h: 'Clareza muda tudo',
+          c3p: 'Quando você finalmente consegue <em>ver</em> o que pequenas quantias mensais se tornam com o tempo, investir deixa de parecer jogo e começa a parecer um hábito paciente e poderoso.',
+          mission: '<strong>O Plainvest foi criado para isso.</strong> Uma plataforma visual e calma onde iniciantes podem entender seu futuro financeiro — sem se sentir julgados, apressados ou sobrecarregados.'
+        },
+        fv: {
+          h2: 'Pequenas decisões, <em>grande futuro.</em>',
+          lead: 'Não são promessas. É o que investir de forma consistente e paciente tornou possível para pessoas comuns ao longo da história.',
+          s1l: 'Multiplicador potencial',
+          s1b: 'R$1.500/mês por 20 anos com retorno histórico de 7% poderia crescer para mais de R$880.000 — mais que o dobro do que você colocou.',
+          s2l: 'Poder de compra perdido para a inflação',
+          s2b: 'Dinheiro parado em poupança de baixo rendimento pode perder até 40% do poder de compra real em 20 anos. Não fazer nada tem um custo.',
+          s3l: 'É tudo que você precisa para começar',
+          s3b: 'R$200 por mês investidos consistentemente nas médias históricas podem superar R$150.000 em 20 anos. O hábito importa muito mais do que o valor inicial.',
+          note: 'As projeções são apenas ilustrativas. Desempenho passado não garante resultados futuros.',
+          btn: 'Veja seus próprios números →'
+        },
+        tf: {
+          h2: 'De <em>confuso</em> para <em>claro.</em>',
+          lead: 'É o que acontece quando investir finalmente para de parecer assustador.',
+          beforeLabel: 'Antes',
+          afterLabel: 'Depois do Plainvest',
+          b1: '"Vou resolver isso depois."',
+          b2: '"Não tenho dinheiro suficiente para começar."',
+          b3: '"Não entendo nada disso."',
+          b4: '"Tenho medo de tomar a decisão errada."',
+          a1: '"Consigo ver exatamente o que começar hoje pode significar."',
+          a2: '"R$200 por mês já é suficiente para começar a construir."',
+          a3: '"Inflação, crescimento composto — finalmente entendo."',
+          a4: '"Sei o que fazer a seguir. E me sinto pronto."',
+          btn: 'Comece sua transformação →'
+        },
+        hcta: {
+          badge: 'Grátis para começar',
+          h2: 'Seu futuro merece mais<br>do que <em>adivinhar.</em>',
+          sub: 'Comece pelos números. Veja no que seu dinheiro pode se tornar. Depois decida — quando estiver pronto, nos seus termos.',
+          note: 'Sem cadastro para explorar o simulador. <span>Completamente grátis.</span>'
+        },
         missionPillars: [
           { h: 'Investir é para todo mundo', p: 'Não apenas para os ricos ou os que já entendem de finanças. Qualquer pessoa com R$10 e um celular pode começar. O Plainvest foi criado para fazer isso parecer real — não só possível.' },
           { h: 'Ver para crer', p: 'Ler sobre juros compostos é uma coisa. Ver R$200/mês se transformar em R$82.000 num gráfico é outra. A visualização muda como as pessoas pensam — e agem.' },
