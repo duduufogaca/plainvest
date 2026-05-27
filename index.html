@@ -12582,6 +12582,43 @@
     .ssi-fls .fls-headline { font-size: .77rem; }
     .ssi-fls .fls-sub { font-size: .64rem; color: #3a5a72; }
 
+    /* real-life context block */
+    .rlc-block {
+      padding: 1.6rem 2rem 1.8rem;
+      border-top: 1px solid rgba(0,212,170,.1);
+      border-bottom: 1px solid rgba(0,212,170,.1);
+      margin: .2rem 0;
+    }
+    .rlc-eyebrow {
+      font-size: .58rem; font-weight: 800; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--teal); opacity: .6;
+      text-align: center; margin-bottom: 1.4rem;
+    }
+    .rlc-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .5rem;
+    }
+    .rlc-item {
+      text-align: center;
+      padding: 1rem .6rem 1.1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.06);
+      display: flex; flex-direction: column; align-items: center; gap: .25rem;
+    }
+    .rlc-icon { font-size: 1.3rem; margin-bottom: .3rem; }
+    .rlc-label {
+      font-size: .58rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: #5a7a96; line-height: 1.2;
+    }
+    .rlc-val {
+      font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700;
+      color: var(--teal); line-height: 1.1;
+    }
+    .rlc-item:nth-child(4) .rlc-val { color: #e8b84b; }
+    .rlc-sub { font-size: .62rem; color: #3a5a72; line-height: 1.4; }
+
     /* method-card lives in left column now */
     .sim-side-info .method-card {
       background: linear-gradient(180deg, rgba(22,38,64,.98) 0%, rgba(12,24,43,.98) 100%) !important;
@@ -12614,6 +12651,12 @@
       font-size: .78rem !important;
       line-height: 1.5 !important;
     }
+
+    .rlc-items {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: .65rem !important;
+    }
+    .rlc-val { font-size: 1rem !important; }
 
     .fi-items {
       display: grid !important;
@@ -13125,6 +13168,37 @@
               <div class="fi-item fi-item--teal">
                 <span class="fi-icon">🌱</span>
                 <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── REAL-LIFE CONTEXT ── -->
+          <div class="rlc-block" id="rlc-block" style="display:none">
+            <div class="rlc-eyebrow" id="rlc-eyebrow">In real-life terms, your projection could represent</div>
+            <div class="rlc-items">
+              <div class="rlc-item">
+                <span class="rlc-icon">🏠</span>
+                <div class="rlc-label" id="rlc-l1">House deposit</div>
+                <div class="rlc-val" id="rlc-v1">—</div>
+                <div class="rlc-sub" id="rlc-s1">deposit on a home</div>
+              </div>
+              <div class="rlc-item">
+                <span class="rlc-icon">💸</span>
+                <div class="rlc-label" id="rlc-l2">Passive income</div>
+                <div class="rlc-val" id="rlc-v2">—</div>
+                <div class="rlc-sub" id="rlc-s2">monthly at 4% withdrawal</div>
+              </div>
+              <div class="rlc-item">
+                <span class="rlc-icon">🕊️</span>
+                <div class="rlc-label" id="rlc-l3">Financial buffer</div>
+                <div class="rlc-val" id="rlc-v3">—</div>
+                <div class="rlc-sub" id="rlc-s3">months without income</div>
+              </div>
+              <div class="rlc-item">
+                <span class="rlc-icon">⏳</span>
+                <div class="rlc-label" id="rlc-l4">Cost of waiting</div>
+                <div class="rlc-val" id="rlc-v4">—</div>
+                <div class="rlc-sub" id="rlc-s4">less if you start 5 yrs later</div>
               </div>
             </div>
           </div>
@@ -18040,6 +18114,38 @@
           <div class="lib-label">${isPt ? 'Esta renda poderia cobrir' : 'This income could cover'}</div>
           <div class="lib-items">${coverItems.map(i => `<span class="lib-item">✔ ${i}</span>`).join('')}</div>`;
         lifeImpactEl.classList.add('visible');
+      }
+
+      // ── Real-life context block ──────────────────────────────────────────────
+      const rlcEl = document.getElementById('rlc-block');
+      if (rlcEl && finalV > 0) {
+        const sym = c.symbol;
+        // House deposit: finalV as ~10% deposit → implied property value
+        const propVal = finalV * 10;
+        const depositPct = Math.round((finalV / propVal) * 100);
+        // Passive income at 4% SWR / 12 months
+        const passiveMo = Math.round((finalV * 0.04) / 12);
+        // Financial buffer: finalV / monthly expenses (~$3000 AU / R$5000 BR / $3500 US)
+        const monthlyExpenses = currentCountry === 'br' ? 5000 : currentCountry === 'us' ? 3500 : 3000;
+        const bufferMonths = Math.round(finalV / monthlyExpenses);
+        // Cost of waiting 5 yrs: same rate but 5 fewer years
+        const laterV = fv(init, mo || 200, inv.rate || 0.08, Math.max(0, yrs - 5));
+        const cowCost = Math.max(0, Math.round(finalV - laterV));
+
+        document.getElementById('rlc-v1').textContent = fmt(finalV);
+        document.getElementById('rlc-s1').textContent = isPt ? `entrada de ${depositPct}% em imóvel de ${fmt(propVal)}` : `${depositPct}% deposit on a ${fmt(propVal)} property`;
+        document.getElementById('rlc-v2').textContent = sym + passiveMo.toLocaleString() + '/mo';
+        document.getElementById('rlc-s2').textContent = isPt ? 'renda mensal a 4% de retirada' : 'monthly at 4% withdrawal rate';
+        document.getElementById('rlc-v3').textContent = bufferMonths + (isPt ? ' meses' : ' months');
+        document.getElementById('rlc-s3').textContent = isPt ? 'sem precisar de renda' : 'living without income';
+        document.getElementById('rlc-v4').textContent = cowCost > 0 ? '-' + fmt(cowCost) : '—';
+        document.getElementById('rlc-s4').textContent = isPt ? 'menos se começar 5 anos depois' : 'less if you start 5 yrs later';
+        document.getElementById('rlc-eyebrow').textContent = isPt ? 'Em termos reais, sua projeção poderia representar' : 'In real-life terms, your projection could represent';
+        document.getElementById('rlc-l1').textContent = isPt ? 'Entrada na casa própria' : 'House deposit';
+        document.getElementById('rlc-l2').textContent = isPt ? 'Renda passiva' : 'Passive income';
+        document.getElementById('rlc-l3').textContent = isPt ? 'Reserva financeira' : 'Financial buffer';
+        document.getElementById('rlc-l4').textContent = isPt ? 'Custo da espera' : 'Cost of waiting';
+        rlcEl.style.display = '';
       }
 
       // ── Future self block ────────────────────────────────────────────────────
