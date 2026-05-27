@@ -12,6 +12,8 @@ type Props = {
   lang: string;
   assetCount: number;
   monthsActive: number;
+  projCurrentValue: number;
+  projMonthlyContrib: number;
 };
 
 function fmt(n: number, currency: string) {
@@ -22,26 +24,34 @@ function fmt(n: number, currency: string) {
   }).format(n);
 }
 
+function fv10y(pv: number, monthly: number): number {
+  const r = 0.07 / 12;
+  const n = 120;
+  return pv * Math.pow(1 + r, n) + monthly * (Math.pow(1 + r, n) - 1) / r;
+}
+
 export function HeroSection({
   firstName, currentValue, totalInvested, pnl, pnlPct,
   currency, lang, assetCount, monthsActive,
+  projCurrentValue, projMonthlyContrib,
 }: Props) {
   const [hidden, setHidden] = useState(false);
   const isEN = lang !== 'pt';
 
   const displayValue = currentValue ?? totalInvested;
-  const hasLivePrices = currentValue !== null;
-  const isUp = pnl == null || pnl >= 0;
+  const hasReturn = currentValue !== null && pnl != null && pnlPct != null;
+  const isPositiveReturn = pnl != null && pnl >= 0;
 
-  const valueLabel = hasLivePrices
-    ? (isEN ? 'Total Portfolio Value' : 'Valor Total do Portfólio')
-    : (isEN ? 'Total Invested' : 'Total Investido');
+  const projection10y = fv10y(projCurrentValue, projMonthlyContrib);
+  const futureYear = new Date().getFullYear() + 10;
 
   const monthLabel = monthsActive >= 12
     ? `${Math.floor(monthsActive / 12)}${isEN
         ? ` yr${Math.floor(monthsActive / 12) > 1 ? 's' : ''}`
         : ` ano${Math.floor(monthsActive / 12) > 1 ? 's' : ''}`}`
-    : `${monthsActive} ${isEN ? (monthsActive !== 1 ? 'mo' : 'mo') : (monthsActive !== 1 ? 'meses' : 'mês')}`;
+    : `${monthsActive} ${isEN
+        ? (monthsActive !== 1 ? 'mo' : 'mo')
+        : (monthsActive !== 1 ? 'meses' : 'mês')}`;
 
   return (
     <div className="portfolio-hero">
@@ -66,20 +76,49 @@ export function HeroSection({
       </div>
 
       <div className="portfolio-hero-center">
+        <p className="portfolio-hero-eyebrow">
+          {isEN ? 'Your Financial Future' : 'Seu Futuro Financeiro'}
+        </p>
         <div className={`portfolio-hero-bigval${hidden ? ' hero-obscured' : ''}`}>
           {fmt(displayValue, currency)}
         </div>
-        <div className="portfolio-hero-vallabel">{valueLabel}</div>
+        <div className="portfolio-hero-vallabel">
+          {currentValue !== null
+            ? (isEN ? 'Current portfolio value' : 'Valor atual do portfólio')
+            : (isEN ? 'Total invested' : 'Total investido')}
+        </div>
 
-        {hasLivePrices && pnl != null && pnlPct != null && (
-          <div className={`portfolio-hero-return${isUp ? ' hero-return-up' : ' hero-return-down'}${hidden ? ' hero-obscured' : ''}`}>
-            <span className="hero-return-arrow">{isUp ? '↑' : '↓'}</span>
-            <span>{(pnl >= 0 ? '+' : '') + fmt(pnl, currency)}</span>
-            <span className="hero-return-dot">·</span>
-            <span>{(pnlPct >= 0 ? '+' : '') + pnlPct.toFixed(2) + '%'}</span>
-            <span className="hero-return-suffix">{isEN ? 'total return' : 'retorno total'}</span>
-          </div>
+        {/* Return: only show positive in green. Negative → calm reassurance. */}
+        {hasReturn && (
+          isPositiveReturn ? (
+            <div className={`portfolio-hero-return hero-return-up${hidden ? ' hero-obscured' : ''}`}>
+              <span className="hero-return-arrow">↑</span>
+              <span>+{fmt(pnl!, currency)}</span>
+              <span className="hero-return-dot">·</span>
+              <span>+{pnlPct!.toFixed(2)}%</span>
+              <span className="hero-return-suffix">{isEN ? 'total return' : 'retorno total'}</span>
+            </div>
+          ) : (
+            <div className="portfolio-hero-calm-msg">
+              {isEN
+                ? 'Long-term investing rewards patience and consistency.'
+                : 'Investir a longo prazo recompensa quem é paciente e consistente.'}
+            </div>
+          )
         )}
+      </div>
+
+      {/* Future projection line */}
+      <div className={`portfolio-hero-projection${hidden ? ' hero-obscured' : ''}`}>
+        <span className="hero-proj-icon">◎</span>
+        <span className="hero-proj-text">
+          {isEN
+            ? `At this pace, your portfolio may reach `
+            : `Neste ritmo, seu portfólio pode chegar a `}
+          <strong>{fmt(projection10y, currency)}</strong>
+          {isEN ? ` by ${futureYear}` : ` em ${futureYear}`}
+          {isEN ? ' at 7% annual growth' : ' com 7% de crescimento anual'}
+        </span>
       </div>
 
       <div className="portfolio-hero-stats">

@@ -281,6 +281,9 @@ export default async function PortfolioPage({
 
   const unpricedCount = grouped.length - pricedGroups.length;
   const monthsActive = Math.max(chartData.length, 1);
+  const yearsActive = monthsActive / 12;
+  const projCurrentValue = pricedGroups.length > 0 ? currentValue : totalInvested;
+  const projMonthlyContrib = monthsActive >= 2 ? totalInvested / monthsActive : 0;
 
   // ── Freedom Score ─────────────────────────────────────────
   const typeCount = Object.keys(byType).length;
@@ -293,39 +296,57 @@ export default async function PortfolioPage({
 
   const consistScore = rows.length === 0 ? 0 : Math.min(100, Math.max(25, 15 + monthsActive * 8));
 
-  let growthScore = rows.length === 0 ? 0
-    : pnlPct === null ? 50
-    : pnlPct >= 50 ? 95 : pnlPct >= 30 ? 88 : pnlPct >= 15 ? 78
-    : pnlPct >= 5 ? 68 : pnlPct >= 0 ? 58 : pnlPct >= -10 ? 40 : 25;
-
   const growthAssetAmt = ['stock', 'etf', 'crypto'].reduce((s, t) => s + (byType[t] || 0), 0);
   const defenceScore = rows.length === 0 ? 0
     : Math.round(Math.min(100, Math.max(20, totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 30)));
 
+  // Horizon: based on time invested — never goes negative, never creates stress
+  const horizonScore = rows.length === 0 ? 0
+    : yearsActive >= 5 ? 92
+    : yearsActive >= 3 ? 80
+    : yearsActive >= 2 ? 68
+    : yearsActive >= 1 ? 55
+    : yearsActive >= 0.5 ? 42
+    : 30;
+
+  const growthPctDisplay = Math.round(totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 0);
+
   const freedomScores: ScoreItem[] = [
+    {
+      label: 'Consistency', labelPt: 'Consistência',
+      value: consistScore, color: '#f4c86a',
+      desc: `${monthsActive} month${monthsActive !== 1 ? 's' : ''} active`,
+      descPt: `${monthsActive} ${monthsActive !== 1 ? 'meses' : 'mês'} ativo`,
+      why: 'Regular contributions compound powerfully over time.',
+      whyPt: 'Contribuições regulares se multiplicam com o tempo.',
+    },
     {
       label: 'Diversified', labelPt: 'Diversificado',
       value: diversScore, color: '#61d5b4',
       desc: `${typeCount} asset type${typeCount !== 1 ? 's' : ''}`,
       descPt: `${typeCount} tipo${typeCount !== 1 ? 's' : ''} de ativo`,
+      why: 'Spreading across assets reduces long-term risk.',
+      whyPt: 'Diversificar entre ativos reduz o risco de longo prazo.',
     },
     {
-      label: 'Consistent', labelPt: 'Consistente',
-      value: consistScore, color: '#f4c86a',
-      desc: `${monthsActive} month${monthsActive !== 1 ? 's' : ''} active`,
-      descPt: `${monthsActive} ${monthsActive !== 1 ? 'meses' : 'mês'} ativo`,
-    },
-    {
-      label: 'Resilient', labelPt: 'Resiliente',
+      label: 'Protected', labelPt: 'Protegido',
       value: defenceScore, color: '#a78bfa',
-      desc: `${Math.round(totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 0)}% growth assets`,
-      descPt: `${Math.round(totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 0)}% ativos de crescimento`,
+      desc: `${growthPctDisplay}% inflation-resistant`,
+      descPt: `${growthPctDisplay}% resistente à inflação`,
+      why: 'Growth assets typically outpace inflation over time.',
+      whyPt: 'Ativos de crescimento tendem a superar a inflação.',
     },
     {
-      label: 'Growth', labelPt: 'Crescimento',
-      value: growthScore, color: '#5c9af5',
-      desc: pnlPct != null ? `${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(1)}% return` : 'add prices to unlock',
-      descPt: pnlPct != null ? `${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(1)}% retorno` : 'adicione preços',
+      label: 'Horizon', labelPt: 'Horizonte',
+      value: horizonScore, color: '#5c9af5',
+      desc: yearsActive >= 1
+        ? `${yearsActive.toFixed(1)} yr${yearsActive >= 2 ? 's' : ''} invested`
+        : `${monthsActive} mo invested`,
+      descPt: yearsActive >= 1
+        ? `${yearsActive.toFixed(1)} ano${yearsActive >= 2 ? 's' : ''} investindo`
+        : `${monthsActive} mês investindo`,
+      why: 'Time in the market is your most powerful advantage.',
+      whyPt: 'O tempo no mercado é sua maior vantagem.',
     },
   ];
 
@@ -407,14 +428,7 @@ export default async function PortfolioPage({
     }
   }
 
-  // Projection inputs
-  const projCurrentValue = pricedGroups.length > 0 ? currentValue : totalInvested;
-  // Only calculate avg monthly contribution when we have 2+ months of data;
-  // a single-month portfolio would produce a nonsensically high number.
-  const projMonthlyContrib = monthsActive >= 2 ? totalInvested / monthsActive : 0;
-
   // CAGR (annualised return since first buy)
-  const yearsActive = monthsActive / 12;
   const cagr = (pnl != null && pricedCost > 0 && yearsActive >= 0.1)
     ? (Math.pow(currentValue / pricedCost, 1 / yearsActive) - 1) * 100
     : null;
@@ -464,6 +478,8 @@ export default async function PortfolioPage({
           lang={lang}
           assetCount={grouped.length}
           monthsActive={monthsActive}
+          projCurrentValue={projCurrentValue}
+          projMonthlyContrib={projMonthlyContrib}
         />
 
         {/* ── Freedom Score + Insights ── */}

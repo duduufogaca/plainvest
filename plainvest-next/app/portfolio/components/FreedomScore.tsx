@@ -9,6 +9,8 @@ export type ScoreItem = {
   color: string;
   desc: string;
   descPt: string;
+  why: string;
+  whyPt: string;
 };
 
 type Props = {
@@ -25,10 +27,10 @@ export function FreedomScore({ scores, lang }: Props) {
 
   const isEN = lang !== 'pt';
   const R = 33;
-  const C = 2 * Math.PI * R; // ~207.3
+  const C = 2 * Math.PI * R;
 
   const overall = Math.round(scores.reduce((s, sc) => s + sc.value, 0) / scores.length);
-  const overallColor = overall >= 75 ? '#61d5b4' : overall >= 50 ? '#f4c86a' : '#f0956a';
+  const overallColor = overall >= 75 ? '#61d5b4' : overall >= 50 ? '#f4c86a' : '#a0b4c8';
 
   const overallLabel = overall >= 80
     ? (isEN ? 'Excellent' : 'Excelente')
@@ -43,7 +45,7 @@ export function FreedomScore({ scores, lang }: Props) {
       <div className="freedom-header">
         <div>
           <p className="eyebrow">Freedom Score™</p>
-          <h2>{isEN ? 'Portfolio Health' : 'Saúde do Portfólio'}</h2>
+          <h2>{isEN ? 'Your Financial Health' : 'Sua Saúde Financeira'}</h2>
         </div>
         <div className="freedom-overall-badge">
           <span className="freedom-overall-num" style={{ color: overallColor }}>{overall}</span>
@@ -76,6 +78,7 @@ export function FreedomScore({ scores, lang }: Props) {
               </svg>
               <span className="freedom-ring-label">{isEN ? s.label : s.labelPt}</span>
               <span className="freedom-ring-desc">{isEN ? s.desc : s.descPt}</span>
+              <span className="freedom-ring-why">{isEN ? s.why : s.whyPt}</span>
             </div>
           );
         })}

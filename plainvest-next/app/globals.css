@@ -2847,7 +2847,7 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   background: linear-gradient(145deg, rgba(14,26,46,.97), rgba(7,17,32,.99));
   border: 1px solid rgba(255,255,255,.1);
   border-radius: 28px;
-  padding: clamp(1.75rem,3vw,2.75rem) clamp(1.5rem,3vw,2.5rem);
+  padding: clamp(2rem,3.5vw,3.25rem) clamp(1.75rem,3vw,2.75rem);
   margin-bottom: .75rem;
 }
 .portfolio-hero::before {
@@ -2898,24 +2898,34 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
 
 .portfolio-hero-center {
   text-align: center;
-  padding: .5rem 0 1.75rem;
+  padding: .75rem 0 2rem;
+}
+.portfolio-hero-eyebrow {
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 .75rem;
+  opacity: .85;
 }
 .portfolio-hero-bigval {
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
   font-weight: 900;
   letter-spacing: -.03em;
   color: var(--text);
   line-height: 1;
-  margin-bottom: .5rem;
+  margin-bottom: .45rem;
   transition: filter .25s;
 }
 .portfolio-hero-vallabel {
-  font-size: .73rem;
-  font-weight: 700;
-  letter-spacing: .1em;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: .9rem;
+  margin-bottom: 1.1rem;
+  opacity: .7;
 }
 .portfolio-hero-return {
   display: inline-flex;
@@ -2932,11 +2942,6 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   background: rgba(97,213,180,.1);
   border: 1px solid rgba(97,213,180,.2);
 }
-.hero-return-down {
-  color: #ff8a8a;
-  background: rgba(255,100,100,.07);
-  border: 1px solid rgba(255,100,100,.2);
-}
 .hero-return-arrow { font-size: 1em; }
 .hero-return-dot { opacity: .45; }
 .hero-return-suffix {
@@ -2944,6 +2949,45 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   font-weight: 600;
   opacity: .7;
   letter-spacing: .02em;
+}
+/* Calm reassurance message — replaces red return */
+.portfolio-hero-calm-msg {
+  display: inline-block;
+  font-size: .82rem;
+  font-weight: 600;
+  color: #6b8fa8;
+  font-style: italic;
+  padding: .3rem 0;
+}
+/* Future projection line */
+.portfolio-hero-projection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  margin: 1.25rem auto 0;
+  padding: .65rem 1.25rem;
+  background: rgba(97,213,180,.05);
+  border: 1px solid rgba(97,213,180,.12);
+  border-radius: 14px;
+  max-width: 520px;
+  transition: filter .25s;
+}
+.hero-proj-icon {
+  color: var(--teal);
+  opacity: .6;
+  font-size: .8rem;
+  flex-shrink: 0;
+}
+.hero-proj-text {
+  font-size: .8rem;
+  color: #6b8fa8;
+  line-height: 1.5;
+  text-align: center;
+}
+.hero-proj-text strong {
+  color: var(--teal);
+  font-weight: 800;
 }
 
 .portfolio-hero-stats {
@@ -3031,7 +3075,7 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
 .freedom-rings-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: .5rem;
+  gap: .75rem;
 }
 .freedom-ring-item {
   display: flex;
@@ -3054,6 +3098,16 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   color: var(--muted);
   text-align: center;
 }
+.freedom-ring-why {
+  font-size: .63rem;
+  font-weight: 500;
+  color: #3d5a78;
+  text-align: center;
+  line-height: 1.4;
+  font-style: italic;
+  margin-top: .1rem;
+  padding: 0 .15rem;
+}
 
 /* ── AI Insights Panel ────────────────────────────────────── */
 .insights-card {
@@ -3074,6 +3128,24 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   padding: .85rem 1rem;
   border-radius: 14px;
   border: 1px solid transparent;
+}
+/* Primary insight — first one, more prominent */
+.insight-item.insight-primary {
+  padding: 1.1rem 1.2rem;
+  border-radius: 16px;
+}
+.insight-item.insight-primary .insight-text {
+  font-size: .92rem;
+  font-weight: 600;
+  line-height: 1.65;
+}
+.insight-item.insight-primary .insight-icon {
+  font-size: .9rem;
+  margin-top: .15rem;
+}
+/* Secondary insights */
+.insight-item.insight-secondary {
+  opacity: .88;
 }
 .insight-positive {
   background: rgba(97,213,180,.06);

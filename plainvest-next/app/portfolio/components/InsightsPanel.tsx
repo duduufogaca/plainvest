@@ -13,6 +13,7 @@ const ICON = { positive: '✦', caution: '◈', info: '◉' } as const;
 
 export function InsightsPanel({ insights, lang }: Props) {
   const isEN = lang !== 'pt';
+  const [primary, ...secondary] = insights;
 
   return (
     <section className="portfolio-card insights-card">
@@ -20,8 +21,17 @@ export function InsightsPanel({ insights, lang }: Props) {
       <h2>{isEN ? 'Your Portfolio in Plain English' : 'Seu Portfólio em Linguagem Simples'}</h2>
 
       <div className="insights-list">
-        {insights.map((ins, i) => (
-          <div key={i} className={`insight-item insight-${ins.type}`}>
+        {/* Primary insight — larger, more prominent */}
+        {primary && (
+          <div className={`insight-item insight-primary insight-${primary.type}`}>
+            <span className="insight-icon">{ICON[primary.type]}</span>
+            <p className="insight-text">{isEN ? primary.text : primary.textPt}</p>
+          </div>
+        )}
+
+        {/* Secondary insights */}
+        {secondary.map((ins, i) => (
+          <div key={i} className={`insight-item insight-secondary insight-${ins.type}`}>
             <span className="insight-icon">{ICON[ins.type]}</span>
             <p className="insight-text">{isEN ? ins.text : ins.textPt}</p>
           </div>
