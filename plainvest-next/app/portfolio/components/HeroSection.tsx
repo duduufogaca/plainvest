@@ -76,9 +76,15 @@ export function HeroSection({
       </div>
 
       <div className="portfolio-hero-center">
+        {/* Identity first — emotion before metrics */}
         <p className="portfolio-hero-eyebrow">
           {isEN ? 'Your Financial Future' : 'Seu Futuro Financeiro'}
         </p>
+        <h2 className="portfolio-hero-headline">
+          {isEN ? 'Build wealth with clarity.' : 'Construa patrimônio com clareza.'}
+        </h2>
+
+        {/* Then the number — now framed by intention */}
         <div className={`portfolio-hero-bigval${hidden ? ' hero-obscured' : ''}`}>
           {fmt(displayValue, currency)}
         </div>
@@ -88,7 +94,7 @@ export function HeroSection({
             : (isEN ? 'Total invested' : 'Total investido')}
         </div>
 
-        {/* Emotional tagline — dynamic based on journey stage */}
+        {/* Emotional support — dynamic based on journey stage */}
         <div className="portfolio-hero-tagline">
           {monthsActive < 3
             ? (isEN
@@ -107,7 +113,7 @@ export function HeroSection({
                 : 'Anos de consistência — é assim que o patrimônio é construído.')}
         </div>
 
-        {/* Return: only show positive in green. Negative → calm reassurance. */}
+        {/* Return: positive only. Negative → calm reassurance. */}
         {hasReturn && (
           isPositiveReturn ? (
             <div className={`portfolio-hero-return hero-return-up${hidden ? ' hero-obscured' : ''}`}>
