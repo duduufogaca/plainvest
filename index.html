@@ -12561,6 +12561,49 @@
       grid-column: auto !important;
     }
 
+    /* future-insights in sidebar */
+    .ssi-insights {
+      background: linear-gradient(180deg, rgba(22,38,64,.98) 0%, rgba(12,24,43,.98) 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-top: 2px solid rgba(0,212,170,.25);
+      border-radius: 22px;
+      padding: 1.3rem 1.4rem 1.4rem;
+      margin-top: 0 !important;
+    }
+    .ssi-insights .fi-eyebrow { margin-bottom: .9rem !important; }
+    .ssi-insights .fi-items {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: .6rem !important;
+    }
+    .ssi-insights .fi-item {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      padding: .75rem .8rem !important;
+      border-radius: 12px !important;
+      min-height: 0 !important;
+    }
+    .ssi-insights .fi-icon { font-size: .95rem !important; margin-bottom: .3rem !important; display: block !important; }
+    .ssi-insights .fi-item p { font-size: .74rem !important; line-height: 1.5 !important; }
+
+    /* rlc-block in sidebar */
+    .ssi-rlc {
+      background: linear-gradient(180deg, rgba(22,38,64,.98) 0%, rgba(12,24,43,.98) 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-top: 2px solid rgba(232,184,75,.25);
+      border-radius: 22px;
+      padding: 1.3rem 1.4rem 1.4rem;
+      margin-top: 0 !important;
+    }
+    .ssi-rlc .rlc-eyebrow { margin-bottom: .9rem !important; }
+    .ssi-rlc .rlc-items {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: .6rem !important;
+    }
+    .ssi-rlc .rlc-item { padding: .75rem .7rem .8rem !important; border-radius: 12px !important; }
+    .ssi-rlc .rlc-val { font-size: 1.05rem !important; }
+
     /* future-life-strip in sidebar */
     .ssi-fls {
       background: linear-gradient(180deg, rgba(22,38,64,.98) 0%, rgba(12,24,43,.98) 100%);
@@ -12971,6 +13014,60 @@
               </div>
             </div>
           </div>
+          <!-- ── WHAT THIS RESULT MEANS ── -->
+          <div class="future-insights ssi-insights" id="futureInsights">
+            <div class="fi-eyebrow">What this result means</div>
+            <div class="fi-items" id="fiItems">
+              <div class="fi-item fi-item--teal">
+                <span class="fi-icon">⏳</span>
+                <p>Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."</p>
+              </div>
+              <div class="fi-item fi-item--gold">
+                <span class="fi-icon">📈</span>
+                <p>Most portfolio growth happens in the later years. The first years are planting the seed — the last years are the harvest.</p>
+              </div>
+              <div class="fi-item fi-item--blue">
+                <span class="fi-icon">🛡️</span>
+                <p>Inflation may quietly reduce the purchasing power of what you see here. Investing is how you protect your future self.</p>
+              </div>
+              <div class="fi-item fi-item--teal">
+                <span class="fi-icon">🌱</span>
+                <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── REAL-LIFE CONTEXT ── -->
+          <div class="rlc-block ssi-rlc" id="rlc-block" style="display:none">
+            <div class="rlc-eyebrow" id="rlc-eyebrow">In real-life terms, your projection could represent</div>
+            <div class="rlc-items">
+              <div class="rlc-item">
+                <span class="rlc-icon">🏠</span>
+                <div class="rlc-label" id="rlc-l1">House deposit</div>
+                <div class="rlc-val" id="rlc-v1">—</div>
+                <div class="rlc-sub" id="rlc-s1">deposit on a home</div>
+              </div>
+              <div class="rlc-item">
+                <span class="rlc-icon">💸</span>
+                <div class="rlc-label" id="rlc-l2">Passive income</div>
+                <div class="rlc-val" id="rlc-v2">—</div>
+                <div class="rlc-sub" id="rlc-s2">monthly at 4% withdrawal</div>
+              </div>
+              <div class="rlc-item">
+                <span class="rlc-icon">🕊️</span>
+                <div class="rlc-label" id="rlc-l3">Financial buffer</div>
+                <div class="rlc-val" id="rlc-v3">—</div>
+                <div class="rlc-sub" id="rlc-s3">months without income</div>
+              </div>
+              <div class="rlc-item">
+                <span class="rlc-icon">⏳</span>
+                <div class="rlc-label" id="rlc-l4">Cost of waiting</div>
+                <div class="rlc-val" id="rlc-v4">—</div>
+                <div class="rlc-sub" id="rlc-s4">less if you start 5 yrs later</div>
+              </div>
+            </div>
+          </div>
+
           <div class="method-card" id="method-card-left">
             <div class="method-kicker" id="method-kicker">How projections work</div>
             <h4 id="method-title">Built to teach clearly, not to promise outcomes.</h4>
@@ -13151,59 +13248,6 @@
           </div>
 
           <!-- ── FUTURE INSIGHTS ── -->
-          <div class="future-insights" id="futureInsights">
-            <div class="fi-eyebrow">What this result means</div>
-            <div class="fi-items" id="fiItems">
-              <div class="fi-item fi-item--teal">
-                <span class="fi-icon">⏳</span>
-                <p>Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."</p>
-              </div>
-              <div class="fi-item fi-item--gold">
-                <span class="fi-icon">📈</span>
-                <p>Most portfolio growth happens in the later years. The first years are planting the seed — the last years are the harvest.</p>
-              </div>
-              <div class="fi-item fi-item--blue">
-                <span class="fi-icon">🛡️</span>
-                <p>Inflation may quietly reduce the purchasing power of what you see here. Investing is how you protect your future self.</p>
-              </div>
-              <div class="fi-item fi-item--teal">
-                <span class="fi-icon">🌱</span>
-                <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── REAL-LIFE CONTEXT ── -->
-          <div class="rlc-block" id="rlc-block" style="display:none">
-            <div class="rlc-eyebrow" id="rlc-eyebrow">In real-life terms, your projection could represent</div>
-            <div class="rlc-items">
-              <div class="rlc-item">
-                <span class="rlc-icon">🏠</span>
-                <div class="rlc-label" id="rlc-l1">House deposit</div>
-                <div class="rlc-val" id="rlc-v1">—</div>
-                <div class="rlc-sub" id="rlc-s1">deposit on a home</div>
-              </div>
-              <div class="rlc-item">
-                <span class="rlc-icon">💸</span>
-                <div class="rlc-label" id="rlc-l2">Passive income</div>
-                <div class="rlc-val" id="rlc-v2">—</div>
-                <div class="rlc-sub" id="rlc-s2">monthly at 4% withdrawal</div>
-              </div>
-              <div class="rlc-item">
-                <span class="rlc-icon">🕊️</span>
-                <div class="rlc-label" id="rlc-l3">Financial buffer</div>
-                <div class="rlc-val" id="rlc-v3">—</div>
-                <div class="rlc-sub" id="rlc-s3">months without income</div>
-              </div>
-              <div class="rlc-item">
-                <span class="rlc-icon">⏳</span>
-                <div class="rlc-label" id="rlc-l4">Cost of waiting</div>
-                <div class="rlc-val" id="rlc-v4">—</div>
-                <div class="rlc-sub" id="rlc-s4">less if you start 5 yrs later</div>
-              </div>
-            </div>
-          </div>
-
           <!-- ── FUTURE SELF ── -->
           <div class="future-self-block" id="future-self-block"></div>
 
