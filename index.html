@@ -11960,6 +11960,112 @@
     .rmm-val { font-family: 'Lora', Georgia, serif; font-size: 1.1rem; font-weight: 700; color: var(--teal); line-height: 1; margin-top: .2rem; }
     .rmm-val.rmm-val-muted { color: #7a90a8; }
 
+    /* ── Cost of waiting — emotional block ── */
+    .cow-block {
+      margin: .9rem 0 0;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(240,180,41,.09) 0%, rgba(240,120,41,.06) 100%);
+      border: 1px solid rgba(240,180,41,.24);
+      padding: 1.3rem 1.5rem;
+      text-align: center;
+      display: none;
+    }
+    .cow-block.visible { display: block; }
+    .cow-eyebrow {
+      font-size: .6rem; font-weight: 800; letter-spacing: .12em;
+      text-transform: uppercase; color: #e8b84b; opacity: .8; margin-bottom: .5rem;
+    }
+    .cow-loss {
+      font-family: 'Lora', serif; font-size: 2.2rem; font-weight: 700;
+      color: #f0b429; line-height: 1; margin-bottom: .3rem;
+    }
+    .cow-sub { font-size: .82rem; color: #c9973a; font-weight: 600; margin-bottom: .45rem; }
+    .cow-tagline { font-size: .72rem; color: rgba(232,184,75,.5); font-style: italic; }
+
+    /* ── Life meaning — what this money could mean ── */
+    .life-meaning-block {
+      margin-top: .85rem; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0,212,170,.06) 0%, rgba(5,16,28,.98) 100%);
+      border: 1px solid rgba(0,212,170,.15); padding: 1.1rem 1.35rem; display: none;
+    }
+    .life-meaning-block.visible { display: block; }
+    .lmb-eyebrow {
+      font-size: .58rem; font-weight: 800; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--teal); opacity: .72; margin-bottom: .65rem;
+    }
+    .lmb-items { display: flex; flex-direction: column; gap: .38rem; }
+    .lmb-item {
+      display: flex; align-items: baseline; gap: .5rem;
+      font-size: .81rem; color: #86b4c4; line-height: 1.45;
+    }
+    .lmb-check { color: var(--teal); font-weight: 800; flex-shrink: 0; font-size: .75rem; }
+
+    /* ── Life impact — monthly passive coverage pills ── */
+    .life-impact-block {
+      grid-column: 1 / -1; border-radius: 12px;
+      background: rgba(0,212,170,.04); border: 1px solid rgba(0,212,170,.1);
+      padding: .75rem 1rem; margin-top: .3rem; display: none;
+    }
+    .life-impact-block.visible { display: block; }
+    .lib-label {
+      font-size: .6rem; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: #4a7a8a; margin-bottom: .42rem;
+    }
+    .lib-items { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .lib-item {
+      font-size: .72rem; color: #7ab8c8;
+      background: rgba(0,212,170,.07); border: 1px solid rgba(0,212,170,.12);
+      border-radius: 6px; padding: .22rem .6rem;
+    }
+
+    /* ── Investment group headers ── */
+    .inv-group-label {
+      grid-column: 1 / -1; font-size: .58rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase; padding: .6rem 0 .2rem;
+      border-bottom: 1px solid rgba(255,255,255,.06); margin-bottom: .05rem;
+    }
+    .inv-group-label.igb--beginner { color: var(--teal); opacity: .75; }
+    .inv-group-label.igb--mid { color: #9ab0c8; opacity: .65; }
+    .inv-group-label.igb--high { color: #e8b84b; opacity: .7; }
+
+    /* ── Future self block ── */
+    .future-self-block {
+      border-radius: 20px;
+      background: linear-gradient(160deg, rgba(5,16,28,.99) 0%, rgba(3,10,18,.99) 100%);
+      border: 1px solid rgba(0,212,170,.13); padding: 1.5rem 1.7rem; display: none;
+    }
+    .future-self-block.visible { display: block; }
+    .fsb-eyebrow {
+      font-size: .58rem; font-weight: 800; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--teal); opacity: .7; margin-bottom: .55rem;
+    }
+    .fsb-headline {
+      font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 700;
+      color: var(--white); line-height: 1.45; margin-bottom: .95rem;
+    }
+    .fsb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin-bottom: .95rem; }
+    .fsb-item {
+      display: flex; align-items: flex-start; gap: .5rem;
+      padding: .65rem .8rem; border-radius: 12px;
+      background: rgba(0,212,170,.04); border: 1px solid rgba(0,212,170,.1);
+    }
+    .fsb-icon { font-size: .85rem; flex-shrink: 0; margin-top: .05rem; }
+    .fsb-text { font-size: .78rem; color: #7ab0c4; line-height: 1.45; }
+    .fsb-cta-row { display: flex; gap: .65rem; flex-wrap: wrap; }
+    .fsb-btn-primary {
+      flex: 1; min-width: 150px;
+      background: linear-gradient(135deg, #00d4aa 0%, #00b896 100%);
+      color: #001810; border: none; border-radius: 10px;
+      padding: .7rem 1rem; font-size: .8rem; font-weight: 800;
+      letter-spacing: .02em; cursor: pointer;
+    }
+    .fsb-btn-secondary {
+      flex: 1; min-width: 130px;
+      background: rgba(0,212,170,.06); color: var(--teal);
+      border: 1px solid rgba(0,212,170,.22); border-radius: 10px;
+      padding: .7rem 1rem; font-size: .8rem; font-weight: 700; cursor: pointer;
+    }
+
     /* ── Inflation toggle button ── */
     .infl-toggle-row {
       display: flex;
@@ -12645,8 +12751,8 @@
   <section id="simulator" class="hero-sim app-page" data-page="simulator">
     <div class="sim-intro">
       <div class="section-eyebrow" data-i18n="sim.eyebrow">The simulator</div>
-      <div class="section-h2" data-i18n-html="sim.h2">What could your<br>money become?</div>
-      <p class="section-lead" data-i18n="sim.lead">No commitment, no account needed. Change any number and see projections update in real time.</p>
+      <div class="section-h2" data-i18n-html="sim.h2">Your future is being<br>built <em>right now.</em></div>
+      <p class="section-lead" data-i18n="sim.lead">Every contribution shapes the life your future self will live. Change any number and see it in real time — no account needed.</p>
     </div>
 
     <!-- The actual simulator -->
@@ -12733,46 +12839,52 @@
           </div>
           <div class="rm-compare">
             <div class="rm-compare-block rm-compare-invested">
-              <div class="rm-compare-lbl" id="lblContrib" data-i18n="sim.rContrib">You contributed</div>
+              <div class="rm-compare-lbl" id="lblContrib" data-i18n="sim.rContrib">You put in</div>
               <div class="rm-compare-val" id="rIn">$24,000</div>
-              <div class="rm-compare-sub" id="lblContribSub" data-i18n="sim.rContribSub">total put in</div>
+              <div class="rm-compare-sub" id="lblContribSub" data-i18n="sim.rContribSub">total contributed</div>
             </div>
             <div class="rm-compare-arrow">→</div>
             <div class="rm-compare-block rm-compare-result">
-              <div class="rm-compare-lbl" id="lblResult" data-i18n="sim.rResult">Projected value</div>
+              <div class="rm-compare-lbl" id="lblResult" data-i18n="sim.rResult">What your money could become</div>
               <div class="rm-compare-val rm-compare-val-teal" id="rValCopy">$82,604</div>
               <div class="rm-compare-sub rm-compare-sub-gold" id="rEarned">+$58,604 growth</div>
             </div>
           </div>
+
+          <!-- ── What this money could mean for your life ── -->
+          <div class="life-meaning-block" id="life-meaning-block"></div>
+
           <div class="rm-stats">
             <div class="rm-stat">
               <div class="rm-stat-val" id="rMult">3.4×</div>
-              <div class="rm-stat-lbl" id="lblMult" data-i18n="sim.rMult">Multiplier</div>
+              <div class="rm-stat-lbl" id="lblMult" data-i18n="sim.rMult">How much your money grows</div>
             </div>
             <div class="rm-stat">
               <div class="rm-stat-val rm-stat-val-teal" id="rEarnedStat" style="color:var(--teal)">$58,604</div>
-              <div class="rm-stat-lbl" id="lblGrowth" data-i18n="sim.rGrowth">Market growth</div>
+              <div class="rm-stat-lbl" id="lblGrowth" data-i18n="sim.rGrowth">Market growth added</div>
             </div>
             <div class="rm-stat">
               <div class="rm-stat-val" id="rMultPct">238%</div>
-              <div class="rm-stat-lbl" id="lblMultPct">return</div>
+              <div class="rm-stat-lbl" id="lblMultPct" data-i18n="sim.rReturn">total return</div>
             </div>
           </div>
-          <!-- ── What this number means ── -->
+          <!-- ── Monthly income + buying power ── -->
           <div class="rm-meaning" id="rmMeaning">
             <div class="rm-meaning-item">
               <span class="rmm-icon">💸</span>
-              <span class="rmm-label" id="rPassiveLbl">Monthly passive income (4% rule)</span>
+              <span class="rmm-label" id="rPassiveLbl">Monthly income this could generate</span>
               <span class="rmm-val" id="rPassiveIncome">$275/mo</span>
             </div>
             <div class="rm-meaning-item">
-              <span class="rmm-icon">📉</span>
-              <span class="rmm-label" id="rRealLbl">Inflation-adjusted real value</span>
+              <span class="rmm-icon">🛡️</span>
+              <span class="rmm-label" id="rRealLbl">Your future buying power</span>
               <span class="rmm-val rmm-val-muted" id="rRealValue">$42,300</span>
             </div>
+            <!-- ── What this monthly income could cover ── -->
+            <div class="life-impact-block" id="life-impact-block"></div>
           </div>
 
-          <div class="cost-of-waiting" id="cost-of-waiting"></div>
+          <div class="cow-block" id="cost-of-waiting"></div>
 
           <!-- ── Inflation view toggle ── -->
           <div class="infl-toggle-row" id="inflToggleRow">
@@ -12895,6 +13007,9 @@
               </div>
             </div>
           </div>
+
+          <!-- ── FUTURE SELF ── -->
+          <div class="future-self-block" id="future-self-block"></div>
 
           <!-- ── SCENARIO COMPARISON ── -->
           <div class="sim-scenarios" id="simScenarios" style="display:none">
@@ -14901,8 +15016,8 @@
         },
         sim: {
           eyebrow: 'The simulator',
-          h2: 'What could your<br>money become?',
-          lead: 'No commitment, no account needed. Change any number and see projections update in real time. Choose a path here to compare outcomes, then use the starter guide below when you want the plain-English explanation.',
+          h2: 'Your future is being<br>built <em>right now.</em>',
+          lead: 'Every contribution shapes the life your future self will live. Change any number and see it in real time — no account needed.',
           panelTitle: 'Your projection inputs', panelSub: 'Choose your country, adjust the numbers, and see results update live.',
           labelCountry: 'Your country',
           labelInit: 'Initial investment', initHint: 'The amount you\'d put in today — $0 is fine',
@@ -14912,8 +15027,8 @@
           labelTypePrefix: 'Choose a money path',
           whatsThis: 'to compare', labelTypeEnd: '',
           calcBtn: 'Calculate my projection →',
-          rContrib: 'You contributed', rGrowth: 'Market growth', rMult: 'Multiplier',
-          rContribSub: 'total put in', rResult: 'Projected value',
+          rContrib: 'You put in', rGrowth: 'Market growth added', rMult: 'How much your money grows',
+          rContribSub: 'total contributed', rResult: 'What your money could become', rReturn: 'total return',
           hSavingsLabel: '📌 A savings account would give you only',
           cmpTitle: 'Compare every money path',
           eduTitle: 'Want to understand the full picture?',
@@ -15648,8 +15763,8 @@
         },
         sim: {
           eyebrow: 'O simulador',
-          h2: 'O que o seu<br>dinheiro pode se tornar?',
-          lead: 'Sem compromisso, sem cadastro. Altere qualquer número e veja as projeções atualizarem em tempo real. Escolha um caminho aqui para comparar resultados e use o guia inicial abaixo quando quiser a explicação simples.',
+          h2: 'Seu futuro está sendo<br>construído <em>agora.</em>',
+          lead: 'Cada aporte molda a vida que seu eu do futuro terá. Altere qualquer número e veja em tempo real — sem cadastro necessário.',
           panelTitle: 'Suas informações', panelSub: 'Escolha seu país, ajuste os números e veja os resultados atualizarem ao vivo.',
           labelCountry: 'Seu país',
           labelInit: 'Investimento inicial', initHint: 'O valor que você colocaria hoje — R$0 tá ótimo',
@@ -15659,8 +15774,8 @@
           labelTypePrefix: 'Escolha um caminho do dinheiro',
           whatsThis: 'para comparar', labelTypeEnd: '',
           calcBtn: 'Calcular minha projeção →',
-          rContrib: 'Você investiu', rGrowth: 'Crescimento', rMult: 'Multiplicador',
-          rContribSub: 'total investido', rResult: 'Valor projetado',
+          rContrib: 'Você investiu', rGrowth: 'Crescimento gerado', rMult: 'Quanto seu dinheiro cresce',
+          rContribSub: 'total investido', rResult: 'O que seu dinheiro pode se tornar', rReturn: 'retorno total',
           hSavingsLabel: '📌 Uma poupança te daria apenas',
           cmpTitle: 'Compare todos os caminhos',
           eduTitle: 'Quer entender o cenário completo?',
@@ -16449,7 +16564,7 @@
       setText('lblMult', s.rMult);
       setText('lblContribSub', s.rContribSub);
       setText('lblResult', s.rResult);
-      setText('lblMultPct', lang === 'pt' ? 'retorno' : 'return');
+      setText('lblMultPct', s.rReturn || (lang === 'pt' ? 'retorno total' : 'total return'));
 
       const cmpH4 = document.querySelector('.cmp-panel h4');
       if (cmpH4) cmpH4.textContent = s.cmpTitle;
@@ -16995,23 +17110,46 @@
         return mapped ? mapped[isPt ? 'pt' : 'en'] : inv.name;
       }
 
-      const html = c.investments
-        .filter(i => !i.isSavings)
-        .map((inv) => {
-          const isGoldClass = inv.isGold ? 'gold-tile' : '';
-          const spanStyle = inv.span === 2 ? 'grid-column:span 2;' : '';
-          const selClass = selectedInv && inv.key === selectedInv.key ? 'sel' : '';
-          const riskLabel = riskMap[inv.risk] !== undefined ? riskMap[inv.risk] : inv.risk;
-          const rateLabel = translateRateLabel(inv.rate_label);
-          const displayName = translateInvestmentName(inv);
-          const quickLabel = isPt ? 'Info rápida' : 'Quick info';
-          return `
-        <div class="inv-tile ${isGoldClass} ${selClass}" data-rate="${inv.rate}" data-name="${displayName}" data-key="${inv.key}" onclick="selTile(this)" style="${spanStyle}">
+      const visible = c.investments.filter(i => !i.isSavings);
+      const beginnerKeys = { r_low: true };
+      const highKeys = { r_high: true };
+
+      const groupLabels = isPt
+        ? { beginner: 'Escolhas para iniciantes', mid: 'Crescimento & diversificação', high: 'Alto risco / Alto retorno' }
+        : { beginner: 'Beginner picks', mid: 'Growth & diversification', high: 'Higher risk / Higher return' };
+
+      function tileHtml(inv) {
+        const isGoldClass = inv.isGold ? 'gold-tile' : '';
+        const spanStyle = inv.span === 2 ? 'grid-column:span 2;' : '';
+        const selClass = selectedInv && inv.key === selectedInv.key ? 'sel' : '';
+        const riskLabel = riskMap[inv.risk] !== undefined ? riskMap[inv.risk] : inv.risk;
+        const rateLabel = translateRateLabel(inv.rate_label);
+        const displayName = translateInvestmentName(inv);
+        const quickLabel = isPt ? 'Info rápida' : 'Quick info';
+        return `<div class="inv-tile ${isGoldClass} ${selClass}" data-rate="${inv.rate}" data-name="${displayName}" data-key="${inv.key}" onclick="selTile(this)" style="${spanStyle}">
           <div class="inv-tile-name">${inv.icon} ${displayName}</div>
           <div class="inv-tile-meta"><span class="inv-rate">${rateLabel}</span><span class="rpill ${inv.riskClass}">${riskLabel}</span></div>
           <button class="quick-info-btn" onclick="event.stopPropagation();openQuickInvestmentInfo('${inv.key}',event)">${quickLabel}</button>
         </div>`;
-        }).join('');
+      }
+
+      const beginnerTiles = visible.filter(i => i.riskClass === 'r-low');
+      const midTiles      = visible.filter(i => i.riskClass === 'r-med');
+      const highTiles     = visible.filter(i => i.riskClass === 'r-high');
+
+      let html = '';
+      if (beginnerTiles.length) {
+        html += `<div class="inv-group-label igb--beginner">✦ ${groupLabels.beginner}</div>`;
+        html += beginnerTiles.map(tileHtml).join('');
+      }
+      if (midTiles.length) {
+        html += `<div class="inv-group-label igb--mid">◈ ${groupLabels.mid}</div>`;
+        html += midTiles.map(tileHtml).join('');
+      }
+      if (highTiles.length) {
+        html += `<div class="inv-group-label igb--high">⚡ ${groupLabels.high}</div>`;
+        html += highTiles.map(tileHtml).join('');
+      }
       grid.innerHTML = html;
     }
 
@@ -17527,7 +17665,7 @@
       const earned = finalV - totalIn;
       const mult = totalIn > 0 ? (finalV / totalIn).toFixed(1) + '×' : '—';
 
-      // Cost-of-waiting insight
+      // Cost-of-waiting — emotional visual block
       const cowEl = document.getElementById('cost-of-waiting');
       if (cowEl) {
         const delayYrs = yrs >= 10 ? 5 : yrs >= 5 ? 3 : 0;
@@ -17535,9 +17673,15 @@
           const lateV = Math.round(fv(init, mo, inv.rate, yrs - delayYrs));
           const cowLoss = finalV - lateV;
           const isPtCow = currentLang === 'pt';
-          cowEl.textContent = isPtCow
-            ? `⏳ Começar ${delayYrs} anos depois reduziria este resultado em aproximadamente ${fmt(cowLoss)}.`
-            : `⏳ Starting ${delayYrs} years later would reduce this result by approximately ${fmt(cowLoss)}.`;
+          cowEl.innerHTML = isPtCow
+            ? `<div class="cow-eyebrow">⏳ Se você esperar ${delayYrs} anos</div>
+               <div class="cow-loss">${fmt(cowLoss)}</div>
+               <div class="cow-sub">a menos do que se você começar hoje</div>
+               <div class="cow-tagline">O tempo importa mais do que o momento certo.</div>`
+            : `<div class="cow-eyebrow">⏳ Waiting ${delayYrs} years could cost you</div>
+               <div class="cow-loss">${fmt(cowLoss)}</div>
+               <div class="cow-sub">less than if you start today</div>
+               <div class="cow-tagline">Time matters more than timing.</div>`;
           cowEl.classList.add('visible');
         } else {
           cowEl.classList.remove('visible');
@@ -17570,13 +17714,13 @@
       const nudgeBtn = document.getElementById('sim-nudge-btn');
       if (nudgeTitle && nudgeText) {
         nudgeTitle.textContent = isPt
-          ? `Transforme ${fmt(finalV)} em um próximo passo mais claro.`
-          : `Turn ${fmt(finalV)} into a clearer next step.`;
+          ? `Quer acompanhar este futuro todo mês?`
+          : `Want to track this future every month?`;
         nudgeText.textContent = isPt
-          ? 'O Premium inclui uma chamada de 60 minutos no Zoom para tirar dúvidas sobre plataforma, DCA, ETFs, Bitcoin ou como começar com mais calma.'
-          : 'Premium includes a 60-minute Zoom call to help you ask questions about platforms, DCA, ETFs, Bitcoin, or how to start more calmly.';
+          ? 'O painel do Plainvest mostra seu portfólio, projeções reais e Freedom Score™ — tudo atualizado mês a mês.'
+          : 'The Plainvest dashboard shows your real portfolio, future projections, and Freedom Score™ — updated every single month.';
       }
-      if (nudgeBtn) nudgeBtn.textContent = isPt ? 'Usar suporte Premium →' : 'Use Premium support →';
+      if (nudgeBtn) nudgeBtn.textContent = isPt ? 'Começar a acompanhar meu futuro →' : 'Start tracking my future →';
 
       // Year slider labels
       updateYearUI(yrs);
@@ -17695,8 +17839,95 @@
       const rRealLbl = document.getElementById('rRealLbl');
       if (rPassive) rPassive.textContent = c.symbol + monthlyPassive.toLocaleString() + (isPt ? '/mês' : '/mo');
       if (rReal) rReal.textContent = fmt(realFinalV);
-      if (rPassiveLbl) rPassiveLbl.textContent = isPt ? 'Renda passiva mensal (regra dos 4%)' : 'Monthly passive income (4% rule)';
-      if (rRealLbl) rRealLbl.textContent = isPt ? `Valor real (ajustado ~${(inflRate*100).toFixed(1)}%/ano)` : `Inflation-adjusted real value (~${(inflRate*100).toFixed(1)}%/yr)`;
+      if (rPassiveLbl) rPassiveLbl.textContent = isPt ? 'Renda mensal que isso poderia gerar' : 'Monthly income this could generate';
+      if (rRealLbl) rRealLbl.textContent = isPt ? 'Seu poder de compra futuro' : 'Your future buying power';
+
+      // ── Life meaning — what the projected value means in life terms ──────────
+      const lifeMeaningEl = document.getElementById('life-meaning-block');
+      if (lifeMeaningEl && finalV > 0) {
+        const sym = c.symbol;
+        let items;
+        if (isPt) {
+          if (finalV >= 500000) items = ['Potencial de independência financeira', 'Vários anos de despesas cobertas', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, 'Escolhas que o dinheiro torna possíveis'];
+          else if (finalV >= 200000) items = ['Base para entrada em um imóvel', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, '3+ anos de despesas de vida', 'Liberdade de escolhas financeiras'];
+          else if (finalV >= 80000) items = ['Entrada em muitos mercados imobiliários', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, 'Reserva de emergência robusta', 'Base para a próxima fase'];
+          else if (finalV >= 30000) items = ['Fundo para carro e reformas', 'Almofada de emergência sólida', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, 'Segurança financeira real'];
+          else items = ['Primeiro marco alcançado', 'Hábito construído', 'Semente plantada — o crescimento acelera', 'Mais perto do que você pensa'];
+        } else {
+          if (finalV >= 500000) items = ['Financial independence potential', 'Multiple years of living expenses covered', `${sym}${monthlyPassive.toLocaleString()}/mo passive income base`, 'Choices money makes possible'];
+          else if (finalV >= 200000) items = ['Home deposit foundation in many markets', `${sym}${monthlyPassive.toLocaleString()}/mo passive income`, '3+ years of living expenses', 'Real financial freedom within reach'];
+          else if (finalV >= 80000) items = ['First home deposit for many markets', `${sym}${monthlyPassive.toLocaleString()}/mo passive income`, 'Strong emergency fund base', 'Foundation for the next chapter'];
+          else if (finalV >= 30000) items = ['Car, travel, or renovations fund', 'Solid financial cushion', `${sym}${monthlyPassive.toLocaleString()}/mo passive income`, 'Real sense of financial security'];
+          else items = ['First milestone reached', 'The habit that changes everything', 'The seed planted — growth accelerates over time', 'Closer than you think'];
+        }
+        lifeMeaningEl.innerHTML = `
+          <div class="lmb-eyebrow">${isPt ? 'O que este valor poderia significar' : 'What this could mean for your life'}</div>
+          <div class="lmb-items">
+            ${items.map(i => `<div class="lmb-item"><span class="lmb-check">✦</span>${i}</div>`).join('')}
+          </div>`;
+        lifeMeaningEl.classList.add('visible');
+      }
+
+      // ── Life impact — what the monthly passive income could cover ─────────────
+      const lifeImpactEl = document.getElementById('life-impact-block');
+      if (lifeImpactEl && monthlyPassive > 0) {
+        const sym = c.symbol;
+        let coverItems;
+        if (isPt) {
+          if (monthlyPassive >= 1500) coverItems = ['aluguel parcial', 'conta de supermercado', 'contas mensais', 'fundo de viagem'];
+          else if (monthlyPassive >= 600) coverItems = ['conta de telefone', 'academia', 'supermercado semanal', 'assinaturas'];
+          else if (monthlyPassive >= 250) coverItems = ['conta de telefone', 'academia', 'assinaturas'];
+          else if (monthlyPassive >= 100) coverItems = ['conta de telefone', 'assinaturas digitais'];
+          else coverItems = ['assinaturas digitais', 'despesas pequenas mensais'];
+        } else {
+          if (monthlyPassive >= 1500) coverItems = ['partial rent', 'full grocery bill', 'monthly utilities', 'travel fund'];
+          else if (monthlyPassive >= 600) coverItems = ['phone & utilities', 'gym membership', 'weekly groceries', 'subscriptions'];
+          else if (monthlyPassive >= 250) coverItems = ['phone bill', 'gym membership', 'streaming services'];
+          else if (monthlyPassive >= 100) coverItems = ['phone plan', 'streaming subscriptions'];
+          else coverItems = ['streaming services', 'small monthly expenses'];
+        }
+        lifeImpactEl.innerHTML = `
+          <div class="lib-label">${isPt ? 'Esta renda poderia cobrir' : 'This income could cover'}</div>
+          <div class="lib-items">${coverItems.map(i => `<span class="lib-item">✔ ${i}</span>`).join('')}</div>`;
+        lifeImpactEl.classList.add('visible');
+      }
+
+      // ── Future self block ────────────────────────────────────────────────────
+      const futureSelfEl = document.getElementById('future-self-block');
+      if (futureSelfEl && finalV > 0) {
+        const sym = c.symbol;
+        const moStr = sym + (mo || 200).toLocaleString();
+        if (isPt) {
+          futureSelfEl.innerHTML = `
+            <div class="fsb-eyebrow">Conheça seu eu do futuro</div>
+            <div class="fsb-headline">Se você investir ${moStr}/mês de forma consistente, seu eu futuro poderá ter:</div>
+            <div class="fsb-grid">
+              <div class="fsb-item"><span class="fsb-icon">🕊️</span><span class="fsb-text">Mais liberdade — menos dependência de um único salário</span></div>
+              <div class="fsb-item"><span class="fsb-icon">🧘</span><span class="fsb-text">Menos estresse com dinheiro — mais paz nas decisões do dia a dia</span></div>
+              <div class="fsb-item"><span class="fsb-icon">🚪</span><span class="fsb-text">Mais escolhas — trabalho, viagem, família, sem o peso do "não posso"</span></div>
+              <div class="fsb-item"><span class="fsb-icon">⏳</span><span class="fsb-text">Tempo de volta — porque dinheiro trabalhando para você devolve tempo</span></div>
+            </div>
+            <div class="fsb-cta-row">
+              <button class="fsb-btn-primary" onclick="openMemberSignup()">Acompanhar este futuro todo mês</button>
+              <button class="fsb-btn-secondary" onclick="showPage('plans')">Ver os planos →</button>
+            </div>`;
+        } else {
+          futureSelfEl.innerHTML = `
+            <div class="fsb-eyebrow">Meet your future self</div>
+            <div class="fsb-headline">If you invest ${moStr}/month consistently, your future self could have:</div>
+            <div class="fsb-grid">
+              <div class="fsb-item"><span class="fsb-icon">🕊️</span><span class="fsb-text">More freedom — less dependence on a single paycheck</span></div>
+              <div class="fsb-item"><span class="fsb-icon">🧘</span><span class="fsb-text">Less stress — calmer decisions when money isn't the bottleneck</span></div>
+              <div class="fsb-item"><span class="fsb-icon">🚪</span><span class="fsb-text">More choices — work, travel, family, without "I can't afford it"</span></div>
+              <div class="fsb-item"><span class="fsb-icon">⏳</span><span class="fsb-text">Time back — because money working for you buys back your time</span></div>
+            </div>
+            <div class="fsb-cta-row">
+              <button class="fsb-btn-primary" onclick="openMemberSignup()">Track this future every month</button>
+              <button class="fsb-btn-secondary" onclick="showPage('plans')">See the plans →</button>
+            </div>`;
+        }
+        futureSelfEl.classList.add('visible');
+      }
 
       // ── Inflation toggle badge ─────────────────────────────────────────────
       const inflBadge = document.getElementById('inflRealBadge');
