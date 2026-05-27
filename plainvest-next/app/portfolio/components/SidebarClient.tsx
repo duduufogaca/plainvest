@@ -82,7 +82,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
                 <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
               </svg>
             </span>
-            {!collapsed && <span className="sb-label">Overview</span>}
+            {!collapsed && <span className="sb-label">{isEN ? 'Overview' : 'Visão Geral'}</span>}
           </span>
         ) : (
           <a href={portfolioHref} className="sb-link">
@@ -91,7 +91,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
                 <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
               </svg>
             </span>
-            {!collapsed && <span className="sb-label">Overview</span>}
+            {!collapsed && <span className="sb-label">{isEN ? 'Overview' : 'Visão Geral'}</span>}
           </a>
         )}
 
@@ -113,7 +113,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           {!collapsed && (
             <>
               <span className="sb-label">{isEN ? 'Goals' : 'Metas'}</span>
-              <span className="sb-soon">Soon</span>
+              <span className="sb-soon">{isEN ? 'Soon' : 'Em breve'}</span>
             </>
           )}
         </span>
@@ -152,7 +152,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
           </span>
-          {!collapsed && <span className="sb-label">Hub</span>}
+          {!collapsed && <span className="sb-label">{isEN ? 'Hub' : 'Início'}</span>}
         </a>
 
         <a href="/index.html#learn" className="sb-link">
@@ -165,7 +165,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
         </a>
 
         {/* Tools section */}
-        {!collapsed && <div className="sb-section-label">Tools</div>}
+        {!collapsed && <div className="sb-section-label">{isEN ? 'Tools' : 'Ferramentas'}</div>}
         {collapsed && <div className="sb-nav-divider" />}
 
         <a href="/index.html#inflation" className="sb-link">
@@ -196,7 +196,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           {!collapsed && (
             <>
               <span className="sb-label">{isEN ? 'Compare Scenarios' : 'Comparar Cenários'}</span>
-              <span className="sb-soon">Soon</span>
+              <span className="sb-soon">{isEN ? 'Soon' : 'Em breve'}</span>
             </>
           )}
         </span>

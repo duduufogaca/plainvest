@@ -60,7 +60,7 @@ export function PageBanner({ lang, firstName, freedomScore }: Props) {
         {/* Freedom score pill */}
         {freedomScore != null && (
           <div className="ppb-score-pill">
-            <span className="ppb-sp-label">Freedom Score™</span>
+            <span className="ppb-sp-label">{isEN ? 'Freedom Score™' : 'Pontuação de Liberdade™'}</span>
             <span className="ppb-sp-val" style={{ color: scoreColor }}>{freedomScore}/100</span>
             <span className="ppb-sp-sep" aria-hidden="true">·</span>
             <span className="ppb-sp-status" style={{ color: scoreColor }}>{scoreLabel}</span>
