@@ -7713,16 +7713,19 @@
 ══════════════════════════════════ */
     #books {
       padding: 7rem 3rem;
-      background: linear-gradient(180deg, #f7fafc 0%, #eef4fa 100%);
+      background:
+        radial-gradient(circle at 78% 8%, rgba(0,212,170,.10), transparent 28rem),
+        radial-gradient(circle at 14% 68%, rgba(232,184,75,.07), transparent 22rem),
+        linear-gradient(180deg, #0c172b 0%, #071120 100%);
       position: relative;
     }
 
     #books .section-eyebrow {
-      color: var(--teal-dim);
+      color: rgba(0,212,170,.8);
     }
 
     #books .section-eyebrow::before {
-      background: var(--teal-dim);
+      background: rgba(0,212,170,.8);
     }
 
     #books>.section-eyebrow {
@@ -7731,17 +7734,17 @@
     }
 
     #books .section-h2 {
-      color: var(--ink);
+      color: #edf6ff;
       text-align: center;
       max-width: 760px;
     }
 
     #books .section-h2 em {
-      color: var(--teal-dim);
+      color: rgba(0,212,170,.9);
     }
 
     #books .section-lead {
-      color: var(--ink-mid);
+      color: rgba(180,205,228,.75);
       margin-bottom: 3rem;
       text-align: center;
       max-width: 780px;
@@ -7763,14 +7766,20 @@
     }
 
     .books-spot-card {
-      background: var(--white);
-      border: 1px solid var(--border-lt);
+      background: linear-gradient(145deg, rgba(22,40,66,.94), rgba(9,21,39,.98));
+      border: 1px solid rgba(255,255,255,.09);
       border-radius: 24px;
       padding: 1.8rem;
       display: flex;
       gap: 1rem;
       align-items: flex-start;
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 20px 44px rgba(0,0,0,.3);
+      transition: border-color .22s, box-shadow .22s;
+    }
+
+    .books-spot-card:hover {
+      border-color: rgba(0,212,170,.22);
+      box-shadow: 0 0 0 1px rgba(0,212,170,.14), 0 24px 52px rgba(0,0,0,.4);
     }
 
     .books-spot-cover {
@@ -7782,9 +7791,19 @@
       align-items: center;
       justify-content: center;
       font-size: 2.8rem;
-      background: linear-gradient(180deg, #f7fbfa, #eef5f3);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(145deg, rgba(0,212,170,.2), rgba(9,21,39,.8));
+      box-shadow: 4px 6px 18px rgba(0,0,0,.4), -2px -2px 8px rgba(255,255,255,.04);
       overflow: hidden;
+      position: relative;
+    }
+
+    .books-spot-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 8px;
+      background: rgba(255,255,255,.08);
+      border-right: 1px solid rgba(255,255,255,.12);
     }
 
     .books-spot-cover img {
@@ -7802,9 +7821,9 @@
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: var(--teal-dim);
-      background: rgba(0, 168, 130, 0.1);
-      border: 1px solid rgba(0, 168, 130, 0.16);
+      color: rgba(0,212,170,.9);
+      background: rgba(0,212,170,.08);
+      border: 1px solid rgba(0,212,170,.18);
       border-radius: 999px;
       padding: .24rem .62rem;
       margin-bottom: .75rem;
@@ -7813,7 +7832,7 @@
     .books-spot-title {
       font-family: 'Lora', serif;
       font-size: 1.35rem;
-      color: var(--ink);
+      color: #edf6ff;
       line-height: 1.2;
     }
 
@@ -7821,21 +7840,24 @@
       margin-top: .25rem;
       font-size: .78rem;
       font-weight: 700;
-      color: #57718d;
+      color: #d8b961;
     }
 
     .books-spot-why {
       margin-top: .8rem;
       font-size: .86rem;
       line-height: 1.68;
-      color: var(--ink-mid);
+      color: rgba(180,205,228,.8);
     }
 
     .books-spot-side {
-      border: 1px solid var(--border-lt);
+      border: 1px solid rgba(255,255,255,.09);
       border-radius: 24px;
       padding: 1.35rem 1.4rem;
-      background: linear-gradient(180deg, #f6fafc, #f0f5fb);
+      background: linear-gradient(145deg, rgba(18,35,60,.92), rgba(9,21,39,.98));
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
     }
 
     .books-spot-side-k {
@@ -7843,15 +7865,23 @@
       font-weight: 800;
       letter-spacing: .11em;
       text-transform: uppercase;
-      color: #51708f;
-      margin-bottom: .55rem;
+      color: rgba(0,212,170,.7);
+      margin-bottom: .1rem;
     }
 
     .books-spot-side h4 {
       font-family: 'Lora', serif;
       font-size: 1rem;
-      color: var(--ink);
-      margin-bottom: .7rem;
+      color: #edf6ff;
+      margin-bottom: .35rem;
+      line-height: 1.35;
+    }
+
+    .books-spot-side-note {
+      font-size: .82rem;
+      color: rgba(180,205,228,.75);
+      line-height: 1.62;
+      margin-bottom: .2rem;
     }
 
     .books-spot-list {
@@ -7863,33 +7893,35 @@
     .books-spot-list div {
       font-size: .78rem;
       line-height: 1.55;
-      color: #5c7590;
+      color: rgba(180,205,228,.7);
       display: flex;
       gap: .45rem;
     }
 
     .books-spot-list div::before {
-      content: '•';
-      color: var(--teal-dim);
+      content: '→';
+      color: rgba(0,212,170,.7);
       font-weight: 800;
+      flex-shrink: 0;
     }
 
     .book-card {
-      background: var(--white);
-      border: 1px solid var(--border-lt);
-      border-radius: 24px;
-      padding: 1.6rem;
+      background: linear-gradient(145deg, rgba(22,40,66,.92), rgba(9,21,39,.96));
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 20px;
+      padding: 1.3rem 1.2rem;
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
-      transition: transform 0.22s, box-shadow 0.22s;
+      gap: 0.7rem;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
       position: relative;
       overflow: hidden;
     }
 
     .book-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+      border-color: rgba(0,212,170,.22);
+      box-shadow: 0 0 0 1px rgba(0,212,170,.12), 0 22px 48px rgba(0,0,0,.45);
     }
 
     .book-card::before {
@@ -7898,31 +7930,40 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--teal-dim), var(--teal));
+      height: 2px;
+      background: linear-gradient(90deg, rgba(0,212,170,.5), rgba(0,212,170,.15));
     }
 
     .book-card.bc-gold::before {
-      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+      background: linear-gradient(90deg, rgba(232,184,75,.6), rgba(232,184,75,.15));
     }
 
     .book-card.bc-purple::before {
-      background: linear-gradient(90deg, #7b5ea7, #a07fd4);
+      background: linear-gradient(90deg, rgba(160,127,212,.6), rgba(160,127,212,.15));
     }
 
     .book-cover {
-      font-size: 2.4rem;
-      width: 56px;
-      height: 72px;
+      width: 48px;
+      height: 62px;
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      background: var(--chalk);
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: 3px 4px 12px rgba(0,0,0,.35), -1px -1px 4px rgba(255,255,255,.04);
       overflow: hidden;
+      position: relative;
     }
+
+    .book-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: rgba(255,255,255,.07);
+    }
+
     .book-cover img {
       width: 100%;
       height: 100%;
@@ -7936,48 +7977,51 @@
 
     .book-title {
       font-family: 'Lora', serif;
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       font-weight: 700;
-      color: var(--ink);
+      color: #edf6ff;
       margin-bottom: 0.2rem;
-      line-height: 1.35;
+      line-height: 1.3;
     }
 
     .book-author {
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--ink-mid);
-      margin-bottom: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #d8b961;
+      margin-bottom: 0.5rem;
     }
 
     .book-why {
-      font-size: 0.78rem;
-      color: var(--ink-mid);
-      line-height: 1.6;
+      font-size: 0.77rem;
+      color: rgba(180,205,228,.75);
+      line-height: 1.62;
     }
 
     .book-tag {
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      margin-top: 0.3rem;
-      background: rgba(0, 162, 130, 0.1);
-      color: var(--teal-dim);
+      font-size: 0.63rem;
+      font-weight: 800;
+      padding: 0.22rem 0.58rem;
+      border-radius: 999px;
+      margin-top: 0.25rem;
+      background: rgba(0,212,170,.08);
+      color: rgba(0,212,170,.85);
+      border: 1px solid rgba(0,212,170,.15);
       width: fit-content;
     }
 
     .book-card.bc-gold .book-tag {
-      background: rgba(232, 184, 75, 0.12);
-      color: var(--gold-dim);
+      background: rgba(232,184,75,.1);
+      color: #d8b961;
+      border-color: rgba(232,184,75,.2);
     }
 
     .book-card.bc-purple .book-tag {
-      background: rgba(123, 94, 167, 0.1);
-      color: #7b5ea7;
+      background: rgba(160,127,212,.1);
+      color: #a07fd4;
+      border-color: rgba(160,127,212,.2);
     }
 
     .books-premium-note {
@@ -8145,38 +8189,60 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: .9rem;
       z-index: 10;
       padding: 2rem;
       border-radius: var(--r-lg);
       background: linear-gradient(180deg,
-          rgba(245, 247, 250, 0) 0%,
-          rgba(245, 247, 250, 0.75) 30%,
-          rgba(245, 247, 250, 0.97) 60%,
-          rgba(245, 247, 250, 1) 100%);
+          rgba(7,17,32,0) 0%,
+          rgba(7,17,32,.78) 28%,
+          rgba(7,17,32,.97) 55%,
+          rgba(7,17,32,1) 100%);
     }
 
     .books-gate-icon {
-      font-size: 2.2rem;
+      font-size: 2rem;
+      line-height: 1;
     }
 
     .books-gate-title {
       font-family: 'Lora', serif;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--ink);
+      color: #edf6ff;
       text-align: center;
-      line-height: 1.3;
+      line-height: 1.32;
       margin: 0;
+      max-width: 380px;
     }
 
     .books-gate-sub {
       font-size: 0.84rem;
-      color: var(--ink-mid);
+      color: rgba(180,205,228,.75);
       text-align: center;
       line-height: 1.65;
-      max-width: 340px;
+      max-width: 360px;
       margin: 0;
+    }
+
+    .books-gate-stages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      justify-content: center;
+      max-width: 480px;
+    }
+
+    .books-gate-stage {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: rgba(0,212,170,.75);
+      background: rgba(0,212,170,.07);
+      border: 1px solid rgba(0,212,170,.16);
+      border-radius: 999px;
+      padding: .24rem .65rem;
+      text-transform: uppercase;
     }
 
     .books-gate-btn {
@@ -8190,22 +8256,87 @@
       font-weight: 700;
       cursor: pointer;
       transition: all 0.22s;
-      box-shadow: 0 4px 20px rgba(232, 184, 75, 0.35);
+      box-shadow: 0 4px 24px rgba(232,184,75,.38);
+      margin-top: .2rem;
     }
 
     .books-gate-btn:hover {
       background: var(--gold-dim);
       transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(232,184,75,.5);
     }
 
     .books-gate-note {
       font-size: 0.71rem;
-      color: var(--ink-mid);
+      color: rgba(180,205,228,.5);
       text-align: center;
     }
 
-    .books-gate-note strong {
-      color: var(--ink);
+    /* ── Member books stage dividers ── */
+    .member-books-stage-divider {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      padding: .3rem 0 .1rem;
+      margin-top: .5rem;
+    }
+
+    .member-books-stage-divider:first-child {
+      margin-top: 0;
+    }
+
+    .mb-stage-num {
+      font-size: .58rem;
+      font-weight: 900;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: rgba(0,212,170,.65);
+      background: rgba(0,212,170,.07);
+      border: 1px solid rgba(0,212,170,.15);
+      border-radius: 999px;
+      padding: .24rem .62rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .mb-stage-label {
+      font-family: 'Lora', serif;
+      font-size: .92rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.65);
+    }
+
+    .mb-stage-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,.1), transparent);
+    }
+
+    /* ── Member book card hover glow ── */
+    .member-book-card {
+      transition: border-color .22s, box-shadow .22s, transform .22s;
+    }
+
+    .member-book-card:hover {
+      border-color: rgba(0,212,170,.22);
+      box-shadow: 0 0 0 1px rgba(0,212,170,.1), 0 22px 52px rgba(0,0,0,.45);
+      transform: translateY(-3px);
+    }
+
+    .member-book-cover.has-image img {
+      transition: transform .38s cubic-bezier(.4,0,.2,1);
+    }
+
+    .member-book-card:hover .member-book-cover.has-image img {
+      transform: scale(1.04);
+    }
+
+    /* ── books-spot-side-note ── */
+    .books-spot-side-note {
+      font-size: .82rem;
+      color: rgba(180,205,228,.72);
+      line-height: 1.62;
     }
 
     @media (max-width:960px) {
@@ -8226,6 +8357,10 @@
 
       #books {
         padding: 4.5rem 1.4rem;
+      }
+
+      .books-gate-stages {
+        display: none;
       }
     }
 
@@ -14650,29 +14785,30 @@
 
   <!-- BOOKS -->
   <section id="books" class="app-page" data-page="books">
-    <div class="section-eyebrow" id="books-eyebrow">Further reading</div>
-    <div class="section-h2" id="books-h2">Keep learning without getting <em>overwhelmed.</em></div>
-    <p class="section-lead" id="books-lead">One strong book can do more for a beginner than twenty random finance posts. Start with one clear recommendation, then go deeper only when you want to.</p>
+    <div class="section-eyebrow" id="books-eyebrow">Your transformation reading path</div>
+    <div class="section-h2" id="books-h2">Books that change how you <em>think about money.</em></div>
+    <p class="section-lead" id="books-lead">Most people consume random finance content for years and still feel confused. One great book, understood deeply, changes more than 500 social media posts. We built a different path.</p>
 
     <div class="books-spotlight">
       <div class="books-spot-card">
         <div class="books-spot-cover"><img src="https://covers.openlibrary.org/b/isbn/9781119404507-L.jpg" alt="The Little Book of Common Sense Investing cover"></div>
         <div>
-          <div class="books-free-label" id="books-free-label">✓ Free preview</div>
+          <div class="books-free-label" id="books-free-label">✓ Start here</div>
           <div class="books-spot-tag" id="books-spot-tag">Plainvest pick</div>
           <div class="books-spot-title" id="book-title-1">The Little Book of Common Sense Investing</div>
           <div class="books-spot-author" id="book-author-1">John C. Bogle</div>
-          <p class="books-spot-why" id="book-why-1">The founder of Vanguard makes the case for index funds in plain English. The single most important book for any beginner.</p>
+          <p class="books-spot-why" id="book-why-1">This book removes the fear that investing is too complicated. After reading it, you'll know why a simple index fund beats most experts — with proof, not promises.</p>
           <div class="book-tag" id="book-tag-1">⭐ #1 for beginners</div>
         </div>
       </div>
       <div class="books-spot-side">
-        <div class="books-spot-side-k" id="books-spot-k">Why this stays here</div>
-        <h4 id="books-spot-h">A good investing product helps you learn at the right pace.</h4>
+        <div class="books-spot-side-k" id="books-spot-k">What most beginners get wrong</div>
+        <h4 id="books-spot-h">"I'll just watch videos until it clicks."</h4>
+        <p class="books-spot-side-note" id="books-spot-why-note">Most people consume random finance content for years and still feel confused. One great book understood deeply is more powerful than 500 short videos.</p>
         <div class="books-spot-list">
-          <div id="books-spot-l1">Use the simulator to see outcomes visually.</div>
-          <div id="books-spot-l2">Use the glossary to understand each investment type.</div>
-          <div id="books-spot-l3">Use one strong book to build lasting confidence and judgment.</div>
+          <div id="books-spot-l1">Random content creates random knowledge — not a framework.</div>
+          <div id="books-spot-l2">One book read slowly beats ten books skimmed fast.</div>
+          <div id="books-spot-l3">A clear path from beginner to confident investor exists. This is it.</div>
         </div>
       </div>
     </div>
@@ -14684,17 +14820,8 @@
           <div class="book-meta">
             <div class="book-title" id="book-title-2">The Psychology of Money</div>
             <div class="book-author" id="book-author-2">Morgan Housel</div>
-            <p class="book-why" id="book-why-2">Why smart people make bad financial decisions.</p>
+            <p class="book-why" id="book-why-2">Removes guilt and confusion by showing wealth is about behaviour, not math. You'll stop blaming yourself for past money mistakes.</p>
             <div class="book-tag" id="book-tag-2">⭐ Most recommended</div>
-          </div>
-        </div>
-        <div class="book-card books-locked-card">
-          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9780393330335-L.jpg" alt="A Random Walk Down Wall Street cover" loading="lazy"></div>
-          <div class="book-meta">
-            <div class="book-title" id="book-title-3">A Random Walk Down Wall Street</div>
-            <div class="book-author" id="book-author-3">Burton G. Malkiel</div>
-            <p class="book-why" id="book-why-3">A classic that explains why beating the market is hard.</p>
-            <div class="book-tag" id="book-tag-3">📊 Evidence-based</div>
           </div>
         </div>
         <div class="book-card books-locked-card bc-gold">
@@ -14702,8 +14829,17 @@
           <div class="book-meta">
             <div class="book-title" id="book-title-4">Rich Dad Poor Dad</div>
             <div class="book-author" id="book-author-4">Robert T. Kiyosaki</div>
-            <p class="book-why" id="book-why-4">A beginner-friendly mindset shift around assets and liabilities.</p>
+            <p class="book-why" id="book-why-4">Shifts how you see every purchase — from 'can I afford it?' to 'does this build wealth?' One mental model that changes everything after.</p>
             <div class="book-tag" id="book-tag-4">🧠 Mindset shift</div>
+          </div>
+        </div>
+        <div class="book-card books-locked-card">
+          <div class="book-cover"><img src="https://covers.openlibrary.org/b/isbn/9780393330335-L.jpg" alt="A Random Walk Down Wall Street cover" loading="lazy"></div>
+          <div class="book-meta">
+            <div class="book-title" id="book-title-3">A Random Walk Down Wall Street</div>
+            <div class="book-author" id="book-author-3">Burton G. Malkiel</div>
+            <p class="book-why" id="book-why-3">Builds evidence-based confidence. You'll understand exactly why diversification works and stop second-guessing your portfolio.</p>
+            <div class="book-tag" id="book-tag-3">📊 Evidence-based</div>
           </div>
         </div>
         <div class="book-card books-locked-card">
@@ -14711,7 +14847,7 @@
           <div class="book-meta">
             <div class="book-title" id="book-title-5">I Will Teach You to Be Rich</div>
             <div class="book-author" id="book-author-5">Ramit Sethi</div>
-            <p class="book-why" id="book-why-5">A practical plan for automating your money.</p>
+            <p class="book-why" id="book-why-5">Gives you a 6-week plan to automate your money so it works without willpower. You stop overthinking and start actually investing.</p>
             <div class="book-tag" id="book-tag-5">⚡ Action-focused</div>
           </div>
         </div>
@@ -14720,7 +14856,7 @@
           <div class="book-meta">
             <div class="book-title" id="book-title-6">The Intelligent Investor</div>
             <div class="book-author" id="book-author-6">Benjamin Graham</div>
-            <p class="book-why" id="book-why-6">The classic value-investing reference.</p>
+            <p class="book-why" id="book-why-6">Gives you the analytical framework to think like an investor, not a gambler. You'll learn to love boring, disciplined investing.</p>
             <div class="book-tag" id="book-tag-6">🏛️ The classic</div>
           </div>
         </div>
@@ -14729,15 +14865,22 @@
           <div class="book-meta">
             <div class="book-title" id="book-title-7">The Black Swan</div>
             <div class="book-author" id="book-author-7">Nassim Nicholas Taleb</div>
-            <p class="book-why" id="book-why-7">A macro and risk classic about rare events, uncertainty, and why overconfidence can be expensive.</p>
+            <p class="book-why" id="book-why-7">Teaches you to stop trusting models and start preparing for what you can't predict. Makes you a calmer investor when markets surprise everyone.</p>
             <div class="book-tag" id="book-tag-7">🧩 Macro & risk</div>
           </div>
         </div>
       </div>
       <div class="books-gate">
         <div class="books-gate-icon">🔐</div>
-        <h3 class="books-gate-title" id="books-gate-title">Unlock the full reading list</h3>
-        <p class="books-gate-sub" id="books-gate-sub">The full reading list is included for Premium members, with summaries, key takeaways, and a reading path from beginner to advanced.</p>
+        <h3 class="books-gate-title" id="books-gate-title">Unlock the complete financial clarity reading path.</h3>
+        <p class="books-gate-sub" id="books-gate-sub">12 books. 5 stages. One clear path from confusion to financial confidence — with emotional outcomes, honest analysis, and Amazon links.</p>
+        <div class="books-gate-stages">
+          <div class="books-gate-stage" id="books-gate-s1">Stage 1 · Understanding Money</div>
+          <div class="books-gate-stage" id="books-gate-s2">Stage 2 · Building Confidence</div>
+          <div class="books-gate-stage" id="books-gate-s3">Stage 3 · Long-Term Thinking</div>
+          <div class="books-gate-stage" id="books-gate-s4">Stage 4 · Wealth Psychology</div>
+          <div class="books-gate-stage" id="books-gate-s5">Stage 5 · Financial Independence</div>
+        </div>
         <button class="books-gate-btn" id="books-gate-btn" onclick="showPage('plans')">Purchase access</button>
         <div class="books-gate-note" id="books-gate-note">Included in Premium membership</div>
       </div>
@@ -15691,9 +15834,9 @@
     <div class="member-books-shell premium-protected-content">
       <div class="member-books-head">
         <div>
-          <div class="section-eyebrow" data-i18n="memberBooks.eyebrow">Premium book list</div>
-          <div class="section-h2" data-i18n-html="memberBooks.h2">Books that build <em>real investing confidence.</em></div>
-          <p class="section-lead" data-i18n="memberBooks.lead">A member-only reading path with book covers, quick reasons to read each one, and direct Amazon associate links.</p>
+          <div class="section-eyebrow" data-i18n="memberBooks.eyebrow">The ideas behind long-term freedom</div>
+          <div class="section-h2" data-i18n-html="memberBooks.h2">Books that change how you <em>think about money.</em></div>
+          <p class="section-lead" data-i18n="memberBooks.lead">A 5-stage reading journey — from understanding money to financial independence. Each book listed with what it actually changes in how you think.</p>
         </div>
         <div class="member-books-tools">
           <button class="member-action-btn" onclick="showPage('member')" data-i18n="memberBooks.backBtn">Back to member area</button>
@@ -15701,126 +15844,174 @@
       </div>
 
       <div class="member-books-grid">
-        <div class="member-book-card">
-          <div class="member-book-cover has-image"><img src="https://covers.openlibrary.org/b/isbn/9781119404507-L.jpg" alt="The Little Book of Common Sense Investing cover"><small data-i18n="memberBooks.book1Level">Start here</small><span data-i18n="memberBooks.book1Title">The Little Book of Common Sense Investing</span><em data-i18n="memberBooks.book1Author">John C. Bogle</em></div>
-          <div class="member-book-info">
-            <div class="member-book-level" data-i18n="memberBooks.book1Level">Start here</div>
-            <h3 data-i18n="memberBooks.book1Title">The Little Book of Common Sense Investing</h3>
-            <div class="member-book-author" data-i18n="memberBooks.book1Author">John C. Bogle</div>
-            <p data-i18n="memberBooks.book1Text">Best first read for understanding index funds and long-term simplicity.</p>
-            <a class="member-amazon-btn" href="https://amzn.to/4wycemX" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
-          </div>
+
+        <!-- ── Stage 1: Understanding Money ── -->
+        <div class="member-books-stage-divider">
+          <span class="mb-stage-num" data-i18n="memberBooks.stage1Num">Stage 1</span>
+          <span class="mb-stage-label" data-i18n="memberBooks.stage1Label">Understanding Money</span>
+          <div class="mb-stage-line"></div>
         </div>
+
         <div class="member-book-card">
           <div class="member-book-cover has-image cover-blue"><img src="https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg" alt="The Psychology of Money cover"><small data-i18n="memberBooks.book2Level">Mindset</small><span data-i18n="memberBooks.book2Title">The Psychology of Money</span><em data-i18n="memberBooks.book2Author">Morgan Housel</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book2Level">Mindset</div>
             <h3 data-i18n="memberBooks.book2Title">The Psychology of Money</h3>
             <div class="member-book-author" data-i18n="memberBooks.book2Author">Morgan Housel</div>
-            <p data-i18n="memberBooks.book2Text">Mindset, behaviour, patience, and why smart money decisions are emotional too.</p>
+            <p data-i18n="memberBooks.book2Text">Removes guilt and confusion by showing wealth is about behaviour, not math. You'll stop blaming yourself for past money mistakes after reading this.</p>
             <a class="member-amazon-btn" href="https://amzn.to/3PuiNq2" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
-        <div class="member-book-card">
-          <div class="member-book-cover has-image"><img src="https://covers.openlibrary.org/b/isbn/9780393358384-L.jpg" alt="A Random Walk Down Wall Street cover"><small data-i18n="memberBooks.book3Level">Evidence</small><span data-i18n="memberBooks.book3Title">A Random Walk Down Wall Street</span><em data-i18n="memberBooks.book3Author">Burton G. Malkiel</em></div>
-          <div class="member-book-info">
-            <div class="member-book-level" data-i18n="memberBooks.book3Level">Evidence</div>
-            <h3 data-i18n="memberBooks.book3Title">A Random Walk Down Wall Street</h3>
-            <div class="member-book-author" data-i18n="memberBooks.book3Author">Burton G. Malkiel</div>
-            <p data-i18n="memberBooks.book3Text">A classic evidence-based view of markets, diversification, and why beating the market is hard.</p>
-            <a class="member-amazon-btn" href="https://amzn.to/3RbZ2Ed" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
-          </div>
-        </div>
+
         <div class="member-book-card">
           <div class="member-book-cover has-image cover-gold"><img src="https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg" alt="Rich Dad Poor Dad cover"><small data-i18n="memberBooks.book4Level">Mindset</small><span data-i18n="memberBooks.book4Title">Rich Dad Poor Dad</span><em data-i18n="memberBooks.book4Author">Robert T. Kiyosaki</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book4Level">Mindset</div>
             <h3 data-i18n="memberBooks.book4Title">Rich Dad Poor Dad</h3>
             <div class="member-book-author" data-i18n="memberBooks.book4Author">Robert T. Kiyosaki</div>
-            <p data-i18n="memberBooks.book4Text">Useful beginner mindset around assets, liabilities, and money habits.</p>
+            <p data-i18n="memberBooks.book4Text">Shifts how you see every purchase — from 'can I afford it?' to 'does this build wealth?' One mental model that changes every financial decision after.</p>
             <a class="member-amazon-btn" href="https://amzn.to/3PsPDr9" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
+
+        <!-- ── Stage 2: Building Investing Confidence ── -->
+        <div class="member-books-stage-divider">
+          <span class="mb-stage-num" data-i18n="memberBooks.stage2Num">Stage 2</span>
+          <span class="mb-stage-label" data-i18n="memberBooks.stage2Label">Building Investing Confidence</span>
+          <div class="mb-stage-line"></div>
+        </div>
+
+        <div class="member-book-card">
+          <div class="member-book-cover has-image"><img src="https://covers.openlibrary.org/b/isbn/9781119404507-L.jpg" alt="The Little Book of Common Sense Investing cover"><small data-i18n="memberBooks.book1Level">Start here</small><span data-i18n="memberBooks.book1Title">The Little Book of Common Sense Investing</span><em data-i18n="memberBooks.book1Author">John C. Bogle</em></div>
+          <div class="member-book-info">
+            <div class="member-book-level" data-i18n="memberBooks.book1Level">Start here</div>
+            <h3 data-i18n="memberBooks.book1Title">The Little Book of Common Sense Investing</h3>
+            <div class="member-book-author" data-i18n="memberBooks.book1Author">John C. Bogle</div>
+            <p data-i18n="memberBooks.book1Text">Removes the fear that investing is too complicated. You'll know why a simple index fund beats most experts — with mathematical proof, not guesswork.</p>
+            <a class="member-amazon-btn" href="https://amzn.to/4wycemX" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+          </div>
+        </div>
+
         <div class="member-book-card">
           <div class="member-book-cover has-image cover-blue"><img src="https://covers.openlibrary.org/b/isbn/9781523505746-L.jpg" alt="I Will Teach You to Be Rich cover"><small data-i18n="memberBooks.book5Level">Action</small><span data-i18n="memberBooks.book5Title">I Will Teach You to Be Rich</span><em data-i18n="memberBooks.book5Author">Ramit Sethi</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book5Level">Action</div>
             <h3 data-i18n="memberBooks.book5Title">I Will Teach You to Be Rich</h3>
             <div class="member-book-author" data-i18n="memberBooks.book5Author">Ramit Sethi</div>
-            <p data-i18n="memberBooks.book5Text">Practical personal finance systems, automation, and consistent investing habits.</p>
+            <p data-i18n="memberBooks.book5Text">Gives you a 6-week plan to automate your money so it works without willpower. You stop overthinking and start actually investing.</p>
             <a class="member-amazon-btn" href="https://amzn.to/4dwfxT4" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
+
+        <div class="member-book-card">
+          <div class="member-book-cover has-image"><img src="https://covers.openlibrary.org/b/isbn/9780393358384-L.jpg" alt="A Random Walk Down Wall Street cover"><small data-i18n="memberBooks.book3Level">Evidence</small><span data-i18n="memberBooks.book3Title">A Random Walk Down Wall Street</span><em data-i18n="memberBooks.book3Author">Burton G. Malkiel</em></div>
+          <div class="member-book-info">
+            <div class="member-book-level" data-i18n="memberBooks.book3Level">Evidence</div>
+            <h3 data-i18n="memberBooks.book3Title">A Random Walk Down Wall Street</h3>
+            <div class="member-book-author" data-i18n="memberBooks.book3Author">Burton G. Malkiel</div>
+            <p data-i18n="memberBooks.book3Text">Builds evidence-based confidence. You'll understand exactly why diversification works and stop second-guessing your portfolio every week.</p>
+            <a class="member-amazon-btn" href="https://amzn.to/3RbZ2Ed" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+          </div>
+        </div>
+
+        <!-- ── Stage 3: Long-Term Thinking ── -->
+        <div class="member-books-stage-divider">
+          <span class="mb-stage-num" data-i18n="memberBooks.stage3Num">Stage 3</span>
+          <span class="mb-stage-label" data-i18n="memberBooks.stage3Label">Long-Term Thinking</span>
+          <div class="mb-stage-line"></div>
+        </div>
+
         <div class="member-book-card">
           <div class="member-book-cover has-image"><img src="https://covers.openlibrary.org/b/isbn/9780060555665-L.jpg" alt="The Intelligent Investor cover"><small data-i18n="memberBooks.book6Level">Advanced</small><span data-i18n="memberBooks.book6Title">The Intelligent Investor</span><em data-i18n="memberBooks.book6Author">Benjamin Graham</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book6Level">Advanced</div>
             <h3 data-i18n="memberBooks.book6Title">The Intelligent Investor</h3>
             <div class="member-book-author" data-i18n="memberBooks.book6Author">Benjamin Graham</div>
-            <p data-i18n="memberBooks.book6Text">A deeper classic for valuation, risk, discipline, and long-term investor thinking.</p>
+            <p data-i18n="memberBooks.book6Text">Gives you the analytical framework to think like an investor, not a gambler. You'll learn to love boring, disciplined investing — and stop chasing performance.</p>
             <a class="member-amazon-btn" href="https://amzn.to/4ubgM0Y" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
+
+        <!-- ── Stage 4: Wealth Psychology ── -->
+        <div class="member-books-stage-divider">
+          <span class="mb-stage-num" data-i18n="memberBooks.stage4Num">Stage 4</span>
+          <span class="mb-stage-label" data-i18n="memberBooks.stage4Label">Wealth Psychology</span>
+          <div class="mb-stage-line"></div>
+        </div>
+
+        <div class="member-book-card">
+          <div class="member-book-cover has-image cover-red"><img src="https://covers.openlibrary.org/b/isbn/9780812973815-L.jpg" alt="The Black Swan cover"><small data-i18n="memberBooks.book11Level">Risk</small><span data-i18n="memberBooks.book11Title">The Black Swan</span><em data-i18n="memberBooks.book11Author">Nassim Nicholas Taleb</em></div>
+          <div class="member-book-info">
+            <div class="member-book-level" data-i18n="memberBooks.book11Level">Risk</div>
+            <h3 data-i18n="memberBooks.book11Title">The Black Swan</h3>
+            <div class="member-book-author" data-i18n="memberBooks.book11Author">Nassim Nicholas Taleb</div>
+            <p data-i18n="memberBooks.book11Text">Teaches you to stop trusting models and start preparing for what you can't predict. Makes you a calmer, humbler investor when markets surprise everyone.</p>
+            <a class="member-amazon-btn" href="https://amzn.to/4eNizoc" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+          </div>
+        </div>
+
+        <div class="member-book-card">
+          <div class="member-book-cover has-image"><img src="https://covers.openlibrary.org/b/isbn/9781501124020-L.jpg" alt="Principles Life and Work cover"><small data-i18n="memberBooks.book12Level">Decision-making</small><span data-i18n="memberBooks.book12Title">Principles: Life and Work</span><em data-i18n="memberBooks.book12Author">Ray Dalio</em></div>
+          <div class="member-book-info">
+            <div class="member-book-level" data-i18n="memberBooks.book12Level">Decision-making</div>
+            <h3 data-i18n="memberBooks.book12Title">Principles: Life and Work</h3>
+            <div class="member-book-author" data-i18n="memberBooks.book12Author">Ray Dalio</div>
+            <p data-i18n="memberBooks.book12Text">Gives you a systematic way to make decisions and handle failure. You stop reacting emotionally to market swings and start following a process.</p>
+            <a class="member-amazon-btn" href="https://amzn.to/4ubOcg1" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
+          </div>
+        </div>
+
+        <!-- ── Stage 5: Financial Independence ── -->
+        <div class="member-books-stage-divider">
+          <span class="mb-stage-num" data-i18n="memberBooks.stage5Num">Stage 5</span>
+          <span class="mb-stage-label" data-i18n="memberBooks.stage5Label">Financial Independence</span>
+          <div class="mb-stage-line"></div>
+        </div>
+
         <div class="member-book-card">
           <div class="member-book-cover has-image cover-gold"><img src="https://covers.openlibrary.org/b/isbn/9781119473862-L.jpg" alt="The Bitcoin Standard cover" onerror="this.parentElement.classList.remove('has-image')"><small data-i18n="memberBooks.book7Level">Bitcoin</small><span data-i18n="memberBooks.book7Title">The Bitcoin Standard</span><em data-i18n="memberBooks.book7Author">Saifedean Ammous</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book7Level">Bitcoin</div>
             <h3 data-i18n="memberBooks.book7Title">The Bitcoin Standard</h3>
             <div class="member-book-author" data-i18n="memberBooks.book7Author">Saifedean Ammous</div>
-            <p data-i18n="memberBooks.book7Text">A monetary history view of Bitcoin, scarcity, hard money, and why people see it as a long-term store of value.</p>
+            <p data-i18n="memberBooks.book7Text">Explains why Bitcoin exists — not as speculation, but as a response to centuries of broken monetary history. It changes how you see money itself.</p>
             <a class="member-amazon-btn" href="https://amzn.to/3RJkIYm" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
+
         <div class="member-book-card">
-          <div class="member-book-cover has-image cover-red"><img src="https://covers.openlibrary.org/b/isbn/9781544526478-L.jpg" alt="The Fiat Standard cover"><small data-i18n="memberBooks.book8Level">Inflation and money</small><span data-i18n="memberBooks.book8Title">The Fiat Standard</span><em data-i18n="memberBooks.book8Author">Saifedean Ammous</em></div>
+          <div class="member-book-cover has-image cover-red"><img src="https://covers.openlibrary.org/b/isbn/9781544526478-L.jpg" alt="The Fiat Standard cover"><small data-i18n="memberBooks.book8Level">Macro</small><span data-i18n="memberBooks.book8Title">The Fiat Standard</span><em data-i18n="memberBooks.book8Author">Saifedean Ammous</em></div>
           <div class="member-book-info">
-            <div class="member-book-level" data-i18n="memberBooks.book8Level">Inflation and money</div>
+            <div class="member-book-level" data-i18n="memberBooks.book8Level">Macro</div>
             <h3 data-i18n="memberBooks.book8Title">The Fiat Standard</h3>
             <div class="member-book-author" data-i18n="memberBooks.book8Author">Saifedean Ammous</div>
-            <p data-i18n="memberBooks.book8Text">A deeper look at modern money, inflation, debt, and how fiat systems shape financial decisions.</p>
+            <p data-i18n="memberBooks.book8Text">Explains the debt-based monetary system you're already living inside. Understanding it makes the rest of your financial decisions more honest and informed.</p>
             <a class="member-amazon-btn" href="https://amzn.to/49UFLxo" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
+
         <div class="member-book-card">
           <div class="member-book-cover has-image cover-gold"><img src="https://covers.openlibrary.org/b/isbn/9781794326316-L.jpg" alt="Inventing Bitcoin cover"><small data-i18n="memberBooks.book9Level">Bitcoin basics</small><span data-i18n="memberBooks.book9Title">Inventing Bitcoin</span><em data-i18n="memberBooks.book9Author">Yan Pritzker</em></div>
           <div class="member-book-info">
             <div class="member-book-level" data-i18n="memberBooks.book9Level">Bitcoin basics</div>
             <h3 data-i18n="memberBooks.book9Title">Inventing Bitcoin</h3>
             <div class="member-book-author" data-i18n="memberBooks.book9Author">Yan Pritzker</div>
-            <p data-i18n="memberBooks.book9Text">A beginner-friendly explanation of how Bitcoin works without needing a technical background.</p>
+            <p data-i18n="memberBooks.book9Text">Answers 'but how does it actually work?' in 100 pages. After reading it, you'll stop trusting secondhand takes and think for yourself about Bitcoin.</p>
             <a class="member-amazon-btn" href="https://amzn.to/4fqz7CE" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
+
         <div class="member-book-card">
-          <div class="member-book-cover has-image cover-blue"><img src="https://covers.openlibrary.org/b/isbn/9781537000459-L.jpg" alt="The Internet of Money cover"><small data-i18n="memberBooks.book10Level">Crypto ideas</small><span data-i18n="memberBooks.book10Title">The Internet of Money</span><em data-i18n="memberBooks.book10Author">Andreas M. Antonopoulos</em></div>
+          <div class="member-book-cover has-image cover-blue"><img src="https://covers.openlibrary.org/b/isbn/9781537000459-L.jpg" alt="The Internet of Money cover"><small data-i18n="memberBooks.book10Level">Bitcoin ideas</small><span data-i18n="memberBooks.book10Title">The Internet of Money</span><em data-i18n="memberBooks.book10Author">Andreas M. Antonopoulos</em></div>
           <div class="member-book-info">
-            <div class="member-book-level" data-i18n="memberBooks.book10Level">Crypto ideas</div>
+            <div class="member-book-level" data-i18n="memberBooks.book10Level">Bitcoin ideas</div>
             <h3 data-i18n="memberBooks.book10Title">The Internet of Money</h3>
             <div class="member-book-author" data-i18n="memberBooks.book10Author">Andreas M. Antonopoulos</div>
-            <p data-i18n="memberBooks.book10Text">Short essays and talks that explain why open monetary networks matter beyond price charts.</p>
+            <p data-i18n="memberBooks.book10Text">Explains why Bitcoin is bigger than a price chart. Short, readable, and changes how you think about open financial networks and the future of money.</p>
             <a class="member-amazon-btn" href="https://amzn.to/42B33EH" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
           </div>
         </div>
-        <div class="member-book-card">
-          <div class="member-book-cover has-image cover-red"><img src="https://covers.openlibrary.org/b/isbn/9780812973815-L.jpg" alt="The Black Swan cover"><small data-i18n="memberBooks.book11Level">Macroeconomics and risk</small><span data-i18n="memberBooks.book11Title">The Black Swan</span><em data-i18n="memberBooks.book11Author">Nassim Nicholas Taleb</em></div>
-          <div class="member-book-info">
-            <div class="member-book-level" data-i18n="memberBooks.book11Level">Macroeconomics and risk</div>
-            <h3 data-i18n="memberBooks.book11Title">The Black Swan</h3>
-            <div class="member-book-author" data-i18n="memberBooks.book11Author">Nassim Nicholas Taleb</div>
-            <p data-i18n="memberBooks.book11Text">A powerful book about rare events, uncertainty, fragility, and why markets surprise people.</p>
-            <a class="member-amazon-btn" href="https://amzn.to/4eNizoc" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
-          </div>
-        </div>
-        <div class="member-book-card">
-          <div class="member-book-cover has-image"><img src="https://covers.openlibrary.org/b/isbn/9781501124020-L.jpg" alt="Principles Life and Work cover"><small data-i18n="memberBooks.book12Level">Business and life</small><span data-i18n="memberBooks.book12Title">Principles: Life and Work</span><em data-i18n="memberBooks.book12Author">Ray Dalio</em></div>
-          <div class="member-book-info">
-            <div class="member-book-level" data-i18n="memberBooks.book12Level">Business and life</div>
-            <h3 data-i18n="memberBooks.book12Title">Principles: Life and Work</h3>
-            <div class="member-book-author" data-i18n="memberBooks.book12Author">Ray Dalio</div>
-            <p data-i18n="memberBooks.book12Text">Business, decision-making, risk, and life principles from one of the world's best-known investors.</p>
-            <a class="member-amazon-btn" href="https://amzn.to/4ubOcg1" target="_blank" rel="noopener" data-i18n="memberBooks.buyBtn">Buy on Amazon</a>
-          </div>
-        </div>
+
       </div>
 
       <div class="member-book-note" data-i18n="memberBooks.note">Book buttons open Amazon through Plainvest associate links. Check the edition, format, and price before buying.</div>
@@ -16615,60 +16806,65 @@
           note: 'Member materials open inside Plainvest so the learning stays organised in one place.'
         },
         memberBooks: {
-          eyebrow: 'Premium book list',
-          h2: 'Books that build <em>real investing confidence.</em>',
-          lead: 'A member-only reading path with book covers, quick reasons to read each one, and direct Amazon associate links.',
+          eyebrow: 'The ideas behind long-term freedom',
+          h2: 'Books that change how you <em>think about money.</em>',
+          lead: 'A 5-stage reading journey — from understanding money to financial independence. Each book listed with what it actually changes in how you think.',
           backBtn: 'Back to member area',
           buyBtn: 'Buy on Amazon',
           note: 'Book buttons open Amazon through Plainvest associate links. Check the edition, format, and price before buying.',
+          stage1Num: 'Stage 1', stage1Label: 'Understanding Money',
+          stage2Num: 'Stage 2', stage2Label: 'Building Investing Confidence',
+          stage3Num: 'Stage 3', stage3Label: 'Long-Term Thinking',
+          stage4Num: 'Stage 4', stage4Label: 'Wealth Psychology',
+          stage5Num: 'Stage 5', stage5Label: 'Financial Independence',
           book1Level: 'Start here',
           book1Title: 'The Little Book of Common Sense Investing',
           book1Author: 'John C. Bogle',
-          book1Text: 'Best first read for understanding index funds and long-term simplicity.',
+          book1Text: 'Removes the fear that investing is too complicated. You\'ll know why a simple index fund beats most experts — with mathematical proof, not guesswork.',
           book2Level: 'Mindset',
           book2Title: 'The Psychology of Money',
           book2Author: 'Morgan Housel',
-          book2Text: 'Mindset, behaviour, patience, and why smart money decisions are emotional too.',
+          book2Text: 'Removes guilt and confusion by showing wealth is about behaviour, not math. You\'ll stop blaming yourself for past money mistakes after reading this.',
           book3Level: 'Evidence',
           book3Title: 'A Random Walk Down Wall Street',
           book3Author: 'Burton G. Malkiel',
-          book3Text: 'A classic evidence-based view of markets, diversification, and why beating the market is hard.',
+          book3Text: 'Builds evidence-based confidence. You\'ll understand exactly why diversification works and stop second-guessing your portfolio every week.',
           book4Level: 'Mindset',
           book4Title: 'Rich Dad Poor Dad',
           book4Author: 'Robert T. Kiyosaki',
-          book4Text: 'Useful beginner mindset around assets, liabilities, and money habits.',
+          book4Text: 'Shifts how you see every purchase — from \'can I afford it?\' to \'does this build wealth?\' One mental model that changes every financial decision after.',
           book5Level: 'Action',
           book5Title: 'I Will Teach You to Be Rich',
           book5Author: 'Ramit Sethi',
-          book5Text: 'Practical personal finance systems, automation, and consistent investing habits.',
+          book5Text: 'Gives you a 6-week plan to automate your money so it works without willpower. You stop overthinking and start actually investing.',
           book6Level: 'Advanced',
           book6Title: 'The Intelligent Investor',
           book6Author: 'Benjamin Graham',
-          book6Text: 'A deeper classic for valuation, risk, discipline, and long-term investor thinking.',
+          book6Text: 'Gives you the analytical framework to think like an investor, not a gambler. You\'ll learn to love boring, disciplined investing — and stop chasing performance.',
           book7Level: 'Bitcoin',
           book7Title: 'The Bitcoin Standard',
           book7Author: 'Saifedean Ammous',
-          book7Text: 'A monetary history view of Bitcoin, scarcity, hard money, and why people see it as a long-term store of value.',
-          book8Level: 'Inflation and money',
+          book7Text: 'Explains why Bitcoin exists — not as speculation, but as a response to centuries of broken monetary history. It changes how you see money itself.',
+          book8Level: 'Macro',
           book8Title: 'The Fiat Standard',
           book8Author: 'Saifedean Ammous',
-          book8Text: 'A deeper look at modern money, inflation, debt, and how fiat systems shape financial decisions.',
+          book8Text: 'Explains the debt-based monetary system you\'re already living inside. Understanding it makes the rest of your financial decisions more honest and informed.',
           book9Level: 'Bitcoin basics',
           book9Title: 'Inventing Bitcoin',
           book9Author: 'Yan Pritzker',
-          book9Text: 'A beginner-friendly explanation of how Bitcoin works without needing a technical background.',
-          book10Level: 'Crypto ideas',
+          book9Text: 'Answers \'but how does it actually work?\' in 100 pages. After reading it, you\'ll stop trusting secondhand takes and think for yourself about Bitcoin.',
+          book10Level: 'Bitcoin ideas',
           book10Title: 'The Internet of Money',
           book10Author: 'Andreas M. Antonopoulos',
-          book10Text: 'Short essays and talks that explain why open monetary networks matter beyond price charts.',
-          book11Level: 'Macroeconomics and risk',
+          book10Text: 'Explains why Bitcoin is bigger than a price chart. Short, readable, and changes how you think about open financial networks and the future of money.',
+          book11Level: 'Risk',
           book11Title: 'The Black Swan',
           book11Author: 'Nassim Nicholas Taleb',
-          book11Text: 'A powerful book about rare events, uncertainty, fragility, and why markets surprise people.',
-          book12Level: 'Business and life',
+          book11Text: 'Teaches you to stop trusting models and start preparing for what you can\'t predict. Makes you a calmer, humbler investor when markets surprise everyone.',
+          book12Level: 'Decision-making',
           book12Title: 'Principles: Life and Work',
           book12Author: 'Ray Dalio',
-          book12Text: 'Business, decision-making, risk, and life principles from one of the world\'s best-known investors.'
+          book12Text: 'Gives you a systematic way to make decisions and handle failure. You stop reacting emotionally to market swings and start following a process.'
         },
         footer: {
           tagline: 'Helping everyday people understand the power of investing — one simulation at a time.',
@@ -16692,14 +16888,15 @@
           meta2: 'Made to turn financial hesitation into first steps.'
         },
         books: {
-          eyebrow: 'Further reading', h2: 'Keep learning without getting <em>overwhelmed.</em>',
-          lead: 'One strong book can do more for a beginner than twenty random finance posts. Start with one clear recommendation, then go deeper only when you want to.',
-          spotK: 'Why this stays here',
+          eyebrow: 'Your transformation reading path', h2: 'Books that change how you <em>think about money.</em>',
+          lead: 'Most people consume random finance content for years and still feel confused. One great book, understood deeply, changes more than 500 social media posts. We built a different path.',
+          spotK: 'What most beginners get wrong',
           spotTag: 'Plainvest pick',
-          spotH: 'A good investing product helps you learn at the right pace.',
-          spotL1: 'Use the simulator to see outcomes visually.',
-          spotL2: 'Use the glossary to understand each investment type.',
-          spotL3: 'Use one strong book to build lasting confidence and judgment.',
+          spotH: '"I\'ll just watch videos until it clicks."',
+          spotWhyNote: 'Most people consume random finance content for years and still feel confused. One great book understood deeply is more powerful than 500 short videos.',
+          spotL1: 'Random content creates random knowledge — not a framework.',
+          spotL2: 'One book read slowly beats ten books skimmed fast.',
+          spotL3: 'A clear path from beginner to confident investor exists. This is it.',
           titles: [
             'The Little Book of Common Sense Investing',
             'The Psychology of Money',
@@ -16714,23 +16911,28 @@
             'Robert T. Kiyosaki', 'Ramit Sethi', 'Benjamin Graham', 'Nassim Nicholas Taleb'
           ],
           why: [
-            'The founder of Vanguard makes the case for index funds in plain English. The single most important book for any beginner — short, clear, and life-changing.',
-            'Why smart people make bad financial decisions — and how to think about wealth, greed, and happiness.',
-            'A classic that proves why trying to beat the market rarely works.',
-            'The book that got millions thinking about assets vs liabilities for the first time.',
-            'A 6-week plan for automating your finances and investing consistently.',
-            'Warren Buffett calls this "the best book on investing ever written."',
-            'A macro and risk classic about rare events, uncertainty, and why overconfidence can be expensive.'
+            'Removes the fear that investing is too complicated. After reading it, you\'ll know why a simple index fund beats most experts — with proof, not promises.',
+            'Removes guilt and confusion by showing wealth is about behaviour, not math. You\'ll stop blaming yourself for past money mistakes.',
+            'Builds evidence-based confidence. You\'ll understand exactly why diversification works and stop second-guessing your portfolio.',
+            'Shifts how you see every purchase — from \'can I afford it?\' to \'does this build wealth?\' One mental model that changes everything after.',
+            'Gives you a 6-week plan to automate your money so it works without willpower. You stop overthinking and start actually investing.',
+            'Gives you the analytical framework to think like an investor, not a gambler. You\'ll learn to love boring, disciplined investing.',
+            'Teaches you to stop trusting models and start preparing for what you can\'t predict. Makes you a calmer investor when markets surprise everyone.'
           ],
           tags: ['⭐ #1 for beginners', '⭐ Most recommended', '📊 Evidence-based', '🧠 Mindset shift', '⚡ Action-focused', '🏛️ The classic', '🧩 Macro & risk'],
           premTitle: '🔐 Premium member reading room',
           premText: 'Premium members get curated reading paths, chapter summaries, key takeaways, and a full list organised by beginner, intermediate, and advanced level.',
           premBtn: 'See Premium access →',
-          freeLabel: '✓ Free preview',
-          gateTitle: 'Unlock the full reading list',
-          gateSub: 'The full reading list is included for Premium members, with summaries, key takeaways, and a reading path from beginner to advanced.',
+          freeLabel: '✓ Start here',
+          gateTitle: 'Unlock the complete financial clarity reading path.',
+          gateSub: '12 books. 5 stages. One clear path from confusion to financial confidence — with emotional outcomes, honest analysis, and Amazon links.',
           gateBtn: 'Purchase access',
-          gateNote: 'Included in Premium membership'
+          gateNote: 'Included in Premium membership',
+          gateS1: 'Stage 1 · Understanding Money',
+          gateS2: 'Stage 2 · Building Confidence',
+          gateS3: 'Stage 3 · Long-Term Thinking',
+          gateS4: 'Stage 4 · Wealth Psychology',
+          gateS5: 'Stage 5 · Financial Independence'
         },
         contact: {
           eyebrow: 'Get in touch',
@@ -17368,60 +17570,65 @@
           note: 'Os materiais de membro abrem dentro do Plainvest para manter o aprendizado organizado em um só lugar.'
         },
         memberBooks: {
-          eyebrow: 'Lista de livros Premium',
-          h2: 'Livros que constroem <em>confiança real para investir.</em>',
-          lead: 'Uma trilha de leitura exclusiva para membros, com capas dos livros, motivos rápidos para ler cada um e links diretos de associado da Amazon.',
+          eyebrow: 'As ideias por trás da liberdade financeira',
+          h2: 'Livros que mudam como você <em>pensa sobre dinheiro.</em>',
+          lead: 'Uma jornada de leitura em 5 etapas — do entendimento do dinheiro à independência financeira. Cada livro com o que ele realmente muda no seu pensamento.',
           backBtn: 'Voltar para área de membro',
           buyBtn: 'Comprar na Amazon',
           note: 'Os botões abrem a Amazon com links de associado Plainvest. Confira a edição, formato e preço antes de comprar.',
+          stage1Num: 'Etapa 1', stage1Label: 'Entendendo o Dinheiro',
+          stage2Num: 'Etapa 2', stage2Label: 'Construindo Confiança para Investir',
+          stage3Num: 'Etapa 3', stage3Label: 'Pensamento de Longo Prazo',
+          stage4Num: 'Etapa 4', stage4Label: 'Psicologia da Riqueza',
+          stage5Num: 'Etapa 5', stage5Label: 'Independência Financeira',
           book1Level: 'Comece aqui',
           book1Title: 'O Pequeno Livro do Investimento com Bom Senso',
           book1Author: 'John C. Bogle',
-          book1Text: 'Melhor primeira leitura para entender fundos de índice e simplicidade no longo prazo.',
+          book1Text: 'Remove o medo de que investir seja complicado demais. Você vai entender por que um fundo de índice simples supera a maioria dos especialistas — com prova matemática, não suposição.',
           book2Level: 'Mentalidade',
           book2Title: 'A Psicologia Financeira',
           book2Author: 'Morgan Housel',
-          book2Text: 'Mentalidade, comportamento, paciência e por que boas decisões financeiras também são emocionais.',
+          book2Text: 'Remove a culpa e a confusão ao mostrar que riqueza é comportamento, não matemática. Você para de se culpar por erros financeiros do passado depois de ler.',
           book3Level: 'Evidência',
           book3Title: 'Um Passeio Aleatório por Wall Street',
           book3Author: 'Burton G. Malkiel',
-          book3Text: 'Um clássico baseado em evidências sobre mercados, diversificação e por que bater o mercado é difícil.',
+          book3Text: 'Constrói confiança baseada em evidências. Você vai entender exatamente por que a diversificação funciona e parar de questionar seu portfólio toda semana.',
           book4Level: 'Mentalidade',
           book4Title: 'Pai Rico, Pai Pobre',
           book4Author: 'Robert T. Kiyosaki',
-          book4Text: 'Uma leitura útil de mentalidade inicial sobre ativos, passivos e hábitos com dinheiro.',
+          book4Text: 'Muda como você enxerga cada compra — de \'posso pagar?\' para \'isso constrói riqueza?\' Um modelo mental que muda cada decisão financeira depois.',
           book5Level: 'Ação',
           book5Title: 'Eu Vou Ensinar Você a Ser Rico',
           book5Author: 'Ramit Sethi',
-          book5Text: 'Sistemas práticos de finanças pessoais, automação e hábitos consistentes de investimento.',
+          book5Text: 'Te dá um plano de 6 semanas para automatizar seu dinheiro sem depender de força de vontade. Você para de pensar demais e começa a investir de verdade.',
           book6Level: 'Avançado',
           book6Title: 'O Investidor Inteligente',
           book6Author: 'Benjamin Graham',
-          book6Text: 'Um clássico mais profundo sobre valuation, risco, disciplina e pensamento de investidor de longo prazo.',
+          book6Text: 'Te dá a estrutura analítica para pensar como investidor, não como especulador. Você aprende a gostar de investimentos chatos e disciplinados — e para de perseguir performance.',
           book7Level: 'Bitcoin',
           book7Title: 'O Padrão Bitcoin',
           book7Author: 'Saifedean Ammous',
-          book7Text: 'Uma visão de história monetária sobre Bitcoin, escassez, dinheiro forte e por que muitas pessoas o veem como reserva de valor de longo prazo.',
-          book8Level: 'Inflação e dinheiro',
+          book7Text: 'Explica por que o Bitcoin existe — não como especulação, mas como resposta a séculos de história monetária quebrada. Muda como você enxerga o dinheiro em si.',
+          book8Level: 'Macro',
           book8Title: 'O Padrão Fiat',
           book8Author: 'Saifedean Ammous',
-          book8Text: 'Uma leitura mais profunda sobre dinheiro moderno, inflação, dívida e como sistemas fiat influenciam decisões financeiras.',
+          book8Text: 'Explica o sistema monetário baseado em dívida no qual você já está inserido. Entendê-lo torna suas decisões financeiras mais honestas e informadas.',
           book9Level: 'Básico de Bitcoin',
           book9Title: 'Inventando o Bitcoin',
           book9Author: 'Yan Pritzker',
-          book9Text: 'Uma explicação amigável para iniciantes sobre como o Bitcoin funciona, sem precisar de conhecimento técnico.',
-          book10Level: 'Ideias sobre cripto',
+          book9Text: 'Responde \'mas como funciona de verdade?\' em 100 páginas. Depois de ler, você para de depender de opiniões de terceiros e pensa por conta própria sobre Bitcoin.',
+          book10Level: 'Ideias sobre Bitcoin',
           book10Title: 'A Internet do Dinheiro',
           book10Author: 'Andreas M. Antonopoulos',
-          book10Text: 'Ensaios e palestras curtas que explicam por que redes monetárias abertas importam além dos gráficos de preço.',
-          book11Level: 'Macroeconomia e risco',
+          book10Text: 'Explica por que o Bitcoin é maior do que um gráfico de preços. Curto, acessível e muda como você pensa sobre redes financeiras abertas e o futuro do dinheiro.',
+          book11Level: 'Risco',
           book11Title: 'A Lógica do Cisne Negro',
           book11Author: 'Nassim Nicholas Taleb',
-          book11Text: 'Um livro poderoso sobre eventos raros, incerteza, fragilidade e por que os mercados surpreendem tanta gente.',
-          book12Level: 'Negócios e vida',
+          book11Text: 'Te ensina a parar de confiar em modelos e a se preparar para o que não pode ser previsto. Torna você um investidor mais calmo e humilde quando os mercados surpreendem.',
+          book12Level: 'Tomada de decisão',
           book12Title: 'Princípios: Vida e Trabalho',
           book12Author: 'Ray Dalio',
-          book12Text: 'Princípios de negócios, tomada de decisão, risco e vida de um dos investidores mais conhecidos do mundo.'
+          book12Text: 'Te dá uma forma sistemática de tomar decisões e lidar com falhas. Você para de reagir emocionalmente às oscilações do mercado e começa a seguir um processo.'
         },
         startInvesting: {
           eyebrow: 'Próximo passo',
@@ -17469,14 +17676,15 @@
           meta2: 'Feito para transformar hesitação financeira em primeiros passos.'
         },
         books: {
-          eyebrow: 'Leitura extra', h2: 'Continue aprendendo sem ficar <em>sobrecarregado.</em>',
-          lead: 'Um bom livro pode ajudar mais um iniciante do que vinte posts soltos sobre finanças. Comece com uma recomendação clara e aprofunde só quando fizer sentido para você.',
-          spotK: 'Por que isso continua aqui',
+          eyebrow: 'Sua trilha de transformação', h2: 'Livros que mudam como você <em>pensa sobre dinheiro.</em>',
+          lead: 'A maioria das pessoas consome conteúdo financeiro aleatório por anos e ainda se sente confusa. Um grande livro, entendido em profundidade, muda mais do que 500 posts. Construímos um caminho diferente.',
+          spotK: 'O que a maioria dos iniciantes erra',
           spotTag: 'Escolha Plainvest',
-          spotH: 'Um bom produto de investimentos ajuda você a aprender no ritmo certo.',
-          spotL1: 'Use o simulador para ver os resultados de forma visual.',
-          spotL2: 'Use o glossário para entender cada tipo de investimento.',
-          spotL3: 'Use um bom livro para construir confiança e discernimento no longo prazo.',
+          spotH: '"Vou assistir vídeos até fazer sentido."',
+          spotWhyNote: 'A maioria das pessoas consome conteúdo financeiro aleatório por anos e ainda se sente confusa. Um grande livro entendido a fundo vale mais do que 500 vídeos curtos.',
+          spotL1: 'Conteúdo aleatório gera conhecimento aleatório — não uma base sólida.',
+          spotL2: 'Um livro lido devagar vale mais do que dez livros folheados.',
+          spotL3: 'Existe um caminho claro do iniciante ao investidor confiante. Este é ele.',
           titles: [
             'O Pequeno Livro do Investimento com Bom Senso',
             'A Psicologia Financeira',
@@ -17491,23 +17699,28 @@
             'Robert T. Kiyosaki', 'Ramit Sethi', 'Benjamin Graham', 'Nassim Nicholas Taleb'
           ],
           why: [
-            'O fundador da Vanguard defende os fundos de índice em linguagem simples. O livro mais importante para qualquer iniciante — curto, claro e transformador.',
-            'Por que pessoas inteligentes tomam más decisões financeiras — e como pensar sobre riqueza, ambição e felicidade.',
-            'Um clássico que prova por que tentar bater o mercado raramente funciona.',
-            'O livro que fez milhões de pessoas pensarem sobre ativos e passivos pela primeira vez.',
-            'Um plano de 6 semanas para automatizar suas finanças e investir consistentemente.',
-            'Warren Buffett o chama de "o melhor livro sobre investimentos já escrito."',
-            'Um clássico de macro e risco sobre eventos raros, incerteza e por que excesso de confiança pode sair caro.'
+            'Remove o medo de que investir seja complicado demais. Depois de ler, você vai entender por que um simples fundo de índice supera a maioria dos especialistas — com provas.',
+            'Remove a culpa e a confusão ao mostrar que riqueza é comportamento, não matemática. Você para de se culpar por erros financeiros do passado.',
+            'Constrói confiança baseada em evidências. Você vai entender por que a diversificação funciona e parar de questionar seu portfólio toda semana.',
+            'Muda como você enxerga cada compra — de \'posso pagar?\' para \'isso constrói riqueza?\' Um modelo mental que muda tudo depois.',
+            'Te dá um plano de 6 semanas para automatizar seu dinheiro sem depender de força de vontade. Você para de pensar demais e começa a investir de verdade.',
+            'Te dá a estrutura analítica para pensar como investidor, não como especulador. Você aprende a gostar de investimentos chatos e disciplinados.',
+            'Te ensina a parar de confiar em modelos e a se preparar para o que não pode ser previsto. Você se torna um investidor mais calmo quando os mercados surpreendem.'
           ],
           tags: ['⭐ Nº1 para iniciantes', '⭐ Mais recomendado', '📊 Baseado em evidências', '🧠 Mudança de mentalidade', '⚡ Foco em ação', '🏛️ O clássico', '🧩 Macro e risco'],
           premTitle: '🔐 Área de leitura para membros Premium',
           premText: 'Membros Premium têm trilhas de leitura, resumos por capítulo, principais aprendizados e uma lista completa por nível: iniciante, intermediário e avançado.',
           premBtn: 'Ver acesso Premium →',
-          freeLabel: '✓ Prévia gratuita',
-          gateTitle: 'Desbloqueie a lista completa de leitura',
-          gateSub: 'A lista completa de leitura está incluída para membros Premium, com resumos, principais aprendizados e uma trilha do iniciante ao avançado.',
+          freeLabel: '✓ Comece aqui',
+          gateTitle: 'Desbloqueie a trilha completa de clareza financeira.',
+          gateSub: '12 livros. 5 etapas. Um caminho claro da confusão à confiança financeira — com resultados emocionais, análise honesta e links da Amazon.',
           gateBtn: 'Comprar acesso',
-          gateNote: 'Incluído no acesso Premium'
+          gateNote: 'Incluído no acesso Premium',
+          gateS1: 'Etapa 1 · Entendendo o Dinheiro',
+          gateS2: 'Etapa 2 · Construindo Confiança',
+          gateS3: 'Etapa 3 · Pensamento de Longo Prazo',
+          gateS4: 'Etapa 4 · Psicologia da Riqueza',
+          gateS5: 'Etapa 5 · Independência Financeira'
         },
         contact: {
           eyebrow: 'Entre em contato',
@@ -17816,6 +18029,7 @@
         setText('books-spot-k', bk.spotK);
         setText('books-spot-tag', bk.spotTag);
         setText('books-spot-h', bk.spotH);
+        if (bk.spotWhyNote) setText('books-spot-why-note', bk.spotWhyNote);
         setText('books-spot-l1', bk.spotL1);
         setText('books-spot-l2', bk.spotL2);
         setText('books-spot-l3', bk.spotL3);
@@ -17823,6 +18037,11 @@
         setText('books-gate-sub', bk.gateSub);
         setText('books-gate-btn', bk.gateBtn);
         setText('books-gate-note', bk.gateNote);
+        if (bk.gateS1) setText('books-gate-s1', bk.gateS1);
+        if (bk.gateS2) setText('books-gate-s2', bk.gateS2);
+        if (bk.gateS3) setText('books-gate-s3', bk.gateS3);
+        if (bk.gateS4) setText('books-gate-s4', bk.gateS4);
+        if (bk.gateS5) setText('books-gate-s5', bk.gateS5);
       }
 
       // ── PLANS / PREMIUM
