@@ -3204,37 +3204,30 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   margin-top: auto;
 }
 
-/* ── Cinematic page banner — centered hero ───────────────────── */
+/* ── Cinematic page banner — full-bleed headline ─────────────── */
 .ppb-wrap {
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid rgba(255,255,255,.06);
-  min-height: 275px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: clamp(2.75rem, 5vw, 4.5rem) 0 clamp(2rem, 4vw, 3.5rem);
 }
-/* Animated graph background */
-.ppb-bg-anim {
+/* Atmospheric glow blobs — no lines */
+.ppb-glow-teal {
   position: absolute;
-  inset: 0;
+  top: -40%; right: -10%;
+  width: 55%; height: 200%;
+  background: radial-gradient(ellipse, rgba(97,213,180,.09) 0%, transparent 65%);
   pointer-events: none;
-  z-index: 0;
 }
-.ppb-bg-svg {
-  width: 100%; height: 100%;
-  animation: ppb-drift 20s ease-in-out infinite;
-}
-@keyframes ppb-drift {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-18px); }
-}
-.ppb-c1 { animation: ppb-fade 9s ease-in-out infinite; }
-.ppb-c2 { animation: ppb-fade 13s ease-in-out infinite 2.5s; }
-.ppb-c3 { animation: ppb-fade 17s ease-in-out infinite 1s; }
-@keyframes ppb-fade {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .35; }
+.ppb-glow-gold {
+  position: absolute;
+  bottom: -40%; left: -8%;
+  width: 45%; height: 180%;
+  background: radial-gradient(ellipse, rgba(244,200,106,.07) 0%, transparent 60%);
+  pointer-events: none;
 }
 /* Center column */
 .ppb-center {
@@ -3244,66 +3237,43 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(2.5rem, 5vw, 3.75rem) clamp(1.5rem, 6vw, 4rem);
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
   width: 100%;
-  max-width: 860px;
+  max-width: 1300px;
 }
-/* Kicker badge */
-.ppb-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  background: rgba(97,213,180,.07);
-  border: 1px solid rgba(97,213,180,.2);
-  border-radius: 8px;
-  padding: .35rem .85rem;
-  font-size: .65rem;
-  font-weight: 800;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 1.25rem;
-}
-.ppb-kicker-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  flex-shrink: 0;
-  animation: ppb-pulse 2.5s ease infinite;
-}
-@keyframes ppb-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .35; transform: scale(1.55); }
-}
-/* Headline */
+/* Massive headline */
 .ppb-headline {
-  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-size: clamp(4.5rem, 10.5vw, 11.5rem);
   font-weight: 900;
   letter-spacing: -.04em;
-  line-height: 1.06;
-  margin: 0 0 1.1rem;
+  line-height: 1.02;
+  margin: 0 0 1.25rem;
   color: var(--text);
 }
-.ppb-hl-plain { display: block; color: var(--text); }
+.ppb-hl-plain {
+  display: block;
+  color: var(--text);
+  opacity: .9;
+}
 .ppb-hl-gold {
   display: block;
   font-style: italic;
   font-weight: 900;
-  background: linear-gradient(135deg, #e8b84b 0%, #f4c86a 50%, #fdd87e 100%);
+  background: linear-gradient(135deg, #e8b84b 0%, #f4c86a 45%, #fdd87e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 /* Subtitle */
 .ppb-sub {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--muted);
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 1.35rem;
   line-height: 1.65;
-  max-width: 480px;
+  max-width: 500px;
 }
 .ppb-sub strong { color: var(--teal); font-weight: 600; }
-/* Emotional micro-metric pill */
+/* Freedom score pill */
 .ppb-score-pill {
   display: inline-flex;
   align-items: center;
@@ -3311,43 +3281,40 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.1);
   border-radius: 999px;
-  padding: .4rem 1rem;
-  margin-bottom: 1.25rem;
+  padding: .42rem 1.1rem;
+  margin-bottom: 1.35rem;
 }
 .ppb-sp-label {
-  font-size: .68rem;
+  font-size: .69rem;
   font-weight: 700;
   color: var(--muted);
   letter-spacing: .04em;
 }
 .ppb-sp-val {
-  font-size: .82rem;
+  font-size: .84rem;
   font-weight: 900;
   letter-spacing: -.01em;
 }
 .ppb-sp-sep { color: #3d5a78; font-size: .7rem; }
-.ppb-sp-status {
-  font-size: .7rem;
-  font-weight: 700;
-}
+.ppb-sp-status { font-size: .72rem; font-weight: 700; }
 /* CTA button */
 .ppb-cta-btn {
   display: inline-flex;
   align-items: center;
   gap: .6rem;
-  padding: .75rem 1.75rem;
+  padding: .78rem 1.85rem;
   border: 1.5px solid #e8b84b;
   border-radius: 999px;
   color: #e8b84b;
-  font-size: .88rem;
+  font-size: .9rem;
   font-weight: 700;
   letter-spacing: .025em;
   transition: background .2s, box-shadow .2s, transform .15s;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 .ppb-cta-btn:hover {
   background: rgba(232,184,75,.1);
-  box-shadow: 0 0 28px rgba(232,184,75,.22);
+  box-shadow: 0 0 30px rgba(232,184,75,.2);
   transform: translateY(-2px);
 }
 .ppb-cta-arrow { font-size: 1em; transition: transform .2s; }
@@ -3358,7 +3325,7 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  gap: .4rem .65rem;
+  gap: .4rem .7rem;
 }
 .ppb-trust-item {
   display: inline-flex;
@@ -3368,7 +3335,7 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   font-weight: 500;
   color: #3d5a78;
 }
-.ppb-trust-sep { color: #2a3d54; font-size: .65rem; }
+.ppb-trust-sep { color: #243447; font-size: .65rem; }
 /* Hero card: compact top row */
 .portfolio-hero-vallabel-sm {
   font-size: .67rem;
@@ -4233,7 +4200,8 @@ a.sb-link:hover, button.sb-link:hover {
   .profile-form-row { grid-template-columns: 1fr; }
   .portfolio-score-insights-row { grid-template-columns: 1fr; }
   .freedom-rings-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .ppb-headline { font-size: 2.6rem; letter-spacing: -.03em; }
+  .ppb-headline { font-size: 3rem; letter-spacing: -.035em; }
+  .ppb-sub { font-size: .92rem; }
   .ppb-trust-strip { gap: .3rem .5rem; }
   .future-freedom-stats { flex-direction: column; gap: 1.25rem; padding: 1.25rem; }
   .future-freedom-divider { width: 100%; height: 1px; margin: 0; }
