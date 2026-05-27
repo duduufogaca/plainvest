@@ -15,7 +15,6 @@ import { InsightsPanel, type Insight } from './components/InsightsPanel';
 import { FutureSection } from './components/FutureSection';
 import { PageBanner } from './components/PageBanner';
 import { BottomCards } from './components/BottomCards';
-import { PremiumCTA } from './components/PremiumCTA';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { fetchLivePrices } from '@/lib/live-prices';
 import type { LivePrices } from '@/lib/live-prices';
@@ -470,7 +469,7 @@ export default async function PortfolioPage({
       <div className="portfolio-main">
 
         {/* ── Cinematic page header ── */}
-        <PageBanner lang={lang} />
+        <PageBanner lang={lang} freedomScore={rows.length > 0 ? Math.round(freedomScores.reduce((s, sc) => s + sc.value, 0) / freedomScores.length) : undefined} />
 
       <div className="portfolio-content portfolio-content-wide" id="portfolio-overview">
 
@@ -494,7 +493,7 @@ export default async function PortfolioPage({
 
         {/* ── Freedom Score + Insights ── */}
         {rows.length > 0 && (
-          <div className="portfolio-score-insights-row">
+          <div className="portfolio-score-insights-row" id="insights-section">
             <FreedomScore scores={freedomScores} lang={lang} />
             <InsightsPanel insights={portfolioInsights} lang={lang} />
           </div>
@@ -791,9 +790,6 @@ export default async function PortfolioPage({
             />
           </div>
         )}
-
-        {/* ── Premium CTA ── */}
-        <PremiumCTA lang={lang} />
 
       </div>
       </div>

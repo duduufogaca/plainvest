@@ -118,33 +118,23 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           )}
         </span>
 
-        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+        <a href="#insights-section" className="sb-link">
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
             </svg>
           </span>
-          {!collapsed && (
-            <>
-              <span className="sb-label">{isEN ? 'Insights' : 'Análises'}</span>
-              <span className="sb-soon">Soon</span>
-            </>
-          )}
-        </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Insights' : 'Análises'}</span>}
+        </a>
 
-        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+        <a href="#future-projections" className="sb-link">
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
           </span>
-          {!collapsed && (
-            <>
-              <span className="sb-label">{isEN ? 'Future Projections' : 'Projeções'}</span>
-              <span className="sb-soon">Soon</span>
-            </>
-          )}
-        </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Future Projections' : 'Projeções'}</span>}
+        </a>
 
         <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
           <span className="sb-icon">
@@ -202,19 +192,14 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           )}
         </span>
 
-        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+        <a href="#future-projections" className="sb-link">
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
             </svg>
           </span>
-          {!collapsed && (
-            <>
-              <span className="sb-label">{isEN ? 'Investment Simulator' : 'Simulador'}</span>
-              <span className="sb-soon">Soon</span>
-            </>
-          )}
-        </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Investment Simulator' : 'Simulador'}</span>}
+        </a>
 
         <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
           <span className="sb-icon">
