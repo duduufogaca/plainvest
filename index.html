@@ -7401,11 +7401,107 @@
       text-decoration-color: var(--teal);
     }
 
+    /* ── Human reassurance card ── */
+    .contact-human-card {
+      margin-top: 2rem;
+      border: 1px solid rgba(0,212,170,.16);
+      border-radius: 20px;
+      padding: 1.25rem 1.3rem;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(0,212,170,.09), transparent 32%),
+        linear-gradient(145deg, rgba(18,35,60,.92), rgba(9,21,39,.98));
+    }
+
+    .contact-human-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(0,212,170,.85);
+      background: rgba(0,212,170,.08);
+      border: 1px solid rgba(0,212,170,.16);
+      border-radius: 999px;
+      padding: .26rem .7rem;
+      margin-bottom: .75rem;
+    }
+
+    .contact-human-text {
+      font-size: .86rem;
+      line-height: 1.65;
+      color: rgba(180,205,228,.82);
+      margin-bottom: 1rem;
+    }
+
+    .contact-trust-strip {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-trust-item {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .ct-icon {
+      font-size: .88rem;
+      line-height: 1;
+    }
+
+    .ct-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: rgba(200,220,240,.7);
+      letter-spacing: .02em;
+    }
+
+    /* ── Common reasons chips ── */
+    .contact-reasons {
+      margin-top: 2rem;
+    }
+
+    .contact-reasons-label {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: rgba(0,212,170,.6);
+      margin-bottom: .7rem;
+    }
+
+    .contact-reasons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .contact-reason-chip {
+      font-size: .76rem;
+      font-weight: 600;
+      color: rgba(180,205,228,.75);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 999px;
+      padding: .38rem .85rem;
+      transition: background .18s, border-color .18s, color .18s;
+      cursor: default;
+    }
+
+    .contact-reason-chip:hover {
+      background: rgba(0,212,170,.07);
+      border-color: rgba(0,212,170,.2);
+      color: rgba(0,212,170,.9);
+    }
+
     .buyer-question-card {
-      margin-top: 1.1rem;
+      margin-top: 2rem;
       border: 1px solid rgba(100, 229, 196, .18);
       border-radius: 20px;
-      padding: 1rem;
+      padding: 1.2rem 1.25rem;
       background:
         radial-gradient(circle at 90% 10%, rgba(100, 229, 196, .10), transparent 32%),
         rgba(255, 255, 255, .035);
@@ -7494,7 +7590,7 @@
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .cf-row {
@@ -7626,8 +7722,8 @@
     .contact-info-cards {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
+      gap: 1.1rem;
+      margin-top: 2.2rem;
     }
 
     .ci-card {
@@ -7705,6 +7801,11 @@
 
       .contact-intro-card {
         grid-template-columns: 1fr;
+      }
+
+      .contact-trust-strip {
+        flex-direction: column;
+        gap: .6rem;
       }
     }
 
@@ -16022,43 +16123,62 @@
   <section id="contact" class="app-page" data-page="contact">
     <div class="contact-inner">
       <div class="contact-left">
-        <div class="section-eyebrow" style="color:var(--teal)" id="contact-eyebrow">Get in touch</div>
-        <div class="section-h2" style="color:var(--white)" id="contact-h2">We'd love to <em style="color:var(--teal)">hear from you.</em></div>
-        <p class="section-lead" style="color:var(--ink-soft);margin-bottom:0;" id="contact-lead">Have feedback, a partnership idea, or a launch question? We read every message.</p>
-        <div class="contact-intro-card">
-          <div class="contact-intro-item">
-            <div class="contact-intro-k" id="contact-intro-k1">Direct inbox</div>
-            <div class="contact-intro-v" id="contact-intro-v1">Reach the team directly at <a href="mailto:hello@plainvest.app">hello@plainvest.app</a></div>
-          </div>
-          <div class="contact-intro-item">
-            <div class="contact-intro-k" id="contact-intro-k2">Response time</div>
-            <div class="contact-intro-v" id="contact-intro-v2">We usually reply to partnerships within 3–5 business days.</div>
-          </div>
-          <div class="contact-intro-item">
-            <div class="contact-intro-k" id="contact-intro-k3">Best use</div>
-            <div class="contact-intro-v" id="contact-intro-v3">Use this section for bugs, ideas, partnerships, press, or market expansion.</div>
+        <div class="section-eyebrow" style="color:var(--teal)" id="contact-eyebrow">Talk to real people</div>
+        <div class="section-h2" style="color:var(--white)" id="contact-h2">Questions about your future deserve <em style="color:var(--teal)">real answers.</em></div>
+        <p class="section-lead" style="color:var(--ink-soft);margin-bottom:0;" id="contact-lead">Plainvest was built by people who felt lost with money too. Whatever brought you here — ask it. No question is too small.</p>
+
+        <!-- Human reassurance -->
+        <div class="contact-human-card">
+          <p class="contact-human-text" id="contact-human-text">Plainvest was started because investing felt confusing and overwhelming. If that's what brought you here — you're in exactly the right place.</p>
+          <div class="contact-trust-strip">
+            <div class="contact-trust-item">
+              <span class="ct-icon">⏱</span>
+              <span class="ct-label" id="ct-label-1">Usually replies in 24–48h</span>
+            </div>
+            <div class="contact-trust-item">
+              <span class="ct-icon">👤</span>
+              <span class="ct-label" id="ct-label-2">No bots. Real people.</span>
+            </div>
+            <div class="contact-trust-item">
+              <span class="ct-icon">📬</span>
+              <span class="ct-label" id="ct-label-3">We read every message</span>
+            </div>
           </div>
         </div>
 
+        <!-- Common reasons -->
+        <div class="contact-reasons">
+          <div class="contact-reasons-label" id="contact-reasons-label">Common reasons people reach out</div>
+          <div class="contact-reasons-grid">
+            <div class="contact-reason-chip" data-i18n="contact.reason1">I don't know where to start</div>
+            <div class="contact-reason-chip" data-i18n="contact.reason2">I'm afraid of losing money</div>
+            <div class="contact-reason-chip" data-i18n="contact.reason3">I'm overwhelmed by investing</div>
+            <div class="contact-reason-chip" data-i18n="contact.reason4">I want long-term clarity</div>
+            <div class="contact-reason-chip" data-i18n="contact.reason5">I'm curious about Premium</div>
+            <div class="contact-reason-chip" data-i18n="contact.reason6">I want to give feedback</div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
         <div class="buyer-question-card">
-          <div class="buyer-question-title" data-i18n="contact.buyTitle">Common questions before buying</div>
+          <div class="buyer-question-title" data-i18n="contact.buyTitle">Before you decide</div>
           <div class="buyer-question-list">
             <div>
-              <strong data-i18n="contact.buyQ1">Is the Zoom call really 1-on-1?</strong>
-              <span data-i18n="contact.buyA1">Yes. Premium includes one private 60-minute Zoom support call.</span>
+              <strong data-i18n="contact.buyQ1">Will someone actually be there on the call with me?</strong>
+              <span data-i18n="contact.buyA1">Yes. Premium includes one private 60-minute Zoom support call — 1-on-1, no scripts.</span>
             </div>
             <div>
-              <strong data-i18n="contact.buyQ2">Does it cover my country?</strong>
-              <span data-i18n="contact.buyA2">The hub includes Australia-focused content plus global education for ETFs, Bitcoin, crypto safety, diversification, and market basics.</span>
+              <strong data-i18n="contact.buyQ2">Is Plainvest available in my country?</strong>
+              <span data-i18n="contact.buyA2">Yes. Plainvest covers ETFs, Bitcoin, crypto safety, diversification, and market basics globally — with specific content for Australia, Brazil, and the USA.</span>
             </div>
             <div>
-              <strong data-i18n="contact.buyQ3">Can I ask before paying?</strong>
-              <span data-i18n="contact.buyA3">Yes. Send a message here or email hello@plainvest.app if one question is holding you back.</span>
+              <strong data-i18n="contact.buyQ3">Still unsure if Plainvest is right for you?</strong>
+              <span data-i18n="contact.buyA3">Send a message below or email hello@plainvest.app — one honest answer is better than guessing.</span>
             </div>
           </div>
         </div>
 
-        <div class="contact-tabs" style="margin-top:2rem;">
+        <div class="contact-tabs" style="margin-top:2.5rem;">
           <button class="contact-tab active" id="tab-feedback" onclick="switchTab('feedback',this)">💬 <span id="tab-feedback-label">Feedback</span></button>
           <button class="contact-tab" id="tab-partner" onclick="switchTab('partner',this)">🤝 <span id="tab-partner-label">Partnership</span></button>
         </div>
@@ -16935,11 +17055,23 @@
           gateS5: 'Stage 5 · Financial Independence'
         },
         contact: {
-          eyebrow: 'Get in touch',
-          h2: 'We\'d love to <em style="color:var(--teal)">hear from you.</em>',
-          lead: 'Have feedback, a partnership idea, or a launch question? We read every message.',
+          eyebrow: 'Talk to real people',
+          h2: 'Questions about your future deserve <em style="color:var(--teal)">real answers.</em>',
+          lead: 'Plainvest was built by people who felt lost with money too. Whatever brought you here — ask it. No question is too small.',
           tabFeedback: 'Feedback', tabPartner: 'Partnership',
           whyEyebrow: 'Why reach out?',
+          humanBadge: '👋 Built by beginners, for beginners',
+          humanText: 'Plainvest was started because investing felt confusing and overwhelming. If that\'s what brought you here — you\'re in exactly the right place.',
+          trustLabel1: 'Usually replies in 24–48h',
+          trustLabel2: 'No bots. Real people.',
+          trustLabel3: 'We read every message',
+          reasonsLabel: 'Common reasons people reach out',
+          reason1: 'I don\'t know where to start',
+          reason2: 'I\'m afraid of losing money',
+          reason3: 'I\'m overwhelmed by investing',
+          reason4: 'I want long-term clarity',
+          reason5: 'I\'m curious about Premium',
+          reason6: 'I want to give feedback',
           intro: {
             k1: 'Direct inbox',
             v1: 'Reach the team directly at <a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
@@ -16948,17 +17080,17 @@
             k3: 'Best use',
             v3: 'Use this section for bugs, ideas, partnerships, press, or market expansion.'
           },
-          buyTitle: 'Common questions before buying',
-          buyQ1: 'Is the Zoom call really 1-on-1?',
-          buyA1: 'Yes. Premium includes one private 60-minute Zoom support call.',
-          buyQ2: 'Does it cover my country?',
-          buyA2: 'The hub includes Australia-focused content plus global education for ETFs, Bitcoin, crypto safety, diversification, and market basics.',
-          buyQ3: 'Can I ask before paying?',
-          buyA3: 'Yes. Send a message here or email hello@plainvest.app if one question is holding you back.',
+          buyTitle: 'Before you decide',
+          buyQ1: 'Will someone actually be there on the call with me?',
+          buyA1: 'Yes. Premium includes one private 60-minute Zoom support call — 1-on-1, no scripts.',
+          buyQ2: 'Is Plainvest available in my country?',
+          buyA2: 'Yes. Plainvest covers ETFs, Bitcoin, crypto safety, diversification, and market basics globally — with specific content for Australia, Brazil, and the USA.',
+          buyQ3: 'Still unsure if Plainvest is right for you?',
+          buyA3: 'Send a message below or email hello@plainvest.app — one honest answer is better than guessing.',
           side: {
-            kicker: 'Built from user feedback',
-            title: 'Feedback shapes what Plainvest becomes next.',
-            text: 'The strongest product improvements on this page came from real review rounds, simulation feedback, and questions from first-time investors. That is the standard we want to keep.'
+            kicker: 'Built from real conversations',
+            title: 'Every message you send shapes what Plainvest becomes.',
+            text: 'The strongest improvements on this platform came from first-time investors asking honest questions. That is the standard we want to keep — and why we read everything.'
           },
           fb: {
             lblName: 'Your name', lblEmail: 'Email', lblTopic: 'What\'s this about?', lblMsg: 'Your message',
@@ -16975,7 +17107,7 @@
             success: '✅ Proposal received! We review all partnership enquiries within 3–5 business days and will get back to you with next steps.'
           },
           ci: [
-            { h: 'Your feedback shapes Plainvest', p: 'Every feature you see was built because someone asked for it. If something feels broken, confusing, or missing — we want to know. No feedback is too small.' },
+            { h: 'Your words build Plainvest', p: 'Every feature you see was built because someone asked for it. If something feels broken, confusing, or missing — we want to know. No message is too small.' },
             { h: 'Partnership opportunities', p: 'We\'re open to collaborations with financial educators, brokerages, media outlets, and mission-aligned organisations. If your audience deserves better financial tools, let\'s talk.' },
             { h: 'Building for Brazil, Australia & beyond', p: 'Plainvest is actively expanding to new markets. If you\'re a local financial expert, content creator, or institution in a new region — we\'d love to hear from you.' },
             { h: 'Response time', p: 'Feedback: we read everything, reply to what we can.<br>Partnerships: within 3–5 business days.<br>Or reach us directly at <a href="mailto:hello@plainvest.app">hello@plainvest.app</a>' }
@@ -17723,11 +17855,23 @@
           gateS5: 'Etapa 5 · Independência Financeira'
         },
         contact: {
-          eyebrow: 'Entre em contato',
-          h2: 'Adoraríamos <em style="color:var(--teal)">ouvir você.</em>',
-          lead: 'Tem feedback, uma ideia de parceria ou uma dúvida sobre o lançamento? Lemos cada mensagem.',
+          eyebrow: 'Fale com pessoas reais',
+          h2: 'Dúvidas sobre o seu futuro merecem <em style="color:var(--teal)">respostas reais.</em>',
+          lead: 'O Plainvest foi criado por pessoas que também se sentiram perdidas com dinheiro. O que quer que tenha te trazido aqui — pergunte. Nenhuma dúvida é pequena demais.',
           tabFeedback: 'Feedback', tabPartner: 'Parceria',
           whyEyebrow: 'Por que entrar em contato?',
+          humanBadge: '👋 Criado por iniciantes, para iniciantes',
+          humanText: 'O Plainvest surgiu porque investir parecia confuso e intimidador. Se foi isso que te trouxe aqui — você está exatamente no lugar certo.',
+          trustLabel1: 'Normalmente responde em 24–48h',
+          trustLabel2: 'Sem bots. Pessoas reais.',
+          trustLabel3: 'Lemos cada mensagem',
+          reasonsLabel: 'Motivos comuns pelos quais as pessoas entram em contato',
+          reason1: 'Não sei por onde começar',
+          reason2: 'Tenho medo de perder dinheiro',
+          reason3: 'Estou sobrecarregado com investimentos',
+          reason4: 'Quero clareza sobre o longo prazo',
+          reason5: 'Tenho curiosidade sobre o Premium',
+          reason6: 'Quero deixar um feedback',
           intro: {
             k1: 'Contato direto',
             v1: 'Fale com o time diretamente em <a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
@@ -17736,17 +17880,17 @@
             k3: 'Melhor uso',
             v3: 'Use esta área para bugs, ideias, parcerias, imprensa ou expansão para novos mercados.'
           },
-          buyTitle: 'Dúvidas comuns antes de comprar',
-          buyQ1: 'A chamada no Zoom é realmente 1 a 1?',
-          buyA1: 'Sim. O Premium inclui uma chamada privada de suporte no Zoom com 60 minutos.',
-          buyQ2: 'Cobre o meu país?',
-          buyA2: 'O hub tem conteúdo focado na Austrália e educação global sobre ETFs, Bitcoin, segurança cripto, diversificação e noções de mercado.',
-          buyQ3: 'Posso perguntar antes de pagar?',
-          buyA3: 'Sim. Envie uma mensagem aqui ou mande email para hello@plainvest.app se uma dúvida estiver segurando sua decisão.',
+          buyTitle: 'Antes de decidir',
+          buyQ1: 'Alguém estará de verdade na chamada comigo?',
+          buyA1: 'Sim. O Premium inclui uma chamada privada de 60 minutos no Zoom — 1 a 1, sem roteiro.',
+          buyQ2: 'O Plainvest está disponível no meu país?',
+          buyA2: 'Sim. O Plainvest cobre ETFs, Bitcoin, segurança cripto, diversificação e noções de mercado globalmente — com conteúdo específico para Austrália, Brasil e EUA.',
+          buyQ3: 'Ainda em dúvida se o Plainvest é pra você?',
+          buyA3: 'Envie uma mensagem abaixo ou mande e-mail para hello@plainvest.app — uma resposta honesta vale mais do que ficar na dúvida.',
           side: {
-            kicker: 'Construído com feedback de usuários',
-            title: 'O feedback ajuda a definir o próximo passo do Plainvest.',
-            text: 'As melhores melhorias desta página vieram de revisões reais, feedback sobre as simulações e dúvidas de investidores iniciantes. Esse é o padrão que queremos manter.'
+            kicker: 'Criado a partir de conversas reais',
+            title: 'Cada mensagem que você envia molda o que o Plainvest se torna.',
+            text: 'As melhorias mais importantes desta plataforma vieram de investidores iniciantes que fizeram perguntas honestas. Esse é o padrão que queremos manter — e por isso lemos tudo.'
           },
           fb: {
             lblName: 'Seu nome', lblEmail: 'E-mail', lblTopic: 'Sobre o que é?', lblMsg: 'Sua mensagem',
@@ -17763,7 +17907,7 @@
             success: '✅ Proposta recebida! Analisamos todas as propostas de parceria em 3–5 dias úteis e retornaremos com os próximos passos.'
           },
           ci: [
-            { h: 'Seu feedback molda o Plainvest', p: 'Cada funcionalidade que você vê foi construída porque alguém pediu. Se algo parece quebrado, confuso ou faltando — queremos saber. Nenhum feedback é pequeno demais.' },
+            { h: 'Suas palavras constroem o Plainvest', p: 'Cada funcionalidade que você vê foi construída porque alguém pediu. Se algo parece quebrado, confuso ou faltando — queremos saber. Nenhuma mensagem é pequena demais.' },
             { h: 'Oportunidades de parceria', p: 'Estamos abertos a colaborações com educadores financeiros, corretoras, veículos de mídia e organizações alinhadas com nossa missão. Se seu público merece ferramentas financeiras melhores, vamos conversar.' },
             { h: 'Construindo para o Brasil, Austrália e além', p: 'O Plainvest está expandindo ativamente para novos mercados. Se você é especialista financeiro local, criador de conteúdo ou instituição em uma nova região — adoraríamos ouvir você.' },
             { h: 'Tempo de resposta', p: 'Feedback: lemos tudo, respondemos o que podemos.<br>Parcerias: em 3–5 dias úteis.<br>Ou fale diretamente pelo e-mail <a href="mailto:hello@plainvest.app">hello@plainvest.app</a>' }
@@ -18096,6 +18240,12 @@
         setText('tab-feedback-label', ct.tabFeedback);
         setText('tab-partner-label', ct.tabPartner);
         setText('contact-why-eyebrow', ct.whyEyebrow);
+        if (ct.humanBadge) setText('contact-human-badge', ct.humanBadge);
+        if (ct.humanText) setText('contact-human-text', ct.humanText);
+        if (ct.trustLabel1) setText('ct-label-1', ct.trustLabel1);
+        if (ct.trustLabel2) setText('ct-label-2', ct.trustLabel2);
+        if (ct.trustLabel3) setText('ct-label-3', ct.trustLabel3);
+        if (ct.reasonsLabel) setText('contact-reasons-label', ct.reasonsLabel);
         if (ct.intro) {
           setText('contact-intro-k1', ct.intro.k1);
           setHTML('contact-intro-v1', ct.intro.v1);
