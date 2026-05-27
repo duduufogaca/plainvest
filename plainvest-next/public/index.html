@@ -19168,7 +19168,8 @@
     }
 
     function isMemberAppHost() {
-      return /(^|\.)members\.plainvest\.app$/i.test(window.location.hostname);
+      var h = window.location.hostname;
+      return /(^|\.)members\.plainvest\.app$/i.test(h) || /plainvest-members-/i.test(h);
     }
 
     async function ensurePremiumAccessForMemberPage(page) {
