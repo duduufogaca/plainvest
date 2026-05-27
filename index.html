@@ -6535,6 +6535,243 @@
       line-height: 1.65;
     }
 
+    /* ── Hub milestones ── */
+    .member-milestone-section {
+      background: linear-gradient(160deg, rgba(18,34,58,.95), rgba(8,17,34,.97));
+      border: 1px solid rgba(255,255,255,.08);
+      border-top: 2px solid rgba(0,212,170,.3);
+      border-radius: 22px;
+      padding: 1.4rem 1.6rem 1.5rem;
+      margin-bottom: .25rem;
+    }
+    .milestone-eyebrow {
+      font-size: .65rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      color: rgba(0,212,170,.7);
+      margin-bottom: .6rem;
+    }
+    .milestone-headline {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #dde6f4;
+      margin-bottom: .9rem;
+    }
+    .milestone-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .5rem .8rem;
+      margin-bottom: .8rem;
+    }
+    .milestone-item {
+      font-size: .78rem;
+      color: #6a8daa;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: color .2s;
+    }
+    .milestone-item.done { color: rgba(0,212,170,.9); }
+    .milestone-item .ms-icon { font-size: .8rem; }
+    .milestone-encouragement {
+      font-size: .78rem;
+      color: rgba(0,212,170,.8);
+      font-style: italic;
+      min-height: 1.1em;
+    }
+
+    /* ── Continue where you left off ── */
+    .member-cwl-block {
+      background: linear-gradient(135deg, rgba(22,44,76,.97), rgba(10,22,44,.97));
+      border: 1px solid rgba(97,213,180,.18);
+      border-top: 2px solid rgba(97,213,180,.5);
+      border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: .25rem;
+    }
+    .cwl-eyebrow {
+      font-size: .64rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      color: rgba(97,213,180,.65);
+      margin-bottom: .6rem;
+    }
+    .cwl-body {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cwl-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0,212,170,.1);
+      border: 1px solid rgba(0,212,170,.18);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .cwl-info { flex: 1; min-width: 140px; }
+    .cwl-title { font-size: .95rem; font-weight: 700; color: #dde6f4; margin-bottom: .15rem; }
+    .cwl-meta { font-size: .74rem; color: #5a7a96; }
+    .cwl-btn {
+      padding: .55rem 1.1rem;
+      background: rgba(0,212,170,.12);
+      border: 1px solid rgba(0,212,170,.3);
+      border-radius: 10px;
+      color: rgba(0,212,170,.95);
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    .cwl-btn:hover { background: rgba(0,212,170,.22); }
+
+    /* ── Portfolio emphasis CTA ── */
+    .member-portfolio-cta {
+      background: linear-gradient(135deg, rgba(16,34,62,.97), rgba(7,17,38,.97));
+      border: 1px solid rgba(97,213,180,.2);
+      border-top: 3px solid rgba(97,213,180,.7);
+      border-radius: 22px;
+      padding: 1.75rem 2rem;
+      margin-bottom: .25rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .mpctab-left { flex: 1; min-width: 200px; }
+    .mpctab-eyebrow {
+      font-size: .62rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      color: rgba(0,212,170,.65);
+      margin-bottom: .5rem;
+    }
+    .mpctab-title {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ecf4ff;
+      margin: 0 0 .6rem;
+      line-height: 1.3;
+    }
+    .mpctab-text { font-size: .83rem; color: #7a9ab6; line-height: 1.65; margin: 0; }
+    .mpctab-actions { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
+    .mpctab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .7rem 1.4rem;
+      border-radius: 12px;
+      font-size: .88rem;
+      font-weight: 800;
+      text-decoration: none;
+      background: linear-gradient(135deg, #00d4aa, #00b894);
+      color: #071120;
+      box-shadow: 0 4px 18px rgba(0,212,170,.28);
+      transition: transform .15s, box-shadow .15s;
+      white-space: nowrap;
+    }
+    .mpctab-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,212,170,.4); }
+    .mpctab-note { font-size: .7rem; color: #3d5870; }
+
+    /* ── Category headers inside .member-grid ── */
+    .hub-category-header {
+      grid-column: span 3;
+      padding: 1.75rem 0 .4rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+      margin-top: .25rem;
+    }
+    .hub-category-header:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .hub-cat-label {
+      font-size: .63rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: rgba(0,212,170,.6);
+      margin-bottom: .25rem;
+    }
+    .hub-cat-title {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #dde6f4;
+      margin: 0 0 .2rem;
+    }
+    .hub-cat-sub { font-size: .78rem; color: #3d5870; }
+
+    /* ── Time + difficulty badges on cards ── */
+    .member-card-badges {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+    .member-time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .2rem;
+      font-size: .63rem;
+      font-weight: 700;
+      color: rgba(97,213,180,.7);
+      background: rgba(97,213,180,.07);
+      border: 1px solid rgba(97,213,180,.13);
+      border-radius: 5px;
+      padding: .12rem .42rem;
+    }
+    .member-diff-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      border-radius: 5px;
+      padding: .12rem .42rem;
+      text-transform: uppercase;
+    }
+    .diff-beginner   { background: rgba(97,213,180,.1);  color: rgba(97,213,180,.85); }
+    .diff-foundation { background: rgba(129,140,248,.1); color: rgba(129,140,248,.85); }
+    .diff-advanced   { background: rgba(244,200,106,.1); color: rgba(244,200,106,.85); }
+
+    /* ── Why members stay ── */
+    .member-why-stay {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 2rem;
+      margin-top: 1rem;
+    }
+    .mws-eyebrow {
+      font-size: .63rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: rgba(0,212,170,.6);
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+    .mws-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .mws-item {
+      background: linear-gradient(160deg, rgba(18,34,58,.95), rgba(8,17,34,.97));
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      padding: 1.2rem 1.1rem;
+      text-align: center;
+    }
+    .mws-icon { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+    .mws-item strong { color: #dde6f4; font-size: .92rem; display: block; margin-bottom: .35rem; }
+    .mws-item p { color: #5a7a96; font-size: .76rem; line-height: 1.55; margin: 0; }
+
     @media (max-width: 960px) {
 
       .account-shell,
@@ -6549,6 +6786,13 @@
       .member-book-grid {
         grid-template-columns: 1fr;
       }
+
+      .hub-category-header { grid-column: span 1; }
+      .member-card.member-card-featured { flex-direction: column; }
+      .member-card.member-card-featured ul { columns: 1; }
+      .milestone-grid { grid-template-columns: repeat(2,1fr); }
+      .mws-grid { grid-template-columns: repeat(2,1fr); }
+      .member-portfolio-cta { flex-direction: column; padding: 1.25rem 1.25rem; }
 
       .member-hero-image {
         min-height: 220px;
@@ -14951,8 +15195,8 @@
         <div>
           <div class="section-eyebrow" data-i18n="member.eyebrow">Premium member area</div>
           <div class="member-welcome-greeting" id="member-welcome-greeting" style="display:none"></div>
-          <div class="section-h2" data-i18n-html="member.h2">Your Plainvest <em>learning hub.</em></div>
-          <p class="section-lead" data-i18n="member.lead">Your Premium content is ready here after login: guides, books, exchange help, meetings, and saved learning paths in one place.</p>
+          <div class="section-h2" data-i18n-html="member.h2">This is where confusion becomes <em>confidence.</em></div>
+          <p class="section-lead" data-i18n="member.lead">A calmer relationship with money starts here — guided learning, real tools, and a support path in one place.</p>
         </div>
         <div class="member-head-actions">
           <div class="member-status" data-i18n="member.status">Premium member</div>
@@ -14978,8 +15222,8 @@
       </div>
       <div class="member-hero-visual">
         <div class="member-hero-copy">
-          <strong data-i18n="member.heroVisualTitle">A guided place to grow financial confidence.</strong>
-          <p data-i18n="member.heroVisualText">Premium brings the learning path together: practical guides, safer crypto education, exchange setup, book direction, research tools, and support when questions appear.</p>
+          <strong data-i18n="member.heroVisualTitle">Your future becomes clearer every month.</strong>
+          <p data-i18n="member.heroVisualText">Every guide you open, every concept you understand, every calmer decision you make — that's what Premium is for. Not just courses. A calmer financial life.</p>
           <div class="member-hero-pills">
             <span data-i18n="member.heroPill1">Structured learning</span>
             <span data-i18n="member.heroPill2">Practical checklists</span>
@@ -15037,6 +15281,48 @@
         <div class="member-progress-bar-wrap" aria-hidden="true"><div class="member-progress-bar" id="member-progress-bar"></div></div>
         <span id="member-progress-counter" class="member-progress-label">0 of 18 guides opened</span>
       </div>
+
+      <!-- Milestone system -->
+      <div class="member-milestone-section" id="member-milestone-section">
+        <div class="milestone-eyebrow">Financial Clarity Progress</div>
+        <div class="milestone-headline" id="milestone-headline">Track your journey to long-term confidence</div>
+        <div class="milestone-grid">
+          <div class="milestone-item" id="ms-first-guide"><span class="ms-icon">⬜</span> First guide opened</div>
+          <div class="milestone-item" id="ms-five-guides"><span class="ms-icon">⬜</span> 5 guides explored</div>
+          <div class="milestone-item" id="ms-ten-guides"><span class="ms-icon">⬜</span> 10 guides completed</div>
+          <div class="milestone-item" id="ms-projection"><span class="ms-icon">⬜</span> First projection run</div>
+          <div class="milestone-item" id="ms-portfolio"><span class="ms-icon">⬜</span> Portfolio created</div>
+          <div class="milestone-item" id="ms-dca-done"><span class="ms-icon">⬜</span> DCA plan understood</div>
+        </div>
+        <div class="milestone-encouragement" id="milestone-encouragement"></div>
+      </div>
+
+      <!-- Continue where you left off -->
+      <div class="member-cwl-block" id="member-cwl" style="display:none">
+        <div class="cwl-eyebrow" id="cwl-eyebrow">Continue building your future</div>
+        <div class="cwl-body">
+          <div class="cwl-icon" id="cwl-icon">📚</div>
+          <div class="cwl-info">
+            <div class="cwl-title" id="cwl-title">—</div>
+            <div class="cwl-meta" id="cwl-meta">Last opened</div>
+          </div>
+          <button class="cwl-btn" id="cwl-btn">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Portfolio emphasis CTA -->
+      <div class="member-portfolio-cta" id="member-portfolio-cta">
+        <div class="mpctab-left">
+          <div class="mpctab-eyebrow" id="mpctab-eyebrow">Track your future in real numbers</div>
+          <h3 class="mpctab-title" id="mpctab-title">Your portfolio is your clearest window into the future.</h3>
+          <p class="mpctab-text" id="mpctab-text">Add your investments, see their current value, and run a 20-year projection of where you're headed. This is the premium reason to stay.</p>
+        </div>
+        <div class="mpctab-actions">
+          <a href="/portfolio" class="mpctab-btn" id="mpctab-btn">Open My Portfolio →</a>
+          <div class="mpctab-note" id="mpctab-note">Live prices · Projection engine · Built for members</div>
+        </div>
+      </div>
+
       <!-- Hub filter bar -->
       <div class="member-filter-bar" id="member-filter-bar" role="toolbar" aria-label="Filter guides by topic">
         <button class="member-filter-btn active" data-cat="all" onclick="setHubFilter('all')" data-i18n="member.filterAll">All</button>
@@ -15048,23 +15334,40 @@
         <button class="member-filter-btn" data-cat="tools" onclick="setHubFilter('tools')" data-i18n="member.filterTools">🔧 Tools</button>
       </div>
       <div class="member-grid">
-        <div class="member-card">
+
+        <!-- ─── START HERE ─── -->
+        <div class="hub-category-header">
+          <div class="hub-cat-label" id="hubcat-start">Start Here</div>
+          <div class="hub-cat-title" id="hubcat-start-title">The only guide you must read first.</div>
+        </div>
+        <div class="member-card member-card-featured">
+          <div class="member-card-cat-tag cat-tag-start" data-i18n="member.unlocked">Unlocked</div>
           <div class="member-icon">🚀</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.cardWelcomeTitle">Premium Welcome — Start Here</h3>
-          <p data-i18n="member.cardWelcomeText">Your first stop. Understand what's included in Premium, how to navigate the hub, and which guide to open first based on your goals and experience.</p>
-          <ul>
-            <li data-i18n="member.cardWelcomeItem1">What's included in your Premium access</li>
-            <li data-i18n="member.cardWelcomeItem2">How to use the hub and navigate guides</li>
-            <li data-i18n="member.cardWelcomeItem3">Where to start based on your experience level</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('welcome')" data-i18n="member.openFileBtn">Open file</button>
+          <div class="member-card-featured-body">
+            <div class="member-card-badges"><span class="member-time-badge">⏱ 5 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
+            <h3 data-i18n="member.cardWelcomeTitle">Premium Welcome — Start Here</h3>
+            <p data-i18n="member.cardWelcomeText">Understand what's inside Premium, which guide to open first based on your goals, and how to get the most out of your membership from day one.</p>
+            <ul>
+              <li data-i18n="member.cardWelcomeItem1">What's included in your Premium access</li>
+              <li data-i18n="member.cardWelcomeItem2">How to use the hub and navigate guides</li>
+              <li data-i18n="member.cardWelcomeItem3">Where to start based on your experience level</li>
+            </ul>
+            <button class="member-open-file" onclick="openMemberGuide('welcome')" data-i18n="member.openFileBtn">Open file</button>
+          </div>
+        </div>
+
+        <!-- ─── BEGINNER FOUNDATIONS ─── -->
+        <div class="hub-category-header">
+          <div class="hub-cat-label" id="hubcat-foundations">Beginner Foundations</div>
+          <div class="hub-cat-title" id="hubcat-foundations-title">Understand what you're investing in — and why.</div>
+          <div class="hub-cat-sub" id="hubcat-foundations-sub">Start with any of these. Each one builds a layer of clarity you'll keep for life.</div>
         </div>
         <div class="member-card">
           <div class="member-icon">📚</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 20 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
           <h3 data-i18n="member.card1Title">Investment paths</h3>
-          <p data-i18n="member.card1Text">Step-by-step explanations for each investment path, from beginner basics to practical buying decisions.</p>
+          <p data-i18n="member.card1Text">Choose your first investment type with confidence — not confusion. ETFs, index funds, bonds, stocks, gold, REITs, and crypto explained side by side.</p>
           <ul>
             <li data-i18n="member.card1Item1">Index funds, ETFs, bonds, stocks, REITs, gold, and crypto</li>
             <li data-i18n="member.card1Item2">How each investment works and when it may fit</li>
@@ -15075,8 +15378,9 @@
         <div class="member-card">
           <div class="member-icon">📈</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 15 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
           <h3 data-i18n="member.card4Title">DCA method</h3>
-          <p data-i18n="member.card4Text">A clear learning path for dollar-cost averaging, contribution habits, timing worries, and long-term consistency.</p>
+          <p data-i18n="member.card4Text">Build consistency without stress. Dollar-cost averaging removes the pressure of "perfect timing" and turns investing into a sustainable habit.</p>
           <ul>
             <li data-i18n="member.card4Item1">How recurring contributions work</li>
             <li data-i18n="member.card4Item2">Monthly habit planning</li>
@@ -15085,10 +15389,57 @@
           <button class="member-open-file" onclick="openMemberGuide('dca')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
+          <div class="member-icon">📉</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 12 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
+          <h3 data-i18n="member.card15Title">Inflation &amp; Purchasing Power</h3>
+          <p data-i18n="member.card15Text">Understand the silent cost of doing nothing — and why investing is the only real answer to inflation across AU, US, and Brazil.</p>
+          <ul>
+            <li data-i18n="member.card15Item1">How inflation erodes cash across AU, US &amp; Brazil</li>
+            <li data-i18n="member.card15Item2">Asset-by-asset inflation response table</li>
+            <li data-i18n="member.card15Item3">The real cost of waiting — modelled over 20 years</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('inflation')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🧠</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 10 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
+          <h3 data-i18n="member.card18Title">Don't panic sell</h3>
+          <p data-i18n="member.card18Text">Keep your long-term results intact. Learn to recognise fear disguised as logic — and what to do instead when markets fall.</p>
+          <ul>
+            <li data-i18n="member.card18Item1">Five "reasons to sell" that are actually fear</li>
+            <li data-i18n="member.card18Item2">A 5-question decision framework before selling anything</li>
+            <li data-i18n="member.card18Item3">Every major crash recovery in history — the full table</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('panicsell')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🔤</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 10 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
+          <h3 data-i18n="member.card13Title">Glossary of key terms</h3>
+          <p data-i18n="member.card13Text">Stop Googling investing words. A plain-English reference for every term beginners keep encountering — from ETFs to franking credits.</p>
+          <ul>
+            <li data-i18n="member.card13Item1">ETF, index fund, brokerage, liquidity, volatility, and more</li>
+            <li data-i18n="member.card13Item2">Australian terms like franking credits, CGT, and super</li>
+            <li data-i18n="member.card13Item3">Crypto terms without hype or confusion</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('glossary')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+
+        <!-- ─── BUILD YOUR SYSTEM ─── -->
+        <div class="hub-category-header">
+          <div class="hub-cat-label" id="hubcat-build">Build Your System</div>
+          <div class="hub-cat-title" id="hubcat-build-title">Open your first account safely. Make your first trade calmly.</div>
+          <div class="hub-cat-sub" id="hubcat-build-sub">The practical steps that turn understanding into action.</div>
+        </div>
+        <div class="member-card">
           <div class="member-icon">🏦</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 25 min</span><span class="member-diff-badge diff-foundation">🔵 Foundation</span></div>
           <h3 data-i18n="member.card3Title">Exchange setup help</h3>
-          <p data-i18n="member.card3Text">Help choosing an exchange, opening an account when needed, and understanding platform tools and settings.</p>
+          <p data-i18n="member.card3Text">Open your first account safely — without second-guessing which platform, missing a setting, or making a beginner mistake that costs money.</p>
           <ul>
             <li data-i18n="member.card3Item1">Choose an exchange or platform for your country</li>
             <li data-i18n="member.card3Item2">Account opening checklist</li>
@@ -15099,8 +15450,9 @@
         <div class="member-card">
           <div class="member-icon">✅</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 10 min</span><span class="member-diff-badge diff-foundation">🔵 Foundation</span></div>
           <h3 data-i18n="member.card14Title">Your first trade walkthrough</h3>
-          <p data-i18n="member.card14Text">A practical walkthrough for the moment beginners freeze: funding the account, order types, fees, and confirmations.</p>
+          <p data-i18n="member.card14Text">Stop freezing at the checkout. A calm step-by-step walkthrough for your first real trade — from funding to confirmation.</p>
           <ul>
             <li data-i18n="member.card14Item1">Market order vs limit order in plain English</li>
             <li data-i18n="member.card14Item2">What to check before confirming a trade</li>
@@ -15109,34 +15461,44 @@
           <button class="member-open-file" onclick="openMemberGuide('firsttrade')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">📉</div>
+          <div class="member-icon">🌏</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card15Title">Inflation &amp; Purchasing Power</h3>
-          <p data-i18n="member.card15Text">Why your money loses value every year — and what AU, US, and Brazilian investors actually do about it.</p>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 20 min</span><span class="member-diff-badge diff-foundation">🔵 Foundation</span></div>
+          <h3 data-i18n="member.card12Title">Platform comparison: AU, US &amp; Brazil</h3>
+          <p data-i18n="member.card12Text">Compare every major platform side by side — fees, assets, ownership model, and which one fits beginners in your country.</p>
           <ul>
-            <li data-i18n="member.card15Item1">How inflation erodes cash across AU, US &amp; Brazil</li>
-            <li data-i18n="member.card15Item2">Asset-by-asset inflation response table</li>
-            <li data-i18n="member.card15Item3">The real cost of waiting — modelled over 20 years</li>
+            <li data-i18n="member.card12Item1">Australian: CommSec, Pearler, SelfWealth, Stake, and more</li>
+            <li data-i18n="member.card12Item2">US: Fidelity, Schwab, Vanguard, Robinhood, IBKR</li>
+            <li data-i18n="member.card12Item3">Brazil: XP, NuInvest, Rico, Clear, BTG Digital</li>
           </ul>
-          <button class="member-open-file" onclick="openMemberGuide('inflation')" data-i18n="member.openFileBtn">Open file</button>
+          <button class="member-open-file" onclick="openMemberGuide('platforms')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">📊</div>
+          <div class="member-icon">📖</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card8Title">Chart reading and research tools</h3>
-          <p data-i18n="member.card8Text">Guidance for reading price charts across stocks, crypto, indexes, and ETFs with a beginner-safe process.</p>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 8 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
+          <h3 data-i18n="member.card5Title">Books and reading path</h3>
+          <p data-i18n="member.card5Text">Read the right books in the right order. Summaries and key takeaways so you know exactly what each book gives you before starting it.</p>
           <ul>
-            <li data-i18n="member.card8Item1">Chart basics, watchlists, alerts, and indicators</li>
-            <li data-i18n="member.card8Item2">Relevant channels and content to watch</li>
-            <li data-i18n="member.card8Item3">Macro books and study options, including The Black Swan</li>
+            <li data-i18n="member.card5Item1">Beginner, intermediate, and advanced reading order</li>
+            <li data-i18n="member.card5Item2">Book summaries and key lessons</li>
+            <li data-i18n="member.card5Item3">What to read next based on your goals</li>
           </ul>
-          <button class="member-open-file" onclick="openMemberGuide('tools')" data-i18n="member.openFileBtn">Open file</button>
+          <button class="member-open-file" onclick="openMemberBooks()" data-i18n="member.booksListBtn">Open book list</button>
+        </div>
+
+        <!-- ─── UNDERSTAND THE BIGGER PICTURE ─── -->
+        <div class="hub-category-header">
+          <div class="hub-cat-label" id="hubcat-advanced">Understand the Bigger Picture</div>
+          <div class="hub-cat-title" id="hubcat-advanced-title">Go deeper. Build conviction that survives a bear market.</div>
+          <div class="hub-cat-sub" id="hubcat-advanced-sub">These guides reward patience — read them once markets become familiar.</div>
         </div>
         <div class="member-card">
           <div class="member-icon">₿</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 30 min</span><span class="member-diff-badge diff-advanced">🟡 Intermediate</span></div>
           <h3 data-i18n="member.card7Title">Bitcoin research section</h3>
-          <p data-i18n="member.card7Text">A structured Bitcoin area covering the white paper, halving cycles, on-chain metrics, and why Bitcoin was created.</p>
+          <p data-i18n="member.card7Text">Understand Bitcoin without hype — the white paper, halving cycles, on-chain signals, and whether it belongs in a beginner's portfolio at all.</p>
           <ul>
             <li data-i18n="member.card7Item1">Bitcoin white paper explained in plain English</li>
             <li data-i18n="member.card7Item2">Halving, supply, fees, and security basics</li>
@@ -15147,8 +15509,9 @@
         <div class="member-card">
           <div class="member-icon">₿</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 25 min</span><span class="member-diff-badge diff-advanced">🟡 Intermediate</span></div>
           <h3 data-i18n="member.card2Title">Crypto and self-custody</h3>
-          <p data-i18n="member.card2Text">Advanced crypto learning, wallet safety, self-custody principles, and common beginner mistakes to avoid.</p>
+          <p data-i18n="member.card2Text">Own your crypto safely without relying on an exchange. Wallets, cold storage, private keys, and the security checklist every holder needs.</p>
           <ul>
             <li data-i18n="member.card2Item1">Bitcoin, Ethereum, exchanges, wallets, and cold storage</li>
             <li data-i18n="member.card2Item2">Self-custody basics explained simply</li>
@@ -15157,34 +15520,11 @@
           <button class="member-open-file" onclick="openMemberGuide('crypto')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">🧭</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card9Title">Cycle lessons and member updates</h3>
-          <p data-i18n="member.card9Text">Market-cycle psychology, bull and bear market behaviour, plus new products, studies, and insights added for members over time.</p>
-          <ul>
-            <li data-i18n="member.card9Item1">Mistakes to avoid in bull and bear markets</li>
-            <li data-i18n="member.card9Item2">How to stay calm when narratives change</li>
-            <li data-i18n="member.card9Item3">Ongoing Premium updates as the project grows</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('cycles')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🧠</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card18Title">Don't panic sell</h3>
-          <p data-i18n="member.card18Text">The emotional investor framework — why panic selling destroys long-term results, how to recognise fear in disguise, and what to do instead during a market crash.</p>
-          <ul>
-            <li data-i18n="member.card18Item1">Five "reasons to sell" that are actually fear</li>
-            <li data-i18n="member.card18Item2">A 5-question decision framework before selling anything</li>
-            <li data-i18n="member.card18Item3">Every major crash recovery in history — the full table</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('panicsell')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
           <div class="member-icon">📡</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 12 min</span><span class="member-diff-badge diff-foundation">🔵 Foundation</span></div>
           <h3 data-i18n="member.cardSentimentTitle">Market Sentiment: Fear &amp; Greed</h3>
-          <p data-i18n="member.cardSentimentText">Two live indices — US stocks and crypto — showing whether the market is in fear or greed right now. Includes full educational explanation of how each index is calculated and how to use it.</p>
+          <p data-i18n="member.cardSentimentText">Read the market's emotional state. Live US and crypto indices — and a full education on how each signal is calculated and when to use it.</p>
           <ul>
             <li data-i18n="member.cardSentimentItem1">Live gauges: CNN Fear &amp; Greed (US) and Alternative.me (Crypto)</li>
             <li data-i18n="member.cardSentimentItem2">How all 12 signals are calculated across both indices</li>
@@ -15193,34 +15533,37 @@
           <button class="member-open-file" onclick="openMemberGuide('sentiment')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">📖</div>
+          <div class="member-icon">📊</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card5Title">Books and reading path</h3>
-          <p data-i18n="member.card5Text">Curated books, summaries, key takeaways, and reading order from beginner to advanced.</p>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 18 min</span><span class="member-diff-badge diff-advanced">🟡 Intermediate</span></div>
+          <h3 data-i18n="member.card8Title">Chart reading and research tools</h3>
+          <p data-i18n="member.card8Text">Read price charts without becoming a day trader. The beginner-safe process for understanding what charts actually tell you — and what they don't.</p>
           <ul>
-            <li data-i18n="member.card5Item1">Beginner, intermediate, and advanced reading order</li>
-            <li data-i18n="member.card5Item2">Book summaries and key lessons</li>
-            <li data-i18n="member.card5Item3">What to read next based on your goals</li>
+            <li data-i18n="member.card8Item1">Chart basics, watchlists, alerts, and indicators</li>
+            <li data-i18n="member.card8Item2">Relevant channels and content to watch</li>
+            <li data-i18n="member.card8Item3">Macro books and study options, including The Black Swan</li>
           </ul>
-          <button class="member-open-file" onclick="openMemberBooks()" data-i18n="member.booksListBtn">Open book list</button>
+          <button class="member-open-file" onclick="openMemberGuide('tools')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
-          <div class="member-icon">🔤</div>
+          <div class="member-icon">🧭</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card13Title">Glossary of key terms</h3>
-          <p data-i18n="member.card13Text">A quick plain-English reference for the investing words beginners keep seeing in guides, books, and broker apps.</p>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 15 min</span><span class="member-diff-badge diff-advanced">🟡 Intermediate</span></div>
+          <h3 data-i18n="member.card9Title">Cycle lessons and member updates</h3>
+          <p data-i18n="member.card9Text">Stay calm when narratives change. Market-cycle psychology for bull and bear markets — plus ongoing updates added for members as the project grows.</p>
           <ul>
-            <li data-i18n="member.card13Item1">ETF, index fund, brokerage, liquidity, volatility, and more</li>
-            <li data-i18n="member.card13Item2">Australian terms like franking credits, CGT, and super</li>
-            <li data-i18n="member.card13Item3">Crypto terms without hype or confusion</li>
+            <li data-i18n="member.card9Item1">Mistakes to avoid in bull and bear markets</li>
+            <li data-i18n="member.card9Item2">How to stay calm when narratives change</li>
+            <li data-i18n="member.card9Item3">Ongoing Premium updates as the project grows</li>
           </ul>
-          <button class="member-open-file" onclick="openMemberGuide('glossary')" data-i18n="member.openFileBtn">Open file</button>
+          <button class="member-open-file" onclick="openMemberGuide('cycles')" data-i18n="member.openFileBtn">Open file</button>
         </div>
         <div class="member-card">
           <div class="member-icon">🗂️</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 15 min</span><span class="member-diff-badge diff-foundation">🔵 Foundation</span></div>
           <h3 data-i18n="member.cardLibraryTitle">Research &amp; Tools Library</h3>
-          <p data-i18n="member.cardLibraryText">10 categories of curated research tools, reference sources, and educational material. From ETF screeners and sentiment gauges to platform comparisons, tax basics, and sources to avoid.</p>
+          <p data-i18n="member.cardLibraryText">Every tool a self-directed investor needs — curated, explained, and organised so you don't waste time on the wrong sources.</p>
           <ul>
             <li data-i18n="member.cardLibraryItem1">ETF tools, crypto research, chart platforms, sentiment gauges</li>
             <li data-i18n="member.cardLibraryItem2">Platform comparison: AU, US &amp; Brazil</li>
@@ -15228,35 +15571,18 @@
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('references')" data-i18n="member.openFileBtn">Open file</button>
         </div>
-        <div class="member-card">
-          <div class="member-icon">💬</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card6Title">Beginner support Zoom call</h3>
-          <p data-i18n="member.card6Text">One 60-minute Zoom call is included with your Premium access, with extra online calls available separately for AUD $39.90 if you want more support.</p>
-          <ul>
-            <li data-i18n="member.card6Item1">Use the included call for questions or platform setup</li>
-            <li data-i18n="member.card6Item2">Bring questions from the simulator or exchange setup</li>
-            <li data-i18n="member.card6Item3">Extra 60-minute Zoom calls available separately for AUD $39.90</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('zoom')" data-i18n="member.openFileBtn">Open file</button>
-        </div>
-        <div class="member-card">
-          <div class="member-icon">🌏</div>
-          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
-          <h3 data-i18n="member.card12Title">Platform comparison: AU, US &amp; Brazil</h3>
-          <p data-i18n="member.card12Text">Compare investing platforms across Australia, the United States, and Brazil — by fees, assets, ownership model, and beginner fit.</p>
-          <ul>
-            <li data-i18n="member.card12Item1">Australian: CommSec, Pearler, SelfWealth, Stake, and more</li>
-            <li data-i18n="member.card12Item2">US: Fidelity, Schwab, Vanguard, Robinhood, IBKR</li>
-            <li data-i18n="member.card12Item3">Brazil: XP, NuInvest, Rico, Clear, BTG Digital</li>
-          </ul>
-          <button class="member-open-file" onclick="openMemberGuide('platforms')" data-i18n="member.openFileBtn">Open file</button>
+
+        <!-- ─── AUSTRALIAN SPECIFICS ─── -->
+        <div class="hub-category-header">
+          <div class="hub-cat-label" id="hubcat-au">Australian Specifics</div>
+          <div class="hub-cat-title" id="hubcat-au-title">Tax, super, and the details that matter in Australia.</div>
         </div>
         <div class="member-card">
           <div class="member-icon">🧾</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 15 min</span><span class="member-diff-badge diff-foundation">🔵 Foundation</span></div>
           <h3 data-i18n="member.card10Title">Australian tax and CGT basics</h3>
-          <p data-i18n="member.card10Text">Plain-English education about CGT, records, ETF distributions, crypto disposals, and questions to ask a tax professional.</p>
+          <p data-i18n="member.card10Text">Avoid common CGT mistakes before tax time. Plain-English education on records, ETF distributions, crypto disposals — without needing to be an accountant.</p>
           <ul>
             <li data-i18n="member.card10Item1">Capital gains and the 12-month discount concept</li>
             <li data-i18n="member.card10Item2">Records to keep before tax time</li>
@@ -15267,8 +15593,9 @@
         <div class="member-card">
           <div class="member-icon">🛡️</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 12 min</span><span class="member-diff-badge diff-foundation">🔵 Foundation</span></div>
           <h3 data-i18n="member.card11Title">Superannuation basics</h3>
-          <p data-i18n="member.card11Text">Understand why super is already investing, what to compare, and which beginner questions matter most.</p>
+          <p data-i18n="member.card11Text">Your super is already investing — but is it working for you? Understand what to compare and which questions actually matter before making changes.</p>
           <ul>
             <li data-i18n="member.card11Item1">Fees, investment options, performance, and insurance</li>
             <li data-i18n="member.card11Item2">MySuper and voluntary contribution basics</li>
@@ -15276,7 +15603,55 @@
           </ul>
           <button class="member-open-file" onclick="openMemberGuide('super')" data-i18n="member.openFileBtn">Open file</button>
         </div>
+
+        <!-- ─── SUPPORT ─── -->
+        <div class="hub-category-header">
+          <div class="hub-cat-label" id="hubcat-support">Support &amp; Extras</div>
+          <div class="hub-cat-title" id="hubcat-support-title">Your included Zoom call, and everything you need around it.</div>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">💬</div>
+          <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
+          <div class="member-card-badges"><span class="member-time-badge">⏱ 5 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
+          <h3 data-i18n="member.card6Title">Beginner support Zoom call</h3>
+          <p data-i18n="member.card6Text">Book your included 60-minute call to ask anything — platform setup, strategy questions, or whatever you've been unsure about since joining.</p>
+          <ul>
+            <li data-i18n="member.card6Item1">Use the included call for questions or platform setup</li>
+            <li data-i18n="member.card6Item2">Bring questions from the simulator or exchange setup</li>
+            <li data-i18n="member.card6Item3">Extra 60-minute Zoom calls available separately for AUD $39.90</li>
+          </ul>
+          <button class="member-open-file" onclick="openMemberGuide('zoom')" data-i18n="member.openFileBtn">Open file</button>
+        </div>
+
       </div>
+
+      <!-- Why members stay -->
+      <div class="member-why-stay" id="member-why-stay">
+        <div class="mws-eyebrow" id="mws-eyebrow">Why members keep coming back</div>
+        <div class="mws-grid">
+          <div class="mws-item">
+            <span class="mws-icon">🧘</span>
+            <strong id="mws-t1">Clarity</strong>
+            <p id="mws-s1">Decisions stop feeling like a gamble. You know what you own and why.</p>
+          </div>
+          <div class="mws-item">
+            <span class="mws-icon">📅</span>
+            <strong id="mws-t2">Consistency</strong>
+            <p id="mws-s2">Monthly check-ins and portfolio tracking build the habits that actually compound.</p>
+          </div>
+          <div class="mws-item">
+            <span class="mws-icon">🔭</span>
+            <strong id="mws-t3">Future vision</strong>
+            <p id="mws-s3">Your 20-year projection reminds you why the small steps matter right now.</p>
+          </div>
+          <div class="mws-item">
+            <span class="mws-icon">🛡️</span>
+            <strong id="mws-t4">Confidence</strong>
+            <p id="mws-s4">You stop second-guessing every decision and start building with purpose.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="member-next" data-i18n="member.next">Premium is designed to keep every next step clear: learn the idea, understand the tools, ask questions, and build confidence before taking action.</div>
     </div>
   </section>
@@ -16077,8 +16452,8 @@
         },
         member: {
           eyebrow: 'Premium member area',
-          h2: 'Your Plainvest <em>learning hub.</em>',
-          lead: 'After login, members come here to access every Premium benefit in one clean place: guides, book paths, DCA learning, crypto safety, support, and practical help when questions appear.',
+          h2: 'This is where confusion becomes <em>confidence.</em>',
+          lead: 'A calmer relationship with money starts here — guided learning, real tools, and a support path in one place.',
           status: 'Premium member',
           welcomeTitle: 'Everything included in your Premium membership',
           welcomeText: 'Use this area as the member home after login. It brings the Premium promise into one place: learning, practical steps, exchange support, books, crypto safety, and your included Zoom call.',
@@ -16086,8 +16461,8 @@
           check2: 'One 60-minute Zoom call included with access',
           check3: 'Exchange setup support',
           check4: 'Books, DCA, crypto, and saved learning paths',
-          heroVisualTitle: 'A guided place to grow financial confidence.',
-          heroVisualText: 'Premium brings the learning path together: practical guides, safer crypto education, exchange setup, book direction, research tools, and support when questions appear.',
+          heroVisualTitle: 'Your future becomes clearer every month.',
+          heroVisualText: 'Every guide you open, every concept you understand, every calmer decision you make — that\'s what Premium is for. Not just courses. A calmer financial life.',
           heroPill1: 'Structured learning',
           heroPill2: 'Practical checklists',
           heroPill3: 'Support call',
@@ -16830,8 +17205,8 @@
         },
         member: {
           eyebrow: 'Área Premium',
-          h2: 'Seu hub de <em>aprendizado Plainvest.</em>',
-          lead: 'Depois do login, membros entram aqui para acessar todos os benefícios Premium em um só lugar: guias, trilhas de livros, método DCA, segurança em cripto, chamada incluída e ajuda prática quando surgirem dúvidas.',
+          h2: 'É aqui que a confusão vira <em>confiança.</em>',
+          lead: 'Uma relação mais calma com o dinheiro começa aqui — aprendizado guiado, ferramentas reais e uma trilha de suporte em um só lugar.',
           status: 'Membro Premium',
           welcomeTitle: 'Tudo incluído no seu acesso Premium',
           welcomeText: 'Use esta área como a página inicial do membro após o login. Ela reúne a promessa Premium em um só lugar: aprendizado, próximos passos, suporte com exchange, livros, segurança em cripto e sua chamada incluída no Zoom.',
@@ -16839,8 +17214,8 @@
           check2: 'Uma chamada no Zoom de 60 minutos incluída no acesso',
           check3: 'Suporte para configurar exchange',
           check4: 'Livros, DCA, cripto e trilhas salvas',
-          heroVisualTitle: 'Um lugar guiado para construir confiança financeira.',
-          heroVisualText: 'O Premium reúne a trilha de aprendizado: guias práticos, educação cripto mais segura, configuração de exchange, direção de livros, ferramentas de pesquisa e suporte quando surgirem dúvidas.',
+          heroVisualTitle: 'Seu futuro fica mais claro a cada mês.',
+          heroVisualText: 'Cada guia que você abre, cada conceito que entende, cada decisão mais calma que toma — é para isso que o Premium existe. Não é apenas um curso. É uma vida financeira mais tranquila.',
           heroPill1: 'Aprendizado estruturado',
           heroPill2: 'Checklists práticos',
           heroPill3: 'Chamada de suporte',
@@ -17595,6 +17970,42 @@
           setText('fls-h5', 'Family flexibility');     setText('fls-s5', 'Money out of family decisions');
           setText('fls-h6', 'Retire on your terms');   setText('fls-s6', 'Stop when you decide, not when you must');
         }
+        // Hub category headers
+        if (lang === 'pt') {
+          setText('hubcat-start', 'Comece Aqui'); setText('hubcat-start-title', 'O único guia que você deve ler primeiro.');
+          setText('hubcat-foundations', 'Fundamentos para Iniciantes'); setText('hubcat-foundations-title', 'Entenda no que está investindo — e por quê.'); setText('hubcat-foundations-sub', 'Comece por qualquer um. Cada guia constrói uma camada de clareza que você vai levar para sempre.');
+          setText('hubcat-build', 'Construa Seu Sistema'); setText('hubcat-build-title', 'Abra sua primeira conta com segurança. Faça sua primeira operação com calma.'); setText('hubcat-build-sub', 'Os passos práticos que transformam entendimento em ação.');
+          setText('hubcat-advanced', 'Entenda o Quadro Geral'); setText('hubcat-advanced-title', 'Aprofunde. Construa convicção que sobrevive a um mercado de baixa.'); setText('hubcat-advanced-sub', 'Estes guias recompensam a paciência — leia quando os mercados estiverem mais familiares.');
+          setText('hubcat-au', 'Especificidades Australianas'); setText('hubcat-au-title', 'Imposto, superannuation e os detalhes que importam na Austrália.');
+          setText('hubcat-support', 'Suporte e Extras'); setText('hubcat-support-title', 'Sua chamada incluída no Zoom e tudo que você precisa em torno dela.');
+          // Why members stay
+          setText('mws-eyebrow', 'Por que os membros continuam voltando');
+          setText('mws-t1', 'Clareza'); setText('mws-s1', 'As decisões param de parecer um jogo de azar. Você sabe o que tem e por quê.');
+          setText('mws-t2', 'Consistência'); setText('mws-s2', 'Check-ins mensais e acompanhamento de portfólio constroem hábitos que realmente se multiplicam.');
+          setText('mws-t3', 'Visão de futuro'); setText('mws-s3', 'Sua projeção de 20 anos lembra por que os pequenos passos importam agora.');
+          setText('mws-t4', 'Confiança'); setText('mws-s4', 'Você para de questionar cada decisão e começa a construir com propósito.');
+          // Milestone
+          setText('milestone-headline', 'Acompanhe sua jornada rumo à confiança de longo prazo');
+        } else {
+          setText('hubcat-start', 'Start Here'); setText('hubcat-start-title', 'The only guide you must read first.');
+          setText('hubcat-foundations', 'Beginner Foundations'); setText('hubcat-foundations-title', 'Understand what you\'re investing in — and why.'); setText('hubcat-foundations-sub', 'Start with any of these. Each one builds a layer of clarity you\'ll keep for life.');
+          setText('hubcat-build', 'Build Your System'); setText('hubcat-build-title', 'Open your first account safely. Make your first trade calmly.'); setText('hubcat-build-sub', 'The practical steps that turn understanding into action.');
+          setText('hubcat-advanced', 'Understand the Bigger Picture'); setText('hubcat-advanced-title', 'Go deeper. Build conviction that survives a bear market.'); setText('hubcat-advanced-sub', 'These guides reward patience — read them once markets become familiar.');
+          setText('hubcat-au', 'Australian Specifics'); setText('hubcat-au-title', 'Tax, super, and the details that matter in Australia.');
+          setText('hubcat-support', 'Support & Extras'); setText('hubcat-support-title', 'Your included Zoom call, and everything you need around it.');
+          // Why members stay
+          setText('mws-eyebrow', 'Why members keep coming back');
+          setText('mws-t1', 'Clarity'); setText('mws-s1', 'Decisions stop feeling like a gamble. You know what you own and why.');
+          setText('mws-t2', 'Consistency'); setText('mws-s2', 'Monthly check-ins and portfolio tracking build the habits that actually compound.');
+          setText('mws-t3', 'Future vision'); setText('mws-s3', 'Your 20-year projection reminds you why the small steps matter right now.');
+          setText('mws-t4', 'Confidence'); setText('mws-s4', 'You stop second-guessing every decision and start building with purpose.');
+          // Milestone
+          setText('milestone-headline', 'Track your journey to long-term confidence');
+        }
+        try { updateMilestones(); } catch(e) {}
+        try { updateContinueBlock(); } catch(e) {}
+        try { updatePortfolioCTA(); } catch(e) {}
+
         updateInflationControlCopy();
         if (typeof renderInflationChart === 'function') { renderInflationChart(); updateInflationStats(); }
       }
@@ -19308,6 +19719,9 @@
         : read.length + ' of ' + total + ' guides opened';
       if (bar) bar.style.width = (total > 0 ? Math.round((read.length / total) * 100) : 0) + '%';
       if (typeof updateHubStats === 'function') updateHubStats();
+      try { updateMilestones(); } catch(e) {}
+      try { updateContinueBlock(); } catch(e) {}
+      try { updatePortfolioCTA(); } catch(e) {}
     }
 
     function getMemberGuideFiles() {
@@ -19412,9 +19826,82 @@
     function openMemberGuide(key) {
       currentMemberGuideKey = key || 'welcome';
       markGuideRead(currentMemberGuideKey);
+      // persist last guide for "continue where you left off"
+      try { if (key && key !== 'welcome') localStorage.setItem('pv_last_guide', key); } catch (e) {}
       var files = getMemberGuideFiles();
       var data = files[currentMemberGuideKey] || files.welcome;
       window.location.href = data.file;
+    }
+
+    function updateMilestones() {
+      try {
+        var read = getReadGuides();
+        var isPt = currentLang === 'pt';
+        var count = read.length;
+        function setMs(id, done, labelEn, labelPt) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.classList.toggle('done', done);
+          el.innerHTML = '<span class="ms-icon">' + (done ? '✅' : '⬜') + '</span> ' + (isPt ? labelPt : labelEn);
+        }
+        setMs('ms-first-guide',  count >= 1,  'First guide opened',     'Primeiro guia aberto');
+        setMs('ms-five-guides',  count >= 5,  '5 guides explored',      '5 guias explorados');
+        setMs('ms-ten-guides',   count >= 10, '10 guides completed',    '10 guias concluídos');
+        setMs('ms-projection',   (function(){ try { return !!localStorage.getItem('pv_sim_run'); } catch(e){ return false; } }()), 'First projection run', 'Primeira projeção feita');
+        setMs('ms-portfolio',    (function(){ try { return !!localStorage.getItem('pv_portfolio_added'); } catch(e){ return false; } }()), 'Portfolio created', 'Portfólio criado');
+        setMs('ms-dca-done',     read.indexOf('dca') >= 0, 'DCA plan understood', 'Método DCA compreendido');
+        var enc = document.getElementById('milestone-encouragement');
+        if (enc) {
+          var msg = '';
+          if (count === 0) msg = isPt ? 'Abra o primeiro guia para começar.' : 'Open your first guide to get started.';
+          else if (count < 3)  msg = isPt ? 'Você já está à frente da maioria dos iniciantes.' : "You're already ahead of most beginners.";
+          else if (count < 6)  msg = isPt ? 'Progresso real. Continue assim.' : 'Real progress. Keep going.';
+          else if (count < 10) msg = isPt ? 'Você está construindo uma base sólida.' : "You're building a solid foundation.";
+          else msg = isPt ? 'Clareza financeira sólida — continue.' : 'Solid financial clarity — keep it up.';
+          enc.textContent = msg;
+        }
+      } catch(e) {}
+    }
+
+    function updateContinueBlock() {
+      try {
+        var lastKey = localStorage.getItem('pv_last_guide');
+        if (!lastKey) return;
+        var files = getMemberGuideFiles();
+        var data = files[lastKey];
+        if (!data) return;
+        var isPt = currentLang === 'pt';
+        var icons = { guides:'📚', dca:'📈', exchange:'🏦', crypto:'₿', bitcoin:'₿', tools:'📊', cycles:'🧭', panicsell:'🧠', sentiment:'📡', books:'📖', glossary:'🔤', references:'🗂️', zoom:'💬', platforms:'🌏', tax:'🧾', super:'🛡️', firsttrade:'✅', inflation:'📉' };
+        var el = document.getElementById('member-cwl');
+        var iconEl = document.getElementById('cwl-icon');
+        var titleEl = document.getElementById('cwl-title');
+        var metaEl = document.getElementById('cwl-meta');
+        var btnEl = document.getElementById('cwl-btn');
+        var eyebrowEl = document.getElementById('cwl-eyebrow');
+        if (!el || !titleEl || !btnEl) return;
+        if (iconEl) iconEl.textContent = icons[lastKey] || '📚';
+        if (titleEl) titleEl.textContent = data.title || lastKey;
+        if (metaEl) metaEl.textContent = isPt ? 'Último guia aberto' : 'Last opened guide';
+        if (eyebrowEl) eyebrowEl.textContent = isPt ? 'Continue construindo seu futuro' : 'Continue building your future';
+        if (btnEl) { btnEl.textContent = isPt ? 'Continuar →' : 'Continue →'; btnEl.onclick = function(){ openMemberGuide(lastKey); }; }
+        el.style.display = '';
+      } catch(e) {}
+    }
+
+    function updatePortfolioCTA() {
+      try {
+        var isPt = currentLang === 'pt';
+        var ey = document.getElementById('mpctab-eyebrow');
+        var ti = document.getElementById('mpctab-title');
+        var tx = document.getElementById('mpctab-text');
+        var bt = document.getElementById('mpctab-btn');
+        var no = document.getElementById('mpctab-note');
+        if (ey) ey.textContent = isPt ? 'Acompanhe seu futuro em números reais' : 'Track your future in real numbers';
+        if (ti) ti.textContent = isPt ? 'Seu portfólio é sua janela mais clara para o futuro.' : 'Your portfolio is your clearest window into the future.';
+        if (tx) tx.textContent = isPt ? 'Adicione seus investimentos, veja o valor atual e rode uma projeção de 20 anos. Esse é o motivo premium para continuar.' : 'Add your investments, see their current value, and run a 20-year projection. This is the premium reason to stay.';
+        if (bt) bt.textContent = isPt ? 'Abrir Meu Portfólio →' : 'Open My Portfolio →';
+        if (no) no.textContent = isPt ? 'Preços ao vivo · Motor de projeção · Para membros' : 'Live prices · Projection engine · Built for members';
+      } catch(e) {}
     }
 
     function openMemberBooks() {
