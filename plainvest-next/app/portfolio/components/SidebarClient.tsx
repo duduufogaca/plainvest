@@ -18,40 +18,39 @@ type Props = {
   profileActive?: boolean;
 };
 
+const NavIcon = ({ d, viewBox = '0 0 24 24' }: { d: string; viewBox?: string }) => (
+  <svg width="15" height="15" viewBox={viewBox} fill="none" stroke="currentColor"
+    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d={d}/>
+  </svg>
+);
+
 export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, profileLabel, logoutLabel, userName, profileActive }: Props) {
   const [collapsed, setCollapsed] = useState(false);
-  const [showCurrencies, setShowCurrencies] = useState(true);
-  const [showLanguages, setShowLanguages] = useState(true);
+  const [showCurrencies, setShowCurrencies] = useState(false);
+  const [showLanguages, setShowLanguages] = useState(false);
   const isEN = lang !== 'pt';
   const initial = userName ? userName[0].toUpperCase() : '?';
+  const isPortfolioActive = !portfolioHref;
 
   return (
-    <aside className={`portfolio-sidebar${collapsed ? ' sidebar-collapsed' : ''}`}>
+    <aside className={`portfolio-sidebar sb-v2${collapsed ? ' sidebar-collapsed' : ''}`}>
 
-      {/* Welcome / brand row */}
-      <div className="sidebar-brand-row">
+      {/* ── Brand ── */}
+      <div className="sb-brand">
         {collapsed ? (
-          <a href={backHref} className="sidebar-avatar-btn" title={userName}>
-            {initial}
-          </a>
+          <a href={backHref} className="sb-brand-icon" title="Plainvest">P</a>
         ) : (
-          <div className="sidebar-welcome-block">
+          <a href={backHref} className="sb-brand-logo-link">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <a href={backHref} className="sidebar-logo-link">
-              <img
-                src="/assets/LOGO%20TRANSPARENTE%20BACK.png"
-                alt="Plainvest"
-                className="sidebar-logo-img"
-              />
-            </a>
-            <div className="sidebar-welcome-name">
-              <span className="sidebar-welcome-label">{isEN ? 'Welcome back,' : 'Bem-vindo,'}</span>
-              <span className="sidebar-welcome-first">{userName || '—'}</span>
-            </div>
-          </div>
+            <img src="/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" className="sb-logo-img" />
+            <span className="sb-tagline">
+              {isEN ? 'Future clarity. Smarter decisions.' : 'Clareza futura. Decisões mais inteligentes.'}
+            </span>
+          </a>
         )}
         <button
-          className="sidebar-toggle-btn"
+          className="sb-collapse-btn"
           onClick={() => setCollapsed(c => !c)}
           title={collapsed ? (isEN ? 'Expand' : 'Expandir') : (isEN ? 'Collapse' : 'Recolher')}
         >
@@ -59,157 +58,247 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
         </button>
       </div>
 
-      <nav className="sidebar-nav">
-        <a href={backHref} className="sidebar-link">
-          <span className="sidebar-icon sidebar-icon-svg">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-          </span>
-          {!collapsed && <span className="sidebar-link-label">{isEN ? 'Dashboard' : 'Painel'}</span>}
-        </a>
+      {/* ── User section ── */}
+      {!collapsed && (
+        <div className="sb-user">
+          <div className="sb-user-avatar">{initial}</div>
+          <div className="sb-user-info">
+            <span className="sb-user-greeting">{isEN ? 'Welcome back,' : 'Bem-vindo,'}</span>
+            <div className="sb-user-name-row">
+              <span className="sb-user-name">{userName || '—'}</span>
+              <span className="sb-premium-badge">Premium</span>
+            </div>
+          </div>
+        </div>
+      )}
 
-        {portfolioHref ? (
-          <a href={portfolioHref} className="sidebar-link">
-            <span className="sidebar-icon sidebar-icon-svg">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+      {/* ── Navigation ── */}
+      <nav className="sb-nav">
+        {/* Portfolio / Overview — active on current page */}
+        {isPortfolioActive ? (
+          <span className="sb-link sb-active">
+            <span className="sb-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
               </svg>
             </span>
-            {!collapsed && <span className="sidebar-link-label">{isEN ? 'Portfolio' : 'Portfólio'}</span>}
-          </a>
-        ) : (
-          <span className="sidebar-link sidebar-active">
-            <span className="sidebar-icon sidebar-icon-svg">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-              </svg>
-            </span>
-            {!collapsed && <span className="sidebar-link-label">{isEN ? 'Portfolio' : 'Portfólio'}</span>}
+            {!collapsed && <span className="sb-label">Overview</span>}
           </span>
+        ) : (
+          <a href={portfolioHref} className="sb-link">
+            <span className="sb-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </span>
+            {!collapsed && <span className="sb-label">Overview</span>}
+          </a>
         )}
 
-        <div className="sidebar-nav-divider" />
+        <a href="#holdings-section" className="sb-link">
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Portfolio' : 'Portfólio'}</span>}
+        </a>
 
-        <span className="sidebar-link sidebar-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
-          <span className="sidebar-icon sidebar-icon-svg">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor"/>
             </svg>
           </span>
           {!collapsed && (
             <>
-              <span className="sidebar-link-label">{isEN ? 'Future' : 'Futuro'}</span>
-              <span className="sidebar-soon-badge">{isEN ? 'Soon' : 'Breve'}</span>
+              <span className="sb-label">{isEN ? 'Goals' : 'Metas'}</span>
+              <span className="sb-soon">Soon</span>
             </>
           )}
         </span>
 
-        <span className="sidebar-link sidebar-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
-          <span className="sidebar-icon sidebar-icon-svg">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
             </svg>
           </span>
           {!collapsed && (
             <>
-              <span className="sidebar-link-label">{isEN ? 'Insights' : 'Análises'}</span>
-              <span className="sidebar-soon-badge">{isEN ? 'Soon' : 'Breve'}</span>
+              <span className="sb-label">{isEN ? 'Insights' : 'Análises'}</span>
+              <span className="sb-soon">Soon</span>
             </>
           )}
         </span>
 
-        <span className="sidebar-link sidebar-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
-          <span className="sidebar-icon sidebar-icon-svg">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </span>
+          {!collapsed && (
+            <>
+              <span className="sb-label">{isEN ? 'Future Projections' : 'Projeções'}</span>
+              <span className="sb-soon">Soon</span>
+            </>
+          )}
+        </span>
+
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </span>
+          {!collapsed && (
+            <>
+              <span className="sb-label">{isEN ? 'Transactions' : 'Transações'}</span>
+              <span className="sb-soon">Soon</span>
+            </>
+          )}
+        </span>
+
+        <a href={backHref} className="sb-link">
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </span>
+          {!collapsed && <span className="sb-label">Hub</span>}
+        </a>
+
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
           </span>
           {!collapsed && (
             <>
-              <span className="sidebar-link-label">{isEN ? 'Learn' : 'Aprender'}</span>
-              <span className="sidebar-soon-badge">{isEN ? 'Soon' : 'Breve'}</span>
+              <span className="sb-label">{isEN ? 'Learn' : 'Aprender'}</span>
+              <span className="sb-soon">Soon</span>
             </>
           )}
         </span>
 
-        <div className="sidebar-nav-divider" />
+        {/* Tools section */}
+        {!collapsed && <div className="sb-section-label">Tools</div>}
+        {collapsed && <div className="sb-nav-divider" />}
 
-        {profileActive ? (
-          <span className="sidebar-link sidebar-active">
-            <span className="sidebar-icon sidebar-icon-svg">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-              </svg>
-            </span>
-            {!collapsed && <span className="sidebar-link-label">{profileLabel}</span>}
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
           </span>
-        ) : (
-          <a href="/profile" className="sidebar-link">
-            <span className="sidebar-icon sidebar-icon-svg">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-              </svg>
-            </span>
-            {!collapsed && <span className="sidebar-link-label">{profileLabel}</span>}
-          </a>
-        )}
+          {!collapsed && (
+            <>
+              <span className="sb-label">{isEN ? 'Inflation Calculator' : 'Calc. de Inflação'}</span>
+              <span className="sb-soon">Soon</span>
+            </>
+          )}
+        </span>
+
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </span>
+          {!collapsed && (
+            <>
+              <span className="sb-label">{isEN ? 'Investment Simulator' : 'Simulador'}</span>
+              <span className="sb-soon">Soon</span>
+            </>
+          )}
+        </span>
+
+        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/>
+              <line x1="6" y1="9" x2="6" y2="21"/>
+            </svg>
+          </span>
+          {!collapsed && (
+            <>
+              <span className="sb-label">{isEN ? 'Compare Scenarios' : 'Comparar Cenários'}</span>
+              <span className="sb-soon">Soon</span>
+            </>
+          )}
+        </span>
       </nav>
 
-      {!collapsed && (
-        <div className="sidebar-footer">
+      {/* ── Footer ── */}
+      <div className="sb-footer">
+        {!collapsed && (
+          <div className="sb-footer-settings">
+            {/* Currency */}
+            <div className="sidebar-section">
+              <button className="sidebar-section-header" onClick={() => setShowCurrencies(c => !c)}>
+                <span className="sidebar-section-label">{isEN ? 'Currency' : 'Moeda'}</span>
+                <span className={`sidebar-section-chevron${showCurrencies ? ' open' : ''}`}>›</span>
+              </button>
+              {showCurrencies && (
+                <div className="sidebar-section-content">
+                  <CurrencySwitcher current={displayCurrency} lang={lang} />
+                </div>
+              )}
+            </div>
 
-          {/* Currency section */}
-          <div className="sidebar-section">
-            <button
-              className="sidebar-section-header"
-              onClick={() => setShowCurrencies(c => !c)}
-            >
-              <span className="sidebar-section-label">{isEN ? 'Currency' : 'Moeda'}</span>
-              <span className={`sidebar-section-chevron${showCurrencies ? ' open' : ''}`}>›</span>
-            </button>
-            {showCurrencies && (
-              <div className="sidebar-section-content">
-                <CurrencySwitcher current={displayCurrency} lang={lang} />
-              </div>
-            )}
-          </div>
+            {/* Language */}
+            <div className="sidebar-section">
+              <button className="sidebar-section-header" onClick={() => setShowLanguages(c => !c)}>
+                <span className="sidebar-section-label">{isEN ? 'Language' : 'Idioma'}</span>
+                <span className={`sidebar-section-chevron${showLanguages ? ' open' : ''}`}>›</span>
+              </button>
+              {showLanguages && (
+                <div className="sidebar-section-content">
+                  <LangSwitcher current={lang} currency={displayCurrency} />
+                </div>
+              )}
+            </div>
 
-          {/* Language section */}
-          <div className="sidebar-section">
-            <button
-              className="sidebar-section-header"
-              onClick={() => setShowLanguages(c => !c)}
-            >
-              <span className="sidebar-section-label">{isEN ? 'Language' : 'Idioma'}</span>
-              <span className={`sidebar-section-chevron${showLanguages ? ' open' : ''}`}>›</span>
-            </button>
-            {showLanguages && (
-              <div className="sidebar-section-content">
-                <LangSwitcher current={lang} currency={displayCurrency} />
-              </div>
-            )}
+            <div className="sidebar-guide-wrap">
+              <HelpModal lang={lang} />
+            </div>
           </div>
+        )}
 
-          {/* Guide */}
-          <div className="sidebar-guide-wrap">
-            <HelpModal lang={lang} />
-          </div>
+        <div className="sb-footer-bottom">
+          {profileActive ? (
+            <span className="sb-link sb-active">
+              <span className="sb-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              {!collapsed && <span className="sb-label">{profileLabel}</span>}
+            </span>
+          ) : (
+            <a href="/profile" className="sb-link">
+              <span className="sb-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              {!collapsed && <span className="sb-label">{profileLabel}</span>}
+            </a>
+          )}
 
           <form action={signOut}>
-            <SubmitButton className="sidebar-logout-btn" pendingText="...">{logoutLabel}</SubmitButton>
+            <SubmitButton className="sb-logout-btn" pendingText="...">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+              {!collapsed && <span>{logoutLabel}</span>}
+            </SubmitButton>
           </form>
         </div>
-      )}
-
-      {/* Collapsed: show logout icon only */}
-      {collapsed && (
-        <div className="sidebar-collapsed-footer">
-          <form action={signOut}>
-            <SubmitButton className="sidebar-logout-icon-btn" pendingText="·">⏻</SubmitButton>
-          </form>
-        </div>
-      )}
+      </div>
     </aside>
   );
 }

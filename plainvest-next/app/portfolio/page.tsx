@@ -11,9 +11,11 @@ import { AddPositionModal } from './components/AddPositionModal';
 import { ProjectionEngine } from './components/ProjectionEngine';
 import { HeroSection } from './components/HeroSection';
 import { FreedomScore, type ScoreItem } from './components/FreedomScore';
-import { InsightsPanel } from './components/InsightsPanel';
+import { InsightsPanel, type Insight } from './components/InsightsPanel';
 import { FutureSection } from './components/FutureSection';
 import { PageBanner } from './components/PageBanner';
+import { BottomCards } from './components/BottomCards';
+import { PremiumCTA } from './components/PremiumCTA';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { fetchLivePrices } from '@/lib/live-prices';
 import type { LivePrices } from '@/lib/live-prices';
@@ -313,6 +315,15 @@ export default async function PortfolioPage({
 
   const growthPctDisplay = Math.round(totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 0);
 
+  // 5th score: Future Readiness
+  const proj10yTarget = displayCurrency === 'BRL' ? 5_000_000 : 1_000_000;
+  const proj10yValue = (function() {
+    const r = 0.07 / 12; const n = 120;
+    return projCurrentValue * Math.pow(1 + r, n) + projMonthlyContrib * (Math.pow(1 + r, n) - 1) / r;
+  })();
+  const futureReadScore = rows.length === 0 ? 0
+    : Math.min(90, Math.max(10, Math.round((proj10yValue / proj10yTarget) * 100)));
+
   const freedomScores: ScoreItem[] = [
     {
       label: 'Consistency', labelPt: 'Consistência',
@@ -323,7 +334,7 @@ export default async function PortfolioPage({
       whyPt: 'Contribuições regulares se multiplicam com o tempo.',
     },
     {
-      label: 'Diversified', labelPt: 'Diversificado',
+      label: 'Diversification', labelPt: 'Diversificação',
       value: diversScore, color: '#61d5b4',
       desc: `${typeCount} asset type${typeCount !== 1 ? 's' : ''}`,
       descPt: `${typeCount} tipo${typeCount !== 1 ? 's' : ''} de ativo`,
@@ -331,15 +342,15 @@ export default async function PortfolioPage({
       whyPt: 'Diversificar entre ativos reduz o risco de longo prazo.',
     },
     {
-      label: 'Protected', labelPt: 'Protegido',
+      label: 'Inflation Protection', labelPt: 'Proteção vs Inflação',
       value: defenceScore, color: '#a78bfa',
-      desc: `${growthPctDisplay}% inflation-resistant`,
-      descPt: `${growthPctDisplay}% resistente à inflação`,
+      desc: `${growthPctDisplay}% growth assets`,
+      descPt: `${growthPctDisplay}% ativos de crescimento`,
       why: 'Growth assets typically outpace inflation over time.',
       whyPt: 'Ativos de crescimento tendem a superar a inflação.',
     },
     {
-      label: 'Horizon', labelPt: 'Horizonte',
+      label: 'Long-term Strength', labelPt: 'Força de Longo Prazo',
       value: horizonScore, color: '#5c9af5',
       desc: yearsActive >= 1
         ? `${yearsActive.toFixed(1)} yr${yearsActive >= 2 ? 's' : ''} invested`
@@ -350,11 +361,18 @@ export default async function PortfolioPage({
       why: 'Time in the market is your most powerful advantage.',
       whyPt: 'O tempo no mercado é sua maior vantagem.',
     },
+    {
+      label: 'Future Readiness', labelPt: 'Prontidão Futura',
+      value: futureReadScore, color: '#34d399',
+      desc: futureReadScore >= 80 ? 'On track for goal' : 'Growing toward goal',
+      descPt: futureReadScore >= 80 ? 'No caminho para a meta' : 'Crescendo para a meta',
+      why: 'Your trajectory shows long-term wealth potential.',
+      whyPt: 'Sua trajetória mostra potencial de riqueza de longo prazo.',
+    },
   ];
 
   // ── Insights ───────────────────────────────────────────────
-  type InsightType = { text: string; textPt: string; type: 'positive' | 'caution' | 'info' };
-  const portfolioInsights: InsightType[] = [];
+  const portfolioInsights: Insight[] = [];
 
   if (rows.length === 0) {
     portfolioInsights.push({
@@ -373,19 +391,19 @@ export default async function PortfolioPage({
       portfolioInsights.push({
         text: `Your portfolio is focused on ${Object.keys(byType)[0]}. Adding a second asset class can spread risk over time.`,
         textPt: `Seu portfólio está focado em ${Object.keys(byType)[0]}. Adicionar uma segunda classe de ativo pode distribuir o risco.`,
-        type: 'info',
+        type: 'info', badge: 'Diversification', badgePt: 'Diversificação',
       });
     } else if (topPct > 70) {
       portfolioInsights.push({
         text: `${topG.asset_name} represents ${topPct.toFixed(0)}% of your portfolio — your results are closely tied to this one asset.`,
         textPt: `${topG.asset_name} representa ${topPct.toFixed(0)}% do seu portfólio — seus resultados dependem muito deste ativo.`,
-        type: 'caution',
+        type: 'caution', badge: 'Concentration', badgePt: 'Concentração',
       });
     } else {
       portfolioInsights.push({
         text: `You hold ${typeCount} different asset types — a solid foundation for long-term balance.`,
         textPt: `Você tem ${typeCount} tipos de ativos diferentes — uma base sólida para equilíbrio de longo prazo.`,
-        type: 'positive',
+        type: 'positive', badge: 'Diversified', badgePt: 'Diversificado',
       });
     }
 
@@ -393,19 +411,19 @@ export default async function PortfolioPage({
       portfolioInsights.push({
         text: `${best.asset_name} leads your portfolio with ${best.pnlPct >= 0 ? '+' : ''}${best.pnlPct.toFixed(1)}% return. Momentum like this compounds powerfully over time.`,
         textPt: `${best.asset_name} lidera com retorno de ${best.pnlPct >= 0 ? '+' : ''}${best.pnlPct.toFixed(1)}%. Um momentum assim se multiplica com o tempo.`,
-        type: 'positive',
+        type: 'positive', badge: 'Positive', badgePt: 'Positivo',
       });
     } else if (pnl != null && pnl > 0) {
       portfolioInsights.push({
-        text: `Your portfolio is up ${pnlPct != null ? `${pnlPct.toFixed(1)}%` : 'overall'}. Compounding accelerates this growth the longer you stay invested.`,
-        textPt: `Seu portfólio está positivo ${pnlPct != null ? `em ${pnlPct.toFixed(1)}%` : 'no geral'}. Os juros compostos aceleram esse crescimento quanto mais tempo você permanecer investido.`,
-        type: 'positive',
+        text: `Your portfolio is growing. Compounding accelerates the longer you stay invested.`,
+        textPt: `Seu portfólio está crescendo. Os juros compostos aceleram quanto mais tempo você permanecer investido.`,
+        type: 'positive', badge: 'Growth', badgePt: 'Crescimento',
       });
     } else if (pnl != null && pnl <= 0) {
       portfolioInsights.push({
         text: 'Markets move in cycles — short-term dips are normal. Your long-term projection is what matters most.',
         textPt: 'Os mercados se movem em ciclos — quedas de curto prazo são normais. Sua projeção de longo prazo é o que mais importa.',
-        type: 'info',
+        type: 'info', badge: 'Mindset', badgePt: 'Mentalidade',
       });
     }
 
@@ -413,19 +431,19 @@ export default async function PortfolioPage({
       portfolioInsights.push({
         text: `You've been investing consistently for over ${Math.floor(monthsActive / 12)} year${Math.floor(monthsActive / 12) > 1 ? 's' : ''}. Consistency is the most powerful wealth-building force.`,
         textPt: `Você investe consistentemente há mais de ${Math.floor(monthsActive / 12)} ano${Math.floor(monthsActive / 12) > 1 ? 's' : ''}. A consistência é a força mais poderosa para construir riqueza.`,
-        type: 'positive',
+        type: 'positive', badge: 'Consistency', badgePt: 'Consistência',
       });
     } else if (monthsActive >= 3) {
       portfolioInsights.push({
         text: `${monthsActive} months of consistent investing — most wealth is built in the years ahead. Keep going.`,
         textPt: `${monthsActive} meses de investimentos consistentes — a maior parte do patrimônio é construída nos anos à frente. Continue.`,
-        type: 'positive',
+        type: 'positive', badge: 'Consistency', badgePt: 'Consistência',
       });
     } else {
       portfolioInsights.push({
         text: "You've taken the most important step. Keep adding consistently and let time do the heavy lifting.",
         textPt: 'Você deu o passo mais importante. Continue adicionando consistentemente e deixe o tempo trabalhar por você.',
-        type: 'positive',
+        type: 'info', badge: 'Mindset', badgePt: 'Mentalidade',
       });
     }
   }
@@ -452,9 +470,9 @@ export default async function PortfolioPage({
       <div className="portfolio-main">
 
         {/* ── Cinematic page header ── */}
-        <PageBanner firstName={firstName} lang={lang} />
+        <PageBanner lang={lang} />
 
-      <div className="portfolio-content portfolio-content-wide">
+      <div className="portfolio-content portfolio-content-wide" id="portfolio-overview">
 
         {params.success && <div className="notice notice-success">{params.success}</div>}
         {params.message && <div className="notice">{params.message}</div>}
@@ -612,7 +630,7 @@ export default async function PortfolioPage({
             </section>
 
             {/* ── 3. Holdings ── */}
-            <section className="portfolio-card">
+            <section className="portfolio-card" id="holdings-section">
               <div className="card-header-row">
                 <div>
                   <p className="eyebrow">{tx.sectionHoldings}</p>
@@ -743,15 +761,40 @@ export default async function PortfolioPage({
           </div>
         )}
 
-        {/* ── Future Projection ── */}
+        {/* ── Bottom cards: allocation | holdings | milestone ── */}
         {rows.length > 0 && (
-          <ProjectionEngine
-            currentValue={projCurrentValue}
-            monthlyContribution={projMonthlyContrib}
+          <BottomCards
+            donutSegments={donutSegments}
+            totalInvested={totalInvested}
             currency={displayCurrency}
             lang={lang}
+            topHoldings={grouped.map(g => ({
+              key: g.key,
+              asset_name: g.asset_name,
+              ticker: g.ticker,
+              asset_type: g.asset_type,
+              totalInvestedDisplay: toDisplay(g.totalInvested, g.currency),
+            }))}
+            projCurrentValue={projCurrentValue}
+            projMonthlyContrib={projMonthlyContrib}
           />
         )}
+
+        {/* ── Future Projection (deep dive) ── */}
+        {rows.length > 0 && (
+          <div id="future-projections">
+            <ProjectionEngine
+              currentValue={projCurrentValue}
+              monthlyContribution={projMonthlyContrib}
+              currency={displayCurrency}
+              lang={lang}
+            />
+          </div>
+        )}
+
+        {/* ── Premium CTA ── */}
+        <PremiumCTA lang={lang} />
+
       </div>
       </div>
     </main>
