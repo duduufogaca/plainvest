@@ -12983,37 +12983,6 @@
         </div>
 
         <div class="sim-side-info">
-          <!-- ── FUTURE LIFE STRIP ── -->
-          <div class="future-life-strip ssi-fls" id="future-life-strip">
-            <div class="fls-eyebrow" id="fls-eyebrow">If you stay consistent, your future self could have</div>
-            <div class="fls-items">
-              <div class="fls-item">
-                <span class="fls-icon">🏠</span>
-                <div class="fls-headline" id="fls-h1">A home becomes possible</div>
-                <div class="fls-sub" id="fls-s1">A real deposit, not just a dream</div>
-              </div>
-              <div class="fls-item">
-                <span class="fls-icon">✈️</span>
-                <div class="fls-headline" id="fls-h2">More yes to life</div>
-                <div class="fls-sub" id="fls-s2">Travel, experiences, memories</div>
-              </div>
-              <div class="fls-item">
-                <span class="fls-icon">🕊️</span>
-                <div class="fls-headline" id="fls-h3">Less financial anxiety</div>
-                <div class="fls-sub" id="fls-s3">Calm when the unexpected hits</div>
-              </div>
-              <div class="fls-item">
-                <span class="fls-icon">⏳</span>
-                <div class="fls-headline" id="fls-h4">Time freedom</div>
-                <div class="fls-sub" id="fls-s4">Work because you choose to</div>
-              </div>
-              <div class="fls-item">
-                <span class="fls-icon">👨‍👩‍👧</span>
-                <div class="fls-headline" id="fls-h5">Family flexibility</div>
-                <div class="fls-sub" id="fls-s5">Money out of family decisions</div>
-              </div>
-            </div>
-          </div>
           <!-- ── WHAT THIS RESULT MEANS ── -->
           <div class="future-insights ssi-insights" id="futureInsights">
             <div class="fi-eyebrow">What this result means</div>
@@ -13064,6 +13033,43 @@
                 <div class="rlc-label" id="rlc-l4">Cost of waiting</div>
                 <div class="rlc-val" id="rlc-v4">—</div>
                 <div class="rlc-sub" id="rlc-s4">less if you start 5 yrs later</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── FUTURE LIFE STRIP ── -->
+          <div class="future-life-strip ssi-fls" id="future-life-strip">
+            <div class="fls-eyebrow" id="fls-eyebrow">If you stay consistent, your future self could have</div>
+            <div class="fls-items">
+              <div class="fls-item">
+                <span class="fls-icon">🏠</span>
+                <div class="fls-headline" id="fls-h1">A home becomes possible</div>
+                <div class="fls-sub" id="fls-s1">A real deposit, not just a dream</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">✈️</span>
+                <div class="fls-headline" id="fls-h2">More yes to life</div>
+                <div class="fls-sub" id="fls-s2">Travel, experiences, memories</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">🕊️</span>
+                <div class="fls-headline" id="fls-h3">Less financial anxiety</div>
+                <div class="fls-sub" id="fls-s3">Calm when the unexpected hits</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">⏳</span>
+                <div class="fls-headline" id="fls-h4">Time freedom</div>
+                <div class="fls-sub" id="fls-s4">Work because you choose to</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">👨‍👩‍👧</span>
+                <div class="fls-headline" id="fls-h5">Family flexibility</div>
+                <div class="fls-sub" id="fls-s5">Money out of family decisions</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">🌅</span>
+                <div class="fls-headline" id="fls-h6">Retire on your terms</div>
+                <div class="fls-sub" id="fls-s6">Stop when you decide, not when you must</div>
               </div>
             </div>
           </div>
@@ -17085,6 +17091,7 @@
           setText('fls-h3', 'Menos ansiedade financeira'); setText('fls-s3', 'Tranquilidade quando o inesperado chega');
           setText('fls-h4', 'Liberdade de tempo');      setText('fls-s4', 'Trabalhe porque você escolhe');
           setText('fls-h5', 'Flexibilidade familiar'); setText('fls-s5', 'Dinheiro fora das decisões da família');
+          setText('fls-h6', 'Aposentadoria nos seus termos'); setText('fls-s6', 'Pare quando decidir, não quando precisar');
         } else {
           setText('fls-eyebrow', 'If you stay consistent, your future self could have');
           setText('fls-h1', 'A home becomes possible'); setText('fls-s1', 'A real deposit, not just a dream');
@@ -17092,6 +17099,7 @@
           setText('fls-h3', 'Less financial anxiety'); setText('fls-s3', 'Calm when the unexpected hits');
           setText('fls-h4', 'Time freedom');            setText('fls-s4', 'Work because you choose to');
           setText('fls-h5', 'Family flexibility');     setText('fls-s5', 'Money out of family decisions');
+          setText('fls-h6', 'Retire on your terms');   setText('fls-s6', 'Stop when you decide, not when you must');
         }
         updateInflationControlCopy();
         if (typeof renderInflationChart === 'function') { renderInflationChart(); updateInflationStats(); }
