@@ -4034,16 +4034,17 @@
 
     /* PLANS */
     #plans {
-      padding: 7rem 3rem;
-      background: linear-gradient(180deg, #0a1526 0%, #0d1b31 100%);
+      padding: 8rem 3rem 7rem;
+      background: linear-gradient(180deg, #071020 0%, #0a1828 100%);
     }
 
     .plans-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1.4rem;
-      max-width: 680px;
+      max-width: 1100px;
       margin-top: 3.5rem;
+      align-items: start;
     }
 
     .plan-who {
@@ -4413,18 +4414,440 @@
     }
 
     .plan-card.star {
-      border-color: rgba(0, 212, 170, 0.35);
-      box-shadow: 0 0 50px rgba(0, 212, 170, 0.11), 0 28px 56px rgba(0, 0, 0, 0.35);
+      border-color: rgba(0, 212, 170, 0.18);
+      box-shadow: 0 0 28px rgba(0, 212, 170, 0.05), 0 20px 44px rgba(0, 0, 0, 0.28);
     }
 
     .plan-card.star .plan-badge {
-      background: rgba(0, 212, 170, .12);
-      border-color: rgba(0, 212, 170, .38);
-      box-shadow: 0 0 14px rgba(0, 212, 170, .16);
+      background: rgba(0, 212, 170, .08);
+      border-color: rgba(0, 212, 170, .2);
+      box-shadow: none;
     }
 
     .plan-card.star::before {
-      background: linear-gradient(90deg, rgba(0, 212, 170, .18), rgba(0, 212, 170, .95), rgba(232, 184, 75, .35));
+      background: linear-gradient(90deg, rgba(0, 212, 170, .08), rgba(0, 212, 170, .55), rgba(97, 213, 180, .12));
+    }
+
+    @keyframes emerald-breathe {
+      0%, 100% { box-shadow: 0 0 65px rgba(0, 212, 170, 0.2), 0 28px 56px rgba(0, 0, 0, 0.45); }
+      50%       { box-shadow: 0 0 95px rgba(0, 212, 170, 0.32), 0 28px 56px rgba(0, 0, 0, 0.45); }
+    }
+
+    .plan-card.emerald {
+      background: linear-gradient(160deg, rgba(5, 16, 28, 0.99) 0%, rgba(3, 10, 18, 0.99) 100%);
+      border-color: rgba(0, 212, 170, 0.48);
+      box-shadow: 0 0 65px rgba(0, 212, 170, 0.2), 0 28px 56px rgba(0, 0, 0, 0.45);
+      animation: emerald-breathe 5s ease-in-out infinite;
+    }
+
+    .plan-card.emerald::before {
+      background: linear-gradient(90deg, rgba(0, 212, 170, .22), rgba(0, 212, 170, .98), rgba(97, 213, 180, .28));
+    }
+
+    .plan-card.emerald::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 212, 170, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 170, .025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      border-radius: 24px;
+    }
+
+    .plan-card.emerald .plan-badge {
+      background: rgba(0, 212, 170, .14);
+      border-color: rgba(0, 212, 170, .48);
+      color: var(--teal);
+      box-shadow: 0 0 16px rgba(0, 212, 170, .2);
+    }
+
+    .plan-card.emerald .plan-name {
+      color: #d8fff7;
+    }
+
+    .plan-card.emerald .plan-tier {
+      color: rgba(0, 212, 170, .7);
+    }
+
+    .plan-name {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+      margin: .18rem 0 .65rem;
+    }
+
+    .plan-price-note {
+      font-size: .78rem;
+      color: var(--teal);
+      font-weight: 600;
+      margin: .25rem 0 .85rem;
+    }
+
+    .plan-billing-toggle {
+      display: flex;
+      gap: .3rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      padding: .28rem;
+      margin: .85rem 0 .55rem;
+      width: 100%;
+    }
+
+    .pbt-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-radius: 7px;
+      color: var(--ink-soft);
+      font-size: .76rem;
+      font-weight: 600;
+      padding: .45rem .5rem;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .pbt-btn.pbt-active {
+      background: rgba(0, 212, 170, .14);
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .pbt-save {
+      font-size: .62rem;
+      font-weight: 700;
+      background: rgba(97, 213, 180, .12);
+      color: var(--teal);
+      border-radius: 4px;
+      padding: .1rem .32rem;
+      margin-left: .28rem;
+      vertical-align: middle;
+    }
+
+    .plan-billing-note {
+      font-size: .78rem;
+      color: var(--ink-soft);
+      margin: .2rem 0 .9rem;
+    }
+
+    .pb-emerald {
+      background: linear-gradient(135deg, #00d4aa 0%, #00b896 100%) !important;
+      color: #001810 !important;
+      border-color: rgba(0, 212, 170, 0.55) !important;
+      box-shadow: 0 4px 20px rgba(0, 212, 170, 0.25) !important;
+    }
+
+    .pb-emerald:hover {
+      background: linear-gradient(135deg, #00eabd 0%, #00caa8 100%) !important;
+      box-shadow: 0 8px 36px rgba(0, 212, 170, 0.42) !important;
+    }
+
+    .plan-emotion-hook {
+      margin: .55rem 0 1rem;
+      padding: 1rem 1.1rem;
+      background: rgba(0, 212, 170, .04);
+      border-left: 2px solid rgba(0, 212, 170, .38);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .plan-emotion-hook strong {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: .97rem;
+      font-weight: 700;
+      color: #d8fff7;
+      line-height: 1.45;
+      margin-bottom: .42rem;
+    }
+
+    .plan-emotion-hook span {
+      display: block;
+      font-size: .78rem;
+      color: #7fb8a8;
+      line-height: 1.55;
+    }
+
+    .plan-emotion-hook em {
+      color: var(--teal);
+      font-style: italic;
+    }
+
+    .plan-free-hook {
+      font-size: .79rem;
+      color: var(--teal);
+      font-style: italic;
+      margin: .2rem 0 .8rem;
+      line-height: 1.5;
+      opacity: .82;
+    }
+
+    .plan-foundation-note {
+      display: flex;
+      gap: .4rem;
+      align-items: flex-start;
+      background: rgba(0, 212, 170, .05);
+      border: 1px solid rgba(0, 212, 170, .14);
+      border-radius: 10px;
+      padding: .7rem .85rem;
+      margin: .55rem 0 .85rem;
+      font-size: .77rem;
+      color: #9fc8be;
+      line-height: 1.5;
+    }
+
+    .plan-clarity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .55rem;
+      margin: .75rem 0 .9rem;
+    }
+
+    .pcg-col {
+      border-radius: 10px;
+      padding: .75rem .8rem;
+    }
+
+    .pcg-yes {
+      background: rgba(0, 212, 170, .05);
+      border: 1px solid rgba(0, 212, 170, .14);
+    }
+
+    .pcg-no {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .pcg-head {
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+
+    .pcg-yes .pcg-head { color: var(--teal); }
+    .pcg-no .pcg-head  { color: #7a93ad; }
+
+    .pcg-item {
+      font-size: .73rem;
+      line-height: 1.5;
+      margin-bottom: .22rem;
+    }
+
+    .pcg-yes .pcg-item { color: #a8d8ce; }
+    .pcg-no .pcg-item  { color: #5e7a8e; }
+
+    @keyframes smp-grow {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+
+    .sub-mini-proj {
+      background: rgba(0, 212, 170, .05);
+      border: 1px solid rgba(0, 212, 170, .14);
+      border-radius: 12px;
+      padding: .85rem 1rem;
+      margin: .6rem 0 .85rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .smp-eyebrow {
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(0, 212, 170, .6);
+      margin-bottom: .65rem;
+    }
+
+    .smp-row {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .smp-endpoint {
+      display: flex;
+      flex-direction: column;
+      gap: .1rem;
+      flex-shrink: 0;
+    }
+
+    .smp-lbl {
+      font-size: .6rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .smp-val {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .smp-val.smp-future {
+      color: var(--teal);
+      font-size: 1.1rem;
+    }
+
+    .smp-track-wrap {
+      flex: 1;
+    }
+
+    .smp-track {
+      height: 3px;
+      background: rgba(255,255,255,.07);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .smp-fill {
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0,212,170,.3), var(--teal));
+      border-radius: 2px;
+      width: 0;
+      animation: smp-grow 2.2s cubic-bezier(.22,.68,0,1.2) forwards;
+      animation-delay: .8s;
+    }
+
+    .smp-note {
+      font-size: .62rem;
+      color: var(--ink-soft);
+      margin-top: .55rem;
+      opacity: .65;
+    }
+
+    .plans-why {
+      max-width: 1100px;
+      margin: 2.8rem auto 0;
+    }
+
+    .plans-why-head {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .plans-why-eyebrow {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    .plans-why-title {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0;
+    }
+
+    .plans-why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .plans-why-card {
+      background: linear-gradient(160deg, rgba(20, 35, 60, .9), rgba(10, 20, 38, .95));
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 18px;
+      padding: 1.25rem 1.1rem;
+      transition: border-color .22s, transform .22s;
+    }
+
+    .plans-why-card:hover {
+      border-color: rgba(244, 200, 106, .22);
+      transform: translateY(-2px);
+    }
+
+    .plans-why-icon {
+      font-size: 1.3rem;
+      margin-bottom: .6rem;
+      display: block;
+    }
+
+    .plans-why-card strong {
+      display: block;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .38rem;
+    }
+
+    .plans-why-card span {
+      font-size: .76rem;
+      color: #8fa8c0;
+      line-height: 1.6;
+    }
+
+    .plans-why {
+      margin-top: 3.2rem;
+    }
+
+    .plans-trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+      max-width: 820px;
+      margin: 1.6rem auto 0;
+    }
+
+    .plans-trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 100px;
+      padding: .34rem .85rem;
+      font-size: .73rem;
+      color: #8fa8c0;
+      font-weight: 500;
+    }
+
+    .plans-journey-banner {
+      max-width: 700px;
+      margin: 2.2rem auto 0;
+      text-align: center;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(135deg, rgba(244, 200, 106, .05), rgba(10, 21, 38, .5));
+      border: 1px solid rgba(244, 200, 106, .16);
+      border-radius: 22px;
+    }
+
+    .plans-journey-banner p {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: #e8d5a0;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    @media (max-width: 960px) {
+      .plans-why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .plans-why-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+      }
     }
 
     .plan-badge {
@@ -4853,17 +5276,17 @@
 
     .plan-faq {
       max-width: 1180px;
-      margin: 1.35rem auto 0;
+      margin: 3rem auto 0;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: .85rem;
+      gap: 1rem;
     }
 
     .plan-faq-card {
-      border: 1px solid rgba(255, 255, 255, .08);
-      background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .018));
+      border: 1px solid rgba(255, 255, 255, .07);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .015));
       border-radius: 18px;
-      padding: 1rem;
+      padding: 1.2rem;
     }
 
     .plan-faq-card h3 {
@@ -7832,10 +8255,14 @@
       .launch-trust,
       .plan-faq,
       .plans-prelude,
-      .plans-grid,
       .plan-who {
         grid-template-columns: 1fr;
         max-width: 420px;
+      }
+
+      .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
       }
 
       .premium-value-grid {
@@ -9948,13 +10375,23 @@
     }
 
     .plan-card.star {
-      background: linear-gradient(160deg, rgba(21, 40, 67, 0.99) 0%, rgba(12, 24, 43, 0.99) 100%) !important;
-      border: 1px solid rgba(232, 184, 75, 0.24) !important;
-      box-shadow: 0 0 0 1px rgba(232, 184, 75, 0.08), 0 24px 64px rgba(0, 0, 0, 0.35) !important;
+      background: linear-gradient(160deg, rgba(14, 26, 44, 0.99) 0%, rgba(10, 20, 36, 0.99) 100%) !important;
+      border: 1px solid rgba(0, 212, 170, 0.16) !important;
+      box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.05), 0 20px 50px rgba(0, 0, 0, 0.28) !important;
     }
 
     .plan-card.star:hover {
-      box-shadow: 0 0 0 1px rgba(232, 184, 75, 0.18), 0 28px 72px rgba(0, 0, 0, 0.4) !important;
+      box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.12), 0 24px 56px rgba(0, 0, 0, 0.32) !important;
+    }
+
+    .plan-card.emerald {
+      background: linear-gradient(160deg, rgba(4, 14, 24, 0.99) 0%, rgba(2, 8, 15, 0.99) 100%) !important;
+      border: 1px solid rgba(0, 212, 170, 0.42) !important;
+      box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.1), 0 24px 64px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    .plan-card.emerald:hover {
+      box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.25), 0 28px 72px rgba(0, 0, 0, 0.5) !important;
     }
 
     /* ── Contact section ────────────────────────────────────────── */
@@ -14158,15 +14595,15 @@
 
   <!-- PLANS -->
   <section id="plans" class="app-page" data-page="plans">
-    <div class="section-eyebrow" data-i18n="plans.eyebrow">Premium — financial clarity</div>
-    <div class="section-h2" data-i18n-html="plans.h2">You don't need more information.<br>You need <em>clarity.</em></div>
-    <p class="section-lead" data-i18n="plans.lead">The simulator and free explanations are yours, forever. Premium is for the moment you want to go further — understand more deeply, act with more confidence, and build toward something real.</p>
+    <div class="section-eyebrow" data-i18n="plans.eyebrow">Your path forward — choose what fits</div>
+    <div class="section-h2" data-i18n-html="plans.h2">Choose how you want to<br>build your <em>future.</em></div>
+    <p class="section-lead" data-i18n="plans.lead">Start free. Go deeper when you're ready. Every plan is designed around one thing — helping you understand your financial future more clearly.</p>
 
     <!-- Premium emotional promise -->
     <div class="plans-promise">
       <div class="plans-promise-inner">
-        <div class="plans-promise-quote" data-i18n-html="plans.promise.q">Most people spend years watching from the sidelines — not because they can't invest, but because nobody made it feel <em>safe to start.</em></div>
-        <div class="plans-promise-note" data-i18n="plans.promise.note">Premium is built to change that — one clear step at a time.</div>
+        <div class="plans-promise-quote" data-i18n-html="plans.promise.q">Most people finish their working years without ever truly understanding where their money went — or where it <em>could have gone.</em></div>
+        <div class="plans-promise-note" data-i18n="plans.promise.note">Plainvest was built to give you that clarity — before it's too late to act on it.</div>
       </div>
     </div>
 
@@ -14232,173 +14669,217 @@
       </div>
     </div>
     <div class="plans-grid">
+
+      <!-- ── FREE CARD ── -->
       <div class="plan-card">
         <div class="plan-tier" data-i18n="plans.free.tier">Free — always</div>
+        <div class="plan-name" data-i18n="plans.free.name">Learn &amp; Explore</div>
         <div class="plan-price">$0</div>
-        <div class="plan-desc" data-i18n="plans.free.desc">Explore and simulate with no commitment, ever.</div>
+        <div class="plan-free-hook" data-i18n="plans.free.hook">Start understanding your future before risking your money.</div>
+        <div class="plan-desc" data-i18n="plans.free.desc">All the tools to build understanding. No commitment, ever.</div>
         <div class="plan-bestfor">
           <div class="plan-bestfor-label" id="plans-free-bestfor-label">Best for</div>
-          <div class="plan-bestfor-text" id="plans-free-bestfor-text">People who want to explore investing, compare options, and understand the basic idea before taking action.</div>
+          <div class="plan-bestfor-text" id="plans-free-bestfor-text">People who want to explore investing, run scenarios, and build confidence before committing to anything.</div>
         </div>
         <div class="plan-section-label" id="plans-free-includes-label">Includes</div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f1">Full investment simulator — all 9 investment types</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f1">Investment simulator — all 9 types</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f3">Plain-English explanations</span></div>
         <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f2">Side-by-side comparison table</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f3">Plain-English explanations for all 9 investment types</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f4">Contextual tips per investment</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f4">Inflation calculator</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f5">Future projections &amp; passive income view</span></div>
         <button class="plan-btn pb-out" data-i18n="plans.free.btn" onclick="showPage('simulator')">Try it free</button>
       </div>
+
+      <!-- ── SUBSCRIPTION CARD (Most Popular) ── -->
+      <div class="plan-card emerald">
+        <div class="plan-badge" data-i18n="plans.sub.badge">Most Popular</div>
+        <div class="plan-tier" data-i18n="plans.sub.tier">Track Your Financial Future</div>
+        <div class="plan-name" data-i18n="plans.sub.name">See Where Your Future Is Going</div>
+        <div class="plan-billing-toggle">
+          <button class="pbt-btn pbt-active" id="pbt-monthly" onclick="setPlanBilling('monthly')" data-i18n="plans.sub.billingMonthly">Monthly</button>
+          <button class="pbt-btn" id="pbt-annual" onclick="setPlanBilling('annual')"><span data-i18n="plans.sub.billingAnnual">Annual</span> <span class="pbt-save" data-i18n="plans.sub.billingSave">Save 16%</span></button>
+        </div>
+        <div class="plan-price"><span id="sub-price-display">AUD $9.90</span><sub id="sub-period-display">/mo</sub></div>
+        <div class="plan-billing-note" id="sub-billing-note">Billed monthly. Cancel anytime.</div>
+        <div class="plan-emotion-hook">
+          <strong data-i18n="plans.sub.emotionHead">Most people never truly see where their money is going.</strong>
+          <span data-i18n="plans.sub.emotionSub">Plainvest helps you understand it before it's too late to act.</span>
+        </div>
+        <div class="sub-mini-proj">
+          <div class="smp-eyebrow" data-i18n="plans.sub.projEyebrow">Example: $200/mo invested at 8%/yr</div>
+          <div class="smp-row">
+            <div class="smp-endpoint">
+              <span class="smp-lbl" data-i18n="plans.sub.projNow">Today</span>
+              <span class="smp-val">$200<span style="font-size:.65rem;font-weight:500;color:var(--ink-soft)">/mo</span></span>
+            </div>
+            <div class="smp-track-wrap">
+              <div class="smp-track"><div class="smp-fill"></div></div>
+            </div>
+            <div class="smp-endpoint">
+              <span class="smp-lbl" data-i18n="plans.sub.projThen">In 20 yrs</span>
+              <span class="smp-val smp-future">~$118k</span>
+            </div>
+          </div>
+          <div class="smp-note" data-i18n="plans.sub.projNote">Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.</div>
+        </div>
+        <div class="plan-bestfor">
+          <div class="plan-bestfor-label">Best for</div>
+          <div class="plan-bestfor-text" data-i18n="plans.sub.bestfor">People who are actively building wealth and want to see where they stand, what's coming, and what to do next.</div>
+        </div>
+        <div class="plan-section-label" data-i18n="plans.sub.includesLabel">What you see every month</div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f1">Track your financial future</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f2">See what your money could become</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f3">Build goals with real timelines</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f4">Freedom Score™</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f5">Understand your portfolio in plain English</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f7">Celebrate every financial milestone</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f8">Everything in Free</span></div>
+        <button class="plan-btn pb-fill pb-emerald" data-i18n="plans.sub.btn" onclick="openMemberSignup()">Start Building Wealth</button>
+        <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.82rem;line-height:1.45;text-align:center;" data-i18n="plans.sub.note">Cancel anytime. No lock-in.</p>
+      </div>
+
+      <!-- ── LIFETIME CARD ── -->
       <div class="plan-card star">
         <div class="plan-badge" data-i18n="plans.prem.badge">Founding one-time price</div>
-        <div class="plan-tier" data-i18n="plans.prem.tier">Premium — Clarity Pass</div>
+        <div class="plan-tier" data-i18n="plans.prem.tier">Clarity Pass</div>
+        <div class="plan-name" data-i18n="plans.prem.name">Build Your Financial Foundation</div>
         <div class="plan-price" id="plans-prem-price">AUD $89.90</div>
-        <div class="plan-desc" data-i18n="plans.prem.desc">Everything you need to go from curious to confident — structured lessons, guided investing paths, crypto clarity, and a real human to help you take your first step.</div>
+        <div class="plan-price-note" data-i18n="plans.prem.priceNote">One-time. Lifetime access. No subscription, ever.</div>
+        <div class="plan-foundation-note" data-i18n="plans.prem.foundationNote">📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.</div>
+        <div class="plan-desc" data-i18n="plans.prem.desc">Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.</div>
         <div class="plan-zoom-callout">
           <strong id="plans-zoom-title" data-i18n="plans.zoom.title">Includes a 60-minute Zoom support call</strong>
           <span id="plans-zoom-text" data-i18n="plans.zoom.text">Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.</span>
         </div>
-        <div class="plan-founding-note" id="plans-founding-note" data-i18n="plans.foundingNote">Founding price for the first 50 members. Manually updated as early spots fill.</div>
         <div class="plan-bestfor">
           <div class="plan-bestfor-label" id="plans-prem-bestfor-label">Best for</div>
-          <div class="plan-bestfor-text" id="plans-prem-bestfor-text">People who are curious, a little nervous, and just want someone to show them the path — clearly, without pressure, and without making them feel like they missed something obvious.</div>
+          <div class="plan-bestfor-text" id="plans-prem-bestfor-text" data-i18n="plans.prem.bestfor">People who want to learn investing with confidence — structured lessons, guided paths, and a real human to answer every question. Once.</div>
         </div>
-        <div class="plan-section-label" id="plans-prem-includes-label">What you unlock</div>
-        <div class="premium-value-grid">
-          <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f1">Structured learning paths</strong>
-            <span data-i18n="plans.prem.f2">Step-by-step guides that take you from "I've heard of ETFs" to "I know how to buy one" — in plain English.</span>
+        <div class="plan-section-label" id="plans-prem-includes-label" data-i18n="plans.prem.includesLabel">What's included</div>
+        <div class="plan-clarity-grid">
+          <div class="pcg-col pcg-yes">
+            <div class="pcg-head" data-i18n="plans.prem.cgYesHead">Included</div>
+            <div class="pcg-item" data-i18n="plans.prem.cg1">✔ Structured investing education</div>
+            <div class="pcg-item" data-i18n="plans.prem.cg2">✔ Beginner roadmap</div>
+            <div class="pcg-item" data-i18n="plans.prem.cg3">✔ Bitcoin &amp; ETF guidance</div>
+            <div class="pcg-item" data-i18n="plans.prem.cg4">✔ 60-min onboarding Zoom call</div>
+            <div class="pcg-item" data-i18n="plans.prem.cg5">✔ Lifetime access to guides</div>
           </div>
-          <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f3">Bitcoin clarity</strong>
-            <span data-i18n="plans.prem.f4">Understand Bitcoin before touching it. White paper, halving, self-custody, wallets — without the hype or the fear.</span>
-          </div>
-          <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f5">Books that changed how people think</strong>
-            <span data-i18n="plans.prem.f6">A curated reading path — investing, wealth, mindset — ordered so each one builds on the last.</span>
-          </div>
-          <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f7">Your first account, done right</strong>
-            <span data-i18n="plans.prem.f8">How to choose a platform, open it, and place your first trade — with guidance, not guesswork.</span>
-          </div>
-          <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f9">60 minutes with a real human</strong>
-            <span data-i18n="plans.prem.f10">Bring your questions, your plan, your fears. One Zoom call to clear everything up and help you move forward.</span>
-          </div>
-          <div class="premium-value-card">
-            <strong data-i18n="plans.prem.f11">A hub that keeps growing</strong>
-            <span data-i18n="plans.prem.f12">New lessons, market insights, chart-reading guides, and member resources — added as the platform grows.</span>
+          <div class="pcg-col pcg-no">
+            <div class="pcg-head" data-i18n="plans.prem.cgNoHead">Not included</div>
+            <div class="pcg-item" data-i18n="plans.prem.cgn1">✖ Live portfolio tracking</div>
+            <div class="pcg-item" data-i18n="plans.prem.cgn2">✖ Future projections</div>
+            <div class="pcg-item" data-i18n="plans.prem.cgn3">✖ AI portfolio insights</div>
+            <div class="pcg-item" data-i18n="plans.prem.cgn4">✖ Freedom Score™ dashboard</div>
           </div>
         </div>
         <div class="plan-proof">
-          <span class="plan-proof-pill" id="plans-proof-1">AUD $89.90 one-time</span>
-          <span class="plan-proof-pill" id="plans-proof-2">1 x 60-min Zoom call</span>
-          <span class="plan-proof-pill" id="plans-proof-3">Extra calls AUD $39.90</span>
-        </div>
-        <div class="plan-value-compare" aria-label="Premium value comparison">
-          <div class="plan-value-box">
-            <span data-i18n="plans.compare.leftK">Typical 1-hour session</span>
-            <strong data-i18n="plans.compare.leftT">AUD $200–$350</strong>
-            <small data-i18n="plans.compare.leftB">A common range for one financial education or guidance session in Australia.</small>
-          </div>
-          <div class="plan-value-box highlight">
-            <span data-i18n="plans.compare.rightK">Plainvest Premium</span>
-            <strong data-i18n="plans.compare.rightT">AUD $89.90 once</strong>
-            <small data-i18n="plans.compare.rightB">Includes the 60-minute Zoom call, 15 guides, book path, and permanent hub access.</small>
-          </div>
-        </div>
-        <div class="member-hub-preview" aria-label="Premium hub preview">
-          <div class="member-hub-preview-head">
-            <strong data-i18n="plans.preview.title">Inside Premium</strong>
-            <span data-i18n="plans.preview.badge">Member hub preview</span>
-          </div>
-          <div class="member-hub-preview-grid">
-            <div class="member-hub-preview-card">
-              <span>📘</span>
-              <strong data-i18n="plans.preview.c1">Investment paths</strong>
-              <small data-i18n="plans.preview.b1">ETFs, index funds, Bitcoin, gold, bonds, stocks</small>
-            </div>
-            <div class="member-hub-preview-card">
-              <span>📈</span>
-              <strong data-i18n="plans.preview.c2">DCA method</strong>
-              <small data-i18n="plans.preview.b2">Build a recurring investing habit</small>
-            </div>
-            <div class="member-hub-preview-card">
-              <span>🔐</span>
-              <strong data-i18n="plans.preview.c3">Crypto safety</strong>
-              <small data-i18n="plans.preview.b3">Wallets, seed phrases, custody mistakes</small>
-            </div>
-            <div class="member-hub-preview-card">
-              <span>📚</span>
-              <strong data-i18n="plans.preview.c4">Book path</strong>
-              <small data-i18n="plans.preview.b4">Reading order with Amazon links</small>
-            </div>
-            <div class="member-hub-preview-card">
-              <span>🧾</span>
-              <strong data-i18n="plans.preview.c5">Tax and super</strong>
-              <small data-i18n="plans.preview.b5">Australia-focused basics</small>
-            </div>
-            <div class="member-hub-preview-card">
-              <span>💬</span>
-              <strong data-i18n="plans.preview.c6">Zoom support</strong>
-              <small data-i18n="plans.preview.b6">Book your included 60-minute call</small>
-            </div>
-          </div>
+          <span class="plan-proof-pill" id="plans-proof-1" data-i18n="plans.proof.p1">AUD $89.90 one-time</span>
+          <span class="plan-proof-pill" id="plans-proof-2" data-i18n="plans.proof.p2">60-min Zoom incl.</span>
+          <span class="plan-proof-pill" id="plans-proof-3" data-i18n="plans.proof.p3">Extra calls AUD $39.90</span>
         </div>
         <div class="plan-flow" aria-label="How Premium works">
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s1">1. Create your free account</strong>
-            <span data-i18n="plans.flow.b1">Takes under a minute. This is the email connected to your member hub.</span>
+            <strong data-i18n="plans.flow.s1">1. Create account</strong>
+            <span data-i18n="plans.flow.b1">One email. Access to everything you've purchased.</span>
           </div>
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s2">2. One simple payment</strong>
-            <span data-i18n="plans.flow.b2">AUD $89.90 once — no subscriptions, no hidden fees. Secured by Stripe.</span>
+            <strong data-i18n="plans.flow.s2">2. One payment</strong>
+            <span data-i18n="plans.flow.b2">AUD $89.90 once. Secured by Stripe. No recurring fees.</span>
           </div>
           <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s3">3. Start your path</strong>
-            <span data-i18n="plans.flow.b3">Land in the member hub, open any guide instantly, and book your included Zoom call when you're ready.</span>
+            <strong data-i18n="plans.flow.s3">3. Start learning</strong>
+            <span data-i18n="plans.flow.b3">Open any guide instantly. Book your Zoom call when you're ready.</span>
           </div>
         </div>
-        <div class="plan-after-purchase" data-i18n-html="plans.afterPurchase"><strong>No waiting, no approval.</strong> The moment payment goes through, every guide, the book path, and the Zoom booking link are yours — immediately.</div>
-        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Purchase access</button>
-        <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.86rem;line-height:1.45;" data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
+        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Get lifetime access</button>
+        <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.83rem;line-height:1.45;" data-i18n="plans.prem.footnote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
+      </div>
+
+    </div>
+    <!-- ── Why members stay ── -->
+    <div class="plans-why">
+      <div class="plans-why-head">
+        <span class="plans-why-eyebrow" data-i18n="plans.why.eyebrow">Why members stay</span>
+        <h3 class="plans-why-title" data-i18n="plans.why.title">What consistent clarity does for your future</h3>
+      </div>
+      <div class="plans-why-grid">
+        <div class="plans-why-card">
+          <span class="plans-why-icon">🔭</span>
+          <strong data-i18n="plans.why.c1">Future clarity</strong>
+          <span data-i18n="plans.why.b1">See where your investing path may lead — years before you get there.</span>
+        </div>
+        <div class="plans-why-card">
+          <span class="plans-why-icon">🧠</span>
+          <strong data-i18n="plans.why.c2">Emotional confidence</strong>
+          <span data-i18n="plans.why.b2">Understand what your numbers actually mean — without jargon or anxiety.</span>
+        </div>
+        <div class="plans-why-card">
+          <span class="plans-why-icon">🛡️</span>
+          <strong data-i18n="plans.why.c3">Inflation awareness</strong>
+          <span data-i18n="plans.why.b3">Protect your future purchasing power before inflation quietly erodes it.</span>
+        </div>
+        <div class="plans-why-card">
+          <span class="plans-why-icon">📈</span>
+          <strong data-i18n="plans.why.c4">Consistency tracking</strong>
+          <span data-i18n="plans.why.b4">Stay motivated for the long-term. See your progress build month by month.</span>
+        </div>
       </div>
     </div>
-    <div class="plan-faq" aria-label="Premium questions">
+
+    <!-- ── Journey banner ── -->
+    <div class="plans-journey-banner">
+      <p data-i18n="plans.journeyBanner">Your future evolves every month. Your financial clarity should too.</p>
+    </div>
+
+    <!-- ── Trust row ── -->
+    <div class="plans-trust-row">
+      <span class="plans-trust-pill" data-i18n="plans.trust.t1">✓ Cancel anytime</span>
+      <span class="plans-trust-pill" data-i18n="plans.trust.t2">🔒 Secure payments via Stripe</span>
+      <span class="plans-trust-pill" data-i18n="plans.trust.t3">🌱 Beginner-friendly</span>
+      <span class="plans-trust-pill" data-i18n="plans.trust.t4">🔐 Privacy-first</span>
+      <span class="plans-trust-pill" data-i18n="plans.trust.t5">📚 Education only</span>
+      <span class="plans-trust-pill" data-i18n="plans.trust.t6">⚖️ No financial advice</span>
+    </div>
+
+    <div class="plan-faq" aria-label="Plan questions">
       <div class="plan-faq-card">
-        <h3 data-i18n="plans.faq.q1">Is this financial advice?</h3>
-        <p data-i18n="plans.faq.a1">No. Plainvest is education and simulation. It helps you understand options and questions to ask before deciding.</p>
+        <h3 data-i18n="plans.faq.q1">What's the difference between the plans?</h3>
+        <p data-i18n="plans.faq.a1">The Future Membership is a live dashboard — portfolio tracking, future projections, Freedom Score™, and AI insights that evolve each month. The Clarity Pass is educational: structured guides, Bitcoin clarity, and a Zoom onboarding call. Yours forever.</p>
       </div>
       <div class="plan-faq-card">
-        <h3 data-i18n="plans.faq.q2">Is this a subscription?</h3>
-        <p data-i18n="plans.faq.a2">No. It is a one-time purchase for Premium member access, resources, and the included support call.</p>
+        <h3 data-i18n="plans.faq.q2">Do I need the subscription to access the guides?</h3>
+        <p data-i18n="plans.faq.a2">No. The Clarity Pass gives you permanent access to the entire educational library with no monthly fee. The subscription adds live tracking and portfolio tools on top.</p>
       </div>
       <div class="plan-faq-card">
-        <h3 data-i18n="plans.faq.q3">What happens after purchase?</h3>
-        <p data-i18n="plans.faq.a3">Immediately after purchase: 15 structured guides covering investing basics, DCA, Bitcoin safety, crypto self-custody, Australian tax and CGT, superannuation, platform comparison, books, chart reading, and more — plus booking access for your included 60-minute Zoom call.</p>
+        <h3 data-i18n="plans.faq.q3">Can I upgrade from the Clarity Pass later?</h3>
+        <p data-i18n="plans.faq.a3">Yes. Start with the Clarity Pass and move into the Future Membership anytime. Your educational content stays accessible regardless of which plan you're on.</p>
       </div>
       <div class="plan-faq-card">
-        <h3 data-i18n="plans.faq.q4">Is the price final?</h3>
-        <p data-i18n="plans.faq.a4">AUD $89.90 is the founding one-time price while Plainvest grows with early users.</p>
+        <h3 data-i18n="plans.faq.q4">What happens if I cancel the Future Membership?</h3>
+        <p data-i18n="plans.faq.a4">Your dashboard access pauses, but your account stays active and you can return anytime. You won't lose your data.</p>
       </div>
       <div class="plan-faq-card">
-        <h3 data-i18n="plans.faq.q5">How do I access the content after I pay?</h3>
-        <p data-i18n="plans.faq.a5">Create your member account, complete Stripe checkout, then return to the member hub where the guides unlock automatically.</p>
+        <h3 data-i18n="plans.faq.q5">Is this financial advice?</h3>
+        <p data-i18n="plans.faq.a5">No. Plainvest is education and simulation. It helps you understand options and questions to ask — not what to buy or sell.</p>
       </div>
       <div class="plan-faq-card">
-        <h3 data-i18n="plans.faq.q6">How do I book the Zoom call?</h3>
-        <p data-i18n="plans.faq.a6">Inside the member hub, open the Zoom call guide and choose a time directly from the Calendly calendar. Confirmation details are sent automatically.</p>
+        <h3 data-i18n="plans.faq.q6">Is the Clarity Pass price final?</h3>
+        <p data-i18n="plans.faq.a6">AUD $89.90 is the founding price. It will increase as Plainvest grows. Early members keep their price permanently.</p>
       </div>
       <div class="plan-faq-card">
-        <h3 data-i18n="plans.faq.q7">How long do I keep access?</h3>
-        <p data-i18n="plans.faq.a7">Your access is permanent. One purchase, no expiry, and no subscription ever required.</p>
+        <h3 data-i18n="plans.faq.q7">How do I access content after purchasing?</h3>
+        <p data-i18n="plans.faq.a7">Create your member account, complete Stripe checkout, and your guides unlock immediately inside the member hub.</p>
       </div>
       <div class="plan-faq-card">
         <h3 data-i18n="plans.faq.q8">Can I get a refund?</h3>
-        <p data-i18n="plans.faq.a8">If something is wrong or you purchased by mistake, contact us within 7 days. We review requests fairly and your Australian Consumer Law rights still apply.</p>
+        <p data-i18n="plans.faq.a8">If something is wrong or you purchased by mistake, contact us within 7 days. We review fairly and your Australian Consumer Law rights apply.</p>
       </div>
     </div>
     <div class="plans-bottom-cta">
-      <button class="plan-btn pb-fill" data-i18n="plans.bottomCta" onclick="openMemberSignup()">Purchase access — AUD $89.90</button>
-      <p data-i18n="plans.purchaseNote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
+      <button class="plan-btn pb-fill pb-emerald" data-i18n="plans.bottomCtaSub" onclick="openMemberSignup()">Start your future — AUD $9.90/mo</button>
+      <button class="plan-btn pb-out" style="margin-top:.7rem;" data-i18n="plans.bottomCtaLifetime" onclick="openMemberSignup()">Or get lifetime access — AUD $89.90 once</button>
+      <p data-i18n="plans.purchaseNote">Cancel anytime. 7-day review policy if something is not right.</p>
     </div>
     <div class="plans-footnote" id="plans-footnote">Plainvest Premium is designed to reduce hesitation, not add complexity. The goal is to help someone go from "I think I should invest" to "I know what my first step is."</div>
   </section>
@@ -15447,12 +15928,12 @@
           btn1: 'Get Premium access', btn2: 'See exchange options',
         },
         plans: {
-          eyebrow: 'Premium — financial clarity',
-          h2: 'You don\'t need more information.<br>You need <em>clarity.</em>',
-          lead: 'The simulator and free explanations are yours, forever. Premium is for the moment you want to go further — understand more deeply, act with more confidence, and build toward something real.',
+          eyebrow: 'Your path forward — choose what fits',
+          h2: 'Choose how you want to<br>build your <em>future.</em>',
+          lead: 'Start free. Go deeper when you\'re ready. Every plan is designed around one thing — helping you understand your financial future more clearly.',
           promise: {
-            q: 'Most people spend years watching from the sidelines — not because they can\'t invest, but because nobody made it feel <em>safe to start.</em>',
-            note: 'Premium is built to change that — one clear step at a time.'
+            q: 'Most people finish their working years without ever truly understanding where their money went — or where it <em>could have gone.</em>',
+            note: 'Plainvest was built to give you that clarity — before it\'s too late to act on it.'
           },
           pre: {
             k1: 'What changes',
@@ -15520,35 +16001,41 @@
           },
           footnote: 'Plainvest Premium is designed to reduce hesitation, not add complexity. The goal is to help someone go from “I think I should invest” to “I know what my first step is.”',
           flow: {
-            s1: '1. Create your free account',
-            b1: 'Use the email you want connected to Premium access.',
-            s2: '2. Complete checkout',
-            b2: 'Pay AUD $89.90 once through Stripe secure checkout.',
-            s3: '3. Access everything',
-            b3: 'Open all 15 guides, the book path, and book your Zoom call.'
+            s1: '1. Create account',
+            b1: 'One email. Access to everything you\'ve purchased.',
+            s2: '2. One payment',
+            b2: 'AUD $89.90 once. Secured by Stripe. No recurring fees.',
+            s3: '3. Start learning',
+            b3: 'Open any guide instantly. Book your Zoom call when you\'re ready.'
           },
           afterPurchase: '<strong>After payment:</strong> you land in the member hub, open any guide immediately, and book your included Zoom call from the support guide.',
-          purchaseNote: 'One-time payment. No subscription. 7-day review policy if something is not right.',
-          bottomCta: 'Purchase access — AUD $89.90',
-          free: { tier: 'Free — always', desc: 'Explore and simulate with no commitment, ever.', f1: 'Full investment simulator — all 9 investment types', f2: 'Side-by-side comparison table', f3: 'Plain-English explanations for all 9 investment types', f4: 'Contextual tips per investment', btn: 'Try it free' },
-          prem: { badge: 'Founding one-time price', tier: 'Premium Learning Pass', per: '', price: 'AUD $89.90', desc: 'Guided learning, crypto safety, book paths, exchange setup help, and beginner support.', f1: 'Guided investing lessons', f2: 'Deep-dive guides, DCA method, and how-to-buy steps by country.', f3: 'Bitcoin and crypto safety', f4: 'White paper, halving, on-chain basics, self-custody, wallets, and cycle mistakes.', f5: 'Book and content library', f6: 'Curated investing, macro, Bitcoin, business, and wealth books with reading order.', f7: 'Exchange setup help', f8: 'Help choosing a platform, opening an account, and understanding settings and tools.', f9: 'One included Zoom call', f10: 'A 60-minute beginner support call to help answer questions and guide your next steps.', f11: 'Growing member hub', f12: 'New studies, insights, chart-reading lessons, and member resources added over time.', f13: 'Macroeconomics reading path, including The Black Swan and other options', f14: 'Chart reading tool to analyze price across stocks, crypto, indexes, and ETFs', f15: 'Crypto market cycle lessons from two full cycles so you can avoid common mistakes', f16: 'New products, studies, and insights added over time for members', btn: 'Purchase access' },
+          purchaseNote: 'Cancel anytime. 7-day review policy if something is not right.',
+          bottomCtaSub: 'Start your future — AUD $9.90/mo',
+          bottomCtaLifetime: 'Or get lifetime access — AUD $89.90 once',
+          free: { tier: 'Free — always', name: 'Learn & Explore', hook: 'Start understanding your future before risking your money.', desc: 'All the tools to build understanding. No commitment, ever.', f1: 'Investment simulator — all 9 types', f2: 'Side-by-side comparison table', f3: 'Plain-English explanations', f4: 'Inflation calculator', f5: 'Future projections & passive income view', btn: 'Try it free' },
+          sub: { badge: 'Most Popular', tier: 'Future Membership', name: 'See Where Your Future Is Going', desc: 'Your financial future — tracked, projected, and guided every single month.', emotionHead: 'Most people never truly see where their money is going.', emotionSub: 'Plainvest helps you understand it before it\'s too late to act.', projEyebrow: 'Example: $200/mo invested at 8%/yr', projNow: 'Today', projThen: 'In 20 yrs', projNote: 'Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.', bestfor: 'People who are actively building wealth and want to see where they stand, what\'s coming, and what to do next.', includesLabel: 'What you see every month', billingMonthly: 'Monthly', billingAnnual: 'Annual', billingSave: 'Save 16%', f1: 'Track your financial future', f2: 'See what your money could become', f3: 'Build goals with real timelines', f4: 'Freedom Score™', f5: 'Understand your portfolio in plain English', f7: 'Celebrate every financial milestone', f8: 'Everything in Free', btn: 'Start Building Wealth', note: 'Cancel anytime. No lock-in.' },
+          prem: { badge: 'Founding one-time price', tier: 'Clarity Pass', name: 'Build Your Financial Foundation', price: 'AUD $89.90', priceNote: 'One-time. Lifetime access. No subscription, ever.', foundationNote: '📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.', cgYesHead: 'Included', cg1: '✔ Structured investing education', cg2: '✔ Beginner roadmap', cg3: '✔ Bitcoin & ETF guidance', cg4: '✔ 60-min onboarding Zoom call', cg5: '✔ Lifetime access to guides', cgNoHead: 'Not included', cgn1: '✖ Live portfolio tracking', cgn2: '✖ Future projections', cgn3: '✖ AI portfolio insights', cgn4: '✖ Freedom Score™ dashboard', footnote: 'One-time payment. No subscription. 7-day review policy if something is not right.', desc: 'Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.', bestfor: 'People who want to learn investing with confidence — structured lessons, guided paths, and a real human to answer every question. Once.', includesLabel: 'What you unlock forever', f1: '15+ structured investing guides', f3: 'Bitcoin & crypto clarity', f5: 'Curated book reading path', f7: 'Your first account, done right', f9: '60-minute Zoom support call (incl.)', f11: 'Permanent hub access — grows over time', f12: 'Everything in Free', btn: 'Get lifetime access' },
+          proof: { p1: 'AUD $89.90 one-time', p2: '60-min Zoom incl.', p3: 'Extra calls AUD $39.90' },
+          why: { eyebrow: 'Why members stay', title: 'What consistent clarity does for your future', c1: 'Future clarity', b1: 'See where your investing path may lead — years before you get there.', c2: 'Emotional confidence', b2: 'Understand what your numbers actually mean — without jargon or anxiety.', c3: 'Inflation awareness', b3: 'Protect your future purchasing power before inflation quietly erodes it.', c4: 'Consistency tracking', b4: 'Stay motivated for the long-term. See your progress build month by month.' },
+          journeyBanner: 'Your future evolves every month. Your financial clarity should too.',
+          trust: { t1: '✓ Cancel anytime', t2: '🔒 Secure payments via Stripe', t3: '🌱 Beginner-friendly', t4: '🔐 Privacy-first', t5: '📚 Education only', t6: '⚖️ No financial advice' },
           faq: {
-            q1: 'Is this financial advice?',
-            a1: 'No. Plainvest is education and simulation. It helps you understand options and questions to ask before deciding.',
-            q2: 'Is this a subscription?',
-            a2: 'No. It is a one-time purchase for Premium member access, resources, and the included support call.',
-            q3: 'What happens after purchase?',
-            a3: 'Immediately after purchase: 15 structured guides covering investing basics, DCA, Bitcoin safety, crypto self-custody, Australian tax and CGT, superannuation, platform comparison, books, chart reading, and more — plus booking access for your included 60-minute Zoom call.',
-            q4: 'Is the price final?',
-            a4: 'AUD $89.90 is the founding one-time price while Plainvest grows with early users.',
-            q5: 'How do I access the content after I pay?',
-            a5: 'Create your member account, complete Stripe checkout, then return to the member hub where the guides unlock automatically.',
-            q6: 'How do I book the Zoom call?',
-            a6: 'Inside the member hub, open the Zoom call guide and choose a time directly from the Calendly calendar. Confirmation details are sent automatically.',
-            q7: 'How long do I keep access?',
-            a7: 'Your access is permanent. One purchase, no expiry, and no subscription ever required.',
+            q1: 'What\'s the difference between the plans?',
+            a1: 'The Future Membership is a live dashboard — portfolio tracking, future projections, Freedom Score™, and AI insights that evolve each month. The Clarity Pass is educational: structured guides, Bitcoin clarity, and a Zoom onboarding call. Yours forever.',
+            q2: 'Do I need the subscription to access the guides?',
+            a2: 'No. The Clarity Pass gives you permanent access to the entire educational library with no monthly fee. The subscription adds live tracking and portfolio tools on top.',
+            q3: 'Can I upgrade from the Clarity Pass later?',
+            a3: 'Yes. Start with the Clarity Pass and move into the Future Membership anytime. Your educational content stays accessible regardless of which plan you\'re on.',
+            q4: 'What happens if I cancel the Future Membership?',
+            a4: 'Your dashboard access pauses, but your account stays active and you can return anytime. You won\'t lose your data.',
+            q5: 'Is this financial advice?',
+            a5: 'No. Plainvest is education and simulation. It helps you understand options and questions to ask — not what to buy or sell.',
+            q6: 'Is the Clarity Pass price final?',
+            a6: 'AUD $89.90 is the founding price. It will increase as Plainvest grows. Early members keep their price permanently.',
+            q7: 'How do I access content after purchasing?',
+            a7: 'Create your member account, complete Stripe checkout, and your guides unlock immediately inside the member hub.',
             q8: 'Can I get a refund?',
-            a8: 'If something is wrong or you purchased by mistake, contact us within 7 days. We review requests fairly and your Australian Consumer Law rights still apply.'
+            a8: 'If something is wrong or you purchased by mistake, contact us within 7 days. We review fairly and your Australian Consumer Law rights apply.'
           }
         },
         account: {
@@ -16194,12 +16681,12 @@
           btn1: 'Acessar Premium', btn2: 'Ver opções de exchanges',
         },
         plans: {
-          eyebrow: 'Premium — clareza financeira',
-          h2: 'Você não precisa de mais informação.<br>Você precisa de <em>clareza.</em>',
-          lead: 'O simulador e as explicações gratuitas são seus, para sempre. O Premium é para o momento em que você quer ir além — entender mais fundo, agir com mais confiança e construir algo real.',
+          eyebrow: 'Seu caminho adiante — escolha o que se encaixa',
+          h2: 'Escolha como você quer<br>construir seu <em>futuro.</em>',
+          lead: 'Comece grátis. Vá mais fundo quando estiver pronto. Cada plano foi criado com um único objetivo — ajudá-lo a entender o seu futuro financeiro com mais clareza.',
           promise: {
-            q: 'A maioria das pessoas passa anos observando de longe — não porque não conseguem investir, mas porque ninguém tornou isso <em>seguro para começar.</em>',
-            note: 'O Premium foi criado para mudar isso — um passo claro de cada vez.'
+            q: 'A maioria das pessoas termina sua vida produtiva sem nunca ter entendido de verdade para onde foi seu dinheiro — ou onde ele <em>poderia ter chegado.</em>',
+            note: 'O Plainvest foi criado para te dar essa clareza — antes que seja tarde demais para agir.'
           },
           pre: {
             k1: 'O que muda',
@@ -16267,35 +16754,41 @@
           },
           footnote: 'O Plainvest Premium foi pensado para reduzir a insegurança, não para adicionar complexidade. A meta é ajudar alguém a sair de “acho que deveria investir” para “sei qual é meu primeiro passo”.',
           flow: {
-            s1: '1. Crie sua conta gratuita',
-            b1: 'Use o email que você quer conectar ao acesso Premium.',
-            s2: '2. Finalize o checkout',
-            b2: 'Pague via checkout seguro do Stripe (aprox. R$320,00 em pagamento único).',
-            s3: '3. Acesse tudo',
-            b3: 'Abra os 15 guias, a trilha de livros e agende sua chamada no Zoom.'
+            s1: '1. Crie sua conta',
+            b1: 'Um email. Acesso a tudo que você comprou.',
+            s2: '2. Um pagamento',
+            b2: 'aprox. R$320,00 uma vez. Seguro via Stripe. Sem cobranças recorrentes.',
+            s3: '3. Comece a aprender',
+            b3: 'Abra qualquer guia na hora. Agende sua chamada no Zoom quando estiver pronto.'
           },
           afterPurchase: '<strong>Depois do pagamento:</strong> você entra no hub de membros, abre qualquer guia imediatamente e agenda sua chamada de Zoom pelo guia de suporte.',
-          purchaseNote: 'Pagamento único. Sem assinatura. Política de revisão de 7 dias se algo não estiver certo.',
-          bottomCta: 'Comprar acesso — aprox. R$320,00',
-          free: { tier: 'Gratuito — para sempre', desc: 'Explore e simule sem compromisso, sempre.', f1: 'Simulador completo — todos os 9 tipos de investimento', f2: 'Tabela comparativa lado a lado', f3: 'Explicações em linguagem simples para todos os 9 tipos', f4: 'Dicas contextuais por investimento', btn: 'Experimentar grátis' },
-          prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe Premium de Aprendizado', per: '', price: 'aprox. R$320,00', desc: 'Aprendizado guiado, segurança em cripto, trilha de livros, ajuda com exchange e apoio para iniciantes. Valor equivalente a AUD $89,90 em pagamento único.', f1: 'Aulas guiadas de investimento', f2: 'Guias aprofundados, método DCA e passos de compra por país.', f3: 'Bitcoin e segurança em cripto', f4: 'White paper, halving, noções on-chain, autocustódia, carteiras e erros de ciclo.', f5: 'Biblioteca de livros e conteúdos', f6: 'Livros de investimento, macro, Bitcoin, negócios e riqueza com ordem de leitura.', f7: 'Ajuda com exchange', f8: 'Ajuda para escolher plataforma, abrir conta e entender configurações e ferramentas.', f9: 'Uma chamada incluída no Zoom', f10: 'Uma chamada de apoio para iniciantes de 60 minutos para ajudar com dúvidas e próximos passos.', f11: 'Hub de membro em crescimento', f12: 'Novos estudos, insights, aulas de leitura de gráfico e recursos adicionados com o tempo.', f13: 'Trilha de livros sobre macroeconomia, incluindo A Lógica do Cisne Negro e outras opções', f14: 'Ferramenta de leitura de gráficos para analisar preço em ações, cripto, índices e ETFs', f15: 'Lições de dois ciclos completos do mercado cripto para evitar erros comuns', f16: 'Novos produtos, estudos e insights adicionados com o tempo para membros', btn: 'Comprar acesso' },
+          purchaseNote: 'Cancele quando quiser. Política de revisão de 7 dias se algo não estiver certo.',
+          bottomCtaSub: 'Comece seu futuro — AUD $9,90/mês',
+          bottomCtaLifetime: 'Ou obtenha acesso vitalício — AUD $89,90 uma vez',
+          free: { tier: 'Gratuito — para sempre', name: 'Aprender & Explorar', hook: 'Comece a entender seu futuro antes de arriscar seu dinheiro.', desc: 'Todas as ferramentas para construir entendimento. Sem compromisso.', f1: 'Simulador — todos os 9 tipos de investimento', f2: 'Tabela comparativa lado a lado', f3: 'Explicações em linguagem simples', f4: 'Calculadora de inflação', f5: 'Projeções futuras e renda passiva', btn: 'Experimentar grátis' },
+          sub: { badge: 'Mais Popular', tier: 'Membership Future', name: 'Veja Para Onde Vai Seu Futuro', desc: 'Seu futuro financeiro — acompanhado, projetado e guiado todo mês.', emotionHead: 'A maioria das pessoas nunca realmente vê para onde está indo seu dinheiro.', emotionSub: 'O Plainvest te ajuda a entender isso antes que seja tarde demais para agir.', projEyebrow: 'Exemplo: R$1.000/mês investido a 8%/ano', projNow: 'Hoje', projThen: 'Em 20 anos', projNote: 'Estimativa educacional. Considera 8%/ano de média. Não é promessa nem conselho financeiro.', bestfor: 'Pessoas que estão construindo patrimônio e querem ver onde estão, o que vem pela frente e o que fazer a seguir.', includesLabel: 'O que você vê todo mês', billingMonthly: 'Mensal', billingAnnual: 'Anual', billingSave: 'Economize 16%', f1: 'Acompanhe seu futuro financeiro', f2: 'Veja o que seu dinheiro pode se tornar', f3: 'Crie metas com prazos reais', f4: 'Pontuação de Liberdade™', f5: 'Entenda seu portfólio em linguagem simples', f7: 'Celebre cada marco financeiro', f8: 'Tudo do plano Gratuito', btn: 'Comece a Construir Patrimônio', note: 'Cancele quando quiser. Sem fidelidade.' },
+          prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe de Clareza', name: 'Construa Sua Base Financeira', price: 'aprox. R$320,00', priceNote: 'Pagamento único. Acesso vitalício. Sem assinatura.', foundationNote: '📚 Educacional. Guiado. Seguro para iniciantes. Esta é a sua base — não rastreamento financeiro em tempo real.', cgYesHead: 'Incluído', cg1: '✔ Educação de investimentos estruturada', cg2: '✔ Roteiro para iniciantes', cg3: '✔ Orientação sobre Bitcoin e ETFs', cg4: '✔ Chamada de onboarding no Zoom de 60 min', cg5: '✔ Acesso vitalício aos guias', cgNoHead: 'Não incluído', cgn1: '✖ Rastreamento de portfólio em tempo real', cgn2: '✖ Projeções futuras', cgn3: '✖ Insights de IA sobre portfólio', cgn4: '✖ Painel Freedom Score™', footnote: 'Pagamento único. Sem assinatura. Política de revisão de 7 dias se algo não estiver certo.', desc: 'Guias estruturados, clareza sobre Bitcoin e uma chamada de Zoom de 60 minutos para construir sua confiança — seus para sempre.', bestfor: 'Pessoas que querem aprender a investir com confiança — aulas estruturadas, caminhos guiados e um ser humano de verdade para responder suas perguntas. Uma vez.', includesLabel: 'O que você libera para sempre', f1: '15+ guias estruturados de investimento', f3: 'Bitcoin e clareza em cripto', f5: 'Trilha curada de livros', f7: 'Sua primeira conta, feita certo', f9: 'Chamada de Zoom de 60 min (incl.)', f11: 'Acesso permanente ao hub — cresce com o tempo', f12: 'Tudo do plano Gratuito', btn: 'Obter acesso vitalício' },
+          proof: { p1: 'aprox. R$320,00 uma vez', p2: 'Zoom de 60 min incl.', p3: 'Chamadas extras aprox. R$142,00' },
+          why: { eyebrow: 'Por que os membros ficam', title: 'O que a clareza consistente faz pelo seu futuro', c1: 'Clareza sobre o futuro', b1: 'Veja onde pode chegar seu caminho de investimentos — anos antes de chegar lá.', c2: 'Confiança emocional', b2: 'Entenda o que seus números realmente significam — sem jargões ou ansiedade.', c3: 'Consciência sobre inflação', b3: 'Proteja seu poder de compra futuro antes que a inflação o corroa silenciosamente.', c4: 'Acompanhamento de consistência', b4: 'Mantenha-se motivado no longo prazo. Veja seu progresso crescer mês a mês.' },
+          journeyBanner: 'Seu futuro evolui todo mês. Sua clareza financeira também deveria.',
+          trust: { t1: '✓ Cancele quando quiser', t2: '🔒 Pagamentos seguros via Stripe', t3: '🌱 Amigável para iniciantes', t4: '🔐 Privacidade em primeiro lugar', t5: '📚 Apenas educação', t6: '⚖️ Sem conselho financeiro' },
           faq: {
-            q1: 'Isso é recomendação financeira?',
-            a1: 'Não. O Plainvest é educação e simulação. Ele ajuda você a entender opções e perguntas importantes antes de decidir.',
-            q2: 'É uma assinatura?',
-            a2: 'Não. É uma compra em pagamento único para acesso de membro Premium, recursos e a chamada incluída.',
-            q3: 'O que acontece depois da compra?',
-            a3: 'Imediatamente após a compra: 15 guias estruturados sobre noções de investimento, DCA, segurança em Bitcoin, autocustódia cripto, impostos e CGT na Austrália, superannuation, comparação de plataformas, livros, leitura de gráficos e mais — além do agendamento da sua chamada incluída de 60 minutos no Zoom.',
-            q4: 'O preço é definitivo?',
-            a4: 'Aprox. R$320,00 (AUD $89,90) é o preço fundador enquanto o Plainvest cresce com os primeiros usuários.',
-            q5: 'Como acesso o conteúdo depois de pagar?',
-            a5: 'Crie sua conta de membro, finalize o checkout no Stripe e volte para o hub de membros, onde os guias são liberados automaticamente.',
-            q6: 'Como agendo a chamada no Zoom?',
-            a6: 'Dentro do hub de membros, abra o guia da chamada no Zoom e escolha um horário direto no calendário do Calendly. Os detalhes de confirmação são enviados automaticamente.',
-            q7: 'Por quanto tempo mantenho o acesso?',
-            a7: 'Seu acesso é permanente. Um pagamento único, sem expiração e sem assinatura.',
+            q1: 'Qual é a diferença entre os planos?',
+            a1: 'O Membership Future é um painel em tempo real — rastreamento de portfólio, projeções futuras, Freedom Score™ e insights de IA que evoluem todo mês. O Passe de Clareza é educacional: guias estruturados, clareza sobre Bitcoin e uma chamada de onboarding no Zoom. Seus para sempre.',
+            q2: 'Preciso da assinatura para acessar os guias?',
+            a2: 'Não. O Passe de Clareza dá acesso permanente à biblioteca educacional completa sem mensalidade. A assinatura adiciona rastreamento em tempo real e ferramentas de portfólio.',
+            q3: 'Posso fazer upgrade do Passe de Clareza mais tarde?',
+            a3: 'Sim. Comece com o Passe de Clareza e entre no Membership Future quando quiser. Seu conteúdo educacional fica acessível independentemente do plano.',
+            q4: 'O que acontece se eu cancelar o Membership Future?',
+            a4: 'O acesso ao painel é pausado, mas sua conta fica ativa e você pode retornar quando quiser. Seus dados não são perdidos.',
+            q5: 'Isso é recomendação financeira?',
+            a5: 'Não. O Plainvest é educação e simulação. Ajuda você a entender opções e perguntas importantes — não o que comprar ou vender.',
+            q6: 'O preço do Passe de Clareza é definitivo?',
+            a6: 'AUD $89,90 (aprox. R$320,00) é o preço fundador. Vai aumentar conforme o Plainvest cresce. Os primeiros membros mantêm seu preço para sempre.',
+            q7: 'Como acesso o conteúdo após a compra?',
+            a7: 'Crie sua conta de membro, finalize o checkout no Stripe e seus guias serão liberados imediatamente no hub de membros.',
             q8: 'Posso pedir reembolso?',
-            a8: 'Se algo estiver errado ou você comprou por engano, fale conosco em até 7 dias. Analisamos de forma justa e seus direitos legais continuam válidos.'
+            a8: 'Se algo estiver errado ou você comprou por engano, entre em contato em até 7 dias. Analisamos de forma justa e seus direitos legais continuam válidos.'
           }
         },
         account: {
@@ -16693,6 +17186,7 @@
 
     let currentLang = 'en';
     let currentCountry = 'us';
+    let currentBillingMode = 'monthly';
 
     function getNestedKey(obj, path) {
       return path.split('.').reduce((o, k) => (o && o[k] !== undefined ? o[k] : undefined), obj);
@@ -17168,6 +17662,7 @@
       if (typeof renderInflationChart === 'function') { renderInflationChart(); updateInflationStats(); }
       if (typeof simulate === 'function') { try { simulate(); } catch (e) { } }
       if (typeof syncMemberNavState === 'function') { try { syncMemberNavState(); } catch (e) { } }
+      if (typeof setPlanBilling === 'function') { setPlanBilling(); }
 
       // Update mobile overlay item descriptions
       var mobDescMap = {
@@ -18718,6 +19213,30 @@
     function openMemberSignup(event) {
       if (event && event.preventDefault) event.preventDefault();
       openMemberApp('/signup');
+    }
+
+    function setPlanBilling(mode) {
+      if (mode) currentBillingMode = mode;
+      var priceEl = document.getElementById('sub-price-display');
+      var periodEl = document.getElementById('sub-period-display');
+      var noteEl = document.getElementById('sub-billing-note');
+      var btnMonthly = document.getElementById('pbt-monthly');
+      var btnAnnual = document.getElementById('pbt-annual');
+      if (!priceEl) return;
+      var isPt = currentLang === 'pt';
+      if (currentBillingMode === 'annual') {
+        priceEl.textContent = isPt ? 'aprox. R$320,00' : 'AUD $99';
+        if (periodEl) periodEl.textContent = isPt ? '/ano' : '/yr';
+        if (noteEl) noteEl.textContent = isPt ? 'Cobrado anualmente. Economize aprox. R$63,00.' : 'Billed annually. Save AUD $19.80.';
+        if (btnMonthly) btnMonthly.classList.remove('pbt-active');
+        if (btnAnnual) btnAnnual.classList.add('pbt-active');
+      } else {
+        priceEl.textContent = isPt ? 'aprox. R$32,00' : 'AUD $9.90';
+        if (periodEl) periodEl.textContent = isPt ? '/mês' : '/mo';
+        if (noteEl) noteEl.textContent = isPt ? 'Cobrado mensalmente. Cancele quando quiser.' : 'Billed monthly. Cancel anytime.';
+        if (btnMonthly) btnMonthly.classList.add('pbt-active');
+        if (btnAnnual) btnAnnual.classList.remove('pbt-active');
+      }
     }
 
     function openMemberLogin(event) {
