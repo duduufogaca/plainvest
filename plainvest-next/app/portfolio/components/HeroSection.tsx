@@ -88,6 +88,25 @@ export function HeroSection({
             : (isEN ? 'Total invested' : 'Total investido')}
         </div>
 
+        {/* Emotional tagline — dynamic based on journey stage */}
+        <div className="portfolio-hero-tagline">
+          {monthsActive < 3
+            ? (isEN
+                ? 'Every great wealth journey starts exactly like this.'
+                : 'Toda grande jornada financeira começa exatamente assim.')
+            : monthsActive < 12
+            ? (isEN
+                ? 'Building the habits of long-term financial freedom.'
+                : 'Construindo os hábitos da liberdade financeira.')
+            : monthsActive < 36
+            ? (isEN
+                ? 'Your consistency is your greatest financial advantage.'
+                : 'Sua consistência é sua maior vantagem financeira.')
+            : (isEN
+                ? 'Years of consistency — this is how wealth is built.'
+                : 'Anos de consistência — é assim que o patrimônio é construído.')}
+        </div>
+
         {/* Return: only show positive in green. Negative → calm reassurance. */}
         {hasReturn && (
           isPositiveReturn ? (

@@ -2950,6 +2950,17 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   opacity: .7;
   letter-spacing: .02em;
 }
+/* Emotional tagline below the main value */
+.portfolio-hero-tagline {
+  font-size: .8rem;
+  font-weight: 500;
+  color: #4d6e88;
+  font-style: italic;
+  margin-bottom: .9rem;
+  letter-spacing: .01em;
+  line-height: 1.5;
+}
+
 /* Calm reassurance message — replaces red return */
 .portfolio-hero-calm-msg {
   display: inline-block;
@@ -3181,6 +3192,251 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   margin-top: auto;
 }
 
+/* ── Future Freedom Section ──────────────────────────────── */
+.future-freedom-card {
+  margin-bottom: .75rem;
+}
+.future-freedom-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: .35rem;
+}
+.future-freedom-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .15rem;
+  background: rgba(97,213,180,.07);
+  border: 1px solid rgba(97,213,180,.15);
+  border-radius: 14px;
+  padding: .55rem .85rem;
+}
+.future-freedom-badge-icon {
+  font-size: .75rem;
+  color: var(--teal);
+  opacity: .7;
+}
+.future-freedom-badge-year {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--teal);
+  letter-spacing: -.02em;
+}
+.future-freedom-subtitle {
+  font-size: .76rem;
+  color: var(--muted);
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+.future-freedom-stats {
+  display: flex;
+  align-items: stretch;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  gap: 0;
+}
+.future-freedom-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  text-align: center;
+}
+.future-freedom-divider {
+  width: 1px;
+  background: rgba(255,255,255,.08);
+  margin: 0 1.25rem;
+  flex-shrink: 0;
+}
+.future-stat-val {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.future-stat-unit {
+  font-size: .6em;
+  font-weight: 700;
+  opacity: .75;
+  margin-left: .05em;
+}
+.future-stat-teal { color: var(--teal); }
+.future-stat-gold { color: var(--gold); }
+.future-stat-label {
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .03em;
+  line-height: 1.4;
+}
+.future-stat-sub {
+  font-size: .61rem;
+  color: #3d5a78;
+  font-style: italic;
+  line-height: 1.4;
+}
+/* Milestones */
+.future-milestones { margin-bottom: 1.25rem; }
+.future-milestones-label {
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 .65rem;
+}
+.future-milestones-row {
+  display: flex;
+  gap: .65rem;
+  flex-wrap: wrap;
+}
+.future-milestone {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: .75rem 1.1rem;
+  flex: 1;
+  min-width: 180px;
+  transition: border-color .2s, background .2s;
+}
+.future-milestone-achieved {
+  border-color: rgba(97,213,180,.2);
+  background: rgba(97,213,180,.06);
+}
+.future-milestone-far { opacity: .55; }
+.future-milestone-icon {
+  font-size: .9rem;
+  color: var(--teal);
+  flex-shrink: 0;
+}
+.future-milestone-achieved .future-milestone-icon { color: #61d5b4; }
+.future-milestone-info {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+.future-milestone-target {
+  font-size: .95rem;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -.01em;
+}
+.future-milestone-years {
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+.future-milestone-year {
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.future-milestone-status {
+  font-size: .69rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.future-ms-achieved { color: #61d5b4; }
+/* Inflation impact */
+.future-inflation {
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.future-inflation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .6rem;
+}
+.future-inflation-label {
+  font-size: .69rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.future-inflation-pct {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.future-inflation-bar-bg {
+  height: 5px;
+  background: rgba(255,255,255,.07);
+  border-radius: 3px;
+  margin-bottom: .7rem;
+  overflow: hidden;
+}
+.future-inflation-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, rgba(244,200,106,.5) 100%);
+  border-radius: 3px;
+}
+.future-inflation-note {
+  font-size: .71rem;
+  color: #5a7a96;
+  margin: 0;
+  line-height: 1.55;
+  font-style: italic;
+}
+.future-disclaimer {
+  font-size: .64rem;
+  color: #3d5a78;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ── Sidebar nav improvements ─────────────────────────────── */
+.sidebar-nav-divider {
+  height: 1px;
+  background: rgba(255,255,255,.06);
+  margin: .4rem .5rem;
+}
+.sidebar-link-label {
+  flex: 1;
+  min-width: 0;
+}
+.sidebar-icon-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+a.sidebar-link:hover {
+  color: var(--text);
+  background: rgba(97,213,180,.07);
+  border-color: rgba(97,213,180,.14);
+}
+.sidebar-link-soon {
+  opacity: .42;
+  cursor: not-allowed;
+}
+.sidebar-soon-badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: #3d5a78;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 6px;
+  padding: .1rem .35rem;
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 @media(max-width:960px) {
   .portfolio-sidebar { width: 180px; }
@@ -3196,6 +3452,11 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   .profile-form-row { grid-template-columns: 1fr; }
   .portfolio-score-insights-row { grid-template-columns: 1fr; }
   .freedom-rings-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .future-freedom-stats { flex-direction: column; gap: 1.25rem; padding: 1.25rem; }
+  .future-freedom-divider { width: 100%; height: 1px; margin: 0; }
+  .future-freedom-stat { text-align: left; }
+  .future-milestones-row { flex-direction: column; }
+  .future-milestone { min-width: unset; }
 }
 @media(max-width:640px) {
   .portfolio-shell .portfolio-kpi-value { font-size: 1.05rem; }

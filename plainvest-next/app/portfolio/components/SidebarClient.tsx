@@ -60,30 +60,98 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
       </div>
 
       <nav className="sidebar-nav">
+        <a href={backHref} className="sidebar-link">
+          <span className="sidebar-icon sidebar-icon-svg">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </span>
+          {!collapsed && <span className="sidebar-link-label">{isEN ? 'Dashboard' : 'Painel'}</span>}
+        </a>
+
         {portfolioHref ? (
           <a href={portfolioHref} className="sidebar-link">
-            <span className="sidebar-icon">◈</span>
-            {!collapsed && 'Portfolio'}
+            <span className="sidebar-icon sidebar-icon-svg">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </span>
+            {!collapsed && <span className="sidebar-link-label">{isEN ? 'Portfolio' : 'Portfólio'}</span>}
           </a>
         ) : (
           <span className="sidebar-link sidebar-active">
-            <span className="sidebar-icon">◈</span>
-            {!collapsed && 'Portfolio'}
+            <span className="sidebar-icon sidebar-icon-svg">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </span>
+            {!collapsed && <span className="sidebar-link-label">{isEN ? 'Portfolio' : 'Portfólio'}</span>}
           </span>
         )}
-        <a href={backHref} className="sidebar-link">
-          <span className="sidebar-icon">⌂</span>
-          {!collapsed && 'Hub'}
-        </a>
+
+        <div className="sidebar-nav-divider" />
+
+        <span className="sidebar-link sidebar-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sidebar-icon sidebar-icon-svg">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </span>
+          {!collapsed && (
+            <>
+              <span className="sidebar-link-label">{isEN ? 'Future' : 'Futuro'}</span>
+              <span className="sidebar-soon-badge">{isEN ? 'Soon' : 'Breve'}</span>
+            </>
+          )}
+        </span>
+
+        <span className="sidebar-link sidebar-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sidebar-icon sidebar-icon-svg">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            </svg>
+          </span>
+          {!collapsed && (
+            <>
+              <span className="sidebar-link-label">{isEN ? 'Insights' : 'Análises'}</span>
+              <span className="sidebar-soon-badge">{isEN ? 'Soon' : 'Breve'}</span>
+            </>
+          )}
+        </span>
+
+        <span className="sidebar-link sidebar-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+          <span className="sidebar-icon sidebar-icon-svg">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </span>
+          {!collapsed && (
+            <>
+              <span className="sidebar-link-label">{isEN ? 'Learn' : 'Aprender'}</span>
+              <span className="sidebar-soon-badge">{isEN ? 'Soon' : 'Breve'}</span>
+            </>
+          )}
+        </span>
+
+        <div className="sidebar-nav-divider" />
+
         {profileActive ? (
           <span className="sidebar-link sidebar-active">
-            <span className="sidebar-icon">◯</span>
-            {!collapsed && profileLabel}
+            <span className="sidebar-icon sidebar-icon-svg">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            {!collapsed && <span className="sidebar-link-label">{profileLabel}</span>}
           </span>
         ) : (
           <a href="/profile" className="sidebar-link">
-            <span className="sidebar-icon">◯</span>
-            {!collapsed && profileLabel}
+            <span className="sidebar-icon sidebar-icon-svg">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            {!collapsed && <span className="sidebar-link-label">{profileLabel}</span>}
           </a>
         )}
       </nav>

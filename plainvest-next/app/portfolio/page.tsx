@@ -12,6 +12,7 @@ import { ProjectionEngine } from './components/ProjectionEngine';
 import { HeroSection } from './components/HeroSection';
 import { FreedomScore, type ScoreItem } from './components/FreedomScore';
 import { InsightsPanel } from './components/InsightsPanel';
+import { FutureSection } from './components/FutureSection';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { fetchLivePrices } from '@/lib/live-prices';
 import type { LivePrices } from '@/lib/live-prices';
@@ -488,6 +489,17 @@ export default async function PortfolioPage({
             <FreedomScore scores={freedomScores} lang={lang} />
             <InsightsPanel insights={portfolioInsights} lang={lang} />
           </div>
+        )}
+
+        {/* ── Future Freedom ── */}
+        {rows.length > 0 && (
+          <FutureSection
+            projCurrentValue={projCurrentValue}
+            projMonthlyContrib={projMonthlyContrib}
+            currency={displayCurrency}
+            lang={lang}
+            monthsActive={monthsActive}
+          />
         )}
 
         {/* Prices notice */}
