@@ -7323,6 +7323,275 @@
       }
     }
 
+    /* ── Story: hero banner ── */
+    .story-hero-banner {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 4.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .story-hero-statement {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.28;
+      margin-bottom: 1.4rem;
+      letter-spacing: -0.3px;
+    }
+    .story-hero-statement em {
+      color: var(--teal);
+      font-style: normal;
+    }
+    .story-hero-sub {
+      font-size: clamp(.95rem, 1.5vw, 1.12rem);
+      color: rgba(180,205,228,.68);
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── Story: pull-out quote ── */
+    .story-pullquote {
+      margin: 1.8rem 0;
+      padding: 1.3rem 1.6rem;
+      border-left: 3px solid var(--teal);
+      background: rgba(0,212,170,.05);
+      border-radius: 0 14px 14px 0;
+    }
+    .story-pullquote-text {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.45;
+    }
+    .story-pullquote-text em {
+      color: var(--teal);
+      font-style: normal;
+    }
+
+    /* ── Story: founder portrait ── */
+    .story-founder-portrait {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 2rem;
+      padding: 1.2rem 1.4rem;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(0,212,170,.09), transparent 38%),
+        linear-gradient(145deg, rgba(18,35,60,.9), rgba(9,21,39,.98));
+      border: 1px solid rgba(0,212,170,.18);
+      border-radius: 18px;
+    }
+    .story-founder-avatar-lg {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,212,170,.18), rgba(0,212,170,.04));
+      border: 2px solid rgba(0,212,170,.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--teal);
+      box-shadow: 0 0 22px rgba(0,212,170,.14);
+      letter-spacing: -1px;
+    }
+    .story-founder-name {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .25rem;
+    }
+    .story-founder-role {
+      font-size: .75rem;
+      color: rgba(180,205,228,.62);
+      line-height: 1.55;
+    }
+
+    /* ── Story: comparison (Why Plainvest feels different) ── */
+    .story-diff-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 1.3rem;
+    }
+    .story-diff-label::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 2px;
+    }
+    .story-diff-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+      margin-bottom: 1.6rem;
+    }
+    .story-diff-col {
+      border-radius: 14px;
+      padding: 1.15rem 1.1rem;
+    }
+    .story-diff-col--old {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .story-diff-col--new {
+      background: rgba(0,212,170,.06);
+      border: 1px solid rgba(0,212,170,.22);
+    }
+    .story-diff-col-title {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .9rem;
+    }
+    .story-diff-col--old .story-diff-col-title { color: rgba(200,220,240,.42); }
+    .story-diff-col--new .story-diff-col-title { color: var(--teal); }
+    .story-diff-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      margin-bottom: .55rem;
+      font-size: .8rem;
+      line-height: 1.5;
+    }
+    .story-diff-item--old { color: rgba(180,205,228,.48); }
+    .story-diff-item--new { color: rgba(220,240,255,.82); }
+    .story-diff-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: .42rem;
+    }
+    .story-diff-col--old .story-diff-dot { background: rgba(200,220,240,.28); }
+    .story-diff-col--new .story-diff-dot { background: var(--teal); }
+
+    /* ── Story: emotional timeline ── */
+    .story-timeline {
+      margin-top: 5rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--border-dark);
+      position: relative;
+      z-index: 1;
+    }
+    .story-timeline-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .story-timeline-eyebrow {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .8rem;
+    }
+    .story-timeline-h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .story-timeline-sub {
+      font-size: .86rem;
+      color: rgba(180,205,228,.6);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .story-timeline-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .story-timeline-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12%;
+      width: 76%;
+      height: 2px;
+      background: linear-gradient(to right, rgba(0,212,170,.15), rgba(0,212,170,.35), rgba(0,212,170,.15));
+      pointer-events: none;
+    }
+    .story-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .story-stage-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      border: 2px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      transition: transform .25s, border-color .25s;
+    }
+    .story-stage:hover .story-stage-num {
+      transform: translateY(-3px);
+      border-color: rgba(0,212,170,.35);
+    }
+    .story-stage--confidence .story-stage-num {
+      border-color: rgba(0,212,170,.4);
+      background: rgba(0,212,170,.08);
+      box-shadow: 0 0 18px rgba(0,212,170,.18);
+    }
+    .story-stage-name {
+      font-weight: 700;
+      font-size: .86rem;
+      color: var(--white);
+      margin-bottom: .3rem;
+    }
+    .story-stage-desc {
+      font-size: .73rem;
+      color: rgba(180,205,228,.55);
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .story-timeline-footer {
+      text-align: center;
+      margin-top: 2.8rem;
+      font-family: 'Lora', serif;
+      font-size: clamp(1rem, 1.7vw, 1.3rem);
+      font-weight: 700;
+      color: rgba(220,240,255,.85);
+    }
+    .story-timeline-footer em {
+      color: var(--teal);
+      font-style: normal;
+    }
+    @media (max-width: 700px) {
+      .story-timeline-steps { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+      .story-timeline-steps::before { display: none; }
+      .story-diff-cols { grid-template-columns: 1fr; }
+    }
+
     /* ── improved nav link ── */
     .nav-story {
       color: var(--ink-soft);
@@ -14814,74 +15083,142 @@
 
   <!-- OUR STORY -->
   <section id="story" class="app-page" data-page="story">
+
+    <!-- A) Big emotional hero -->
+    <div class="story-hero-banner">
+      <div class="story-hero-statement" id="story-hero-stmt">Financial confusion <em>steals years</em> from people's lives.</div>
+      <p class="story-hero-sub" id="story-hero-sub">Most people are not lazy. They were simply never shown investing in a way that felt understandable.</p>
+    </div>
+
     <div class="story-inner">
+      <!-- Left: condensed story + pull quote -->
       <div class="story-left">
         <div class="section-eyebrow">Our story</div>
         <div class="story-quote-block">
-          <div class="story-quote-mark">“</div>
+          <div class="story-quote-mark">"</div>
           <div class="story-quote" id="story-quote">I didn't have this tool when I started. I wish I had — and that's exactly <em>why I built it.</em></div>
         </div>
         <div class="story-body">
-          <p class="story-para" id="story-p1">When I first got curious about investing, I had no idea where to begin. Every resource I found was either too complicated, too intimidating, or clearly made for people who already knew what they were doing.</p>
-          <p class="story-para" id="story-p2">What I wish I had was something simple. Something that could show me visually, in plain numbers, what would actually happen if I put aside even a small amount each month.</p>
-          <p class="story-para" id="story-p3">Because here's the truth nobody tells you: investing is not gambling. It is a simple, patient habit that protects your money from quietly losing value and gives it a chance to grow.</p>
-          <p class="story-para" id="story-p4">Plainvest exists for every person who ever thought, “I'll figure it out later” or “I don't have enough to start.” You just need to see what's possible.</p>
-          <p class="story-para" id="story-p5">I'm Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that investing is for everyone, without pretending this is personal financial advice.</p>
+          <p class="story-para" id="story-p1">When I first got curious about investing, every resource I found was built for people who already knew what they were doing. I felt like this was a world reserved for the <strong>wealthy, the educated, or the financially gifted</strong> — not someone like me.</p>
+          <p class="story-para" id="story-p2">What I wished for was something simple — something visual that could show me, in plain numbers, <strong>what $100 a month actually becomes in 10 years.</strong> Not theory. Just: here's what's possible.</p>
         </div>
-        <div class="story-signature">
-          <div class="story-sig-avatar"><img src="assets/plainvest-icon-cropped.png" alt="Plainvest"></div>
+
+        <!-- C) Pull-out statement -->
+        <div class="story-pullquote">
+          <div class="story-pullquote-text" id="story-pull">Investing is not gambling.<br><em>Doing nothing is.</em></div>
+        </div>
+
+        <div class="story-body" style="margin-top:.8rem;">
+          <p class="story-para" id="story-p3">Plainvest exists for every person who ever thought "I'll figure it out later." You don't need a finance degree. You don't need thousands in the bank. You just need to <strong>see what's possible.</strong></p>
+        </div>
+
+        <!-- B) Founder portrait -->
+        <div class="story-founder-portrait">
+          <div class="story-founder-avatar-lg">EF</div>
           <div>
-            <div class="story-sig-name" id="story-sig-name">Eduardo Fogaça, Plainvest founder</div>
-            <div class="story-sig-role" id="story-sig-role">Built in Australia from the beginner questions I wish someone had answered earlier.</div>
+            <div class="story-founder-name" id="story-sig-name">Eduardo Fogaça, founder</div>
+            <div class="story-founder-role" id="story-sig-role">Building Plainvest for investors in Australia, Brazil, and the USA — from the beginner questions I wish someone had answered earlier.</div>
           </div>
         </div>
+
         <div class="story-cta-row">
           <button class="btn-primary" id="story-cta1" onclick="showPage('simulator')">Try the simulator →</button>
           <button class="btn-ghost" id="story-cta2" onclick="showPage('learn')">Start learning →</button>
         </div>
       </div>
 
+      <!-- Right: D) Why Plainvest feels different -->
       <div class="story-right">
-        <div class="story-mission-label" id="story-mission-label">What Plainvest stands for</div>
+        <div class="story-diff-label" id="story-diff-label">Why Plainvest feels different</div>
+        <div class="story-diff-cols">
+          <div class="story-diff-col story-diff-col--old">
+            <div class="story-diff-col-title" id="story-diff-old-title">Traditional finance</div>
+            <div class="story-diff-item story-diff-item--old"><span class="story-diff-dot"></span><span data-i18n="story.diffO1">Jargon-heavy language</span></div>
+            <div class="story-diff-item story-diff-item--old"><span class="story-diff-dot"></span><span data-i18n="story.diffO2">Built for experts</span></div>
+            <div class="story-diff-item story-diff-item--old"><span class="story-diff-dot"></span><span data-i18n="story.diffO3">Charts without meaning</span></div>
+            <div class="story-diff-item story-diff-item--old"><span class="story-diff-dot"></span><span data-i18n="story.diffO4">Complexity as gatekeeping</span></div>
+            <div class="story-diff-item story-diff-item--old"><span class="story-diff-dot"></span><span data-i18n="story.diffO5">Stress and overwhelm</span></div>
+          </div>
+          <div class="story-diff-col story-diff-col--new">
+            <div class="story-diff-col-title" id="story-diff-new-title">Plainvest</div>
+            <div class="story-diff-item story-diff-item--new"><span class="story-diff-dot"></span><span data-i18n="story.diffN1">Plain language, always</span></div>
+            <div class="story-diff-item story-diff-item--new"><span class="story-diff-dot"></span><span data-i18n="story.diffN2">Built for beginners first</span></div>
+            <div class="story-diff-item story-diff-item--new"><span class="story-diff-dot"></span><span data-i18n="story.diffN3">Visual understanding</span></div>
+            <div class="story-diff-item story-diff-item--new"><span class="story-diff-dot"></span><span data-i18n="story.diffN4">Clarity as the product</span></div>
+            <div class="story-diff-item story-diff-item--new"><span class="story-diff-dot"></span><span data-i18n="story.diffN5">Calm and confidence</span></div>
+          </div>
+        </div>
+
         <div class="mission-pillars">
           <div class="mission-pillar">
             <div class="mp-icon mp-icon--check" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp1-h">Investing is for everyone</h4>
-              <p id="mp1-p">Not just the wealthy or the financially educated. Plainvest was built to make investing feel real, not distant.</p>
+              <p id="mp1-p">Not just the wealthy. Anyone with $10 can start — Plainvest makes that feel real.</p>
             </div>
           </div>
           <div class="mission-pillar">
             <div class="mp-icon mp-icon--growth" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp2-h">See it before you believe it</h4>
-              <p id="mp2-p">Visualization changes how people think. Seeing numbers grow makes the idea practical.</p>
-            </div>
-          </div>
-          <div class="mission-pillar">
-            <div class="mp-icon mp-icon--plus" aria-hidden="true"></div>
-            <div class="mp-text">
-              <h4 id="mp3-h">Small starts, big difference</h4>
-              <p id="mp3-p">The habit matters more than the starting amount. Time does the heavy lifting.</p>
+              <p id="mp2-p">Watching your $200/month grow on a chart changes how you think — and act.</p>
             </div>
           </div>
           <div class="mission-pillar">
             <div class="mp-icon mp-icon--alert" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp4-h">Saving is not enough anymore</h4>
-              <p id="mp4-p">Inflation erodes money that sits still. Doing nothing has a cost too.</p>
+              <p id="mp4-p">Inflation erodes money that sits still. Doing nothing has a hidden cost.</p>
             </div>
           </div>
           <div class="mission-pillar">
             <div class="mp-icon mp-icon--plain" aria-hidden="true"></div>
             <div class="mp-text">
               <h4 id="mp5-h">No judgment, no jargon</h4>
-              <p id="mp5-p">Finance should feel clear and human, not exclusive or intimidating.</p>
+              <p id="mp5-p">Finance should feel clear and human — not exclusive or intimidating.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- E) Emotional timeline -->
+    <div class="story-timeline">
+      <div class="story-timeline-header">
+        <div class="story-timeline-eyebrow" id="story-tl-eyebrow">The beginner journey</div>
+        <div class="story-timeline-h2" id="story-tl-h2">The 5 stages most beginners go through</div>
+        <p class="story-timeline-sub" id="story-tl-sub">Most people reach confidence on their own — eventually. Plainvest shortens the path.</p>
+      </div>
+      <div class="story-timeline-steps">
+        <div class="story-stage">
+          <div class="story-stage-num">😰</div>
+          <div class="story-stage-name" id="story-stage-1">Fear</div>
+          <div class="story-stage-desc" id="story-stage-1-desc">"What if I lose everything?"</div>
+        </div>
+        <div class="story-stage">
+          <div class="story-stage-num">😕</div>
+          <div class="story-stage-name" id="story-stage-2">Confusion</div>
+          <div class="story-stage-desc" id="story-stage-2-desc">"Where do I even begin?"</div>
+        </div>
+        <div class="story-stage">
+          <div class="story-stage-num">🤔</div>
+          <div class="story-stage-name" id="story-stage-3">Curiosity</div>
+          <div class="story-stage-desc" id="story-stage-3-desc">"Wait — this might actually work."</div>
+        </div>
+        <div class="story-stage">
+          <div class="story-stage-num">💡</div>
+          <div class="story-stage-name" id="story-stage-4">Understanding</div>
+          <div class="story-stage-desc" id="story-stage-4-desc">"I finally see the full picture."</div>
+        </div>
+        <div class="story-stage story-stage--confidence">
+          <div class="story-stage-num">🚀</div>
+          <div class="story-stage-name" id="story-stage-5">Confidence</div>
+          <div class="story-stage-desc" id="story-stage-5-desc">"I know what to do next."</div>
+        </div>
+      </div>
+      <div class="story-timeline-footer" id="story-tl-footer"><em>Plainvest was designed to shorten this journey.</em></div>
+    </div>
+
   </section>
 
   <!-- BOOKS -->
@@ -16531,15 +16868,32 @@
         story: {
           eyebrow: 'Our story',
           quote: 'I didn\'t have this tool when I started. I wish I had — and that\'s exactly <em>why I built it.</em>',
+          heroStmt: 'Financial confusion <em>steals years</em> from people\'s lives.',
+          heroSub: 'Most people are not lazy. They were simply never shown investing in a way that felt understandable.',
+          pull: 'Investing is not gambling.<br><em>Doing nothing is.</em>',
           missionLabel: 'What Plainvest stands for',
-          sigName: 'Eduardo Fogaça, Plainvest founder',
-          sigRole: 'Built in Australia from the beginner questions I wish someone had answered earlier.',
-          cta1: 'Try the simulator →', cta2: 'Start learning →'
+          diffLabel: 'Why Plainvest feels different',
+          diffOldTitle: 'Traditional finance',
+          diffNewTitle: 'Plainvest',
+          sigName: 'Eduardo Fogaça, founder',
+          sigRole: 'Building Plainvest for investors in Australia, Brazil, and the USA — from the beginner questions I wish someone had answered earlier.',
+          cta1: 'Try the simulator →', cta2: 'Start learning →',
+          tlEyebrow: 'The beginner journey',
+          tlH2: 'The 5 stages most beginners go through',
+          tlSub: 'Most people reach confidence on their own — eventually. Plainvest shortens the path.',
+          tlFooter: '<em>Plainvest was designed to shorten this journey.</em>',
+          stage1: 'Fear', stage1Desc: '"What if I lose everything?"',
+          stage2: 'Confusion', stage2Desc: '"Where do I even begin?"',
+          stage3: 'Curiosity', stage3Desc: '"Wait — this might actually work."',
+          stage4: 'Understanding', stage4Desc: '"I finally see the full picture."',
+          stage5: 'Confidence', stage5Desc: '"I know what to do next."',
+          diffO1: 'Jargon-heavy language', diffO2: 'Built for experts', diffO3: 'Charts without meaning', diffO4: 'Complexity as gatekeeping', diffO5: 'Stress and overwhelm',
+          diffN1: 'Plain language, always', diffN2: 'Built for beginners first', diffN3: 'Visual understanding', diffN4: 'Clarity as the product', diffN5: 'Calm and confidence',
         },
         storyParas: [
-          'When I first got curious about investing, I had no idea where to begin. Every resource I found was either too complicated, too intimidating, or clearly made for people who already knew what they were doing. I felt like investing was a world reserved for the <strong>wealthy, the educated, or the financially gifted</strong> — not for someone like me.',
-          'What I wish I had was something simple. Something that could show me — visually, in plain numbers — what would actually happen if I put aside even a small amount each month. Not theory. Not lectures. Just: <strong>"here\'s what $100 a month looks like in 10 years."</strong> That\'s it. That\'s the whole thing.',
-          'Because here\'s the truth nobody tells you: <strong>investing isn\'t gambling</strong>. It\'s not something only smart or rich people do. It\'s a habit. A simple, patient habit that protects your money from quietly losing value — and gives it a chance to grow instead.',
+          'When I first got curious about investing, every resource I found was built for people who already knew what they were doing. I felt like this was a world reserved for the <strong>wealthy, the educated, or the financially gifted</strong> — not someone like me.',
+          'What I wished for was something simple — something visual that could show me, in plain numbers, <strong>what $100 a month actually becomes in 10 years.</strong> Not theory. Just: here\'s what\'s possible.',
+          'Plainvest exists for every person who ever thought "I\'ll figure it out later." You don\'t need a finance degree. You don\'t need thousands in the bank. You just need to <strong>see what\'s possible.</strong>',
           'Plainvest exists for every person who felt like I did. For anyone who ever thought "I\'ll figure it out later" or "I don\'t have enough to start." You don\'t need a finance degree. You don\'t need thousands in the bank. You just need to <strong>see what\'s possible</strong> — and that\'s what this is for.',
           'I\'m Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that <strong>investing is for everyone</strong>, without pretending this is personal financial advice.'
         ],
@@ -17307,17 +17661,32 @@
         story: {
           eyebrow: 'Nossa história',
           quote: 'Eu não tinha essa ferramenta quando comecei. Queria ter tido — e é exatamente <em>por isso que a criei.</em>',
+          heroStmt: 'A confusão financeira <em>rouba anos</em> da vida das pessoas.',
+          heroSub: 'A maioria das pessoas não é preguiçosa. Simplesmente nunca lhes mostraram investimentos de uma forma que parecesse compreensível.',
+          pull: 'Investir não é jogo.<br><em>Não fazer nada, sim.</em>',
           missionLabel: 'O que o Plainvest representa',
-          sigName: 'Eduardo Fogaça, fundador do Plainvest',
-          sigRole: 'Criado na Austrália a partir das dúvidas de iniciante que eu queria ter entendido antes.',
-          cta1: 'Testar o simulador →', cta2: 'Começar a aprender →'
+          diffLabel: 'Por que o Plainvest é diferente',
+          diffOldTitle: 'Finanças tradicionais',
+          diffNewTitle: 'Plainvest',
+          sigName: 'Eduardo Fogaça, fundador',
+          sigRole: 'Construindo o Plainvest para investidores na Austrália, Brasil e EUA — a partir das dúvidas de iniciante que eu queria ter entendido antes.',
+          cta1: 'Testar o simulador →', cta2: 'Começar a aprender →',
+          tlEyebrow: 'A jornada do iniciante',
+          tlH2: 'As 5 etapas que a maioria dos iniciantes atravessa',
+          tlSub: 'A maioria das pessoas chega à confiança sozinha — eventualmente. O Plainvest encurta esse caminho.',
+          tlFooter: '<em>O Plainvest foi criado para encurtar essa jornada.</em>',
+          stage1: 'Medo', stage1Desc: '"E se eu perder tudo?"',
+          stage2: 'Confusão', stage2Desc: '"Por onde começo?"',
+          stage3: 'Curiosidade', stage3Desc: '"Espera — isso pode funcionar mesmo."',
+          stage4: 'Compreensão', stage4Desc: '"Finalmente estou vendo o quadro completo."',
+          stage5: 'Confiança', stage5Desc: '"Sei o que fazer agora."',
+          diffO1: 'Linguagem cheia de jargão', diffO2: 'Feito para especialistas', diffO3: 'Gráficos sem significado', diffO4: 'Complexidade como barreira', diffO5: 'Estresse e sobrecarga',
+          diffN1: 'Linguagem simples, sempre', diffN2: 'Feito primeiro para iniciantes', diffN3: 'Compreensão visual', diffN4: 'Clareza como produto', diffN5: 'Calma e confiança',
         },
         storyParas: [
-          'Quando fiquei curioso sobre investimentos pela primeira vez, não fazia ideia por onde começar. Todo recurso que encontrava era complicado demais, intimidador ou claramente feito para quem já entendia do assunto. Sentia que investir era um mundo reservado para os <strong>ricos, os instruídos ou os financeiramente privilegiados</strong> — não para alguém como eu.',
-          'O que eu queria era algo simples. Algo que pudesse me mostrar — visualmente, em números claros — o que aconteceria se eu separasse mesmo um pouquinho por mês. Sem teoria. Sem aula. Só: <strong>"é isso que R$100 por mês vira em 10 anos."</strong> Só isso. Era tudo que eu precisava.',
-          'Porque eis a verdade que ninguém te conta: <strong>investir não é jogo</strong>. Não é coisa só de gente rica ou inteligente. É um hábito. Um hábito simples e paciente que protege o seu dinheiro de perder valor em silêncio — e dá a ele uma chance de crescer.',
-          'O Plainvest existe para cada pessoa que se sentiu como eu me senti. Para quem já pensou "vou deixar para depois" ou "não tenho dinheiro suficiente para começar". Você não precisa de diploma em finanças. Não precisa de milhares na conta. Só precisa <strong>ver o que é possível</strong> — e é exatamente para isso que o Plainvest existe.',
-          'Eu sou Eduardo, a pessoa construindo o Plainvest na Austrália. Meu objetivo é simples: ajudar o máximo de pessoas possível a entenderem que <strong>investir é para todo mundo</strong>, sem fingir que isso é recomendação financeira pessoal.'
+          'Quando fiquei curioso sobre investimentos pela primeira vez, todo recurso que encontrava era feito para quem já entendia do assunto. Sentia que esse era um mundo reservado para os <strong>ricos, os instruídos ou os financeiramente privilegiados</strong> — não para alguém como eu.',
+          'O que eu queria era algo simples — algo visual que pudesse me mostrar, em números claros, <strong>o que R$100 por mês vira em 10 anos.</strong> Sem teoria. Só: veja o que é possível.',
+          'O Plainvest existe para cada pessoa que já pensou "vou deixar para depois." Você não precisa de diploma em finanças. Não precisa de milhares na conta. Só precisa <strong>ver o que é possível.</strong>',
         ],
         prob: {
           quote: '"Quanto mais você espera entender sobre dinheiro,<br>mais ele silenciosamente te custa."',
@@ -18097,18 +18466,31 @@
         setText('lpb-p4', lp[3]); setText('lpb-p5', lp[4]); setText('lpb-p6', lp[5]);
       }
 
-      // ── STORY — quote, paragraphs, mission pillars
+      // ── STORY — hero, quote, paragraphs, comparison, timeline
+      setHTML('story-hero-stmt', st.heroStmt);
+      setText('story-hero-sub', st.heroSub);
       setHTML('story-quote', st.quote);
       setHTML('story-p1', p[0]);
       setHTML('story-p2', p[1]);
       setHTML('story-p3', p[2]);
-      setHTML('story-p4', p[3]);
-      setHTML('story-p5', p[4]);
+      setHTML('story-pull', st.pull);
       setText('story-sig-name', st.sigName);
       setText('story-sig-role', st.sigRole);
+      setText('story-diff-label', st.diffLabel);
+      setText('story-diff-old-title', st.diffOldTitle);
+      setText('story-diff-new-title', st.diffNewTitle);
       setText('story-mission-label', st.missionLabel);
       setText('story-cta1', st.cta1);
       setText('story-cta2', st.cta2);
+      setText('story-tl-eyebrow', st.tlEyebrow);
+      setText('story-tl-h2', st.tlH2);
+      setText('story-tl-sub', st.tlSub);
+      setHTML('story-tl-footer', st.tlFooter);
+      setText('story-stage-1', st.stage1); setText('story-stage-1-desc', st.stage1Desc);
+      setText('story-stage-2', st.stage2); setText('story-stage-2-desc', st.stage2Desc);
+      setText('story-stage-3', st.stage3); setText('story-stage-3-desc', st.stage3Desc);
+      setText('story-stage-4', st.stage4); setText('story-stage-4-desc', st.stage4Desc);
+      setText('story-stage-5', st.stage5); setText('story-stage-5-desc', st.stage5Desc);
 
       // story eyebrow
       const storyEyebrow = document.querySelector('#story .section-eyebrow');
