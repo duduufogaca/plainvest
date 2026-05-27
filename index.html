@@ -2386,19 +2386,81 @@
       color: var(--white);
     }
 
-    .cost-of-waiting {
-      display: none;
-      padding: 0.75rem 1.4rem;
-      font-size: 0.8rem;
-      color: #f0b429;
-      background: rgba(240, 180, 41, 0.07);
-      border-bottom: 1px solid rgba(240, 180, 41, 0.18);
-      letter-spacing: 0.01em;
+    .cost-of-waiting { display: none; }
+
+    /* ── Result hero sentence ── */
+    .result-hero-msg {
+      padding: 1.9rem 2.2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,212,170,.1);
+      background: linear-gradient(180deg, rgba(0,212,170,.07) 0%, transparent 100%);
+    }
+    .rhm-eyebrow {
+      font-size: .58rem; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--teal); opacity: .65; margin-bottom: .55rem;
+    }
+    .rhm-statement {
+      font-family: 'Lora', serif; font-size: 1.45rem; font-weight: 700;
+      color: var(--white); line-height: 1.4;
+    }
+    .rhm-statement strong { color: var(--teal); font-weight: 700; }
+    .rhm-sub {
+      font-size: .75rem; color: #5a7a96; margin-top: .5rem; line-height: 1.55;
     }
 
-    .cost-of-waiting.visible {
-      display: block;
+    /* ── Future life strip — cinematic ── */
+    .future-life-strip {
+      margin-top: 1.4rem;
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
     }
+    .future-life-strip::before,
+    .future-life-strip::after {
+      content: '';
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0,212,170,.18) 35%, rgba(0,212,170,.18) 65%, transparent 100%);
+    }
+    .future-life-strip::before { top: 0; }
+    .future-life-strip::after  { bottom: 0; }
+    .fls-eyebrow {
+      font-size: .58rem; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--teal); opacity: .55;
+      text-align: center; margin-bottom: 1.6rem;
+    }
+    .fls-items {
+      display: flex; gap: 0; align-items: flex-start;
+    }
+    .fls-item {
+      flex: 1; text-align: center; padding: 0 .6rem; position: relative;
+    }
+    .fls-item + .fls-item::before {
+      content: '';
+      position: absolute; left: 0; top: 8%; bottom: 8%;
+      width: 1px; background: rgba(255,255,255,.05);
+    }
+    .fls-icon {
+      font-size: 1.55rem; display: block; margin-bottom: .6rem;
+      filter: drop-shadow(0 0 8px rgba(0,212,170,.22));
+    }
+    .fls-headline {
+      font-size: .78rem; font-weight: 700; color: var(--white);
+      line-height: 1.3; margin-bottom: .28rem;
+    }
+    .fls-sub { font-size: .65rem; color: #4a6a82; line-height: 1.45; }
+
+    /* ── Visual breathing room ── */
+    .future-self-block {
+      background: none !important;
+      border: none !important;
+      padding: 1.5rem 0 .5rem !important;
+    }
+    .fsb-grid { gap: .5rem !important; }
+    .fsb-item { background: rgba(255,255,255,.025) !important; border-color: rgba(255,255,255,.06) !important; }
+    .life-meaning-block { border: none !important; background: none !important; padding: .9rem 0 .3rem !important; }
+    .lmb-eyebrow { opacity: .5 !important; }
+    .lmb-item { color: #a8c8d8 !important; font-size: .86rem !important; }
+    .lmb-check { color: var(--teal) !important; opacity: .8; }
 
     .rm-stat-lbl {
       font-size: 0.65rem;
@@ -12827,6 +12889,12 @@
 
       <div class="results-col">
         <div class="res-main">
+          <!-- ── One human sentence at the top ── -->
+          <div class="result-hero-msg" id="result-hero-msg">
+            <div class="rhm-eyebrow">Your projection</div>
+            <div class="rhm-statement" id="rhm-statement">Your <strong id="rhm-in">$24,000</strong> could become <strong id="rhm-out">$82,604</strong> in <strong id="rhm-yrs">10 years</strong>.</div>
+            <div class="rhm-sub" id="rhm-sub">That's <strong id="rhm-earned">$58,604</strong> added by compounding — money working while you sleep.</div>
+          </div>
           <div class="rm-top">
             <div>
               <div class="rm-label" id="rLabel">Index Fund — 10-year projection</div>
@@ -13010,6 +13078,38 @@
 
           <!-- ── FUTURE SELF ── -->
           <div class="future-self-block" id="future-self-block"></div>
+
+          <!-- ── FUTURE LIFE STRIP ── -->
+          <div class="future-life-strip" id="future-life-strip">
+            <div class="fls-eyebrow" id="fls-eyebrow">If you stay consistent, your future self could have</div>
+            <div class="fls-items">
+              <div class="fls-item">
+                <span class="fls-icon">🏠</span>
+                <div class="fls-headline" id="fls-h1">A home becomes possible</div>
+                <div class="fls-sub" id="fls-s1">A real deposit, not just a dream</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">✈️</span>
+                <div class="fls-headline" id="fls-h2">More yes to life</div>
+                <div class="fls-sub" id="fls-s2">Travel, experiences, memories</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">🕊️</span>
+                <div class="fls-headline" id="fls-h3">Less financial anxiety</div>
+                <div class="fls-sub" id="fls-s3">Calm when the unexpected hits</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">⏳</span>
+                <div class="fls-headline" id="fls-h4">Time freedom</div>
+                <div class="fls-sub" id="fls-s4">Work because you choose to</div>
+              </div>
+              <div class="fls-item">
+                <span class="fls-icon">👨‍👩‍👧</span>
+                <div class="fls-headline" id="fls-h5">Family flexibility</div>
+                <div class="fls-sub" id="fls-s5">Money out of family decisions</div>
+              </div>
+            </div>
+          </div>
 
           <!-- ── SCENARIO COMPARISON ── -->
           <div class="sim-scenarios" id="simScenarios" style="display:none">
@@ -16838,6 +16938,21 @@
         setText('sim-nudge-title', s.nudgeTitle);
         setText('sim-nudge-text', s.nudgeText);
         setText('sim-nudge-btn', s.nudgeBtn);
+        if (lang === 'pt') {
+          setText('fls-eyebrow', 'Se você mantiver a consistência, seu eu futuro poderá ter');
+          setText('fls-h1', 'Uma casa se torna possível'); setText('fls-s1', 'Uma entrada real, não apenas um sonho');
+          setText('fls-h2', 'Mais sim para a vida');    setText('fls-s2', 'Viagens, experiências, memórias');
+          setText('fls-h3', 'Menos ansiedade financeira'); setText('fls-s3', 'Tranquilidade quando o inesperado chega');
+          setText('fls-h4', 'Liberdade de tempo');      setText('fls-s4', 'Trabalhe porque você escolhe');
+          setText('fls-h5', 'Flexibilidade familiar'); setText('fls-s5', 'Dinheiro fora das decisões da família');
+        } else {
+          setText('fls-eyebrow', 'If you stay consistent, your future self could have');
+          setText('fls-h1', 'A home becomes possible'); setText('fls-s1', 'A real deposit, not just a dream');
+          setText('fls-h2', 'More yes to life');        setText('fls-s2', 'Travel, experiences, memories');
+          setText('fls-h3', 'Less financial anxiety'); setText('fls-s3', 'Calm when the unexpected hits');
+          setText('fls-h4', 'Time freedom');            setText('fls-s4', 'Work because you choose to');
+          setText('fls-h5', 'Family flexibility');     setText('fls-s5', 'Money out of family decisions');
+        }
         updateInflationControlCopy();
         if (typeof renderInflationChart === 'function') { renderInflationChart(); updateInflationStats(); }
       }
@@ -17697,6 +17812,20 @@
       const totalMonths = yrs * 12;
 
       const displayInvName = displayInvestmentName(inv);
+      // ── Result hero sentence ──
+      const rhmIn  = document.getElementById('rhm-in');
+      const rhmOut = document.getElementById('rhm-out');
+      const rhmYrs = document.getElementById('rhm-yrs');
+      const rhmEarned = document.getElementById('rhm-earned');
+      const rhmSub = document.getElementById('rhm-sub');
+      if (rhmIn)  rhmIn.textContent  = fmt(totalIn);
+      if (rhmOut) rhmOut.textContent = fmt(finalV);
+      if (rhmYrs) rhmYrs.textContent = isPt ? `${yrs} anos` : `${yrs} year${yrs === 1 ? '' : 's'}`;
+      if (rhmEarned) rhmEarned.textContent = fmt(earned);
+      if (rhmSub) rhmSub.textContent = isPt
+        ? `São ${fmt(earned)} gerados pelo tempo e pelos juros compostos — dinheiro trabalhando enquanto você dorme.`
+        : `That's ${fmt(earned)} added by compounding — money working while you sleep.`;
+
       document.getElementById('rLabel').textContent = `${displayInvName} — ${yrs} ${yearsWord} ${projLabel}`;
       document.getElementById('rVal').textContent = fmt(finalV);
       document.getElementById('rValCopy').textContent = fmt(finalV);
@@ -17848,17 +17977,17 @@
         const sym = c.symbol;
         let items;
         if (isPt) {
-          if (finalV >= 500000) items = ['Potencial de independência financeira', 'Vários anos de despesas cobertas', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, 'Escolhas que o dinheiro torna possíveis'];
-          else if (finalV >= 200000) items = ['Base para entrada em um imóvel', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, '3+ anos de despesas de vida', 'Liberdade de escolhas financeiras'];
-          else if (finalV >= 80000) items = ['Entrada em muitos mercados imobiliários', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, 'Reserva de emergência robusta', 'Base para a próxima fase'];
-          else if (finalV >= 30000) items = ['Fundo para carro e reformas', 'Almofada de emergência sólida', `${sym}${monthlyPassive.toLocaleString()}/mês em renda passiva`, 'Segurança financeira real'];
-          else items = ['Primeiro marco alcançado', 'Hábito construído', 'Semente plantada — o crescimento acelera', 'Mais perto do que você pensa'];
+          if (finalV >= 500000) items = ['Liberdade de não depender de um salário', 'Tranquilidade quando a vida fica cara', 'Mais paz quando o inesperado acontece', 'Escolhas que o dinheiro torna possíveis'];
+          else if (finalV >= 200000) items = ['Mais liberdade para dizer sim à vida', 'Menos estresse quando a vida fica cara', 'Mais paz quando o inesperado acontece', 'Flexibilidade que as dívidas tiram'];
+          else if (finalV >= 80000) items = ['Mais liberdade para dizer sim à vida', 'Menos ansiedade financeira no dia a dia', 'Mais paz quando o inesperado acontece', 'Uma base real que cresce com o tempo'];
+          else if (finalV >= 30000) items = ['A sensação de que está indo na direção certa', 'Menos estresse quando a vida fica cara', 'Um ponto de partida sólido', 'Mais próximo do que imagina'];
+          else items = ['O primeiro passo — o mais importante de todos', 'O hábito que muda tudo', 'A semente plantada, o crescimento vem', 'Mais próximo do que imagina'];
         } else {
-          if (finalV >= 500000) items = ['Financial independence potential', 'Multiple years of living expenses covered', `${sym}${monthlyPassive.toLocaleString()}/mo passive income base`, 'Choices money makes possible'];
-          else if (finalV >= 200000) items = ['Home deposit foundation in many markets', `${sym}${monthlyPassive.toLocaleString()}/mo passive income`, '3+ years of living expenses', 'Real financial freedom within reach'];
-          else if (finalV >= 80000) items = ['First home deposit for many markets', `${sym}${monthlyPassive.toLocaleString()}/mo passive income`, 'Strong emergency fund base', 'Foundation for the next chapter'];
-          else if (finalV >= 30000) items = ['Car, travel, or renovations fund', 'Solid financial cushion', `${sym}${monthlyPassive.toLocaleString()}/mo passive income`, 'Real sense of financial security'];
-          else items = ['First milestone reached', 'The habit that changes everything', 'The seed planted — growth accelerates over time', 'Closer than you think'];
+          if (finalV >= 500000) items = ['Freedom from depending on a single paycheck', 'Less stress when life gets expensive', 'More peace when the unexpected happens', 'The kind of choices money makes possible'];
+          else if (finalV >= 200000) items = ['More freedom to say yes to life', 'Less stress when life gets expensive', 'More peace when the unexpected happens', 'Flexibility that debt takes away'];
+          else if (finalV >= 80000) items = ['More freedom to say yes to life', 'Less financial anxiety day to day', 'More peace when the unexpected happens', 'A real base that grows over time'];
+          else if (finalV >= 30000) items = ['The feeling of moving in the right direction', 'Less stress when life gets expensive', 'A solid starting point', 'Closer than you think'];
+          else items = ['The first step — the most important one', 'The habit that changes everything', 'The seed planted, the growth comes', 'Closer than you think'];
         }
         lifeMeaningEl.innerHTML = `
           <div class="lmb-eyebrow">${isPt ? 'O que este valor poderia significar' : 'What this could mean for your life'}</div>
@@ -17908,7 +18037,7 @@
               <div class="fsb-item"><span class="fsb-icon">⏳</span><span class="fsb-text">Tempo de volta — porque dinheiro trabalhando para você devolve tempo</span></div>
             </div>
             <div class="fsb-cta-row">
-              <button class="fsb-btn-primary" onclick="openMemberSignup()">Acompanhar este futuro todo mês</button>
+              <button class="fsb-btn-primary" onclick="openMemberSignup()">Ver como isso evolui ao longo do tempo</button>
               <button class="fsb-btn-secondary" onclick="showPage('plans')">Ver os planos →</button>
             </div>`;
         } else {
@@ -17922,7 +18051,7 @@
               <div class="fsb-item"><span class="fsb-icon">⏳</span><span class="fsb-text">Time back — because money working for you buys back your time</span></div>
             </div>
             <div class="fsb-cta-row">
-              <button class="fsb-btn-primary" onclick="openMemberSignup()">Track this future every month</button>
+              <button class="fsb-btn-primary" onclick="openMemberSignup()">See how this evolves over time</button>
               <button class="fsb-btn-secondary" onclick="showPage('plans')">See the plans →</button>
             </div>`;
         }
