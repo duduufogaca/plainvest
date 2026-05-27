@@ -469,7 +469,7 @@ export default async function PortfolioPage({
       <div className="portfolio-main">
 
         {/* ── Cinematic page header ── */}
-        <PageBanner lang={lang} freedomScore={rows.length > 0 ? Math.round(freedomScores.reduce((s, sc) => s + sc.value, 0) / freedomScores.length) : undefined} />
+        <PageBanner lang={lang} firstName={firstName} freedomScore={rows.length > 0 ? Math.round(freedomScores.reduce((s, sc) => s + sc.value, 0) / freedomScores.length) : undefined} />
 
       <div className="portfolio-content portfolio-content-wide" id="portfolio-overview">
 
@@ -628,7 +628,24 @@ export default async function PortfolioPage({
               <PortfolioLineChart monthly={chartData} currency={displayCurrency} lang={lang} />
             </section>
 
-            {/* ── 3. Holdings ── */}
+            {/* ── Bottom cards: allocation | top holdings | milestone ── */}
+            <BottomCards
+              donutSegments={donutSegments}
+              totalInvested={totalInvested}
+              currency={displayCurrency}
+              lang={lang}
+              topHoldings={grouped.map(g => ({
+                key: g.key,
+                asset_name: g.asset_name,
+                ticker: g.ticker,
+                asset_type: g.asset_type,
+                totalInvestedDisplay: toDisplay(g.totalInvested, g.currency),
+              }))}
+              projCurrentValue={projCurrentValue}
+              projMonthlyContrib={projMonthlyContrib}
+            />
+
+            {/* ── All Positions ── */}
             <section className="portfolio-card" id="holdings-section">
               <div className="card-header-row">
                 <div>
@@ -758,25 +775,6 @@ export default async function PortfolioPage({
             <p>{tx.emptyText}</p>
             <AddPositionModal lang={lang} />
           </div>
-        )}
-
-        {/* ── Bottom cards: allocation | holdings | milestone ── */}
-        {rows.length > 0 && (
-          <BottomCards
-            donutSegments={donutSegments}
-            totalInvested={totalInvested}
-            currency={displayCurrency}
-            lang={lang}
-            topHoldings={grouped.map(g => ({
-              key: g.key,
-              asset_name: g.asset_name,
-              ticker: g.ticker,
-              asset_type: g.asset_type,
-              totalInvestedDisplay: toDisplay(g.totalInvested, g.currency),
-            }))}
-            projCurrentValue={projCurrentValue}
-            projMonthlyContrib={projMonthlyContrib}
-          />
         )}
 
         {/* ── Future Projection (deep dive) ── */}

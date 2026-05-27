@@ -1,9 +1,10 @@
 type Props = {
   lang: string;
+  firstName?: string;
   freedomScore?: number;
 };
 
-export function PageBanner({ lang, freedomScore }: Props) {
+export function PageBanner({ lang, firstName, freedomScore }: Props) {
   const isEN = lang !== 'pt';
 
   const scoreColor = freedomScore == null ? '#9fb0c8'
@@ -22,11 +23,41 @@ export function PageBanner({ lang, freedomScore }: Props) {
       <div className="ppb-glow-gold" aria-hidden="true" />
 
       <div className="ppb-center">
+        {/* Greeting */}
+        {firstName && (
+          <p className="ppb-greeting">
+            {isEN ? 'Welcome back, ' : 'Bem-vindo de volta, '}
+            <strong>{firstName.toUpperCase()}</strong>
+          </p>
+        )}
+
+        {/* Top ornament */}
+        <div className="ppb-ornament" aria-hidden="true">
+          <div className="ppb-ornament-line" />
+          <span className="ppb-ornament-diamond">◆</span>
+          <div className="ppb-ornament-line ppb-ornament-line-r" />
+        </div>
+
+        {/* Poster-scale headline */}
         <h1 className="ppb-headline">
-          <span className="ppb-hl-plain">{isEN ? 'Your future is' : 'Seu futuro é'}</span>
-          <em className="ppb-hl-gold">{isEN ? 'built today.' : 'construído hoje.'}</em>
+          <span className="ppb-hl-line1">{isEN ? 'Your future' : 'Seu futuro'}</span>
+          <span className="ppb-hl-line2">
+            <span className="ppb-hl-plain">{isEN ? 'is ' : 'é '}</span>
+            <em className="ppb-hl-gold">{isEN ? 'built today.' : 'construído hoje.'}</em>
+          </span>
         </h1>
 
+        {/* Gold glow sweep */}
+        <div className="ppb-gold-sweep" aria-hidden="true" />
+
+        {/* Subtitle */}
+        <p className="ppb-sub">
+          {isEN
+            ? <>We help you invest with <strong>clarity</strong>, <strong>confidence</strong> and a <strong>long-term vision.</strong></>
+            : <>Te ajudamos a investir com <strong>clareza</strong>, <strong>confiança</strong> e uma <strong>visão de longo prazo.</strong></>}
+        </p>
+
+        {/* Freedom score pill */}
         {freedomScore != null && (
           <div className="ppb-score-pill">
             <span className="ppb-sp-label">Freedom Score™</span>
@@ -36,35 +67,11 @@ export function PageBanner({ lang, freedomScore }: Props) {
           </div>
         )}
 
-        <div className="ppb-trust-strip">
-          <span className="ppb-trust-item">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
-            {isEN ? 'Secure tracking' : 'Rastreamento seguro'}
-          </span>
-          <span className="ppb-trust-sep" aria-hidden="true">·</span>
-          <span className="ppb-trust-item">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            {isEN ? 'Privacy-first' : 'Privacidade'}
-          </span>
-          <span className="ppb-trust-sep" aria-hidden="true">·</span>
-          <span className="ppb-trust-item">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-            {isEN ? 'Educational only' : 'Educacional'}
-          </span>
-          <span className="ppb-trust-sep" aria-hidden="true">·</span>
-          <span className="ppb-trust-item">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
-              <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
-            </svg>
-            {isEN ? 'No broker required' : 'Sem corretora'}
-          </span>
+        {/* Bottom ornament */}
+        <div className="ppb-ornament" aria-hidden="true">
+          <div className="ppb-ornament-line" />
+          <span className="ppb-ornament-diamond">◆</span>
+          <div className="ppb-ornament-line ppb-ornament-line-r" />
         </div>
       </div>
     </div>
