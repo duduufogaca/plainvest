@@ -99,9 +99,6 @@ export function BottomCards({ donutSegments, totalInvested, currency, lang, topH
             currency={currency}
           />
         </div>
-        <a href="#holdings-section" className="bottom-card-link">
-          {isEN ? 'View full allocation' : 'Ver alocação completa'} →
-        </a>
       </section>
 
       {/* Top Holdings */}
@@ -133,9 +130,6 @@ export function BottomCards({ donutSegments, totalInvested, currency, lang, topH
             );
           })}
         </div>
-        <a href="#holdings-section" className="bottom-card-link">
-          {isEN ? 'View all holdings' : 'Ver todos os ativos'} →
-        </a>
       </section>
 
       {/* Next Milestone */}
@@ -169,9 +163,6 @@ export function BottomCards({ donutSegments, totalInvested, currency, lang, topH
             )}
           </div>
         </div>
-        <a href="#future-projections" className="bottom-card-link">
-          {isEN ? 'See full projection' : 'Ver projeção completa'} →
-        </a>
       </section>
 
     </div>

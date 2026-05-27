@@ -45,9 +45,6 @@ export function InsightsPanel({ insights, lang }: Props) {
           <p className="eyebrow">{isEN ? 'AI Insights' : 'Análise Inteligente'}</p>
           <h2>{isEN ? 'Insights that help you grow' : 'Análises que ajudam você a crescer'}</h2>
         </div>
-        <a href="#holdings-section" className="ins-view-all-btn">
-          {isEN ? 'View all' : 'Ver tudo'} <span aria-hidden="true">→</span>
-        </a>
       </div>
 
       <div className="ins-list-v2">

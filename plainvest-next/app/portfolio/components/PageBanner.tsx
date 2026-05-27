@@ -18,22 +18,14 @@ export function PageBanner({ lang, freedomScore }: Props) {
 
   return (
     <div className="ppb-wrap">
-      {/* Subtle atmospheric glow — no lines */}
       <div className="ppb-glow-teal" aria-hidden="true" />
       <div className="ppb-glow-gold" aria-hidden="true" />
 
       <div className="ppb-center">
-        {/* Massive headline — the whole point of this section */}
         <h1 className="ppb-headline">
           <span className="ppb-hl-plain">{isEN ? 'Your future is' : 'Seu futuro é'}</span>
           <em className="ppb-hl-gold">{isEN ? 'built today.' : 'construído hoje.'}</em>
         </h1>
-
-        <p className="ppb-sub">
-          {isEN
-            ? <>We help you invest with <strong>clarity and confidence.</strong></>
-            : <>Te ajudamos a investir com <strong>clareza e confiança.</strong></>}
-        </p>
 
         {freedomScore != null && (
           <div className="ppb-score-pill">
@@ -43,11 +35,6 @@ export function PageBanner({ lang, freedomScore }: Props) {
             <span className="ppb-sp-status" style={{ color: scoreColor }}>{scoreLabel}</span>
           </div>
         )}
-
-        <a href="#portfolio-overview" className="ppb-cta-btn">
-          {isEN ? 'See your future' : 'Ver seu futuro'}
-          <span className="ppb-cta-arrow" aria-hidden="true">→</span>
-        </a>
 
         <div className="ppb-trust-strip">
           <span className="ppb-trust-item">
@@ -61,14 +48,14 @@ export function PageBanner({ lang, freedomScore }: Props) {
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            {isEN ? 'Privacy-first' : 'Privacidade em primeiro lugar'}
+            {isEN ? 'Privacy-first' : 'Privacidade'}
           </span>
           <span className="ppb-trust-sep" aria-hidden="true">·</span>
           <span className="ppb-trust-item">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
-            {isEN ? 'Educational only' : 'Apenas educacional'}
+            {isEN ? 'Educational only' : 'Educacional'}
           </span>
           <span className="ppb-trust-sep" aria-hidden="true">·</span>
           <span className="ppb-trust-item">

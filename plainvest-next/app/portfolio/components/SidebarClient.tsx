@@ -136,20 +136,15 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           {!collapsed && <span className="sb-label">{isEN ? 'Future Projections' : 'Projeções'}</span>}
         </a>
 
-        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+        <a href="#holdings-section" className="sb-link">
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
               <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
             </svg>
           </span>
-          {!collapsed && (
-            <>
-              <span className="sb-label">{isEN ? 'Transactions' : 'Transações'}</span>
-              <span className="sb-soon">Soon</span>
-            </>
-          )}
-        </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Transactions' : 'Transações'}</span>}
+        </a>
 
         <a href={backHref} className="sb-link">
           <span className="sb-icon">
@@ -160,19 +155,14 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           {!collapsed && <span className="sb-label">Hub</span>}
         </a>
 
-        <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
+        <a href="/index.html#learn" className="sb-link">
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
           </span>
-          {!collapsed && (
-            <>
-              <span className="sb-label">{isEN ? 'Learn' : 'Aprender'}</span>
-              <span className="sb-soon">Soon</span>
-            </>
-          )}
-        </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Learn' : 'Aprender'}</span>}
+        </a>
 
         {/* Tools section */}
         {!collapsed && <div className="sb-section-label">Tools</div>}
