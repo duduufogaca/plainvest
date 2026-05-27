@@ -7,9 +7,11 @@ import { SidebarClient } from './components/SidebarClient';
 import { PortfolioLineChart, type ChartPoint } from './components/PortfolioLineChart';
 import { AssetLogo } from './components/AssetLogo';
 import { ClickableRow } from './components/ClickableRow';
-import { KpiCard } from './components/KpiCard';
 import { AddPositionModal } from './components/AddPositionModal';
 import { ProjectionEngine } from './components/ProjectionEngine';
+import { HeroSection } from './components/HeroSection';
+import { FreedomScore, type ScoreItem } from './components/FreedomScore';
+import { InsightsPanel } from './components/InsightsPanel';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { fetchLivePrices } from '@/lib/live-prices';
 import type { LivePrices } from '@/lib/live-prices';
@@ -278,10 +280,135 @@ export default async function PortfolioPage({
   const detailBase = `?currency=${displayCurrency}&lang=${lang}`;
 
   const unpricedCount = grouped.length - pricedGroups.length;
+  const monthsActive = Math.max(chartData.length, 1);
+
+  // ── Freedom Score ─────────────────────────────────────────
+  const typeCount = Object.keys(byType).length;
+  const topConcentration = grouped.length > 0
+    ? Math.max(...grouped.map(g => totalInvested > 0 ? (toDisplay(g.totalInvested, g.currency) / totalInvested * 100) : 0))
+    : 0;
+
+  let diversScore = rows.length === 0 ? 0 : typeCount >= 4 ? 88 : typeCount === 3 ? 70 : typeCount === 2 ? 50 : 25;
+  if (rows.length > 0 && topConcentration < 40 && typeCount >= 2) diversScore = Math.min(100, diversScore + 10);
+
+  const consistScore = rows.length === 0 ? 0 : Math.min(100, Math.max(25, 15 + monthsActive * 8));
+
+  let growthScore = rows.length === 0 ? 0
+    : pnlPct === null ? 50
+    : pnlPct >= 50 ? 95 : pnlPct >= 30 ? 88 : pnlPct >= 15 ? 78
+    : pnlPct >= 5 ? 68 : pnlPct >= 0 ? 58 : pnlPct >= -10 ? 40 : 25;
+
+  const growthAssetAmt = ['stock', 'etf', 'crypto'].reduce((s, t) => s + (byType[t] || 0), 0);
+  const defenceScore = rows.length === 0 ? 0
+    : Math.round(Math.min(100, Math.max(20, totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 30)));
+
+  const freedomScores: ScoreItem[] = [
+    {
+      label: 'Diversified', labelPt: 'Diversificado',
+      value: diversScore, color: '#61d5b4',
+      desc: `${typeCount} asset type${typeCount !== 1 ? 's' : ''}`,
+      descPt: `${typeCount} tipo${typeCount !== 1 ? 's' : ''} de ativo`,
+    },
+    {
+      label: 'Consistent', labelPt: 'Consistente',
+      value: consistScore, color: '#f4c86a',
+      desc: `${monthsActive} month${monthsActive !== 1 ? 's' : ''} active`,
+      descPt: `${monthsActive} ${monthsActive !== 1 ? 'meses' : 'mês'} ativo`,
+    },
+    {
+      label: 'Resilient', labelPt: 'Resiliente',
+      value: defenceScore, color: '#a78bfa',
+      desc: `${Math.round(totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 0)}% growth assets`,
+      descPt: `${Math.round(totalInvested > 0 ? (growthAssetAmt / totalInvested) * 100 : 0)}% ativos de crescimento`,
+    },
+    {
+      label: 'Growth', labelPt: 'Crescimento',
+      value: growthScore, color: '#5c9af5',
+      desc: pnlPct != null ? `${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(1)}% return` : 'add prices to unlock',
+      descPt: pnlPct != null ? `${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(1)}% retorno` : 'adicione preços',
+    },
+  ];
+
+  // ── Insights ───────────────────────────────────────────────
+  type InsightType = { text: string; textPt: string; type: 'positive' | 'caution' | 'info' };
+  const portfolioInsights: InsightType[] = [];
+
+  if (rows.length === 0) {
+    portfolioInsights.push({
+      text: 'Add your first investment to unlock personalised insights about your portfolio.',
+      textPt: 'Adicione seu primeiro investimento para desbloquear análises personalizadas.',
+      type: 'info',
+    });
+  } else {
+    const sortedByInvested = [...grouped].sort(
+      (a, b) => toDisplay(b.totalInvested, b.currency) - toDisplay(a.totalInvested, a.currency));
+    const topG = sortedByInvested[0];
+    const topPct = topG && totalInvested > 0
+      ? (toDisplay(topG.totalInvested, topG.currency) / totalInvested * 100) : 0;
+
+    if (typeCount === 1 && grouped.length <= 2) {
+      portfolioInsights.push({
+        text: `Your portfolio is focused on ${Object.keys(byType)[0]}. Adding a second asset class can spread risk over time.`,
+        textPt: `Seu portfólio está focado em ${Object.keys(byType)[0]}. Adicionar uma segunda classe de ativo pode distribuir o risco.`,
+        type: 'info',
+      });
+    } else if (topPct > 70) {
+      portfolioInsights.push({
+        text: `${topG.asset_name} represents ${topPct.toFixed(0)}% of your portfolio — your results are closely tied to this one asset.`,
+        textPt: `${topG.asset_name} representa ${topPct.toFixed(0)}% do seu portfólio — seus resultados dependem muito deste ativo.`,
+        type: 'caution',
+      });
+    } else {
+      portfolioInsights.push({
+        text: `You hold ${typeCount} different asset types — a solid foundation for long-term balance.`,
+        textPt: `Você tem ${typeCount} tipos de ativos diferentes — uma base sólida para equilíbrio de longo prazo.`,
+        type: 'positive',
+      });
+    }
+
+    if (best && best.pnlPct != null && best.pnlPct > 10) {
+      portfolioInsights.push({
+        text: `${best.asset_name} leads your portfolio with ${best.pnlPct >= 0 ? '+' : ''}${best.pnlPct.toFixed(1)}% return. Momentum like this compounds powerfully over time.`,
+        textPt: `${best.asset_name} lidera com retorno de ${best.pnlPct >= 0 ? '+' : ''}${best.pnlPct.toFixed(1)}%. Um momentum assim se multiplica com o tempo.`,
+        type: 'positive',
+      });
+    } else if (pnl != null && pnl > 0) {
+      portfolioInsights.push({
+        text: `Your portfolio is up ${pnlPct != null ? `${pnlPct.toFixed(1)}%` : 'overall'}. Compounding accelerates this growth the longer you stay invested.`,
+        textPt: `Seu portfólio está positivo ${pnlPct != null ? `em ${pnlPct.toFixed(1)}%` : 'no geral'}. Os juros compostos aceleram esse crescimento quanto mais tempo você permanecer investido.`,
+        type: 'positive',
+      });
+    } else if (pnl != null && pnl <= 0) {
+      portfolioInsights.push({
+        text: 'Markets move in cycles — short-term dips are normal. Your long-term projection is what matters most.',
+        textPt: 'Os mercados se movem em ciclos — quedas de curto prazo são normais. Sua projeção de longo prazo é o que mais importa.',
+        type: 'info',
+      });
+    }
+
+    if (monthsActive >= 12) {
+      portfolioInsights.push({
+        text: `You've been investing consistently for over ${Math.floor(monthsActive / 12)} year${Math.floor(monthsActive / 12) > 1 ? 's' : ''}. Consistency is the most powerful wealth-building force.`,
+        textPt: `Você investe consistentemente há mais de ${Math.floor(monthsActive / 12)} ano${Math.floor(monthsActive / 12) > 1 ? 's' : ''}. A consistência é a força mais poderosa para construir riqueza.`,
+        type: 'positive',
+      });
+    } else if (monthsActive >= 3) {
+      portfolioInsights.push({
+        text: `${monthsActive} months of consistent investing — most wealth is built in the years ahead. Keep going.`,
+        textPt: `${monthsActive} meses de investimentos consistentes — a maior parte do patrimônio é construída nos anos à frente. Continue.`,
+        type: 'positive',
+      });
+    } else {
+      portfolioInsights.push({
+        text: "You've taken the most important step. Keep adding consistently and let time do the heavy lifting.",
+        textPt: 'Você deu o passo mais importante. Continue adicionando consistentemente e deixe o tempo trabalhar por você.',
+        type: 'positive',
+      });
+    }
+  }
 
   // Projection inputs
   const projCurrentValue = pricedGroups.length > 0 ? currentValue : totalInvested;
-  const monthsActive = Math.max(chartData.length, 1);
   // Only calculate avg monthly contribution when we have 2+ months of data;
   // a single-month portfolio would produce a nonsensically high number.
   const projMonthlyContrib = monthsActive >= 2 ? totalInvested / monthsActive : 0;
@@ -326,27 +453,26 @@ export default async function PortfolioPage({
         {params.success && <div className="notice notice-success">{params.success}</div>}
         {params.message && <div className="notice">{params.message}</div>}
 
-        {/* ── 3 KPI cards ── */}
-        <div className="portfolio-kpi-row">
-          <KpiCard
-            label={tx.kpiInvested}
-            value={rows.length > 0 ? fmtShort(totalInvested, displayCurrency) : '—'}
-            sub={`${rows.length} ${rows.length !== 1 ? tx.purchases : tx.purchase} · ${grouped.length} ${grouped.length !== 1 ? tx.assets : tx.asset}`}
-          />
-          <KpiCard
-            label={tx.kpiValue}
-            value={pricedGroups.length > 0 ? fmtShort(currentValue, displayCurrency) : '—'}
-            valueCls={pricedGroups.length === 0 ? 'kpi-muted' : ''}
-            sub={pricedGroups.length === 0 ? tx.kpiAddPrices : tx.kpiPriced(pricedGroups.length, grouped.length)}
-          />
-          <KpiCard
-            label={tx.kpiReturn}
-            value={pnl == null ? '—' : (pnl >= 0 ? '+' : '') + fmtShort(pnl, displayCurrency)}
-            valueCls={pnl == null ? '' : pnl >= 0 ? 'positive' : 'negative'}
-            sub={pnlPct == null ? tx.kpiAddPrices : (pnlPct >= 0 ? '▲ +' : '▼ ') + pnlPct.toFixed(2) + '% ' + tx.kpiGainSuffix}
-            cardCls={pnl == null ? '' : pnl >= 0 ? 'kpi-positive' : 'kpi-negative'}
-          />
-        </div>
+        {/* ── Hero Section ── */}
+        <HeroSection
+          firstName={firstName}
+          currentValue={pricedGroups.length > 0 ? currentValue : null}
+          totalInvested={totalInvested}
+          pnl={pnl}
+          pnlPct={pnlPct}
+          currency={displayCurrency}
+          lang={lang}
+          assetCount={grouped.length}
+          monthsActive={monthsActive}
+        />
+
+        {/* ── Freedom Score + Insights ── */}
+        {rows.length > 0 && (
+          <div className="portfolio-score-insights-row">
+            <FreedomScore scores={freedomScores} lang={lang} />
+            <InsightsPanel insights={portfolioInsights} lang={lang} />
+          </div>
+        )}
 
         {/* Prices notice */}
         {rows.length > 0 && unpricedCount > 0 && (
