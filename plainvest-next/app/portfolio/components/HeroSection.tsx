@@ -31,7 +31,7 @@ function fv10y(pv: number, monthly: number): number {
 }
 
 export function HeroSection({
-  firstName, currentValue, totalInvested, pnl, pnlPct,
+  firstName: _firstName, currentValue, totalInvested, pnl, pnlPct,
   currency, lang, assetCount, monthsActive,
   projCurrentValue, projMonthlyContrib,
 }: Props) {
@@ -55,10 +55,10 @@ export function HeroSection({
 
   return (
     <div className="portfolio-hero">
+      {/* Privacy toggle — minimal top row, greeting lives in the page banner */}
       <div className="portfolio-hero-top-row">
-        <span className="portfolio-hero-greeting">
-          {isEN ? 'Welcome back,' : 'Bem-vindo de volta,'}{' '}
-          <strong className="portfolio-hero-name">{firstName}</strong>
+        <span className="portfolio-hero-vallabel-sm">
+          {isEN ? 'Portfolio overview' : 'Visão do portfólio'}
         </span>
         <button
           className="portfolio-hero-eye"
@@ -76,15 +76,7 @@ export function HeroSection({
       </div>
 
       <div className="portfolio-hero-center">
-        {/* Identity first — emotion before metrics */}
-        <p className="portfolio-hero-eyebrow">
-          {isEN ? 'Your Financial Future' : 'Seu Futuro Financeiro'}
-        </p>
-        <h2 className="portfolio-hero-headline">
-          {isEN ? 'Build wealth with clarity.' : 'Construa patrimônio com clareza.'}
-        </h2>
-
-        {/* Then the number — now framed by intention */}
+        {/* Number — framed by the banner headline above */}
         <div className={`portfolio-hero-bigval${hidden ? ' hero-obscured' : ''}`}>
           {fmt(displayValue, currency)}
         </div>

@@ -13,6 +13,7 @@ import { HeroSection } from './components/HeroSection';
 import { FreedomScore, type ScoreItem } from './components/FreedomScore';
 import { InsightsPanel } from './components/InsightsPanel';
 import { FutureSection } from './components/FutureSection';
+import { PageBanner } from './components/PageBanner';
 import { getExchangeRates } from '@/lib/exchange-rates';
 import { fetchLivePrices } from '@/lib/live-prices';
 import type { LivePrices } from '@/lib/live-prices';
@@ -449,19 +450,9 @@ export default async function PortfolioPage({
 
       {/* ── Main ────────────────────────────────────────── */}
       <div className="portfolio-main">
-        <header className="portfolio-topbar">
-          <div className="topbar-brand-block">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/LOGO%20TRANSPARENTE%20BACK.png"
-              alt="Plainvest"
-              className="topbar-logo-img"
-            />
-            <h1 className="topbar-portfolio-heading">
-              {lang === 'pt' ? 'Portfólio' : 'Portfolio'}
-            </h1>
-          </div>
-        </header>
+
+        {/* ── Cinematic page header ── */}
+        <PageBanner firstName={firstName} lang={lang} />
 
       <div className="portfolio-content portfolio-content-wide">
 

@@ -3204,6 +3204,118 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   margin-top: auto;
 }
 
+/* ── Cinematic page banner (replaces portfolio topbar) ────── */
+.ppb-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.75rem, 5.5vw, 5rem) clamp(2rem, 3vw, 3rem) clamp(2rem, 4vw, 3.25rem);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.ppb-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+/* Kicker badge — matches public homepage */
+.ppb-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(97,213,180,.07);
+  border: 1px solid rgba(97,213,180,.2);
+  border-radius: 8px;
+  padding: .38rem .9rem;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+}
+.ppb-kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+  animation: ppb-pulse 2.5s ease infinite;
+}
+@keyframes ppb-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .35; transform: scale(1.55); }
+}
+/* Headline — huge two-line emotional statement */
+.ppb-headline {
+  font-size: clamp(2.6rem, 5.5vw, 5.2rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.06;
+  margin: 0 0 1.5rem;
+  color: var(--text);
+}
+.ppb-hl-plain {
+  display: block;
+  color: var(--text);
+}
+.ppb-hl-teal {
+  display: block;
+  font-style: italic;
+  font-weight: 800;
+  color: var(--teal);
+  opacity: .92;
+}
+/* Greeting */
+.ppb-greeting {
+  font-size: .88rem;
+  color: var(--muted);
+  margin: 0;
+  letter-spacing: .01em;
+  font-weight: 500;
+}
+.ppb-name {
+  color: var(--text);
+  font-weight: 700;
+}
+/* Atmospheric glow layers */
+.ppb-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.ppb-glow-top {
+  top: -140px;
+  right: -60px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(97,213,180,.12) 0%, rgba(97,213,180,.04) 50%, transparent 70%);
+}
+.ppb-glow-mid {
+  top: 20px;
+  left: 55%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(92,154,245,.06) 0%, transparent 65%);
+}
+.ppb-glow-br {
+  bottom: -80px;
+  right: 25%;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(244,200,106,.07) 0%, transparent 65%);
+}
+/* Hero card override: no greeting, compact top row */
+.portfolio-hero-vallabel-sm {
+  font-size: .67rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: #3d5a78;
+}
+/* Hero center: no top padding needed since eyebrow/headline removed */
+.portfolio-hero .portfolio-hero-center {
+  padding-top: .25rem;
+}
+
 /* ── Future Freedom Section ──────────────────────────────── */
 .future-freedom-card {
   margin-bottom: .75rem;
@@ -3464,6 +3576,8 @@ a.sidebar-link:hover {
   .profile-form-row { grid-template-columns: 1fr; }
   .portfolio-score-insights-row { grid-template-columns: 1fr; }
   .freedom-rings-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .ppb-wrap { padding: 1.75rem 1.25rem 1.5rem; }
+  .ppb-headline { font-size: 2.2rem; letter-spacing: -.03em; }
   .future-freedom-stats { flex-direction: column; gap: 1.25rem; padding: 1.25rem; }
   .future-freedom-divider { width: 100%; height: 1px; margin: 0; }
   .future-freedom-stat { text-align: left; }
