@@ -1214,12 +1214,33 @@
       overflow: hidden;
     }
 
+    .hs-intro::before {
+      content: '';
+      position: absolute;
+      top: -30%; left: -8%;
+      width: 55%; height: 130%;
+      background: radial-gradient(ellipse, rgba(0,212,170,.08) 0%, transparent 65%);
+      animation: heroGlowTeal 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
     .hs-intro::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(8, 17, 31, .02), rgba(8, 17, 31, .18));
+      bottom: -25%; right: -5%;
+      width: 45%; height: 120%;
+      background: radial-gradient(ellipse, rgba(244,200,106,.07) 0%, transparent 60%);
+      animation: heroGlowGold 13s ease-in-out infinite;
       pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes heroGlowTeal {
+      0%, 100% { opacity: .6; transform: scale(1) translate(0,0); }
+      50% { opacity: 1; transform: scale(1.08) translate(2%,3%); }
+    }
+    @keyframes heroGlowGold {
+      0%, 100% { opacity: .5; transform: scale(1) translate(0,0); }
+      50% { opacity: .9; transform: scale(1.06) translate(-2%,-2%); }
     }
 
     .hs-badge {
@@ -8148,6 +8169,29 @@
       margin-right: auto;
     }
 
+    /* Emotional purchasing-power callout */
+    .inf-emotional-callout {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 720px;
+      margin: 1.8rem auto 2.5rem;
+      padding: 1.4rem 2rem;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(224,85,85,.07) 0%, rgba(12,24,43,.9) 100%);
+      border: 1px solid rgba(224,85,85,.2);
+      box-shadow: 0 0 40px rgba(224,85,85,.06);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .inf-ec-item { display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+    .inf-ec-num { font-family: 'Lora', Georgia, serif; font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 700; color: #dde6f4; line-height: 1; }
+    .inf-ec-num--red { color: #e05555; }
+    .inf-ec-item--faded .inf-ec-lbl { color: rgba(224,85,85,.7); }
+    .inf-ec-lbl { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #5a7a96; margin-top: .2rem; }
+    .inf-ec-arrow { font-size: 1.6rem; color: rgba(224,85,85,.4); flex-shrink: 0; }
+    .inf-ec-note { width: 100%; text-align: center; font-size: .68rem; color: rgba(255,255,255,.25); font-style: italic; margin-top: .5rem; }
+
     #inflation>.section-lead {
       margin-bottom: 2rem;
     }
@@ -9119,13 +9163,14 @@
     /* Remove old brandline from inside card */
     .hs-brandline { display: none !important; }
 
-    /* Headline — much bigger and more dominant */
+    /* Headline — cinematic, fills the hero */
     .hs-h1 {
-      font-size: clamp(2.4rem, 4.8vw, 4rem) !important;
-      line-height: 1.05 !important;
+      font-size: clamp(2.9rem, 6.5vw, 6.5rem) !important;
+      line-height: 1.0 !important;
       letter-spacing: -.04em !important;
       margin-top: .4rem !important;
-      margin-bottom: .8rem !important;
+      margin-bottom: .9rem !important;
+      max-width: none !important;
     }
 
     /* Emotional eyebrow above headline */
@@ -10267,7 +10312,7 @@
       }
 
       .hs-h1 {
-        font-size: clamp(1.7rem, 6vw, 2.4rem) !important;
+        font-size: clamp(2rem, 8.5vw, 3.4rem) !important;
       }
 
       .sim-panel,
@@ -11890,6 +11935,67 @@
     .sc-card.sc-highlight .sc-val { color: var(--teal); }
     .sc-sub { font-size: .72rem; color: #5a7a96; }
     .sc-note { font-size: .68rem; color: rgba(255,255,255,.3); font-style: italic; margin-top: .85rem; }
+    .sc-delta { font-size: .68rem; font-weight: 800; letter-spacing: .04em; margin-top: .3rem; }
+    .sc-delta-pos { color: #61d5b4; }
+    .sc-delta-neg { color: #f87171; }
+
+    /* ── Future meaning panel (passive income + real value) ── */
+    .rm-meaning {
+      margin-top: .9rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+    }
+    .rm-meaning-item {
+      display: flex;
+      flex-direction: column;
+      gap: .18rem;
+      padding: .75rem 1rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .rmm-icon { font-size: .85rem; }
+    .rmm-label { font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #5a7a96; margin-top: .1rem; }
+    .rmm-val { font-family: 'Lora', Georgia, serif; font-size: 1.1rem; font-weight: 700; color: var(--teal); line-height: 1; margin-top: .2rem; }
+    .rmm-val.rmm-val-muted { color: #7a90a8; }
+
+    /* ── Inflation toggle button ── */
+    .infl-toggle-row {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin: .7rem 0 .4rem;
+      flex-wrap: wrap;
+    }
+    .infl-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .38rem .85rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      color: #7a90a8;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .infl-toggle-btn:hover { background: rgba(255,255,255,.07); color: #a0b8cc; border-color: rgba(255,255,255,.18); }
+    .infl-toggle-btn[data-active="true"] { background: rgba(244,200,106,.1); border-color: rgba(244,200,106,.35); color: var(--gold); }
+    .infl-real-badge {
+      display: flex;
+      align-items: baseline;
+      gap: .4rem;
+      padding: .3rem .8rem;
+      border-radius: 999px;
+      background: rgba(244,200,106,.08);
+      border: 1px solid rgba(244,200,106,.22);
+    }
+    .infl-real-badge strong { font-family: 'Lora', serif; font-size: .95rem; font-weight: 700; color: var(--gold); }
+    .infl-real-badge span { font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(244,200,106,.6); }
 
     /* ═══════════════════════════════════════════════
        MOBILE — NEW HOME SECTIONS
@@ -12652,7 +12758,34 @@
               <div class="rm-stat-lbl" id="lblMultPct">return</div>
             </div>
           </div>
+          <!-- ── What this number means ── -->
+          <div class="rm-meaning" id="rmMeaning">
+            <div class="rm-meaning-item">
+              <span class="rmm-icon">💸</span>
+              <span class="rmm-label" id="rPassiveLbl">Monthly passive income (4% rule)</span>
+              <span class="rmm-val" id="rPassiveIncome">$275/mo</span>
+            </div>
+            <div class="rm-meaning-item">
+              <span class="rmm-icon">📉</span>
+              <span class="rmm-label" id="rRealLbl">Inflation-adjusted real value</span>
+              <span class="rmm-val rmm-val-muted" id="rRealValue">$42,300</span>
+            </div>
+          </div>
+
           <div class="cost-of-waiting" id="cost-of-waiting"></div>
+
+          <!-- ── Inflation view toggle ── -->
+          <div class="infl-toggle-row" id="inflToggleRow">
+            <button class="infl-toggle-btn" id="inflToggleBtn" onclick="toggleInflationView()" data-active="false">
+              <span>📉</span>
+              <span id="inflToggleLabel">Show inflation-adjusted chart</span>
+            </button>
+            <div class="infl-real-badge" id="inflRealBadge" style="display:none">
+              <strong id="inflRealVal">—</strong>
+              <span id="inflRealLabel">real value</span>
+            </div>
+          </div>
+
           <div class="chart-area"><canvas id="mainChart"></canvas>
             <div id="mainChartVisual" class="live-chart live-chart-fallback">
               <div class="live-chart-top">
@@ -12928,9 +13061,21 @@
      SECTION 2: INFLATION
 ══════════════════════════════════════════ -->
   <section id="inflation" class="app-page" data-page="inflation">
-    <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">The hidden risk</div>
-    <div class="section-h2" id="inf-h2" data-i18n-html="inflation.h2">Your savings are <em>losing value</em> right now.</div>
-    <p class="section-lead" id="inf-lead" data-i18n="inflation.lead">Inflation silently erodes the purchasing power of money sitting in savings. $10,000 today won't buy the same things in 10 years — unless your money grows faster than inflation.</p>
+    <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">The silent thief</div>
+    <div class="section-h2" id="inf-h2" data-i18n-html="inflation.h2">Your money is losing value<br><em>right now, while you sleep.</em></div>
+    <p class="section-lead" id="inf-lead" data-i18n="inflation.lead">Inflation doesn't announce itself. It quietly erodes the buying power of every dollar sitting in a savings account. $100,000 today may only feel like $60,000 in 20 years — unless your money grows faster than rising prices.</p>
+    <div class="inf-emotional-callout">
+      <div class="inf-ec-item">
+        <div class="inf-ec-num" id="inf-ec-num1">$100,000</div>
+        <div class="inf-ec-lbl">today's value</div>
+      </div>
+      <div class="inf-ec-arrow">→</div>
+      <div class="inf-ec-item inf-ec-item--faded">
+        <div class="inf-ec-num inf-ec-num--red" id="inf-ec-num2">~$54,000</div>
+        <div class="inf-ec-lbl">real buying power in 20 years</div>
+      </div>
+      <div class="inf-ec-note">at ~3.3% average annual inflation</div>
+    </div>
 
     <div class="inflation-chart-wrap">
       <div class="inflation-topbar">
@@ -17348,6 +17493,16 @@
     };
 
     // ══════════════════════════════════════════════════════
+    // INFLATION TOGGLE
+    // ══════════════════════════════════════════════════════
+    var simShowReal = false;
+
+    function toggleInflationView() {
+      simShowReal = !simShowReal;
+      simulate();
+    }
+
+    // ══════════════════════════════════════════════════════
     // SIMULATE
     // ══════════════════════════════════════════════════════
     function simulate() {
@@ -17367,6 +17522,7 @@
         valArr.push(Math.round(fv(init, mo, inv.rate, y)));
       }
       const finalV = valArr[valArr.length - 1];
+      const inflRate = { us: 0.033, br: 0.055, au: 0.032 }[currentCountry] || 0.033;
       const totalIn = invArr[invArr.length - 1];
       const earned = finalV - totalIn;
       const mult = totalIn > 0 ? (finalV / totalIn).toFixed(1) + '×' : '—';
@@ -17478,7 +17634,10 @@
       // Chart data — yearly keeps the simple view, monthly reveals compounding in more detail.
       let chartLabels = labels.map((l, idx) => idx === 0 ? `${yrWord} 0` : l.replace('Yr ', yrWord + ' '));
       let chartInvested = invArr;
-      let chartProjected = valArr;
+      // If inflation-adjusted mode: deflate each year's projected value by inflation
+      let chartProjected = simShowReal
+        ? valArr.map((v, y) => Math.round(v / Math.pow(1 + inflRate, y)))
+        : valArr;
 
       // Chart
       const mainCanvas = document.getElementById('mainChart');
@@ -17487,8 +17646,11 @@
       chart = null;
 
       const isGold = inv.isGold;
-      const lineColor = isGold ? '#e8b84b' : '#00d4aa';
-      drawMainChartFallback(mainCanvas, chartLabels, chartInvested, chartProjected, lineColor, c.symbol, isPt, displayInvName, {
+      const lineColor = simShowReal ? '#e8b84b' : (isGold ? '#e8b84b' : '#00d4aa');
+      const chartLabel = simShowReal
+        ? (isPt ? displayInvName + ' (valor real)' : displayInvName + ' (real value)')
+        : displayInvName;
+      drawMainChartFallback(mainCanvas, chartLabels, chartInvested, chartProjected, lineColor, c.symbol, isPt, chartLabel, {
         mode: 'yearly',
         totalYears: yrs,
         totalMonths: totalMonths
@@ -17503,14 +17665,19 @@
           : [Math.round(c.symbol === 'R$' ? 300 : 50), Math.round(c.symbol === 'R$' ? 1000 : 200), Math.round(c.symbol === 'R$' ? 2000 : 500)];
         // deduplicate
         const uniq = [...new Set(scenarios)].sort((a, b) => a - b);
+        const activeVal = Math.round(fv(init, mo, inv.rate, yrs));
         scGrid.innerHTML = uniq.map(amt => {
           const val = Math.round(fv(init, amt, inv.rate, yrs));
           const isActive = amt === mo;
           const label = c.symbol + amt.toLocaleString() + (isPt ? '/mês' : '/mo');
+          const delta = val - activeVal;
+          const deltaStr = isActive ? '' : (delta >= 0 ? '+' + fmt(delta) : fmt(delta));
+          const deltaClass = delta >= 0 ? 'sc-delta-pos' : 'sc-delta-neg';
           return `<div class="sc-card${isActive ? ' sc-highlight' : ''}">
             <div class="sc-mo">${label}</div>
             <div class="sc-val">${fmt(val)}</div>
             <div class="sc-sub">${isPt ? 'em ' + yrs + ' anos' : 'in ' + yrs + ' yrs'}</div>
+            ${!isActive && deltaStr ? `<div class="sc-delta ${deltaClass}">${deltaStr}</div>` : ''}
           </div>`;
         }).join('');
         document.getElementById('simScenarios').style.display = '';
@@ -17519,20 +17686,50 @@
         if (sc) sc.style.display = 'none';
       }
 
+      // ── Passive income + real value panel ────────────────────────────────
+      const realFinalV = Math.round(finalV / Math.pow(1 + inflRate, yrs));
+      const monthlyPassive = Math.round(finalV * 0.04 / 12);
+      const rPassive = document.getElementById('rPassiveIncome');
+      const rReal = document.getElementById('rRealValue');
+      const rPassiveLbl = document.getElementById('rPassiveLbl');
+      const rRealLbl = document.getElementById('rRealLbl');
+      if (rPassive) rPassive.textContent = c.symbol + monthlyPassive.toLocaleString() + (isPt ? '/mês' : '/mo');
+      if (rReal) rReal.textContent = fmt(realFinalV);
+      if (rPassiveLbl) rPassiveLbl.textContent = isPt ? 'Renda passiva mensal (regra dos 4%)' : 'Monthly passive income (4% rule)';
+      if (rRealLbl) rRealLbl.textContent = isPt ? `Valor real (ajustado ~${(inflRate*100).toFixed(1)}%/ano)` : `Inflation-adjusted real value (~${(inflRate*100).toFixed(1)}%/yr)`;
+
+      // ── Inflation toggle badge ─────────────────────────────────────────────
+      const inflBadge = document.getElementById('inflRealBadge');
+      const inflBadgeVal = document.getElementById('inflRealVal');
+      const inflBadgeLbl = document.getElementById('inflRealLabel');
+      const inflBtn = document.getElementById('inflToggleBtn');
+      const inflLabel = document.getElementById('inflToggleLabel');
+      if (inflLabel) inflLabel.textContent = simShowReal
+        ? (isPt ? 'Mostrando: valor ajustado pela inflação' : 'Showing: inflation-adjusted')
+        : (isPt ? 'Ver valor ajustado pela inflação' : 'See inflation-adjusted value');
+      if (inflBtn) inflBtn.dataset.active = simShowReal ? 'true' : 'false';
+      if (inflBadge && simShowReal) {
+        inflBadge.style.display = '';
+        if (inflBadgeVal) inflBadgeVal.textContent = fmt(realFinalV);
+        if (inflBadgeLbl) inflBadgeLbl.textContent = isPt ? `valor real em ${yrs} anos` : `real value in ${yrs} yrs`;
+      } else if (inflBadge) {
+        inflBadge.style.display = 'none';
+      }
+
       // ── Dynamic future insights ──────────────────────────────────────────
       const fiItems = document.getElementById('fiItems');
       if (fiItems && finalV > 0) {
         const growthRatio = totalIn > 0 ? finalV / totalIn : 1;
         const insights = isPt ? [
           { cls: 'fi-item--teal', icon: '⏳', txt: 'O tempo importa mais do que o momento certo. Começar com qualquer valor hoje supera esperar pelo "momento perfeito".' },
-          { cls: 'fi-item--gold', icon: '📈', txt: growthRatio >= 2 ? `Seu dinheiro pode crescer ${(growthRatio).toFixed(1)}× o valor aportado. A maior parte do crescimento acontece nos últimos anos.` : 'A maior parte do crescimento de uma carteira acontece nos anos finais. Os primeiros anos são a semente — os últimos são a colheita.' },
-          { cls: 'fi-item--blue', icon: '🛡️', txt: 'A inflação pode reduzir o poder de compra do que você vê aqui. Investir é como proteger seu "eu" do futuro.' },
-          { cls: 'fi-item--teal', icon: '🌱', txt: 'A consistência é sua maior vantagem. O hábito importa muito mais do que o valor inicial.' }
+          { cls: 'fi-item--gold', icon: '📈', txt: growthRatio >= 2 ? `Seu dinheiro pode crescer ${(growthRatio).toFixed(1)}× o valor aportado. A maior parte do crescimento acontece nos últimos anos — seja paciente.` : 'A maior parte do crescimento de uma carteira acontece nos anos finais. Os primeiros anos são a semente — os últimos são a colheita.' },
+          { cls: 'fi-item--blue', icon: '💸', txt: `A ${fmt(finalV)}, uma retirada conservadora de 4% pode gerar cerca de ${c.symbol}${monthlyPassive.toLocaleString()}/mês em renda passiva. Isso é liberdade financeira real.` },
+          { cls: 'fi-item--teal', icon: '🛡️', txt: `Ajustado pela inflação, seu valor real seria próximo de ${fmt(realFinalV)}. Investir é o que protege seu poder de compra futuro.` }
         ] : [
           { cls: 'fi-item--teal', icon: '⏳', txt: 'Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."' },
-          { cls: 'fi-item--gold', icon: '📈', txt: growthRatio >= 2 ? `Your money could grow to ${(growthRatio).toFixed(1)}× what you put in. Most of that growth happens in the later years.` : 'Most portfolio growth happens in the final years. The early years are the foundation — the later years are where compounding accelerates.' },
-          { cls: 'fi-item--blue', icon: '🛡️', txt: 'Inflation may quietly reduce the real purchasing power of this result. Investing is how you protect your future self.' },
-          { cls: 'fi-item--teal', icon: '🌱', txt: 'Consistency is your strongest advantage. The habit matters far more than the starting amount.' }
+          { cls: 'fi-item--gold', icon: '📈', txt: growthRatio >= 2 ? `Your money could grow to ${(growthRatio).toFixed(1)}× what you put in. Most of that growth happens in the later years — patience is your edge.` : 'Most portfolio growth happens in the final years. The early years are the foundation — the later years are where compounding accelerates.' },
+          { cls: 'fi-item--blue', icon: '💸', txt: `At ${fmt(finalV)}, a conservative 4% withdrawal could generate around ${c.symbol}${monthlyPassive.toLocaleString()}/month in passive income. That's what real financial freedom looks like.` },
+          { cls: 'fi-item--teal', icon: '🛡️', txt: `Inflation-adjusted, your real purchasing power would be closer to ${fmt(realFinalV)}. Investing is how you protect your future self from rising prices.` }
         ];
         fiItems.innerHTML = insights.map(i => `<div class="fi-item ${i.cls}"><span class="fi-icon">${i.icon}</span><p>${i.txt}</p></div>`).join('');
       }
