@@ -6517,9 +6517,7 @@
       background: linear-gradient(135deg, rgba(22, 44, 76, .98), rgba(10, 22, 44, .98));
       border-color: rgba(97, 213, 180, .25);
       border-top: 3px solid rgba(97, 213, 180, .9) !important;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: flex-start;
+      flex-direction: column;
       gap: 1.25rem;
       min-height: auto;
     }
@@ -6531,56 +6529,26 @@
     .member-card.member-card-featured ul { columns: 2; gap: .5rem; }
     .member-card.member-card-featured .member-open-file { margin-top: .75rem; }
 
-    /* ── Featured guide cover visual ── */
+    /* ── Start Here cover — full-width poster ── */
     .member-card.member-card-featured { cursor: pointer; }
-    .featured-guide-cover {
-      position: relative;
-      overflow: hidden;
-      width: 220px;
-      min-height: 190px;
-      align-self: stretch;
-      flex-shrink: 0;
-      border-radius: 16px;
-      background:
-        radial-gradient(circle at 28% 28%, rgba(0,212,170,.22) 0%, transparent 52%),
-        radial-gradient(circle at 78% 78%, rgba(97,213,180,.1) 0%, transparent 45%),
-        linear-gradient(135deg, rgba(7,21,42,.97) 0%, rgba(12,32,62,.97) 100%);
-      border: 1px solid rgba(0,212,170,.28);
+    .start-here-cover-fallback {
+      width: 100%;
+      min-height: 420px;
+      border-radius: 22px;
+      padding: 28px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 1.2rem 1.25rem;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(89,255,215,0.18), transparent 35%),
+        linear-gradient(135deg, #102033 0%, #07111f 100%);
+      border: 1px solid rgba(89,255,215,0.25);
       cursor: pointer;
     }
-    .fgc-glow {
-      position: absolute;
-      top: -40px; left: -40px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(0,212,170,.15) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .fgc-rocket { font-size: 2.6rem; line-height: 1; margin-bottom: .55rem; }
-    .fgc-label {
-      font-size: .56rem;
-      font-weight: 900;
-      letter-spacing: .16em;
-      color: rgba(0,212,170,.7);
-      text-transform: uppercase;
-      margin-bottom: .3rem;
-    }
-    .fgc-title {
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #dde6f4;
-      letter-spacing: -.02em;
-      line-height: 1.2;
-      margin-bottom: .25rem;
-    }
-    .fgc-sub {
-      font-size: .72rem;
-      color: #5a7a96;
-      line-height: 1.45;
-    }
+    .fallback-badge { color: #66e6c7; letter-spacing: 0.14em; font-size: 12px; font-weight: 800; }
+    .start-here-cover-fallback h3 { color: white; font-size: 32px; line-height: 1.1; margin-top: 12px; }
+    .start-here-cover-fallback p { color: rgba(220,230,245,0.72); margin-top: 10px; }
+    .fallback-status { color: #ffd36a; font-weight: 800; letter-spacing: 0.12em; margin-top: 20px; display: block; }
 
     .member-card:nth-child(3n+1) {
       border-top: 3px solid rgba(0, 212, 170, .7);
@@ -16704,13 +16672,11 @@
         </div>
         <div class="member-card member-card-featured" onclick="openMemberGuide('welcome')" role="button" tabindex="0" aria-label="Open Start Here guide">
           <div class="member-card-cat-tag cat-tag-start" data-i18n="member.unlocked">Unlocked</div>
-          <!-- Visual cover — branded fallback (no image needed) -->
-          <div class="featured-guide-cover" onclick="openMemberGuide('welcome'); event.stopPropagation();">
-            <div class="fgc-glow"></div>
-            <div class="fgc-rocket">🚀</div>
-            <div class="fgc-label">PLAINVEST PREMIUM</div>
-            <div class="fgc-title">Start Here Guide</div>
-            <div class="fgc-sub">The only guide you must read first.</div>
+          <div class="start-here-cover-fallback" onclick="openMemberGuide('welcome'); event.stopPropagation();">
+            <div class="fallback-badge">PLAINVEST PREMIUM</div>
+            <h3>Premium Welcome</h3>
+            <p>Start here before opening any other guide.</p>
+            <span class="fallback-status">UNLOCKED</span>
           </div>
           <div class="member-card-featured-body">
             <div class="member-card-badges"><span class="member-time-badge">⏱ 5 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
@@ -23074,14 +23040,12 @@
     }
     .member-card.member-card-featured ul { columns: 1 !important; }
 
-    /* Featured cover: full width on mobile, stacks vertically */
-    .featured-guide-cover {
-      width: 100% !important;
-      min-height: 180px !important;
-      border-radius: 14px !important;
+    /* Featured cover: compact on mobile */
+    .start-here-cover-fallback {
+      min-height: 280px !important;
+      border-radius: 16px !important;
     }
-    .fgc-rocket { font-size: 2.2rem !important; }
-    .fgc-title { font-size: .95rem !important; }
+    .start-here-cover-fallback h3 { font-size: 24px !important; }
 
     /* Category headers: override grid-column: span 3 */
     .hub-category-header { grid-column: span 1 !important; }
