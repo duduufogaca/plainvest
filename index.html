@@ -6490,6 +6490,7 @@
     }
 
     .member-card {
+      position: relative;
       min-height: 240px;
       border: 1px solid rgba(255, 255, 255, .08);
       background: linear-gradient(160deg, rgba(18, 34, 58, .97), rgba(8, 17, 34, .98));
@@ -6529,6 +6530,57 @@
     .member-card.member-card-featured .member-unlocked { display: none; }
     .member-card.member-card-featured ul { columns: 2; gap: .5rem; }
     .member-card.member-card-featured .member-open-file { margin-top: .75rem; }
+
+    /* ── Featured guide cover visual ── */
+    .member-card.member-card-featured { cursor: pointer; }
+    .featured-guide-cover {
+      position: relative;
+      overflow: hidden;
+      width: 220px;
+      min-height: 190px;
+      align-self: stretch;
+      flex-shrink: 0;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 28% 28%, rgba(0,212,170,.22) 0%, transparent 52%),
+        radial-gradient(circle at 78% 78%, rgba(97,213,180,.1) 0%, transparent 45%),
+        linear-gradient(135deg, rgba(7,21,42,.97) 0%, rgba(12,32,62,.97) 100%);
+      border: 1px solid rgba(0,212,170,.28);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.2rem 1.25rem;
+      cursor: pointer;
+    }
+    .fgc-glow {
+      position: absolute;
+      top: -40px; left: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(0,212,170,.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .fgc-rocket { font-size: 2.6rem; line-height: 1; margin-bottom: .55rem; }
+    .fgc-label {
+      font-size: .56rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+      color: rgba(0,212,170,.7);
+      text-transform: uppercase;
+      margin-bottom: .3rem;
+    }
+    .fgc-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #dde6f4;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: .25rem;
+    }
+    .fgc-sub {
+      font-size: .72rem;
+      color: #5a7a96;
+      line-height: 1.45;
+    }
 
     .member-card:nth-child(3n+1) {
       border-top: 3px solid rgba(0, 212, 170, .7);
@@ -16650,9 +16702,16 @@
           <div class="hub-cat-label" id="hubcat-start">Start Here</div>
           <div class="hub-cat-title" id="hubcat-start-title">The only guide you must read first.</div>
         </div>
-        <div class="member-card member-card-featured">
+        <div class="member-card member-card-featured" onclick="openMemberGuide('welcome')" role="button" tabindex="0" aria-label="Open Start Here guide">
           <div class="member-card-cat-tag cat-tag-start" data-i18n="member.unlocked">Unlocked</div>
-          <div class="member-icon">🚀</div>
+          <!-- Visual cover — branded fallback (no image needed) -->
+          <div class="featured-guide-cover" onclick="openMemberGuide('welcome'); event.stopPropagation();">
+            <div class="fgc-glow"></div>
+            <div class="fgc-rocket">🚀</div>
+            <div class="fgc-label">PLAINVEST PREMIUM</div>
+            <div class="fgc-title">Start Here Guide</div>
+            <div class="fgc-sub">The only guide you must read first.</div>
+          </div>
           <div class="member-card-featured-body">
             <div class="member-card-badges"><span class="member-time-badge">⏱ 5 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
             <h3 data-i18n="member.cardWelcomeTitle">Premium Welcome — Start Here</h3>
@@ -16662,7 +16721,7 @@
               <li data-i18n="member.cardWelcomeItem2">How to use the hub and navigate guides</li>
               <li data-i18n="member.cardWelcomeItem3">Where to start based on your experience level</li>
             </ul>
-            <button class="member-open-file" onclick="openMemberGuide('welcome')" data-i18n="member.openFileBtn">Open file</button>
+            <button class="member-open-file" onclick="openMemberGuide('welcome'); event.stopPropagation();" data-i18n="member.startHereBtn">Start Here →</button>
           </div>
         </div>
 
@@ -17882,6 +17941,7 @@
           heroPill2: 'Practical checklists',
           heroPill3: 'Support call',
           openFileBtn: 'Open file',
+          startHereBtn: 'Start Here →',
           cardWelcomeTitle: 'Premium Welcome — Start Here',
           cardWelcomeText: 'Your first stop. Understand what\'s included in Premium, how to navigate the hub, and which guide to open first based on your goals and experience.',
           cardWelcomeItem1: 'What\'s included in your Premium access',
@@ -18690,6 +18750,7 @@
           heroPill2: 'Checklists práticos',
           heroPill3: 'Chamada de suporte',
           openFileBtn: 'Abrir arquivo',
+          startHereBtn: 'Começar Aqui →',
           cardWelcomeTitle: 'Boas-vindas Premium — Comece Aqui',
           cardWelcomeText: 'Seu primeiro passo. Entenda o que está incluído no Premium, como navegar pelo hub e qual guia abrir primeiro com base nos seus objetivos.',
           cardWelcomeItem1: 'O que está incluído no seu acesso Premium',
@@ -22368,7 +22429,7 @@
           card.insertBefore(chip, card.firstChild);
         }
 
-        // Star button
+        // Star button — stopPropagation so it doesn't trigger card onclick
         if (!card.querySelector('.member-card-star')) {
           var star = document.createElement('button');
           star.className = 'member-card-star';
@@ -22376,7 +22437,7 @@
           star.setAttribute('title', 'Save to favourites');
           star.setAttribute('aria-label', 'Save to favourites');
           star.innerHTML = '&#9733;';
-          star.setAttribute('onclick', 'toggleStar("' + key + '", this)');
+          star.setAttribute('onclick', 'event.stopPropagation(); toggleStar("' + key + '", this)');
           card.appendChild(star);
         }
       });
@@ -23012,6 +23073,15 @@
       width: 100% !important;
     }
     .member-card.member-card-featured ul { columns: 1 !important; }
+
+    /* Featured cover: full width on mobile, stacks vertically */
+    .featured-guide-cover {
+      width: 100% !important;
+      min-height: 180px !important;
+      border-radius: 14px !important;
+    }
+    .fgc-rocket { font-size: 2.2rem !important; }
+    .fgc-title { font-size: .95rem !important; }
 
     /* Category headers: override grid-column: span 3 */
     .hub-category-header { grid-column: span 1 !important; }
