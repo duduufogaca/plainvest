@@ -4714,6 +4714,213 @@
       .learn-more-grid { grid-template-columns: 1fr; }
     }
 
+    /* ══ LEARN PAGE: VISUAL HIERARCHY UPGRADE ══ */
+
+    /* 1. Hero cards — full-width, horizontal, prominent */
+    .learn-all-cards .lc-hero {
+      grid-column: 1 / -1 !important;
+      display: grid !important;
+      grid-template-columns: 3.2rem 1fr !important;
+      grid-template-rows: auto auto auto auto auto !important;
+      column-gap: 1.4rem !important;
+      padding: 1.8rem 2rem !important;
+      background: linear-gradient(135deg, rgba(0,212,170,.07), rgba(0,212,170,.02)) !important;
+      border-top-color: var(--teal) !important;
+      border-color: rgba(0,212,170,.18) !important;
+      box-shadow: 0 0 40px rgba(0,212,170,.04) inset !important;
+      transition: transform .25s, box-shadow .25s, border-color .25s !important;
+    }
+    .learn-all-cards .lc-hero.lc-etf {
+      background: linear-gradient(135deg, rgba(0,212,170,.06), rgba(0,180,150,.02)) !important;
+    }
+    .learn-all-cards .lc-hero:hover {
+      border-color: rgba(0,212,170,.35) !important;
+      box-shadow: 0 16px 44px rgba(0,0,0,.3), 0 0 0 1px rgba(0,212,170,.22), 0 0 40px rgba(0,212,170,.06) inset !important;
+    }
+    .learn-all-cards .lc-hero .learn-card-icon {
+      grid-row: 1 / 6 !important;
+      grid-column: 1 !important;
+      font-size: 2.4rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding-top: .2rem !important;
+    }
+    .learn-all-cards .lc-hero .learn-card-name {
+      grid-row: 1 !important; grid-column: 2 !important;
+      font-size: 1.15rem !important;
+      color: var(--teal) !important;
+      align-self: end !important;
+    }
+    .learn-all-cards .lc-hero .learn-card-tag {
+      grid-row: 2 !important; grid-column: 2 !important;
+    }
+    .learn-all-cards .lc-hero .learn-card-tagline {
+      grid-row: 3 !important; grid-column: 2 !important;
+      font-size: .9rem !important;
+      line-height: 1.58 !important;
+    }
+    .learn-all-cards .lc-hero .lc-beginner-badge {
+      grid-row: 4 !important; grid-column: 2 !important;
+    }
+    .learn-all-cards .lc-hero .learn-card-cta {
+      grid-row: 5 !important; grid-column: 2 !important;
+      color: var(--teal) !important;
+      font-weight: 700 !important;
+    }
+
+    /* 2. Hero popularity label */
+    .lc-popularity-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(0,212,170,.1);
+      border: 1px solid rgba(0,212,170,.2);
+      border-radius: 999px;
+      padding: .15rem .55rem;
+      margin-bottom: .5rem;
+    }
+    .lc-popularity-tag.tag-start { color: #e8b84b; background: rgba(232,184,75,.1); border-color: rgba(232,184,75,.2); }
+
+    /* 3. Card category glow personalities */
+    .learn-card.lc-gold:hover {
+      border-color: rgba(232,184,75,.4) !important;
+      box-shadow: 0 14px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(232,184,75,.2) !important;
+    }
+    .learn-card.lc-nasdaq:hover {
+      border-color: rgba(111,168,255,.4) !important;
+      box-shadow: 0 14px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(111,168,255,.2) !important;
+    }
+    .learn-card.lc-bitcoin:hover {
+      border-color: rgba(232,184,75,.4) !important;
+      box-shadow: 0 14px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(232,184,75,.15) !important;
+    }
+    .learn-card.lc-reit:hover {
+      border-color: rgba(123,159,212,.4) !important;
+      box-shadow: 0 14px 40px rgba(0,0,0,.3), 0 0 0 1px rgba(123,159,212,.2) !important;
+    }
+
+    /* 4. Testimonials/insights — tighter, less empty */
+    .testimonials {
+      padding: 4.5rem 3rem !important;
+    }
+    .testimonials .section-lead-bridge {
+      margin: 0 auto 2rem !important;
+    }
+    .testi-grid {
+      gap: .9rem !important;
+    }
+    /* Dark→next-section transition overlay */
+    .testimonials::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, rgba(10,20,40,.6));
+      pointer-events: none;
+    }
+
+    /* 5. Clarity bridge — more cinematic */
+    .learn-clarity-bridge {
+      margin-top: 2.5rem !important;
+      border-color: rgba(0,212,170,.18) !important;
+      box-shadow: 0 2px 60px rgba(0,212,170,.06), 0 0 0 1px rgba(0,212,170,.07) !important;
+    }
+    .learn-clarity-bridge::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: 50%; transform: translateX(-50%);
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(0,212,170,.14), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .lcb-sub {
+      color: rgba(200,225,245,.72) !important;
+    }
+    .lcb-cta-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .lcb-cta-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0,212,170,.22), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* 6. Premium card — tighter spacing */
+    .lpb-col-item {
+      margin-bottom: .28rem !important;
+    }
+    .lpb-col {
+      padding: .85rem 1rem !important;
+    }
+    .lpb-comparison {
+      margin: .9rem 0 1.1rem !important;
+    }
+    .lpb-transition {
+      margin-bottom: .7rem !important;
+    }
+    .learn-premium-banner {
+      padding: 1.8rem 2rem !important;
+    }
+
+    /* 7. Footer: bigger logo presence + signup glow */
+    .foot-logo {
+      font-size: 1.75rem !important;
+    }
+    .foot-logo-mark {
+      width: 42px !important; height: 42px !important;
+      box-shadow: 0 0 0 1px rgba(0,212,170,.2) inset, 0 0 16px rgba(0,212,170,.12), 0 10px 22px rgba(0,0,0,.3) !important;
+    }
+    .footer-capture {
+      border-color: rgba(0,212,170,.25) !important;
+      background: rgba(0,212,170,.06) !important;
+      box-shadow: 0 0 28px rgba(0,212,170,.08) inset !important;
+    }
+    .footer-capture button {
+      box-shadow: 0 4px 16px rgba(0,212,170,.28) !important;
+      transition: box-shadow .2s, transform .2s !important;
+    }
+    .footer-capture button:hover {
+      box-shadow: 0 6px 22px rgba(0,212,170,.4) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* 8. Learn card uniform transitions: 280ms ease */
+    .learn-card {
+      transition: transform .28s cubic-bezier(.25,.46,.45,.94), box-shadow .28s cubic-bezier(.25,.46,.45,.94), border-color .28s cubic-bezier(.25,.46,.45,.94) !important;
+    }
+
+    /* 9. Hero cards mobile: revert to block */
+    @media (max-width: 760px) {
+      .learn-all-cards .lc-hero {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+      }
+      .learn-all-cards .lc-hero .learn-card-icon {
+        grid-row: auto !important; grid-column: auto !important;
+        font-size: 1.6rem !important;
+        justify-content: flex-start !important;
+      }
+      .learn-all-cards .lc-hero .learn-card-name,
+      .learn-all-cards .lc-hero .learn-card-tag,
+      .learn-all-cards .lc-hero .learn-card-tagline,
+      .learn-all-cards .lc-hero .lc-beginner-badge,
+      .learn-all-cards .lc-hero .learn-card-cta {
+        grid-row: auto !important; grid-column: auto !important;
+      }
+    }
+
     .lps-btn--premium:hover {
       background: rgba(244, 200, 106, .18);
       border-color: rgba(244, 200, 106, .55);
@@ -15347,19 +15554,19 @@
     <div class="learn-right">
     <div class="learn-cards-eyebrow" data-i18n="learn.cardsLabel">Explore investment types — free to understand</div>
     <div class="learn-all-cards">
-      <div class="learn-card lc-teal reveal reveal-delay-1" onclick="openModal('indexfund')">
+      <div class="learn-card lc-teal lc-hero reveal reveal-delay-1" onclick="openModal('indexfund')">
         <div class="learn-card-icon">📊</div>
         <div class="learn-card-name" id="lc-indexfund-name">Index Fund</div>
-        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-1">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-indexfund-tag">Own a tiny piece of hundreds of companies at once. The beginner favourite for a reason.</div>
-        <div class="lc-beginner-badge" id="lc-badge-1">🟢 Beginner-safe</div>
+        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-1"><span class="lc-popularity-tag">⭐ Best first step</span></div>
+        <div class="learn-card-tagline" id="lc-indexfund-tag">The easiest place most beginners start. Own hundreds of companies in one simple investment — low cost, no picking required.</div>
+        <div class="lc-beginner-badge" id="lc-badge-1">🟢 Most popular for beginners</div>
         <div class="learn-card-cta" id="lc-indexfund-cta">See why beginners start here →</div>
       </div>
       <div class="learn-card lc-teal" onclick="openModal('stocks')">
         <div class="learn-card-icon">📈</div>
         <div class="learn-card-name" id="lc-stocks-name">Stocks</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-2">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-stocks-tag">Buy a share of a real company. Higher potential, but more ups and downs.</div>
+        <div class="learn-card-tagline" id="lc-stocks-tag">Buy ownership in real companies. Higher potential — but expect some turbulence along the way.</div>
         <div class="lc-beginner-badge" id="lc-badge-2">🟢 Plain English</div>
         <div class="learn-card-cta" id="lc-stocks-cta">Understand the ups and downs →</div>
       </div>
@@ -15367,7 +15574,7 @@
         <div class="learn-card-icon">🏛️</div>
         <div class="learn-card-name" id="lc-sp500-name">S&amp;P 500</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-3">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-sp500-tag">The most famous market index in the world. If you've heard "the market went up today" — this is usually what they mean.</div>
+        <div class="learn-card-tagline" id="lc-sp500-tag">500 of the biggest US companies in one investment. When people say "the market" — this is usually what they mean.</div>
         <div class="lc-beginner-badge" id="lc-badge-3">🟢 5 min read</div>
         <div class="learn-card-cta" id="lc-sp500-cta">See what everyone talks about →</div>
       </div>
@@ -15375,7 +15582,7 @@
         <div class="learn-card-icon">🏦</div>
         <div class="learn-card-name" id="lc-bonds-name">Bonds</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-4">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-bonds-tag">Lend money to a government or company and earn steady interest. The calmer choice.</div>
+        <div class="learn-card-tagline" id="lc-bonds-tag">Lend money, earn steady interest. The calmer, more predictable side of investing.</div>
         <div class="lc-beginner-badge" id="lc-badge-4">🟢 No finance jargon</div>
         <div class="learn-card-cta" id="lc-bonds-cta">Learn the safer side of investing →</div>
       </div>
@@ -15383,15 +15590,15 @@
         <div class="learn-card-icon">₿</div>
         <div class="learn-card-name" id="lc-bitcoin-name">Bitcoin</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-5">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-bitcoin-tag">Digital money that lives on the internet. High potential, high risk — understand it before touching it.</div>
+        <div class="learn-card-tagline" id="lc-bitcoin-tag">High potential. High risk. Understand it fully before touching it — this guide puts safety first.</div>
         <div class="lc-beginner-badge" id="lc-badge-5">🟢 Safety-first guide</div>
         <div class="learn-card-cta" id="lc-bitcoin-cta">Understand before you touch it →</div>
       </div>
-      <div class="learn-card lc-etf" onclick="openModal('etf')">
+      <div class="learn-card lc-etf lc-hero" onclick="openModal('etf')">
         <div class="learn-card-icon">🗂️</div>
         <div class="learn-card-name" id="lc-etf-name">ETF</div>
-        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-6">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-etf-tag">A basket of investments in one trade. Low fees, instant diversification — the smart beginner's shortcut.</div>
+        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-6"><span class="lc-popularity-tag tag-start">🚀 Your shortcut</span></div>
+        <div class="learn-card-tagline" id="lc-etf-tag">One trade. Instant diversification. Low fees, no guesswork — the smart beginner's shortcut that most experienced investors still use.</div>
         <div class="lc-beginner-badge" id="lc-badge-6">🟢 Built for first-time investors</div>
         <div class="learn-card-cta" id="lc-etf-cta">Explore your beginner shortcut →</div>
       </div>
@@ -15437,7 +15644,7 @@
           <div class="learn-card-icon">🪙</div>
           <div class="learn-card-name" id="lc-gold-name">Gold</div>
           <div class="learn-card-tag lc-free-tag" id="lc-free-tag-7">✓ Free explanation</div>
-          <div class="learn-card-tagline" id="lc-gold-tag">The oldest store of value in human history. A classic hedge against uncertainty and inflation.</div>
+          <div class="learn-card-tagline" id="lc-gold-tag">The oldest safe haven in history. A quiet hedge when markets feel uncertain.</div>
           <div class="lc-beginner-badge" id="lc-badge-7">🟢 Plain English</div>
           <div class="learn-card-cta" id="lc-gold-cta">See why gold holds its ground →</div>
         </div>
@@ -15445,7 +15652,7 @@
           <div class="learn-card-icon">💻</div>
           <div class="learn-card-name" id="lc-nasdaq-name">NASDAQ-100</div>
           <div class="learn-card-tag lc-free-tag" id="lc-free-tag-8">✓ Free explanation</div>
-          <div class="learn-card-tagline" id="lc-nasdaq-tag">A concentrated US growth index with major tech leaders. Higher upside, but more swings than a broad market fund.</div>
+          <div class="learn-card-tagline" id="lc-nasdaq-tag">Higher growth potential — but with a bumpier ride. The tech-heavy index that rewards patience.</div>
           <div class="lc-beginner-badge" id="lc-badge-8">🟢 5 min read</div>
           <div class="learn-card-cta" id="lc-nasdaq-cta">Explore the tech growth index →</div>
         </div>
@@ -15453,7 +15660,7 @@
           <div class="learn-card-icon">🏢</div>
           <div class="learn-card-name" id="lc-reit-name">REITs / FIIs</div>
           <div class="learn-card-tag lc-free-tag" id="lc-free-tag-9">✓ Free explanation</div>
-          <div class="learn-card-tagline" id="lc-reit-tag">Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.</div>
+          <div class="learn-card-tagline" id="lc-reit-tag">Own a slice of real estate without being a landlord. Collect rental income from offices, apartments, and shopping centres.</div>
           <div class="lc-beginner-badge" id="lc-badge-9">🟢 Beginner-safe</div>
           <div class="learn-card-cta" id="lc-reit-cta">Explore real estate investing simply →</div>
         </div>
@@ -15473,7 +15680,9 @@
       <div class="lcb-bullet"><span class="lcb-bullet-dot"></span><span data-i18n="learn.clarityB3">Real long-term projections</span></div>
       <div class="lcb-bullet"><span class="lcb-bullet-dot"></span><span data-i18n="learn.clarityB4">Calm, step-by-step guidance</span></div>
     </div>
-    <button class="btn-primary" id="lcb-cta" onclick="showPage('simulator')" data-i18n="learn.clarityCta">Start building clarity →</button>
+    <div class="lcb-cta-wrap">
+      <button class="btn-primary" id="lcb-cta" onclick="showPage('simulator')" data-i18n="learn.clarityCta">Start building clarity →</button>
+    </div>
     <p class="lcb-support-note" id="lcb-support-note">No finance background required.</p>
   </div>
 
@@ -17273,15 +17482,15 @@
             s7t: 'Your first real investment', s7d: 'A step-by-step walkthrough — picking a platform, opening an account, placing your first trade with confidence.', s7btn: 'Get Premium →'
           },
           cards: {
-            indexfund: { name: 'Index Fund', tagline: 'Own a tiny piece of hundreds of companies at once. The beginner favourite for a reason.', cta: 'See why beginners start here →', badge: '🟢 Beginner-safe' },
-            stocks: { name: 'Stocks', tagline: 'Buy a share of a real company. Higher potential, but more ups and downs.', cta: 'Understand the ups and downs →', badge: '🟢 Plain English' },
-            sp500: { name: 'S&P 500', tagline: 'The most famous market index in the world. If you\'ve heard "the market went up today" — this is usually what they mean.', cta: 'See what everyone talks about →', badge: '🟢 5 min read' },
-            bonds: { name: 'Bonds', tagline: 'Lend money to a government or company and earn steady interest. The calmer choice.', cta: 'Learn the safer side of investing →', badge: '🟢 No finance jargon' },
-            bitcoin: { name: 'Bitcoin', tagline: 'Digital money that lives on the internet. High potential, high risk — understand it before touching it.', cta: 'Understand before you touch it →', badge: '🟢 Safety-first guide' },
-            gold: { name: 'Gold', tagline: 'The oldest store of value in human history. A classic hedge against uncertainty and inflation.', cta: 'See why gold holds its ground →', badge: '🟢 Plain English' },
-            etf: { name: 'ETF', tagline: 'A basket of investments in one trade. Low fees, instant diversification — the smart beginner\'s shortcut.', cta: 'Explore your beginner shortcut →', badge: '🟢 Built for first-time investors' },
-            nasdaq: { name: 'NASDAQ-100', tagline: 'A concentrated US growth index with major tech leaders. Higher upside, but more swings than a broad market fund.', cta: 'Explore the tech growth index →', badge: '🟢 5 min read' },
-            reit: { name: 'REITs / FIIs', tagline: 'Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.', cta: 'Explore real estate investing simply →', badge: '🟢 Beginner-safe' }
+            indexfund: { name: 'Index Fund', tagline: 'The easiest place most beginners start. Own hundreds of companies in one simple investment — low cost, no picking required.', cta: 'See why beginners start here →', badge: '🟢 Most popular for beginners' },
+            stocks: { name: 'Stocks', tagline: 'Buy ownership in real companies. Higher potential — but expect some turbulence along the way.', cta: 'Understand the ups and downs →', badge: '🟢 Plain English' },
+            sp500: { name: 'S&P 500', tagline: '500 of the biggest US companies in one investment. When people say "the market" — this is usually what they mean.', cta: 'See what everyone talks about →', badge: '🟢 5 min read' },
+            bonds: { name: 'Bonds', tagline: 'Lend money, earn steady interest. The calmer, more predictable side of investing.', cta: 'Learn the safer side of investing →', badge: '🟢 No finance jargon' },
+            bitcoin: { name: 'Bitcoin', tagline: 'High potential. High risk. Understand it fully before touching it — this guide puts safety first.', cta: 'Understand before you touch it →', badge: '🟢 Safety-first guide' },
+            gold: { name: 'Gold', tagline: 'The oldest safe haven in history. A quiet hedge when markets feel uncertain.', cta: 'See why gold holds its ground →', badge: '🟢 Plain English' },
+            etf: { name: 'ETF', tagline: 'One trade. Instant diversification. Low fees, no guesswork — the smart beginner\'s shortcut that most experienced investors still use.', cta: 'Explore your beginner shortcut →', badge: '🟢 Built for first-time investors' },
+            nasdaq: { name: 'NASDAQ-100', tagline: 'Higher growth potential — but with a bumpier ride. The tech-heavy index that rewards patience.', cta: 'Explore the tech growth index →', badge: '🟢 5 min read' },
+            reit: { name: 'REITs / FIIs', tagline: 'Own a slice of real estate without being a landlord. Collect rental income from offices, apartments, and shopping centres.', cta: 'Explore real estate investing simply →', badge: '🟢 Beginner-safe' }
           },
           premBadge: 'Most complete path',
           premTitle: 'Ready for the next step?',
@@ -18082,15 +18291,15 @@
             s7t: 'Seu primeiro investimento real', s7d: 'Um passo a passo completo — escolher uma plataforma, abrir a conta e fazer sua primeira compra com confiança.', s7btn: 'Acessar Premium →'
           },
           cards: {
-            indexfund: { name: 'Fundo de Índice', tagline: 'Tenha uma fração de centenas de empresas ao mesmo tempo. O favorito dos iniciantes, e por boas razões.', cta: 'Veja por que iniciantes começam aqui →', badge: '🟢 Seguro para iniciantes' },
-            stocks: { name: 'Ações', tagline: 'Compre uma parte de uma empresa real. Maior potencial, mas com mais altos e baixos.', cta: 'Entenda os altos e baixos →', badge: '🟢 Linguagem simples' },
-            sp500: { name: 'S&P 500', tagline: 'O índice mais famoso do mundo. Quando dizem "o mercado subiu hoje" — geralmente é sobre ele.', cta: 'Veja o que todo mundo fala →', badge: '🟢 Leitura de 5 min' },
-            bonds: { name: 'Títulos (Bonds)', tagline: 'Empreste dinheiro a um governo ou empresa e receba juros fixos. A escolha mais calma.', cta: 'Conheça o lado mais seguro do investimento →', badge: '🟢 Sem jargão financeiro' },
-            bitcoin: { name: 'Bitcoin', tagline: 'Dinheiro digital que existe na internet. Alto potencial, alto risco — entenda antes de investir.', cta: 'Entenda antes de tocar →', badge: '🟢 Guia de segurança primeiro' },
-            gold: { name: 'Ouro', tagline: 'O ativo de reserva de valor mais antigo da história. Uma proteção clássica contra incerteza e inflação.', cta: 'Veja por que o ouro se mantém firme →', badge: '🟢 Linguagem simples' },
-            etf: { name: 'ETF', tagline: 'Uma cesta de investimentos em uma única negociação. Taxas baixas, diversificação imediata — o atalho inteligente para iniciantes.', cta: 'Explore seu atalho para iniciantes →', badge: '🟢 Feito para primeiros investidores' },
-            nasdaq: { name: 'NASDAQ-100', tagline: 'Um índice americano de crescimento concentrado em grandes líderes de tecnologia. Maior potencial, mas com mais oscilações.', cta: 'Explore o índice de crescimento tech →', badge: '🟢 Leitura de 5 min' },
-            reit: { name: 'FIIs / REITs', tagline: 'Tenha uma fatia de imóveis reais — escritórios, shoppings, apartamentos — e receba aluguéis sem ser proprietário.', cta: 'Explore investimento imobiliário simplificado →', badge: '🟢 Seguro para iniciantes' }
+            indexfund: { name: 'Fundo de Índice', tagline: 'O ponto de partida mais fácil para iniciantes. Tenha centenas de empresas em um único investimento — barato e sem precisar escolher nada.', cta: 'Veja por que iniciantes começam aqui →', badge: '🟢 Mais popular entre iniciantes' },
+            stocks: { name: 'Ações', tagline: 'Compre participação em empresas reais. Maior potencial — mas espere algumas turbulências pelo caminho.', cta: 'Entenda os altos e baixos →', badge: '🟢 Linguagem simples' },
+            sp500: { name: 'S&P 500', tagline: '500 das maiores empresas dos EUA em um único investimento. Quando dizem "o mercado" — geralmente é sobre esse índice.', cta: 'Veja o que todo mundo fala →', badge: '🟢 Leitura de 5 min' },
+            bonds: { name: 'Títulos (Bonds)', tagline: 'Empreste dinheiro e receba juros fixos. O lado mais calmo e previsível dos investimentos.', cta: 'Conheça o lado mais seguro do investimento →', badge: '🟢 Sem jargão financeiro' },
+            bitcoin: { name: 'Bitcoin', tagline: 'Alto potencial. Alto risco. Entenda completamente antes de investir — este guia coloca a segurança em primeiro lugar.', cta: 'Entenda antes de tocar →', badge: '🟢 Guia de segurança primeiro' },
+            gold: { name: 'Ouro', tagline: 'O porto seguro mais antigo da história. Uma proteção discreta quando os mercados ficam incertos.', cta: 'Veja por que o ouro se mantém firme →', badge: '🟢 Linguagem simples' },
+            etf: { name: 'ETF', tagline: 'Uma negociação. Diversificação imediata. Taxas baixas, sem adivinhação — o atalho inteligente que a maioria dos investidores experientes ainda usa.', cta: 'Explore seu atalho para iniciantes →', badge: '🟢 Feito para primeiros investidores' },
+            nasdaq: { name: 'NASDAQ-100', tagline: 'Maior potencial de crescimento — mas com uma jornada mais turbulenta. O índice de tecnologia que recompensa a paciência.', cta: 'Explore o índice de crescimento tech →', badge: '🟢 Leitura de 5 min' },
+            reit: { name: 'FIIs / REITs', tagline: 'Tenha uma fatia de imóveis sem ser proprietário. Receba renda de aluguéis de escritórios, apartamentos e shoppings.', cta: 'Explore investimento imobiliário simplificado →', badge: '🟢 Seguro para iniciantes' }
           },
           premBadge: 'Caminho mais completo',
           premTitle: 'Pronto para o próximo passo?',
