@@ -14612,7 +14612,7 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="#home">
-      <img src="assets/plainvest-logo-transparent.png" alt="Plainvest" class="nav-logo">
+      <img src="assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" class="nav-logo">
     </a>
     <ul>
       <li data-mob-icon="🏠" data-mob-desc="Back to the start"><a href="#home"><span data-i18n="nav.home">Home</span></a></li>
@@ -17340,7 +17340,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="foot-logo"><img src="assets/plainvest-logo-transparent.png" alt="Plainvest" class="footer-logo-img"></div>
+        <div class="foot-logo"><img src="assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" class="footer-logo-img"></div>
         <p data-i18n="footer.tagline">Helping everyday people understand the power of investing — one simulation at a time.</p>
         <p class="foot-disc" data-i18n="footer.disc">Plainvest is an educational tool, not a financial advisor. All projections are estimates based on historical average returns and are not guaranteed. Please consult a qualified financial professional before making investment decisions.</p>
       </div>
@@ -22391,14 +22391,16 @@
       if (navProfileBtn) {
         var isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         navProfileBtn.href = (isMemberAppHost() || isLocalHost) ? '/profile' : 'https://members.plainvest.app/profile';
-        navProfileBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
+        const isMobileNav = window.innerWidth <= 768;
+        navProfileBtn.style.setProperty('display', active && !isMobileNav ? 'inline-flex' : 'none', 'important');
       }
 
       const navPortfolioBtn = document.getElementById('nav-portfolio-btn');
       if (navPortfolioBtn) {
         var isLocalH = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         navPortfolioBtn.href = (isMemberAppHost() || isLocalH) ? '/portfolio' : 'https://members.plainvest.app/portfolio';
-        navPortfolioBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
+        const isMobileNavP = window.innerWidth <= 768;
+        navPortfolioBtn.style.setProperty('display', active && !isMobileNavP ? 'inline-flex' : 'none', 'important');
       }
 
       const statPortfolioLink = document.getElementById('stat-portfolio-link');
@@ -22799,6 +22801,50 @@
     .mob-menu-overlay .mob-item.is-active .mob-item-label {
       color: #f5f7fa !important;
     }
+  }
+  </style>
+
+  <!-- ── Mobile responsiveness pass ── -->
+  <style>
+  html, body { overflow-x: hidden; width: 100%; }
+  img, video, svg { max-width: 100%; height: auto; }
+
+  @media (max-width: 768px) {
+    /* Member card grid → single column */
+    .member-grid {
+      grid-template-columns: 1fr !important;
+      gap: .85rem !important;
+    }
+    .member-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+    .member-card.member-card-featured ul { columns: 1 !important; }
+    .member-card.member-card-featured .member-card-featured-body { min-width: 0 !important; }
+
+    /* Touch-friendly buttons */
+    .member-open-file,
+    .member-action-btn,
+    .btn-primary,
+    .btn-ghost {
+      min-height: 48px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Language switcher compact */
+    .lang-btn { padding: .32rem .55rem !important; font-size: .72rem !important; }
+
+    /* Filter chips — allow wrap */
+    .member-filter-bar { flex-wrap: wrap !important; gap: .4rem !important; }
+  }
+
+  @media (max-width: 480px) {
+    .member-card { padding: 1rem !important; border-radius: 16px !important; }
+    .member-card h3 { font-size: 1rem !important; }
+    .member-card p, .member-card li { font-size: .82rem !important; }
   }
   </style>
 
