@@ -4835,3 +4835,70 @@ a.sb-link:hover, button.sb-link:hover {
   .portfolio-hero-bigval { font-size: 2.1rem; }
   .portfolio-hero-stats { gap: 0; }
 }
+
+/* ── Mobile responsiveness pass ────────────────────────── */
+html, body { overflow-x: hidden; }
+
+@media(max-width:720px) {
+  /* Dashboard hero — better vertical spacing */
+  .portfolio-hero { padding: 1.6rem 1.1rem 1.3rem; }
+  .portfolio-hero-greeting { font-size: .72rem; margin-bottom: .5rem; }
+  .portfolio-hero-headline { font-size: clamp(1.3rem, 6vw, 1.6rem) !important; }
+  .portfolio-hero-tagline { font-size: .82rem; line-height: 1.55; }
+
+  /* Portfolio value card — breathable */
+  .portfolio-hero-bigval { font-size: clamp(1.8rem, 8vw, 2.4rem) !important; }
+  .portfolio-hero-bigval-label { font-size: .7rem; }
+  .portfolio-hero-projection { padding: .75rem 1rem; font-size: .82rem; line-height: 1.5; }
+  .portfolio-hero-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0 !important;
+    margin-top: 1rem;
+  }
+  .portfolio-hero-stat { padding: .6rem .5rem; }
+  .portfolio-hero-stat-val { font-size: .95rem; }
+  .portfolio-hero-stat-label { font-size: .65rem; }
+
+  /* Insights cards — more breathing room */
+  .insight-card,
+  .insights-item {
+    padding: .85rem 1rem !important;
+    gap: .7rem !important;
+  }
+  .insight-text,
+  .insights-item p { font-size: .83rem !important; line-height: 1.58 !important; }
+  .insight-tag,
+  .insights-tag {
+    font-size: .6rem !important;
+    padding: .18rem .5rem !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  /* Touch-friendly buttons */
+  .portfolio-btn,
+  .dash-btn,
+  .btn-primary,
+  .ghost {
+    min-height: 48px !important;
+  }
+
+  /* Freedom Score section — more padding */
+  .freedom-score-card,
+  .fs-card { padding: 1.2rem 1rem !important; }
+  .fs-bar-row { gap: .55rem !important; }
+  .fs-bar-label { font-size: .75rem !important; }
+}
+
+@media(max-width:480px) {
+  /* Stats row → 2 col on very small screens */
+  .portfolio-hero-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .portfolio-main .portfolio-content,
+  .portfolio-main .portfolio-content-wide {
+    padding: .85rem .9rem !important;
+  }
+}
