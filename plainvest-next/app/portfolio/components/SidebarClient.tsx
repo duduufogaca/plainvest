@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { CurrencySwitcher } from './CurrencySwitcher';
 import { LangSwitcher } from './LangSwitcher';
 import { HelpModal } from './HelpModal';
@@ -32,6 +33,21 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
   const isEN = lang !== 'pt';
   const initial = userName ? userName[0].toUpperCase() : '?';
   const isPortfolioActive = !portfolioHref;
+  const searchParams = useSearchParams();
+  const currentView = searchParams.get('view') || '';
+
+  function navHref(view: string) {
+    const p = new URLSearchParams();
+    if (displayCurrency && displayCurrency !== 'AUD') p.set('currency', displayCurrency);
+    if (lang && lang !== 'en') p.set('lang', lang);
+    if (view) p.set('view', view);
+    const qs = p.toString();
+    return `/portfolio${qs ? '?' + qs : ''}`;
+  }
+
+  function isActive(view: string) {
+    return currentView === view;
+  }
 
   return (
     <aside className={`portfolio-sidebar sb-v2${collapsed ? ' sidebar-collapsed' : ''}`}>
@@ -74,28 +90,18 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
 
       {/* ── Navigation ── */}
       <nav className="sb-nav">
-        {/* Portfolio / Overview — active on current page */}
-        {isPortfolioActive ? (
-          <span className="sb-link sb-active">
-            <span className="sb-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-              </svg>
-            </span>
-            {!collapsed && <span className="sb-label">{isEN ? 'Overview' : 'Visão Geral'}</span>}
+        {/* Overview */}
+        <a href={navHref('')} className={`sb-link${isPortfolioActive && !currentView ? ' sb-active' : ''}`}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
           </span>
-        ) : (
-          <a href={portfolioHref} className="sb-link">
-            <span className="sb-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-              </svg>
-            </span>
-            {!collapsed && <span className="sb-label">{isEN ? 'Overview' : 'Visão Geral'}</span>}
-          </a>
-        )}
+          {!collapsed && <span className="sb-label">{isEN ? 'Overview' : 'Visão Geral'}</span>}
+        </a>
 
-        <a href="#holdings-section" className="sb-link">
+        {/* Portfolio (charts + allocation) */}
+        <a href={navHref('portfolio')} className={`sb-link${isActive('portfolio') ? ' sb-active' : ''}`}>
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
@@ -104,6 +110,38 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           {!collapsed && <span className="sb-label">{isEN ? 'Portfolio' : 'Portfólio'}</span>}
         </a>
 
+        {/* Insights */}
+        <a href={navHref('insights')} className={`sb-link${isActive('insights') ? ' sb-active' : ''}`}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            </svg>
+          </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Insights' : 'Análises'}</span>}
+        </a>
+
+        {/* Future Projections */}
+        <a href={navHref('projections')} className={`sb-link${isActive('projections') ? ' sb-active' : ''}`}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Future Projections' : 'Projeções'}</span>}
+        </a>
+
+        {/* Transactions */}
+        <a href={navHref('transactions')} className={`sb-link${isActive('transactions') ? ' sb-active' : ''}`}>
+          <span className="sb-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </span>
+          {!collapsed && <span className="sb-label">{isEN ? 'Transactions' : 'Transações'}</span>}
+        </a>
+
+        {/* Goals (soon) */}
         <span className="sb-link sb-link-soon" title={isEN ? 'Coming soon' : 'Em breve'}>
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -117,34 +155,6 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
             </>
           )}
         </span>
-
-        <a href="#insights-section" className="sb-link">
-          <span className="sb-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-            </svg>
-          </span>
-          {!collapsed && <span className="sb-label">{isEN ? 'Insights' : 'Análises'}</span>}
-        </a>
-
-        <a href="#future-projections" className="sb-link">
-          <span className="sb-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </span>
-          {!collapsed && <span className="sb-label">{isEN ? 'Future Projections' : 'Projeções'}</span>}
-        </a>
-
-        <a href="#holdings-section" className="sb-link">
-          <span className="sb-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
-              <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
-            </svg>
-          </span>
-          {!collapsed && <span className="sb-label">{isEN ? 'Transactions' : 'Transações'}</span>}
-        </a>
 
         <a href={backHref} className="sb-link">
           <span className="sb-icon">

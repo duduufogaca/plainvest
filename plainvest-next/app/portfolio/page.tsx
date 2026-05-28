@@ -175,7 +175,7 @@ function buildChartData(
 export default async function PortfolioPage({
   searchParams,
 }: {
-  searchParams: Promise<{ message?: string; success?: string; currency?: string; lang?: string }>;
+  searchParams: Promise<{ message?: string; success?: string; currency?: string; lang?: string; view?: string }>;
 }) {
   const params = await searchParams;
 
@@ -185,6 +185,12 @@ export default async function PortfolioPage({
       : 'AUD';
   const lang = getLang(params.lang);
   const tx = T[lang];
+  const view = params.view || '';
+  const showAll = !view || view === 'overview';
+  const showPortfolio = showAll || view === 'portfolio';
+  const showTransactions = showAll || view === 'transactions';
+  const showProjections = showAll || view === 'projections';
+  const showInsights = showAll || view === 'insights';
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -476,6 +482,21 @@ export default async function PortfolioPage({
         {params.success && <div className="notice notice-success">{params.success}</div>}
         {params.message && <div className="notice">{params.message}</div>}
 
+        {/* ── View breadcrumb ── */}
+        {!showAll && (
+          <div className="view-breadcrumb">
+            <a href={`/portfolio${displayCurrency !== 'AUD' ? `?currency=${displayCurrency}` : ''}${lang !== 'en' ? `${displayCurrency !== 'AUD' ? '&' : '?'}lang=${lang}` : ''}`} className="view-back-link">
+              ← {lang === 'pt' ? 'Visão Geral' : 'Overview'}
+            </a>
+            <span className="view-current-label">
+              {view === 'transactions' ? (lang === 'pt' ? 'Transações' : 'Transactions') :
+               view === 'projections' ? (lang === 'pt' ? 'Projeções Futuras' : 'Future Projections') :
+               view === 'insights' ? (lang === 'pt' ? 'Análises' : 'Insights') :
+               view === 'portfolio' ? (lang === 'pt' ? 'Portfólio' : 'Portfolio') : ''}
+            </span>
+          </div>
+        )}
+
         {/* ── Hero Section ── */}
         <HeroSection
           firstName={firstName}
@@ -492,7 +513,7 @@ export default async function PortfolioPage({
         />
 
         {/* ── Freedom Score + Insights ── */}
-        {rows.length > 0 && (
+        {rows.length > 0 && showInsights && (
           <div className="portfolio-score-insights-row" id="insights-section">
             <FreedomScore scores={freedomScores} lang={lang} />
             <InsightsPanel insights={portfolioInsights} lang={lang} />
@@ -500,7 +521,7 @@ export default async function PortfolioPage({
         )}
 
         {/* ── Future Freedom ── */}
-        {rows.length > 0 && (
+        {rows.length > 0 && showPortfolio && (
           <FutureSection
             projCurrentValue={projCurrentValue}
             projMonthlyContrib={projMonthlyContrib}
@@ -511,14 +532,14 @@ export default async function PortfolioPage({
         )}
 
         {/* Prices notice */}
-        {rows.length > 0 && unpricedCount > 0 && (
+        {rows.length > 0 && unpricedCount > 0 && showPortfolio && (
           <div className="prices-notice">
             <span className="prices-notice-icon">💡</span>
             <span>{tx.pricesNotice(unpricedCount)}</span>
           </div>
         )}
 
-        {rows.length > 0 && (
+        {rows.length > 0 && showPortfolio && (
           <>
             {/* ── 1. Allocation + Performance ── */}
             <div className="portfolio-overview-v2">
@@ -645,15 +666,19 @@ export default async function PortfolioPage({
               projMonthlyContrib={projMonthlyContrib}
             />
 
-            {/* ── All Positions ── */}
-            <section className="portfolio-card" id="holdings-section">
-              <div className="card-header-row">
-                <div>
-                  <p className="eyebrow">{tx.sectionHoldings}</p>
-                  <h2>{tx.sectionAllPositions}</h2>
-                </div>
-                <span className="holdings-count-badge">{grouped.length} {grouped.length !== 1 ? tx.assets : tx.asset}</span>
+          </>
+        )}
+
+        {/* ── Transactions / All Positions ── */}
+        {rows.length > 0 && showTransactions && (
+          <section className="portfolio-card" id="holdings-section">
+            <div className="card-header-row">
+              <div>
+                <p className="eyebrow">{tx.sectionHoldings}</p>
+                <h2>{tx.sectionAllPositions}</h2>
               </div>
+              <span className="holdings-count-badge">{grouped.length} {grouped.length !== 1 ? tx.assets : tx.asset}</span>
+            </div>
               <div className="portfolio-table-wrap">
                 <table className="portfolio-table portfolio-table-v2 holdings-table-v3">
                   <thead>
@@ -765,7 +790,6 @@ export default async function PortfolioPage({
                 </table>
               </div>
             </section>
-          </>
         )}
 
         {rows.length === 0 && (
@@ -778,7 +802,7 @@ export default async function PortfolioPage({
         )}
 
         {/* ── Future Projection (deep dive) ── */}
-        {rows.length > 0 && (
+        {rows.length > 0 && showProjections && (
           <div id="future-projections">
             <ProjectionEngine
               currentValue={projCurrentValue}
