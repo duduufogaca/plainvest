@@ -22806,25 +22806,46 @@
 
   <!-- ── Mobile responsiveness pass ── -->
   <style>
-  html, body { overflow-x: hidden; width: 100%; }
+  html, body { overflow-x: hidden; width: 100%; max-width: 100%; }
   *, *::before, *::after { box-sizing: border-box; }
   img, video { max-width: 100%; height: auto; }
   body { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
   @media (max-width: 768px) {
-    /* Member card grid → single column */
-    .member-grid {
-      grid-template-columns: 1fr !important;
-      gap: .85rem !important;
-      overflow: hidden !important;
+    /* ── Hard structural reset ── */
+    .member-shell {
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      box-sizing: border-box !important;
     }
+
+    /* ── All multi-column grids → single column ── */
+    .member-grid,
+    .member-access-panel,
+    .member-books-grid,
+    .account-panel-grid,
+    .member-head,
+    .member-guide-head {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    .member-grid { gap: .85rem !important; overflow: hidden !important; }
+
+    /* ── All cards — full width, no overflow ── */
     .member-card {
       width: 100% !important;
       max-width: 100% !important;
+      min-width: 0 !important;
       overflow: hidden !important;
+      box-sizing: border-box !important;
     }
 
-    /* Featured card: override grid-column: span 3 which creates implicit columns */
+    /* Featured card: override grid-column: span 3 → prevents implicit columns */
     .member-card.member-card-featured {
       grid-column: span 1 !important;
       flex-direction: column !important;
@@ -22839,34 +22860,40 @@
     /* Category headers: override grid-column: span 3 */
     .hub-category-header { grid-column: span 1 !important; }
 
-    /* Hero visual container — remove fixed min-height */
+    /* ── Hero visual — stack content above image ── */
     .member-hero-visual {
-      min-height: unset !important;
+      display: grid !important;
       grid-template-columns: 1fr !important;
+      min-height: unset !important;
+      overflow: hidden !important;
+      border-radius: 20px !important;
     }
 
-    /* Hero image — show on mobile, correct size, lighter overlay */
+    /* ── Hero image — reliable background display ── */
     .member-hero-image {
       display: block !important;
-      min-height: 180px !important;
-      max-height: 200px !important;
-      border-radius: 14px !important;
-      background:
-        linear-gradient(180deg, rgba(7,17,31,.18) 0%, rgba(7,17,31,.58) 100%),
-        url('assets/hero-seed-growth.png') center center / cover no-repeat,
-        linear-gradient(135deg, #071120 0%, #0d1f3c 100%) !important;
+      width: 100% !important;
+      min-height: 185px !important;
+      max-height: none !important;
       position: relative !important;
+      background-image:
+        linear-gradient(180deg, rgba(7,17,31,.06) 0%, rgba(7,17,31,.35) 100%),
+        url('/assets/hero-seed-growth.png') !important;
+      background-position: center center !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
     }
-    /* Branded fallback badge visible if image doesn't load */
+
+    /* Branded fallback badge */
     .member-hero-image::after {
-      content: 'Plainvest Premium Guide';
+      content: 'Plainvest Premium';
       position: absolute;
-      bottom: 12px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,212,170,.1);
-      border: 1px solid rgba(0,212,170,.2);
-      color: rgba(0,212,170,.65);
+      background: rgba(0,212,170,.12);
+      border: 1px solid rgba(0,212,170,.25);
+      color: rgba(200,255,245,.85);
       font-size: .6rem;
       font-weight: 800;
       letter-spacing: .1em;
@@ -22893,17 +22920,13 @@
 
     /* Filter chips — allow wrap */
     .member-filter-bar { flex-wrap: wrap !important; gap: .4rem !important; }
-
-    /* Member shell safe padding */
-    .member-shell { padding-left: 1rem !important; padding-right: 1rem !important; }
   }
 
   @media (max-width: 480px) {
     .member-card { padding: 1rem !important; border-radius: 16px !important; }
     .member-card h3 { font-size: 1rem !important; }
     .member-card p, .member-card li { font-size: .82rem !important; }
-    /* Smaller image on very small screens — still visible */
-    .member-hero-image { min-height: 150px !important; max-height: 170px !important; }
+    .member-hero-image { min-height: 155px !important; }
     .member-hero-visual { min-height: unset !important; }
   }
   </style>
