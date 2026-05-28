@@ -22837,14 +22837,44 @@
     .member-card.member-card-featured ul { columns: 1 !important; }
 
     /* Category headers: override grid-column: span 3 */
-    .hub-category-header {
-      grid-column: span 1 !important;
+    .hub-category-header { grid-column: span 1 !important; }
+
+    /* Hero visual container — remove fixed min-height */
+    .member-hero-visual {
+      min-height: unset !important;
+      grid-template-columns: 1fr !important;
     }
 
-    /* Hero image — reduce height, hide if image fails */
+    /* Hero image — show on mobile, correct size, lighter overlay */
     .member-hero-image {
-      min-height: 140px !important;
-      max-height: 180px !important;
+      display: block !important;
+      min-height: 180px !important;
+      max-height: 200px !important;
+      border-radius: 14px !important;
+      background:
+        linear-gradient(180deg, rgba(7,17,31,.18) 0%, rgba(7,17,31,.58) 100%),
+        url('assets/hero-seed-growth.png') center center / cover no-repeat,
+        linear-gradient(135deg, #071120 0%, #0d1f3c 100%) !important;
+      position: relative !important;
+    }
+    /* Branded fallback badge visible if image doesn't load */
+    .member-hero-image::after {
+      content: 'Plainvest Premium Guide';
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,212,170,.1);
+      border: 1px solid rgba(0,212,170,.2);
+      color: rgba(0,212,170,.65);
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .65rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      pointer-events: none;
     }
 
     /* Touch-friendly buttons */
@@ -22872,9 +22902,9 @@
     .member-card { padding: 1rem !important; border-radius: 16px !important; }
     .member-card h3 { font-size: 1rem !important; }
     .member-card p, .member-card li { font-size: .82rem !important; }
-    /* Hide hero image on very small screens to avoid empty space */
-    .member-hero-image { display: none !important; }
-    .member-hero-visual { grid-template-columns: 1fr !important; }
+    /* Smaller image on very small screens — still visible */
+    .member-hero-image { min-height: 150px !important; max-height: 170px !important; }
+    .member-hero-visual { min-height: unset !important; }
   }
   </style>
 
