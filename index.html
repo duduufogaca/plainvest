@@ -22404,7 +22404,7 @@
       if (navProfileBtn) {
         var isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         navProfileBtn.href = (isMemberAppHost() || isLocalHost) ? '/profile' : 'https://members.plainvest.app/profile';
-        const isMobileNav = window.innerWidth <= 768;
+        const isMobileNav = window.innerWidth <= 1024;
         navProfileBtn.style.setProperty('display', active && !isMobileNav ? 'inline-flex' : 'none', 'important');
       }
 
@@ -22412,7 +22412,7 @@
       if (navPortfolioBtn) {
         var isLocalH = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         navPortfolioBtn.href = (isMemberAppHost() || isLocalH) ? '/portfolio' : 'https://members.plainvest.app/portfolio';
-        const isMobileNavP = window.innerWidth <= 768;
+        const isMobileNavP = window.innerWidth <= 1024;
         navPortfolioBtn.style.setProperty('display', active && !isMobileNavP ? 'inline-flex' : 'none', 'important');
       }
 
