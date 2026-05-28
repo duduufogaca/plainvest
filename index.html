@@ -22807,21 +22807,45 @@
   <!-- ── Mobile responsiveness pass ── -->
   <style>
   html, body { overflow-x: hidden; width: 100%; }
-  img, video, svg { max-width: 100%; height: auto; }
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video { max-width: 100%; height: auto; }
+  body { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
   @media (max-width: 768px) {
     /* Member card grid → single column */
     .member-grid {
       grid-template-columns: 1fr !important;
       gap: .85rem !important;
+      overflow: hidden !important;
     }
     .member-card {
       width: 100% !important;
       max-width: 100% !important;
       overflow: hidden !important;
     }
+
+    /* Featured card: override grid-column: span 3 which creates implicit columns */
+    .member-card.member-card-featured {
+      grid-column: span 1 !important;
+      flex-direction: column !important;
+      min-width: 0 !important;
+    }
+    .member-card.member-card-featured .member-card-featured-body {
+      min-width: 0 !important;
+      width: 100% !important;
+    }
     .member-card.member-card-featured ul { columns: 1 !important; }
-    .member-card.member-card-featured .member-card-featured-body { min-width: 0 !important; }
+
+    /* Category headers: override grid-column: span 3 */
+    .hub-category-header {
+      grid-column: span 1 !important;
+    }
+
+    /* Hero image — reduce height, hide if image fails */
+    .member-hero-image {
+      min-height: 140px !important;
+      max-height: 180px !important;
+    }
 
     /* Touch-friendly buttons */
     .member-open-file,
@@ -22839,12 +22863,18 @@
 
     /* Filter chips — allow wrap */
     .member-filter-bar { flex-wrap: wrap !important; gap: .4rem !important; }
+
+    /* Member shell safe padding */
+    .member-shell { padding-left: 1rem !important; padding-right: 1rem !important; }
   }
 
   @media (max-width: 480px) {
     .member-card { padding: 1rem !important; border-radius: 16px !important; }
     .member-card h3 { font-size: 1rem !important; }
     .member-card p, .member-card li { font-size: .82rem !important; }
+    /* Hide hero image on very small screens to avoid empty space */
+    .member-hero-image { display: none !important; }
+    .member-hero-visual { grid-template-columns: 1fr !important; }
   }
   </style>
 

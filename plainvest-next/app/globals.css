@@ -4838,8 +4838,16 @@ a.sb-link:hover, button.sb-link:hover {
 
 /* ── Mobile responsiveness pass ────────────────────────── */
 html, body { overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; }
+body { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
 @media(max-width:720px) {
+  /* Prevent all cards/sections from overflowing viewport */
+  .portfolio-card,
+  .portfolio-main,
+  .portfolio-content,
+  .portfolio-content-wide { overflow: hidden; max-width: 100%; }
+
   /* Dashboard hero — better vertical spacing */
   .portfolio-hero { padding: 1.6rem 1.1rem 1.3rem; }
   .portfolio-hero-greeting { font-size: .72rem; margin-bottom: .5rem; }
@@ -4860,14 +4868,69 @@ html, body { overflow-x: hidden; }
   .portfolio-hero-stat-val { font-size: .95rem; }
   .portfolio-hero-stat-label { font-size: .65rem; }
 
-  /* Insights cards — more breathing room */
+  /* Freedom Score — fix justify-items: center crushing bars width */
+  .fs-body {
+    grid-template-columns: 1fr !important;
+    justify-items: stretch !important;
+    gap: 1.25rem;
+  }
+  .fs-ring-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .fs-bars-col {
+    width: 100% !important;
+  }
+  .fs-bar-item,
+  .fs-bar-row { width: 100% !important; }
+  .fs-bar-label { font-size: .75rem !important; min-width: 0; }
+  .fs-bar-row { gap: .55rem !important; }
+  .freedom-score-card,
+  .freedom-score-card-v2,
+  .fs-card { padding: 1.2rem 1rem !important; overflow: hidden; }
+
+  /* Donut chart (Asset Allocation) — constrain SVG, prevent cut-off */
+  .donut-v2-wrap { overflow: hidden; width: 100%; }
+  .donut-v2-svg-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+  }
+  .donut-v2-svg-wrap svg {
+    max-width: 100% !important;
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .donut-v2-legend { min-width: 0; overflow: hidden; }
+  .donut-v2-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* AI Insights — fix text running off screen */
+  .insights-card-v2,
+  .ins-list-v2 { overflow: hidden; width: 100%; }
+  .ins-card-v2 { overflow: hidden !important; max-width: 100%; }
+  .ins-card-text {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    font-size: .83rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Old insight card variants */
   .insight-card,
   .insights-item {
     padding: .85rem 1rem !important;
     gap: .7rem !important;
+    overflow: hidden;
   }
   .insight-text,
-  .insights-item p { font-size: .83rem !important; line-height: 1.58 !important; }
+  .insights-item p {
+    font-size: .83rem !important;
+    line-height: 1.58 !important;
+    overflow-wrap: break-word !important;
+  }
   .insight-tag,
   .insights-tag {
     font-size: .6rem !important;
@@ -4881,15 +4944,10 @@ html, body { overflow-x: hidden; }
   .portfolio-btn,
   .dash-btn,
   .btn-primary,
-  .ghost {
-    min-height: 48px !important;
-  }
+  .ghost { min-height: 48px !important; }
 
-  /* Freedom Score section — more padding */
-  .freedom-score-card,
-  .fs-card { padding: 1.2rem 1rem !important; }
-  .fs-bar-row { gap: .55rem !important; }
-  .fs-bar-label { font-size: .75rem !important; }
+  /* Table — scroll horizontally if needed */
+  .portfolio-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
 }
 
 @media(max-width:480px) {
@@ -4900,5 +4958,10 @@ html, body { overflow-x: hidden; }
   .portfolio-main .portfolio-content,
   .portfolio-main .portfolio-content-wide {
     padding: .85rem .9rem !important;
+  }
+  /* Shrink donut chart further on very small screens */
+  .donut-v2-svg-wrap svg {
+    width: 160px !important;
+    height: 160px !important;
   }
 }
