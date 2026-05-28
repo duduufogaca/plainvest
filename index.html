@@ -3562,6 +3562,219 @@
       transform: translateY(-1px);
     }
 
+    /* ── Learn: beginner-safe badge ── */
+    .lc-beginner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .28rem;
+      font-size: .65rem;
+      font-weight: 700;
+      color: rgba(0,212,170,.72);
+      background: rgba(0,212,170,.07);
+      border: 1px solid rgba(0,212,170,.14);
+      border-radius: 999px;
+      padding: .18rem .52rem;
+      margin-top: .45rem;
+    }
+
+    /* ── Insight card action CTAs ── */
+    .t-action {
+      margin-top: 1rem;
+      padding-top: .85rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .t-action-btn {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--teal);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: 'Sora', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      transition: gap .2s;
+    }
+    .t-action-btn:hover { gap: .55rem; }
+    .t-card--gold .t-action-btn { color: var(--gold); }
+    .t-card--blue .t-action-btn { color: #8ab4e8; }
+
+    /* ── Clarity bridge section ── */
+    .learn-clarity-bridge {
+      margin: 3.5rem auto 0;
+      max-width: 720px;
+      padding: 3.2rem 3rem;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(0,212,170,.1), transparent 35%),
+        radial-gradient(circle at 8% 82%, rgba(232,184,75,.07), transparent 28%),
+        linear-gradient(145deg, rgba(12,23,43,.96), rgba(7,17,32,.99));
+      border: 1px solid rgba(0,212,170,.13);
+      border-radius: 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .lcb-eyebrow {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+    }
+    .lcb-eyebrow::before, .lcb-eyebrow::after {
+      content: '';
+      width: 22px;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 2px;
+    }
+    .lcb-h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.32;
+      margin-bottom: .9rem;
+    }
+    .lcb-sub {
+      font-size: .88rem;
+      color: rgba(180,205,228,.68);
+      max-width: 500px;
+      margin: 0 auto 1.8rem;
+      line-height: 1.7;
+    }
+    .lcb-bullets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .lcb-bullet {
+      display: flex;
+      align-items: center;
+      gap: .38rem;
+      font-size: .78rem;
+      color: rgba(200,225,245,.72);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 999px;
+      padding: .32rem .75rem;
+    }
+    .lcb-bullet-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ── Premium banner: redesigned comparison ── */
+    .lpb-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+      margin: 1.3rem 0 1.6rem;
+    }
+    .lpb-col {
+      padding: 1rem 1.1rem;
+      border-radius: 14px;
+    }
+    .lpb-col--free {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .lpb-col--premium {
+      background: rgba(232,184,75,.06);
+      border: 1px solid rgba(232,184,75,.2);
+    }
+    .lpb-col-title {
+      font-size: .64rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .85rem;
+    }
+    .lpb-col--free .lpb-col-title { color: rgba(200,220,240,.42); }
+    .lpb-col--premium .lpb-col-title { color: var(--gold); }
+    .lpb-col-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .42rem;
+      margin-bottom: .48rem;
+      font-size: .79rem;
+      line-height: 1.45;
+    }
+    .lpb-col--free .lpb-col-item { color: rgba(180,205,228,.58); }
+    .lpb-col--premium .lpb-col-item { color: rgba(230,215,170,.82); }
+    .lpb-col-icon { font-size: .78rem; flex-shrink: 0; }
+    .lpb-btn-wrap { text-align: center; }
+    .lpb-support {
+      font-size: .73rem;
+      color: rgba(180,205,228,.48);
+      margin-top: .75rem;
+    }
+    .lpb-headline {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .lpb-subhead {
+      font-size: .83rem;
+      color: rgba(180,205,228,.65);
+      line-height: 1.6;
+      max-width: 460px;
+    }
+
+    /* ── Floating beginner CTA ── */
+    .learn-float-cta {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 900;
+      background: var(--teal);
+      color: var(--navy);
+      border: none;
+      padding: .72rem 1.3rem;
+      border-radius: 999px;
+      font-family: 'Sora', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 28px rgba(0,212,170,.38);
+      transition: all .25s;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .learn-float-cta.float-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .learn-float-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(0,212,170,.5);
+    }
+
+    @media (max-width:700px) {
+      .lpb-comparison { grid-template-columns: 1fr; }
+      .learn-clarity-bridge { padding: 2.4rem 1.4rem; }
+      .learn-float-cta { bottom: 1.2rem; right: 1.2rem; }
+    }
+
     /* ══════════════════════════════════
    MODAL SYSTEM
 ══════════════════════════════════ */
@@ -3888,19 +4101,22 @@
     /* SIMULATOR INSIGHTS */
     .testimonials {
       padding: 6rem 3rem;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+      background:
+        radial-gradient(circle at 60% 0%, rgba(0,212,170,.07), transparent 40%),
+        linear-gradient(180deg, #0b1d35 0%, #081526 100%);
+      position: relative;
     }
 
     .testimonials .section-eyebrow {
-      color: var(--teal-dim);
+      color: var(--teal);
     }
 
     .testimonials .section-eyebrow::before {
-      background: var(--teal-dim);
+      background: var(--teal);
     }
 
     .testimonials .section-h2 {
-      color: var(--ink);
+      color: var(--white);
       max-width: none;
       font-size: clamp(2.2rem, 3.5vw, 3.25rem);
       margin-bottom: 1.2rem;
@@ -3909,7 +4125,7 @@
     }
 
     .testimonials .section-h2 em {
-      color: #0d8f79;
+      color: var(--teal);
     }
 
     .testimonials>.section-eyebrow {
@@ -3930,7 +4146,7 @@
       text-align: center;
       font-size: .96rem;
       line-height: 1.72;
-      color: #5e7895;
+      color: rgba(180,205,228,.65);
     }
 
     .testi-grid {
@@ -3944,33 +4160,40 @@
     }
 
     .t-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
-      border: 1px solid var(--border-lt);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 16px;
       padding: 1.55rem;
-      transition: transform 0.22s, box-shadow 0.22s;
-      border-left: 4px solid rgba(0, 212, 170, .55);
+      transition: transform 0.22s, box-shadow 0.22s, border-color .22s;
+      border-left: 4px solid rgba(0, 212, 170, .45);
     }
 
     .t-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
-      border-left-color: var(--teal-dim);
+      box-shadow: 0 12px 36px rgba(0,0,0,.3);
+      border-left-color: var(--teal);
+      background: rgba(0,212,170,.04);
     }
 
-    .t-card--gold { border-left-color: rgba(232, 184, 75, .55); }
-    .t-card--gold:hover { border-left-color: var(--gold); }
-    .t-card--blue { border-left-color: rgba(100, 160, 240, .55); }
-    .t-card--blue:hover { border-left-color: #6fa8ff; }
+    .t-card--gold {
+      background: rgba(255,255,255,.03);
+      border-left-color: rgba(232, 184, 75, .45);
+    }
+    .t-card--gold:hover { border-left-color: var(--gold); background: rgba(232,184,75,.04); }
+    .t-card--blue {
+      background: rgba(255,255,255,.03);
+      border-left-color: rgba(100, 160, 240, .45);
+    }
+    .t-card--blue:hover { border-left-color: #6fa8ff; background: rgba(100,160,240,.04); }
 
     .t-icon--gold { background: rgba(232, 184, 75, .12); border-color: rgba(232, 184, 75, .22); }
     .t-icon--blue { background: rgba(100, 160, 240, .12); border-color: rgba(100, 160, 240, .22); }
 
-    .t-stars--gold { color: #a07800; background: rgba(232, 184, 75, .10); border-color: rgba(232, 184, 75, .22); }
-    .t-stars--blue { color: #285ea8; background: rgba(100, 160, 240, .10); border-color: rgba(100, 160, 240, .22); }
+    .t-stars--gold { color: var(--gold); background: rgba(232,184,75,.12); border-color: rgba(232,184,75,.25); }
+    .t-stars--blue { color: #8ab4e8; background: rgba(100,160,240,.12); border-color: rgba(100,160,240,.25); }
 
-    .t-role--gold { color: var(--gold-dim); }
-    .t-role--blue { color: #285ea8; }
+    .t-role--gold { color: rgba(232,184,75,.75); }
+    .t-role--blue { color: rgba(138,180,232,.75); }
 
     .t-icon {
       width: 42px;
@@ -3979,8 +4202,8 @@
       display: grid;
       place-items: center;
       margin-bottom: 1rem;
-      background: rgba(0, 212, 170, .12);
-      border: 1px solid rgba(0, 212, 170, .22);
+      background: rgba(0,212,170,.12);
+      border: 1px solid rgba(0,212,170,.22);
       font-size: 1.25rem;
     }
 
@@ -3988,12 +4211,12 @@
       display: inline-flex;
       width: fit-content;
       align-items: center;
-      color: #0d8f79;
-      background: rgba(0, 212, 170, .10);
-      border: 1px solid rgba(0, 212, 170, .20);
+      color: var(--teal);
+      background: rgba(0,212,170,.1);
+      border: 1px solid rgba(0,212,170,.2);
       border-radius: 999px;
       padding: .32rem .68rem;
-      font-size: 0.72rem;
+      font-size: .72rem;
       font-weight: 900;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -4002,8 +4225,8 @@
 
     .t-quote {
       font-family: 'Sora', sans-serif;
-      font-size: 0.92rem;
-      color: var(--ink-mid);
+      font-size: .92rem;
+      color: rgba(220,235,250,.82);
       line-height: 1.65;
       margin-bottom: 1rem;
       font-style: normal;
@@ -4012,24 +4235,22 @@
     .t-person {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: .7rem;
     }
 
-    .t-av {
-      font-size: 1.4rem;
-    }
+    .t-av { font-size: 1.4rem; }
 
     .t-name {
-      font-size: 0.82rem;
+      font-size: .82rem;
       font-weight: 700;
-      color: var(--ink);
+      color: var(--white);
     }
 
     .t-role {
-      font-size: 0.78rem;
-      color: #0d8f79;
-      font-weight: 800;
-      margin-top: 0.1rem;
+      font-size: .78rem;
+      color: rgba(0,212,170,.7);
+      font-weight: 700;
+      margin-top: .1rem;
     }
 
     /* PLANS */
@@ -4357,6 +4578,140 @@
       background: rgba(244, 200, 106, .1);
       border-color: rgba(244, 200, 106, .3);
       color: var(--gold);
+    }
+
+    /* ── Roadmap time badge ── */
+    .lps-time {
+      font-size: .6rem;
+      font-weight: 700;
+      color: rgba(180,205,228,.42);
+      margin-top: .35rem;
+      letter-spacing: .03em;
+    }
+
+    /* ── Roadmap connector: animated line ── */
+    .lps-connector {
+      position: relative;
+      overflow: hidden;
+    }
+    .lps-connector::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(97,213,180,.5), transparent);
+      animation: connectorPulse 2.8s ease-in-out infinite;
+    }
+    @keyframes connectorPulse {
+      0%, 100% { opacity: .25; }
+      50% { opacity: .7; }
+    }
+
+    /* ── CTA arrow motion ── */
+    .lps-btn .btn-arrow,
+    .lpb-btn .btn-arrow,
+    .btn-primary .btn-arrow {
+      display: inline-block;
+      transition: transform .2s;
+    }
+    .lps-btn:hover .btn-arrow,
+    .lpb-btn:hover .btn-arrow,
+    .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+    /* ── Learn card richer hover ── */
+    .learn-card {
+      transition: transform .22s, box-shadow .22s, border-color .22s !important;
+    }
+    .learn-card:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(0,212,170,.18) !important;
+      border-color: rgba(0,212,170,.3) !important;
+    }
+
+    /* ── "More types to explore" section ── */
+    .learn-more-section {
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+    .learn-more-eyebrow {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(180,205,228,.5);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .learn-more-eyebrow::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: rgba(180,205,228,.3);
+    }
+    .learn-more-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    /* ── Premium banner: updated inner spacing ── */
+    .learn-premium-banner .lpb-left {
+      flex: 1;
+    }
+    .lpb-col--premium {
+      box-shadow: 0 0 28px rgba(232,184,75,.08) inset;
+    }
+    .lpb-premium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(232,184,75,.12);
+      border: 1px solid rgba(232,184,75,.22);
+      border-radius: 999px;
+      padding: .15rem .5rem;
+      margin-bottom: .6rem;
+    }
+    .lpb-transition {
+      font-size: .8rem;
+      color: rgba(180,205,228,.55);
+      font-style: italic;
+      margin-bottom: 1.1rem;
+      line-height: 1.55;
+    }
+    .learn-premium-banner {
+      padding: 2.2rem 2.4rem !important;
+    }
+    .lpb-comparison {
+      margin: 1.5rem 0 1.8rem !important;
+    }
+    .lpb-col {
+      padding: 1.2rem 1.3rem !important;
+    }
+    .lpb-btn-wrap {
+      padding-top: .4rem;
+    }
+
+    /* ── Clarity bridge: support note ── */
+    .lcb-support-note {
+      font-size: .76rem;
+      color: rgba(180,205,228,.45);
+      margin-top: .7rem;
+    }
+
+    /* ── Mobile: more-cards stack ── */
+    @media (max-width: 700px) {
+      .learn-more-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .learn-more-grid { grid-template-columns: 1fr; }
     }
 
     .lps-btn--premium:hover {
@@ -6595,10 +6950,25 @@
     }
 
     footer {
-      background: linear-gradient(180deg, #101e38 0%, #0c1729 100%);
+      background: linear-gradient(180deg, #0d1e38 0%, #081628 100%);
       border-top: 1px solid var(--border-dark);
-      padding: 3.4rem 3rem 2.2rem;
+      padding: 5rem 3rem 2.8rem;
       text-align: left;
+    }
+    .footer-trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+    .footer-trust-badge {
+      font-size: .65rem;
+      font-weight: 700;
+      color: rgba(180,205,228,.48);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 999px;
+      padding: .2rem .55rem;
     }
 
     .footer-grid {
@@ -14286,6 +14656,7 @@
             <div class="lps-title" data-i18n="learn.path.s1t">Start here</div>
             <div class="lps-desc" data-i18n="learn.path.s1d">Understand what investing is — and why doing nothing with your money is also a financial decision.</div>
             <div class="lps-tags"><span>Why invest?</span><span>Inflation</span><span>Time horizon</span></div>
+            <div class="lps-time" data-i18n="learn.path.s1time">5 min · Beginner</div>
           </div>
           <div class="lps-cta"><button class="lps-btn" onclick="showPage('inflation')" data-i18n="learn.path.s1btn">See inflation →</button></div>
         </div>
@@ -14296,6 +14667,7 @@
             <div class="lps-title" data-i18n="learn.path.s2t">Investing basics</div>
             <div class="lps-desc" data-i18n="learn.path.s2d">Learn what stocks, bonds, and ETFs actually are. No jargon — just plain English with real examples.</div>
             <div class="lps-tags"><span>Stocks</span><span>Bonds</span><span>Index Funds</span><span>ETFs</span></div>
+            <div class="lps-time" data-i18n="learn.path.s2time">7 min · Quick read</div>
           </div>
           <div class="lps-cta"><span class="lps-badge" data-i18n="learn.path.s2badge">Cards below →</span></div>
         </div>
@@ -14306,6 +14678,7 @@
             <div class="lps-title" data-i18n="learn.path.s3t">See the numbers</div>
             <div class="lps-desc" data-i18n="learn.path.s3d">Run the simulator. Watch what a small monthly habit becomes over 10, 20, or 30 years — and feel the difference.</div>
             <div class="lps-tags"><span>Simulator</span><span>Compound growth</span><span>Long-term wealth</span></div>
+            <div class="lps-time" data-i18n="learn.path.s3time">3 min · Interactive</div>
           </div>
           <div class="lps-cta"><button class="lps-btn" onclick="showPage('simulator')" data-i18n="learn.path.s3btn">Open simulator →</button></div>
         </div>
@@ -14315,7 +14688,8 @@
           <div class="lps-body">
             <div class="lps-title" data-i18n="learn.path.s4t">ETFs and index funds</div>
             <div class="lps-desc" data-i18n="learn.path.s4d">Why most beginner investors start here — and how a single fund can give you instant global diversification.</div>
-            <div class="lps-tags"><span>ETF</span><span>S&P 500</span><span>NASDAQ-100</span><span>Diversification</span></div>
+            <div class="lps-tags"><span>ETF</span><span>S&P 500</span><span>Diversification</span></div>
+            <div class="lps-time" data-i18n="learn.path.s4time">6 min · Beginner</div>
           </div>
           <div class="lps-cta"><span class="lps-badge" data-i18n="learn.path.s4badge">Cards below →</span></div>
         </div>
@@ -14326,6 +14700,7 @@
             <div class="lps-title" data-i18n="learn.path.s5t">Bitcoin and crypto</div>
             <div class="lps-desc" data-i18n="learn.path.s5d">Understand what Bitcoin is, how the halving works, and what self-custody means — before touching anything.</div>
             <div class="lps-tags"><span>Bitcoin</span><span>Halving</span><span>Self-custody</span><span>Safety</span></div>
+            <div class="lps-time" data-i18n="learn.path.s5time">Premium · In-depth guide</div>
           </div>
           <div class="lps-cta"><span class="lps-badge lps-badge--premium" data-i18n="learn.path.s5badge">Premium guide</span></div>
         </div>
@@ -14334,8 +14709,9 @@
           <div class="lps-num">06</div>
           <div class="lps-body">
             <div class="lps-title" data-i18n="learn.path.s6t">Long-term wealth</div>
-            <div class="lps-desc" data-i18n="learn.path.s6d">Dollar-cost averaging, choosing a brokerage, tax basics, super, and building a portfolio that fits your life.</div>
-            <div class="lps-tags"><span>DCA</span><span>Brokerage</span><span>Tax basics</span><span>Super</span></div>
+            <div class="lps-desc" data-i18n="learn.path.s6d">Dollar-cost averaging, choosing a brokerage, tax basics, and building a portfolio that fits your life.</div>
+            <div class="lps-tags"><span>DCA</span><span>Brokerage</span><span>Tax basics</span></div>
+            <div class="lps-time" data-i18n="learn.path.s6time">Premium · Step-by-step</div>
           </div>
           <div class="lps-cta"><span class="lps-badge lps-badge--premium" data-i18n="learn.path.s6badge">Premium guide</span></div>
         </div>
@@ -14345,7 +14721,8 @@
           <div class="lps-body">
             <div class="lps-title" data-i18n="learn.path.s7t">Your first real investment</div>
             <div class="lps-desc" data-i18n="learn.path.s7d">A step-by-step walkthrough — picking a platform, opening an account, placing your first trade with confidence.</div>
-            <div class="lps-tags"><span>Exchange setup</span><span>First buy</span><span>Zoom support</span></div>
+            <div class="lps-tags"><span>Exchange setup</span><span>First buy</span><span>Support call</span></div>
+            <div class="lps-time" data-i18n="learn.path.s7time">Premium · With Zoom support</div>
           </div>
           <div class="lps-cta"><button class="lps-btn lps-btn--premium" onclick="showPage('plans')" data-i18n="learn.path.s7btn">Get Premium →</button></div>
         </div>
@@ -14354,91 +14731,137 @@
     </div><!-- /learn-left -->
     <!-- RIGHT: Investment type cards -->
     <div class="learn-right">
-    <div class="learn-cards-eyebrow" data-i18n="learn.cardsLabel">Explore investment types — free explanations</div>
+    <div class="learn-cards-eyebrow" data-i18n="learn.cardsLabel">Explore investment types — free to understand</div>
     <div class="learn-all-cards">
       <div class="learn-card lc-teal reveal reveal-delay-1" onclick="openModal('indexfund')">
         <div class="learn-card-icon">📊</div>
         <div class="learn-card-name" id="lc-indexfund-name">Index Fund</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-1">✓ Free explanation</div>
         <div class="learn-card-tagline" id="lc-indexfund-tag">Own a tiny piece of hundreds of companies at once. The beginner favourite for a reason.</div>
-        <div class="learn-card-cta" id="lc-indexfund-cta">Read the explanation →</div>
+        <div class="lc-beginner-badge" id="lc-badge-1">🟢 Beginner-safe</div>
+        <div class="learn-card-cta" id="lc-indexfund-cta">See why beginners start here →</div>
       </div>
       <div class="learn-card lc-teal" onclick="openModal('stocks')">
         <div class="learn-card-icon">📈</div>
         <div class="learn-card-name" id="lc-stocks-name">Stocks</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-2">✓ Free explanation</div>
         <div class="learn-card-tagline" id="lc-stocks-tag">Buy a share of a real company. Higher potential, but more ups and downs.</div>
-        <div class="learn-card-cta" id="lc-stocks-cta">Read the explanation →</div>
+        <div class="lc-beginner-badge" id="lc-badge-2">🟢 Plain English</div>
+        <div class="learn-card-cta" id="lc-stocks-cta">Understand the ups and downs →</div>
       </div>
       <div class="learn-card lc-teal" onclick="openModal('sp500')">
         <div class="learn-card-icon">🏛️</div>
         <div class="learn-card-name" id="lc-sp500-name">S&amp;P 500</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-3">✓ Free explanation</div>
         <div class="learn-card-tagline" id="lc-sp500-tag">The most famous market index in the world. If you've heard "the market went up today" — this is usually what they mean.</div>
-        <div class="learn-card-cta" id="lc-sp500-cta">Read the explanation →</div>
+        <div class="lc-beginner-badge" id="lc-badge-3">🟢 5 min read</div>
+        <div class="learn-card-cta" id="lc-sp500-cta">See what everyone talks about →</div>
       </div>
       <div class="learn-card lc-teal" onclick="openModal('bonds')">
         <div class="learn-card-icon">🏦</div>
         <div class="learn-card-name" id="lc-bonds-name">Bonds</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-4">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-bonds-tag">Lend money to a government or company and earn steady interest. The "safe" choice.</div>
-        <div class="learn-card-cta" id="lc-bonds-cta">Read the explanation →</div>
+        <div class="learn-card-tagline" id="lc-bonds-tag">Lend money to a government or company and earn steady interest. The calmer choice.</div>
+        <div class="lc-beginner-badge" id="lc-badge-4">🟢 No finance jargon</div>
+        <div class="learn-card-cta" id="lc-bonds-cta">Learn the safer side of investing →</div>
       </div>
       <div class="learn-card lc-bitcoin" onclick="openModal('bitcoin')">
         <div class="learn-card-icon">₿</div>
         <div class="learn-card-name" id="lc-bitcoin-name">Bitcoin</div>
         <div class="learn-card-tag lc-free-tag" id="lc-free-tag-5">✓ Free explanation</div>
         <div class="learn-card-tagline" id="lc-bitcoin-tag">Digital money that lives on the internet. High potential, high risk — understand it before touching it.</div>
-        <div class="learn-card-cta" id="lc-bitcoin-cta">Read the explanation →</div>
-      </div>
-      <div class="learn-card lc-gold" onclick="openModal('gold')">
-        <div class="learn-card-icon">🪙</div>
-        <div class="learn-card-name" id="lc-gold-name">Gold</div>
-        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-6">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-gold-tag">The oldest store of value in human history. A classic hedge against uncertainty and inflation.</div>
-        <div class="learn-card-cta" id="lc-gold-cta">Read the explanation →</div>
+        <div class="lc-beginner-badge" id="lc-badge-5">🟢 Safety-first guide</div>
+        <div class="learn-card-cta" id="lc-bitcoin-cta">Understand before you touch it →</div>
       </div>
       <div class="learn-card lc-etf" onclick="openModal('etf')">
         <div class="learn-card-icon">🗂️</div>
         <div class="learn-card-name" id="lc-etf-name">ETF</div>
-        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-7">✓ Free explanation</div>
+        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-6">✓ Free explanation</div>
         <div class="learn-card-tagline" id="lc-etf-tag">A basket of investments in one trade. Low fees, instant diversification — the smart beginner's shortcut.</div>
-        <div class="learn-card-cta" id="lc-etf-cta">Read the explanation →</div>
+        <div class="lc-beginner-badge" id="lc-badge-6">🟢 Built for first-time investors</div>
+        <div class="learn-card-cta" id="lc-etf-cta">Explore your beginner shortcut →</div>
       </div>
-      <div class="learn-card lc-nasdaq" onclick="openModal('nasdaq')">
-        <div class="learn-card-icon">💻</div>
-        <div class="learn-card-name" id="lc-nasdaq-name">NASDAQ-100</div>
-        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-8">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-nasdaq-tag">A concentrated US growth index with major tech leaders. Higher upside potential, but more swings than a broad market fund.</div>
-        <div class="learn-card-cta" id="lc-nasdaq-cta">Read the explanation →</div>
-      </div>
-      <div class="learn-card lc-reit" onclick="openModal('reit')">
-        <div class="learn-card-icon">🏢</div>
-        <div class="learn-card-name" id="lc-reit-name">REITs / FIIs</div>
-        <div class="learn-card-tag lc-free-tag" id="lc-free-tag-9">✓ Free explanation</div>
-        <div class="learn-card-tagline" id="lc-reit-tag">Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.</div>
-        <div class="learn-card-cta" id="lc-reit-cta">Read the explanation →</div>
-      </div>
+
+      <!-- Premium banner redesigned -->
       <div class="learn-premium-banner" onclick="showPage('plans')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')showPage('plans')">
+        <div class="lpb-premium-badge" id="lpb-badge">Most complete path</div>
         <div class="lpb-left">
-          <h4 id="lpb-title">Premium guides are live</h4>
-          <p id="lpb-text">Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.</p>
-          <div class="lpb-pills">
-            <div class="lpb-pill" id="lpb-p1">Premium topic: how to buy your first Index Fund</div>
-            <div class="lpb-pill" id="lpb-p2">Premium topic: what is a brokerage account?</div>
-            <div class="lpb-pill" id="lpb-p3">Premium topic: dollar-cost averaging explained</div>
-            <div class="lpb-pill" id="lpb-p4">Premium topic: tax basics for investors</div>
-            <div class="lpb-pill" id="lpb-p5">Premium topic: building a diversified portfolio</div>
-            <div class="lpb-pill" id="lpb-p6">Premium topic: when to sell — and when not to</div>
+          <h4 class="lpb-headline" id="lpb-title">Ready for the next step?</h4>
+          <p class="lpb-subhead" id="lpb-text">Free explanations help you understand the basics. Premium helps you build a real investing path with guidance, structure, and support.</p>
+          <p class="lpb-transition" id="lpb-transition">When you're ready to move from understanding to action, Premium guides the next step.</p>
+          <div class="lpb-comparison">
+            <div class="lpb-col lpb-col--free">
+              <div class="lpb-col-title" id="lpb-free-title">Free</div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">✅</span><span id="lpb-p1">Learn investing concepts</span></div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">✅</span><span id="lpb-p2">Explore the simulator</span></div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">✅</span><span id="lpb-p3">Understand investing basics</span></div>
+            </div>
+            <div class="lpb-col lpb-col--premium">
+              <div class="lpb-col-title" id="lpb-prem-title">Premium</div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p4">Full investing roadmap</span></div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p5">Beginner learning paths</span></div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p6">Portfolio tracking + DCA systems</span></div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p7">Crypto safety guides</span></div>
+              <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p8">Included 60-min support call</span></div>
+            </div>
           </div>
         </div>
-        <button class="lpb-btn" id="lpb-btn" onclick="event.stopPropagation();showPage('plans')">Get Premium access →</button>
+        <div class="lpb-btn-wrap">
+          <button class="lpb-btn" id="lpb-btn" onclick="event.stopPropagation();showPage('plans')">Unlock your full investing roadmap →</button>
+          <p class="lpb-support" id="lpb-support">Built for beginners who want clarity, not complexity.</p>
+        </div>
       </div>
     </div><!-- /learn-all-cards -->
     </div><!-- /learn-right -->
     </div><!-- /learn-two-col -->
+
+    <!-- MORE INVESTMENT TYPES -->
+    <div class="learn-more-section app-page" data-page="learn">
+      <div class="learn-more-eyebrow" id="learn-more-eyebrow">More investment types to explore</div>
+      <div class="learn-more-grid">
+        <div class="learn-card lc-gold" onclick="openModal('gold')">
+          <div class="learn-card-icon">🪙</div>
+          <div class="learn-card-name" id="lc-gold-name">Gold</div>
+          <div class="learn-card-tag lc-free-tag" id="lc-free-tag-7">✓ Free explanation</div>
+          <div class="learn-card-tagline" id="lc-gold-tag">The oldest store of value in human history. A classic hedge against uncertainty and inflation.</div>
+          <div class="lc-beginner-badge" id="lc-badge-7">🟢 Plain English</div>
+          <div class="learn-card-cta" id="lc-gold-cta">See why gold holds its ground →</div>
+        </div>
+        <div class="learn-card lc-nasdaq" onclick="openModal('nasdaq')">
+          <div class="learn-card-icon">💻</div>
+          <div class="learn-card-name" id="lc-nasdaq-name">NASDAQ-100</div>
+          <div class="learn-card-tag lc-free-tag" id="lc-free-tag-8">✓ Free explanation</div>
+          <div class="learn-card-tagline" id="lc-nasdaq-tag">A concentrated US growth index with major tech leaders. Higher upside, but more swings than a broad market fund.</div>
+          <div class="lc-beginner-badge" id="lc-badge-8">🟢 5 min read</div>
+          <div class="learn-card-cta" id="lc-nasdaq-cta">Explore the tech growth index →</div>
+        </div>
+        <div class="learn-card lc-reit" onclick="openModal('reit')">
+          <div class="learn-card-icon">🏢</div>
+          <div class="learn-card-name" id="lc-reit-name">REITs / FIIs</div>
+          <div class="learn-card-tag lc-free-tag" id="lc-free-tag-9">✓ Free explanation</div>
+          <div class="learn-card-tagline" id="lc-reit-tag">Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.</div>
+          <div class="lc-beginner-badge" id="lc-badge-9">🟢 Beginner-safe</div>
+          <div class="learn-card-cta" id="lc-reit-cta">Explore real estate investing simply →</div>
+        </div>
+      </div>
+    </div><!-- /learn-more-section -->
   </section>
 
+
+  <!-- CLARITY BRIDGE -->
+  <div class="learn-clarity-bridge app-page" data-page="learn">
+    <div class="lcb-eyebrow" id="lcb-eyebrow">The difference Plainvest makes</div>
+    <div class="lcb-h2" id="lcb-h2">Most people don't need more finance content.<br>They need clarity.</div>
+    <p class="lcb-sub" id="lcb-sub">Plainvest was built to help beginners stop feeling overwhelmed and start understanding what their future could actually look like.</p>
+    <div class="lcb-bullets">
+      <div class="lcb-bullet"><span class="lcb-bullet-dot"></span><span data-i18n="learn.clarityB1">Visual investing tools</span></div>
+      <div class="lcb-bullet"><span class="lcb-bullet-dot"></span><span data-i18n="learn.clarityB2">Beginner-friendly explanations</span></div>
+      <div class="lcb-bullet"><span class="lcb-bullet-dot"></span><span data-i18n="learn.clarityB3">Real long-term projections</span></div>
+      <div class="lcb-bullet"><span class="lcb-bullet-dot"></span><span data-i18n="learn.clarityB4">Calm, step-by-step guidance</span></div>
+    </div>
+    <button class="btn-primary" id="lcb-cta" onclick="showPage('simulator')" data-i18n="learn.clarityCta">Start building clarity →</button>
+    <p class="lcb-support-note" id="lcb-support-note">No finance background required.</p>
+  </div>
 
   <!-- SIMULATOR INSIGHTS -->
   <section class="testimonials app-page" data-page="learn">
@@ -14451,21 +14874,35 @@
         <div class="t-stars">INSIGHT 01</div>
         <div class="t-quote">Small monthly amounts look different when you can see 10, 20, and 30 years on one chart.</div>
         <div class="t-role">Why the simulator matters</div>
+        <div class="t-action">
+          <button class="t-action-btn" onclick="showPage('simulator')" id="testi-cta1">Try this in the simulator →</button>
+        </div>
       </div>
       <div class="t-card t-card--gold reveal reveal-delay-2">
         <div class="t-icon t-icon--gold" aria-hidden="true">💸</div>
         <div class="t-stars t-stars--gold">INSIGHT 02</div>
         <div class="t-quote">Inflation becomes easier to understand when cash, savings, and invested growth are compared side by side.</div>
         <div class="t-role t-role--gold">Why the inflation page matters</div>
+        <div class="t-action">
+          <button class="t-action-btn" onclick="showPage('inflation')" id="testi-cta2">Compare inflation visually →</button>
+        </div>
       </div>
       <div class="t-card t-card--blue reveal reveal-delay-3">
         <div class="t-icon t-icon--blue" aria-hidden="true">📚</div>
         <div class="t-stars t-stars--blue">INSIGHT 03</div>
         <div class="t-quote">Terms like ETF, index fund, bonds, Bitcoin, and DCA feel less intimidating after they are tied to plain examples.</div>
         <div class="t-role t-role--blue">Why the learning guides matter</div>
+        <div class="t-action">
+          <button class="t-action-btn" onclick="showPage('learn')" id="testi-cta3">See beginner explanations →</button>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Floating beginner CTA -->
+  <button class="learn-float-cta" id="learn-float-cta" onclick="showPage('learn')">
+    <span>↑</span> <span id="learn-float-label">Start your beginner path</span>
+  </button>
 
   <!-- OUR STORY -->
   <section id="story" class="app-page" data-page="story">
@@ -15810,13 +16247,18 @@
         <p data-i18n-html="footer.col2Contact" style="margin-top:.75rem;"><a href="mailto:hello@plainvest.app">hello@plainvest.app</a></p>
       </div>
       <div class="foot-col footer-capture">
-        <div class="foot-col-title" data-i18n="footer.captureTitle">Free Plainvest updates</div>
-        <p data-i18n="footer.captureText">Not ready to buy yet? Get Plainvest updates and investing insights when they drop.</p>
+        <div class="foot-col-title" data-i18n="footer.captureTitle">Stay informed, calmly</div>
+        <p data-i18n="footer.captureText">Get calm investing insights — without hype.</p>
         <div class="footer-capture-row">
           <input id="footer-email-capture" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email for Plainvest updates">
-          <button id="footer-email-submit" type="button" onclick="submitNewsletter(event)" data-i18n="footer.captureBtn">Join</button>
+          <button id="footer-email-submit" type="button" onclick="submitNewsletter(event)" data-i18n="footer.captureBtn">Join updates</button>
         </div>
         <div class="footer-capture-success" id="footer-email-success" data-i18n="footer.captureSuccess">Thanks — you are on the Plainvest insight list.</div>
+        <div class="footer-trust-strip">
+          <span class="footer-trust-badge" data-i18n="footer.trustB1">No spam, ever</span>
+          <span class="footer-trust-badge" data-i18n="footer.trustB2">Unsubscribe anytime</span>
+          <span class="footer-trust-badge" data-i18n="footer.trustB3">Beginner-focused</span>
+        </div>
       </div>
     </div>
     <div class="foot-bottom">
@@ -15999,27 +16441,42 @@
             s7t: 'Your first real investment', s7d: 'A step-by-step walkthrough — picking a platform, opening an account, placing your first trade with confidence.', s7btn: 'Get Premium →'
           },
           cards: {
-            indexfund: { name: 'Index Fund', tagline: 'Own a tiny piece of hundreds of companies at once. The beginner favourite for a reason.' },
-            stocks: { name: 'Stocks', tagline: 'Buy a share of a real company. Higher potential, but more ups and downs.' },
-            sp500: { name: 'S&P 500', tagline: 'The most famous market index in the world. If you\'ve heard "the market went up today" — this is usually what they mean.' },
-            bonds: { name: 'Bonds', tagline: 'Lend money to a government or company and earn steady interest. The "safe" choice.' },
-            bitcoin: { name: 'Bitcoin', tagline: 'Digital money that lives on the internet. High potential, high risk — understand it before touching it.' },
-            gold: { name: 'Gold', tagline: 'The oldest store of value in human history. A classic hedge against uncertainty and inflation.' },
-            etf: { name: 'ETF', tagline: 'A basket of investments in one trade. Low fees, instant diversification — the smart beginner\'s shortcut.' },
-            nasdaq: { name: 'NASDAQ-100', tagline: 'A concentrated US growth index with major tech leaders. Higher upside potential, but more swings than a broad market fund.' },
-            reit: { name: 'REITs / FIIs', tagline: 'Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.' }
+            indexfund: { name: 'Index Fund', tagline: 'Own a tiny piece of hundreds of companies at once. The beginner favourite for a reason.', cta: 'See why beginners start here →', badge: '🟢 Beginner-safe' },
+            stocks: { name: 'Stocks', tagline: 'Buy a share of a real company. Higher potential, but more ups and downs.', cta: 'Understand the ups and downs →', badge: '🟢 Plain English' },
+            sp500: { name: 'S&P 500', tagline: 'The most famous market index in the world. If you\'ve heard "the market went up today" — this is usually what they mean.', cta: 'See what everyone talks about →', badge: '🟢 5 min read' },
+            bonds: { name: 'Bonds', tagline: 'Lend money to a government or company and earn steady interest. The calmer choice.', cta: 'Learn the safer side of investing →', badge: '🟢 No finance jargon' },
+            bitcoin: { name: 'Bitcoin', tagline: 'Digital money that lives on the internet. High potential, high risk — understand it before touching it.', cta: 'Understand before you touch it →', badge: '🟢 Safety-first guide' },
+            gold: { name: 'Gold', tagline: 'The oldest store of value in human history. A classic hedge against uncertainty and inflation.', cta: 'See why gold holds its ground →', badge: '🟢 Plain English' },
+            etf: { name: 'ETF', tagline: 'A basket of investments in one trade. Low fees, instant diversification — the smart beginner\'s shortcut.', cta: 'Explore your beginner shortcut →', badge: '🟢 Built for first-time investors' },
+            nasdaq: { name: 'NASDAQ-100', tagline: 'A concentrated US growth index with major tech leaders. Higher upside, but more swings than a broad market fund.', cta: 'Explore the tech growth index →', badge: '🟢 5 min read' },
+            reit: { name: 'REITs / FIIs', tagline: 'Own a share of real estate — offices, shopping centres, apartments — and collect rent without being a landlord.', cta: 'Explore real estate investing simply →', badge: '🟢 Beginner-safe' }
           },
-          premTitle: 'Premium guides are live',
-          premText: 'Unlock the member hub with investment paths, DCA learning, Bitcoin research, crypto self-custody, chart-reading tools, book lists, and your included 60-minute Zoom support call.',
-          premBtn: 'Get Premium access →'
+          premBadge: 'Most complete path',
+          premTitle: 'Ready for the next step?',
+          premText: 'Free explanations help you understand the basics. Premium helps you build a real investing path with guidance, structure, and support.',
+          premTransition: "When you're ready to move from understanding to action, Premium guides the next step.",
+          premBtn: 'Unlock your full investing roadmap →',
+          premFreeTitle: 'Free', premPremTitle: 'Premium',
+          premSupport: 'Built for beginners who want clarity, not complexity.',
+          moreEyebrow: 'More investment types to explore',
+          clarityEyebrow: 'The difference Plainvest makes',
+          clarityH2: 'Most people don\'t need more finance content. They need clarity.',
+          claritySub: 'Plainvest was built to help beginners stop feeling overwhelmed and start understanding what their future could actually look like.',
+          clarityB1: 'Visual investing tools', clarityB2: 'Beginner-friendly explanations', clarityB3: 'Real long-term projections', clarityB4: 'Calm, step-by-step guidance',
+          clarityCta: 'Start building clarity →',
+          claritySupport: 'No finance background required.',
+          insightCta1: 'Try this in the simulator →', insightCta2: 'Compare inflation visually →', insightCta3: 'See beginner explanations →',
+          floatLabel: 'Start your beginner path'
         },
         learnPillars: [
-          'Premium topic: how to buy your first Index Fund',
-          'Premium topic: what is a brokerage account?',
-          'Premium topic: dollar-cost averaging explained',
-          'Premium topic: tax basics for investors',
-          'Premium topic: building a diversified portfolio',
-          'Premium topic: when to sell — and when not to'
+          'Learn investing concepts',
+          'Explore the simulator',
+          'Understand investing basics',
+          'Full investing roadmap',
+          'Beginner learning paths',
+          'Portfolio tracking + DCA systems',
+          'Crypto safety guides',
+          'Included 60-min support call'
         ],
         testi: {
           eyebrow: 'Simulator insights',
@@ -16501,10 +16958,11 @@
           col2Title: 'Built for trust',
           col2Body: 'Plainvest is designed to feel clear, calm, and useful for first-time investors. Questions, ideas, and partnership conversations are always welcome.',
           col2Contact: '<a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
-          captureTitle: 'Free Plainvest updates',
-          captureText: 'Not ready to buy yet? Get Plainvest updates and investing insights when they drop.',
-          captureBtn: 'Join',
+          captureTitle: 'Stay informed, calmly',
+          captureText: 'Get calm investing insights — without hype.',
+          captureBtn: 'Join updates',
           captureSuccess: 'Thanks — you are on the Plainvest insight list.',
+          trustB1: 'No spam, ever', trustB2: 'Unsubscribe anytime', trustB3: 'Beginner-focused',
           privacy: 'Privacy Policy',
           terms: 'Terms of Service',
           social: 'Instagram',
@@ -16763,27 +17221,42 @@
             s7t: 'Seu primeiro investimento real', s7d: 'Um passo a passo completo — escolher uma plataforma, abrir a conta e fazer sua primeira compra com confiança.', s7btn: 'Acessar Premium →'
           },
           cards: {
-            indexfund: { name: 'Fundo de Índice', tagline: 'Tenha uma fração de centenas de empresas ao mesmo tempo. O favorito dos iniciantes, e por boas razões.' },
-            stocks: { name: 'Ações', tagline: 'Compre uma parte de uma empresa real. Maior potencial, mas com mais altos e baixos.' },
-            sp500: { name: 'S&P 500', tagline: 'O índice mais famoso do mundo. Quando dizem "o mercado subiu hoje" — geralmente é sobre ele.' },
-            bonds: { name: 'Títulos (Bonds)', tagline: 'Empreste dinheiro a um governo ou empresa e receba juros fixos. A escolha "segura".' },
-            bitcoin: { name: 'Bitcoin', tagline: 'Dinheiro digital que existe na internet. Alto potencial, alto risco — entenda antes de investir.' },
-            gold: { name: 'Ouro', tagline: 'O ativo de reserva de valor mais antigo da história. Uma proteção clássica contra incerteza e inflação.' },
-            etf: { name: 'ETF', tagline: 'Uma cesta de investimentos em uma única negociação. Taxas baixas, diversificação imediata — o atalho inteligente para iniciantes.' },
-            nasdaq: { name: 'NASDAQ-100', tagline: 'Um índice americano de crescimento concentrado em grandes líderes de tecnologia. Maior potencial, mas com mais oscilações do que um fundo amplo de mercado.' },
-            reit: { name: 'FIIs / REITs', tagline: 'Tenha uma fatia de imóveis reais — escritórios, shoppings, apartamentos — e receba aluguéis sem ser proprietário.' }
+            indexfund: { name: 'Fundo de Índice', tagline: 'Tenha uma fração de centenas de empresas ao mesmo tempo. O favorito dos iniciantes, e por boas razões.', cta: 'Veja por que iniciantes começam aqui →', badge: '🟢 Seguro para iniciantes' },
+            stocks: { name: 'Ações', tagline: 'Compre uma parte de uma empresa real. Maior potencial, mas com mais altos e baixos.', cta: 'Entenda os altos e baixos →', badge: '🟢 Linguagem simples' },
+            sp500: { name: 'S&P 500', tagline: 'O índice mais famoso do mundo. Quando dizem "o mercado subiu hoje" — geralmente é sobre ele.', cta: 'Veja o que todo mundo fala →', badge: '🟢 Leitura de 5 min' },
+            bonds: { name: 'Títulos (Bonds)', tagline: 'Empreste dinheiro a um governo ou empresa e receba juros fixos. A escolha mais calma.', cta: 'Conheça o lado mais seguro do investimento →', badge: '🟢 Sem jargão financeiro' },
+            bitcoin: { name: 'Bitcoin', tagline: 'Dinheiro digital que existe na internet. Alto potencial, alto risco — entenda antes de investir.', cta: 'Entenda antes de tocar →', badge: '🟢 Guia de segurança primeiro' },
+            gold: { name: 'Ouro', tagline: 'O ativo de reserva de valor mais antigo da história. Uma proteção clássica contra incerteza e inflação.', cta: 'Veja por que o ouro se mantém firme →', badge: '🟢 Linguagem simples' },
+            etf: { name: 'ETF', tagline: 'Uma cesta de investimentos em uma única negociação. Taxas baixas, diversificação imediata — o atalho inteligente para iniciantes.', cta: 'Explore seu atalho para iniciantes →', badge: '🟢 Feito para primeiros investidores' },
+            nasdaq: { name: 'NASDAQ-100', tagline: 'Um índice americano de crescimento concentrado em grandes líderes de tecnologia. Maior potencial, mas com mais oscilações.', cta: 'Explore o índice de crescimento tech →', badge: '🟢 Leitura de 5 min' },
+            reit: { name: 'FIIs / REITs', tagline: 'Tenha uma fatia de imóveis reais — escritórios, shoppings, apartamentos — e receba aluguéis sem ser proprietário.', cta: 'Explore investimento imobiliário simplificado →', badge: '🟢 Seguro para iniciantes' }
           },
-          premTitle: 'Guias Premium disponíveis',
-          premText: 'Acesse o hub de membros com caminhos de investimento, método DCA, pesquisa sobre Bitcoin, autocustódia cripto, leitura de gráficos, lista de livros e sua chamada incluída de 60 minutos no Zoom.',
-          premBtn: 'Acessar Premium →'
+          premBadge: 'Caminho mais completo',
+          premTitle: 'Pronto para o próximo passo?',
+          premText: 'As explicações gratuitas ajudam você a entender o básico. O Premium ajuda a construir um caminho real de investimento com orientação, estrutura e suporte.',
+          premTransition: 'Quando estiver pronto para sair do entendimento para a ação, o Premium guia o próximo passo.',
+          premBtn: 'Acesse seu roteiro completo de investimentos →',
+          premFreeTitle: 'Gratuito', premPremTitle: 'Premium',
+          premSupport: 'Feito para iniciantes que querem clareza, não complexidade.',
+          moreEyebrow: 'Mais tipos de investimento para explorar',
+          clarityEyebrow: 'A diferença que o Plainvest faz',
+          clarityH2: 'A maioria das pessoas não precisa de mais conteúdo financeiro. Precisa de clareza.',
+          claritySub: 'O Plainvest foi criado para ajudar iniciantes a parar de se sentir sobrecarregados e começar a entender como o seu futuro financeiro pode realmente ser.',
+          clarityB1: 'Ferramentas visuais de investimento', clarityB2: 'Explicações acessíveis para iniciantes', clarityB3: 'Projeções reais de longo prazo', clarityB4: 'Orientação calma e passo a passo',
+          clarityCta: 'Comece a construir clareza →',
+          claritySupport: 'Nenhum conhecimento financeiro necessário.',
+          insightCta1: 'Experimente isso no simulador →', insightCta2: 'Compare a inflação visualmente →', insightCta3: 'Veja as explicações para iniciantes →',
+          floatLabel: 'Comece seu caminho de iniciante'
         },
         learnPillars: [
-          'Tópico Premium: como comprar seu primeiro Fundo de Índice',
-          'Tópico Premium: o que é uma corretora?',
-          'Tópico Premium: aportes regulares explicados',
-          'Tópico Premium: noções de imposto para investidores',
-          'Tópico Premium: montando uma carteira diversificada',
-          'Tópico Premium: quando vender — e quando não vender'
+          'Aprenda conceitos de investimento',
+          'Explore o simulador',
+          'Entenda o básico sobre investir',
+          'Roteiro completo de investimentos',
+          'Trilhas de aprendizado para iniciantes',
+          'Rastreamento de portfólio + método DCA',
+          'Guias de segurança cripto',
+          'Chamada de suporte incluída (60 min)'
         ],
         testi: {
           eyebrow: 'Insights do simulador',
@@ -17289,10 +17762,11 @@
           col2Title: 'Construído para gerar confiança',
           col2Body: 'O Plainvest foi pensado para ser claro, calmo e útil para quem está começando. Perguntas, ideias e conversas de parceria são sempre bem-vindas.',
           col2Contact: '<a href="mailto:hello@plainvest.app">hello@plainvest.app</a>',
-          captureTitle: 'Atualizações grátis do Plainvest',
-          captureText: 'Ainda não quer comprar? Receba novidades do Plainvest e insights de investimento quando forem publicados.',
-          captureBtn: 'Entrar',
+          captureTitle: 'Fique informado, com calma',
+          captureText: 'Receba insights calmos sobre investimento — sem hype.',
+          captureBtn: 'Receber atualizações',
           captureSuccess: 'Obrigado — você entrou na lista de insights do Plainvest.',
+          trustB1: 'Sem spam, jamais', trustB2: 'Cancele quando quiser', trustB3: 'Foco em iniciantes',
           privacy: 'Política de Privacidade',
           terms: 'Termos de Uso',
           social: 'Instagram',
@@ -17538,45 +18012,51 @@
       if (ebBtn) ebBtn.textContent = s.eduBtn;
 
       // ── LEARN CARDS
-      setText('lc-indexfund-name', lc.cards.indexfund.name);
-      setText('lc-indexfund-tag', lc.cards.indexfund.tagline);
-      setText('lc-indexfund-cta', lc.cta);
-      setText('lc-stocks-name', lc.cards.stocks.name);
-      setText('lc-stocks-tag', lc.cards.stocks.tagline);
-      setText('lc-stocks-cta', lc.cta);
-      setText('lc-sp500-name', lc.cards.sp500.name);
-      setText('lc-sp500-tag', lc.cards.sp500.tagline);
-      setText('lc-sp500-cta', lc.cta);
-      setText('lc-bonds-name', lc.cards.bonds.name);
-      setText('lc-bonds-tag', lc.cards.bonds.tagline);
-      setText('lc-bonds-cta', lc.cta);
-      setText('lc-bitcoin-name', lc.cards.bitcoin.name);
-      setText('lc-bitcoin-tag', lc.cards.bitcoin.tagline);
-      setText('lc-bitcoin-cta', lc.cta);
-      setText('lc-gold-name', lc.cards.gold.name);
-      setText('lc-gold-tag', lc.cards.gold.tagline);
-      setText('lc-gold-cta', lc.cta);
-      setText('lc-etf-name', lc.cards.etf.name);
-      setText('lc-etf-tag', lc.cards.etf.tagline);
-      setText('lc-etf-cta', lc.cta);
-      setText('lc-nasdaq-name', lc.cards.nasdaq.name);
-      setText('lc-nasdaq-tag', lc.cards.nasdaq.tagline);
-      setText('lc-nasdaq-cta', lc.cta);
-      setText('lc-reit-name', lc.cards.reit.name);
-      setText('lc-reit-tag', lc.cards.reit.tagline);
-      setText('lc-reit-cta', lc.cta);
+      const cardKeys = ['indexfund','stocks','sp500','bonds','bitcoin','etf','gold','nasdaq','reit'];
+      const cardIds  = ['indexfund','stocks','sp500','bonds','bitcoin','etf','gold','nasdaq','reit'];
+      cardKeys.forEach((k, i) => {
+        const id = cardIds[i];
+        const card = lc.cards[k];
+        setText(`lc-${id}-name`, card.name);
+        setText(`lc-${id}-tag`, card.tagline);
+        setText(`lc-${id}-cta`, card.cta);
+        setText(`lc-badge-${i+1}`, card.badge);
+      });
 
       // free tag on all cards
-      ['lc-free-tag-1', 'lc-free-tag-2', 'lc-free-tag-3', 'lc-free-tag-4', 'lc-free-tag-5', 'lc-free-tag-6', 'lc-free-tag-7', 'lc-free-tag-8', 'lc-free-tag-9'].forEach(id => setText(id, lc.freeTag));
+      ['lc-free-tag-1','lc-free-tag-2','lc-free-tag-3','lc-free-tag-4','lc-free-tag-5','lc-free-tag-6','lc-free-tag-7','lc-free-tag-8','lc-free-tag-9'].forEach(id => setText(id, lc.freeTag));
 
       // ── LEARN PREMIUM BANNER
+      setText('lpb-badge', lc.premBadge);
       setText('lpb-title', lc.premTitle);
       setText('lpb-text', lc.premText);
+      setText('lpb-transition', lc.premTransition);
       setText('lpb-btn', lc.premBtn);
+      setText('lpb-support', lc.premSupport);
+      setText('lpb-free-title', lc.premFreeTitle);
+      setText('lpb-prem-title', lc.premPremTitle);
       if (lp) {
         setText('lpb-p1', lp[0]); setText('lpb-p2', lp[1]); setText('lpb-p3', lp[2]);
         setText('lpb-p4', lp[3]); setText('lpb-p5', lp[4]); setText('lpb-p6', lp[5]);
+        setText('lpb-p7', lp[6]); setText('lpb-p8', lp[7]);
       }
+
+      // ── MORE INVESTMENT TYPES EYEBROW
+      setText('learn-more-eyebrow', lc.moreEyebrow);
+
+      // ── CLARITY BRIDGE
+      setText('lcb-eyebrow', lc.clarityEyebrow);
+      setText('lcb-h2', lc.clarityH2);
+      setText('lcb-sub', lc.claritySub);
+      setText('lcb-support-note', lc.claritySupport);
+
+      // ── INSIGHT CARD ACTIONS
+      setText('testi-cta1', lc.insightCta1);
+      setText('testi-cta2', lc.insightCta2);
+      setText('testi-cta3', lc.insightCta3);
+
+      // ── FLOATING CTA
+      setText('learn-float-label', lc.floatLabel);
 
       // ── STORY — quote, paragraphs, mission pillars
       setHTML('story-quote', st.quote);
@@ -20834,6 +21314,20 @@
     } else {
       plainvestInit();
     }
+
+    // ── Floating beginner CTA visibility on learn page
+    (function() {
+      var floatBtn = document.getElementById('learn-float-cta');
+      if (!floatBtn) return;
+      window.addEventListener('scroll', function() {
+        var activePage = document.querySelector('.app-page[data-page="learn"].active');
+        if (activePage && window.scrollY > 400) {
+          floatBtn.classList.add('float-visible');
+        } else {
+          floatBtn.classList.remove('float-visible');
+        }
+      }, { passive: true });
+    })();
 
     function prepareBookCoverFallbacks() {
       document.querySelectorAll('.member-book-cover.has-image img').forEach(function (img) {
