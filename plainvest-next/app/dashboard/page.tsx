@@ -63,9 +63,12 @@ export default async function Dashboard() {
     <main className="payment-shell">
       <nav className="payment-topbar">
         <div className="brand">Plainvest</div>
-        <form action={signOut}>
-          <SubmitButton className="ghost" pendingText="Logging out...">Logout</SubmitButton>
-        </form>
+        <div style={{ display:'flex', alignItems:'center', gap:'.75rem' }}>
+          <a href="/profile" className="ghost-nav-link">Profile</a>
+          <form action={signOut}>
+            <SubmitButton className="ghost" pendingText="Logging out...">Logout</SubmitButton>
+          </form>
+        </div>
       </nav>
       <section className="payment-content">
         <div className="dashboard-hero">

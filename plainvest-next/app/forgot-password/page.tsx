@@ -11,16 +11,26 @@ export default async function ForgotPassword({ searchParams }: { searchParams: P
   const params = await searchParams;
 
   return (
-    <main className="auth-shell">
-      <form className="auth-card" action={requestPasswordReset}>
-        <p className="eyebrow">Password reset</p>
-        <h1>Reset your password.</h1>
-        <p className="muted">Enter your member email and we will send a secure reset link.</p>
-        {params.message ? <div className="notice">{params.message}</div> : null}
-        <label>Email<input name="email" type="email" required /></label>
-        <SubmitButton pendingText="Sending link...">Send reset link</SubmitButton>
-        <p className="switch">Remembered it? <Link href="/login?mode=manual">Login</Link></p>
-      </form>
+    <main className="auth-shell--split">
+      <div className="auth-card-wrap auth-card-wrap--reset">
+        <form className="auth-card--premium" action={requestPasswordReset}>
+          <p className="eyebrow">Password reset</p>
+          <h1 className="auth-h1--reset">Reset your password.</h1>
+          <p className="muted">Enter your member email and we&apos;ll send a secure reset link immediately.</p>
+          {params.message ? <div className="notice">{params.message}</div> : null}
+          <label>Email<input name="email" type="email" placeholder="you@email.com" required /></label>
+          <Link href="/login?mode=manual" className="auth-back-link">&#8592; Back to login</Link>
+          <SubmitButton pendingText="Sending...">Send secure reset link</SubmitButton>
+          <div className="auth-trust-row">
+            <span className="auth-trust-item">Secure account recovery</span>
+            <span className="auth-trust-item">No spam</span>
+            <span className="auth-trust-item">Beginner-friendly support</span>
+          </div>
+          <p className="auth-reset-reassurance">
+            Your learning progress and Premium access stay safely connected to your account.
+          </p>
+        </form>
+      </div>
     </main>
   );
 }
