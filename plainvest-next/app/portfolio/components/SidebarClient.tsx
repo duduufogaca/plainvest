@@ -28,6 +28,7 @@ const NavIcon = ({ d, viewBox = '0 0 24 24' }: { d: string; viewBox?: string }) 
 
 export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, profileLabel, logoutLabel, userName, profileActive }: Props) {
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [showCurrencies, setShowCurrencies] = useState(false);
   const [showLanguages, setShowLanguages] = useState(false);
   const isEN = lang !== 'pt';
@@ -50,7 +51,24 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
   }
 
   return (
-    <aside className={`portfolio-sidebar sb-v2${collapsed ? ' sidebar-collapsed' : ''}`}>
+    <>
+    {/* ── Mobile nav toggle (only visible on mobile) ── */}
+    <button
+      className="mob-sidebar-toggle"
+      onClick={() => setMobileOpen(o => !o)}
+      aria-label={isEN ? 'Open navigation' : 'Abrir navegação'}
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    {/* ── Mobile overlay backdrop ── */}
+    {mobileOpen && (
+      <div className="mob-sidebar-backdrop" onClick={() => setMobileOpen(false)} />
+    )}
+
+    <aside className={`portfolio-sidebar sb-v2${collapsed ? ' sidebar-collapsed' : ''}${mobileOpen ? ' mob-sidebar-open' : ''}`}>
 
       {/* ── Brand ── */}
       <div className="sb-brand">
@@ -280,5 +298,6 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
         </div>
       </div>
     </aside>
+    </>
   );
 }

@@ -16527,7 +16527,20 @@
             <span data-i18n="member.heroPill3">Support call</span>
           </div>
         </div>
-        <div class="member-hero-image" role="img" aria-label="Seed growing with an upward investment chart"></div>
+        <div class="member-hero-image" id="memberHeroImgWrap">
+          <img
+            src="/assets/hero-seed-growth.png"
+            alt=""
+            class="member-hero-img-tag"
+            aria-hidden="true"
+            onerror="document.getElementById('memberHeroImgWrap').classList.add('img-broken')"
+          />
+          <div class="member-hero-img-fallback">
+            <span class="mhf-eyebrow">PLAINVEST PREMIUM</span>
+            <strong class="mhf-title">Start Here Guide</strong>
+            <p class="mhf-sub">Your first step inside the member hub.</p>
+          </div>
+        </div>
       </div>
       <div class="member-access-panel">
         <div class="member-welcome">
@@ -22594,7 +22607,21 @@
             try { updateInflationStats(); } catch (e) { }
           }, 200);
         });
-        window.addEventListener('pageshow', function () { try { syncMemberNavState(); } catch (e) { } });
+        window.addEventListener('pageshow', function (e) {
+          try { syncMemberNavState(); } catch (_) { }
+          if (e.persisted) {
+            // Restored from bfcache (user pressed Back from a guide file)
+            try {
+              document.documentElement.style.overflowX = 'hidden';
+              document.body.style.overflowX = 'hidden';
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+              document.querySelectorAll('*').forEach(function (el) {
+                if (el.scrollLeft > 0) el.scrollLeft = 0;
+              });
+              try { syncMobileSimulatorLayout(); } catch (_) { }
+            } catch (_) { }
+          }
+        });
 
         var raf = window.requestAnimationFrame || function (cb) { return setTimeout(cb, 16); };
         raf(function () {
@@ -22810,6 +22837,48 @@
   *, *::before, *::after { box-sizing: border-box; }
   img, video { max-width: 100%; height: auto; }
   body { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+  /* ── Hero image: img tag approach (more reliable than bg-image) ── */
+  .member-hero-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .member-hero-img-tag {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+  .member-hero-img-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(7,17,31,.96) 0%, rgba(13,31,60,.96) 100%);
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    transition: opacity .2s;
+  }
+  .member-hero-image.img-broken .member-hero-img-fallback { opacity: 1; }
+  .mhf-eyebrow {
+    font-size: .58rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(0,212,170,.75); border: 1px solid rgba(0,212,170,.2);
+    background: rgba(0,212,170,.08); padding: .2rem .6rem; border-radius: 999px;
+  }
+  .mhf-title {
+    font-size: 1.15rem; font-weight: 800; color: #dde6f4; line-height: 1.2;
+    font-family: 'Lora', serif;
+  }
+  .mhf-sub { font-size: .78rem; color: #5a7a96; line-height: 1.5; }
 
   @media (max-width: 768px) {
     /* ── Hard structural reset ── */
