@@ -17,13 +17,23 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
         {/* LEFT — signup form */}
         <div className="auth-card-wrap">
           <form className="auth-card--premium" action={signUp}>
+            <div className="auth-step">
+              <span className="auth-step-pill">Step 1 of 3</span>
+              <div className="auth-step-line" />
+              <div className="auth-step-dots">
+                <span className="auth-step-dot active" />
+                <span className="auth-step-dot" />
+                <span className="auth-step-dot" />
+              </div>
+            </div>
             <p className="eyebrow">Create account</p>
             <h1>Start building your investing confidence.</h1>
             <p className="muted">Your account keeps your guides, simulator progress, and Premium access in one place.</p>
             {params.message ? <div className="notice">{params.message}</div> : null}
             <label>Email<input name="email" type="email" placeholder="you@email.com" required /></label>
             <label>Password<PasswordInput name="password" minLength={6} required /></label>
-            <SubmitButton pendingText="Creating account...">Start my journey</SubmitButton>
+            <SubmitButton pendingText="Creating account...">Start my investing path</SubmitButton>
+            <p className="auth-next-hint">Most members start with the simulator and beginner roadmap.</p>
             <div className="auth-trust-row">
               <span className="auth-trust-item">Secure account</span>
               <span className="auth-trust-item">No spam</span>
@@ -54,9 +64,8 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
           <div className="avp-reassurance">
             Built for people starting from zero — no jargon, no hype, no pressure.
           </div>
-          <p className="avp-quote">
-            <span className="avp-quote-mark">&ldquo;</span>
-            I finally understood investing without feeling overwhelmed.
+          <p className="avp-note">
+            Designed to help first-time investors feel calm, clear, and confident.
           </p>
         </div>
 
