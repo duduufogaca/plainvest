@@ -108,6 +108,51 @@ a { color:inherit; text-decoration:none; }
   color:var(--text);
   border:1px solid var(--border);
 }
+/* Gateway page buttons */
+.gateway-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 1.6rem;
+}
+.gateway-btn-primary {
+  display: block;
+  text-align: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 1rem 1.4rem;
+  background: linear-gradient(135deg, #5dcfad, #86e5c9);
+  color: #061220;
+  font-weight: 900;
+  font-size: .95rem;
+  text-decoration: none;
+  box-shadow: 0 4px 22px rgba(97,213,180,.26), 0 1px 0 rgba(255,255,255,.15) inset;
+  transition: box-shadow .3s ease, transform .3s ease;
+  letter-spacing: .01em;
+}
+.gateway-btn-primary:hover {
+  box-shadow: 0 10px 38px rgba(97,213,180,.46), 0 1px 0 rgba(255,255,255,.18) inset;
+  transform: translateY(-2px);
+}
+.gateway-btn-secondary {
+  display: block;
+  text-align: center;
+  border-radius: 999px;
+  padding: .95rem 1.4rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(200,220,240,.75);
+  font-weight: 700;
+  font-size: .9rem;
+  text-decoration: none;
+  transition: background .22s, border-color .22s, color .22s;
+}
+.gateway-btn-secondary:hover {
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.2);
+  color: var(--text);
+}
+
 .auth-card {
   width:min(460px,100%);
   border-radius:28px;
