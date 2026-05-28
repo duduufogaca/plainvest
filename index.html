@@ -16527,7 +16527,20 @@
             <span data-i18n="member.heroPill3">Support call</span>
           </div>
         </div>
-        <div class="member-hero-image" role="img" aria-label="Seed growing with an upward investment chart"></div>
+        <div class="member-hero-image" id="memberHeroImgWrap">
+          <img
+            src="/assets/hero-seed-growth.png"
+            alt=""
+            class="member-hero-img-tag"
+            aria-hidden="true"
+            onerror="document.getElementById('memberHeroImgWrap').classList.add('img-broken')"
+          />
+          <div class="member-hero-img-fallback">
+            <span class="mhf-eyebrow">PLAINVEST PREMIUM</span>
+            <strong class="mhf-title">Start Here Guide</strong>
+            <p class="mhf-sub">Your first step inside the member hub.</p>
+          </div>
+        </div>
       </div>
       <div class="member-access-panel">
         <div class="member-welcome">
@@ -22085,6 +22098,7 @@
         }
         if (page === 'member') {
           try { applyGuideProgress(); } catch (e) { }
+          try { enforceMobileHubLayout(); } catch (e) { }
         }
       });
     }
@@ -22291,6 +22305,30 @@
       exchange: 'cat-tag-exchange', mindset: 'cat-tag-mindset', tools: 'cat-tag-tools', start: 'cat-tag-start'
     };
 
+    function enforceMobileHubLayout() {
+      if (window.innerWidth > 768) return;
+      try {
+        document.querySelectorAll('.member-grid').forEach(function (el) {
+          el.style.setProperty('grid-template-columns', '1fr', 'important');
+          el.style.setProperty('width', '100%', 'important');
+        });
+        document.querySelectorAll('.member-card').forEach(function (el) {
+          el.style.setProperty('width', '100%', 'important');
+          el.style.setProperty('max-width', '100%', 'important');
+          el.style.setProperty('min-width', '0', 'important');
+        });
+        document.querySelectorAll('.member-card-featured').forEach(function (el) {
+          el.style.setProperty('grid-column', 'span 1', 'important');
+          el.style.setProperty('flex-direction', 'column', 'important');
+        });
+        document.querySelectorAll('.hub-category-header').forEach(function (el) {
+          el.style.setProperty('grid-column', 'span 1', 'important');
+        });
+        var heroVisual = document.querySelector('.member-hero-visual');
+        if (heroVisual) heroVisual.style.setProperty('grid-template-columns', '1fr', 'important');
+      } catch (_) {}
+    }
+
     function initMemberHub() {
       var isFirst = true;
       document.querySelectorAll('.member-card').forEach(function (card) {
@@ -22344,6 +22382,7 @@
       });
       initStarButtons();
       updateHubStats();
+      try { enforceMobileHubLayout(); } catch (_) {}
     }
 
     function syncSupportCallPaidState(page) {
@@ -22391,14 +22430,16 @@
       if (navProfileBtn) {
         var isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         navProfileBtn.href = (isMemberAppHost() || isLocalHost) ? '/profile' : 'https://members.plainvest.app/profile';
-        navProfileBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
+        const isMobileNav = window.innerWidth <= 1024;
+        navProfileBtn.style.setProperty('display', active && !isMobileNav ? 'inline-flex' : 'none', 'important');
       }
 
       const navPortfolioBtn = document.getElementById('nav-portfolio-btn');
       if (navPortfolioBtn) {
         var isLocalH = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         navPortfolioBtn.href = (isMemberAppHost() || isLocalH) ? '/portfolio' : 'https://members.plainvest.app/portfolio';
-        navPortfolioBtn.style.setProperty('display', active ? 'inline-flex' : 'none', 'important');
+        const isMobileNavP = window.innerWidth <= 1024;
+        navPortfolioBtn.style.setProperty('display', active && !isMobileNavP ? 'inline-flex' : 'none', 'important');
       }
 
       const statPortfolioLink = document.getElementById('stat-portfolio-link');
@@ -22488,10 +22529,39 @@
         return false;
       }
 
-      document.body.classList.remove('premium-access-checking', 'premium-access-granted');
-      document.body.classList.add('premium-access-denied');
-      window.location.replace('/login?mode=manual');
-      return false;
+      // On the members app: sessionStorage may have been lost after back navigation
+      // (device restart, browser clearing storage, etc.). Try the Supabase cookie directly
+      // before redirecting — the HttpOnly cookie persists even when sessionStorage doesn't.
+      document.body.classList.remove('premium-access-denied');
+      document.body.classList.add('premium-access-checking');
+      try {
+        var backNavResponse = await fetch('/api/member/status', {
+          credentials: 'include',
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-store' }
+        });
+        var backNavStatus = backNavResponse.ok ? await backNavResponse.json() : null;
+        if (backNavStatus && backNavStatus.authenticated && backNavStatus.premium) {
+          document.body.classList.remove('premium-access-checking', 'premium-access-denied');
+          document.body.classList.add('premium-access-granted');
+          rememberPremiumSessionAccess();
+          rememberMemberName(backNavStatus.name || '');
+          rememberMemberGender(backNavStatus.gender || '');
+          syncMemberNavState();
+          updateWelcomeBadge();
+          initMemberHub();
+          return true;
+        }
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        window.location.replace(backNavStatus && backNavStatus.authenticated ? '/dashboard' : '/login?mode=manual');
+        return false;
+      } catch (_) {
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        window.location.replace('/login?mode=manual');
+        return false;
+      }
     }
 
     function showPage(page, options) {
@@ -22592,7 +22662,53 @@
             try { updateInflationStats(); } catch (e) { }
           }, 200);
         });
-        window.addEventListener('pageshow', function () { try { syncMemberNavState(); } catch (e) { } });
+        window.addEventListener('pageshow', function (e) {
+          try { syncMemberNavState(); } catch (_) { }
+
+          // Enforce mobile single-column grid on EVERY page show (bfcache or full reload)
+          if (window.innerWidth <= 768) {
+            try {
+              document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+              document.body.style.setProperty('overflow-x', 'hidden', 'important');
+              // Force member grid to single column
+              document.querySelectorAll('.member-grid').forEach(function (el) {
+                el.style.setProperty('grid-template-columns', '1fr', 'important');
+                el.style.setProperty('width', '100%', 'important');
+              });
+              // Force all member cards to full width
+              document.querySelectorAll('.member-card').forEach(function (el) {
+                el.style.setProperty('width', '100%', 'important');
+                el.style.setProperty('max-width', '100%', 'important');
+                el.style.setProperty('min-width', '0', 'important');
+              });
+              // Featured card: prevent grid-column span from creating implicit columns
+              document.querySelectorAll('.member-card-featured').forEach(function (el) {
+                el.style.setProperty('grid-column', 'span 1', 'important');
+                el.style.setProperty('flex-direction', 'column', 'important');
+              });
+              // Category headers
+              document.querySelectorAll('.hub-category-header').forEach(function (el) {
+                el.style.setProperty('grid-column', 'span 1', 'important');
+              });
+              // Member hero: force visible hero image
+              var heroVisual = document.querySelector('.member-hero-visual');
+              if (heroVisual) {
+                heroVisual.style.setProperty('grid-template-columns', '1fr', 'important');
+              }
+            } catch (_) {}
+          }
+
+          if (e.persisted) {
+            // Restored from bfcache (user pressed Back from a guide file)
+            try {
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+              document.querySelectorAll('*').forEach(function (el) {
+                if (el.scrollLeft > 0) el.scrollLeft = 0;
+              });
+              try { syncMobileSimulatorLayout(); } catch (_) { }
+            } catch (_) { }
+          }
+        });
 
         var raf = window.requestAnimationFrame || function (cb) { return setTimeout(cb, 16); };
         raf(function () {
@@ -22799,6 +22915,175 @@
     .mob-menu-overlay .mob-item.is-active .mob-item-label {
       color: #f5f7fa !important;
     }
+  }
+  </style>
+
+  <!-- ── Mobile responsiveness pass ── -->
+  <style>
+  html, body { overflow-x: hidden; width: 100%; max-width: 100%; }
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video { max-width: 100%; height: auto; }
+  body { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+  /* ── Hero image: img tag approach (more reliable than bg-image) ── */
+  .member-hero-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .member-hero-img-tag {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+  .member-hero-img-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(7,17,31,.96) 0%, rgba(13,31,60,.96) 100%);
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    transition: opacity .2s;
+  }
+  .member-hero-image.img-broken .member-hero-img-fallback { opacity: 1; }
+  .mhf-eyebrow {
+    font-size: .58rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(0,212,170,.75); border: 1px solid rgba(0,212,170,.2);
+    background: rgba(0,212,170,.08); padding: .2rem .6rem; border-radius: 999px;
+  }
+  .mhf-title {
+    font-size: 1.15rem; font-weight: 800; color: #dde6f4; line-height: 1.2;
+    font-family: 'Lora', serif;
+  }
+  .mhf-sub { font-size: .78rem; color: #5a7a96; line-height: 1.5; }
+
+  @media (max-width: 768px) {
+    /* ── Hard structural reset ── */
+    .member-shell {
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      box-sizing: border-box !important;
+    }
+
+    /* ── All multi-column grids → single column ── */
+    .member-grid,
+    .member-access-panel,
+    .member-books-grid,
+    .account-panel-grid,
+    .member-head,
+    .member-guide-head {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    .member-grid { gap: .85rem !important; overflow: hidden !important; }
+
+    /* ── All cards — full width, no overflow ── */
+    .member-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Featured card: override grid-column: span 3 → prevents implicit columns */
+    .member-card.member-card-featured {
+      grid-column: span 1 !important;
+      flex-direction: column !important;
+      min-width: 0 !important;
+    }
+    .member-card.member-card-featured .member-card-featured-body {
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+    .member-card.member-card-featured ul { columns: 1 !important; }
+
+    /* Category headers: override grid-column: span 3 */
+    .hub-category-header { grid-column: span 1 !important; }
+
+    /* ── Hero visual — stack content above image ── */
+    .member-hero-visual {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      min-height: unset !important;
+      overflow: hidden !important;
+      border-radius: 20px !important;
+    }
+
+    /* ── Hero image — reliable background display ── */
+    .member-hero-image {
+      display: block !important;
+      width: 100% !important;
+      min-height: 185px !important;
+      max-height: none !important;
+      position: relative !important;
+      background-image:
+        linear-gradient(180deg, rgba(7,17,31,.06) 0%, rgba(7,17,31,.35) 100%),
+        url('/assets/hero-seed-growth.png') !important;
+      background-position: center center !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+    }
+
+    /* Branded fallback badge */
+    .member-hero-image::after {
+      content: 'Plainvest Premium';
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,212,170,.12);
+      border: 1px solid rgba(0,212,170,.25);
+      color: rgba(200,255,245,.85);
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .65rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Touch-friendly buttons */
+    .member-open-file,
+    .member-action-btn,
+    .btn-primary,
+    .btn-ghost {
+      min-height: 48px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Language switcher compact */
+    .lang-btn { padding: .32rem .55rem !important; font-size: .72rem !important; }
+
+    /* Filter chips — allow wrap */
+    .member-filter-bar { flex-wrap: wrap !important; gap: .4rem !important; }
+  }
+
+  @media (max-width: 480px) {
+    .member-card { padding: 1rem !important; border-radius: 16px !important; }
+    .member-card h3 { font-size: 1rem !important; }
+    .member-card p, .member-card li { font-size: .82rem !important; }
+    .member-hero-image { min-height: 155px !important; }
+    .member-hero-visual { min-height: unset !important; }
   }
   </style>
 

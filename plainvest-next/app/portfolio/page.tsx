@@ -479,6 +479,11 @@ export default async function PortfolioPage({
 
       <div className="portfolio-content portfolio-content-wide" id="portfolio-overview">
 
+        {/* ── Back to Member Hub ── */}
+        <a href={backHref} className="back-to-hub-btn">
+          ← {lang === 'pt' ? 'Voltar ao Hub' : 'Back to Member Hub'}
+        </a>
+
         {params.success && <div className="notice notice-success">{params.success}</div>}
         {params.message && <div className="notice">{params.message}</div>}
 
