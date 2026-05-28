@@ -59,17 +59,24 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
 
   return (
     <main className="auth-shell">
-      <form className="auth-card" action={signIn}>
-        <p className="eyebrow">Member login</p>
-        <h1>Welcome back.</h1>
-        <p className="muted">Log in to continue your Plainvest Premium learning path.</p>
-        {params.message ? <div className="notice">{params.message}</div> : null}
-        <label>Email<input name="email" type="email" required /></label>
-        <label>Password<PasswordInput name="password" minLength={6} required /></label>
-        <SubmitButton pendingText="Logging in...">Login</SubmitButton>
-        <p className="switch"><Link href="/forgot-password">Forgot password?</Link></p>
-        <p className="switch">New member? <Link href="/signup">Create an account</Link></p>
-      </form>
+      <div className="auth-card-wrap">
+        <form className="auth-card auth-card--premium" action={signIn}>
+          <p className="eyebrow">Member login</p>
+          <h1>Welcome back.</h1>
+          <p className="muted">Log in to continue your Plainvest investing journey.</p>
+          {params.message ? <div className="notice">{params.message}</div> : null}
+          <label>Email<input name="email" type="email" placeholder="you@email.com" required /></label>
+          <label>Password<PasswordInput name="password" minLength={6} required /></label>
+          <SubmitButton pendingText="Logging in...">Log in</SubmitButton>
+          <div className="auth-trust-row">
+            <span className="auth-trust-item">Secure account</span>
+            <span className="auth-trust-item">No spam</span>
+            <span className="auth-trust-item">Beginner-friendly support</span>
+          </div>
+          <p className="switch"><Link href="/forgot-password">Forgot password?</Link></p>
+          <p className="switch">New member? <Link href="/signup">Create an account</Link></p>
+        </form>
+      </div>
     </main>
   );
 }
