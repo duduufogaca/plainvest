@@ -22098,6 +22098,7 @@
         }
         if (page === 'member') {
           try { applyGuideProgress(); } catch (e) { }
+          try { enforceMobileHubLayout(); } catch (e) { }
         }
       });
     }
@@ -22304,6 +22305,30 @@
       exchange: 'cat-tag-exchange', mindset: 'cat-tag-mindset', tools: 'cat-tag-tools', start: 'cat-tag-start'
     };
 
+    function enforceMobileHubLayout() {
+      if (window.innerWidth > 768) return;
+      try {
+        document.querySelectorAll('.member-grid').forEach(function (el) {
+          el.style.setProperty('grid-template-columns', '1fr', 'important');
+          el.style.setProperty('width', '100%', 'important');
+        });
+        document.querySelectorAll('.member-card').forEach(function (el) {
+          el.style.setProperty('width', '100%', 'important');
+          el.style.setProperty('max-width', '100%', 'important');
+          el.style.setProperty('min-width', '0', 'important');
+        });
+        document.querySelectorAll('.member-card-featured').forEach(function (el) {
+          el.style.setProperty('grid-column', 'span 1', 'important');
+          el.style.setProperty('flex-direction', 'column', 'important');
+        });
+        document.querySelectorAll('.hub-category-header').forEach(function (el) {
+          el.style.setProperty('grid-column', 'span 1', 'important');
+        });
+        var heroVisual = document.querySelector('.member-hero-visual');
+        if (heroVisual) heroVisual.style.setProperty('grid-template-columns', '1fr', 'important');
+      } catch (_) {}
+    }
+
     function initMemberHub() {
       var isFirst = true;
       document.querySelectorAll('.member-card').forEach(function (card) {
@@ -22357,6 +22382,7 @@
       });
       initStarButtons();
       updateHubStats();
+      try { enforceMobileHubLayout(); } catch (_) {}
     }
 
     function syncSupportCallPaidState(page) {
@@ -22503,10 +22529,39 @@
         return false;
       }
 
-      document.body.classList.remove('premium-access-checking', 'premium-access-granted');
-      document.body.classList.add('premium-access-denied');
-      window.location.replace('/login?mode=manual');
-      return false;
+      // On the members app: sessionStorage may have been lost after back navigation
+      // (device restart, browser clearing storage, etc.). Try the Supabase cookie directly
+      // before redirecting — the HttpOnly cookie persists even when sessionStorage doesn't.
+      document.body.classList.remove('premium-access-denied');
+      document.body.classList.add('premium-access-checking');
+      try {
+        var backNavResponse = await fetch('/api/member/status', {
+          credentials: 'include',
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-store' }
+        });
+        var backNavStatus = backNavResponse.ok ? await backNavResponse.json() : null;
+        if (backNavStatus && backNavStatus.authenticated && backNavStatus.premium) {
+          document.body.classList.remove('premium-access-checking', 'premium-access-denied');
+          document.body.classList.add('premium-access-granted');
+          rememberPremiumSessionAccess();
+          rememberMemberName(backNavStatus.name || '');
+          rememberMemberGender(backNavStatus.gender || '');
+          syncMemberNavState();
+          updateWelcomeBadge();
+          initMemberHub();
+          return true;
+        }
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        window.location.replace(backNavStatus && backNavStatus.authenticated ? '/dashboard' : '/login?mode=manual');
+        return false;
+      } catch (_) {
+        document.body.classList.remove('premium-access-checking', 'premium-access-granted');
+        document.body.classList.add('premium-access-denied');
+        window.location.replace('/login?mode=manual');
+        return false;
+      }
     }
 
     function showPage(page, options) {
@@ -22609,11 +22664,43 @@
         });
         window.addEventListener('pageshow', function (e) {
           try { syncMemberNavState(); } catch (_) { }
+
+          // Enforce mobile single-column grid on EVERY page show (bfcache or full reload)
+          if (window.innerWidth <= 768) {
+            try {
+              document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+              document.body.style.setProperty('overflow-x', 'hidden', 'important');
+              // Force member grid to single column
+              document.querySelectorAll('.member-grid').forEach(function (el) {
+                el.style.setProperty('grid-template-columns', '1fr', 'important');
+                el.style.setProperty('width', '100%', 'important');
+              });
+              // Force all member cards to full width
+              document.querySelectorAll('.member-card').forEach(function (el) {
+                el.style.setProperty('width', '100%', 'important');
+                el.style.setProperty('max-width', '100%', 'important');
+                el.style.setProperty('min-width', '0', 'important');
+              });
+              // Featured card: prevent grid-column span from creating implicit columns
+              document.querySelectorAll('.member-card-featured').forEach(function (el) {
+                el.style.setProperty('grid-column', 'span 1', 'important');
+                el.style.setProperty('flex-direction', 'column', 'important');
+              });
+              // Category headers
+              document.querySelectorAll('.hub-category-header').forEach(function (el) {
+                el.style.setProperty('grid-column', 'span 1', 'important');
+              });
+              // Member hero: force visible hero image
+              var heroVisual = document.querySelector('.member-hero-visual');
+              if (heroVisual) {
+                heroVisual.style.setProperty('grid-template-columns', '1fr', 'important');
+              }
+            } catch (_) {}
+          }
+
           if (e.persisted) {
             // Restored from bfcache (user pressed Back from a guide file)
             try {
-              document.documentElement.style.overflowX = 'hidden';
-              document.body.style.overflowX = 'hidden';
               window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
               document.querySelectorAll('*').forEach(function (el) {
                 if (el.scrollLeft > 0) el.scrollLeft = 0;
