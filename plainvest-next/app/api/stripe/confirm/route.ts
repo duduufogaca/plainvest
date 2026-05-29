@@ -40,6 +40,15 @@ export async function GET(request: Request) {
       return redirectTo('/dashboard?payment=unpaid', request);
     }
 
+    let subscriptionId: string | null = null;
+    let accessExpiresAt: string | null = null;
+
+    if (session.mode === 'subscription' && typeof session.subscription === 'string') {
+      subscriptionId = session.subscription;
+      const sub = await stripe.subscriptions.retrieve(subscriptionId);
+      accessExpiresAt = new Date(sub.current_period_end * 1000).toISOString();
+    }
+
     const now = new Date();
 
     const supabaseAdmin = createAdminClient();
@@ -48,10 +57,11 @@ export async function GET(request: Request) {
       email: session.customer_email || session.metadata?.email || user.email || null,
       premium_status: 'active',
       access_started_at: now.toISOString(),
-      access_expires_at: null,
+      access_expires_at: accessExpiresAt,
       stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
       stripe_checkout_session_id: session.id,
       stripe_payment_intent_id: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+      stripe_subscription_id: subscriptionId,
       updated_at: now.toISOString(),
     });
 
