@@ -14,13 +14,14 @@ function isMembersHost(host: string | null) {
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const isProtectedMemberPath = pathname.startsWith('/files/premium_content/');
+  const isPremiumContent = pathname.startsWith('/files/premium_content/');
+  const isProOnly = pathname.startsWith('/portfolio') || pathname === '/profile';
 
-  if (!isProtectedMemberPath) {
+  if (!isPremiumContent && !isProOnly) {
     return NextResponse.next();
   }
 
-  if (!isMembersHost(request.headers.get('host'))) {
+  if (isPremiumContent && !isMembersHost(request.headers.get('host'))) {
     const url = new URL(request.url);
     url.protocol = 'https:';
     url.host = 'members.plainvest.app';
@@ -59,23 +60,38 @@ export async function middleware(request: NextRequest) {
 
   const { data, error } = await supabase
     .from('member_access')
-    .select('premium_status, stripe_checkout_session_id, stripe_payment_intent_id')
+    .select('premium_status, plan, stripe_checkout_session_id, stripe_payment_intent_id')
     .eq('user_id', user.id)
     .maybeSingle<{
       premium_status: string | null;
+      plan: string | null;
       stripe_checkout_session_id: string | null;
       stripe_payment_intent_id: string | null;
     }>();
 
   const hasStripePaymentProof = Boolean(data?.stripe_payment_intent_id || data?.stripe_checkout_session_id);
+  const isActive = !error && data?.premium_status === 'active' && hasStripePaymentProof;
 
-  if (error || data?.premium_status !== 'active' || !hasStripePaymentProof) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+  // Premium content: both premium and pro plans have access
+  if (isPremiumContent) {
+    if (!isActive) {
+      return NextResponse.redirect(new URL('/dashboard', request.url));
+    }
+    return response;
+  }
+
+  // Pro-only routes: portfolio, profile
+  if (isProOnly) {
+    const isPro = isActive && data?.plan === 'pro';
+    if (!isPro) {
+      return NextResponse.redirect(new URL('/dashboard?upgrade=pro', request.url));
+    }
+    return response;
   }
 
   return response;
 }
 
 export const config = {
-  matcher: ['/files/premium_content/:path*'],
+  matcher: ['/files/premium_content/:path*', '/portfolio/:path*', '/profile'],
 };

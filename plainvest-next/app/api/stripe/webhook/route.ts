@@ -76,10 +76,13 @@ export async function POST(request: Request) {
 
     const now = new Date();
 
+    const plan = session.metadata?.plan === 'pro' ? 'pro' : 'premium';
+
     const { error } = await supabaseAdmin.from('member_access').upsert({
       user_id: userId,
       email: session.customer_email || session.metadata?.email || null,
       premium_status: 'active',
+      plan,
       access_started_at: now.toISOString(),
       access_expires_at: accessExpiresAt,
       stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
