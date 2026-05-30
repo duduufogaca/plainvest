@@ -22207,7 +22207,10 @@
       }, 0);
     }
 
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrejoarg';
+    function getContactApiBase() {
+      if (window.location.protocol === 'file:' || window.location.hostname === 'localhost') return 'http://localhost:3000';
+      return 'https://members.plainvest.app';
+    }
 
     function getMemberAppBase() {
       if (window.location.protocol === 'file:' || window.location.hostname === 'localhost') return 'http://localhost:3000';
@@ -22655,25 +22658,23 @@
       }
 
       const payload = {
-        form_type: type === 'feedback' ? 'Feedback' : 'Partnership',
+        formType: type === 'feedback' ? 'Feedback' : 'Partnership',
         name: name,
         email: email,
         topic: topic,
         company: company,
         message: msg,
         language: currentLang === 'pt' ? 'Portuguese' : 'English',
-        page: window.location.href,
-        _replyto: email,
-        _subject: type === 'feedback' ? 'New Plainvest feedback' : 'New Plainvest partnership enquiry'
+        page: window.location.href
       };
 
       try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
+        const response = await fetch(getContactApiBase() + '/api/contact', {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        if (!response.ok) throw new Error('Formspree request failed');
+        if (!response.ok) throw new Error('Contact request failed');
 
         if (successEl) successEl.classList.add('show');
         [nameEl, emailEl, msgEl].forEach(el => { if (el) el.value = ''; });
@@ -22711,19 +22712,16 @@
       }
 
       try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
+        const response = await fetch(getContactApiBase() + '/api/newsletter', {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            form_type: 'Newsletter signup',
             email: email,
             language: currentLang === 'pt' ? 'Portuguese' : 'English',
-            page: window.location.href,
-            _replyto: email,
-            _subject: 'New Plainvest insight signup'
+            page: window.location.href
           })
         });
-        if (!response.ok) throw new Error('Formspree request failed');
+        if (!response.ok) throw new Error('Newsletter request failed');
         if (input) input.value = '';
         if (success) success.classList.add('show');
       } catch (err) {

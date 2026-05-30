@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { getPostHogClient } from '@/lib/posthog-server';
+import { sendWelcomeEmail } from '@/lib/email/service';
 
 function getOrigin() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
@@ -91,6 +92,9 @@ export async function signUp(formData: FormData) {
     posthog.identify({ distinctId: data.user.id, properties: { email: data.user.email } });
     posthog.capture({ distinctId: data.user.id, event: 'user_signed_up' });
     await posthog.shutdown();
+
+    const name = data.user.user_metadata?.full_name || data.user.email || '';
+    sendWelcomeEmail(email, name).catch(() => {});
   }
 
   redirect('/login?message=Check your email to confirm your account.');

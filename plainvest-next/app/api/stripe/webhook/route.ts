@@ -1,6 +1,7 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createStripeClient } from '@/lib/stripe';
 import { getPostHogClient } from '@/lib/posthog-server';
+import { sendSupportCallConfirmationEmail, sendPremiumWelcomeEmail, sendProWelcomeEmail } from '@/lib/email/service';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -61,6 +62,11 @@ export async function POST(request: Request) {
       posthogSC.capture({ distinctId: userId, event: 'support_call_purchased', properties: { product: 'plainvest_support_call' } });
       await posthogSC.shutdown();
 
+      const scEmail = session.customer_email || session.metadata?.email;
+      if (scEmail) {
+        sendSupportCallConfirmationEmail(scEmail, scEmail).catch(() => {});
+      }
+
       return NextResponse.json({ received: true });
     }
 
@@ -97,6 +103,15 @@ export async function POST(request: Request) {
     const posthog = getPostHogClient();
     posthog.capture({ distinctId: userId, event: 'premium_access_activated', properties: { product: 'plainvest_premium_access', mode: session.mode } });
     await posthog.shutdown();
+
+    const purchaseEmail = session.customer_email || session.metadata?.email;
+    if (purchaseEmail) {
+      if (plan === 'pro') {
+        sendProWelcomeEmail(purchaseEmail, purchaseEmail).catch(() => {});
+      } else {
+        sendPremiumWelcomeEmail(purchaseEmail, purchaseEmail).catch(() => {});
+      }
+    }
   }
 
   // ── invoice.paid — subscription renewed ────────────────────────────────────
