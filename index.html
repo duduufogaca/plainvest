@@ -23213,6 +23213,36 @@
       catch (e) { }
     }
 
+    function getMemberPlan() {
+      try { return sessionStorage.getItem('plainvestMemberPlan') || ''; }
+      catch (e) { return ''; }
+    }
+    function rememberMemberPlan(plan) {
+      try { if (plan) sessionStorage.setItem('plainvestMemberPlan', plan); }
+      catch (e) { }
+    }
+
+    function updateMemberPlanLabel() {
+      var plan = getMemberPlan();
+      if (!plan) return;
+      var isPro = plan === 'pro';
+      var isPt = typeof currentLang !== 'undefined' && currentLang === 'pt';
+
+      var statusEl = document.querySelector('.member-status');
+      if (statusEl) {
+        statusEl.textContent = isPro
+          ? (isPt ? 'Membro Pro' : 'Pro Member')
+          : (isPt ? 'Membro Premium' : 'Premium Member');
+      }
+
+      var eyebrowEl = document.querySelector('.member-head .section-eyebrow');
+      if (eyebrowEl) {
+        eyebrowEl.textContent = isPro
+          ? (isPt ? 'Área do membro Pro' : 'Pro member area')
+          : (isPt ? 'Área de membro Premium' : 'Premium member area');
+      }
+    }
+
     function updateWelcomeBadge() {
       var el = document.getElementById('member-welcome-greeting');
       if (!el) return;
@@ -23233,6 +23263,7 @@
         el.style.display = 'none';
       }
       try { updateHeroGreeting(); } catch(e) {}
+      try { updateMemberPlanLabel(); } catch(e) {}
     }
 
     function updateHeroGreeting() {
@@ -23262,8 +23293,10 @@
     }
 
     function clearPremiumSessionAccess() {
-      try { sessionStorage.removeItem('plainvestPremiumAccess'); }
-      catch (e) { }
+      try {
+        sessionStorage.removeItem('plainvestPremiumAccess');
+        sessionStorage.removeItem('plainvestMemberPlan');
+      } catch (e) { }
       document.body.classList.remove('premium-session-active', 'premium-access-granted', 'premium-access-checking', 'premium-access-denied');
       syncMemberNavState();
     }
@@ -23615,6 +23648,7 @@
             rememberPremiumSessionAccess();
             rememberMemberName(status.name || '');
             rememberMemberGender(status.gender || '');
+            rememberMemberPlan(status.plan || '');
             updateWelcomeBadge();
             initMemberHub();
             return true;
