@@ -77,10 +77,21 @@ export async function middleware(request: NextRequest) {
   const notExpired = !data?.access_expires_at || new Date(data.access_expires_at) > new Date();
   const isActive = !error && data?.premium_status === 'active' && hasStripePaymentProof && notExpired;
 
+  function accessDeniedUrl(): URL {
+    // DB error → generic error page
+    if (error) return new URL('/access-error?reason=error', request.url);
+    // Had payment proof but expired → expired page
+    if (data && hasStripePaymentProof && !notExpired) return new URL('/access-error?reason=expired', request.url);
+    // Had a row and payment but status not active → cancelled/inactive
+    if (data && hasStripePaymentProof && data.premium_status !== 'active') return new URL('/access-error?reason=inactive', request.url);
+    // No row or no payment proof → never purchased → pricing page
+    return new URL('/dashboard', request.url);
+  }
+
   // Premium content: both premium and pro plans have access
   if (isPremiumContent) {
     if (!isActive) {
-      return NextResponse.redirect(new URL('/dashboard', request.url));
+      return NextResponse.redirect(accessDeniedUrl());
     }
     return response;
   }
@@ -89,7 +100,9 @@ export async function middleware(request: NextRequest) {
   if (isProOnly) {
     const isPro = isActive && data?.plan === 'pro';
     if (!isPro) {
-      return NextResponse.redirect(new URL('/dashboard?upgrade=pro', request.url));
+      // Active but wrong plan → upgrade prompt
+      if (isActive) return NextResponse.redirect(new URL('/dashboard?upgrade=pro', request.url));
+      return NextResponse.redirect(accessDeniedUrl());
     }
     return response;
   }

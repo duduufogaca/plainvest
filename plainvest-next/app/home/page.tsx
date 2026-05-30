@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { SidebarClient } from '../portfolio/components/SidebarClient';
 import { MemberHomeClient } from './components/MemberHomeClient';
 import type { Metadata } from 'next';
@@ -27,24 +28,32 @@ export default async function MemberHomePage() {
     month: 'long', year: 'numeric',
   });
 
+  const cookieStore = await cookies();
+  const lang            = (cookieStore.get('pv_lang')?.value || 'en') as 'en' | 'pt';
+  const displayCurrency = cookieStore.get('pv_currency')?.value || 'AUD';
+
   return (
     <main className="portfolio-shell">
       <SidebarClient
-        displayCurrency="AUD"
-        lang="en"
+        displayCurrency={displayCurrency}
+        lang={lang}
         backHref="/home"
         portfolioHref={isPro ? '/portfolio' : undefined}
-        profileLabel="Profile"
-        logoutLabel="Logout"
+        profileLabel={lang === 'pt' ? 'Perfil' : 'Profile'}
+        logoutLabel={lang === 'pt' ? 'Sair' : 'Logout'}
         userName={firstName}
+        userFullName={fullName || firstName}
         plan={plan ?? 'premium'}
         homeActive
       />
       <MemberHomeClient
         firstName={firstName}
+        fullName={fullName}
         plan={plan ?? 'premium'}
         isPro={isPro}
         memberSince={memberSince}
+        lang={lang}
+        displayCurrency={displayCurrency}
       />
     </main>
   );
