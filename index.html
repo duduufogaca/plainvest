@@ -6464,25 +6464,249 @@
       border-color: rgba(97, 213, 180, .2);
     }
 
-    /* Featured "Start Here" card — full width */
+    /* Featured "Start Here" hero card — full width */
     .member-card.member-card-featured {
       grid-column: span 3;
-      background: linear-gradient(135deg, rgba(22, 44, 76, .98), rgba(10, 22, 44, .98));
-      border-color: rgba(97, 213, 180, .25);
-      border-top: 3px solid rgba(97, 213, 180, .9) !important;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      gap: 1.25rem;
+      display: grid !important;
+      grid-template-columns: 1fr 260px;
+      flex-direction: unset;
+      flex-wrap: unset;
+      gap: 0;
+      padding: 0;
+      overflow: hidden;
+      align-items: stretch;
+      background: linear-gradient(135deg, rgba(14, 28, 52, .98), rgba(8, 18, 36, .98));
+      border-color: rgba(0, 212, 170, .22);
+      border-top: 3px solid rgba(0, 212, 170, .9) !important;
       min-height: auto;
     }
-    .member-card.member-card-featured .member-card-cat-tag { width: 100%; flex-basis: 100%; }
-    .member-card.member-card-featured .member-icon { width: 56px; height: 56px; font-size: 1.6rem; flex-shrink: 0; }
-    .member-card.member-card-featured .member-card-featured-body { flex: 1; min-width: 200px; }
-    .member-card.member-card-featured h3 { font-size: 1.5rem; margin: 0 0 .4rem; }
+    .member-card.member-card-featured .member-card-cat-tag { display: none; }
+    .member-card.member-card-featured .member-icon { display: none; }
     .member-card.member-card-featured .member-unlocked { display: none; }
-    .member-card.member-card-featured ul { columns: 2; gap: .5rem; }
-    .member-card.member-card-featured .member-open-file { margin-top: .75rem; }
+
+    /* Start Here content pane */
+    .sh-content {
+      padding: 1.2rem 1.5rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .sh-eyebrow {
+      font-size: .62rem;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(0, 212, 170, .7);
+      margin-bottom: .35rem;
+    }
+    .sh-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.25;
+      margin: 0 0 .5rem;
+    }
+    .sh-meta {
+      display: flex;
+      gap: .45rem;
+      margin-bottom: .65rem;
+      flex-wrap: wrap;
+    }
+    .sh-meta span {
+      font-size: .67rem;
+      font-weight: 700;
+      padding: .2rem .55rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+    .sh-meta .sh-meta-primary {
+      background: rgba(0,212,170,.1);
+      color: rgba(0,212,170,.85);
+      border-color: rgba(0,212,170,.2);
+    }
+    .sh-intro-label {
+      font-size: .77rem;
+      color: rgba(255,255,255,.45);
+      margin: 0 0 .5rem;
+    }
+    .sh-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 .75rem;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+    .sh-checklist li {
+      font-size: .78rem;
+      color: rgba(255,255,255,.75);
+      display: flex;
+      align-items: flex-start;
+      gap: .4rem;
+      line-height: 1.3;
+    }
+    .sh-checklist li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 900;
+      font-size: .78rem;
+      margin-top: .05rem;
+      flex-shrink: 0;
+    }
+    .sh-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: var(--teal);
+      color: #071410;
+      font-size: .85rem;
+      font-weight: 900;
+      padding: .58rem 1.3rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      align-self: flex-start;
+      box-shadow: 0 0 22px rgba(0,212,170,.28);
+      margin-bottom: .5rem;
+    }
+    .sh-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(0,212,170,.38); }
+    .sh-next {
+      font-size: .69rem;
+      color: rgba(255,255,255,.3);
+      line-height: 1.4;
+    }
+    .sh-next strong { color: rgba(255,255,255,.55); }
+
+    /* Start Here visual pane */
+    .sh-visual {
+      padding: 1.1rem 1rem 1.1rem 1.1rem;
+      background: rgba(0,212,170,.035);
+      border-left: 1px solid rgba(0,212,170,.12);
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      justify-content: space-between;
+    }
+    .sh-journey-label {
+      font-size: .58rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+      margin-bottom: .35rem;
+    }
+    .sh-journey {
+      display: flex;
+      flex-direction: column;
+    }
+    .sh-step {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .14rem 0;
+    }
+    .sh-step-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .56rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.3);
+      flex-shrink: 0;
+    }
+    .sh-step-active .sh-step-num {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #071410;
+      box-shadow: 0 0 10px rgba(0,212,170,.4);
+    }
+    .sh-step-text { display: flex; flex-direction: column; flex: 1; }
+    .sh-step-name {
+      font-size: .67rem;
+      color: rgba(255,255,255,.35);
+      line-height: 1.2;
+    }
+    .sh-step-active .sh-step-name {
+      color: rgba(255,255,255,.85);
+      font-weight: 700;
+    }
+    .sh-step-you {
+      font-size: .6rem;
+      color: rgba(0,212,170,.7);
+      font-weight: 700;
+    }
+    .sh-step-connector {
+      width: 1px;
+      height: 6px;
+      background: rgba(255,255,255,.08);
+      margin-left: 8px;
+    }
+    .sh-unlock {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 9px;
+      padding: .6rem .75rem;
+    }
+    .sh-unlock-title {
+      font-size: .59rem;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+      margin-bottom: .35rem;
+    }
+    .sh-unlock-items {
+      display: flex;
+      flex-direction: column;
+      gap: .15rem;
+    }
+    .sh-unlock-items span {
+      font-size: .68rem;
+      color: rgba(255,255,255,.45);
+    }
+
+    /* Hero personal greeting */
+    .sh-hero-greeting { font-size: .73rem; font-weight: 700; color: rgba(255,255,255,.45); margin-bottom: .2rem; display: none; }
+    .sh-hero-greeting span { color: rgba(255,255,255,.88); font-weight: 800; }
+
+    /* Progress bar inside hero content pane */
+    .sh-progress-wrap { margin: .45rem 0 .8rem; }
+    .sh-progress-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .25rem; }
+    .sh-progress-head-label { font-size: .58rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: rgba(255,255,255,.27); }
+    .sh-progress-head-pct { font-size: .66rem; font-weight: 900; color: var(--teal); }
+    .sh-progress-track { height: 5px; background: rgba(255,255,255,.07); border-radius: 10px; overflow: hidden; }
+    .sh-progress-fill { height: 100%; width: 5%; background: linear-gradient(90deg, var(--teal), rgba(0,212,170,.5)); border-radius: 10px; transition: width .4s ease; }
+    .sh-progress-count { font-size: .59rem; color: rgba(255,255,255,.22); margin-top: .16rem; }
+
+    /* Stage labels in roadmap sidebar */
+    .sh-stage-label { font-size: .51rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; color: rgba(0,212,170,.45); margin: .4rem 0 .1rem; }
+    .sh-stage-label:first-child { margin-top: .05rem; }
+
+    /* Path info box in sidebar (replaces unlock block) */
+    .sh-path-info { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 9px; padding: .6rem .75rem; }
+    .sh-path-info-title { font-size: .56rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.2); margin-bottom: .3rem; }
+    .sh-path-rows { display: flex; flex-direction: column; gap: .1rem; }
+    .sh-path-row { font-size: .64rem; color: rgba(255,255,255,.35); }
+    .sh-path-row strong { color: rgba(255,255,255,.58); }
+    .sh-path-current { font-size: .62rem; font-weight: 700; color: rgba(0,212,170,.7); margin-top: .2rem; }
+
+    /* Hub learning progress row (spans full width between hero and guide categories) */
+    .hub-progress-row { grid-column: span 3; display: grid; grid-template-columns: repeat(4,1fr); gap: .5rem; background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.05); border-radius: 10px; padding: .65rem .9rem; margin-bottom: .1rem; }
+    .hpr-stat { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hpr-val { font-size: .95rem; font-weight: 900; color: var(--ink); line-height: 1.1; }
+    .hpr-val.teal { color: var(--teal); }
+    .hpr-label { font-size: .55rem; color: rgba(255,255,255,.24); margin-top: .1rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 700; }
+
+    /* Recommended Next badge on guide cards */
+    .rec-next-badge { display: inline-block; font-size: .52rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; background: var(--teal); color: #071410; padding: .14rem .5rem; border-radius: 20px; margin-bottom: .38rem; margin-top: .1rem; }
+    .member-card:has(.rec-next-badge) { padding-top: 1.6rem; }
 
     .member-card:nth-child(3n+1) {
       border-top: 3px solid rgba(0, 212, 170, .7);
@@ -7350,8 +7574,12 @@
       }
 
       .hub-category-header { grid-column: span 1; }
-      .member-card.member-card-featured { flex-direction: column; }
-      .member-card.member-card-featured ul { columns: 1; }
+      .member-card.member-card-featured { grid-template-columns: 1fr !important; }
+      .sh-visual { border-left: none; border-top: 1px solid rgba(0,212,170,.12); }
+      .sh-journey { display: none; }
+      .sh-title { font-size: 1.1rem; }
+      .hub-progress-row { grid-template-columns: repeat(2,1fr); }
+      .hub-progress-row { grid-column: span 1; }
       .milestone-grid { grid-template-columns: repeat(2,1fr); }
       .mws-grid { grid-template-columns: repeat(2,1fr); }
       .member-portfolio-cta { flex-direction: column; padding: 1.25rem 1.25rem; }
@@ -16562,24 +16790,131 @@
       </div>
       <div class="member-grid">
 
-        <!-- ─── START HERE ─── -->
+        <!-- ─── START HERE HERO ─── -->
         <div class="hub-category-header">
-          <div class="hub-cat-label" id="hubcat-start">Start Here</div>
-          <div class="hub-cat-title" id="hubcat-start-title">The only guide you must read first.</div>
+          <div class="hub-cat-label" id="hubcat-start" data-i18n="member.shCatLabel">Learning Hub</div>
+          <div class="hub-cat-title" id="hubcat-start-title" data-i18n="member.shCatTitle">Start Your Investing Journey</div>
+          <div class="hub-cat-sub" id="hubcat-start-sub" data-i18n="member.shCatSub">Complete this 5-minute guide first and we'll show you exactly what to learn next.</div>
         </div>
-        <div class="member-card member-card-featured">
-          <div class="member-card-cat-tag cat-tag-start" data-i18n="member.unlocked">Unlocked</div>
-          <div class="member-icon">🚀</div>
-          <div class="member-card-featured-body">
-            <div class="member-card-badges"><span class="member-time-badge">⏱ 5 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
-            <h3 data-i18n="member.cardWelcomeTitle">Premium Welcome — Start Here</h3>
-            <p data-i18n="member.cardWelcomeText">Understand what's inside Premium, which guide to open first based on your goals, and how to get the most out of your membership from day one.</p>
-            <ul>
-              <li data-i18n="member.cardWelcomeItem1">What's included in your Premium access</li>
-              <li data-i18n="member.cardWelcomeItem2">How to use the hub and navigate guides</li>
-              <li data-i18n="member.cardWelcomeItem3">Where to start based on your experience level</li>
+        <div class="member-card member-card-featured" data-guide="welcome">
+
+          <!-- LEFT: content -->
+          <div class="sh-content">
+            <div class="sh-hero-greeting" id="sh-hero-greeting"></div>
+            <div class="sh-eyebrow" data-i18n="member.shEyebrow">Welcome to Plainvest</div>
+            <h2 class="sh-title" data-i18n="member.shTitle">Your Investing Roadmap Starts Here</h2>
+            <div class="sh-meta">
+              <span class="sh-meta-primary">🕒 5 min</span>
+              <span>⭐ Beginner</span>
+              <span>📍 Start Here</span>
+            </div>
+            <p class="sh-intro-label" data-i18n="member.shIntroLabel">What you'll learn:</p>
+            <ul class="sh-checklist">
+              <li data-i18n="member.shCheck1">How Plainvest works and what you've unlocked</li>
+              <li data-i18n="member.shCheck2">Which guide to read next based on your goals</li>
+              <li data-i18n="member.shCheck3">Common beginner mistakes — and how to avoid them</li>
+              <li data-i18n="member.shCheck4">How to build your personal investing roadmap</li>
+              <li data-i18n="member.shCheck5">How to get support when you need it</li>
             </ul>
-            <button class="member-open-file" onclick="openMemberGuide('welcome')" data-i18n="member.openFileBtn">Open file</button>
+            <div class="sh-progress-wrap">
+              <div class="sh-progress-head">
+                <span class="sh-progress-head-label" data-i18n="member.shProgressLabel">Learning Progress</span>
+                <span class="sh-progress-head-pct" id="sh-progress-pct">5%</span>
+              </div>
+              <div class="sh-progress-track"><div class="sh-progress-fill" id="sh-progress-fill"></div></div>
+              <div class="sh-progress-count" id="sh-progress-count" data-i18n="member.shProgressCount">1 of 18 guides started</div>
+            </div>
+            <button class="sh-cta" onclick="openMemberGuide('welcome')" data-i18n="member.shCta">Start My Journey →</button>
+            <div class="sh-next">
+              <span data-i18n="member.shNextLabel">After this guide you'll unlock:</span>
+              <strong data-i18n="member.shNextTitle"> → Investment Paths</strong>
+              <span data-i18n="member.shNextMeta"> → Beginner Roadmap → Portfolio Framework</span>
+            </div>
+          </div>
+
+          <!-- RIGHT: staged roadmap -->
+          <div class="sh-visual">
+            <div>
+              <div class="sh-journey-label" data-i18n="member.shJourneyLabel">Complete Learning Path</div>
+              <div class="sh-journey">
+                <div class="sh-stage-label" data-i18n="member.shStage1">Foundation</div>
+                <div class="sh-step sh-step-active">
+                  <div class="sh-step-num">1</div>
+                  <div class="sh-step-text">
+                    <span class="sh-step-name" data-i18n="member.shStep1">Welcome</span>
+                    <span class="sh-step-you" data-i18n="member.shStepYou">← You are here</span>
+                  </div>
+                </div>
+                <div class="sh-step-connector"></div>
+                <div class="sh-step">
+                  <div class="sh-step-num">2</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep2">Investment Paths</span></div>
+                </div>
+                <div class="sh-step-connector"></div>
+                <div class="sh-step">
+                  <div class="sh-step-num">3</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep3">DCA Method</span></div>
+                </div>
+                <div class="sh-step-connector"></div>
+                <div class="sh-step">
+                  <div class="sh-step-num">4</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep4">Bitcoin &amp; ETF Basics</span></div>
+                </div>
+                <div class="sh-stage-label" data-i18n="member.shStage2">Wealth Building</div>
+                <div class="sh-step">
+                  <div class="sh-step-num">5</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep5">Exchange Setup</span></div>
+                </div>
+                <div class="sh-step-connector"></div>
+                <div class="sh-step">
+                  <div class="sh-step-num">6</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep6">First Trade</span></div>
+                </div>
+                <div class="sh-step-connector"></div>
+                <div class="sh-step">
+                  <div class="sh-step-num">7</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep7">Chart Reading</span></div>
+                </div>
+                <div class="sh-stage-label" data-i18n="member.shStage3">Tracking &amp; Growth</div>
+                <div class="sh-step">
+                  <div class="sh-step-num">8</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep8">Portfolio Dashboard</span></div>
+                </div>
+                <div class="sh-step-connector"></div>
+                <div class="sh-step">
+                  <div class="sh-step-num">9</div>
+                  <div class="sh-step-text"><span class="sh-step-name" data-i18n="member.shStep9">Zoom Call Prep</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="sh-path-info">
+              <div class="sh-path-info-title" data-i18n="member.shPathTitle">Complete Learning Path</div>
+              <div class="sh-path-rows">
+                <div class="sh-path-row"><strong data-i18n="member.shPathGuides">18 guides</strong> · <span data-i18n="member.shPathTime">4–6 hours total</span></div>
+                <div class="sh-path-current" id="sh-path-current" data-i18n="member.shPathCurrent">Current stage: Welcome</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ─── LEARNING PROGRESS ROW ─── -->
+        <div class="hub-progress-row" id="hub-progress-row">
+          <div class="hpr-stat">
+            <span class="hpr-val" id="hpr-guides-done">0</span>
+            <span class="hpr-label" data-i18n="member.hprGuidesLabel">Guides Completed</span>
+          </div>
+          <div class="hpr-stat">
+            <span class="hpr-val teal" id="hpr-pct">5%</span>
+            <span class="hpr-label" data-i18n="member.hprProgressLabel">Learning Progress</span>
+          </div>
+          <div class="hpr-stat">
+            <span class="hpr-val" id="hpr-stage" data-i18n="member.hprStageVal">Foundation</span>
+            <span class="hpr-label" data-i18n="member.hprStageLabel">Current Stage</span>
+          </div>
+          <div class="hpr-stat">
+            <span class="hpr-val" id="hpr-time">4h 30m</span>
+            <span class="hpr-label" data-i18n="member.hprTimeLabel">Est. Time Left</span>
           </div>
         </div>
 
@@ -16590,6 +16925,7 @@
           <div class="hub-cat-sub" id="hubcat-foundations-sub">Start with any of these. Each one builds a layer of clarity you'll keep for life.</div>
         </div>
         <div class="member-card">
+          <div class="rec-next-badge" data-i18n="member.recNextBadge">Recommended Next</div>
           <div class="member-icon">📚</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
           <div class="member-card-badges"><span class="member-time-badge">⏱ 20 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
@@ -17803,6 +18139,39 @@
           cardWelcomeItem1: 'What\'s included in your Premium access',
           cardWelcomeItem2: 'How to use the hub and navigate guides',
           cardWelcomeItem3: 'Where to start based on your experience level',
+          shCatLabel: 'Learning Hub',
+          shCatTitle: 'Start Your Investing Journey',
+          shCatSub: 'Complete this 5-minute guide first and we\'ll show you exactly what to learn next.',
+          shEyebrow: 'Welcome to Plainvest',
+          shTitle: 'Your Investing Roadmap Starts Here',
+          shIntroLabel: 'What you\'ll learn:',
+          shCheck1: 'How Plainvest works and what you\'ve unlocked',
+          shCheck2: 'Which guide to read next based on your goals',
+          shCheck3: 'Common beginner mistakes — and how to avoid them',
+          shCheck4: 'How to build your personal investing roadmap',
+          shCheck5: 'How to get support when you need it',
+          shProgressLabel: 'Learning Progress',
+          shProgressCount: '1 of 18 guides started',
+          shCta: 'Start My Journey →',
+          shNextLabel: 'After this guide you\'ll unlock:',
+          shNextTitle: ' → Investment Paths',
+          shNextMeta: ' → Beginner Roadmap → Portfolio Framework',
+          shJourneyLabel: 'Complete Learning Path',
+          shStage1: 'Foundation', shStage2: 'Wealth Building', shStage3: 'Tracking & Growth',
+          shStep1: 'Welcome', shStepYou: '← You are here',
+          shStep2: 'Investment Paths', shStep3: 'DCA Method',
+          shStep4: 'Bitcoin & ETF Basics',
+          shStep5: 'Exchange Setup', shStep6: 'First Trade',
+          shStep7: 'Chart Reading', shStep8: 'Portfolio Dashboard',
+          shStep9: 'Zoom Call Prep',
+          shPathTitle: 'Complete Learning Path',
+          shPathGuides: '18 guides', shPathTime: '4–6 hours total',
+          shPathCurrent: 'Current stage: Welcome',
+          hprGuidesLabel: 'Guides Completed',
+          hprProgressLabel: 'Learning Progress',
+          hprStageVal: 'Foundation', hprStageLabel: 'Current Stage',
+          hprTimeLabel: 'Est. Time Left',
+          recNextBadge: 'Recommended Next',
           cardLibraryTitle: 'Research & Tools Library',
           cardLibraryText: '10 categories of curated research tools, reference sources, and educational material. From ETF screeners and sentiment gauges to platform comparisons, tax basics, and sources to avoid.',
           cardLibraryItem1: 'ETF tools, crypto research, chart platforms, sentiment gauges',
@@ -18610,6 +18979,39 @@
           cardWelcomeItem1: 'O que está incluído no seu acesso Premium',
           cardWelcomeItem2: 'Como usar o hub e navegar pelos guias',
           cardWelcomeItem3: 'Por onde começar de acordo com seu nível',
+          shCatLabel: 'Hub de Aprendizado',
+          shCatTitle: 'Comece Sua Jornada de Investimentos',
+          shCatSub: 'Complete este guia de 5 minutos primeiro e mostraremos exatamente o que aprender a seguir.',
+          shEyebrow: 'Bem-vindo ao Plainvest',
+          shTitle: 'Seu Roteiro de Investimentos Começa Aqui',
+          shIntroLabel: 'O que você vai aprender:',
+          shCheck1: 'Como o Plainvest funciona e o que você desbloqueou',
+          shCheck2: 'Qual guia ler a seguir com base nos seus objetivos',
+          shCheck3: 'Erros comuns de iniciantes — e como evitá-los',
+          shCheck4: 'Como construir seu roteiro pessoal de investimentos',
+          shCheck5: 'Como obter suporte quando precisar',
+          shProgressLabel: 'Progresso de Aprendizado',
+          shProgressCount: '1 de 18 guias iniciados',
+          shCta: 'Começar Minha Jornada →',
+          shNextLabel: 'Após este guia você vai desbloquear:',
+          shNextTitle: ' → Caminhos de Investimento',
+          shNextMeta: ' → Roteiro Iniciante → Framework de Portfólio',
+          shJourneyLabel: 'Trilha Completa de Aprendizado',
+          shStage1: 'Fundação', shStage2: 'Construindo Riqueza', shStage3: 'Acompanhamento',
+          shStep1: 'Boas-vindas', shStepYou: '← Você está aqui',
+          shStep2: 'Caminhos de Investimento', shStep3: 'Método DCA',
+          shStep4: 'Bitcoin e ETF',
+          shStep5: 'Configurar Exchange', shStep6: 'Primeira Operação',
+          shStep7: 'Leitura de Gráficos', shStep8: 'Dashboard de Portfólio',
+          shStep9: 'Preparação para Zoom',
+          shPathTitle: 'Trilha Completa de Aprendizado',
+          shPathGuides: '18 guias', shPathTime: '4–6 horas no total',
+          shPathCurrent: 'Estágio atual: Boas-vindas',
+          hprGuidesLabel: 'Guias Concluídos',
+          hprProgressLabel: 'Progresso de Aprendizado',
+          hprStageVal: 'Fundação', hprStageLabel: 'Estágio Atual',
+          hprTimeLabel: 'Tempo Restante',
+          recNextBadge: 'Recomendado a Seguir',
           cardLibraryTitle: 'Biblioteca de Pesquisa e Ferramentas',
           cardLibraryText: '10 categorias de ferramentas de pesquisa, fontes de referência e material educativo. De triadores de ETF e medidores de sentimento a comparações de plataformas, noções de impostos e fontes a evitar.',
           cardLibraryItem1: 'Ferramentas de ETF, cripto, gráficos e sentimento de mercado',
@@ -22074,6 +22476,27 @@
       } else {
         el.style.display = 'none';
       }
+      try { updateHeroGreeting(); } catch(e) {}
+    }
+
+    function updateHeroGreeting() {
+      var el = document.getElementById('sh-hero-greeting');
+      if (!el) return;
+      var name = (typeof getMemberName === 'function') ? getMemberName() : '';
+      if (name) {
+        var firstName = name.split(' ')[0];
+        var g = (typeof getMemberGender === 'function') ? getMemberGender() : '';
+        var html;
+        if (typeof currentLang !== 'undefined' && currentLang === 'pt') {
+          html = 'Olá, <span>' + firstName + '</span>. Vamos construir sua base de investimentos.';
+        } else {
+          html = 'Welcome, <span>' + firstName + '</span>. Let\'s build your investing foundation.';
+        }
+        el.innerHTML = html;
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
+      }
     }
 
     function rememberPremiumSessionAccess() {
@@ -22201,13 +22624,41 @@
       var read = (typeof getReadGuides === 'function') ? getReadGuides() : [];
       var total = Object.keys(CARD_CATS).length;
       var starred = getStarred();
+      var isPt = typeof currentLang !== 'undefined' && currentLang === 'pt';
+      var pct = total > 0 ? Math.round((read.length / total) * 100) : 0;
+      var displayPct = Math.max(5, pct);
+
+      // Top stats strip
       var elOpened = document.getElementById('stat-guides-opened');
       var elSub = document.getElementById('stat-guides-sub');
       var elFavs = document.getElementById('stat-favs-count');
-      var isPt = typeof currentLang !== 'undefined' && currentLang === 'pt';
       if (elOpened) elOpened.textContent = read.length;
       if (elSub) elSub.textContent = isPt ? 'de ' + total + ' guias' : 'of ' + total + ' guides';
       if (elFavs) elFavs.textContent = starred.length;
+
+      // Hero progress bar
+      var fill = document.getElementById('sh-progress-fill');
+      var pctEl = document.getElementById('sh-progress-pct');
+      var countEl = document.getElementById('sh-progress-count');
+      if (fill) fill.style.width = displayPct + '%';
+      if (pctEl) pctEl.textContent = displayPct + '%';
+      if (countEl) countEl.textContent = isPt
+        ? read.length + ' de ' + total + ' guias iniciados'
+        : read.length + ' of ' + total + ' guides started';
+
+      // Hub progress row
+      var avgMinPerGuide = 15;
+      var remaining = Math.max(0, total - read.length) * avgMinPerGuide;
+      var remH = Math.floor(remaining / 60), remM = remaining % 60;
+      var timeStr = remH > 0 ? (remH + 'h' + (remM > 0 ? ' ' + remM + 'm' : '')) : (remM + 'm');
+      var hprDone = document.getElementById('hpr-guides-done');
+      var hprPct = document.getElementById('hpr-pct');
+      var hprTime = document.getElementById('hpr-time');
+      if (hprDone) hprDone.textContent = read.length;
+      if (hprPct) hprPct.textContent = displayPct + '%';
+      if (hprTime) hprTime.textContent = timeStr;
+
+      try { updateHeroGreeting(); } catch(e) {}
     }
 
     var CAT_TAG_LABELS = {
@@ -22220,7 +22671,8 @@
     };
 
     function initMemberHub() {
-      var isFirst = true;
+      // Hero card is hardcoded in HTML — never auto-feature a different card
+      var isFirst = !document.querySelector('.member-card.member-card-featured .sh-content');
       document.querySelectorAll('.member-card').forEach(function (card) {
         var btn = card.querySelector('.member-open-file');
         if (!btn) return;
@@ -22232,7 +22684,7 @@
         var cats = CARD_CATS[key] || [];
         if (cats.length) card.dataset.cats = cats.join(',');
 
-        // Featured card for first (Start Here) — wrap content in body div for horizontal layout
+        // Only auto-feature if there is no hardcoded hero card (legacy fallback)
         if (isFirst) {
           card.classList.add('member-card-featured');
           isFirst = false;
