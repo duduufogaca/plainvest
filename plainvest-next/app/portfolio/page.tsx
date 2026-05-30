@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { updateCurrentPrice } from '../actions/portfolio';
 import { DonutChart, type DonutSegment } from './components/DonutChart';
 import { SidebarClient } from './components/SidebarClient';
@@ -179,11 +180,17 @@ export default async function PortfolioPage({
 }) {
   const params = await searchParams;
 
+  const cookieStore = await cookies();
+  const cookieCurrency = cookieStore.get('pv_currency')?.value || 'AUD';
+  const cookieLang     = cookieStore.get('pv_lang')?.value || 'en';
+
   const displayCurrency: Currency =
     VALID_CURRENCIES.includes(params.currency as Currency)
       ? (params.currency as Currency)
-      : 'AUD';
-  const lang = getLang(params.lang);
+      : VALID_CURRENCIES.includes(cookieCurrency as Currency)
+        ? (cookieCurrency as Currency)
+        : 'AUD';
+  const lang = getLang(params.lang || cookieLang);
   const tx = T[lang];
   const view = params.view || '';
   const showAll = !view || view === 'overview';
@@ -196,7 +203,7 @@ export default async function PortfolioPage({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
-  const { isPremium } = await getPremiumAccess(supabase, user.id);
+  const { isPremium, plan } = await getPremiumAccess(supabase, user.id);
   if (!isPremium) redirect('/dashboard');
 
   const fullName: string = user.user_metadata?.full_name || '';
@@ -469,6 +476,7 @@ export default async function PortfolioPage({
         profileLabel={tx.profile}
         logoutLabel={tx.logout}
         userName={firstName}
+        plan={plan ?? 'premium'}
       />
 
       {/* ── Main ────────────────────────────────────────── */}

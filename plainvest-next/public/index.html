@@ -16516,7 +16516,7 @@
           <p class="section-lead" data-i18n="member.lead">A calmer relationship with money starts here — guided learning, real tools, and a support path in one place.</p>
         </div>
         <div class="member-head-actions">
-          <div class="member-status" data-i18n="member.status">Premium member</div>
+          <div class="member-status" id="member-status-badge">Premium member</div>
         </div>
       </div>
       <!-- Member quick stats -->
@@ -19147,6 +19147,7 @@
       });
 
       updateWelcomeBadge();
+      updateMemberStatusBadge();
 
       // ── data-i18n-html (innerHTML)
       document.querySelectorAll('[data-i18n-html]').forEach(el => {
@@ -22168,6 +22169,28 @@
       catch (e) { }
     }
 
+    function getMemberPlan() {
+      try { return sessionStorage.getItem('plainvestMemberPlan') || 'premium'; }
+      catch (e) { return 'premium'; }
+    }
+
+    function rememberMemberPlan(plan) {
+      try { sessionStorage.setItem('plainvestMemberPlan', plan || 'premium'); }
+      catch (e) { }
+    }
+
+    function updateMemberStatusBadge() {
+      var el = document.getElementById('member-status-badge');
+      if (!el) return;
+      var plan = getMemberPlan();
+      var isPt = currentLang === 'pt';
+      if (plan === 'pro') {
+        el.textContent = isPt ? 'Membro Pro' : 'Pro member';
+      } else {
+        el.textContent = isPt ? 'Membro Premium' : 'Premium member';
+      }
+    }
+
     function updateWelcomeBadge() {
       var el = document.getElementById('member-welcome-greeting');
       if (!el) return;
@@ -22196,8 +22219,10 @@
     }
 
     function clearPremiumSessionAccess() {
-      try { sessionStorage.removeItem('plainvestPremiumAccess'); }
-      catch (e) { }
+      try {
+        sessionStorage.removeItem('plainvestPremiumAccess');
+        sessionStorage.removeItem('plainvestMemberPlan');
+      } catch (e) { }
       document.body.classList.remove('premium-session-active', 'premium-access-granted', 'premium-access-checking', 'premium-access-denied');
       syncMemberNavState();
     }
@@ -22428,6 +22453,7 @@
     function syncMemberNavState() {
       var active = hasPremiumSessionAccess() || document.body.classList.contains('premium-access-granted') || premiumSessionUrlRequested;
       var t = (LANG[currentLang] && LANG[currentLang].nav) || LANG.en.nav;
+      updateMemberStatusBadge();
       var createBtn = document.getElementById('nav-create-member-btn');
       var loginBtn = document.getElementById('nav-login-btn');
 
@@ -22511,6 +22537,16 @@
         syncMemberNavState();
         updateWelcomeBadge();
         initMemberHub();
+        // Silently refresh plan from API so badge stays accurate after plan upgrades
+        fetch('/api/member/status', { credentials: 'include', cache: 'no-store', headers: { 'Cache-Control': 'no-store' } })
+          .then(function(r) { return r.ok ? r.json() : null; })
+          .then(function(s) {
+            if (s && s.authenticated && s.premium) {
+              rememberMemberPlan(s.plan || 'premium');
+              updateMemberStatusBadge();
+            }
+          })
+          .catch(function() {});
         return true;
       }
 
@@ -22532,7 +22568,9 @@
             rememberPremiumSessionAccess();
             rememberMemberName(status.name || '');
             rememberMemberGender(status.gender || '');
+            rememberMemberPlan(status.plan || 'premium');
             updateWelcomeBadge();
+            updateMemberStatusBadge();
             initMemberHub();
             return true;
           }
@@ -22574,8 +22612,10 @@
           rememberPremiumSessionAccess();
           rememberMemberName(backNavStatus.name || '');
           rememberMemberGender(backNavStatus.gender || '');
+          rememberMemberPlan(backNavStatus.plan || 'premium');
           syncMemberNavState();
           updateWelcomeBadge();
+          updateMemberStatusBadge();
           initMemberHub();
           return true;
         }

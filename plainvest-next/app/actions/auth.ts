@@ -38,6 +38,10 @@ export async function signIn(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
+    const lower = error.message.toLowerCase();
+    if (lower.includes('email not confirmed') || lower.includes('confirm')) {
+      redirect(`/login?confirm_email=1&email=${encodeURIComponent(email)}`);
+    }
     redirect(`/login?message=${encodeURIComponent(friendlyAuthMessage(error.message))}`);
   }
 
@@ -52,7 +56,7 @@ export async function signIn(formData: FormData) {
     const { isPremium } = await getPremiumAccess(supabase, user.id);
 
     if (isPremium) {
-      redirect('/index.html?member_session=1#member');
+      redirect('/home');
     }
   }
 
@@ -146,6 +150,20 @@ export async function updatePassword(formData: FormData) {
   }
 
   redirect('/login?message=Password updated. You can log in now.');
+}
+
+export async function resendConfirmation(formData: FormData) {
+  const email = String(formData.get('email') || '').trim();
+  let supabase;
+  try {
+    supabase = await createClient();
+  } catch {
+    redirect('/login?message=Could not send email right now. Please try again shortly.');
+  }
+  if (email) {
+    await supabase.auth.resend({ type: 'signup', email });
+  }
+  redirect('/login?message=Confirmation email sent — check your inbox and spam folder.');
 }
 
 export async function signOut() {

@@ -1,7 +1,26 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+const VALID_LANGS     = ['en', 'pt'] as const;
+const VALID_CURRENCIES = ['AUD', 'USD', 'BRL'] as const;
+
+export async function savePreferences(formData: FormData) {
+  const lang     = String(formData.get('lang') || 'en');
+  const currency = String(formData.get('currency') || 'AUD');
+
+  const safeLang     = VALID_LANGS.includes(lang as 'en' | 'pt') ? lang : 'en';
+  const safeCurrency = VALID_CURRENCIES.includes(currency as 'AUD' | 'USD' | 'BRL') ? currency : 'AUD';
+
+  const cookieStore = await cookies();
+  const opts = { maxAge: 60 * 60 * 24 * 365, path: '/' } as const;
+  cookieStore.set('pv_lang', safeLang, opts);
+  cookieStore.set('pv_currency', safeCurrency, opts);
+
+  redirect('/profile?success=Preferences saved.');
+}
 
 export async function updateProfile(formData: FormData) {
   const fullName = String(formData.get('full_name') || '').trim();

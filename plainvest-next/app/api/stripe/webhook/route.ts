@@ -34,6 +34,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: message }, { status: 400 });
   }
 
+  const supabaseAdmin = createAdminClient();
+
+  // ── checkout.session.completed ──────────────────────────────────────────────
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
     const userId = session.metadata?.user_id || session.client_reference_id;
@@ -44,20 +47,15 @@ export async function POST(request: Request) {
     }
 
     if (product === 'plainvest_support_call') {
-      const supabaseAdmin = createAdminClient();
       const { error } = await supabaseAdmin.from('support_call_purchases').upsert({
         user_id: userId,
         email: session.customer_email || session.metadata?.email || null,
         stripe_checkout_session_id: session.id,
         stripe_payment_intent_id: typeof session.payment_intent === 'string' ? session.payment_intent : null,
         status: 'paid',
-      }, {
-        onConflict: 'stripe_checkout_session_id',
-      });
+      }, { onConflict: 'stripe_checkout_session_id' });
 
-      if (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
-      }
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
       const posthogSC = getPostHogClient();
       posthogSC.capture({ distinctId: userId, event: 'support_call_purchased', properties: { product: 'plainvest_support_call' } });
@@ -66,28 +64,102 @@ export async function POST(request: Request) {
       return NextResponse.json({ received: true });
     }
 
+    // For subscriptions, get the period end from the subscription object
+    let subscriptionId: string | null = null;
+    let accessExpiresAt: string | null = null;
+
+    if (session.mode === 'subscription' && typeof session.subscription === 'string') {
+      subscriptionId = session.subscription;
+      const sub = await stripe.subscriptions.retrieve(subscriptionId);
+      accessExpiresAt = new Date(sub.current_period_end * 1000).toISOString();
+    }
+
     const now = new Date();
 
-    const supabaseAdmin = createAdminClient();
+    const plan = session.metadata?.plan === 'pro' ? 'pro' : 'premium';
+
     const { error } = await supabaseAdmin.from('member_access').upsert({
       user_id: userId,
       email: session.customer_email || session.metadata?.email || null,
       premium_status: 'active',
+      plan,
       access_started_at: now.toISOString(),
-      access_expires_at: null,
+      access_expires_at: accessExpiresAt,
       stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
       stripe_checkout_session_id: session.id,
       stripe_payment_intent_id: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+      stripe_subscription_id: subscriptionId,
       updated_at: now.toISOString(),
     });
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
     const posthog = getPostHogClient();
-    posthog.capture({ distinctId: userId, event: 'premium_access_activated', properties: { product: 'plainvest_premium_access' } });
+    posthog.capture({ distinctId: userId, event: 'premium_access_activated', properties: { product: 'plainvest_premium_access', mode: session.mode } });
     await posthog.shutdown();
+  }
+
+  // ── invoice.paid — subscription renewed ────────────────────────────────────
+  if (event.type === 'invoice.paid') {
+    const invoice = event.data.object as Stripe.Invoice;
+    const subscriptionId = typeof invoice.subscription === 'string' ? invoice.subscription : null;
+
+    if (subscriptionId) {
+      const sub = await stripe.subscriptions.retrieve(subscriptionId);
+      const accessExpiresAt = new Date(sub.current_period_end * 1000).toISOString();
+
+      const { error } = await supabaseAdmin
+        .from('member_access')
+        .update({ premium_status: 'active', access_expires_at: accessExpiresAt, updated_at: new Date().toISOString() })
+        .eq('stripe_subscription_id', subscriptionId);
+
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+  }
+
+  // ── invoice.payment_failed ──────────────────────────────────────────────────
+  if (event.type === 'invoice.payment_failed') {
+    const invoice = event.data.object as Stripe.Invoice;
+    const subscriptionId = typeof invoice.subscription === 'string' ? invoice.subscription : null;
+
+    if (subscriptionId) {
+      const { error } = await supabaseAdmin
+        .from('member_access')
+        .update({ premium_status: 'past_due', updated_at: new Date().toISOString() })
+        .eq('stripe_subscription_id', subscriptionId);
+
+      if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+  }
+
+  // ── customer.subscription.updated ──────────────────────────────────────────
+  if (event.type === 'customer.subscription.updated') {
+    const sub = event.data.object as Stripe.Subscription;
+    const status = sub.status === 'active' ? 'active' : sub.status === 'past_due' ? 'past_due' : 'inactive';
+    const accessExpiresAt = new Date(sub.current_period_end * 1000).toISOString();
+
+    const { error } = await supabaseAdmin
+      .from('member_access')
+      .update({ premium_status: status, access_expires_at: accessExpiresAt, updated_at: new Date().toISOString() })
+      .eq('stripe_subscription_id', sub.id);
+
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  // ── customer.subscription.deleted — cancelled / expired ────────────────────
+  if (event.type === 'customer.subscription.deleted') {
+    const sub = event.data.object as Stripe.Subscription;
+
+    const { error } = await supabaseAdmin
+      .from('member_access')
+      .update({
+        premium_status: 'cancelled',
+        access_expires_at: new Date(sub.current_period_end * 1000).toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq('stripe_subscription_id', sub.id);
+
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
   return NextResponse.json({ received: true });

@@ -8,9 +8,8 @@ function errorResponse(message: string, status = 500) {
   return NextResponse.json({ error: 'Checkout is not available right now. Please try again shortly.' }, { status });
 }
 
-export async function POST() {
+export async function POST(request: Request) {
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').trim().replace(/\/$/, '');
-  let priceId = process.env.STRIPE_PRICE_ID?.trim();
 
   try {
     new URL(siteUrl);
@@ -25,31 +24,25 @@ export async function POST() {
     return NextResponse.redirect(new URL('/login', siteUrl), { status: 303 });
   }
 
-  const stripe = createStripeClient();
+  // Determine which plan was selected from the form body
+  const body = await request.formData().catch(() => new FormData());
+  const planParam = (body.get('plan') as string | null) ?? 'premium';
+  const plan = planParam === 'pro' ? 'pro' : 'premium';
+
+  const priceId = plan === 'pro'
+    ? process.env.STRIPE_PRO_PRICE_ID?.trim()
+    : process.env.STRIPE_PREMIUM_PRICE_ID?.trim();
 
   if (!priceId || priceId.startsWith('price_replace')) {
-    const productId = process.env.STRIPE_PRODUCT_ID;
-
-    if (!productId || productId.startsWith('prod_your')) {
-      return errorResponse('Missing STRIPE_PRICE_ID or STRIPE_PRODUCT_ID. Add your Stripe one-time purchase price ID or product ID to .env.local.');
-    }
-
-    const prices = await stripe.prices.list({
-      product: productId,
-      active: true,
-      limit: 1,
-    });
-
-    priceId = prices.data[0]?.id;
-
-    if (!priceId) {
-      return errorResponse('No active Stripe price found for the configured product.');
-    }
+    return errorResponse(`Missing Stripe price ID for the ${plan} plan. Add STRIPE_${plan.toUpperCase()}_PRICE_ID to your environment variables.`);
   }
+
+  const stripe = createStripeClient();
 
   try {
     const price = await stripe.prices.retrieve(priceId);
     const mode = price.recurring ? 'subscription' : 'payment';
+
     const session = await stripe.checkout.sessions.create({
       mode,
       line_items: [{ price: priceId, quantity: 1 }],
@@ -59,6 +52,7 @@ export async function POST() {
         user_id: user.id,
         email: user.email || '',
         product: 'plainvest_premium_access',
+        plan,
       },
       success_url: `${siteUrl}/api/stripe/confirm?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/dashboard?payment=cancelled`,
@@ -69,7 +63,7 @@ export async function POST() {
     }
 
     const posthog = getPostHogClient();
-    posthog.capture({ distinctId: user.id, event: 'checkout_started', properties: { product: 'plainvest_premium_access', mode } });
+    posthog.capture({ distinctId: user.id, event: 'checkout_started', properties: { product: 'plainvest_premium_access', plan, mode } });
     await posthog.shutdown();
 
     return NextResponse.redirect(session.url, { status: 303 });

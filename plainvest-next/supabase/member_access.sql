@@ -7,9 +7,15 @@ create table if not exists public.member_access (
   stripe_customer_id text,
   stripe_checkout_session_id text,
   stripe_payment_intent_id text,
+  stripe_subscription_id text,
+  plan text not null default 'premium',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- Run these migrations if the table already exists:
+-- alter table public.member_access add column if not exists stripe_subscription_id text;
+-- alter table public.member_access add column if not exists plan text not null default 'premium';
 
 alter table public.member_access enable row level security;
 
