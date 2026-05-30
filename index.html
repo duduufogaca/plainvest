@@ -7106,23 +7106,79 @@
       border-color: rgba(97, 213, 180, .2);
     }
 
-    /* Featured "Start Here" card — full width */
+    /* Featured first guide — same design language as guide cards, 1.2× scale */
     .member-card.member-card-featured {
       grid-column: span 3;
-      background: linear-gradient(135deg, rgba(22, 44, 76, .98), rgba(10, 22, 44, .98));
-      border-color: rgba(97, 213, 180, .25);
-      border-top: 3px solid rgba(97, 213, 180, .9) !important;
-      flex-direction: column;
-      gap: 1.25rem;
+      display: grid !important;
+      grid-template-columns: 1fr 175px;
+      flex-direction: unset; flex-wrap: unset;
+      gap: 0; padding: 0; overflow: hidden; align-items: stretch;
+      background: linear-gradient(160deg, rgba(18,34,58,.97), rgba(8,17,34,.98));
+      border-color: rgba(0,212,170,.22);
+      border-top: 3px solid rgba(0,212,170,.9) !important;
       min-height: auto;
     }
-    .member-card.member-card-featured .member-card-cat-tag { width: 100%; flex-basis: 100%; }
-    .member-card.member-card-featured .member-icon { width: 56px; height: 56px; font-size: 1.6rem; flex-shrink: 0; }
-    .member-card.member-card-featured .member-card-featured-body { flex: 1; min-width: 200px; }
-    .member-card.member-card-featured h3 { font-size: 1.5rem; margin: 0 0 .4rem; }
+    .member-card.member-card-featured .member-card-cat-tag { display: none; }
+    .member-card.member-card-featured .member-icon { display: none; }
     .member-card.member-card-featured .member-unlocked { display: none; }
-    .member-card.member-card-featured ul { columns: 2; gap: .5rem; }
-    .member-card.member-card-featured .member-open-file { margin-top: .75rem; }
+
+    /* LEFT: guide content */
+    .sh-content { padding: .9rem 1.1rem .85rem; display: flex; flex-direction: column; gap: 0; }
+    .sh-featured-tag { font-size: .57rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: rgba(0,212,170,.65); margin-bottom: .32rem; }
+    .sh-title { font-size: 1rem; font-weight: 800; color: rgba(255,255,255,.92); line-height: 1.2; margin: 0 0 .28rem; }
+    .sh-meta { display: flex; gap: .3rem; margin-bottom: .38rem; flex-wrap: wrap; }
+    .sh-meta span {
+      font-size: .62rem; font-weight: 700; padding: .12rem .4rem;
+      border-radius: 20px; background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.45); border: 1px solid rgba(255,255,255,.09);
+    }
+    .sh-meta .sh-meta-primary { background: rgba(0,212,170,.1); color: rgba(0,212,170,.8); border-color: rgba(0,212,170,.18); }
+    .sh-meta .sh-meta-required { background: rgba(244,200,106,.07); color: rgba(244,200,106,.65); border-color: rgba(244,200,106,.15); }
+    .sh-intro-label { font-size: .67rem; color: rgba(255,255,255,.32); margin: 0 0 .2rem; }
+    .sh-checklist { list-style: none; padding: 0; margin: 0 0 .52rem; display: flex; flex-direction: column; gap: .1rem; }
+    .sh-checklist li { font-size: .72rem; color: rgba(255,255,255,.68); display: flex; align-items: flex-start; gap: .32rem; line-height: 1.25; }
+    .sh-checklist li::before { content: '✓'; color: var(--teal); font-weight: 900; font-size: .7rem; margin-top: .04rem; flex-shrink: 0; }
+    .sh-cta {
+      display: inline-flex; align-items: center; gap: .3rem;
+      background: var(--teal); color: #071410; font-size: .8rem; font-weight: 900;
+      padding: .47rem 1.1rem; border-radius: 9px; border: none; cursor: pointer;
+      transition: transform .15s, box-shadow .15s; align-self: flex-start;
+      box-shadow: 0 0 18px rgba(0,212,170,.26);
+    }
+    .sh-cta:hover { transform: translateY(-2px); box-shadow: 0 5px 24px rgba(0,212,170,.35); }
+
+    /* RIGHT: journey status sidebar */
+    .sh-visual {
+      padding: .85rem .8rem;
+      background: rgba(0,212,170,.025);
+      border-left: 1px solid rgba(0,212,170,.08);
+      display: flex; flex-direction: column; gap: .4rem;
+    }
+    .sh-vs-label { font-size: .54rem; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; color: rgba(255,255,255,.2); }
+    .sh-vs-stage { display: flex; align-items: center; gap: .38rem; flex-wrap: wrap; }
+    .sh-vs-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--teal); box-shadow: 0 0 7px rgba(0,212,170,.5); }
+    .sh-vs-stage-name { font-size: .73rem; font-weight: 800; color: rgba(255,255,255,.88); }
+    .sh-vs-active { font-size: .54rem; font-weight: 900; text-transform: uppercase; letter-spacing: .07em; color: rgba(0,212,170,.75); background: rgba(0,212,170,.1); padding: .1rem .32rem; border-radius: 8px; }
+    .sh-vs-stat { font-size: .63rem; color: rgba(255,255,255,.33); }
+    .sh-vs-prog { display: flex; flex-direction: column; gap: .18rem; }
+    .sh-vs-prog-head { display: flex; justify-content: space-between; align-items: center; }
+    .sh-vs-prog-label { font-size: .6rem; color: rgba(255,255,255,.28); }
+    .sh-mini-bar { height: 3px; background: rgba(255,255,255,.07); border-radius: 10px; overflow: hidden; }
+    .sh-mini-fill { height: 100%; width: 5%; background: linear-gradient(90deg, var(--teal), rgba(0,212,170,.5)); border-radius: 10px; transition: width .4s ease; }
+    .sh-mini-pct { font-size: .63rem; font-weight: 900; color: var(--teal); }
+    .sh-mini-text { font-size: .58rem; color: rgba(255,255,255,.22); margin-top: .1rem; }
+    .sh-vs-divider { height: 1px; background: rgba(255,255,255,.05); }
+    .sh-vs-next { margin-top: auto; display: flex; flex-direction: column; gap: .1rem; }
+    .sh-vs-next-label { font-size: .54rem; font-weight: 900; text-transform: uppercase; letter-spacing: .09em; color: rgba(255,255,255,.2); }
+    .sh-vs-next-name { font-size: .69rem; font-weight: 700; color: rgba(255,255,255,.58); }
+    .sh-vs-next-meta { font-size: .59rem; color: rgba(255,255,255,.27); }
+
+    /* Hub progress row — hidden */
+    .hub-progress-row { display: none; }
+
+    /* Recommended Next badge on guide cards */
+    .rec-next-badge { display: inline-block; font-size: .52rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; background: var(--teal); color: #071410; padding: .14rem .5rem; border-radius: 20px; margin-bottom: .38rem; margin-top: .1rem; }
+    .member-card:has(.rec-next-badge) { padding-top: 1.6rem; }
 
     /* ── Start Here cover — full-width poster ── */
     .member-card.member-card-featured { cursor: pointer; }
@@ -8011,8 +8067,11 @@
       }
 
       .hub-category-header { grid-column: span 1; }
-      .member-card.member-card-featured { flex-direction: column; }
-      .member-card.member-card-featured ul { columns: 1; }
+      .member-card.member-card-featured { grid-template-columns: 1fr !important; }
+      .sh-visual { border-left: none; border-top: 1px solid rgba(0,212,170,.1); padding: .75rem .85rem; }
+      .sh-vs-next { display: none; }
+      .hub-progress-row { grid-template-columns: repeat(2,1fr); }
+      .hub-progress-row { grid-column: span 1; }
       .milestone-grid { grid-template-columns: repeat(2,1fr); }
       .mws-grid { grid-template-columns: repeat(2,1fr); }
       .member-portfolio-cta { flex-direction: column; padding: 1.25rem 1.25rem; }
@@ -17488,29 +17547,77 @@
       </div>
       <div class="member-grid">
 
-        <!-- ─── START HERE ─── -->
+        <!-- ─── START HERE HERO ─── -->
         <div class="hub-category-header">
-          <div class="hub-cat-label" id="hubcat-start">Start Here</div>
-          <div class="hub-cat-title" id="hubcat-start-title">The only guide you must read first.</div>
+          <div class="hub-cat-label" id="hubcat-start" data-i18n="member.shCatLabel">Learning Hub</div>
+          <div class="hub-cat-title" id="hubcat-start-title" data-i18n="member.shCatTitle">Start Your Investing Journey</div>
+          <div class="hub-cat-sub" id="hubcat-start-sub" data-i18n="member.shCatSub">Complete this 5-minute guide first and we'll show you exactly what to learn next.</div>
         </div>
-        <div class="member-card member-card-featured" onclick="openMemberGuide('welcome')" role="button" tabindex="0" aria-label="Open Start Here guide">
-          <div class="member-card-cat-tag cat-tag-start" data-i18n="member.unlocked">Unlocked</div>
-          <div class="start-here-cover-fallback" onclick="openMemberGuide('welcome'); event.stopPropagation();">
-            <div class="fallback-badge">PLAINVEST PREMIUM</div>
-            <h3>Premium Welcome</h3>
-            <p>Start here before opening any other guide.</p>
-            <span class="fallback-status">UNLOCKED</span>
-          </div>
-          <div class="member-card-featured-body">
-            <div class="member-card-badges"><span class="member-time-badge">⏱ 5 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
-            <h3 data-i18n="member.cardWelcomeTitle">Premium Welcome — Start Here</h3>
-            <p data-i18n="member.cardWelcomeText">Understand what's inside Premium, which guide to open first based on your goals, and how to get the most out of your membership from day one.</p>
-            <ul>
-              <li data-i18n="member.cardWelcomeItem1">What's included in your Premium access</li>
-              <li data-i18n="member.cardWelcomeItem2">How to use the hub and navigate guides</li>
-              <li data-i18n="member.cardWelcomeItem3">Where to start based on your experience level</li>
+        <div class="member-card member-card-featured" data-guide="welcome">
+
+          <!-- LEFT: guide content -->
+          <div class="sh-content">
+            <div class="sh-featured-tag" data-i18n="member.shFeaturedTag">⭐ Featured First Guide</div>
+            <h2 class="sh-title" data-i18n="member.shTitle">Premium Welcome — Start Here</h2>
+            <div class="sh-meta">
+              <span class="sh-meta-primary">🕒 5 min</span>
+              <span>⭐ Beginner</span>
+              <span class="sh-meta-required">📍 Required</span>
+            </div>
+            <p class="sh-intro-label" data-i18n="member.shIntroLabel">What you'll learn:</p>
+            <ul class="sh-checklist">
+              <li data-i18n="member.shCheck1">How Plainvest works and what you've unlocked</li>
+              <li data-i18n="member.shCheck2">Which guide to read next based on your goals</li>
+              <li data-i18n="member.shCheck3">Common beginner mistakes — and how to avoid them</li>
+              <li data-i18n="member.shCheck4">How to build your personal investing roadmap</li>
             </ul>
-            <button class="member-open-file" onclick="openMemberGuide('welcome'); event.stopPropagation();" data-i18n="member.startHereBtn">Start Here →</button>
+            <button class="sh-cta" onclick="openMemberGuide('welcome')" data-i18n="member.shCta">Start My Journey →</button>
+          </div>
+
+          <!-- RIGHT: journey status -->
+          <div class="sh-visual">
+            <div class="sh-vs-label" data-i18n="member.shJourneyLabel">YOUR JOURNEY</div>
+            <div class="sh-vs-stage">
+              <div class="sh-vs-dot"></div>
+              <div class="sh-vs-stage-name" data-i18n="member.shStage1">Foundation</div>
+              <div class="sh-vs-active" data-i18n="member.shActiveLabel">Active</div>
+            </div>
+            <div class="sh-vs-stat"><span data-i18n="member.shPathGuides">18 guides</span> · <span data-i18n="member.shPathTime">4–6 hours</span></div>
+            <div class="sh-vs-prog">
+              <div class="sh-vs-prog-head">
+                <span class="sh-vs-prog-label" data-i18n="member.shProgressLabel">Progress</span>
+                <span class="sh-mini-pct" id="sh-mini-pct">0%</span>
+              </div>
+              <div class="sh-mini-bar"><div class="sh-mini-fill" id="sh-mini-fill"></div></div>
+              <div class="sh-mini-text" id="sh-mini-text">0 of 18 guides started</div>
+            </div>
+            <div class="sh-vs-divider"></div>
+            <div class="sh-vs-next">
+              <div class="sh-vs-next-label" data-i18n="member.shNextLabel">Next Guide</div>
+              <div class="sh-vs-next-name" data-i18n="member.shNextGuide">📚 Investment Paths</div>
+              <div class="sh-vs-next-meta" data-i18n="member.shNextMeta">20 min · Beginner</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ─── LEARNING PROGRESS ROW ─── -->
+        <div class="hub-progress-row" id="hub-progress-row">
+          <div class="hpr-stat">
+            <span class="hpr-val" id="hpr-guides-done">0</span>
+            <span class="hpr-label" data-i18n="member.hprGuidesLabel">Guides Completed</span>
+          </div>
+          <div class="hpr-stat">
+            <span class="hpr-val teal" id="hpr-pct">5%</span>
+            <span class="hpr-label" data-i18n="member.hprProgressLabel">Learning Progress</span>
+          </div>
+          <div class="hpr-stat">
+            <span class="hpr-val" id="hpr-stage" data-i18n="member.hprStageVal">Foundation</span>
+            <span class="hpr-label" data-i18n="member.hprStageLabel">Current Stage</span>
+          </div>
+          <div class="hpr-stat">
+            <span class="hpr-val" id="hpr-time">4h 30m</span>
+            <span class="hpr-label" data-i18n="member.hprTimeLabel">Est. Time Left</span>
           </div>
         </div>
 
@@ -17521,6 +17628,7 @@
           <div class="hub-cat-sub" id="hubcat-foundations-sub">Start with any of these. Each one builds a layer of clarity you'll keep for life.</div>
         </div>
         <div class="member-card">
+          <div class="rec-next-badge" data-i18n="member.recNextBadge">Recommended Next</div>
           <div class="member-icon">📚</div>
           <div class="member-unlocked" data-i18n="member.unlocked">Unlocked</div>
           <div class="member-card-badges"><span class="member-time-badge">⏱ 20 min</span><span class="member-diff-badge diff-beginner">🟢 Beginner</span></div>
@@ -18769,6 +18877,30 @@
           cardWelcomeItem1: 'What\'s included in your Premium access',
           cardWelcomeItem2: 'How to use the hub and navigate guides',
           cardWelcomeItem3: 'Where to start based on your experience level',
+          shCatLabel: 'Learning Hub',
+          shCatTitle: 'Start Your Investing Journey',
+          shCatSub: 'Complete this 5-minute guide first and we\'ll show you exactly what to learn next.',
+          shTitle: 'Premium Welcome — Start Here',
+          shIntroLabel: 'What you\'ll learn:',
+          shCheck1: 'How Plainvest works and what you\'ve unlocked',
+          shCheck2: 'Which guide to read next based on your goals',
+          shCheck3: 'Common beginner mistakes — and how to avoid them',
+          shCheck4: 'How to build your personal investing roadmap',
+          shCta: 'Start My Journey →',
+          shFeaturedTag: '⭐ Featured First Guide',
+          shJourneyLabel: 'YOUR JOURNEY',
+          shStage1: 'Foundation',
+          shActiveLabel: 'Active',
+          shPathGuides: '18 guides', shPathTime: '4–6 hours',
+          shProgressLabel: 'Progress',
+          shNextLabel: 'Next Guide',
+          shNextGuide: '📚 Investment Paths',
+          shNextMeta: '20 min · Beginner',
+          hprGuidesLabel: 'Guides Completed',
+          hprProgressLabel: 'Learning Progress',
+          hprStageVal: 'Foundation', hprStageLabel: 'Current Stage',
+          hprTimeLabel: 'Est. Time Left',
+          recNextBadge: 'Recommended Next',
           cardLibraryTitle: 'Research & Tools Library',
           cardLibraryText: '10 categories of curated research tools, reference sources, and educational material. From ETF screeners and sentiment gauges to platform comparisons, tax basics, and sources to avoid.',
           cardLibraryItem1: 'ETF tools, crypto research, chart platforms, sentiment gauges',
@@ -19611,6 +19743,30 @@
           cardWelcomeItem1: 'O que está incluído no seu acesso Premium',
           cardWelcomeItem2: 'Como usar o hub e navegar pelos guias',
           cardWelcomeItem3: 'Por onde começar de acordo com seu nível',
+          shCatLabel: 'Hub de Aprendizado',
+          shCatTitle: 'Comece Sua Jornada de Investimentos',
+          shCatSub: 'Complete este guia de 5 minutos primeiro e mostraremos exatamente o que aprender a seguir.',
+          shTitle: 'Bem-vindo Premium — Comece Aqui',
+          shIntroLabel: 'O que você vai aprender:',
+          shCheck1: 'Como o Plainvest funciona e o que você desbloqueou',
+          shCheck2: 'Qual guia ler a seguir com base nos seus objetivos',
+          shCheck3: 'Erros comuns de iniciantes — e como evitá-los',
+          shCheck4: 'Como construir seu roteiro pessoal de investimentos',
+          shCta: 'Começar Minha Jornada →',
+          shFeaturedTag: '⭐ Guia Inicial em Destaque',
+          shJourneyLabel: 'SUA JORNADA',
+          shStage1: 'Fundação',
+          shActiveLabel: 'Ativo',
+          shPathGuides: '18 guias', shPathTime: '4–6 horas',
+          shProgressLabel: 'Progresso',
+          shNextLabel: 'Próximo Guia',
+          shNextGuide: '📚 Caminhos de Investimento',
+          shNextMeta: '20 min · Iniciante',
+          hprGuidesLabel: 'Guias Concluídos',
+          hprProgressLabel: 'Progresso de Aprendizado',
+          hprStageVal: 'Fundação', hprStageLabel: 'Estágio Atual',
+          hprTimeLabel: 'Tempo Restante',
+          recNextBadge: 'Recomendado a Seguir',
           cardLibraryTitle: 'Biblioteca de Pesquisa e Ferramentas',
           cardLibraryText: '10 categorias de ferramentas de pesquisa, fontes de referência e material educativo. De triadores de ETF e medidores de sentimento a comparações de plataformas, noções de impostos e fontes a evitar.',
           cardLibraryItem1: 'Ferramentas de ETF, cripto, gráficos e sentimento de mercado',
@@ -23076,6 +23232,27 @@
       } else {
         el.style.display = 'none';
       }
+      try { updateHeroGreeting(); } catch(e) {}
+    }
+
+    function updateHeroGreeting() {
+      var el = document.getElementById('sh-hero-greeting');
+      if (!el) return;
+      var name = (typeof getMemberName === 'function') ? getMemberName() : '';
+      if (name) {
+        var firstName = name.split(' ')[0];
+        var g = (typeof getMemberGender === 'function') ? getMemberGender() : '';
+        var html;
+        if (typeof currentLang !== 'undefined' && currentLang === 'pt') {
+          html = 'Olá, <span>' + firstName + '</span>. Vamos construir sua base de investimentos.';
+        } else {
+          html = 'Welcome, <span>' + firstName + '</span>. Let\'s build your investing foundation.';
+        }
+        el.innerHTML = html;
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
+      }
     }
 
     function rememberPremiumSessionAccess() {
@@ -23203,13 +23380,29 @@
       var read = (typeof getReadGuides === 'function') ? getReadGuides() : [];
       var total = Object.keys(CARD_CATS).length;
       var starred = getStarred();
+      var isPt = typeof currentLang !== 'undefined' && currentLang === 'pt';
+      var pct = total > 0 ? Math.round((read.length / total) * 100) : 0;
+      var displayPct = Math.max(5, pct);
+
+      // Top stats strip
       var elOpened = document.getElementById('stat-guides-opened');
       var elSub = document.getElementById('stat-guides-sub');
       var elFavs = document.getElementById('stat-favs-count');
-      var isPt = typeof currentLang !== 'undefined' && currentLang === 'pt';
       if (elOpened) elOpened.textContent = read.length;
       if (elSub) elSub.textContent = isPt ? 'de ' + total + ' guias' : 'of ' + total + ' guides';
       if (elFavs) elFavs.textContent = starred.length;
+
+      // Hero mini stats bar
+      var miniFill = document.getElementById('sh-mini-fill');
+      var miniPct = document.getElementById('sh-mini-pct');
+      var miniText = document.getElementById('sh-mini-text');
+      if (miniFill) miniFill.style.width = displayPct + '%';
+      if (miniPct) miniPct.textContent = displayPct + '%';
+      if (miniText) miniText.textContent = isPt
+        ? read.length + ' de ' + total + ' guias iniciados'
+        : read.length + ' of ' + total + ' guides started';
+
+      try { updateHeroGreeting(); } catch(e) {}
     }
 
     var CAT_TAG_LABELS = {
@@ -23246,7 +23439,8 @@
     }
 
     function initMemberHub() {
-      var isFirst = true;
+      // Hero card is hardcoded in HTML — never auto-feature a different card
+      var isFirst = !document.querySelector('.member-card.member-card-featured .sh-content');
       document.querySelectorAll('.member-card').forEach(function (card) {
         var btn = card.querySelector('.member-open-file');
         if (!btn) return;
@@ -23258,7 +23452,7 @@
         var cats = CARD_CATS[key] || [];
         if (cats.length) card.dataset.cats = cats.join(',');
 
-        // Featured card for first (Start Here) — wrap content in body div for horizontal layout
+        // Only auto-feature if there is no hardcoded hero card (legacy fallback)
         if (isFirst) {
           card.classList.add('member-card-featured');
           isFirst = false;
