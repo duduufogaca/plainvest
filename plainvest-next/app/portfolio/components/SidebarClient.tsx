@@ -17,6 +17,7 @@ type Props = {
   logoutLabel: string;
   userName?: string;
   profileActive?: boolean;
+  plan?: string;
 };
 
 const NavIcon = ({ d, viewBox = '0 0 24 24' }: { d: string; viewBox?: string }) => (
@@ -26,7 +27,7 @@ const NavIcon = ({ d, viewBox = '0 0 24 24' }: { d: string; viewBox?: string }) 
   </svg>
 );
 
-export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, profileLabel, logoutLabel, userName, profileActive }: Props) {
+export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, profileLabel, logoutLabel, userName, profileActive, plan }: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showCurrencies, setShowCurrencies] = useState(false);
@@ -100,7 +101,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
             <span className="sb-user-greeting">{isEN ? 'Welcome back,' : 'Bem-vindo,'}</span>
             <div className="sb-user-name-row">
               <span className="sb-user-name">{userName || '—'}</span>
-              <span className="sb-premium-badge">Premium</span>
+              <span className={plan === 'pro' ? 'sb-pro-badge' : 'sb-premium-badge'}>{plan === 'pro' ? 'Pro' : 'Premium'}</span>
             </div>
           </div>
         </div>

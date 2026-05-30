@@ -15,7 +15,7 @@ function isMembersHost(host: string | null) {
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const isPremiumContent = pathname.startsWith('/files/premium_content/');
-  const isProOnly = pathname.startsWith('/portfolio') || pathname === '/profile';
+  const isProOnly = pathname.startsWith('/portfolio');
 
   if (!isPremiumContent && !isProOnly) {
     return NextResponse.next();
@@ -60,17 +60,22 @@ export async function middleware(request: NextRequest) {
 
   const { data, error } = await supabase
     .from('member_access')
-    .select('premium_status, plan, stripe_checkout_session_id, stripe_payment_intent_id')
+    .select('premium_status, plan, access_expires_at, stripe_checkout_session_id, stripe_payment_intent_id, stripe_subscription_id')
     .eq('user_id', user.id)
     .maybeSingle<{
       premium_status: string | null;
       plan: string | null;
+      access_expires_at: string | null;
       stripe_checkout_session_id: string | null;
       stripe_payment_intent_id: string | null;
+      stripe_subscription_id: string | null;
     }>();
 
-  const hasStripePaymentProof = Boolean(data?.stripe_payment_intent_id || data?.stripe_checkout_session_id);
-  const isActive = !error && data?.premium_status === 'active' && hasStripePaymentProof;
+  const hasStripePaymentProof = Boolean(
+    data?.stripe_payment_intent_id || data?.stripe_checkout_session_id || data?.stripe_subscription_id,
+  );
+  const notExpired = !data?.access_expires_at || new Date(data.access_expires_at) > new Date();
+  const isActive = !error && data?.premium_status === 'active' && hasStripePaymentProof && notExpired;
 
   // Premium content: both premium and pro plans have access
   if (isPremiumContent) {
@@ -93,5 +98,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/files/premium_content/:path*', '/portfolio/:path*', '/profile'],
+  matcher: ['/files/premium_content/:path*', '/portfolio', '/portfolio/:path*'],
 };

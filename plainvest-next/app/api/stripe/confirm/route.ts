@@ -76,7 +76,7 @@ export async function GET(request: Request) {
     posthog.capture({ distinctId: user.id, event: 'payment_confirmed', properties: { product: 'plainvest_premium_access', plan } });
     await posthog.shutdown();
 
-    return redirectTo('/index.html?member_session=1#member', request);
+    return redirectTo(plan === 'pro' ? '/portfolio' : '/index.html?member_session=1#member', request);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to confirm Stripe payment.';
     console.error('Plainvest Stripe confirmation failed:', message);

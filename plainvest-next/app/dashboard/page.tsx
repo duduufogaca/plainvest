@@ -59,13 +59,14 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
     redirect('/index.html?member_session=1#member');
   }
 
-  // Premium (guides only): redirect to member hub, portfolio is blocked at middleware
-  if (hasGuideAccess) {
+  // Premium (guides only): redirect to hub UNLESS they hit a Pro-only route
+  // In that case fall through to show the upgrade prompt
+  if (hasGuideAccess && params.upgrade !== 'pro') {
     redirect('/index.html?member_session=1#member');
   }
 
-  // Not paid — show pricing wall
-  const isUpgradePrompt = params.upgrade === 'pro';
+  // Not paid, or Premium user trying to access a Pro feature
+  const isUpgradePrompt = hasGuideAccess && params.upgrade === 'pro';
 
   return (
     <main className="payment-shell">
@@ -85,10 +86,18 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
           <h1>{isUpgradePrompt ? 'Upgrade to Pro to unlock the dashboard.' : 'Choose your investing plan.'}</h1>
           <p>
             {isUpgradePrompt
-              ? 'Your Premium access covers the guides. Upgrade to Pro to also unlock portfolio tracking and the full dashboard.'
+              ? 'Your Premium plan covers all the guides. Subscribe to Pro to also unlock portfolio tracking and the full member dashboard.'
               : `Logged in as ${user.email}. Pick the plan that fits where you are.`}
           </p>
         </div>
+
+        {isUpgradePrompt && (
+          <p style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <a href="/index.html?member_session=1#member" style={{ color: 'var(--muted)', fontSize: '0.88rem' }}>
+              ← Back to my guides
+            </a>
+          </p>
+        )}
 
         {params.payment === 'cancelled' && (
           <p className="notice" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
@@ -96,39 +105,45 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
           </p>
         )}
 
-        <div className="pricing-grid">
+        <div className={isUpgradePrompt ? 'pricing-single' : 'pricing-grid'}>
 
-          {/* Premium plan */}
-          <section className="purchase-panel">
-            <div>
-              <p className="eyebrow">Premium</p>
-              <h2>Guides &amp; Learning Hub</h2>
-              <p>All 19 investment guides, reading paths, chart tools, Bitcoin research, DCA method, and one included Zoom support call.</p>
-              <ul className="plan-features">
-                <li>✓ 19 premium investment guides</li>
-                <li>✓ DCA &amp; investment path tools</li>
-                <li>✓ One included Zoom support call</li>
-                <li>✗ Portfolio tracker</li>
-                <li>✗ Dashboard &amp; simulator</li>
-              </ul>
-              <p className="tiny-links"><a href="/terms">Terms</a><span>•</span><a href="/privacy">Privacy</a></p>
-            </div>
-            <div className="price-box">
-              <strong>AUD $89.90</strong>
-              <span>One-time purchase</span>
-              <form action="/api/stripe/checkout" method="POST">
-                <input type="hidden" name="plan" value="premium" />
-                <SubmitButton pendingText="Opening checkout...">Get Premium</SubmitButton>
-              </form>
-            </div>
-          </section>
+          {/* Premium plan — only shown to new users, not to existing Premium members upgrading */}
+          {!isUpgradePrompt && (
+            <section className="purchase-panel">
+              <div>
+                <p className="eyebrow">Premium</p>
+                <h2>Guides &amp; Learning Hub</h2>
+                <p>All 19 investment guides, reading paths, chart tools, Bitcoin research, DCA method, and one included Zoom support call.</p>
+                <ul className="plan-features">
+                  <li>✓ 19 premium investment guides</li>
+                  <li>✓ DCA &amp; investment path tools</li>
+                  <li>✓ One included Zoom support call</li>
+                  <li>✗ Portfolio tracker</li>
+                  <li>✗ Dashboard &amp; simulator</li>
+                </ul>
+                <p className="tiny-links"><a href="/terms">Terms</a><span>•</span><a href="/privacy">Privacy</a></p>
+              </div>
+              <div className="price-box">
+                <strong>AUD $89.90</strong>
+                <span>One-time purchase</span>
+                <form action="/api/stripe/checkout" method="POST">
+                  <input type="hidden" name="plan" value="premium" />
+                  <SubmitButton pendingText="Opening checkout...">Get Premium</SubmitButton>
+                </form>
+              </div>
+            </section>
+          )}
 
           {/* Pro plan */}
           <section className="purchase-panel purchase-panel--featured">
             <div>
-              <p className="eyebrow">Pro <span className="plan-badge">Most complete</span></p>
+              <p className="eyebrow">Pro {!isUpgradePrompt && <span className="plan-badge">Most complete</span>}</p>
               <h2>Full Access + Dashboard</h2>
-              <p>Everything in Premium plus live portfolio tracking, the investment simulator, and the full member dashboard.</p>
+              <p>
+                {isUpgradePrompt
+                  ? 'Add live portfolio tracking, the investment simulator, and the full member dashboard to your existing guide access.'
+                  : 'Everything in Premium plus live portfolio tracking, the investment simulator, and the full member dashboard.'}
+              </p>
               <ul className="plan-features">
                 <li>✓ 19 premium investment guides</li>
                 <li>✓ DCA &amp; investment path tools</li>
@@ -136,6 +151,11 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
                 <li>✓ Portfolio tracker</li>
                 <li>✓ Dashboard &amp; simulator</li>
               </ul>
+              {isUpgradePrompt && (
+                <p style={{ fontSize: '0.85rem', color: 'var(--teal)', marginTop: '0.75rem' }}>
+                  ✓ Your existing guide access is included — nothing is lost.
+                </p>
+              )}
               <p className="tiny-links"><a href="/terms">Terms</a><span>•</span><a href="/privacy">Privacy</a></p>
             </div>
             <div className="price-box">
@@ -143,7 +163,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
               <span>Cancel anytime</span>
               <form action="/api/stripe/checkout" method="POST">
                 <input type="hidden" name="plan" value="pro" />
-                <SubmitButton pendingText="Opening checkout...">Get Pro</SubmitButton>
+                <SubmitButton pendingText="Opening checkout...">{isUpgradePrompt ? 'Upgrade to Pro' : 'Get Pro'}</SubmitButton>
               </form>
             </div>
           </section>

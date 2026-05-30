@@ -23,7 +23,7 @@ export default async function ProfilePage({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
-  const { isPremium } = await getPremiumAccess(supabase, user.id);
+  const { isPremium, isPro, plan } = await getPremiumAccess(supabase, user.id);
   const meta = user.user_metadata || {};
   const fullName: string = meta.full_name || '';
   const firstName = fullName.split(' ')[0] || user.email?.split('@')[0] || '';
@@ -47,6 +47,7 @@ export default async function ProfilePage({
         profileLabel="Profile"
         logoutLabel="Logout"
         userName={firstName}
+        plan={plan ?? 'premium'}
         profileActive
       />
 
@@ -59,8 +60,8 @@ export default async function ProfilePage({
             <p className="profile-hero-eyebrow">Account</p>
             <h1 className="profile-hero-name">{fullName || firstName || user.email}</h1>
             <div className="profile-hero-meta">
-              <span className={`profile-hero-badge${isPremium ? ' badge-premium' : ''}`}>
-                {isPremium ? '◈ Premium' : 'Free'}
+              <span className={`profile-hero-badge${isPro ? ' badge-pro' : isPremium ? ' badge-premium' : ''}`}>
+                {isPro ? '◈ Pro' : isPremium ? '◈ Premium' : 'Free'}
               </span>
               <span className="profile-hero-sep">·</span>
               <span>Member since {memberSince}</span>
@@ -137,8 +138,8 @@ export default async function ProfilePage({
               </div>
               <div className="profile-info-row">
                 <span className="profile-info-label">Access level</span>
-                <span className={isPremium ? 'badge-premium' : 'badge-free'}>
-                  {isPremium ? '◈ Premium' : 'Free'}
+                <span className={isPro ? 'badge-pro' : isPremium ? 'badge-premium' : 'badge-free'}>
+                  {isPro ? '◈ Pro' : isPremium ? '◈ Premium' : 'Free'}
                 </span>
               </div>
             </div>
