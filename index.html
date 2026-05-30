@@ -4312,6 +4312,7 @@
       max-width: 1100px;
       margin-top: 3.5rem;
       align-items: start;
+      padding: 18px 0 24px;
     }
 
     .plan-who {
@@ -5001,8 +5002,8 @@
     .plan-card {
       background: linear-gradient(180deg, rgba(21, 36, 60, .98) 0%, rgba(12, 24, 43, .98) 100%);
       border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 24px;
-      padding: 2rem;
+      border-radius: 20px;
+      padding: 1.35rem 1.4rem;
       transition: transform 0.22s, box-shadow 0.22s;
       position: relative;
       overflow: hidden;
@@ -5011,6 +5012,11 @@
     .plan-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .plan-card.emerald:hover {
+      transform: scale(1.065) translateY(-14px);
+      box-shadow: 0 0 110px rgba(0, 212, 170, 0.36), 0 36px 68px rgba(0, 0, 0, 0.56);
     }
 
     .plan-card::before {
@@ -5043,9 +5049,11 @@
 
     .plan-card.emerald {
       background: linear-gradient(160deg, rgba(5, 16, 28, 0.99) 0%, rgba(3, 10, 18, 0.99) 100%);
-      border-color: rgba(0, 212, 170, 0.48);
-      box-shadow: 0 0 65px rgba(0, 212, 170, 0.2), 0 28px 56px rgba(0, 0, 0, 0.45);
+      border-color: rgba(0, 212, 170, 0.52);
+      box-shadow: 0 0 90px rgba(0, 212, 170, 0.28), 0 32px 64px rgba(0, 0, 0, 0.52);
       animation: emerald-breathe 5s ease-in-out infinite;
+      transform: scale(1.065) translateY(-10px);
+      z-index: 2;
     }
 
     .plan-card.emerald::before {
@@ -5079,20 +5087,25 @@
       color: rgba(0, 212, 170, .7);
     }
 
+    .plan-card.emerald .plan-btn {
+      padding: 0.82rem;
+      font-size: 0.97rem;
+    }
+
     .plan-name {
       font-family: 'Lora', serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--white);
       line-height: 1.3;
-      margin: .18rem 0 .65rem;
+      margin: .1rem 0 .2rem;
     }
 
     .plan-price-note {
-      font-size: .78rem;
+      font-size: .75rem;
       color: var(--teal);
       font-weight: 600;
-      margin: .25rem 0 .85rem;
+      margin: .1rem 0 .55rem;
     }
 
     .plan-billing-toggle {
@@ -5100,9 +5113,9 @@
       gap: .3rem;
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.08);
-      border-radius: 10px;
-      padding: .28rem;
-      margin: .85rem 0 .55rem;
+      border-radius: 9px;
+      padding: .22rem;
+      margin: .35rem 0 .25rem;
       width: 100%;
     }
 
@@ -5138,9 +5151,9 @@
     }
 
     .plan-billing-note {
-      font-size: .78rem;
+      font-size: .73rem;
       color: var(--ink-soft);
-      margin: .2rem 0 .9rem;
+      margin: .1rem 0 .6rem;
     }
 
     .pb-emerald {
@@ -5186,12 +5199,19 @@
     }
 
     .plan-free-hook {
-      font-size: .79rem;
+      font-size: .77rem;
       color: var(--teal);
       font-style: italic;
-      margin: .2rem 0 .8rem;
-      line-height: 1.5;
+      margin: .1rem 0 .55rem;
+      line-height: 1.45;
       opacity: .82;
+    }
+
+    .plan-hook {
+      font-size: .77rem;
+      color: var(--ink-soft);
+      margin: .1rem 0 .55rem;
+      line-height: 1.45;
     }
 
     .plan-foundation-note {
@@ -5333,6 +5353,34 @@
       opacity: .65;
     }
 
+    .sub-proj-details {
+      margin-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding-top: 0.65rem;
+    }
+
+    .sub-proj-summary {
+      font-size: .73rem;
+      font-weight: 600;
+      color: rgba(0, 212, 170, .55);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: color .18s;
+    }
+
+    .sub-proj-summary::-webkit-details-marker { display: none; }
+    .sub-proj-summary::marker { display: none; }
+
+    .sub-proj-details[open] .sub-proj-summary {
+      color: rgba(0, 212, 170, .8);
+      margin-bottom: .5rem;
+    }
+
+    .sub-proj-summary:hover {
+      color: rgba(0, 212, 170, .85);
+    }
+
     .plans-why {
       max-width: 1100px;
       margin: 2.8rem auto 0;
@@ -5463,30 +5511,31 @@
       background: var(--teal-pale);
       border: 1px solid rgba(0, 212, 170, 0.25);
       color: var(--teal);
-      font-size: 0.67rem;
+      font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 0.25rem 0.7rem;
+      padding: 0.2rem 0.6rem;
       border-radius: 4px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .plan-tier {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--ink-soft);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.15rem;
     }
 
     .plan-price {
       font-family: 'Lora', serif;
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--white);
       line-height: 1;
+      margin: .2rem 0 .1rem;
     }
 
     .plan-price sub {
@@ -5504,31 +5553,31 @@
     }
 
     .plan-bestfor {
-      margin: 1rem 0 1.1rem;
-      padding: .7rem .82rem;
-      border-radius: 14px;
+      margin: .4rem 0 .5rem;
+      padding: .35rem .55rem;
+      border-radius: 10px;
       background: rgba(255, 255, 255, .04);
       border: 1px solid rgba(255, 255, 255, .07);
     }
 
     .plan-bestfor-label {
-      font-size: .62rem;
+      font-size: .6rem;
       font-weight: 800;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: #8ea7c1;
-      margin-bottom: .22rem;
+      margin-bottom: .15rem;
     }
 
     .plan-bestfor-text {
-      font-size: .78rem;
-      line-height: 1.52;
+      font-size: .76rem;
+      line-height: 1.45;
       color: #d6e2ed;
     }
 
     .plan-section-label {
-      margin: 1.15rem 0 .7rem;
-      font-size: .62rem;
+      margin: .5rem 0 .3rem;
+      font-size: .6rem;
       font-weight: 800;
       letter-spacing: .1em;
       text-transform: uppercase;
@@ -5536,13 +5585,13 @@
     }
 
     .plan-li {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--ink-soft);
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.26rem;
       display: flex;
-      gap: 0.55rem;
+      gap: 0.5rem;
       align-items: flex-start;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .plan-li .ck {
@@ -5551,10 +5600,70 @@
       flex-shrink: 0;
     }
 
+    .plan-below-cta {
+      margin-top: 1.1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .plan-cancel-note {
+      margin: .3rem 0 0;
+      color: var(--ink-soft);
+      font-size: .76rem;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .plan-identity {
+      font-size: .74rem;
+      font-weight: 600;
+      color: #5a8a7c;
+      letter-spacing: .01em;
+      margin: .1rem 0 .55rem;
+      line-height: 1.4;
+    }
+
+    .plan-card.emerald .plan-identity {
+      color: rgba(0, 212, 170, .6);
+    }
+
+    .plan-trust {
+      font-size: .72rem;
+      color: #4e6e64;
+      text-align: center;
+      margin: .4rem 0 0;
+      line-height: 1.4;
+    }
+
+    .plan-card.emerald .plan-trust {
+      color: rgba(0, 212, 170, .5);
+    }
+
+    .plan-transform {
+      margin: .15rem 0 .6rem;
+      padding: .6rem .75rem;
+      background: rgba(0, 212, 170, .04);
+      border-left: 2px solid rgba(0, 212, 170, .28);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .plan-transform span {
+      display: block;
+      font-size: .74rem;
+      color: #7fbfb3;
+      line-height: 1.45;
+    }
+
+    .plan-transform span:first-child {
+      font-weight: 700;
+      color: #a8ddd4;
+      font-size: .78rem;
+      margin-bottom: .18rem;
+    }
+
     .plan-btn {
       width: 100%;
-      margin-top: 1.6rem;
-      padding: 0.88rem;
+      margin-top: 0.85rem;
+      padding: 0.68rem;
       border-radius: 10px;
       font-family: 'Sora', sans-serif;
       font-size: 0.9rem;
@@ -5681,6 +5790,492 @@
       font-size: .78rem;
       line-height: 1.6;
       color: #8ea6bf;
+    }
+
+    .plan-rec-badge {
+      display: inline-block;
+      font-size: .6rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #5a8a7c;
+      background: rgba(0, 212, 170, .07);
+      border: 1px solid rgba(0, 212, 170, .14);
+      border-radius: 999px;
+      padding: .22rem .65rem;
+      margin-bottom: .55rem;
+    }
+
+    .plan-rec-badge--pro {
+      color: rgba(0, 212, 170, .9);
+      background: rgba(0, 212, 170, .14);
+      border-color: rgba(0, 212, 170, .35);
+      box-shadow: 0 0 12px rgba(0, 212, 170, .18);
+    }
+
+    .plan-rec-badge--star {
+      color: rgba(232, 184, 75, .85);
+      background: rgba(232, 184, 75, .08);
+      border-color: rgba(232, 184, 75, .22);
+    }
+
+    .plan-popular-note {
+      font-size: .71rem;
+      color: rgba(0, 212, 170, .5);
+      line-height: 1.5;
+      margin: .35rem 0 0;
+      font-style: italic;
+    }
+
+    /* ── Compare: quick nav above table ── */
+    .pc-quick-nav {
+      max-width: 820px;
+      margin: 0 auto .9rem;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: .6rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      flex-wrap: wrap;
+    }
+
+    .pc-quick-label {
+      font-size: .7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.35);
+      white-space: nowrap;
+    }
+
+    .pc-quick-options {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .pc-quick-opt {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .26rem .6rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.09);
+      font-size: .69rem;
+      cursor: pointer;
+    }
+
+    .pc-quick-opt strong { color: rgba(255,255,255,.7); font-weight: 700; }
+    .pc-quick-opt span   { color: rgba(255,255,255,.38); }
+
+    .pc-quick-opt-pro {
+      border-color: rgba(0,212,170,.35);
+      background: rgba(0,212,170,.07);
+    }
+
+    .pc-quick-opt-pro strong { color: var(--teal); }
+
+    /* ── Comparison table ── */
+    .plans-compare {
+      max-width: 820px;
+      margin: 0 auto 0;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .pc-row {
+      display: grid;
+      grid-template-columns: 1fr 70px 114px 82px;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      transition: background .15s;
+    }
+
+    .pc-row:not(.pc-head):not(.pc-cat-row):not(.pc-cta-row):not(.pc-rec-row):not(.pc-sum-row):hover {
+      background: rgba(255,255,255,.025);
+    }
+
+    .pc-head {
+      background: rgba(255,255,255,.04);
+      align-items: start;
+    }
+
+    .pc-label {
+      padding: .62rem 1rem;
+      font-size: .76rem;
+      color: var(--ink-soft);
+    }
+
+    .pc-head .pc-label { padding: 1rem 1rem 1.1rem; }
+
+    .plans-compare-eyebrow {
+      font-size: .62rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(0, 212, 170, .55);
+      margin-bottom: .3rem;
+    }
+
+    .plans-compare-title {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin: 0 0 .28rem;
+    }
+
+    .plans-compare-sub {
+      font-size: .73rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .pc-col {
+      padding: .62rem .4rem;
+      text-align: center;
+      font-size: .74rem;
+      color: var(--ink-soft);
+      border-left: 1px solid rgba(255,255,255,.04);
+      align-self: stretch;
+    }
+
+    .pc-head .pc-col {
+      padding: .9rem .45rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .18rem;
+    }
+
+    .pc-col-pro {
+      background: rgba(0, 212, 170, .07);
+      border-color: rgba(0, 212, 170, .2);
+      box-shadow: inset 1px 0 0 rgba(0,212,170,.15), inset -1px 0 0 rgba(0,212,170,.15);
+    }
+
+    .pc-head .pc-col-pro {
+      background: rgba(0, 212, 170, .13);
+      box-shadow: inset 1px 0 0 rgba(0,212,170,.3), inset -1px 0 0 rgba(0,212,170,.3), 0 0 35px rgba(0,212,170,.1);
+    }
+
+    .pc-col-badge {
+      font-size: .56rem;
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: #0a1a16;
+      background: var(--teal);
+      border-radius: 20px;
+      padding: .18rem .55rem;
+      white-space: nowrap;
+    }
+
+    .pc-col-name {
+      font-size: .71rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+    }
+
+    .pc-head .pc-col-pro .pc-col-name {
+      color: rgba(0, 212, 170, 1);
+      font-size: .78rem;
+    }
+
+    .pc-col-desc {
+      font-size: .72rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.5);
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .pc-head .pc-col-pro .pc-col-desc {
+      color: rgba(0, 212, 170, .7);
+    }
+
+    .pc-col-sub {
+      font-size: .63rem;
+      color: rgba(255,255,255,.28);
+      text-align: center;
+    }
+
+    /* Summary rows (Best For / Price) */
+    .pc-sum-row {
+      background: rgba(255,255,255,.02);
+    }
+
+    .pc-sum-label {
+      font-size: .68rem !important;
+      font-weight: 700 !important;
+      color: rgba(255,255,255,.45) !important;
+    }
+
+    .pc-sum-val {
+      font-size: .73rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.65);
+    }
+
+    .pc-col-pro .pc-sum-val {
+      color: rgba(0, 212, 170, .9);
+    }
+
+    /* Category header rows */
+    .pc-cat-row {
+      display: grid;
+      grid-template-columns: 1fr 70px 114px 82px;
+      background: rgba(255,255,255,.03);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .pc-cat-label {
+      padding: .42rem 1rem;
+      font-size: .63rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+    }
+
+    .pc-cat-space {
+      border-left: 1px solid rgba(255,255,255,.04);
+    }
+
+    .pc-cat-space.pc-col-pro {
+      background: rgba(0, 212, 170, .07);
+      border-color: rgba(0, 212, 170, .2);
+    }
+
+    /* Feature labels */
+    .pc-full-label {
+      font-size: .63rem;
+      font-weight: 700;
+      margin-top: .16rem;
+      line-height: 1;
+    }
+
+    .pc-feat-desc {
+      font-size: .64rem;
+      color: rgba(255,255,255,.28);
+      margin-top: .1rem;
+      line-height: 1.35;
+      font-style: italic;
+    }
+
+    .pc-full-paid { color: rgba(0, 212, 170, .6); }
+    .pc-full-pro  { color: rgba(0, 212, 170, .6); }
+
+    /* Yes / No indicators */
+    .pc-yes {
+      color: var(--teal);
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .pc-no {
+      color: rgba(255,255,255,.14);
+      font-size: .9rem;
+    }
+
+    /* Recommendation row */
+    .pc-rec-row {
+      background: rgba(255,255,255,.025);
+      border-top: 1px solid rgba(255,255,255,.06) !important;
+    }
+
+    .pc-rec-label {
+      font-size: .67rem !important;
+      font-weight: 700 !important;
+      color: rgba(255,255,255,.4) !important;
+    }
+
+    .pc-rec-val {
+      font-size: .67rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: rgba(255,255,255,.55);
+    }
+
+    .pc-col-pro .pc-rec-val {
+      color: rgba(0, 212, 170, .85);
+      font-weight: 700;
+    }
+
+    /* CTA row */
+    .pc-cta-row {
+      display: grid;
+      grid-template-columns: 1fr 70px 114px 82px;
+      background: rgba(255,255,255,.03);
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .pc-cta-label { padding: .9rem 1rem; }
+
+    .pc-cta-cell {
+      padding: .8rem .45rem;
+      text-align: center;
+      border-left: 1px solid rgba(255,255,255,.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pc-cta-cell.pc-col-pro {
+      background: rgba(0, 212, 170, .09);
+      border-color: rgba(0, 212, 170, .22);
+      padding: .9rem .45rem;
+    }
+
+    .pc-btn {
+      display: block;
+      font-size: .66rem;
+      font-weight: 700;
+      padding: .48rem .4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+      transition: opacity .15s, transform .15s;
+      cursor: pointer;
+      border: none;
+      line-height: 1.3;
+    }
+
+    .pc-btn:hover { opacity: .88; transform: translateY(-1px); }
+
+    .pc-btn-free {
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.65);
+      border: 1px solid rgba(255,255,255,.1);
+      font-size: .63rem;
+    }
+
+    .pc-btn-pro {
+      background: var(--teal);
+      color: #0a1a16;
+      font-weight: 900;
+      font-size: .72rem;
+      padding: .6rem .4rem;
+      box-shadow: 0 0 18px rgba(0,212,170,.3);
+    }
+
+    .pc-btn-lifetime {
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.65);
+      border: 1px solid rgba(255,255,255,.1);
+      font-size: .63rem;
+    }
+
+    /* Pro vs Lifetime advantage block */
+    .pc-adv-block {
+      max-width: 820px;
+      margin: .9rem auto 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .pc-adv-lifetime {
+      padding: 1rem 1.1rem;
+      background: rgba(255,255,255,.025);
+    }
+
+    .pc-adv-vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 .7rem;
+      font-size: .65rem;
+      font-weight: 900;
+      color: rgba(255,255,255,.2);
+      letter-spacing: .08em;
+      border-left: 1px solid rgba(255,255,255,.05);
+      border-right: 1px solid rgba(0,212,170,.2);
+      background: rgba(255,255,255,.02);
+    }
+
+    .pc-adv-pro {
+      padding: 1rem 1.1rem;
+      background: rgba(0, 212, 170, .06);
+    }
+
+    .pc-adv-tag {
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: .35rem;
+    }
+
+    .pc-adv-tag-pro {
+      color: var(--teal);
+    }
+
+    .pc-adv-tagline {
+      font-size: .74rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.45;
+      margin: 0 0 .5rem;
+    }
+
+    .pc-adv-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .22rem;
+    }
+
+    .pc-adv-list li {
+      font-size: .72rem;
+      color: rgba(255,255,255,.45);
+      line-height: 1.3;
+    }
+
+    .pc-adv-list li.pc-adv-no {
+      color: rgba(255,255,255,.22);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,255,255,.15);
+    }
+
+    .pc-adv-list li.pc-adv-hi {
+      color: rgba(0, 212, 170, .85);
+      font-weight: 600;
+    }
+
+    /* Why members choose Pro block */
+    .pc-why-pro {
+      max-width: 820px;
+      margin: .9rem auto 0;
+      background: rgba(0, 212, 170, .04);
+      border: 1px solid rgba(0,212,170,.12);
+      border-radius: 12px;
+      padding: 1rem 1.3rem;
+    }
+
+    .pc-why-pro-title {
+      font-size: .78rem;
+      font-weight: 800;
+      color: rgba(0, 212, 170, .8);
+      margin: 0 0 .35rem;
+    }
+
+    .pc-why-pro-body {
+      font-size: .77rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin: 0;
     }
 
     .plans-bottom-cta {
@@ -11959,7 +12554,7 @@
     .plans-grid {
       max-width: 1180px !important;
       gap: 1.5rem !important;
-      align-items: stretch !important;
+      align-items: start !important;
     }
 
     .plans-grid+.plans-footnote {
@@ -11977,7 +12572,6 @@
     .plan-card {
       display: flex !important;
       flex-direction: column !important;
-      height: 100% !important;
       padding: 1.55rem !important;
     }
 
@@ -12008,7 +12602,13 @@
     }
 
     .plan-btn {
-      margin-top: auto !important;
+      margin-top: 0.85rem !important;
+    }
+
+    /* Pro card: larger, more prominent CTA */
+    .plan-card.emerald .plan-btn {
+      padding: 0.82rem !important;
+      font-size: 0.97rem !important;
     }
 
     .books-spotlight {
@@ -16236,128 +16836,351 @@
         <div class="plan-tier" data-i18n="plans.free.tier">Free — always</div>
         <div class="plan-name" data-i18n="plans.free.name">Learn &amp; Explore</div>
         <div class="plan-price">$0</div>
-        <div class="plan-free-hook" data-i18n="plans.free.hook">Start understanding your future before risking your money.</div>
-        <div class="plan-desc" data-i18n="plans.free.desc">All the tools to build understanding. No commitment, ever.</div>
-        <div class="plan-bestfor">
-          <div class="plan-bestfor-label" id="plans-free-bestfor-label">Best for</div>
-          <div class="plan-bestfor-text" id="plans-free-bestfor-text">People who want to explore investing, run scenarios, and build confidence before committing to anything.</div>
-        </div>
-        <div class="plan-section-label" id="plans-free-includes-label">Includes</div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f1">Investment simulator — all 9 types</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f3">Plain-English explanations</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f2">Side-by-side comparison table</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f4">Inflation calculator</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f5">Future projections &amp; passive income view</span></div>
-        <button class="plan-btn pb-out" data-i18n="plans.free.btn" onclick="showPage('simulator')">Try it free</button>
+        <div class="plan-identity" data-i18n="plans.free.identity">Start learning before risking money.</div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f1">Investment simulator</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f2">Inflation calculator</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f4">Investment comparisons</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f5">Future projections</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.free.f3">Plain-English education</span></div>
+        <button class="plan-btn pb-out" data-i18n="plans.free.btn" onclick="showPage('simulator')">Start Learning Free</button>
+        <p class="plan-trust" data-i18n="plans.free.trust">No credit card required.</p>
       </div>
 
-      <!-- ── SUBSCRIPTION CARD (Most Popular) ── -->
+      <!-- ── SUBSCRIPTION CARD (Most Complete) ── -->
       <div class="plan-card emerald">
-        <div class="plan-badge" data-i18n="plans.sub.badge">Most Popular</div>
-        <div class="plan-tier" data-i18n="plans.sub.tier">Track Your Financial Future</div>
-        <div class="plan-name" data-i18n="plans.sub.name">See Where Your Future Is Going</div>
+        <div class="plan-badge" data-i18n="plans.sub.badge">Most Complete</div>
+        <div class="plan-tier" data-i18n="plans.sub.tier">Future Membership</div>
+        <div class="plan-name plan-name-emerald" data-i18n="plans.sub.name">Build Wealth With Confidence</div>
         <div class="plan-billing-toggle">
           <button class="pbt-btn pbt-active" id="pbt-monthly" onclick="setPlanBilling('monthly')" data-i18n="plans.sub.billingMonthly">Monthly</button>
           <button class="pbt-btn" id="pbt-annual" onclick="setPlanBilling('annual')"><span data-i18n="plans.sub.billingAnnual">Annual</span> <span class="pbt-save" data-i18n="plans.sub.billingSave">Save 16%</span></button>
         </div>
         <div class="plan-price"><span id="sub-price-display">AUD $9.90</span><sub id="sub-period-display">/mo</sub></div>
-        <div class="plan-billing-note" id="sub-billing-note">Billed monthly. Cancel anytime.</div>
-        <div class="plan-emotion-hook">
-          <strong data-i18n="plans.sub.emotionHead">Most people never truly see where their money is going.</strong>
-          <span data-i18n="plans.sub.emotionSub">Plainvest helps you understand it before it's too late to act.</span>
-        </div>
-        <div class="sub-mini-proj">
-          <div class="smp-eyebrow" data-i18n="plans.sub.projEyebrow">Example: $200/mo invested at 8%/yr</div>
-          <div class="smp-row">
-            <div class="smp-endpoint">
-              <span class="smp-lbl" data-i18n="plans.sub.projNow">Today</span>
-              <span class="smp-val">$200<span style="font-size:.65rem;font-weight:500;color:var(--ink-soft)">/mo</span></span>
+        <div class="plan-identity" data-i18n="plans.sub.identity">Everything in Lifetime, plus your complete wealth dashboard.</div>
+        <button class="plan-btn pb-fill pb-emerald" data-i18n="plans.sub.btn" onclick="openMemberSignup()">Build Wealth With Confidence</button>
+        <p class="plan-trust" data-i18n="plans.sub.trust">Cancel anytime.</p>
+        <p class="plan-popular-note" data-i18n="plans.sub.popularNote">Includes everything in Lifetime plus portfolio tracking, future projections and the full dashboard.</p>
+        <div class="plan-below-cta">
+          <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f1">Everything in Lifetime</span></div>
+          <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f2">Portfolio tracking</span></div>
+          <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f3">Future projections dashboard</span></div>
+          <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f5">Freedom Score™ dashboard</span></div>
+          <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f4">Goal tracking &amp; insights</span></div>
+          <details class="sub-proj-details">
+            <summary class="sub-proj-summary" data-i18n="plans.sub.projToggle">View example growth →</summary>
+            <div class="plan-billing-note" id="sub-billing-note">Billed monthly. Cancel anytime.</div>
+            <div class="sub-mini-proj">
+              <div class="smp-eyebrow" data-i18n="plans.sub.projEyebrow">Example: $200/mo invested at 8%/yr</div>
+              <div class="smp-row">
+                <div class="smp-endpoint">
+                  <span class="smp-lbl" data-i18n="plans.sub.projNow">Today</span>
+                  <span class="smp-val">$200<span style="font-size:.65rem;font-weight:500;color:var(--ink-soft)">/mo</span></span>
+                </div>
+                <div class="smp-track-wrap">
+                  <div class="smp-track"><div class="smp-fill"></div></div>
+                </div>
+                <div class="smp-endpoint">
+                  <span class="smp-lbl" data-i18n="plans.sub.projThen">In 20 yrs</span>
+                  <span class="smp-val smp-future">~$118k</span>
+                </div>
+              </div>
+              <div class="smp-note" data-i18n="plans.sub.projNote">Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.</div>
             </div>
-            <div class="smp-track-wrap">
-              <div class="smp-track"><div class="smp-fill"></div></div>
-            </div>
-            <div class="smp-endpoint">
-              <span class="smp-lbl" data-i18n="plans.sub.projThen">In 20 yrs</span>
-              <span class="smp-val smp-future">~$118k</span>
-            </div>
-          </div>
-          <div class="smp-note" data-i18n="plans.sub.projNote">Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.</div>
+          </details>
         </div>
-        <div class="plan-bestfor">
-          <div class="plan-bestfor-label">Best for</div>
-          <div class="plan-bestfor-text" data-i18n="plans.sub.bestfor">People who are actively building wealth and want to see where they stand, what's coming, and what to do next.</div>
-        </div>
-        <div class="plan-section-label" data-i18n="plans.sub.includesLabel">What you see every month</div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f1">Track your financial future</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f2">See what your money could become</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f3">Build goals with real timelines</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f4">Freedom Score™</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f5">Understand your portfolio in plain English</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f7">Celebrate every financial milestone</span></div>
-        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f8">Everything in Free</span></div>
-        <button class="plan-btn pb-fill pb-emerald" data-i18n="plans.sub.btn" onclick="openMemberSignup()">Start Building Wealth</button>
-        <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.82rem;line-height:1.45;text-align:center;" data-i18n="plans.sub.note">Cancel anytime. No lock-in.</p>
       </div>
 
       <!-- ── LIFETIME CARD ── -->
       <div class="plan-card star">
         <div class="plan-badge" data-i18n="plans.prem.badge">Founding one-time price</div>
         <div class="plan-tier" data-i18n="plans.prem.tier">Clarity Pass</div>
-        <div class="plan-name" data-i18n="plans.prem.name">Build Your Financial Foundation</div>
+        <div class="plan-name" data-i18n="plans.prem.name">Build Your Investing Foundation</div>
         <div class="plan-price" id="plans-prem-price">AUD $89.90</div>
-        <div class="plan-price-note" data-i18n="plans.prem.priceNote">One-time. Lifetime access. No subscription, ever.</div>
-        <div class="plan-foundation-note" data-i18n="plans.prem.foundationNote">📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.</div>
-        <div class="plan-desc" data-i18n="plans.prem.desc">Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.</div>
-        <div class="plan-zoom-callout">
-          <strong id="plans-zoom-title" data-i18n="plans.zoom.title">Includes a 60-minute Zoom support call</strong>
-          <span id="plans-zoom-text" data-i18n="plans.zoom.text">Bring your questions about exchanges, DCA, Bitcoin safety, or your first steps. We help you understand what to do next.</span>
-        </div>
-        <div class="plan-bestfor">
-          <div class="plan-bestfor-label" id="plans-prem-bestfor-label">Best for</div>
-          <div class="plan-bestfor-text" id="plans-prem-bestfor-text" data-i18n="plans.prem.bestfor">People who want to learn investing with confidence — structured lessons, guided paths, and a real human to answer every question. Once.</div>
-        </div>
-        <div class="plan-section-label" id="plans-prem-includes-label" data-i18n="plans.prem.includesLabel">What's included</div>
-        <div class="plan-clarity-grid">
-          <div class="pcg-col pcg-yes">
-            <div class="pcg-head" data-i18n="plans.prem.cgYesHead">Included</div>
-            <div class="pcg-item" data-i18n="plans.prem.cg1">✔ Structured investing education</div>
-            <div class="pcg-item" data-i18n="plans.prem.cg2">✔ Beginner roadmap</div>
-            <div class="pcg-item" data-i18n="plans.prem.cg3">✔ Bitcoin &amp; ETF guidance</div>
-            <div class="pcg-item" data-i18n="plans.prem.cg4">✔ 60-min onboarding Zoom call</div>
-            <div class="pcg-item" data-i18n="plans.prem.cg5">✔ Lifetime access to guides</div>
+        <div class="plan-identity" data-i18n="plans.prem.identity">Education &amp; personal guidance — yours forever.</div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.prem.b1">Avoid costly beginner mistakes</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.prem.b2">Build a clear investing roadmap</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.prem.b3">Get personal guidance when needed</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.prem.b4">Learn at your own pace</span></div>
+        <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.prem.b5">Included 60-min Zoom support call</span></div>
+        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Get Clarity &amp; Lifetime Access</button>
+        <p class="plan-trust" data-i18n="plans.prem.trust">One-time payment. Lifetime access.</p>
+        <div class="plan-below-cta">
+          <div class="plan-proof">
+            <span class="plan-proof-pill" id="plans-proof-1" data-i18n="plans.proof.p1">AUD $89.90 one-time</span>
+            <span class="plan-proof-pill" id="plans-proof-2" data-i18n="plans.proof.p2">60-min Zoom incl.</span>
+            <span class="plan-proof-pill" id="plans-proof-3" data-i18n="plans.proof.p3">Extra calls AUD $39.90</span>
           </div>
-          <div class="pcg-col pcg-no">
-            <div class="pcg-head" data-i18n="plans.prem.cgNoHead">Not included</div>
-            <div class="pcg-item" data-i18n="plans.prem.cgn1">✖ Live portfolio tracking</div>
-            <div class="pcg-item" data-i18n="plans.prem.cgn2">✖ Future projections</div>
-            <div class="pcg-item" data-i18n="plans.prem.cgn3">✖ AI portfolio insights</div>
-            <div class="pcg-item" data-i18n="plans.prem.cgn4">✖ Freedom Score™ dashboard</div>
-          </div>
-        </div>
-        <div class="plan-proof">
-          <span class="plan-proof-pill" id="plans-proof-1" data-i18n="plans.proof.p1">AUD $89.90 one-time</span>
-          <span class="plan-proof-pill" id="plans-proof-2" data-i18n="plans.proof.p2">60-min Zoom incl.</span>
-          <span class="plan-proof-pill" id="plans-proof-3" data-i18n="plans.proof.p3">Extra calls AUD $39.90</span>
-        </div>
-        <div class="plan-flow" aria-label="How Premium works">
-          <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s1">1. Create account</strong>
-            <span data-i18n="plans.flow.b1">One email. Access to everything you've purchased.</span>
-          </div>
-          <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s2">2. One payment</strong>
-            <span data-i18n="plans.flow.b2">AUD $89.90 once. Secured by Stripe. No recurring fees.</span>
-          </div>
-          <div class="plan-flow-step">
-            <strong data-i18n="plans.flow.s3">3. Start learning</strong>
-            <span data-i18n="plans.flow.b3">Open any guide instantly. Book your Zoom call when you're ready.</span>
+          <div class="plan-flow" aria-label="How Clarity Pass works">
+            <div class="plan-flow-step">
+              <strong data-i18n="plans.flow.s1">1. Create account</strong>
+              <span data-i18n="plans.flow.b1">One email. Access to everything you've purchased.</span>
+            </div>
+            <div class="plan-flow-step">
+              <strong data-i18n="plans.flow.s2">2. One payment</strong>
+              <span data-i18n="plans.flow.b2">AUD $89.90 once. Secured by Stripe. No recurring fees.</span>
+            </div>
+            <div class="plan-flow-step">
+              <strong data-i18n="plans.flow.s3">3. Start learning</strong>
+              <span data-i18n="plans.flow.b3">Open any guide instantly. Book your Zoom call when you're ready.</span>
+            </div>
           </div>
         </div>
-        <button class="plan-btn pb-fill" data-i18n="plans.prem.btn" onclick="openMemberSignup()">Get lifetime access</button>
-        <p style="margin:.8rem 0 0;color:var(--ink-soft);font-size:.83rem;line-height:1.45;" data-i18n="plans.prem.footnote">One-time payment. No subscription. 7-day review policy if something is not right.</p>
       </div>
 
     </div>
+
+    <!-- ── Pre-table quick nav ── -->
+    <div class="pc-quick-nav">
+      <span class="pc-quick-label" data-i18n="plans.compare.quickLabel">Not sure which plan?</span>
+      <div class="pc-quick-options">
+        <div class="pc-quick-opt">
+          <strong data-i18n="plans.compare.hFree2">Free</strong>
+          <span data-i18n="plans.compare.quickFree">Learn investing</span>
+        </div>
+        <div class="pc-quick-opt pc-quick-opt-lifetime">
+          <strong data-i18n="plans.compare.hLifetime2">Lifetime</strong>
+          <span data-i18n="plans.compare.quickLifetime">Get guidance</span>
+        </div>
+        <div class="pc-quick-opt pc-quick-opt-pro">
+          <strong data-i18n="plans.compare.hPro2">Pro ★</strong>
+          <span data-i18n="plans.compare.quickPro">Track &amp; grow wealth</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COMPARISON TABLE ── -->
+    <div class="plans-compare" role="table" aria-label="Plan comparison">
+
+      <!-- HEADER ROW -->
+      <div class="pc-row pc-head" role="row">
+        <div class="pc-label" role="columnheader">
+          <div class="plans-compare-eyebrow" data-i18n="plans.compare.eyebrow">Compare plans</div>
+          <p class="plans-compare-title" data-i18n="plans.compare.title">Choose the path that fits your journey</p>
+          <p class="plans-compare-sub" data-i18n="plans.compare.subtitle">From learning to clarity to full wealth building.</p>
+        </div>
+        <div class="pc-col" role="columnheader">
+          <div class="pc-col-name" data-i18n="plans.compare.hFree">Free</div>
+          <div class="pc-col-desc" data-i18n="plans.compare.dFree">Learn Investing</div>
+          <div class="pc-col-sub" data-i18n="plans.compare.sFree">Explore before committing</div>
+        </div>
+        <div class="pc-col pc-col-pro" role="columnheader">
+          <div class="pc-col-badge" data-i18n="plans.compare.badgePro">Recommended</div>
+          <div class="pc-col-name" data-i18n="plans.compare.hPro">Pro ★</div>
+          <div class="pc-col-desc" data-i18n="plans.compare.dPro">Build Wealth</div>
+          <div class="pc-col-sub" data-i18n="plans.compare.sPro">Education + Dashboard + Planning</div>
+        </div>
+        <div class="pc-col" role="columnheader">
+          <div class="pc-col-name" data-i18n="plans.compare.hLifetime">Lifetime</div>
+          <div class="pc-col-desc" data-i18n="plans.compare.dLifetime">Build Your Foundation</div>
+          <div class="pc-col-sub" data-i18n="plans.compare.sLifetime">Education + Personal Guidance</div>
+        </div>
+      </div>
+
+      <!-- SUMMARY: Best For -->
+      <div class="pc-row pc-sum-row" role="row">
+        <div class="pc-label pc-sum-label" role="cell" data-i18n="plans.compare.sumBestFor">Best For</div>
+        <div class="pc-col" role="cell"><span class="pc-sum-val" data-i18n="plans.compare.sumBestFree">Beginners</span></div>
+        <div class="pc-col pc-col-pro" role="cell"><span class="pc-sum-val" data-i18n="plans.compare.sumBestPro">Active investors</span></div>
+        <div class="pc-col" role="cell"><span class="pc-sum-val" data-i18n="plans.compare.sumBestLifetime">New starters</span></div>
+      </div>
+
+      <!-- SUMMARY: Price -->
+      <div class="pc-row pc-sum-row" role="row">
+        <div class="pc-label pc-sum-label" role="cell" data-i18n="plans.compare.sumPrice">Price</div>
+        <div class="pc-col" role="cell"><span class="pc-sum-val" data-i18n="plans.compare.sumPriceFree">$0</span></div>
+        <div class="pc-col pc-col-pro" role="cell"><span class="pc-sum-val" data-i18n="plans.compare.sumPricePro">$9.90/mo</span></div>
+        <div class="pc-col" role="cell"><span class="pc-sum-val" data-i18n="plans.compare.sumPriceLifetime">$89.90 once</span></div>
+      </div>
+
+      <!-- CATEGORY 1: Learning & Education -->
+      <div class="pc-cat-row" role="row">
+        <div class="pc-cat-label" data-i18n="plans.compare.cat1">📚 Learning &amp; Education</div>
+        <div class="pc-cat-space"></div>
+        <div class="pc-cat-space pc-col-pro"></div>
+        <div class="pc-cat-space"></div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell" data-i18n="plans.compare.r1">Investment simulator</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell" data-i18n="plans.compare.r2">Inflation calculator</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell" data-i18n="plans.compare.r3">Plain-English education</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell">
+          <span data-i18n="plans.compare.r4">Premium investing guides</span>
+          <div class="pc-full-label pc-full-paid" data-i18n="plans.compare.fullAccess">✓ Full access</div>
+        </div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell" data-i18n="plans.compare.r5">Bitcoin / ETF / DCA education</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell" data-i18n="plans.compare.r6">Beginner roadmap</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+
+      <!-- CATEGORY 2: Support & Guidance -->
+      <div class="pc-cat-row" role="row">
+        <div class="pc-cat-label" data-i18n="plans.compare.cat2">🎯 Support &amp; Guidance</div>
+        <div class="pc-cat-space"></div>
+        <div class="pc-cat-space pc-col-pro"></div>
+        <div class="pc-cat-space"></div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell">
+          <span data-i18n="plans.compare.r7">Included Zoom support call</span>
+          <div class="pc-full-label pc-full-paid" data-i18n="plans.compare.included">✓ Included</div>
+        </div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell" data-i18n="plans.compare.r8">Lifetime guide access</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-yes" role="cell">✓</div>
+      </div>
+
+      <!-- CATEGORY 3: Planning Tools -->
+      <div class="pc-cat-row" role="row">
+        <div class="pc-cat-label" data-i18n="plans.compare.cat3">📈 Planning Tools</div>
+        <div class="pc-cat-space"></div>
+        <div class="pc-cat-space pc-col-pro"></div>
+        <div class="pc-cat-space"></div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell">
+          <span data-i18n="plans.compare.r10">Future projections dashboard</span>
+          <div class="pc-feat-desc" data-i18n="plans.compare.r10d">Visualise where your portfolio is heading</div>
+        </div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell">
+          <span data-i18n="plans.compare.r12">Goal tracking</span>
+          <div class="pc-feat-desc" data-i18n="plans.compare.r12d">Set targets and measure progress</div>
+        </div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell">
+          <span data-i18n="plans.compare.r13">Investment insights</span>
+          <div class="pc-feat-desc" data-i18n="plans.compare.r13d">Understand what your numbers mean</div>
+        </div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+      </div>
+
+      <!-- CATEGORY 4: Portfolio Dashboard -->
+      <div class="pc-cat-row" role="row">
+        <div class="pc-cat-label" data-i18n="plans.compare.cat4">💼 Portfolio Dashboard</div>
+        <div class="pc-cat-space"></div>
+        <div class="pc-cat-space pc-col-pro"></div>
+        <div class="pc-cat-space"></div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell">
+          <span data-i18n="plans.compare.r9">Portfolio tracking</span>
+          <div class="pc-feat-desc" data-i18n="plans.compare.r9d">Track all holdings in one place</div>
+        </div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+      </div>
+      <div class="pc-row" role="row">
+        <div class="pc-label" role="cell">
+          <span data-i18n="plans.compare.r11">Freedom Score™ dashboard</span>
+          <div class="pc-feat-desc" data-i18n="plans.compare.r11d">Measure progress toward financial independence</div>
+        </div>
+        <div class="pc-col pc-no" role="cell">—</div>
+        <div class="pc-col pc-col-pro pc-yes" role="cell">✓</div>
+        <div class="pc-col pc-no" role="cell">—</div>
+      </div>
+
+      <!-- RECOMMENDATION ROW -->
+      <div class="pc-row pc-rec-row" role="row">
+        <div class="pc-label pc-rec-label" role="cell" data-i18n="plans.compare.recLabel">Why choose this?</div>
+        <div class="pc-col" role="cell"><span class="pc-rec-val" data-i18n="plans.compare.recFree">Great starting point</span></div>
+        <div class="pc-col pc-col-pro" role="cell"><span class="pc-rec-val" data-i18n="plans.compare.recPro">Complete wealth system</span></div>
+        <div class="pc-col" role="cell"><span class="pc-rec-val" data-i18n="plans.compare.recLifetime">Education forever</span></div>
+      </div>
+
+      <!-- CTA ROW -->
+      <div class="pc-cta-row" role="row">
+        <div class="pc-cta-label" role="cell"></div>
+        <div class="pc-cta-cell" role="cell">
+          <button class="pc-btn pc-btn-free" onclick="showPage('simulator')" data-i18n="plans.compare.ctaFree">Start Free</button>
+        </div>
+        <div class="pc-cta-cell pc-col-pro" role="cell">
+          <button class="pc-btn pc-btn-pro" onclick="openMemberSignup(event)" data-i18n="plans.compare.ctaPro">Build Wealth</button>
+        </div>
+        <div class="pc-cta-cell" role="cell">
+          <button class="pc-btn pc-btn-lifetime" onclick="openMemberSignup(event)" data-i18n="plans.compare.ctaLifetime">Get Lifetime Access</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Pro vs Lifetime distinction ── -->
+    <div class="pc-adv-block">
+      <div class="pc-adv-lifetime">
+        <div class="pc-adv-tag" data-i18n="plans.compare.advLtTag">Lifetime</div>
+        <p class="pc-adv-tagline" data-i18n="plans.compare.advLtLine">Education &amp; personal guidance — yours forever.</p>
+        <ul class="pc-adv-list">
+          <li>✓ <span data-i18n="plans.compare.advLt1">Premium guides &amp; Zoom call</span></li>
+          <li>✓ <span data-i18n="plans.compare.advLt2">Beginner roadmap</span></li>
+          <li class="pc-adv-no" data-i18n="plans.compare.advLtNo1">No portfolio tracking</li>
+          <li class="pc-adv-no" data-i18n="plans.compare.advLtNo2">No projections dashboard</li>
+          <li class="pc-adv-no" data-i18n="plans.compare.advLtNo3">No Freedom Score™</li>
+        </ul>
+      </div>
+      <div class="pc-adv-vs">VS</div>
+      <div class="pc-adv-pro">
+        <div class="pc-adv-tag pc-adv-tag-pro" data-i18n="plans.compare.advProTag">Pro — Recommended</div>
+        <p class="pc-adv-tagline" data-i18n="plans.compare.advProLine">Everything in Lifetime, plus the complete wealth building system.</p>
+        <ul class="pc-adv-list">
+          <li>✓ <span data-i18n="plans.compare.advPro0">Everything in Lifetime</span></li>
+          <li class="pc-adv-hi">✓ <span data-i18n="plans.compare.advPro1">Portfolio tracking</span></li>
+          <li class="pc-adv-hi">✓ <span data-i18n="plans.compare.advPro2">Future projections</span></li>
+          <li class="pc-adv-hi">✓ <span data-i18n="plans.compare.advPro3">Freedom Score™</span></li>
+          <li class="pc-adv-hi">✓ <span data-i18n="plans.compare.advPro4">Goal tracking</span></li>
+          <li class="pc-adv-hi">✓ <span data-i18n="plans.compare.advPro5">Investment insights</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Why members choose Pro ── -->
+    <div class="pc-why-pro">
+      <p class="pc-why-pro-title" data-i18n="plans.compare.whyProTitle">Why most members choose Pro</p>
+      <p class="pc-why-pro-body" data-i18n="plans.compare.whyProBody">Most investors start with education — then want a way to track progress and measure whether they're actually moving toward financial freedom. Pro combines every learning resource with the complete planning and dashboard system.</p>
+    </div>
+
     <!-- ── Why members stay ── -->
     <div class="plans-why">
       <div class="plans-why-head">
@@ -17762,10 +18585,10 @@
             b3: 'Every year you wait is compound growth you don\'t get back. Premium isn\'t a luxury — it\'s clarity delivered at the exact moment it\'s most valuable.'
           },
           freeBestForLabel: 'Best for',
-          freeBestForText: 'People who want to explore investing, compare options, and understand the basic idea before taking action.',
+          freeBestForText: 'People who want to learn before investing.',
           freeIncludesLabel: 'Includes',
           premBestForLabel: 'Best for',
-          premBestForText: 'People who are curious, a little nervous, and just want someone to show them the path — clearly, without pressure.',
+          premBestForText: 'People who want clarity before making investment decisions.',
           premIncludesLabel: 'What you unlock',
           proof1: 'AUD $89.90 one-time',
           proof2: '1 x 60-min Zoom call',
@@ -17778,7 +18601,40 @@
             leftB: 'A common range for one financial education or guidance session in Australia.',
             rightK: 'Plainvest Premium',
             rightT: 'AUD $89.90 once',
-            rightB: 'Includes the 60-minute Zoom call, 15 guides, book path, and permanent hub access.'
+            rightB: 'Includes the 60-minute Zoom call, 15 guides, book path, and permanent hub access.',
+            eyebrow: 'Compare plans',
+            title: 'Choose the path that fits your journey',
+            subtitle: 'From learning to clarity to full wealth building.',
+            quickLabel: 'Not sure which plan?',
+            quickFree: 'Learn investing', quickLifetime: 'Get guidance', quickPro: 'Track & grow wealth',
+            hFree: 'Free', hPro: 'Pro ★', hLifetime: 'Lifetime',
+            hFree2: 'Free', hPro2: 'Pro ★', hLifetime2: 'Lifetime',
+            dFree: 'Learn Investing', sFree: 'Explore before committing',
+            badgePro: 'Recommended', dPro: 'Build Wealth', sPro: 'Education + Dashboard + Planning',
+            dLifetime: 'Build Your Foundation', sLifetime: 'Education + Personal Guidance',
+            sumBestFor: 'Best For', sumBestFree: 'Beginners', sumBestPro: 'Active investors', sumBestLifetime: 'New starters',
+            sumPrice: 'Price', sumPriceFree: '$0', sumPricePro: '$9.90/mo', sumPriceLifetime: '$89.90 once',
+            cat1: '📚 Learning & Education', cat2: '🎯 Support & Guidance',
+            cat3: '📈 Planning Tools', cat4: '💼 Portfolio Dashboard',
+            fullAccess: '✓ Full access', included: '✓ Included', proOnly: 'Pro only',
+            r1: 'Investment simulator', r2: 'Inflation calculator', r3: 'Plain-English education',
+            r4: 'Premium investing guides', r5: 'Bitcoin / ETF / DCA education', r6: 'Beginner roadmap',
+            r7: 'Included Zoom support call', r8: 'Lifetime guide access',
+            r9: 'Portfolio tracking', r9d: 'Track all holdings in one place',
+            r10: 'Future projections dashboard', r10d: 'Visualise where your portfolio is heading',
+            r11: 'Freedom Score™ dashboard', r11d: 'Measure progress toward financial independence',
+            r12: 'Goal tracking', r12d: 'Set targets and measure progress',
+            r13: 'Investment insights', r13d: 'Understand what your numbers mean',
+            recLabel: 'Why choose this?', recFree: 'Great starting point', recPro: 'Complete wealth system', recLifetime: 'Education forever',
+            ctaFree: 'Start Free', ctaPro: 'Build Wealth', ctaLifetime: 'Get Lifetime Access',
+            advLtTag: 'Lifetime', advLtLine: 'Education & personal guidance — yours forever.',
+            advLt1: 'Premium guides & Zoom call', advLt2: 'Beginner roadmap',
+            advLtNo1: 'No portfolio tracking', advLtNo2: 'No projections dashboard', advLtNo3: 'No Freedom Score™',
+            advProTag: 'Pro — Recommended', advProLine: 'Everything in Lifetime, plus the complete wealth building system.',
+            advPro0: 'Everything in Lifetime', advPro1: 'Portfolio tracking', advPro2: 'Future projections',
+            advPro3: 'Freedom Score™', advPro4: 'Goal tracking', advPro5: 'Investment insights',
+            whyProTitle: 'Why most members choose Pro',
+            whyProBody: "Most investors start with education — then want a way to track progress and measure whether they're actually moving toward financial freedom. Pro combines every learning resource with the complete planning and dashboard system."
           },
           preview: {
             title: 'Inside Premium',
@@ -17827,9 +18683,9 @@
           purchaseNote: 'Cancel anytime. 7-day review policy if something is not right.',
           bottomCtaSub: 'Start your future — AUD $9.90/mo',
           bottomCtaLifetime: 'Or get lifetime access — AUD $89.90 once',
-          free: { tier: 'Free — always', name: 'Learn & Explore', hook: 'Start understanding your future before risking your money.', desc: 'All the tools to build understanding. No commitment, ever.', f1: 'Investment simulator — all 9 types', f2: 'Side-by-side comparison table', f3: 'Plain-English explanations', f4: 'Inflation calculator', f5: 'Future projections & passive income view', btn: 'Try it free' },
-          sub: { badge: 'Most Popular', tier: 'Future Membership', name: 'See Where Your Future Is Going', desc: 'Your financial future — tracked, projected, and guided every single month.', emotionHead: 'Most people never truly see where their money is going.', emotionSub: 'Plainvest helps you understand it before it\'s too late to act.', projEyebrow: 'Example: $200/mo invested at 8%/yr', projNow: 'Today', projThen: 'In 20 yrs', projNote: 'Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.', bestfor: 'People who are actively building wealth and want to see where they stand, what\'s coming, and what to do next.', includesLabel: 'What you see every month', billingMonthly: 'Monthly', billingAnnual: 'Annual', billingSave: 'Save 16%', f1: 'Track your financial future', f2: 'See what your money could become', f3: 'Build goals with real timelines', f4: 'Freedom Score™', f5: 'Understand your portfolio in plain English', f7: 'Celebrate every financial milestone', f8: 'Everything in Free', btn: 'Start Building Wealth', note: 'Cancel anytime. No lock-in.' },
-          prem: { badge: 'Founding one-time price', tier: 'Clarity Pass', name: 'Build Your Financial Foundation', price: 'AUD $89.90', priceNote: 'One-time. Lifetime access. No subscription, ever.', foundationNote: '📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.', cgYesHead: 'Included', cg1: '✔ Structured investing education', cg2: '✔ Beginner roadmap', cg3: '✔ Bitcoin & ETF guidance', cg4: '✔ 60-min onboarding Zoom call', cg5: '✔ Lifetime access to guides', cgNoHead: 'Not included', cgn1: '✖ Live portfolio tracking', cgn2: '✖ Future projections', cgn3: '✖ AI portfolio insights', cgn4: '✖ Freedom Score™ dashboard', footnote: 'One-time payment. No subscription. 7-day review policy if something is not right.', desc: 'Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.', bestfor: 'People who want to learn investing with confidence — structured lessons, guided paths, and a real human to answer every question. Once.', includesLabel: 'What you unlock forever', f1: '15+ structured investing guides', f3: 'Bitcoin & crypto clarity', f5: 'Curated book reading path', f7: 'Your first account, done right', f9: '60-minute Zoom support call (incl.)', f11: 'Permanent hub access — grows over time', f12: 'Everything in Free', btn: 'Get lifetime access' },
+          free: { tier: 'Free — always', rec: 'Best for Beginners', name: 'Learn & Explore', identity: 'Start learning before risking money.', hook: 'Learn before risking money.', desc: 'All the tools to build understanding. No commitment, ever.', f1: 'Investment simulator', f2: 'Inflation calculator', f3: 'Plain-English education', f4: 'Investment comparisons', f5: 'Future projections', btn: 'Start Learning Free', trust: 'No credit card required.' },
+          sub: { badge: 'Most Complete', rec: 'Most Complete', popularNote: 'Includes everything in Lifetime plus portfolio tracking, future projections and the full dashboard.', tier: 'Future Membership', name: 'Build Wealth With Confidence', identity: 'Everything in Lifetime, plus your complete wealth dashboard.', hook: 'Track your portfolio, projections, and progress every month.', desc: 'Your financial future — tracked, projected, and guided every single month.', emotionHead: 'Most people never truly see where their money is going.', emotionSub: 'Plainvest helps you understand it before it\'s too late to act.', projEyebrow: 'Example: $200/mo invested at 8%/yr', projNow: 'Today', projThen: 'In 20 yrs', projNote: 'Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.', projToggle: 'View example growth →', bestfor: 'People actively building wealth.', includesLabel: 'What you get', billingMonthly: 'Monthly', billingAnnual: 'Annual', billingSave: 'Save 16%', f1: 'Everything in Lifetime', f2: 'Portfolio tracking', f3: 'Future projections dashboard', f4: 'Goal tracking & insights', f5: 'Freedom Score™ dashboard', f7: 'Celebrate every financial milestone', f8: 'Everything in Free', btn: 'Build Wealth With Confidence', note: 'Cancel anytime. No lock-in.', trust: 'Cancel anytime.' },
+          prem: { badge: 'Founding one-time price', rec: 'Best One-Time Value', tier: 'Clarity Pass', name: 'Build Your Investing Foundation', identity: 'Education & personal guidance — yours forever.', trust: 'One-time payment. Lifetime access.', t1: 'Your investing foundation.', t2: 'Learn the essentials. Avoid costly beginner mistakes.', t3: 'Get a roadmap you can follow with confidence.', price: 'AUD $89.90', priceNote: 'Lifetime access. No subscription, ever.', foundationNote: '📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.', cgYesHead: 'Included', cg1: '✔ Structured investing education', cg2: '✔ Beginner roadmap', cg3: '✔ Bitcoin & ETF guidance', cg4: '✔ 60-min onboarding Zoom call', cg5: '✔ Lifetime access to guides', cgNoHead: 'Not included', cgn1: '✖ Live portfolio tracking', cgn2: '✖ Future projections', cgn3: '✖ AI portfolio insights', cgn4: '✖ Freedom Score™ dashboard', footnote: 'One-time payment. 7-day review policy.', desc: 'Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.', bestfor: 'People who want clarity before making investment decisions.', includesLabel: 'What you unlock', b1: 'Avoid costly beginner mistakes', b2: 'Build a clear investing roadmap', b3: 'Get personal guidance when needed', b4: 'Learn at your own pace', b5: 'Included 60-min Zoom support call', f1: '18 structured investing guides', f3: 'Bitcoin & ETF education', f5: 'Curated book reading path', f7: 'Your first account, done right', f9: '60-minute Zoom support call (incl.)', f11: 'Permanent hub access — grows over time', f12: 'Everything in Free', btn: 'Get Clarity & Lifetime Access' },
           proof: { p1: 'AUD $89.90 one-time', p2: '60-min Zoom incl.', p3: 'Extra calls AUD $39.90' },
           why: { eyebrow: 'Why members stay', title: 'What consistent clarity does for your future', c1: 'Future clarity', b1: 'See where your investing path may lead — years before you get there.', c2: 'Emotional confidence', b2: 'Understand what your numbers actually mean — without jargon or anxiety.', c3: 'Inflation awareness', b3: 'Protect your future purchasing power before inflation quietly erodes it.', c4: 'Consistency tracking', b4: 'Stay motivated for the long-term. See your progress build month by month.' },
           journeyBanner: 'Your future evolves every month. Your financial clarity should too.',
@@ -18571,11 +19427,11 @@
             b3: 'Cada ano que você espera é crescimento composto que não volta. O Premium não é um luxo — é clareza entregue no exato momento em que ela tem mais valor.'
           },
           freeBestForLabel: 'Ideal para',
-          freeBestForText: 'Pessoas que querem explorar investimentos, comparar opções e entender o básico antes de dar qualquer passo.',
+          freeBestForText: 'Pessoas que querem aprender antes de investir.',
           freeIncludesLabel: 'Inclui',
           premBestForLabel: 'Ideal para',
-          premBestForText: 'Pessoas que já gostaram do simulador e agora querem ajuda para escolher, comprar e aprender com mais confiança.',
-          premIncludesLabel: 'Libera',
+          premBestForText: 'Pessoas que querem clareza antes de tomar decisões de investimento.',
+          premIncludesLabel: 'O que você libera',
           proof1: 'aprox. R$320,00 pagamento único',
           proof2: '1 chamada de 60 min no Zoom',
           proof3: 'Chamadas extras aprox. R$142,00',
@@ -18587,7 +19443,40 @@
             leftB: 'Uma faixa comum para uma sessão de educação ou orientação financeira na Austrália.',
             rightK: 'Plainvest Premium',
             rightT: 'aprox. R$320,00 uma vez',
-            rightB: 'Inclui a chamada de Zoom de 60 minutos, 15 guias, trilha de livros e acesso permanente ao hub.'
+            rightB: 'Inclui a chamada de Zoom de 60 minutos, 15 guias, trilha de livros e acesso permanente ao hub.',
+            eyebrow: 'Comparar planos',
+            title: 'Escolha o caminho que combina com você',
+            subtitle: 'Do aprendizado à clareza, até a construção de patrimônio.',
+            quickLabel: 'Não sabe qual plano escolher?',
+            quickFree: 'Aprender investimentos', quickLifetime: 'Receber orientação', quickPro: 'Acompanhar e crescer',
+            hFree: 'Grátis', hPro: 'Pro ★', hLifetime: 'Vitalício',
+            hFree2: 'Grátis', hPro2: 'Pro ★', hLifetime2: 'Vitalício',
+            dFree: 'Aprender Investimentos', sFree: 'Explore antes de se comprometer',
+            badgePro: 'Recomendado', dPro: 'Construir Patrimônio', sPro: 'Educação + Painel + Planejamento',
+            dLifetime: 'Construa Sua Base', sLifetime: 'Educação + Orientação Pessoal',
+            sumBestFor: 'Ideal Para', sumBestFree: 'Iniciantes', sumBestPro: 'Investidores ativos', sumBestLifetime: 'Quem está começando',
+            sumPrice: 'Preço', sumPriceFree: '$0', sumPricePro: '$9,90/mês', sumPriceLifetime: '$89,90 único',
+            cat1: '📚 Aprendizado & Educação', cat2: '🎯 Suporte & Orientação',
+            cat3: '📈 Ferramentas de Planejamento', cat4: '💼 Painel de Portfólio',
+            fullAccess: '✓ Acesso completo', included: '✓ Incluído', proOnly: 'Só no Pro',
+            r1: 'Simulador de investimentos', r2: 'Calculadora de inflação', r3: 'Educação em linguagem simples',
+            r4: 'Guias premium de investimento', r5: 'Educação Bitcoin / ETF / DCA', r6: 'Roteiro para iniciantes',
+            r7: 'Chamada Zoom incluída', r8: 'Acesso vitalício aos guias',
+            r9: 'Rastreamento de portfólio', r9d: 'Acompanhe todos os ativos em um lugar',
+            r10: 'Painel de projeções futuras', r10d: 'Visualize para onde seu portfólio está indo',
+            r11: 'Painel Freedom Score™', r11d: 'Meça o progresso em direção à independência financeira',
+            r12: 'Acompanhamento de metas', r12d: 'Defina objetivos e meça o progresso',
+            r13: 'Insights de investimento', r13d: 'Entenda o que seus números significam',
+            recLabel: 'Por que escolher?', recFree: 'Ótimo ponto de partida', recPro: 'Sistema completo', recLifetime: 'Educação para sempre',
+            ctaFree: 'Começar Grátis', ctaPro: 'Construir Patrimônio', ctaLifetime: 'Obter Acesso Vitalício',
+            advLtTag: 'Vitalício', advLtLine: 'Educação e orientação pessoal — para sempre.',
+            advLt1: 'Guias premium e chamada Zoom', advLt2: 'Roteiro para iniciantes',
+            advLtNo1: 'Sem rastreamento de portfólio', advLtNo2: 'Sem painel de projeções', advLtNo3: 'Sem Freedom Score™',
+            advProTag: 'Pro — Recomendado', advProLine: 'Tudo do Vitalício, mais o sistema completo de construção de patrimônio.',
+            advPro0: 'Tudo do Vitalício', advPro1: 'Rastreamento de portfólio', advPro2: 'Projeções futuras',
+            advPro3: 'Freedom Score™', advPro4: 'Acompanhamento de metas', advPro5: 'Insights de investimento',
+            whyProTitle: 'Por que a maioria dos membros escolhe o Pro',
+            whyProBody: 'A maioria dos investidores começa com educação — e depois quer uma forma de acompanhar o progresso e medir se está realmente caminhando para a independência financeira. O Pro combina todos os recursos educacionais com o sistema completo de planejamento e painel.'
           },
           preview: {
             title: 'Dentro do Premium',
@@ -18636,9 +19525,9 @@
           purchaseNote: 'Cancele quando quiser. Política de revisão de 7 dias se algo não estiver certo.',
           bottomCtaSub: 'Comece seu futuro — AUD $9,90/mês',
           bottomCtaLifetime: 'Ou obtenha acesso vitalício — AUD $89,90 uma vez',
-          free: { tier: 'Gratuito — para sempre', name: 'Aprender & Explorar', hook: 'Comece a entender seu futuro antes de arriscar seu dinheiro.', desc: 'Todas as ferramentas para construir entendimento. Sem compromisso.', f1: 'Simulador — todos os 9 tipos de investimento', f2: 'Tabela comparativa lado a lado', f3: 'Explicações em linguagem simples', f4: 'Calculadora de inflação', f5: 'Projeções futuras e renda passiva', btn: 'Experimentar grátis' },
-          sub: { badge: 'Mais Popular', tier: 'Membership Future', name: 'Veja Para Onde Vai Seu Futuro', desc: 'Seu futuro financeiro — acompanhado, projetado e guiado todo mês.', emotionHead: 'A maioria das pessoas nunca realmente vê para onde está indo seu dinheiro.', emotionSub: 'O Plainvest te ajuda a entender isso antes que seja tarde demais para agir.', projEyebrow: 'Exemplo: R$1.000/mês investido a 8%/ano', projNow: 'Hoje', projThen: 'Em 20 anos', projNote: 'Estimativa educacional. Considera 8%/ano de média. Não é promessa nem conselho financeiro.', bestfor: 'Pessoas que estão construindo patrimônio e querem ver onde estão, o que vem pela frente e o que fazer a seguir.', includesLabel: 'O que você vê todo mês', billingMonthly: 'Mensal', billingAnnual: 'Anual', billingSave: 'Economize 16%', f1: 'Acompanhe seu futuro financeiro', f2: 'Veja o que seu dinheiro pode se tornar', f3: 'Crie metas com prazos reais', f4: 'Pontuação de Liberdade™', f5: 'Entenda seu portfólio em linguagem simples', f7: 'Celebre cada marco financeiro', f8: 'Tudo do plano Gratuito', btn: 'Comece a Construir Patrimônio', note: 'Cancele quando quiser. Sem fidelidade.' },
-          prem: { badge: 'Preço fundador em pagamento único', tier: 'Passe de Clareza', name: 'Construa Sua Base Financeira', price: 'aprox. R$320,00', priceNote: 'Pagamento único. Acesso vitalício. Sem assinatura.', foundationNote: '📚 Educacional. Guiado. Seguro para iniciantes. Esta é a sua base — não rastreamento financeiro em tempo real.', cgYesHead: 'Incluído', cg1: '✔ Educação de investimentos estruturada', cg2: '✔ Roteiro para iniciantes', cg3: '✔ Orientação sobre Bitcoin e ETFs', cg4: '✔ Chamada de onboarding no Zoom de 60 min', cg5: '✔ Acesso vitalício aos guias', cgNoHead: 'Não incluído', cgn1: '✖ Rastreamento de portfólio em tempo real', cgn2: '✖ Projeções futuras', cgn3: '✖ Insights de IA sobre portfólio', cgn4: '✖ Painel Freedom Score™', footnote: 'Pagamento único. Sem assinatura. Política de revisão de 7 dias se algo não estiver certo.', desc: 'Guias estruturados, clareza sobre Bitcoin e uma chamada de Zoom de 60 minutos para construir sua confiança — seus para sempre.', bestfor: 'Pessoas que querem aprender a investir com confiança — aulas estruturadas, caminhos guiados e um ser humano de verdade para responder suas perguntas. Uma vez.', includesLabel: 'O que você libera para sempre', f1: '15+ guias estruturados de investimento', f3: 'Bitcoin e clareza em cripto', f5: 'Trilha curada de livros', f7: 'Sua primeira conta, feita certo', f9: 'Chamada de Zoom de 60 min (incl.)', f11: 'Acesso permanente ao hub — cresce com o tempo', f12: 'Tudo do plano Gratuito', btn: 'Obter acesso vitalício' },
+          free: { tier: 'Gratuito — para sempre', rec: 'Ideal para Iniciantes', name: 'Aprender & Explorar', identity: 'Comece a aprender antes de arriscar dinheiro.', hook: 'Aprenda antes de arriscar dinheiro.', desc: 'Todas as ferramentas para construir entendimento. Sem compromisso.', f1: 'Simulador de investimentos', f2: 'Calculadora de inflação', f3: 'Educação em linguagem simples', f4: 'Comparações de investimentos', f5: 'Projeções futuras', btn: 'Começar a Aprender Grátis', trust: 'Sem cartão de crédito.' },
+          sub: { badge: 'Mais Completo', rec: 'Mais Completo', popularNote: 'Inclui tudo do Vitalício, mais rastreamento de portfólio, projeções futuras e o painel completo.', tier: 'Membership Future', name: 'Construa Patrimônio com Confiança', identity: 'Tudo do Vitalício, mais seu painel completo de riqueza.', hook: 'Acompanhe seu portfólio, projeções e progresso todo mês.', desc: 'Seu futuro financeiro — acompanhado, projetado e guiado todo mês.', emotionHead: 'A maioria das pessoas nunca realmente vê para onde está indo seu dinheiro.', emotionSub: 'O Plainvest te ajuda a entender isso antes que seja tarde demais para agir.', projEyebrow: 'Exemplo: R$1.000/mês investido a 8%/ano', projNow: 'Hoje', projThen: 'Em 20 anos', projNote: 'Estimativa educacional. Considera 8%/ano de média. Não é promessa nem conselho financeiro.', projToggle: 'Ver exemplo de crescimento →', bestfor: 'Pessoas construindo patrimônio ativamente.', includesLabel: 'O que você recebe', billingMonthly: 'Mensal', billingAnnual: 'Anual', billingSave: 'Economize 16%', f1: 'Tudo do Vitalício', f2: 'Rastreamento de portfólio', f3: 'Painel de projeções futuras', f4: 'Acompanhamento de metas e insights', f5: 'Painel Freedom Score™', f7: 'Celebre cada marco financeiro', f8: 'Tudo do plano Gratuito', btn: 'Construa Patrimônio com Confiança', note: 'Cancele quando quiser. Sem fidelidade.', trust: 'Cancele quando quiser.' },
+          prem: { badge: 'Preço fundador em pagamento único', rec: 'Melhor Valor Único', tier: 'Passe de Clareza', name: 'Construa Sua Base de Investimento', identity: 'Educação e orientação pessoal — seus para sempre.', trust: 'Pagamento único. Acesso vitalício.', t1: 'Sua base de investimento.', t2: 'Aprenda o essencial. Evite erros caros de iniciante.', t3: 'Tenha um roteiro que você pode seguir com confiança.', price: 'aprox. R$320,00', priceNote: 'Acesso vitalício. Sem assinatura.', foundationNote: '📚 Educacional. Guiado. Seguro para iniciantes. Esta é a sua base — não rastreamento financeiro em tempo real.', cgYesHead: 'Incluído', cg1: '✔ Educação de investimentos estruturada', cg2: '✔ Roteiro para iniciantes', cg3: '✔ Orientação sobre Bitcoin e ETFs', cg4: '✔ Chamada de onboarding no Zoom de 60 min', cg5: '✔ Acesso vitalício aos guias', cgNoHead: 'Não incluído', cgn1: '✖ Rastreamento de portfólio em tempo real', cgn2: '✖ Projeções futuras', cgn3: '✖ Insights de IA sobre portfólio', cgn4: '✖ Painel Freedom Score™', footnote: 'Pagamento único. Política de revisão de 7 dias.', desc: 'Guias estruturados, clareza sobre Bitcoin e uma chamada de Zoom de 60 minutos para construir sua confiança — seus para sempre.', bestfor: 'Pessoas que querem clareza antes de tomar decisões de investimento.', includesLabel: 'O que você libera', b1: 'Evitar erros caros de iniciante', b2: 'Construir um roteiro de investimento claro', b3: 'Ter orientação personalizada quando precisar', b4: 'Aprender no seu ritmo', b5: 'Chamada de Zoom de 60 min incluída', f1: '18 guias estruturados de investimento', f3: 'Educação sobre Bitcoin e ETFs', f5: 'Trilha curada de livros', f7: 'Sua primeira conta, feita certo', f9: 'Chamada de Zoom de 60 min (incl.)', f11: 'Acesso permanente ao hub — cresce com o tempo', f12: 'Tudo do plano Gratuito', btn: 'Obter Clareza e Acesso Vitalício' },
           proof: { p1: 'aprox. R$320,00 uma vez', p2: 'Zoom de 60 min incl.', p3: 'Chamadas extras aprox. R$142,00' },
           why: { eyebrow: 'Por que os membros ficam', title: 'O que a clareza consistente faz pelo seu futuro', c1: 'Clareza sobre o futuro', b1: 'Veja onde pode chegar seu caminho de investimentos — anos antes de chegar lá.', c2: 'Confiança emocional', b2: 'Entenda o que seus números realmente significam — sem jargões ou ansiedade.', c3: 'Consciência sobre inflação', b3: 'Proteja seu poder de compra futuro antes que a inflação o corroa silenciosamente.', c4: 'Acompanhamento de consistência', b4: 'Mantenha-se motivado no longo prazo. Veja seu progresso crescer mês a mês.' },
           journeyBanner: 'Seu futuro evolui todo mês. Sua clareza financeira também deveria.',
