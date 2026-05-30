@@ -54,7 +54,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
   if (user && params.mode !== 'manual') {
     const supabase = await createClient();
     const { isPremium } = await getPremiumAccess(supabase, user.id);
-    redirect(isPremium ? '/index.html?member_session=1#member' : '/dashboard');
+    redirect(isPremium ? '/home' : '/dashboard');
   }
 
   return (

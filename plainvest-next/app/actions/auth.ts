@@ -52,7 +52,7 @@ export async function signIn(formData: FormData) {
     const { isPremium } = await getPremiumAccess(supabase, user.id);
 
     if (isPremium) {
-      redirect('/index.html?member_session=1#member');
+      redirect('/home');
     }
   }
 
