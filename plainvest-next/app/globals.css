@@ -1099,6 +1099,16 @@ button[aria-disabled="true"] {
   text-transform:uppercase;
   letter-spacing:.08em;
 }
+.badge-pro {
+  background:linear-gradient(135deg,#61d5b4,#3db99a);
+  color:#061220;
+  font-weight:900;
+  font-size:.75rem;
+  padding:.25rem .75rem;
+  border-radius:999px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
 .badge-free {
   color:var(--muted);
   font-weight:700;
@@ -3276,6 +3286,11 @@ a.sidebar-link:hover { color: #9fb0c8; background: rgba(255,255,255,.04); }
   border-color: rgba(97,213,180,.3);
   color: #61d5b4;
 }
+.profile-hero-badge.badge-pro {
+  background: rgba(61,185,154,.18);
+  border-color: rgba(61,185,154,.4);
+  color: #3db99a;
+}
 .profile-hero-sep { color: #2a4058; }
 
 /* Profile body content */
@@ -4492,6 +4507,19 @@ a.sidebar-link:hover {
   background: linear-gradient(135deg, rgba(244,200,106,.2) 0%, rgba(232,184,75,.12) 100%);
   border: 1px solid rgba(244,200,106,.28);
   color: #e8b84b;
+  border-radius: 5px;
+  padding: .1rem .35rem;
+  flex-shrink: 0;
+}
+
+.sb-pro-badge {
+  font-size: .52rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(97,213,180,.2) 0%, rgba(97,213,180,.1) 100%);
+  border: 1px solid rgba(97,213,180,.35);
+  color: #61d5b4;
   border-radius: 5px;
   padding: .1rem .35rem;
   flex-shrink: 0;

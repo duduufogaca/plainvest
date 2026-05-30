@@ -196,7 +196,7 @@ export default async function PortfolioPage({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
-  const { isPremium } = await getPremiumAccess(supabase, user.id);
+  const { isPremium, plan } = await getPremiumAccess(supabase, user.id);
   if (!isPremium) redirect('/dashboard');
 
   const fullName: string = user.user_metadata?.full_name || '';
@@ -469,6 +469,7 @@ export default async function PortfolioPage({
         profileLabel={tx.profile}
         logoutLabel={tx.logout}
         userName={firstName}
+        plan={plan ?? 'premium'}
       />
 
       {/* ── Main ────────────────────────────────────────── */}

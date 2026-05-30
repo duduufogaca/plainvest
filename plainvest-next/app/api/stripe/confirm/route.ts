@@ -40,6 +40,16 @@ export async function GET(request: Request) {
       return redirectTo('/dashboard?payment=unpaid', request);
     }
 
+    let subscriptionId: string | null = null;
+    let accessExpiresAt: string | null = null;
+
+    if (session.mode === 'subscription' && typeof session.subscription === 'string') {
+      subscriptionId = session.subscription;
+      const sub = await stripe.subscriptions.retrieve(subscriptionId);
+      accessExpiresAt = new Date(sub.current_period_end * 1000).toISOString();
+    }
+
+    const plan = session.metadata?.plan === 'pro' ? 'pro' : 'premium';
     const now = new Date();
 
     const supabaseAdmin = createAdminClient();
@@ -47,11 +57,13 @@ export async function GET(request: Request) {
       user_id: user.id,
       email: session.customer_email || session.metadata?.email || user.email || null,
       premium_status: 'active',
+      plan,
       access_started_at: now.toISOString(),
-      access_expires_at: null,
+      access_expires_at: accessExpiresAt,
       stripe_customer_id: typeof session.customer === 'string' ? session.customer : null,
       stripe_checkout_session_id: session.id,
       stripe_payment_intent_id: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+      stripe_subscription_id: subscriptionId,
       updated_at: now.toISOString(),
     });
 
@@ -61,10 +73,10 @@ export async function GET(request: Request) {
     }
 
     const posthog = getPostHogClient();
-    posthog.capture({ distinctId: user.id, event: 'payment_confirmed', properties: { product: 'plainvest_premium_access' } });
+    posthog.capture({ distinctId: user.id, event: 'payment_confirmed', properties: { product: 'plainvest_premium_access', plan } });
     await posthog.shutdown();
 
-    return redirectTo('/index.html?member_session=1#member', request);
+    return redirectTo(plan === 'pro' ? '/portfolio' : '/index.html?member_session=1#member', request);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to confirm Stripe payment.';
     console.error('Plainvest Stripe confirmation failed:', message);

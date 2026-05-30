@@ -14,7 +14,7 @@ export async function GET() {
       );
     }
 
-    const { isPremium } = await getPremiumAccess(supabase, user.id);
+    const { isPremium, isPro, plan } = await getPremiumAccess(supabase, user.id);
 
     const fullName = user.user_metadata?.full_name || '';
     const gender = user.user_metadata?.gender || '';
@@ -22,6 +22,8 @@ export async function GET() {
     return NextResponse.json({
       authenticated: true,
       premium: isPremium,
+      pro: isPro,
+      plan: plan ?? 'none',
       email: user.email,
       name: fullName,
       gender,
