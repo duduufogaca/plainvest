@@ -33,6 +33,12 @@
       <button class="guide-lang-btn" data-lang="pt" onclick="setGuideLang('pt')">🇧🇷 PT</button>
     </div>
   </nav>
+
+  <div class="guide-progress">
+    <div class="gp-track"><div class="gp-fill" style="width:0%"></div></div>
+    <span class="gp-label"><span class="lang-en">Welcome — start here before any other guide</span><span class="lang-pt">Boas-vindas — comece aqui antes de qualquer outro guia</span></span>
+  </div>
+
     <header class="hero">
       <div class="kicker"><span class="lang-en">Premium Welcome</span><span class="lang-pt">Boas-vindas Premium</span></div>
       <h1><span class="lang-en">Start here with <em>confidence.</em></span><span class="lang-pt">Comece aqui com <em>confiança.</em></span></h1>
@@ -50,120 +56,103 @@
       </div>
     </header>
 
-    <figure class="guide-visual" style="background:#0b1d32;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 230" role="img" aria-label="Three stages of growth: seed, growing plant, flourishing tree — representing the journey from beginner to confident investor" style="width:100%;display:block;">
-        <defs>
-          <radialGradient id="wSeedGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e8b84b" stop-opacity=".3"/><stop offset="100%" stop-color="#e8b84b" stop-opacity="0"/></radialGradient>
-          <radialGradient id="wPlantGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d4aa" stop-opacity=".22"/><stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/></radialGradient>
-          <radialGradient id="wConfGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d4aa" stop-opacity=".32"/><stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/></radialGradient>
-          <linearGradient id="wGround" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#162840"/><stop offset="100%" stop-color="#0b1d32"/></linearGradient>
-          <pattern id="wDots" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse"><circle cx="18" cy="18" r="1" fill="rgba(255,255,255,.045)"/></pattern>
-        </defs>
-
-        <!-- Background -->
-        <rect width="900" height="230" fill="#0b1d32"/>
-        <rect width="900" height="230" fill="url(#wDots)"/>
-
-        <!-- Ground strip -->
-        <rect x="0" y="185" width="900" height="45" fill="url(#wGround)"/>
-        <line x1="0" y1="185" x2="900" y2="185" stroke="rgba(0,212,170,.12)" stroke-width="1"/>
-
-        <!-- Subtle horizontal grid lines -->
-        <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
-        <line x1="0" y1="120" x2="900" y2="120" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
-
-        <!-- ── STAGE 1: Seed / Foundation (x=150) ── -->
-        <circle cx="150" cy="160" r="70" fill="url(#wSeedGlow)"/>
-        <!-- Soil -->
-        <ellipse cx="150" cy="188" rx="52" ry="11" fill="#162840"/>
-        <!-- Seed shape -->
-        <ellipse cx="147" cy="175" rx="14" ry="18" fill="#e8b84b" opacity=".88" transform="rotate(-18,147,175)"/>
-        <ellipse cx="147" cy="175" rx="14" ry="18" fill="none" stroke="rgba(232,184,75,.35)" stroke-width="1.5" transform="rotate(-18,147,175)"/>
-        <!-- Tiny first sprout -->
-        <line x1="150" y1="158" x2="150" y2="140" stroke="#4ecda4" stroke-width="2" stroke-linecap="round"/>
-        <ellipse cx="144" cy="136" rx="8" ry="11" fill="#4ecda4" opacity=".72" transform="rotate(-22,144,136)"/>
-        <ellipse cx="156" cy="134" rx="7" ry="9" fill="#4ecda4" opacity=".6" transform="rotate(18,156,134)"/>
-        <!-- Stage label -->
-        <text x="150" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#e8b84b">Foundation</text>
-        <text x="150" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Understand the basics</text>
-
-        <!-- Arrow 1→2 -->
-        <path d="M 230 145 Q 300 130 370 145" fill="none" stroke="rgba(0,212,170,.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
-        <polygon points="370,140 378,145 370,150" fill="rgba(0,212,170,.3)"/>
-
-        <!-- ── STAGE 2: Growing plant / Knowledge (x=450) ── -->
-        <circle cx="450" cy="130" r="90" fill="url(#wPlantGlow)"/>
-        <!-- Soil -->
-        <ellipse cx="450" cy="188" rx="58" ry="12" fill="#162840"/>
-        <!-- Stem -->
-        <line x1="450" y1="186" x2="450" y2="118" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="450" y1="162" x2="430" y2="144" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="450" y1="150" x2="470" y2="135" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
-        <!-- Leaves -->
-        <ellipse cx="420" cy="136" rx="22" ry="10" fill="#00d4aa" opacity=".58" transform="rotate(-42,420,136)"/>
-        <ellipse cx="480" cy="128" rx="20" ry="9" fill="#00d4aa" opacity=".52" transform="rotate(38,480,128)"/>
-        <ellipse cx="438" cy="160" rx="16" ry="7" fill="#00d4aa" opacity=".48" transform="rotate(-28,438,160)"/>
-        <ellipse cx="462" cy="164" rx="15" ry="7" fill="#00d4aa" opacity=".44" transform="rotate(26,462,164)"/>
-        <!-- Crown -->
-        <ellipse cx="450" cy="108" rx="20" ry="24" fill="#00d4aa" opacity=".6"/>
-        <ellipse cx="440" cy="100" rx="13" ry="17" fill="#00d4aa" opacity=".55" transform="rotate(-12,440,100)"/>
-        <ellipse cx="460" cy="98" rx="12" ry="16" fill="#00d4aa" opacity=".5" transform="rotate(14,460,98)"/>
-        <!-- Stage label -->
-        <text x="450" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#00d4aa">Knowledge</text>
-        <text x="450" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Guides, research, comparisons</text>
-
-        <!-- Arrow 2→3 -->
-        <path d="M 530 130 Q 600 110 670 125" fill="none" stroke="rgba(0,212,170,.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
-        <polygon points="670,120 678,125 670,130" fill="rgba(0,212,170,.3)"/>
-
-        <!-- ── STAGE 3: Full tree / Confidence (x=760) ── -->
-        <circle cx="760" cy="100" r="110" fill="url(#wConfGlow)"/>
-        <!-- Soil -->
-        <ellipse cx="760" cy="188" rx="68" ry="13" fill="#162840"/>
-        <!-- Main trunk -->
-        <line x1="760" y1="186" x2="760" y2="72" stroke="#00d4aa" stroke-width="3.5" stroke-linecap="round"/>
-        <!-- Branches -->
-        <line x1="760" y1="155" x2="732" y2="132" stroke="#00d4aa" stroke-width="2.2" stroke-linecap="round"/>
-        <line x1="760" y1="140" x2="790" y2="118" stroke="#00d4aa" stroke-width="2.2" stroke-linecap="round"/>
-        <line x1="760" y1="120" x2="738" y2="100" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="760" y1="112" x2="782" y2="95" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
-        <!-- Leaf clusters — lower -->
-        <ellipse cx="722" cy="124" rx="24" ry="11" fill="#00d4aa" opacity=".6" transform="rotate(-44,722,124)"/>
-        <ellipse cx="798" cy="110" rx="22" ry="10" fill="#00d4aa" opacity=".55" transform="rotate(40,798,110)"/>
-        <ellipse cx="730" cy="150" rx="18" ry="8" fill="#00d4aa" opacity=".5" transform="rotate(-30,730,150)"/>
-        <ellipse cx="790" cy="156" rx="17" ry="7" fill="#00d4aa" opacity=".45" transform="rotate(28,790,156)"/>
-        <!-- Leaf clusters — upper -->
-        <ellipse cx="730" cy="94" rx="20" ry="9" fill="#00d4aa" opacity=".58" transform="rotate(-38,730,94)"/>
-        <ellipse cx="790" cy="88" rx="18" ry="9" fill="#00d4aa" opacity=".52" transform="rotate(34,790,88)"/>
-        <!-- Crown (gold-tinted for 'achieved' state) -->
-        <ellipse cx="760" cy="62" rx="36" ry="42" fill="#00d4aa" opacity=".52"/>
-        <ellipse cx="746" cy="50" rx="24" ry="30" fill="#00d4aa" opacity=".58" transform="rotate(-14,746,50)"/>
-        <ellipse cx="774" cy="48" rx="22" ry="28" fill="#00d4aa" opacity=".54" transform="rotate(16,774,48)"/>
-        <!-- Golden fruit/star at peak -->
-        <circle cx="760" cy="32" r="10" fill="#e8b84b" opacity=".88"/>
-        <circle cx="760" cy="32" r="5" fill="#0b1d32"/>
-        <circle cx="760" cy="32" r="3" fill="#e8b84b" opacity=".9"/>
-        <!-- Stage label -->
-        <text x="760" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#e8b84b">Confidence</text>
-        <text x="760" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Clear plan, first trade, calm mind</text>
-
-        <!-- Subtle watermark -->
-        <text x="886" y="18" text-anchor="end" font-family="Sora,sans-serif" font-size="8.5" fill="rgba(255,255,255,.1)">Plainvest Premium</text>
-      </svg>
-      <figcaption><span class="lang-en">From your first question to your first confident trade — Plainvest Premium is the path between them.</span><span class="lang-pt">Da sua primeira dúvida à sua primeira operação confiante — Plainvest Premium é o caminho entre eles.</span></figcaption>
+    <figure class="guide-figure" style="background:#0b1d32;">
+      <div class="gf-img-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 230" role="img" aria-label="Three stages of growth: seed, growing plant, flourishing tree — representing the journey from beginner to confident investor" style="width:100%;display:block;">
+          <defs>
+            <radialGradient id="wSeedGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e8b84b" stop-opacity=".3"/><stop offset="100%" stop-color="#e8b84b" stop-opacity="0"/></radialGradient>
+            <radialGradient id="wPlantGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d4aa" stop-opacity=".22"/><stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/></radialGradient>
+            <radialGradient id="wConfGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d4aa" stop-opacity=".32"/><stop offset="100%" stop-color="#00d4aa" stop-opacity="0"/></radialGradient>
+            <linearGradient id="wGround" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#162840"/><stop offset="100%" stop-color="#0b1d32"/></linearGradient>
+            <pattern id="wDots" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse"><circle cx="18" cy="18" r="1" fill="rgba(255,255,255,.045)"/></pattern>
+          </defs>
+          <rect width="900" height="230" fill="#0b1d32"/>
+          <rect width="900" height="230" fill="url(#wDots)"/>
+          <rect x="0" y="185" width="900" height="45" fill="url(#wGround)"/>
+          <line x1="0" y1="185" x2="900" y2="185" stroke="rgba(0,212,170,.12)" stroke-width="1"/>
+          <line x1="0" y1="60" x2="900" y2="60" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+          <line x1="0" y1="120" x2="900" y2="120" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+          <circle cx="150" cy="160" r="70" fill="url(#wSeedGlow)"/>
+          <ellipse cx="150" cy="188" rx="52" ry="11" fill="#162840"/>
+          <ellipse cx="147" cy="175" rx="14" ry="18" fill="#e8b84b" opacity=".88" transform="rotate(-18,147,175)"/>
+          <ellipse cx="147" cy="175" rx="14" ry="18" fill="none" stroke="rgba(232,184,75,.35)" stroke-width="1.5" transform="rotate(-18,147,175)"/>
+          <line x1="150" y1="158" x2="150" y2="140" stroke="#4ecda4" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="144" cy="136" rx="8" ry="11" fill="#4ecda4" opacity=".72" transform="rotate(-22,144,136)"/>
+          <ellipse cx="156" cy="134" rx="7" ry="9" fill="#4ecda4" opacity=".6" transform="rotate(18,156,134)"/>
+          <text x="150" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#e8b84b">Foundation</text>
+          <text x="150" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Understand the basics</text>
+          <path d="M 230 145 Q 300 130 370 145" fill="none" stroke="rgba(0,212,170,.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <polygon points="370,140 378,145 370,150" fill="rgba(0,212,170,.3)"/>
+          <circle cx="450" cy="130" r="90" fill="url(#wPlantGlow)"/>
+          <ellipse cx="450" cy="188" rx="58" ry="12" fill="#162840"/>
+          <line x1="450" y1="186" x2="450" y2="118" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="450" y1="162" x2="430" y2="144" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="450" y1="150" x2="470" y2="135" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+          <ellipse cx="420" cy="136" rx="22" ry="10" fill="#00d4aa" opacity=".58" transform="rotate(-42,420,136)"/>
+          <ellipse cx="480" cy="128" rx="20" ry="9" fill="#00d4aa" opacity=".52" transform="rotate(38,480,128)"/>
+          <ellipse cx="438" cy="160" rx="16" ry="7" fill="#00d4aa" opacity=".48" transform="rotate(-28,438,160)"/>
+          <ellipse cx="462" cy="164" rx="15" ry="7" fill="#00d4aa" opacity=".44" transform="rotate(26,462,164)"/>
+          <ellipse cx="450" cy="108" rx="20" ry="24" fill="#00d4aa" opacity=".6"/>
+          <ellipse cx="440" cy="100" rx="13" ry="17" fill="#00d4aa" opacity=".55" transform="rotate(-12,440,100)"/>
+          <ellipse cx="460" cy="98" rx="12" ry="16" fill="#00d4aa" opacity=".5" transform="rotate(14,460,98)"/>
+          <text x="450" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#00d4aa">Knowledge</text>
+          <text x="450" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Guides, research, comparisons</text>
+          <path d="M 530 130 Q 600 110 670 125" fill="none" stroke="rgba(0,212,170,.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <polygon points="670,120 678,125 670,130" fill="rgba(0,212,170,.3)"/>
+          <circle cx="760" cy="100" r="110" fill="url(#wConfGlow)"/>
+          <ellipse cx="760" cy="188" rx="68" ry="13" fill="#162840"/>
+          <line x1="760" y1="186" x2="760" y2="72" stroke="#00d4aa" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="760" y1="155" x2="732" y2="132" stroke="#00d4aa" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="760" y1="140" x2="790" y2="118" stroke="#00d4aa" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="760" y1="120" x2="738" y2="100" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="760" y1="112" x2="782" y2="95" stroke="#00d4aa" stroke-width="1.8" stroke-linecap="round"/>
+          <ellipse cx="722" cy="124" rx="24" ry="11" fill="#00d4aa" opacity=".6" transform="rotate(-44,722,124)"/>
+          <ellipse cx="798" cy="110" rx="22" ry="10" fill="#00d4aa" opacity=".55" transform="rotate(40,798,110)"/>
+          <ellipse cx="730" cy="150" rx="18" ry="8" fill="#00d4aa" opacity=".5" transform="rotate(-30,730,150)"/>
+          <ellipse cx="790" cy="156" rx="17" ry="7" fill="#00d4aa" opacity=".45" transform="rotate(28,790,156)"/>
+          <ellipse cx="730" cy="94" rx="20" ry="9" fill="#00d4aa" opacity=".58" transform="rotate(-38,730,94)"/>
+          <ellipse cx="790" cy="88" rx="18" ry="9" fill="#00d4aa" opacity=".52" transform="rotate(34,790,88)"/>
+          <ellipse cx="760" cy="62" rx="36" ry="42" fill="#00d4aa" opacity=".52"/>
+          <ellipse cx="746" cy="50" rx="24" ry="30" fill="#00d4aa" opacity=".58" transform="rotate(-14,746,50)"/>
+          <ellipse cx="774" cy="48" rx="22" ry="28" fill="#00d4aa" opacity=".54" transform="rotate(16,774,48)"/>
+          <circle cx="760" cy="32" r="10" fill="#e8b84b" opacity=".88"/>
+          <circle cx="760" cy="32" r="5" fill="#0b1d32"/>
+          <circle cx="760" cy="32" r="3" fill="#e8b84b" opacity=".9"/>
+          <text x="760" y="208" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#e8b84b">Confidence</text>
+          <text x="760" y="224" text-anchor="middle" font-family="Sora,sans-serif" font-size="9.5" fill="rgba(194,213,232,.45)">Clear plan, first trade, calm mind</text>
+          <text x="886" y="18" text-anchor="end" font-family="Sora,sans-serif" font-size="8.5" fill="rgba(255,255,255,.1)">Plainvest Premium</text>
+        </svg>
+      </div>
+      <figcaption class="gf-caption">
+        <span class="gf-tag"><span class="lang-en">Your Journey</span><span class="lang-pt">Sua Jornada</span></span>
+        <span class="gf-text"><span class="lang-en">From your first question to your first confident trade — notice the three stages: Foundation (understanding the basics), Knowledge (guides, research, comparisons), and Confidence (clear plan, first trade, calm mind). Plainvest Premium is the path between them.</span><span class="lang-pt">Da sua primeira dúvida à sua primeira operação confiante — observe os três estágios: Fundação (entender o básico), Conhecimento (guias, pesquisa, comparações) e Confiança (plano claro, primeira operação, mente tranquila). Plainvest Premium é o caminho entre eles.</span></span>
+      </figcaption>
     </figure>
 
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 1 of 8 — The Why</span><span class="lang-pt">Seção 1 de 8 — O Porquê</span></span>
       <h2><span class="lang-en">Why Plainvest was created</span><span class="lang-pt">Por que a Plainvest foi criada</span></h2>
-      <p><span class="lang-en">Plainvest started from a simple frustration: most people are told they should invest, but they are not shown the first steps in a way that feels human. The internet has endless videos, opinions, charts, products, and predictions. For a beginner, more content often creates more hesitation.</span><span class="lang-pt">A Plainvest surgiu de uma frustração simples: a maioria das pessoas é informada de que deveria investir, mas não recebe os primeiros passos de uma forma que pareça humana. A internet está cheia de vídeos, opiniões, gráficos, produtos e previsões. Para um iniciante, mais conteúdo muitas vezes gera mais hesitação.</span></p>
+      <p class="section-intro"><span class="lang-en">Plainvest started from a simple frustration: most people are told they should invest, but they are not shown the first steps in a way that feels human.</span><span class="lang-pt">A Plainvest surgiu de uma frustração simples: a maioria das pessoas é informada de que deveria investir, mas não recebe os primeiros passos de uma forma que pareça humana.</span></p>
+      <p><span class="lang-en">The internet has endless videos, opinions, charts, products, and predictions. For a beginner, more content often creates more hesitation.</span><span class="lang-pt">A internet está cheia de vídeos, opiniões, gráficos, produtos e previsões. Para um iniciante, mais conteúdo muitas vezes gera mais hesitação.</span></p>
       <p><span class="lang-en">The idea behind Plainvest is to make the first learning experience visual and simple. You change the numbers, compare paths, see inflation, and then learn the words after the numbers already make sense.</span><span class="lang-pt">A ideia por trás da Plainvest é tornar a primeira experiência de aprendizado visual e simples. Você altera os números, compara caminhos, visualiza a inflação e então aprende as palavras depois que os números já fazem sentido.</span></p>
       <p><span class="lang-en">Premium exists for the next step. It is for members who want more than a calculator: they want a reading path, practical checklists, crypto safety, exchange guidance, book recommendations, and a place to organize questions before acting.</span><span class="lang-pt">O Premium existe para o próximo passo. É para membros que querem mais do que uma calculadora: eles querem uma trilha de leitura, checklists práticos, segurança em cripto, orientação sobre exchanges, recomendações de livros e um espaço para organizar dúvidas antes de agir.</span></p>
-      <div class="callout"><strong><span class="lang-en">The goal is confidence, not pressure.</span><span class="lang-pt">O objetivo é confiança, não pressão.</span></strong> Plainvest does not tell you what to buy. It helps you understand what you are looking at, what can go wrong, and what to check before money is involved.</div>
+      <div class="callout"><strong><span class="lang-en">The goal is confidence, not pressure.</span><span class="lang-pt">O objetivo é confiança, não pressão.</span></strong> <span class="lang-en">Plainvest does not tell you what to buy. It helps you understand what you are looking at, what can go wrong, and what to check before money is involved.</span><span class="lang-pt">A Plainvest não diz o que comprar. Ela ajuda você a entender o que está vendo, o que pode dar errado e o que verificar antes de envolver dinheiro.</span></div>
+
+      <div class="guide-reflect">
+        <span class="gr-icon">💭</span>
+        <div class="gr-body">
+          <strong><span class="lang-en">Pause and reflect</span><span class="lang-pt">Pause e reflita</span></strong>
+          <p><span class="lang-en">What made you hesitate before now? Was it information overload, not knowing where to start, or fear of making a mistake? Naming that feeling honestly is the first useful step.</span><span class="lang-pt">O que fez você hesitar até agora? Foi excesso de informação, não saber por onde começar, ou medo de errar? Nomear esse sentimento honestamente é o primeiro passo útil.</span></p>
+        </div>
+      </div>
     </section>
 
+    <hr class="guide-divider">
+
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 2 of 8 — What You're Paying For</span><span class="lang-pt">Seção 2 de 8 — O Que Você Está Pagando</span></span>
       <h2><span class="lang-en">What members are really paying for</span><span class="lang-pt">O que os membros realmente estão pagando</span></h2>
-      <p><span class="lang-en">The value is not only access to information. Most investing information already exists somewhere online. The value is structure: what to learn first, what to ignore for now, which risks matter, how to avoid common mistakes, and how to turn confusing terms into practical decisions.</span><span class="lang-pt">O valor não está apenas no acesso à informação. A maior parte das informações sobre investimentos já existe em algum lugar na internet. O valor está na estrutura: o que aprender primeiro, o que ignorar por enquanto, quais riscos importam, como evitar erros comuns e como transformar termos confusos em decisões práticas.</span></p>
+      <p class="section-intro"><span class="lang-en">The value is not only access to information. Most investing information already exists somewhere online. The value is structure: what to learn first, what to ignore for now, which risks matter, how to avoid common mistakes, and how to turn confusing terms into practical decisions.</span><span class="lang-pt">O valor não está apenas no acesso à informação. A maior parte das informações sobre investimentos já existe em algum lugar na internet. O valor está na estrutura: o que aprender primeiro, o que ignorar por enquanto, quais riscos importam, como evitar erros comuns e como transformar termos confusos em decisões práticas.</span></p>
       <div class="grid-3">
         <div class="tile"><strong><span class="lang-en">Organised knowledge</span><span class="lang-pt">Conhecimento organizado</span></strong><p><span class="lang-en">Each module has a purpose, checklist, warnings, and practical next steps so members do not need to search randomly.</span><span class="lang-pt">Cada módulo tem um propósito, checklist, avisos e próximos passos práticos para que os membros não precisem buscar informações aleatoriamente.</span></p></div>
         <div class="tile"><strong><span class="lang-en">Decision framing</span><span class="lang-pt">Estrutura para decisões</span></strong><p><span class="lang-en">Members learn how to compare risk, fees, diversification, liquidity, tax impact, platform safety, and time horizon.</span><span class="lang-pt">Os membros aprendem a comparar risco, taxas, diversificação, liquidez, impacto tributário, segurança da plataforma e horizonte de tempo.</span></p></div>
@@ -172,7 +161,9 @@
     </section>
 
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 3 of 8 — Your Learning Path</span><span class="lang-pt">Seção 3 de 8 — Sua Trilha de Aprendizado</span></span>
       <h2><span class="lang-en">Recommended member path</span><span class="lang-pt">Trilha recomendada para membros</span></h2>
+      <p class="section-intro"><span class="lang-en">You do not need to read every guide before doing anything. This five-step path gives you a practical sequence from understanding to action.</span><span class="lang-pt">Você não precisa ler todos os guias antes de fazer qualquer coisa. Este caminho de cinco etapas oferece uma sequência prática do entendimento à ação.</span></p>
       <ol class="steps">
         <li><div><strong><span class="lang-en">Read the DCA guide.</span><span class="lang-pt">Leia o guia de DCA.</span></strong><br><span class="lang-en">Understand recurring investing, timing worries, and why consistency often matters more than perfect entry points.</span><span class="lang-pt">Entenda os investimentos recorrentes, as preocupações com timing e por que a consistência muitas vezes importa mais do que o momento perfeito de entrada.</span></div></li>
         <li><div><strong><span class="lang-en">Read the investment paths guide.</span><span class="lang-pt">Leia o guia de caminhos de investimento.</span></strong><br><span class="lang-en">Compare index funds, ETFs, bonds, fixed income, REITs/FIIs, gold, Bitcoin, and crypto in plain English.</span><span class="lang-pt">Compare fundos de índice, ETFs, títulos, renda fixa, REITs/FIIs, ouro, Bitcoin e cripto em linguagem simples.</span></div></li>
@@ -180,11 +171,23 @@
         <li><div><strong><span class="lang-en">Study crypto safety before touching crypto.</span><span class="lang-pt">Estude segurança em cripto antes de mexer com cripto.</span></strong><br><span class="lang-en">Wallets, seed phrases, private keys, scams, and self-custody mistakes can be permanent.</span><span class="lang-pt">Carteiras, seed phrases, chaves privadas, golpes e erros de autocustódia podem ser irreversíveis.</span></div></li>
         <li><div><strong><span class="lang-en">Use your 60-minute Zoom call.</span><span class="lang-pt">Use sua chamada de Zoom de 60 minutos.</span></strong><br><span class="lang-en">Bring the confusing parts, platform questions, or the subject you most want to understand.</span><span class="lang-pt">Traga as partes confusas, dúvidas sobre plataformas ou o assunto que você mais quer entender.</span></div></li>
       </ol>
+
+      <div class="guide-reflect">
+        <span class="gr-icon">💭</span>
+        <div class="gr-body">
+          <strong><span class="lang-en">Pause and reflect</span><span class="lang-pt">Pause e reflita</span></strong>
+          <p><span class="lang-en">Of those five steps, which one feels the most unfamiliar right now? That is probably the one to start with — not the one that sounds most exciting.</span><span class="lang-pt">Dessas cinco etapas, qual parece mais desconhecida agora? Provavelmente é por aí que você deve começar — não pelo que parece mais empolgante.</span></p>
+        </div>
+      </div>
     </section>
 
+    <hr class="guide-divider">
+
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 4 of 8 — The Guide Map</span><span class="lang-pt">Seção 4 de 8 — O Mapa dos Guias</span></span>
       <h2><span class="lang-en">Your member learning journey</span><span class="lang-pt">Sua jornada de aprendizado como membro</span></h2>
-      <p><span class="lang-en">Every guide in your membership has a place in a progression from broad foundations to specific execution. This visual shows how the 15 guides connect. You do not need to read them in strict order, but this map shows how each guide builds on or supports the others.</span><span class="lang-pt">Cada guia da sua assinatura tem um lugar em uma progressão que vai das bases mais amplas até a execução prática. Este visual mostra como os 15 guias se conectam. Você não precisa lê-los em ordem estrita, mas este mapa mostra como cada guia complementa ou sustenta os demais.</span></p>
+      <p class="section-intro"><span class="lang-en">Every guide in your membership has a place in a progression from broad foundations to specific execution. This visual shows how the 15 guides connect.</span><span class="lang-pt">Cada guia da sua assinatura tem um lugar em uma progressão que vai das bases mais amplas até a execução prática. Este visual mostra como os 15 guias se conectam.</span></p>
+      <p><span class="lang-en">You do not need to read them in strict order, but this map shows how each guide builds on or supports the others.</span><span class="lang-pt">Você não precisa lê-los em ordem estrita, mas este mapa mostra como cada guia complementa ou sustenta os demais.</span></p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem;">
         <svg viewBox="0 0 900 320" role="img" aria-label="Member learning journey map showing guide progression from foundations to execution" style="min-width:600px;width:100%;height:auto;display:block;">
           <defs>
@@ -193,7 +196,6 @@
               <stop offset="100%" stop-color="#e8b84b" stop-opacity=".5"/>
             </linearGradient>
           </defs>
-          <!-- Stage labels -->
           <rect x="20" y="14" width="140" height="26" rx="6" fill="rgba(0,212,170,.12)"/>
           <text x="90" y="31" fill="#00d4aa" font-size="11" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">FOUNDATIONS</text>
           <rect x="180" y="14" width="150" height="26" rx="6" fill="rgba(232,184,75,.12)"/>
@@ -204,62 +206,46 @@
           <text x="595" y="31" fill="#e05555" font-size="11" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">ADVANCED</text>
           <rect x="700" y="14" width="170" height="26" rx="6" fill="rgba(100,180,255,.12)"/>
           <text x="785" y="31" fill="#64b4ff" font-size="11" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">EXECUTION</text>
-          <!-- Connecting line -->
           <line x1="30" y1="160" x2="870" y2="160" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
-          <!-- Guide nodes — row 1 (main path) -->
-          <!-- Investment Paths -->
           <rect x="22" y="68" width="116" height="44" rx="8" fill="rgba(0,212,170,.18)" stroke="#00d4aa" stroke-width="1" stroke-opacity=".5"/>
           <text x="80" y="87" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Investment</text>
           <text x="80" y="100" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Paths</text>
-          <!-- DCA Method -->
           <rect x="182" y="68" width="116" height="44" rx="8" fill="rgba(0,212,170,.14)" stroke="#00d4aa" stroke-width="1" stroke-opacity=".4"/>
           <text x="240" y="87" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">DCA</text>
           <text x="240" y="100" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Method</text>
-          <!-- Exchange Checklist -->
           <rect x="182" y="130" width="116" height="44" rx="8" fill="rgba(0,212,170,.14)" stroke="#00d4aa" stroke-width="1" stroke-opacity=".4"/>
           <text x="240" y="149" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Exchange</text>
           <text x="240" y="162" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Checklist</text>
-          <!-- Books -->
           <rect x="182" y="196" width="116" height="44" rx="8" fill="rgba(232,184,75,.14)" stroke="#e8b84b" stroke-width="1" stroke-opacity=".4"/>
           <text x="240" y="215" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Books &amp;</text>
           <text x="240" y="228" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Reading Path</text>
-          <!-- Bitcoin Research -->
           <rect x="352" y="68" width="116" height="44" rx="8" fill="rgba(232,184,75,.16)" stroke="#e8b84b" stroke-width="1" stroke-opacity=".5"/>
           <text x="410" y="87" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Bitcoin</text>
           <text x="410" y="100" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Research</text>
-          <!-- Crypto Custody -->
           <rect x="352" y="130" width="116" height="44" rx="8" fill="rgba(232,184,75,.14)" stroke="#e8b84b" stroke-width="1" stroke-opacity=".4"/>
           <text x="410" y="149" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Crypto</text>
           <text x="410" y="162" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Self-Custody</text>
-          <!-- Chart Reading -->
           <rect x="352" y="196" width="116" height="44" rx="8" fill="rgba(232,184,75,.12)" stroke="#e8b84b" stroke-width="1" stroke-opacity=".35"/>
           <text x="410" y="215" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Chart</text>
           <text x="410" y="228" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Reading</text>
-          <!-- Cycle Lessons -->
           <rect x="522" y="68" width="116" height="44" rx="8" fill="rgba(232,123,75,.16)" stroke="#e87b4b" stroke-width="1" stroke-opacity=".5"/>
           <text x="580" y="87" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Crypto Cycle</text>
           <text x="580" y="100" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Lessons</text>
-          <!-- Research Sources -->
           <rect x="522" y="130" width="116" height="44" rx="8" fill="rgba(232,123,75,.12)" stroke="#e87b4b" stroke-width="1" stroke-opacity=".35"/>
           <text x="580" y="149" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Research</text>
           <text x="580" y="162" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Sources</text>
-          <!-- AU Tax -->
           <rect x="522" y="196" width="116" height="44" rx="8" fill="rgba(224,85,85,.12)" stroke="#e05555" stroke-width="1" stroke-opacity=".35"/>
           <text x="580" y="215" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">AU Tax</text>
           <text x="580" y="228" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">&amp; CGT</text>
-          <!-- Super -->
           <rect x="702" y="68" width="116" height="44" rx="8" fill="rgba(100,180,255,.12)" stroke="#64b4ff" stroke-width="1" stroke-opacity=".4"/>
           <text x="760" y="87" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">Super-</text>
           <text x="760" y="100" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">annuation</text>
-          <!-- AU Platforms -->
           <rect x="702" y="130" width="116" height="44" rx="8" fill="rgba(100,180,255,.12)" stroke="#64b4ff" stroke-width="1" stroke-opacity=".4"/>
           <text x="760" y="149" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="600">AU Platform</text>
           <text x="760" y="162" fill="#c2d5e8" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Comparison</text>
-          <!-- First Trade -->
           <rect x="702" y="196" width="116" height="44" rx="8" fill="rgba(100,180,255,.18)" stroke="#64b4ff" stroke-width="1.5" stroke-opacity=".7"/>
           <text x="760" y="215" fill="#64b4ff" font-size="10" font-family="Sora,sans-serif" text-anchor="middle" font-weight="700">First Trade</text>
           <text x="760" y="228" fill="#64b4ff" font-size="10" font-family="Sora,sans-serif" text-anchor="middle">Walkthrough</text>
-          <!-- Reference items below -->
           <rect x="22" y="265" width="80" height="36" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
           <text x="62" y="281" fill="#6b8ba4" font-size="9.5" font-family="Sora,sans-serif" text-anchor="middle">Glossary</text>
           <text x="62" y="293" fill="#6b8ba4" font-size="9" font-family="Sora,sans-serif" text-anchor="middle">(use anytime)</text>
@@ -272,7 +258,9 @@
     </section>
 
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 5 of 8 — How to Use It</span><span class="lang-pt">Seção 5 de 8 — Como Usar</span></span>
       <h2><span class="lang-en">How to use this membership well</span><span class="lang-pt">Como aproveitar bem esta assinatura</span></h2>
+      <p class="section-intro"><span class="lang-en">The members who get the most from Premium are the ones who go one topic at a time, write their questions down, and separate learning from buying decisions.</span><span class="lang-pt">Os membros que mais aproveitam o Premium são os que estudam um tópico de cada vez, anotam suas dúvidas e separam o aprendizado das decisões de compra.</span></p>
       <div class="grid-2">
         <div class="tile"><strong><span class="lang-en">One topic at a time</span><span class="lang-pt">Um tópico de cada vez</span></strong><p><span class="lang-en">Do not jump from ETFs to Bitcoin to macro in one sitting. Pick one module, understand it, then compare it with the simulator.</span><span class="lang-pt">Não salte de ETFs para Bitcoin e depois para macro em uma única sessão. Escolha um módulo, entenda-o e então compare com o simulador.</span></p></div>
         <div class="tile"><strong><span class="lang-en">Write questions down</span><span class="lang-pt">Anote suas dúvidas</span></strong><p><span class="lang-en">Every time something feels unclear, save it. Good questions make the support call much more useful.</span><span class="lang-pt">Toda vez que algo parecer confuso, guarde a dúvida. Boas perguntas tornam a chamada de suporte muito mais útil.</span></p></div>
@@ -281,9 +269,12 @@
       </div>
     </section>
 
+    <hr class="guide-divider">
+
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 6 of 8 — All 15 Guides</span><span class="lang-pt">Seção 6 de 8 — Todos os 15 Guias</span></span>
       <h2><span class="lang-en">Your 15 premium guides</span><span class="lang-pt">Seus 15 guias premium</span></h2>
-      <p><span class="lang-en">Every guide is inside your member hub now. You can return to any of them at any time. They do not expire. Start with the ones that match your current level, not the ones that feel most exciting.</span><span class="lang-pt">Todos os guias já estão disponíveis na sua área de membro. Você pode acessar qualquer um deles a qualquer momento. Eles não expiram. Comece pelos que correspondem ao seu nível atual, não pelos que parecem mais empolgantes.</span></p>
+      <p class="section-intro"><span class="lang-en">Every guide is inside your member hub now. You can return to any of them at any time. They do not expire. Start with the ones that match your current level, not the ones that feel most exciting.</span><span class="lang-pt">Todos os guias já estão disponíveis na sua área de membro. Você pode acessar qualquer um deles a qualquer momento. Eles não expiram. Comece pelos que correspondem ao seu nível atual, não pelos que parecem mais empolgantes.</span></p>
       <table class="mini-table">
         <thead><tr><th>Guide</th><th>What it covers</th><th>Best used when</th></tr></thead>
         <tbody>
@@ -307,8 +298,9 @@
     </section>
 
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 7 of 8 — What Success Looks Like</span><span class="lang-pt">Seção 7 de 8 — Como É o Sucesso</span></span>
       <h2><span class="lang-en">What a confident member looks like after completing this</span><span class="lang-pt">Como é um membro confiante após concluir esta etapa</span></h2>
-      <p><span class="lang-en">This is not a test — it is a benchmark. Use it to measure how your understanding develops, not to judge yourself at the start.</span><span class="lang-pt">Isso não é um teste — é uma referência. Use-o para medir como sua compreensão evolui, não para se julgar no início.</span></p>
+      <p class="section-intro"><span class="lang-en">This is not a test — it is a benchmark. Use it to measure how your understanding develops, not to judge yourself at the start.</span><span class="lang-pt">Isso não é um teste — é uma referência. Use-o para medir como sua compreensão evolui, não para se julgar no início.</span></p>
       <div class="grid-2">
         <div class="tile"><strong><span class="lang-en">You can explain the main investment types</span><span class="lang-pt">Você consegue explicar os principais tipos de investimento</span></strong><p><span class="lang-en">Not memorised definitions — genuine understanding. You can say why an index ETF differs from a single stock, why bonds behave differently in rising rates, and why Bitcoin requires a different kind of knowledge than shares.</span><span class="lang-pt">Não definições decoradas — compreensão genuína. Você consegue explicar por que um ETF de índice difere de uma ação individual, por que títulos se comportam de forma diferente em cenários de juros em alta e por que o Bitcoin requer um tipo diferente de conhecimento em relação às ações.</span></p></div>
         <div class="tile"><strong><span class="lang-en">You have a written investment plan</span><span class="lang-pt">Você tem um plano de investimento escrito</span></strong><p><span class="lang-en">One page is enough. What you are investing for, what you will put in core holdings, what (if anything) is satellite, how you will handle a 40% drawdown, and when you will review.</span><span class="lang-pt">Uma página já é suficiente. Para que você está investindo, o que vai colocar nos ativos principais, o que (se houver) é satélite, como vai lidar com uma queda de 40% e quando vai revisar.</span></p></div>
@@ -320,7 +312,9 @@
     </section>
 
     <section class="section">
+      <span class="section-eyebrow"><span class="lang-en">Section 8 of 8 — Your Membership</span><span class="lang-pt">Seção 8 de 8 — Sua Assinatura</span></span>
       <h2><span class="lang-en">Your membership at a glance</span><span class="lang-pt">Sua assinatura em resumo</span></h2>
+      <p class="section-intro"><span class="lang-en">Three things you have access to from today — all permanent, all yours to use at your own pace.</span><span class="lang-pt">Três coisas às quais você tem acesso a partir de hoje — todas permanentes, todas suas para usar no seu próprio ritmo.</span></p>
       <div class="grid-3">
         <div class="tile"><strong><span class="lang-en">One-time access</span><span class="lang-pt">Acesso vitalício</span></strong><p><span class="lang-en">Your Premium hub does not expire or renew. You paid once and the content stays available.</span><span class="lang-pt">Sua área Premium não expira nem renova. Você pagou uma vez e o conteúdo fica disponível para sempre.</span></p></div>
         <div class="tile"><strong><span class="lang-en">60-minute Zoom call</span><span class="lang-pt">Chamada de Zoom de 60 minutos</span></strong><p><span class="lang-en">One support call is included. Book it from the Zoom guide when you have questions worth a focused conversation.</span><span class="lang-pt">Uma chamada de suporte está incluída. Agende-a pelo guia de Zoom quando tiver dúvidas que merecem uma conversa focada.</span></p></div>
@@ -332,6 +326,17 @@
       <h2><span class="lang-en">Important note</span><span class="lang-pt">Nota importante</span></h2>
       <p><span class="lang-en">Plainvest is educational. It does not provide personal financial advice, tax advice, legal advice, or a recommendation to buy or sell any investment. Always consider your goals, risk tolerance, fees, taxes, time horizon, and personal circumstances before acting.</span><span class="lang-pt">A Plainvest é educacional. Ela não fornece aconselhamento financeiro pessoal, aconselhamento tributário, aconselhamento jurídico nem recomendação de compra ou venda de qualquer investimento. Sempre considere seus objetivos, tolerância ao risco, taxas, impostos, horizonte de tempo e circunstâncias pessoais antes de agir.</span></p>
     </section>
+
+    <hr class="guide-divider">
+
+    <div class="guide-checkpoint">
+      <div class="gc-head"><span class="lang-en">✓ Before you continue</span><span class="lang-pt">✓ Antes de continuar</span></div>
+      <ul class="gc-list">
+        <li><span class="lang-en">You understand that Plainvest Premium is structured — there is a recommended path through the 15 guides, not a random collection of articles</span><span class="lang-pt">Você entende que o Plainvest Premium é estruturado — há um caminho recomendado pelos 15 guias, não uma coleção aleatória de artigos</span></li>
+        <li><span class="lang-en">You know the difference between learning (calm, structured) and deciding (only after understanding risks, fees, taxes, and your personal goals)</span><span class="lang-pt">Você sabe a diferença entre aprender (tranquilo, estruturado) e decidir (somente após entender riscos, taxas, impostos e seus objetivos pessoais)</span></li>
+        <li><span class="lang-en">You have a 60-minute Zoom call available and should book it once you have real questions worth a focused conversation</span><span class="lang-pt">Você tem uma chamada de Zoom de 60 minutos disponível e deve agendá-la quando tiver dúvidas reais que mereçam uma conversa focada</span></li>
+      </ul>
+    </div>
 
     <section class="section">
       <h2><span class="lang-en">Start your learning journey</span><span class="lang-pt">Comece sua jornada de aprendizado</span></h2>
