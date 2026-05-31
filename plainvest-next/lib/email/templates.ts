@@ -78,7 +78,7 @@ function layout(title: string, body: string, compact = false): string {
     p { margin:0 0 16px; font-size:15px; color:rgba(255,255,255,.7); line-height:1.7; }
     strong { color:rgba(255,255,255,.9); font-weight:700; }
     .btn-wrap { margin:20px 0 28px; }
-    .btn { display:inline-block; background:#00d4aa; color:#04120e; font-size:15px; font-weight:900; padding:15px 36px; border-radius:10px; text-decoration:none; letter-spacing:.01em; }
+    .btn { display:inline-block; background:#00d4aa; color:#04120e; font-size:15px; font-weight:700; padding:16px 36px; border-radius:12px; text-decoration:none; letter-spacing:.01em; }
     .divider { height:1px; background:rgba(255,255,255,.06); margin:28px 0; }
     .highlight { background:rgba(0,212,170,.07); border:1px solid rgba(0,212,170,.14); border-left:3px solid rgba(0,212,170,.5); border-radius:10px; padding:16px 18px; margin:0 0 24px; }
     .highlight p { margin:0; font-size:14px; color:rgba(255,255,255,.65); line-height:1.65; }
@@ -128,15 +128,9 @@ function layout(title: string, body: string, compact = false): string {
           &nbsp;·&nbsp;
           <a href="mailto:hello@plainvest.app">hello@plainvest.app</a>
         </p>
-        ${compact ? `<p class="footer-legal">Plainvest admin notification</p>` : `
-        <p class="footer-brand">
-          Educational investing platform.<br />
-          Helping people invest with clarity and confidence.
-        </p>
-        <p class="footer-legal">
-          &copy; ${year} Plainvest &nbsp;·&nbsp; Not financial advice.<br />
-          You're receiving this because you created a Plainvest account or subscribed to Plainvest updates.
-        </p>`}
+        ${compact ? '' : `
+        <p class="footer-brand">Educational platform. Not financial advice.</p>
+        <p class="footer-legal">&copy; ${year} Plainvest</p>`}
       </div>
 
     </div>
@@ -183,7 +177,7 @@ export function welcomeEmail(name: string): string {
       <li>Future projections &amp; Freedom Score</li>
       <li>Plain-English explanations — no jargon</li>
     </ul>
-    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Open My Dashboard →</a></div>
+    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Start Learning →</a></div>
     <p class="hint">Questions? Reply to this email anytime — we're happy to help.</p>
   `);
 }
@@ -191,10 +185,10 @@ export function welcomeEmail(name: string): string {
 // ─── 2. Newsletter confirmation ───────────────────────────────────────────────
 
 export function newsletterConfirmationEmail(email: string): string {
-  return layout("You're subscribed to Plainvest Insights", `
+  return layout("You're on the Plainvest list", `
     ${lbl('Subscribed', 'newsletter')}
     <h1>You're on the list.</h1>
-    <p>Thanks for joining the Plainvest insights list. We'll occasionally send:</p>
+    <p>Thanks for joining the Plainvest insights list. We'll occasionally send calm investing education, platform updates, new guides, and useful resources — no hype, no spam.</p>
     <ul class="checklist">
       <li>Investing education</li>
       <li>Market insights</li>
@@ -214,7 +208,7 @@ export function passwordResetEmail(name: string, resetLink: string): string {
   const firstName = toFirst(name);
   return layout('Reset your Plainvest password', `
     ${lbl('Password reset', 'lock')}
-    <h1>Reset your password, ${firstName}.</h1>
+    <h1>Reset your password.</h1>
     <p>We received a request to reset the password on your Plainvest account. Click the button below to choose a new one.</p>
     <p>If you didn't request this, you can safely ignore this email — your account remains secure.</p>
     <div class="btn-wrap"><a href="${resetLink}" class="btn">Reset Password →</a></div>
@@ -244,8 +238,8 @@ export function proWelcomeEmail(name: string, email: string): string {
   const firstName = toFirst(name);
   return layout('Welcome to Plainvest Pro', `
     ${lbl('Pro membership confirmed', 'star')}
-    <h1>Ready for the next step, ${firstName}?</h1>
-    <span class="sub">See where your money could be in 20 years.</span>
+    <h1>Welcome to Pro.</h1>
+    <span class="sub">Your full investing dashboard is ready, ${firstName}.</span>
     <p>Your Pro membership is now active. You have access to the complete Plainvest platform — portfolio tracking, future projections, and your personal Freedom Score.</p>
     ${lbl('Account', '')}
     <div class="email-pill">${email}</div>
@@ -258,7 +252,7 @@ export function proWelcomeEmail(name: string, email: string): string {
       <li>All investing guides — current &amp; future</li>
       <li>60-minute onboarding Zoom call (included)</li>
     </ul>
-    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Open Pro Dashboard →</a></div>
+    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Open Dashboard →</a></div>
     <div class="divider"></div>
     ${lbl('Your included Zoom call', 'video')}
     <p>Your plan includes a 60-minute onboarding call. Once you've completed the first 2–3 guides, reply to this email to schedule it.</p>
@@ -272,8 +266,8 @@ export function premiumWelcomeEmail(name: string, email: string): string {
   const firstName = toFirst(name);
   return layout('Welcome to Plainvest Lifetime', `
     ${lbl('Lifetime access confirmed', 'gem')}
-    <h1>Welcome to Plainvest Lifetime, ${firstName}.</h1>
-    <span class="sub">Permanent access · One-time payment · No recurring fees.</span>
+    <h1>Your Premium access is ready.</h1>
+    <span class="sub">Everything is unlocked, ${firstName}. No recurring fees. Ever.</span>
     <p>Your Lifetime access is now active. Everything is unlocked and ready for you — today, and every day after.</p>
     ${lbl('Account', '')}
     <div class="email-pill">${email}</div>
@@ -286,7 +280,7 @@ export function premiumWelcomeEmail(name: string, email: string): string {
       <li>Lifetime access to all new guides</li>
     </ul>
     <p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;">No recurring fees. Ever.</p>
-    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Start Learning →</a></div>
+    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Open Member Hub →</a></div>
     <div class="divider"></div>
     ${lbl('Your included Zoom call', 'video')}
     <p>Once you've completed the first 2–3 guides, reply to this email to schedule your 60-minute onboarding call.</p>
@@ -329,7 +323,7 @@ export function supportCallConfirmationEmail(name: string, email: string, data?:
   const hasDetails = data?.date || data?.time || data?.meetingLink;
   return layout('Your Plainvest support call is confirmed', `
     ${lbl('Zoom call confirmed', 'video')}
-    <h1>Your call is booked, ${firstName}.</h1>
+    <h1>Your support call is confirmed.</h1>
     <span class="sub">60-minute 1-on-1 session</span>
     <p>Your Plainvest support call is confirmed. ${hasDetails ? '' : "We'll be in touch within 24 hours to send your Zoom link and scheduled time."}</p>
     ${hasDetails ? `
@@ -365,7 +359,7 @@ export function supportCallReminderEmail(name: string, data: {
   const firstName = toFirst(name);
   return layout('Reminder: your Plainvest support call', `
     ${lbl('Call reminder', 'video')}
-    <h1>Your call is tomorrow, ${firstName}.</h1>
+    <h1>Your call is tomorrow.</h1>
     <div class="highlight">
       <p>
         <strong>Date:</strong> ${data.date}<br />
@@ -396,7 +390,7 @@ export function newGuideEmail(name: string, guide: {
   const firstName = toFirst(name);
   return layout('New guide available on Plainvest', `
     ${lbl('New guide', 'book')}
-    <h1>${firstName}, a new guide is ready for you.</h1>
+    <h1>A new guide is available.</h1>
     <p>We've added a new guide to help you continue building your investing knowledge.</p>
     <div class="highlight">
       <p><strong>${guide.title}</strong><br />${guide.description}</p>
@@ -437,7 +431,7 @@ export function milestoneEmail(name: string, data: {
     <p>You've completed <strong>${data.completed} of ${data.total} guides</strong> — ${remaining} remaining until you've built your full investing foundation.</p>
     <p>Keep going. The knowledge compounds just like the investments will.</p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Continue Learning →</a></div>
-    <p class="hint">${pct >= 50 ? "You're over halfway there — the hardest part is done." : "Every guide you complete puts you further ahead than most people ever get."}</p>
+    <p class="hint">${pct >= 50 ? "You're over halfway — the hardest part is done." : "Every guide you complete puts you further ahead than most people ever get."}</p>
   `);
 }
 
@@ -452,9 +446,9 @@ export function reengagementEmail(name: string, data?: {
   const hasStats = data?.completed !== undefined && data?.total !== undefined;
   const nextGuide = data?.nextGuide || 'Investment Paths';
 
-  return layout('Your learning path is waiting — Plainvest', `
+  return layout('Continue where you left off', `
     ${lbl('We miss you', 'refresh')}
-    <h1>Your learning path is waiting, ${firstName}.</h1>
+    <h1>Ready to continue, ${firstName}?</h1>
     ${hasStats && data!.completed !== undefined && data!.total !== undefined
       ? `<p>You've already completed <strong>${data!.completed} guides</strong> — that's real progress. Your path, tools, and everything else are right where you left them.</p>
          ${statsCard(data!.completed, data!.total)}`
@@ -465,7 +459,7 @@ export function reengagementEmail(name: string, data?: {
       <p><strong>Next recommended:</strong> ${nextGuide}<br />
       <span style="font-size:13px;color:rgba(255,255,255,.45);">Continue building your investing foundation.</span></p>
     </div>
-    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Continue where you left off →</a></div>
+    <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Resume Learning →</a></div>
     <p class="hint">Questions or need help getting started again? Reply to this email anytime.</p>
   `);
 }
@@ -542,7 +536,7 @@ export function paymentFailedEmail(name: string): string {
 
 export function emailVerificationEmail(name: string, verifyLink: string): string {
   const firstName = toFirst(name);
-  return layout('Verify your email — Plainvest', `
+  return layout('Verify your Plainvest email', `
     ${lbl('Verify your email', 'mail')}
     <h1>Almost there, ${firstName}.</h1>
     <p>Click the button below to verify your email address and activate your Plainvest account.</p>
@@ -572,7 +566,7 @@ export function contactConfirmationEmail(name: string): string {
   const firstName = toFirst(name);
   return layout('Message received — Plainvest', `
     ${lbl('Support', 'chat')}
-    <h1>We received your message, ${firstName}.</h1>
+    <h1>We received your message.</h1>
     <p>We'll get back to you within 1–2 business days.</p>
     <p>In the meantime, feel free to explore the guides and tools at your own pace.</p>
     <div class="btn-wrap"><a href="https://plainvest.app" class="btn">Explore Plainvest →</a></div>
@@ -588,7 +582,7 @@ export function adminNewUserEmail(data: {
   date: string;
 }): string {
   return layout('New user — Plainvest', `
-    ${lbl('New account', 'admin', 'rgba(255,255,255,.35)')}
+    ${lbl('Admin Notification', 'admin', 'rgba(255,255,255,.35)')}
     <h1>New user registered.</h1>
     <div class="highlight">
       <p>
@@ -609,7 +603,7 @@ export function adminNewSubscriberEmail(data: {
   utmSource?: string;
 }): string {
   return layout('New newsletter signup — Plainvest', `
-    ${lbl('Newsletter signup', 'admin', 'rgba(255,255,255,.35)')}
+    ${lbl('Admin Notification', 'admin', 'rgba(255,255,255,.35)')}
     <h1>New subscriber.</h1>
     <div class="highlight">
       <p>
@@ -631,8 +625,8 @@ export function adminNewProPurchaseEmail(data: {
   date: string;
 }): string {
   return layout('New Pro purchase — Plainvest', `
-    ${lbl('New Pro purchase', 'admin', 'rgba(255,255,255,.35)')}
-    <h1>Pro membership sold.</h1>
+    ${lbl('Admin Notification', 'admin', 'rgba(255,255,255,.35)')}
+    <h1>New Pro purchase.</h1>
     <div class="highlight">
       <p>
         <strong>Customer:</strong> ${data.customer}<br />
@@ -651,8 +645,8 @@ export function adminNewLifetimePurchaseEmail(data: {
   date: string;
 }): string {
   return layout('New Lifetime purchase — Plainvest', `
-    ${lbl('New Lifetime purchase', 'admin', 'rgba(255,255,255,.35)')}
-    <h1>Lifetime access sold.</h1>
+    ${lbl('Admin Notification', 'admin', 'rgba(255,255,255,.35)')}
+    <h1>New Lifetime purchase.</h1>
     <div class="highlight">
       <p>
         <strong>Customer:</strong> ${data.customer}<br />
@@ -671,8 +665,8 @@ export function adminNewZoomBookingEmail(data: {
   time?: string;
 }): string {
   return layout('New Zoom booking — Plainvest', `
-    ${lbl('New Zoom booking', 'admin', 'rgba(255,255,255,.35)')}
-    <h1>Support call booked.</h1>
+    ${lbl('Admin Notification', 'admin', 'rgba(255,255,255,.35)')}
+    <h1>New support call booked.</h1>
     <div class="highlight">
       <p>
         <strong>Customer:</strong> ${data.customer}<br />
@@ -695,7 +689,7 @@ export function contactNotificationEmail(data: {
   page: string;
 }): string {
   return layout(`New ${data.formType} — Plainvest`, `
-    ${lbl(data.formType, 'admin', 'rgba(255,255,255,.35)')}
+    ${lbl('Admin Notification', 'admin', 'rgba(255,255,255,.35)')}
     <h1>New ${data.formType}.</h1>
     <div class="highlight">
       <p>

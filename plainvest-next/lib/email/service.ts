@@ -40,7 +40,7 @@ export async function sendWelcomeEmail(to: string, name: string): Promise<void> 
 }
 
 export async function sendNewsletterConfirmation(to: string): Promise<void> {
-  await send(to, "You're subscribed to Plainvest Insights", newsletterConfirmationEmail(to));
+  await send(to, "You're on the Plainvest list", newsletterConfirmationEmail(to));
 }
 
 export async function sendPasswordResetEmail(to: string, name: string, resetLink: string): Promise<void> {
@@ -52,11 +52,11 @@ export async function sendPasswordChangedEmail(to: string, name: string): Promis
 }
 
 export async function sendProWelcomeEmail(to: string, name: string): Promise<void> {
-  await send(to, 'Welcome to Plainvest Pro', proWelcomeEmail(name, to));
+  await send(to, 'Your Plainvest Pro dashboard is ready', proWelcomeEmail(name, to));
 }
 
 export async function sendPremiumWelcomeEmail(to: string, name: string): Promise<void> {
-  await send(to, 'Welcome to Plainvest Lifetime', premiumWelcomeEmail(name, to));
+  await send(to, 'Your Plainvest access is ready', premiumWelcomeEmail(name, to));
 }
 
 export async function sendPaymentReceiptEmail(to: string, name: string, data: {
@@ -73,7 +73,7 @@ export async function sendSupportCallConfirmationEmail(to: string, name: string,
   time?: string;
   meetingLink?: string;
 }): Promise<void> {
-  await send(to, 'Your Plainvest support call is confirmed', supportCallConfirmationEmail(name, to, data));
+  await send(to, 'Your Plainvest support call is booked', supportCallConfirmationEmail(name, to, data));
 }
 
 export async function sendSupportCallReminderEmail(to: string, name: string, data: {
@@ -81,7 +81,7 @@ export async function sendSupportCallReminderEmail(to: string, name: string, dat
   time: string;
   meetingLink: string;
 }): Promise<void> {
-  await send(to, 'Reminder: your Plainvest support call', supportCallReminderEmail(name, data));
+  await send(to, 'Your Plainvest support call is tomorrow', supportCallReminderEmail(name, data));
 }
 
 export async function sendNewGuideEmail(to: string, name: string, guide: {
@@ -89,7 +89,7 @@ export async function sendNewGuideEmail(to: string, name: string, guide: {
   description: string;
   url: string;
 }): Promise<void> {
-  await send(to, 'New guide available on Plainvest', newGuideEmail(name, guide));
+  await send(to, 'New Plainvest guide available', newGuideEmail(name, guide));
 }
 
 export async function sendMilestoneEmail(to: string, name: string, data: {
@@ -97,11 +97,11 @@ export async function sendMilestoneEmail(to: string, name: string, data: {
   total: number;
   milestone: string;
 }): Promise<void> {
-  await send(to, "You've reached a new milestone — Plainvest", milestoneEmail(name, data));
+  await send(to, 'You reached a Plainvest milestone', milestoneEmail(name, data));
 }
 
 export async function sendReengagementEmail(to: string, name: string): Promise<void> {
-  await send(to, 'Ready to continue your investing journey?', reengagementEmail(name));
+  await send(to, 'Continue where you left off', reengagementEmail(name));
 }
 
 export async function sendPromotionEmail(to: string, data: {
@@ -131,7 +131,7 @@ export async function sendPaymentFailedEmail(to: string, name: string): Promise<
 }
 
 export async function sendEmailVerification(to: string, name: string, verifyLink: string): Promise<void> {
-  await send(to, 'Verify your email — Plainvest', emailVerificationEmail(name, verifyLink));
+  await send(to, 'Verify your Plainvest email', emailVerificationEmail(name, verifyLink));
 }
 
 export async function sendWaitlistConfirmation(to: string): Promise<void> {
