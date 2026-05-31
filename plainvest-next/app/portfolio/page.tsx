@@ -182,7 +182,7 @@ export default async function PortfolioPage({
   const displayCurrency: Currency =
     VALID_CURRENCIES.includes(params.currency as Currency)
       ? (params.currency as Currency)
-      : 'AUD';
+      : 'USD';
   const lang = getLang(params.lang);
   const tx = T[lang];
 
@@ -723,7 +723,7 @@ export default async function PortfolioPage({
                           <td className="num">
                             {g.currentPrice != null ? (
                               <div className="price-display-cell">
-                                <span className="price-display-val">{fmt(g.currentPrice, g.currency)}</span>
+                                <span className="price-display-val">{fmt(toDisplay(g.currentPrice, g.currency), displayCurrency)}</span>
                                 {livePrices[g.key]
                                   ? <span className="price-live-badge">{tx.livePrice}</span>
                                   : <span className="price-manual-badge">{tx.manualPrice}</span>}
