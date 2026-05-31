@@ -530,7 +530,14 @@ export default async function PortfolioPage({
                   </div>
                   <AddPositionModal lang={lang} />
                 </div>
-                <DonutChart segments={donutSegments} totalValue={totalInvested} currency={displayCurrency} />
+                <DonutChart
+                  segments={donutSegments}
+                  totalValue={totalInvested}
+                  currency={displayCurrency}
+                  currentValue={pricedGroups.length > 0 ? currentValue : null}
+                  pnl={pnl}
+                  pnlPct={pnlPct}
+                />
               </section>
 
               <section className="portfolio-card portfolio-perf-card">

@@ -34,10 +34,16 @@ export function DonutChart({
   segments,
   totalValue,
   currency,
+  currentValue,
+  pnl,
+  pnlPct,
 }: {
   segments: DonutSegment[];
   totalValue: number;
   currency: string;
+  currentValue?: number | null;
+  pnl?: number | null;
+  pnlPct?: number | null;
 }) {
   const [hovered, setHovered] = useState<number | null>(null);
 
@@ -104,31 +110,60 @@ export function DonutChart({
             );
           })}
 
-          <text x={CX} y={CY - 21} textAnchor="middle" fontSize="8" fontWeight="700"
-            fill="rgba(255,255,255,0.35)" fontFamily="inherit" letterSpacing="2">
-            {active ? (active.ticker || active.label.slice(0, 10).toUpperCase()) : 'TOTAL INVESTED'}
-          </text>
-
-          <text x={CX} y={CY + 6} textAnchor="middle" fontSize="20" fontWeight="800"
-            fill="white" fontFamily="inherit">
-            {active ? fmtCompact(active.value) : fmtCompact(totalValue)}
-          </text>
-
-          <text
-            x={CX} y={CY + 27}
-            textAnchor="middle" fontSize="11" fontWeight="700" fontFamily="inherit"
-            fill={
-              active && active.pnlPct != null
-                ? active.pnlPct >= 0 ? '#34d399' : '#fb7185'
-                : 'rgba(255,255,255,0.35)'
-            }
-          >
-            {active
-              ? active.pnlPct != null
-                ? (active.pnlPct >= 0 ? '▲ +' : '▼ ') + active.pnlPct.toFixed(1) + '%'
-                : active.pct.toFixed(1) + '% of portfolio'
-              : segments.length + ' asset' + (segments.length !== 1 ? 's' : '')}
-          </text>
+          {active ? (
+            <>
+              <text x={CX} y={CY - 21} textAnchor="middle" fontSize="8" fontWeight="700"
+                fill="rgba(255,255,255,0.35)" fontFamily="inherit" letterSpacing="2">
+                {active.ticker || active.label.slice(0, 10).toUpperCase()}
+              </text>
+              <text x={CX} y={CY + 6} textAnchor="middle" fontSize="20" fontWeight="800"
+                fill="white" fontFamily="inherit">
+                {fmtCompact(active.value)}
+              </text>
+              <text x={CX} y={CY + 27} textAnchor="middle" fontSize="11" fontWeight="700" fontFamily="inherit"
+                fill={active.pnlPct != null ? (active.pnlPct >= 0 ? '#34d399' : '#fb7185') : 'rgba(255,255,255,0.35)'}>
+                {active.pnlPct != null
+                  ? (active.pnlPct >= 0 ? '▲ +' : '▼ ') + active.pnlPct.toFixed(1) + '%'
+                  : active.pct.toFixed(1) + '% of portfolio'}
+              </text>
+            </>
+          ) : currentValue != null ? (
+            <>
+              <text x={CX} y={CY - 28} textAnchor="middle" fontSize="7" fontWeight="700"
+                fill="rgba(255,255,255,0.35)" fontFamily="inherit" letterSpacing="2">
+                CURRENT VALUE
+              </text>
+              <text x={CX} y={CY + 1} textAnchor="middle" fontSize="19" fontWeight="800"
+                fill="white" fontFamily="inherit">
+                {fmtCompact(currentValue)}
+              </text>
+              {pnl != null && pnlPct != null && (
+                <text x={CX} y={CY + 19} textAnchor="middle" fontSize="10" fontWeight="700" fontFamily="inherit"
+                  fill={pnl >= 0 ? '#34d399' : '#fb7185'}>
+                  {pnl >= 0 ? '▲ +' : '▼ '}{fmtCompact(Math.abs(pnl))} ({pnl >= 0 ? '+' : ''}{pnlPct.toFixed(1)}%)
+                </text>
+              )}
+              <text x={CX} y={CY + 35} textAnchor="middle" fontSize="8" fontWeight="500" fontFamily="inherit"
+                fill="rgba(255,255,255,0.28)">
+                {fmtCompact(totalValue)} invested
+              </text>
+            </>
+          ) : (
+            <>
+              <text x={CX} y={CY - 21} textAnchor="middle" fontSize="8" fontWeight="700"
+                fill="rgba(255,255,255,0.35)" fontFamily="inherit" letterSpacing="2">
+                TOTAL INVESTED
+              </text>
+              <text x={CX} y={CY + 6} textAnchor="middle" fontSize="20" fontWeight="800"
+                fill="white" fontFamily="inherit">
+                {fmtCompact(totalValue)}
+              </text>
+              <text x={CX} y={CY + 27} textAnchor="middle" fontSize="11" fontWeight="700" fontFamily="inherit"
+                fill="rgba(255,255,255,0.35)">
+                {segments.length} asset{segments.length !== 1 ? 's' : ''}
+              </text>
+            </>
+          )}
         </svg>
       </div>
 
