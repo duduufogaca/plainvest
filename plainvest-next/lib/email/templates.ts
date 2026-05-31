@@ -60,7 +60,12 @@ function statsCard(completed: number, total: number): string {
 
 function layout(title: string, body: string, compact = false, unsubscribeUrl?: string): string {
   const year = new Date().getFullYear();
-  return `<!DOCTYPE html>
+  const outerPad = compact ? '24px 16px 32px' : '40px 16px 52px';
+  const cardPad = compact ? '28px 28px' : '40px 36px';
+  const h1fs = compact ? '20px' : '26px';
+  const h1fsMob = compact ? '18px' : '22px';
+
+  const html = `<!DOCTYPE html>
 <html lang="en" style="color-scheme:dark;">
 <head>
   <meta charset="utf-8" />
@@ -71,16 +76,10 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
   <style>
     :root { color-scheme: dark; }
     body { margin:0; padding:0; background-color:#060d1a !important; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
-    .outer { background-color:#060d1a !important; width:100%; padding:${compact ? '24px 16px 32px' : '40px 16px 52px'}; box-sizing:border-box; }
-    .inner { max-width:580px; margin:0 auto; }
-    .logo-row { text-align:center; margin-bottom:28px; }
-    .tagline { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-top:8px; }
-    .card { background-color:#0b1929 !important; border-radius:20px; border:1px solid rgba(0,212,170,.1); border-top:3px solid #12E3C0; padding:${compact ? '28px 28px' : '40px 36px'}; }
-    h1 { margin:0 0 10px; font-size:${compact ? '20px' : '26px'}; font-weight:900; color:#ffffff !important; line-height:1.2; }
+    h1 { margin:0 0 10px; font-size:${h1fs}; font-weight:900; color:#ffffff !important; line-height:1.2; }
     .sub { display:block; font-size:14px; color:rgba(255,255,255,.4); margin:0 0 28px; line-height:1.5; }
     p { margin:0 0 16px; font-size:15px; color:rgba(255,255,255,.7) !important; line-height:1.7; }
     strong { color:rgba(255,255,255,.9) !important; font-weight:700; }
-    .btn-wrap { margin:20px 0 28px; }
     .btn { display:inline-block; background:#12E3C0 !important; color:#02111F !important; font-size:15px; font-weight:700; padding:16px 36px; border-radius:12px; text-decoration:none; letter-spacing:.01em; }
     .divider { height:1px; background:rgba(255,255,255,.06); margin:28px 0; }
     .highlight { background:rgba(0,212,170,.07); border:1px solid rgba(0,212,170,.14); border-left:3px solid rgba(0,212,170,.5); border-radius:10px; padding:16px 18px; margin:0 0 24px; }
@@ -94,64 +93,59 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
     .receipt-table td:last-child { text-align:right; color:rgba(255,255,255,.85); font-weight:600; }
     .security-note { background:rgba(255,183,77,.06); border:1px solid rgba(255,183,77,.15); border-radius:10px; padding:12px 16px; margin:0 0 20px; }
     .security-note p { margin:0; font-size:13px; color:rgba(255,200,100,.75) !important; }
-    .footer { margin-top:32px; text-align:center; }
-    .footer-tagline { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.18); margin:0 0 12px; }
-    .footer-links { font-size:13px; color:rgba(255,255,255,.3); margin:0 0 8px; line-height:1.6; }
-    .footer-links a { color:rgba(18,227,192,.55); text-decoration:none; }
-    .footer-brand { font-size:12px; color:rgba(255,255,255,.22); margin:0 0 6px; line-height:1.6; }
-    .footer-legal { font-size:11px; color:rgba(255,255,255,.15); line-height:1.6; margin:0 0 4px; }
-    .footer-legal a { color:rgba(18,227,192,.35); text-decoration:none; }
-    .footer-unsub { font-size:11px; color:rgba(255,255,255,.18); line-height:1.6; margin:0; }
-    .footer-unsub a { color:rgba(255,255,255,.28); text-decoration:underline; }
     .hint { font-size:13px; color:rgba(255,255,255,.35); margin-top:4px; line-height:1.6; }
     @media (prefers-color-scheme: light) {
-      body, .outer { background-color:#060d1a !important; }
-      .card { background-color:#0b1929 !important; }
+      body { background-color:#060d1a !important; }
       h1 { color:#ffffff !important; }
       p { color:rgba(255,255,255,.7) !important; }
     }
     @media (max-width:480px) {
-      .card { padding:28px 20px !important; border-radius:16px !important; }
-      h1 { font-size:${compact ? '18px' : '22px'} !important; }
+      .card-td { padding:28px 20px !important; }
+      h1 { font-size:${h1fsMob} !important; }
       .btn { padding:14px 28px !important; font-size:14px !important; }
     }
   </style>
 </head>
-<body bgcolor="#060d1a">
-  <div class="outer">
-    <div class="inner">
+<body bgcolor="#060d1a" style="margin:0;padding:0;background-color:#060d1a !important;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#060d1a" style="width:100%;background-color:#060d1a !important;">
+<tr><td align="center" bgcolor="#060d1a" style="padding:${outerPad};background-color:#060d1a !important;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width:580px;width:100%;">
 
-      <div class="logo-row">
-        <a href="https://plainvest.app" style="display:inline-block;text-decoration:none;">
-          <img
-            src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png"
-            alt="Plainvest"
-            width="160"
-            style="display:block;width:160px;height:auto;border:0;"
-          />
-        </a>
-        ${!compact ? '<div class="tagline">Future clarity. Smarter decisions.</div>' : ''}
-      </div>
+<tr><td align="center" bgcolor="#060d1a" style="padding-bottom:28px;background-color:#060d1a;text-align:center;">
+  <a href="https://plainvest.app" style="display:inline-block;text-decoration:none;">
+    <img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" width="160" style="display:block;width:160px;height:auto;border:0;" />
+  </a>
+  ${!compact ? '<div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:8px;">Future clarity. Smarter decisions.</div>' : ''}
+</td></tr>
 
-      <div class="card">${body}</div>
+<tr><td class="card-td" bgcolor="#0b1929" style="background-color:#0b1929 !important;border-radius:20px;border:1px solid rgba(0,212,170,.1);border-top:3px solid #12E3C0;padding:${cardPad};">
+${body}
+</td></tr>
 
-      <div class="footer">
-        ${!compact ? '<p class="footer-tagline">Future Clarity. Smarter Decisions.</p>' : ''}
-        <p class="footer-links">
-          <a href="https://plainvest.app">plainvest.app</a>
-          &nbsp;·&nbsp;
-          <a href="mailto:hello@plainvest.app">hello@plainvest.app</a>
-        </p>
-        ${!compact ? `
-        <p class="footer-brand">Educational platform focused on investing education. Not financial advice.</p>
-        <p class="footer-legal">&copy; ${year} Plainvest &nbsp;·&nbsp; <a href="https://members.plainvest.app/profile">Manage Preferences</a></p>` : ''}
-        ${unsubscribeUrl ? `<p class="footer-unsub"><a href="${unsubscribeUrl}">Unsubscribe</a></p>` : ''}
-      </div>
+<tr><td align="center" bgcolor="#060d1a" style="padding-top:32px;background-color:#060d1a;text-align:center;">
+  ${!compact ? '<p style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18);margin:0 0 12px;">Future Clarity. Smarter Decisions.</p>' : ''}
+  <p style="font-size:13px;color:rgba(255,255,255,.3);margin:0 0 8px;line-height:1.6;">
+    <a href="https://plainvest.app" style="color:rgba(18,227,192,.55);text-decoration:none;">plainvest.app</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:hello@plainvest.app" style="color:rgba(18,227,192,.55);text-decoration:none;">hello@plainvest.app</a>
+  </p>
+  ${!compact ? `
+  <p style="font-size:12px;color:rgba(255,255,255,.22);margin:0 0 6px;line-height:1.6;">Educational platform focused on investing education. Not financial advice.</p>
+  <p style="font-size:11px;color:rgba(255,255,255,.15);line-height:1.6;margin:0 0 4px;">&copy; ${year} Plainvest &nbsp;·&nbsp; <a href="https://members.plainvest.app/profile" style="color:rgba(18,227,192,.35);text-decoration:none;">Manage Preferences</a></p>` : ''}
+  ${unsubscribeUrl ? `<p style="font-size:11px;color:rgba(255,255,255,.18);line-height:1.6;margin:0;"><a href="${unsubscribeUrl}" style="color:rgba(255,255,255,.28);text-decoration:underline;">Unsubscribe</a></p>` : ''}
+</td></tr>
 
-    </div>
-  </div>
+</table>
+</td></tr>
+</table>
 </body>
 </html>`;
+
+  // Inject inline styles onto all .btn links so Gmail can't strip them
+  return html.replace(
+    /<a([^>]*?)class="btn"([^>]*?)>/g,
+    '<a$1class="btn"$2 style="display:inline-block;background:#12E3C0 !important;color:#02111F !important;font-size:15px;font-weight:700;padding:16px 36px;border-radius:12px;text-decoration:none;letter-spacing:.01em;">',
+  );
 }
 
 // ─── 1. Welcome ──────────────────────────────────────────────────────────────
