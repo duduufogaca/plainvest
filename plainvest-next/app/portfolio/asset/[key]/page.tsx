@@ -181,7 +181,7 @@ export default async function AssetDetailPage({
               <span>{entries.length} {entries.length !== 1 ? tx.purchases : tx.purchase}</span>
               {sinceDate && <><span className="asset-hero-sep">·</span><span>{tx.since} {sinceDate}</span></>}
               <span className="asset-hero-sep">·</span>
-              <span>{nativeCurrency}</span>
+              <span>{displayCurrency}</span>
             </div>
           </div>
         </div>
