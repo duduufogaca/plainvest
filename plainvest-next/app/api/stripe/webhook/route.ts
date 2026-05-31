@@ -1,7 +1,18 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createStripeClient } from '@/lib/stripe';
 import { getPostHogClient } from '@/lib/posthog-server';
-import { sendSupportCallConfirmationEmail, sendPremiumWelcomeEmail, sendProWelcomeEmail } from '@/lib/email/service';
+import {
+  sendSupportCallConfirmationEmail,
+  sendPremiumWelcomeEmail,
+  sendProWelcomeEmail,
+  sendPaymentReceiptEmail,
+  sendSubscriptionRenewedEmail,
+  sendSubscriptionCancelledEmail,
+  sendPaymentFailedEmail,
+  sendAdminNewProPurchase,
+  sendAdminNewLifetimePurchase,
+  sendAdminNewZoomBooking,
+} from '@/lib/email/service';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -65,6 +76,7 @@ export async function POST(request: Request) {
       const scEmail = session.customer_email || session.metadata?.email;
       if (scEmail) {
         sendSupportCallConfirmationEmail(scEmail, scEmail).catch(() => {});
+        sendAdminNewZoomBooking({ customer: scEmail, email: scEmail }).catch(() => {});
       }
 
       return NextResponse.json({ received: true });
@@ -105,11 +117,19 @@ export async function POST(request: Request) {
     await posthog.shutdown();
 
     const purchaseEmail = session.customer_email || session.metadata?.email;
+    const purchaseDate = now.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+    const paymentIntentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.id;
+    const amountTotal = session.amount_total ? `$${(session.amount_total / 100).toFixed(2)}` : '—';
+
     if (purchaseEmail) {
       if (plan === 'pro') {
         sendProWelcomeEmail(purchaseEmail, purchaseEmail).catch(() => {});
+        sendPaymentReceiptEmail(purchaseEmail, purchaseEmail, { product: 'Plainvest Pro', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
+        sendAdminNewProPurchase({ customer: purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
       } else {
         sendPremiumWelcomeEmail(purchaseEmail, purchaseEmail).catch(() => {});
+        sendPaymentReceiptEmail(purchaseEmail, purchaseEmail, { product: 'Plainvest Lifetime', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
+        sendAdminNewLifetimePurchase({ customer: purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
       }
     }
   }
@@ -123,12 +143,20 @@ export async function POST(request: Request) {
       const sub = await stripe.subscriptions.retrieve(subscriptionId);
       const accessExpiresAt = new Date(sub.current_period_end * 1000).toISOString();
 
-      const { error } = await supabaseAdmin
+      const { data: rows, error } = await supabaseAdmin
         .from('member_access')
         .update({ premium_status: 'active', access_expires_at: accessExpiresAt, updated_at: new Date().toISOString() })
-        .eq('stripe_subscription_id', subscriptionId);
+        .eq('stripe_subscription_id', subscriptionId)
+        .select('email');
 
       if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+      const renewEmail = rows?.[0]?.email || invoice.customer_email;
+      if (renewEmail && invoice.billing_reason === 'subscription_cycle') {
+        const price = invoice.amount_paid ? `$${(invoice.amount_paid / 100).toFixed(2)}` : '—';
+        const nextRenewal = new Date(sub.current_period_end * 1000).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+        sendSubscriptionRenewedEmail(renewEmail, renewEmail, { price, nextRenewal }).catch(() => {});
+      }
     }
   }
 
@@ -138,12 +166,16 @@ export async function POST(request: Request) {
     const subscriptionId = typeof invoice.subscription === 'string' ? invoice.subscription : null;
 
     if (subscriptionId) {
-      const { error } = await supabaseAdmin
+      const { data: rows, error } = await supabaseAdmin
         .from('member_access')
         .update({ premium_status: 'past_due', updated_at: new Date().toISOString() })
-        .eq('stripe_subscription_id', subscriptionId);
+        .eq('stripe_subscription_id', subscriptionId)
+        .select('email');
 
       if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+      const failEmail = rows?.[0]?.email || invoice.customer_email;
+      if (failEmail) sendPaymentFailedEmail(failEmail, failEmail).catch(() => {});
     }
   }
 
@@ -165,16 +197,20 @@ export async function POST(request: Request) {
   if (event.type === 'customer.subscription.deleted') {
     const sub = event.data.object as Stripe.Subscription;
 
-    const { error } = await supabaseAdmin
+    const { data: rows, error } = await supabaseAdmin
       .from('member_access')
       .update({
         premium_status: 'cancelled',
         access_expires_at: new Date(sub.current_period_end * 1000).toISOString(),
         updated_at: new Date().toISOString(),
       })
-      .eq('stripe_subscription_id', sub.id);
+      .eq('stripe_subscription_id', sub.id)
+      .select('email');
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+    const cancelEmail = rows?.[0]?.email;
+    if (cancelEmail) sendSubscriptionCancelledEmail(cancelEmail, cancelEmail).catch(() => {});
   }
 
   return NextResponse.json({ received: true });
