@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { sendNewsletterConfirmation, sendNewsletterNotification } from '@/lib/email/service';
+import { sendNewsletterConfirmRequest, sendNewsletterNotification } from '@/lib/email/service';
 import { nextSendAt } from '@/lib/email/newsletter-sequence';
 
 export async function POST(request: Request) {
@@ -29,29 +29,40 @@ export async function POST(request: Request) {
   }
 
   const date = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+  const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://members.plainvest.app';
 
-  // Save subscriber to DB and start sequence (upsert — re-subscribing resets the sequence)
+  // Save subscriber as pending (double opt-in — confirmed after email click)
+  let confirmationToken: string | null = null;
   try {
     const supabase = createAdminClient();
-    await supabase.from('newsletter_subscribers').upsert({
-      email,
-      language,
-      source_page: page,
-      country: country || null,
-      utm_source: utmSource || null,
-      status: 'active',
-      sequence_step: 1,
-      next_send_at: nextSendAt(1).toISOString(),
-      subscribed_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    }, { onConflict: 'email' });
+    const { data: upserted } = await supabase
+      .from('newsletter_subscribers')
+      .upsert({
+        email,
+        language,
+        source_page: page,
+        country: country || null,
+        utm_source: utmSource || null,
+        status: 'pending',
+        sequence_step: 0,
+        next_send_at: nextSendAt(1).toISOString(),
+        subscribed_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'email' })
+      .select('confirmation_token')
+      .single();
+    confirmationToken = upserted?.confirmation_token ?? null;
   } catch {
-    // DB save is non-critical — still send the confirmation email
+    // DB save is non-critical — still send the confirmation request
   }
+
+  const confirmUrl = confirmationToken
+    ? `${BASE_URL}/api/newsletter-confirm?token=${confirmationToken}`
+    : `${BASE_URL}/api/newsletter-confirm`;
 
   try {
     await Promise.all([
-      sendNewsletterConfirmation(email),
+      sendNewsletterConfirmRequest(email, confirmUrl),
       sendNewsletterNotification(email, language, page, { date, country, utmSource }),
     ]);
   } catch (error) {

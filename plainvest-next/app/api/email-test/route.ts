@@ -29,7 +29,8 @@ export async function GET(request: Request) {
 
   const templates: TemplateMap = {
     welcome:               { subject: 'Welcome to Plainvest',                           html: T.welcomeEmail(MOCK.name) },
-    newsletter:            { subject: "You're on the Plainvest list",                   html: T.newsletterConfirmationEmail(to) },
+    newsletter_confirm_req:{ subject: 'Confirm your Plainvest subscription',             html: T.newsletterConfirmRequestEmail(to, 'https://members.plainvest.app/api/newsletter-confirm?token=test-token-preview') },
+    newsletter:            { subject: "You're on the Plainvest list",                   html: T.newsletterConfirmationEmail(to, `https://members.plainvest.app/api/newsletter-unsubscribe?id=test-id`) },
     password_reset:        { subject: 'Reset your Plainvest password',                  html: T.passwordResetEmail(MOCK.name, 'https://members.plainvest.app/update-password?token=test') },
     password_changed:      { subject: 'Your password was updated — Plainvest',          html: T.passwordChangedEmail(MOCK.name) },
     pro_welcome:           { subject: 'Your Plainvest Pro dashboard is ready',          html: T.proWelcomeEmail(MOCK.name, to) },

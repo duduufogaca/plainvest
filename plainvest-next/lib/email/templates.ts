@@ -58,45 +58,58 @@ function statsCard(completed: number, total: number): string {
 
 // ─── Shared layout ─────────────────────────────────────────────────────────
 
-function layout(title: string, body: string, compact = false): string {
+function layout(title: string, body: string, compact = false, unsubscribeUrl?: string): string {
   const year = new Date().getFullYear();
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme:dark;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="supported-color-schemes" content="dark" />
   <title>${title}</title>
   <style>
-    body { margin:0; padding:0; background-color:#060d1a; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
-    .outer { background-color:#060d1a; width:100%; padding:${compact ? '24px 16px 32px' : '40px 16px 52px'}; box-sizing:border-box; }
+    :root { color-scheme: dark; }
+    body { margin:0; padding:0; background-color:#060d1a !important; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+    .outer { background-color:#060d1a !important; width:100%; padding:${compact ? '24px 16px 32px' : '40px 16px 52px'}; box-sizing:border-box; }
     .inner { max-width:580px; margin:0 auto; }
     .logo-row { text-align:center; margin-bottom:28px; }
     .tagline { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-top:8px; }
-    .card { background:#0b1929; border-radius:20px; border:1px solid rgba(0,212,170,.1); border-top:3px solid #00d4aa; padding:${compact ? '28px 28px' : '40px 36px'}; }
-    h1 { margin:0 0 10px; font-size:${compact ? '20px' : '26px'}; font-weight:900; color:#ffffff; line-height:1.2; }
+    .card { background-color:#0b1929 !important; border-radius:20px; border:1px solid rgba(0,212,170,.1); border-top:3px solid #12E3C0; padding:${compact ? '28px 28px' : '40px 36px'}; }
+    h1 { margin:0 0 10px; font-size:${compact ? '20px' : '26px'}; font-weight:900; color:#ffffff !important; line-height:1.2; }
     .sub { display:block; font-size:14px; color:rgba(255,255,255,.4); margin:0 0 28px; line-height:1.5; }
-    p { margin:0 0 16px; font-size:15px; color:rgba(255,255,255,.7); line-height:1.7; }
-    strong { color:rgba(255,255,255,.9); font-weight:700; }
+    p { margin:0 0 16px; font-size:15px; color:rgba(255,255,255,.7) !important; line-height:1.7; }
+    strong { color:rgba(255,255,255,.9) !important; font-weight:700; }
     .btn-wrap { margin:20px 0 28px; }
-    .btn { display:inline-block; background:#00d4aa; color:#04120e; font-size:15px; font-weight:700; padding:16px 36px; border-radius:12px; text-decoration:none; letter-spacing:.01em; }
+    .btn { display:inline-block; background:#12E3C0 !important; color:#02111F !important; font-size:15px; font-weight:700; padding:16px 36px; border-radius:12px; text-decoration:none; letter-spacing:.01em; }
     .divider { height:1px; background:rgba(255,255,255,.06); margin:28px 0; }
     .highlight { background:rgba(0,212,170,.07); border:1px solid rgba(0,212,170,.14); border-left:3px solid rgba(0,212,170,.5); border-radius:10px; padding:16px 18px; margin:0 0 24px; }
-    .highlight p { margin:0; font-size:14px; color:rgba(255,255,255,.65); line-height:1.65; }
+    .highlight p { margin:0; font-size:14px; color:rgba(255,255,255,.65) !important; line-height:1.65; }
     .email-pill { display:inline-block; background:rgba(0,212,170,.1); border:1px solid rgba(0,212,170,.2); border-radius:8px; padding:8px 14px; font-size:14px; color:rgba(255,255,255,.8); margin:0 0 24px; word-break:break-all; }
     .checklist { list-style:none; padding:0; margin:0 0 24px; }
     .checklist li { font-size:14px; color:rgba(255,255,255,.7); padding:6px 0 6px 24px; position:relative; line-height:1.55; }
-    .checklist li::before { content:'✓'; position:absolute; left:0; color:#00d4aa; font-weight:900; }
+    .checklist li::before { content:'✓'; position:absolute; left:0; color:#12E3C0; font-weight:900; }
     .receipt-table { width:100%; border-collapse:collapse; margin:0 0 24px; }
     .receipt-table td { padding:10px 0; font-size:14px; color:rgba(255,255,255,.65); border-bottom:1px solid rgba(255,255,255,.06); line-height:1.5; }
     .receipt-table td:last-child { text-align:right; color:rgba(255,255,255,.85); font-weight:600; }
     .security-note { background:rgba(255,183,77,.06); border:1px solid rgba(255,183,77,.15); border-radius:10px; padding:12px 16px; margin:0 0 20px; }
-    .security-note p { margin:0; font-size:13px; color:rgba(255,200,100,.75); }
+    .security-note p { margin:0; font-size:13px; color:rgba(255,200,100,.75) !important; }
     .footer { margin-top:32px; text-align:center; }
+    .footer-tagline { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.18); margin:0 0 12px; }
     .footer-links { font-size:13px; color:rgba(255,255,255,.3); margin:0 0 8px; line-height:1.6; }
-    .footer-links a { color:rgba(0,212,170,.55); text-decoration:none; }
+    .footer-links a { color:rgba(18,227,192,.55); text-decoration:none; }
     .footer-brand { font-size:12px; color:rgba(255,255,255,.22); margin:0 0 6px; line-height:1.6; }
-    .footer-legal { font-size:11px; color:rgba(255,255,255,.15); line-height:1.6; margin:0; }
+    .footer-legal { font-size:11px; color:rgba(255,255,255,.15); line-height:1.6; margin:0 0 4px; }
+    .footer-legal a { color:rgba(18,227,192,.35); text-decoration:none; }
+    .footer-unsub { font-size:11px; color:rgba(255,255,255,.18); line-height:1.6; margin:0; }
+    .footer-unsub a { color:rgba(255,255,255,.28); text-decoration:underline; }
     .hint { font-size:13px; color:rgba(255,255,255,.35); margin-top:4px; line-height:1.6; }
+    @media (prefers-color-scheme: light) {
+      body, .outer { background-color:#060d1a !important; }
+      .card { background-color:#0b1929 !important; }
+      h1 { color:#ffffff !important; }
+      p { color:rgba(255,255,255,.7) !important; }
+    }
     @media (max-width:480px) {
       .card { padding:28px 20px !important; border-radius:16px !important; }
       h1 { font-size:${compact ? '18px' : '22px'} !important; }
@@ -104,7 +117,7 @@ function layout(title: string, body: string, compact = false): string {
     }
   </style>
 </head>
-<body>
+<body bgcolor="#060d1a">
   <div class="outer">
     <div class="inner">
 
@@ -123,14 +136,16 @@ function layout(title: string, body: string, compact = false): string {
       <div class="card">${body}</div>
 
       <div class="footer">
+        ${!compact ? '<p class="footer-tagline">Future Clarity. Smarter Decisions.</p>' : ''}
         <p class="footer-links">
           <a href="https://plainvest.app">plainvest.app</a>
           &nbsp;·&nbsp;
           <a href="mailto:hello@plainvest.app">hello@plainvest.app</a>
         </p>
-        ${compact ? '' : `
-        <p class="footer-brand">Educational platform. Not financial advice.</p>
-        <p class="footer-legal">&copy; ${year} Plainvest</p>`}
+        ${!compact ? `
+        <p class="footer-brand">Educational platform focused on investing education. Not financial advice.</p>
+        <p class="footer-legal">&copy; ${year} Plainvest &nbsp;·&nbsp; <a href="https://members.plainvest.app/profile">Manage Preferences</a></p>` : ''}
+        ${unsubscribeUrl ? `<p class="footer-unsub"><a href="${unsubscribeUrl}">Unsubscribe</a></p>` : ''}
       </div>
 
     </div>
@@ -182,24 +197,41 @@ export function welcomeEmail(name: string): string {
   `);
 }
 
-// ─── 2. Newsletter confirmation ───────────────────────────────────────────────
+// ─── 2. Newsletter confirm request (double opt-in) ────────────────────────────
 
-export function newsletterConfirmationEmail(email: string): string {
+export function newsletterConfirmRequestEmail(email: string, confirmUrl: string): string {
+  return layout('Confirm your Plainvest subscription', `
+    ${lbl('One more step', 'mail')}
+    <h1>Confirm your email to join.</h1>
+    <p>Click the button below to confirm your subscription and start receiving Plainvest investing insights.</p>
+    ${lbl('Confirming address', '')}
+    <div class="email-pill">${email}</div>
+    <div class="btn-wrap"><a href="${confirmUrl}" class="btn">Confirm my email →</a></div>
+    <div class="security-note">
+      <p>⏱ This link expires in 24 hours. If you didn't sign up for Plainvest updates, you can safely ignore this email.</p>
+    </div>
+    <p class="hint">No spam. Unsubscribe anytime after confirming.</p>
+  `, true);
+}
+
+// ─── 3. Newsletter confirmed ("You're on the list") ───────────────────────────
+
+export function newsletterConfirmationEmail(email: string, unsubscribeUrl?: string): string {
   return layout("You're on the Plainvest list", `
-    ${lbl('Subscribed', 'newsletter')}
-    <h1>You're on the list.</h1>
-    <p>Thanks for joining the Plainvest insights list. We'll occasionally send calm investing education, platform updates, new guides, and useful resources — no hype, no spam.</p>
+    ${lbl('Confirmed', 'check')}
+    <h1>You're confirmed. Welcome.</h1>
+    <p>You're now subscribed to Plainvest Insights — calm, practical investing education delivered to your inbox. No hype, no spam.</p>
     <ul class="checklist">
-      <li>Investing education</li>
-      <li>Market insights</li>
-      <li>Platform updates</li>
-      <li>New guides and resources</li>
+      <li>Investing fundamentals</li>
+      <li>Market insights — plain English</li>
+      <li>New guides and platform updates</li>
+      <li>Long-term wealth strategies</li>
     </ul>
-    <p style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:24px;">No spam. Unsubscribe anytime.</p>
-    ${lbl('Confirmed address', '')}
+    ${lbl('Your address', '')}
     <div class="email-pill">${email}</div>
     <div class="btn-wrap"><a href="https://plainvest.app" class="btn">Explore Plainvest →</a></div>
-  `);
+    <p style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:0;">No spam. Unsubscribe anytime.</p>
+  `, false, unsubscribeUrl);
 }
 
 // ─── 3. Password reset ────────────────────────────────────────────────────────
@@ -386,7 +418,7 @@ export function newGuideEmail(name: string, guide: {
   title: string;
   description: string;
   url: string;
-}): string {
+}, unsubscribeUrl?: string): string {
   const firstName = toFirst(name);
   return layout('New guide available on Plainvest', `
     ${lbl('New guide', 'book')}
@@ -404,7 +436,7 @@ export function newGuideEmail(name: string, guide: {
       <div style="padding:9px 0;font-size:14px;color:rgba(255,255,255,.55);">→&nbsp; Build Your Portfolio</div>
     </div>
     <p class="hint">Questions about the guide? Reply to this email anytime.</p>
-  `);
+  `, false, unsubscribeUrl);
 }
 
 // ─── 11. Progress milestone ───────────────────────────────────────────────────
@@ -413,7 +445,7 @@ export function milestoneEmail(name: string, data: {
   completed: number;
   total: number;
   milestone: string;
-}): string {
+}, unsubscribeUrl?: string): string {
   const firstName = toFirst(name);
   const remaining = data.total - data.completed;
   const pct = Math.round((data.completed / data.total) * 100);
@@ -432,7 +464,7 @@ export function milestoneEmail(name: string, data: {
     <p>Keep going. The knowledge compounds just like the investments will.</p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Continue Learning →</a></div>
     <p class="hint">${pct >= 50 ? "You're over halfway — the hardest part is done." : "Every guide you complete puts you further ahead than most people ever get."}</p>
-  `);
+  `, false, unsubscribeUrl);
 }
 
 // ─── 12. Re-engagement ───────────────────────────────────────────────────────
@@ -441,7 +473,7 @@ export function reengagementEmail(name: string, data?: {
   completed?: number;
   total?: number;
   nextGuide?: string;
-}): string {
+}, unsubscribeUrl?: string): string {
   const firstName = toFirst(name);
   const hasStats = data?.completed !== undefined && data?.total !== undefined;
   const nextGuide = data?.nextGuide || 'Investment Paths';
@@ -461,7 +493,7 @@ export function reengagementEmail(name: string, data?: {
     </div>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Resume Learning →</a></div>
     <p class="hint">Questions or need help getting started again? Reply to this email anytime.</p>
-  `);
+  `, false, unsubscribeUrl);
 }
 
 // ─── 13. Promotion ───────────────────────────────────────────────────────────
@@ -473,7 +505,7 @@ export function promotionEmail(data: {
   ctaText: string;
   ctaUrl: string;
   subtext?: string;
-}): string {
+}, unsubscribeUrl?: string): string {
   return layout(data.subject, `
     ${lbl('Plainvest', 'rocket')}
     <h1>${data.headline}</h1>
@@ -481,7 +513,7 @@ export function promotionEmail(data: {
     ${data.subtext ? `<p style="font-size:13px;color:rgba(255,255,255,.4);">${data.subtext}</p>` : ''}
     <div class="btn-wrap"><a href="${data.ctaUrl}" class="btn">${data.ctaText} →</a></div>
     <p class="hint">Questions? Reply to this email anytime.</p>
-  `);
+  `, false, unsubscribeUrl);
 }
 
 // ─── 14. Subscription cancelled ──────────────────────────────────────────────

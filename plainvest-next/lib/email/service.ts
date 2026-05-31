@@ -1,6 +1,7 @@
 import { getResendClient, FROM_ADDRESS, ADMIN_EMAIL } from './client';
 import {
   welcomeEmail,
+  newsletterConfirmRequestEmail,
   newsletterConfirmationEmail,
   passwordResetEmail,
   passwordChangedEmail,
@@ -39,8 +40,12 @@ export async function sendWelcomeEmail(to: string, name: string): Promise<void> 
   await send(to, 'Welcome to Plainvest', welcomeEmail(name));
 }
 
-export async function sendNewsletterConfirmation(to: string): Promise<void> {
-  await send(to, "You're on the Plainvest list", newsletterConfirmationEmail(to));
+export async function sendNewsletterConfirmRequest(to: string, confirmUrl: string): Promise<void> {
+  await send(to, 'Confirm your Plainvest subscription', newsletterConfirmRequestEmail(to, confirmUrl));
+}
+
+export async function sendNewsletterConfirmation(to: string, unsubscribeUrl?: string): Promise<void> {
+  await send(to, "You're on the Plainvest list", newsletterConfirmationEmail(to, unsubscribeUrl));
 }
 
 export async function sendPasswordResetEmail(to: string, name: string, resetLink: string): Promise<void> {
@@ -88,20 +93,20 @@ export async function sendNewGuideEmail(to: string, name: string, guide: {
   title: string;
   description: string;
   url: string;
-}): Promise<void> {
-  await send(to, 'New Plainvest guide available', newGuideEmail(name, guide));
+}, unsubscribeUrl?: string): Promise<void> {
+  await send(to, 'New Plainvest guide available', newGuideEmail(name, guide, unsubscribeUrl));
 }
 
 export async function sendMilestoneEmail(to: string, name: string, data: {
   completed: number;
   total: number;
   milestone: string;
-}): Promise<void> {
-  await send(to, 'You reached a Plainvest milestone', milestoneEmail(name, data));
+}, unsubscribeUrl?: string): Promise<void> {
+  await send(to, 'You reached a Plainvest milestone', milestoneEmail(name, data, unsubscribeUrl));
 }
 
-export async function sendReengagementEmail(to: string, name: string): Promise<void> {
-  await send(to, 'Continue where you left off', reengagementEmail(name));
+export async function sendReengagementEmail(to: string, name: string, unsubscribeUrl?: string): Promise<void> {
+  await send(to, 'Continue where you left off', reengagementEmail(name, undefined, unsubscribeUrl));
 }
 
 export async function sendPromotionEmail(to: string, data: {
@@ -111,8 +116,8 @@ export async function sendPromotionEmail(to: string, data: {
   ctaText: string;
   ctaUrl: string;
   subtext?: string;
-}): Promise<void> {
-  await send(to, data.subject, promotionEmail(data));
+}, unsubscribeUrl?: string): Promise<void> {
+  await send(to, data.subject, promotionEmail(data, unsubscribeUrl));
 }
 
 export async function sendSubscriptionCancelledEmail(to: string, name: string): Promise<void> {
