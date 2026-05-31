@@ -189,7 +189,7 @@ export default async function PortfolioPage({
       ? (params.currency as Currency)
       : VALID_CURRENCIES.includes(cookieCurrency as Currency)
         ? (cookieCurrency as Currency)
-        : 'AUD';
+        : 'USD';
   const lang = getLang(params.lang || cookieLang);
   const tx = T[lang];
   const view = params.view || '';
@@ -564,7 +564,14 @@ export default async function PortfolioPage({
                   </div>
                   <AddPositionModal lang={lang} />
                 </div>
-                <DonutChart segments={donutSegments} totalValue={totalInvested} currency={displayCurrency} />
+                <DonutChart
+                  segments={donutSegments}
+                  totalValue={totalInvested}
+                  currency={displayCurrency}
+                  currentValue={pricedGroups.length > 0 ? currentValue : null}
+                  pnl={pnl}
+                  pnlPct={pnlPct}
+                />
               </section>
 
               <section className="portfolio-card portfolio-perf-card">
@@ -754,7 +761,7 @@ export default async function PortfolioPage({
                           <td className="num">
                             {g.currentPrice != null ? (
                               <div className="price-display-cell">
-                                <span className="price-display-val">{fmt(g.currentPrice, g.currency)}</span>
+                                <span className="price-display-val">{fmt(toDisplay(g.currentPrice, g.currency), displayCurrency)}</span>
                                 {livePrices[g.key]
                                   ? <span className="price-live-badge">{tx.livePrice}</span>
                                   : <span className="price-manual-badge">{tx.manualPrice}</span>}
