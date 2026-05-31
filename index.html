@@ -24251,15 +24251,22 @@
       line-height: 1.3 !important;
     }
     .mob-menu-overlay .mob-item.is-cta {
-      background: rgba(0,212,170,0.06) !important;
-      border-left: 3px solid #00d4aa !important;
+      border-left: 3px solid transparent !important;
     }
     .mob-menu-overlay .mob-item.is-cta .mob-item-label,
     .mob-menu-overlay .mob-item.is-cta .mob-item-icon {
-      color: #00d4aa !important;
+      color: rgba(255,255,255,0.75) !important;
     }
     .mob-menu-overlay .mob-item.is-cta .mob-item-desc {
-      color: rgba(0,212,170,0.55) !important;
+      color: rgba(255,255,255,0.35) !important;
+    }
+    .mob-menu-overlay .mob-item.is-cta.is-active {
+      background: rgba(0,212,170,0.06) !important;
+      border-left: 3px solid #12E3C0 !important;
+    }
+    .mob-menu-overlay .mob-item.is-cta.is-active .mob-item-label,
+    .mob-menu-overlay .mob-item.is-cta.is-active .mob-item-icon {
+      color: #12E3C0 !important;
     }
     .mob-menu-overlay .mob-item.is-active {
       background: rgba(255,255,255,0.04) !important;
