@@ -6282,73 +6282,76 @@
     .pc-mob { display: none; }
 
     @media (max-width: 767px) {
-      .plans-compare, .pc-adv-block, .pc-why-pro { display: none !important; }
-      .pc-mob { display: block; max-width: 480px; margin: 0 auto; }
-      .pc-mob-header { text-align: center; margin-bottom: 1.5rem; padding: 0 .5rem; }
-      .pc-mob-eyebrow { font-size: .62rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: rgba(0,212,170,.55); margin-bottom: .4rem; }
-      .pc-mob-title { font-size: 1.2rem; font-weight: 800; color: var(--ink); line-height: 1.3; margin: 0 0 .4rem; }
-      .pc-mob-subtitle { font-size: .82rem; color: var(--ink-soft); line-height: 1.5; margin: 0; }
-      .pc-mob-cards { display: flex; flex-direction: column; gap: .95rem; }
+      html, body { overflow-x: hidden; }
+      .plans-grid, .plans-compare, .pc-adv-block, .pc-why-pro { display: none !important; }
+      .pc-mob { display: block; width: 100%; box-sizing: border-box; padding: 0 16px; }
+      .pc-mob-header { text-align: center; margin-bottom: 1.1rem; }
+      .pc-mob-eyebrow { font-size: .6rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: rgba(0,212,170,.55); margin-bottom: .3rem; }
+      .pc-mob-title { font-size: 1.1rem; font-weight: 800; color: var(--ink); line-height: 1.3; margin: 0 0 .25rem; }
+      .pc-mob-subtitle { font-size: .78rem; color: var(--ink-soft); line-height: 1.45; margin: 0; }
+      .pc-mob-cards { display: flex; flex-direction: column; gap: .75rem; }
       .pc-mob-card {
         background: rgba(255,255,255,.04);
         border: 1px solid rgba(255,255,255,.09);
-        border-radius: 18px;
-        padding: 1.4rem 1.25rem 1.3rem;
+        border-radius: 16px;
+        padding: 1rem 1rem .95rem;
+        box-sizing: border-box;
+        width: 100%;
       }
       .pc-mob-card-pro {
         background: rgba(0,212,170,.07);
         border-color: rgba(0,212,170,.32);
-        box-shadow: 0 0 36px rgba(0,212,170,.12);
+        box-shadow: 0 0 28px rgba(0,212,170,.1);
       }
       .pc-mob-card-lifetime {
         background: rgba(255,200,70,.03);
-        border-color: rgba(255,200,70,.22);
+        border-color: rgba(255,200,70,.2);
       }
       .pc-mob-badge {
         display: inline-block;
-        font-size: .6rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase;
+        font-size: .57rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase;
         background: var(--teal); color: #021711;
-        border-radius: 20px; padding: .22rem .75rem; margin-bottom: .65rem;
+        border-radius: 20px; padding: .18rem .6rem; margin-bottom: .45rem;
       }
-      .pc-mob-name { font-size: 1.15rem; font-weight: 900; color: var(--ink); margin: 0 0 .28rem; letter-spacing: -.01em; }
+      .pc-mob-name { font-size: 1rem; font-weight: 900; color: var(--ink); margin: 0 0 .15rem; letter-spacing: -.01em; }
       .pc-mob-card-pro .pc-mob-name { color: var(--teal); }
       .pc-mob-card-lifetime .pc-mob-name { color: rgba(255,200,70,.88); }
-      .pc-mob-desc { font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.5; margin: 0 0 .9rem; }
-      .pc-mob-price { font-size: 1.5rem; font-weight: 900; color: var(--ink); margin: 0 0 .18rem; line-height: 1; }
+      .pc-mob-price { font-size: 1.25rem; font-weight: 900; color: var(--ink); margin: 0 0 .1rem; line-height: 1; }
       .pc-mob-card-pro .pc-mob-price { color: var(--teal); }
       .pc-mob-card-lifetime .pc-mob-price { color: rgba(255,200,70,.88); }
-      .pc-mob-best-for { font-size: .74rem; color: rgba(255,255,255,.38); font-style: italic; margin: 0 0 1.1rem; line-height: 1.45; }
-      .pc-mob-divider { height: 1px; background: rgba(255,255,255,.07); margin: 0 0 1rem; }
-      .pc-mob-card-pro .pc-mob-divider { background: rgba(0,212,170,.18); }
-      .pc-mob-card-lifetime .pc-mob-divider { background: rgba(255,200,70,.15); }
-      .pc-mob-features { list-style: none; padding: 0; margin: 0 0 1.3rem; display: flex; flex-direction: column; gap: .42rem; }
-      .pc-mob-features li { font-size: .83rem; color: rgba(255,255,255,.65); line-height: 1.4; padding-left: 1.3rem; position: relative; }
-      .pc-mob-features li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 900; font-size: .78rem; }
-      .pc-mob-feat-inherited { color: rgba(255,255,255,.35) !important; font-size: .78rem !important; }
-      .pc-mob-feat-highlight { color: rgba(0,212,170,.88) !important; font-weight: 600; }
+      .pc-mob-sub { font-size: .76rem; color: rgba(255,255,255,.4); line-height: 1.38; margin: 0 0 .75rem; }
+      .pc-mob-divider { height: 1px; background: rgba(255,255,255,.07); margin: 0 0 .75rem; }
+      .pc-mob-card-pro .pc-mob-divider { background: rgba(0,212,170,.15); }
+      .pc-mob-card-lifetime .pc-mob-divider { background: rgba(255,200,70,.12); }
+      .pc-mob-features { list-style: none; padding: 0; margin: 0 0 .9rem; display: flex; flex-direction: column; gap: .32rem; }
+      .pc-mob-features li { font-size: .79rem; color: rgba(255,255,255,.62); line-height: 1.32; padding-left: 1.15rem; position: relative; }
+      .pc-mob-features li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 900; font-size: .74rem; }
+      .pc-mob-feat-inherited { color: rgba(255,255,255,.3) !important; font-size: .74rem !important; }
+      .pc-mob-feat-highlight { color: rgba(0,212,170,.85) !important; font-weight: 600; }
       .pc-mob-btn {
         display: block; width: 100%; text-align: center;
-        font-size: .9rem; font-weight: 800;
-        padding: .9rem 1rem; border-radius: 12px;
+        font-size: .87rem; font-weight: 800;
+        padding: .78rem 1rem; border-radius: 10px;
         border: none; cursor: pointer;
         transition: opacity .15s, transform .15s;
         box-sizing: border-box; line-height: 1.2;
       }
       .pc-mob-btn:hover { opacity: .88; transform: translateY(-1px); }
       .pc-mob-btn-free { background: rgba(255,255,255,.08); color: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.12); }
-      .pc-mob-btn-pro { background: var(--teal); color: #021711; font-weight: 900; box-shadow: 0 0 22px rgba(0,212,170,.28); }
-      .pc-mob-btn-lifetime { background: rgba(255,200,70,.12); color: rgba(255,200,70,.9); border: 1px solid rgba(255,200,70,.22); }
-      .pc-mob-quick { margin-top: 1.5rem; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; overflow: hidden; }
-      .pc-mob-quick-head { padding: .65rem .9rem .5rem; font-size: .62rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); border-bottom: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); }
-      .pc-mob-qrow { display: grid; grid-template-columns: 1fr 52px 64px 48px; border-bottom: 1px solid rgba(255,255,255,.05); align-items: center; }
+      .pc-mob-btn-pro { background: var(--teal); color: #021711; font-weight: 900; box-shadow: 0 0 18px rgba(0,212,170,.25); }
+      .pc-mob-btn-lifetime { background: rgba(255,200,70,.12); color: rgba(255,200,70,.9); border: 1px solid rgba(255,200,70,.2); }
+      .pc-mob-quick { margin-top: 1.1rem; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 13px; overflow: hidden; }
+      .pc-mob-quick-head { padding: .55rem .8rem .4rem; font-size: .59rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.28); border-bottom: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); }
+      .pc-mob-qrow { display: grid; grid-template-columns: 1fr 38px 56px 38px; border-bottom: 1px solid rgba(255,255,255,.04); align-items: center; }
       .pc-mob-qrow:last-child { border-bottom: none; }
-      .pc-mob-qlabel { padding: .6rem .9rem; font-size: .74rem; color: rgba(255,255,255,.5); line-height: 1.35; }
-      .pc-mob-qval { text-align: center; font-size: .8rem; font-weight: 700; padding: .6rem .2rem; border-left: 1px solid rgba(255,255,255,.04); color: rgba(255,255,255,.18); }
-      .pc-mob-qval.yes { color: var(--teal); font-size: .95rem; }
-      .pc-mob-qrow-cols { background: rgba(255,255,255,.025); }
-      .pc-mob-qrow-cols .pc-mob-qlabel { font-size: .62rem; font-weight: 700; color: rgba(255,255,255,.28); letter-spacing: .02em; }
-      .pc-mob-qrow-cols .pc-mob-qval { font-size: .62rem; font-weight: 800; color: rgba(255,255,255,.3); letter-spacing: .04em; text-transform: uppercase; }
-      .pc-mob-qrow-cols .pc-mob-qval-pro { color: rgba(0,212,170,.72); }
+      .pc-mob-qrow-head { background: rgba(255,255,255,.02); }
+      .pc-mob-qlabel { padding: .52rem .8rem; font-size: .71rem; color: rgba(255,255,255,.45); line-height: 1.3; }
+      .pc-mob-qval { text-align: center; font-size: .72rem; font-weight: 700; padding: .52rem .1rem; border-left: 1px solid rgba(255,255,255,.04); color: rgba(255,255,255,.16); }
+      .pc-mob-qval.yes { color: var(--teal); font-size: .88rem; }
+      .pc-mob-qval.preview { color: rgba(255,255,255,.36); font-size: .58rem; font-weight: 600; }
+      .pc-mob-qrow-head .pc-mob-qlabel { font-size: .57rem; font-weight: 800; color: rgba(255,255,255,.24); letter-spacing: .03em; }
+      .pc-mob-qrow-head .pc-mob-qval { font-size: .57rem; font-weight: 800; color: rgba(255,255,255,.28); letter-spacing: .04em; text-transform: uppercase; }
+      .pc-mob-qrow-head .pc-mob-qval-pro { color: rgba(0,212,170,.7); }
     }
 
     .plans-bottom-cta {
@@ -17287,69 +17290,64 @@
         <p class="pc-mob-subtitle" data-i18n="plans.compare.subtitle">From learning to clarity to full wealth building.</p>
       </div>
       <div class="pc-mob-cards">
-        <!-- FREE -->
-        <div class="pc-mob-card pc-mob-card-free">
-          <div class="pc-mob-name" data-i18n="plans.compare.hFree">Free</div>
-          <div class="pc-mob-desc" data-i18n="plans.compare.sFree">Explore before committing.</div>
-          <div class="pc-mob-price" data-i18n="plans.compare.sumPriceFree">$0</div>
-          <div class="pc-mob-best-for" data-i18n="plans.compare.mobBestFree">Beginners who want to understand investing first.</div>
-          <div class="pc-mob-divider"></div>
-          <ul class="pc-mob-features">
-            <li data-i18n="plans.compare.r1">Investment simulator</li>
-            <li data-i18n="plans.compare.r2">Inflation calculator</li>
-            <li data-i18n="plans.compare.r3">Plain-English education</li>
-            <li>Basic investment comparisons</li>
-            <li>Future projections preview</li>
-          </ul>
-          <button class="pc-mob-btn pc-mob-btn-free" onclick="showPage('simulator')" data-i18n="plans.compare.ctaFree">Start Free</button>
-        </div>
-        <!-- LIFETIME -->
-        <div class="pc-mob-card pc-mob-card-lifetime">
-          <div class="pc-mob-name" data-i18n="plans.compare.hLifetime">Lifetime</div>
-          <div class="pc-mob-desc" data-i18n="plans.compare.advLtLine">Education &amp; personal guidance — yours forever.</div>
-          <div class="pc-mob-price" data-i18n="plans.compare.mobPriceLifetime">AUD $89.90 once</div>
-          <div class="pc-mob-best-for" data-i18n="plans.compare.mobBestLifetime">People who want structured learning before making investment decisions.</div>
-          <div class="pc-mob-divider"></div>
-          <ul class="pc-mob-features">
-            <li class="pc-mob-feat-inherited" data-i18n="plans.compare.mobEverythingFree">Everything in Free</li>
-            <li data-i18n="plans.compare.r4">Premium investing guides</li>
-            <li data-i18n="plans.compare.r5">Bitcoin / ETF / DCA education</li>
-            <li data-i18n="plans.compare.r6">Beginner roadmap</li>
-            <li data-i18n="plans.compare.r7">Included Zoom support call</li>
-            <li data-i18n="plans.compare.r8">Lifetime guide access</li>
-          </ul>
-          <button class="pc-mob-btn pc-mob-btn-lifetime" onclick="openMemberSignup(event)" data-i18n="plans.compare.ctaLifetime">Get Lifetime Access</button>
-        </div>
-        <!-- PRO -->
+        <!-- PRO (first — main product) -->
         <div class="pc-mob-card pc-mob-card-pro">
           <div class="pc-mob-badge" data-i18n="plans.compare.badgePro">★ Recommended</div>
-          <div class="pc-mob-name" data-i18n="plans.compare.hPro">Pro</div>
-          <div class="pc-mob-desc" data-i18n="plans.compare.sPro">Education + Dashboard + Planning</div>
+          <div class="pc-mob-name">Pro ★</div>
           <div class="pc-mob-price" data-i18n="plans.compare.mobPricePro">AUD $9.90/mo</div>
-          <div class="pc-mob-best-for" data-i18n="plans.compare.mobBestPro">Active investors who want tracking, projections, and a complete dashboard.</div>
+          <div class="pc-mob-sub">Everything in Lifetime, plus portfolio tracking and the full dashboard.</div>
           <div class="pc-mob-divider"></div>
           <ul class="pc-mob-features">
             <li class="pc-mob-feat-inherited" data-i18n="plans.compare.advPro0">Everything in Lifetime</li>
             <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r9">Portfolio tracking</li>
             <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r10">Future projections dashboard</li>
             <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r11">Freedom Score™ dashboard</li>
-            <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r12">Goal tracking</li>
-            <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r13">Investment insights</li>
+            <li class="pc-mob-feat-highlight">Goal tracking &amp; insights</li>
           </ul>
           <button class="pc-mob-btn pc-mob-btn-pro" onclick="openMemberSignup(event)" data-i18n="plans.compare.ctaPro">Build Wealth</button>
         </div>
+        <!-- LIFETIME (second) -->
+        <div class="pc-mob-card pc-mob-card-lifetime">
+          <div class="pc-mob-name" data-i18n="plans.compare.hLifetime">Lifetime</div>
+          <div class="pc-mob-price" data-i18n="plans.compare.mobPriceLifetime">AUD $89.90 once</div>
+          <div class="pc-mob-sub" data-i18n="plans.compare.advLtLine">Education &amp; personal guidance — yours forever.</div>
+          <div class="pc-mob-divider"></div>
+          <ul class="pc-mob-features">
+            <li data-i18n="plans.compare.r4">Premium investing guides</li>
+            <li data-i18n="plans.compare.r5">Bitcoin / ETF / DCA education</li>
+            <li data-i18n="plans.compare.r6">Beginner roadmap</li>
+            <li data-i18n="plans.compare.r7">Included 60-min Zoom call</li>
+            <li data-i18n="plans.compare.r8">Lifetime guide access</li>
+          </ul>
+          <button class="pc-mob-btn pc-mob-btn-lifetime" onclick="openMemberSignup(event)" data-i18n="plans.compare.ctaLifetime">Get Lifetime Access</button>
+        </div>
+        <!-- FREE (third) -->
+        <div class="pc-mob-card pc-mob-card-free">
+          <div class="pc-mob-name" data-i18n="plans.compare.hFree">Free</div>
+          <div class="pc-mob-price" data-i18n="plans.compare.sumPriceFree">$0</div>
+          <div class="pc-mob-sub" data-i18n="plans.free.identity">Start learning before risking money.</div>
+          <div class="pc-mob-divider"></div>
+          <ul class="pc-mob-features">
+            <li data-i18n="plans.compare.r1">Investment simulator</li>
+            <li data-i18n="plans.compare.r2">Inflation calculator</li>
+            <li data-i18n="plans.compare.r3">Plain-English education</li>
+            <li>Investment comparisons</li>
+            <li>Future projections preview</li>
+          </ul>
+          <button class="pc-mob-btn pc-mob-btn-free" onclick="showPage('simulator')">Start Learning Free</button>
+        </div>
       </div>
-      <!-- Quick comparison -->
+      <!-- Quick comparison — stacked rows -->
       <div class="pc-mob-quick">
         <div class="pc-mob-quick-head" data-i18n="plans.compare.mobQuick">Quick comparison</div>
-        <div class="pc-mob-qrow pc-mob-qrow-cols">
+        <div class="pc-mob-qrow pc-mob-qrow-head">
           <div class="pc-mob-qlabel"></div>
           <div class="pc-mob-qval" data-i18n="plans.compare.hFree">Free</div>
           <div class="pc-mob-qval" data-i18n="plans.compare.hLifetime">Lifetime</div>
           <div class="pc-mob-qval pc-mob-qval-pro" data-i18n="plans.compare.hPro">Pro</div>
         </div>
         <div class="pc-mob-qrow">
-          <div class="pc-mob-qlabel" data-i18n="plans.compare.r3">Plain-English education</div>
+          <div class="pc-mob-qlabel">Learning tools</div>
           <div class="pc-mob-qval yes">✓</div>
           <div class="pc-mob-qval yes">✓</div>
           <div class="pc-mob-qval yes">✓</div>
@@ -17369,6 +17367,12 @@
         <div class="pc-mob-qrow">
           <div class="pc-mob-qlabel" data-i18n="plans.compare.r9">Portfolio dashboard</div>
           <div class="pc-mob-qval">—</div>
+          <div class="pc-mob-qval">—</div>
+          <div class="pc-mob-qval yes">✓</div>
+        </div>
+        <div class="pc-mob-qrow">
+          <div class="pc-mob-qlabel">Future projections</div>
+          <div class="pc-mob-qval preview">Preview</div>
           <div class="pc-mob-qval">—</div>
           <div class="pc-mob-qval yes">✓</div>
         </div>
