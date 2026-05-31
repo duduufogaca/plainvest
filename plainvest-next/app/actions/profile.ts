@@ -3,6 +3,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { sendPasswordChangedEmail } from '@/lib/email/service';
 
 const VALID_LANGS     = ['en', 'pt'] as const;
 const VALID_CURRENCIES = ['AUD', 'USD', 'BRL'] as const;
@@ -63,6 +64,9 @@ export async function changePassword(formData: FormData) {
   if (error) {
     redirect('/profile?message=Could not update password. Please try again.#security');
   }
+
+  const name = user.user_metadata?.full_name || '';
+  if (user.email) sendPasswordChangedEmail(user.email, name).catch(() => {});
 
   redirect('/profile?success=Password updated successfully.');
 }

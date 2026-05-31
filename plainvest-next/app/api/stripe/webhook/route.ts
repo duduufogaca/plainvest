@@ -1,6 +1,18 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createStripeClient } from '@/lib/stripe';
 import { getPostHogClient } from '@/lib/posthog-server';
+import {
+  sendSupportCallConfirmationEmail,
+  sendPremiumWelcomeEmail,
+  sendProWelcomeEmail,
+  sendPaymentReceiptEmail,
+  sendSubscriptionRenewedEmail,
+  sendSubscriptionCancelledEmail,
+  sendPaymentFailedEmail,
+  sendAdminNewProPurchase,
+  sendAdminNewLifetimePurchase,
+  sendAdminNewZoomBooking,
+} from '@/lib/email/service';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
@@ -46,6 +58,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Checkout session missing user ID.' }, { status: 400 });
     }
 
+    let memberName = '';
+    try {
+      const { data: authData } = await supabaseAdmin.auth.admin.getUserById(userId);
+      memberName = authData?.user?.user_metadata?.full_name || '';
+    } catch { /* name lookup is non-critical */ }
+
     if (product === 'plainvest_support_call') {
       const { error } = await supabaseAdmin.from('support_call_purchases').upsert({
         user_id: userId,
@@ -60,6 +78,12 @@ export async function POST(request: Request) {
       const posthogSC = getPostHogClient();
       posthogSC.capture({ distinctId: userId, event: 'support_call_purchased', properties: { product: 'plainvest_support_call' } });
       await posthogSC.shutdown();
+
+      const scEmail = session.customer_email || session.metadata?.email;
+      if (scEmail) {
+        sendSupportCallConfirmationEmail(scEmail, memberName).catch(() => {});
+        sendAdminNewZoomBooking({ customer: memberName || scEmail, email: scEmail }).catch(() => {});
+      }
 
       return NextResponse.json({ received: true });
     }
@@ -97,6 +121,23 @@ export async function POST(request: Request) {
     const posthog = getPostHogClient();
     posthog.capture({ distinctId: userId, event: 'premium_access_activated', properties: { product: 'plainvest_premium_access', mode: session.mode } });
     await posthog.shutdown();
+
+    const purchaseEmail = session.customer_email || session.metadata?.email;
+    const purchaseDate = now.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+    const paymentIntentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.id;
+    const amountTotal = session.amount_total ? `$${(session.amount_total / 100).toFixed(2)}` : '—';
+
+    if (purchaseEmail) {
+      if (plan === 'pro') {
+        sendProWelcomeEmail(purchaseEmail, memberName).catch(() => {});
+        sendPaymentReceiptEmail(purchaseEmail, memberName, { product: 'Plainvest Pro', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
+        sendAdminNewProPurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
+      } else {
+        sendPremiumWelcomeEmail(purchaseEmail, memberName).catch(() => {});
+        sendPaymentReceiptEmail(purchaseEmail, memberName, { product: 'Plainvest Lifetime', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
+        sendAdminNewLifetimePurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
+      }
+    }
   }
 
   // ── invoice.paid — subscription renewed ────────────────────────────────────
@@ -108,12 +149,28 @@ export async function POST(request: Request) {
       const sub = await stripe.subscriptions.retrieve(subscriptionId);
       const accessExpiresAt = new Date(sub.current_period_end * 1000).toISOString();
 
-      const { error } = await supabaseAdmin
+      const { data: rows, error } = await supabaseAdmin
         .from('member_access')
         .update({ premium_status: 'active', access_expires_at: accessExpiresAt, updated_at: new Date().toISOString() })
-        .eq('stripe_subscription_id', subscriptionId);
+        .eq('stripe_subscription_id', subscriptionId)
+        .select('email, user_id');
 
       if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+      const renewEmail = rows?.[0]?.email || invoice.customer_email;
+      if (renewEmail && invoice.billing_reason === 'subscription_cycle') {
+        let renewName = '';
+        try {
+          const renewUserId = rows?.[0]?.user_id;
+          if (renewUserId) {
+            const { data: authData } = await supabaseAdmin.auth.admin.getUserById(renewUserId);
+            renewName = authData?.user?.user_metadata?.full_name || '';
+          }
+        } catch { /* non-critical */ }
+        const price = invoice.amount_paid ? `$${(invoice.amount_paid / 100).toFixed(2)}` : '—';
+        const nextRenewal = new Date(sub.current_period_end * 1000).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+        sendSubscriptionRenewedEmail(renewEmail, renewName, { price, nextRenewal }).catch(() => {});
+      }
     }
   }
 
@@ -123,12 +180,26 @@ export async function POST(request: Request) {
     const subscriptionId = typeof invoice.subscription === 'string' ? invoice.subscription : null;
 
     if (subscriptionId) {
-      const { error } = await supabaseAdmin
+      const { data: rows, error } = await supabaseAdmin
         .from('member_access')
         .update({ premium_status: 'past_due', updated_at: new Date().toISOString() })
-        .eq('stripe_subscription_id', subscriptionId);
+        .eq('stripe_subscription_id', subscriptionId)
+        .select('email, user_id');
 
       if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+      const failEmail = rows?.[0]?.email || invoice.customer_email;
+      if (failEmail) {
+        let failName = '';
+        try {
+          const failUserId = rows?.[0]?.user_id;
+          if (failUserId) {
+            const { data: authData } = await supabaseAdmin.auth.admin.getUserById(failUserId);
+            failName = authData?.user?.user_metadata?.full_name || '';
+          }
+        } catch { /* non-critical */ }
+        sendPaymentFailedEmail(failEmail, failName).catch(() => {});
+      }
     }
   }
 
@@ -150,16 +221,30 @@ export async function POST(request: Request) {
   if (event.type === 'customer.subscription.deleted') {
     const sub = event.data.object as Stripe.Subscription;
 
-    const { error } = await supabaseAdmin
+    const { data: rows, error } = await supabaseAdmin
       .from('member_access')
       .update({
         premium_status: 'cancelled',
         access_expires_at: new Date(sub.current_period_end * 1000).toISOString(),
         updated_at: new Date().toISOString(),
       })
-      .eq('stripe_subscription_id', sub.id);
+      .eq('stripe_subscription_id', sub.id)
+      .select('email, user_id');
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+    const cancelEmail = rows?.[0]?.email;
+    if (cancelEmail) {
+      let cancelName = '';
+      try {
+        const cancelUserId = rows?.[0]?.user_id;
+        if (cancelUserId) {
+          const { data: authData } = await supabaseAdmin.auth.admin.getUserById(cancelUserId);
+          cancelName = authData?.user?.user_metadata?.full_name || '';
+        }
+      } catch { /* non-critical */ }
+      sendSubscriptionCancelledEmail(cancelEmail, cancelName).catch(() => {});
+    }
   }
 
   return NextResponse.json({ received: true });
