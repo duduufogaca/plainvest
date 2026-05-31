@@ -27,6 +27,10 @@ function toFirst(name: string): string {
   return name.split(' ')[0];
 }
 
+function esc(s: string): string {
+  return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 function lbl(text: string, iconType = '', color = 'rgba(0,212,170,.75)'): string {
   const svg = iconType && ICONS[iconType] ? ICONS[iconType] : '';
   return `<div style="margin-bottom:10px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:${color};line-height:1.4;">${svg}${svg ? '<span style="display:inline-block;width:5px;"></span>' : ''}${text}</div>`;
@@ -593,7 +597,7 @@ export function contactConfirmationEmail(name: string): string {
   return layout('Message received — Plainvest', `
     ${lbl('Support', 'chat')}
     <h1>We received your message.</h1>
-    <p>We'll get back to you within 1–2 business days.</p>
+    <p>We'll get back to you within 3–5 business days.</p>
     <p>In the meantime, feel free to explore the guides and tools at your own pace.</p>
     <div class="btn-wrap"><a href="https://plainvest.app" class="btn">Explore Plainvest →</a></div>
     <p class="hint">Questions? Reply to this email anytime.</p>
@@ -612,9 +616,9 @@ export function adminNewUserEmail(data: {
     <h1>New user registered.</h1>
     <div class="highlight">
       <p>
-        <strong>Name:</strong> ${data.name || '—'}<br />
-        <strong>Email:</strong> ${data.email}<br />
-        <strong>Date:</strong> ${data.date}
+        <strong>Name:</strong> ${esc(data.name || '—')}<br />
+        <strong>Email:</strong> ${esc(data.email)}<br />
+        <strong>Date:</strong> ${esc(data.date)}
       </p>
     </div>
   `, true);
@@ -633,12 +637,12 @@ export function adminNewSubscriberEmail(data: {
     <h1>New subscriber.</h1>
     <div class="highlight">
       <p>
-        <strong>Email:</strong> ${data.email}<br />
-        <strong>Source:</strong> ${data.page}<br />
-        <strong>Language:</strong> ${data.language}<br />
-        ${data.date ? `<strong>Date:</strong> ${data.date}<br />` : ''}
-        ${data.country ? `<strong>Country:</strong> ${data.country}<br />` : ''}
-        ${data.utmSource ? `<strong>UTM Source:</strong> ${data.utmSource}` : ''}
+        <strong>Email:</strong> ${esc(data.email)}<br />
+        <strong>Source:</strong> ${esc(data.page)}<br />
+        <strong>Language:</strong> ${esc(data.language)}<br />
+        ${data.date ? `<strong>Date:</strong> ${esc(data.date)}<br />` : ''}
+        ${data.country ? `<strong>Country:</strong> ${esc(data.country)}<br />` : ''}
+        ${data.utmSource ? `<strong>UTM Source:</strong> ${esc(data.utmSource)}` : ''}
       </p>
     </div>
   `, true);
@@ -655,10 +659,10 @@ export function adminNewProPurchaseEmail(data: {
     <h1>New Pro purchase.</h1>
     <div class="highlight">
       <p>
-        <strong>Customer:</strong> ${data.customer}<br />
-        <strong>Amount:</strong> ${data.amount}<br />
-        <strong>Transaction ID:</strong> <span style="font-family:monospace;font-size:12px;">${data.transactionId}</span><br />
-        <strong>Date:</strong> ${data.date}
+        <strong>Customer:</strong> ${esc(data.customer)}<br />
+        <strong>Amount:</strong> ${esc(data.amount)}<br />
+        <strong>Transaction ID:</strong> <span style="font-family:monospace;font-size:12px;">${esc(data.transactionId)}</span><br />
+        <strong>Date:</strong> ${esc(data.date)}
       </p>
     </div>
   `, true);
@@ -675,10 +679,10 @@ export function adminNewLifetimePurchaseEmail(data: {
     <h1>New Lifetime purchase.</h1>
     <div class="highlight">
       <p>
-        <strong>Customer:</strong> ${data.customer}<br />
-        <strong>Amount:</strong> ${data.amount}<br />
-        <strong>Transaction ID:</strong> <span style="font-family:monospace;font-size:12px;">${data.transactionId}</span><br />
-        <strong>Date:</strong> ${data.date}
+        <strong>Customer:</strong> ${esc(data.customer)}<br />
+        <strong>Amount:</strong> ${esc(data.amount)}<br />
+        <strong>Transaction ID:</strong> <span style="font-family:monospace;font-size:12px;">${esc(data.transactionId)}</span><br />
+        <strong>Date:</strong> ${esc(data.date)}
       </p>
     </div>
   `, true);
@@ -695,10 +699,10 @@ export function adminNewZoomBookingEmail(data: {
     <h1>New support call booked.</h1>
     <div class="highlight">
       <p>
-        <strong>Customer:</strong> ${data.customer}<br />
-        <strong>Email:</strong> ${data.email}<br />
-        ${data.date ? `<strong>Date:</strong> ${data.date}<br />` : ''}
-        ${data.time ? `<strong>Time:</strong> ${data.time}` : ''}
+        <strong>Customer:</strong> ${esc(data.customer)}<br />
+        <strong>Email:</strong> ${esc(data.email)}<br />
+        ${data.date ? `<strong>Date:</strong> ${esc(data.date)}<br />` : ''}
+        ${data.time ? `<strong>Time:</strong> ${esc(data.time)}` : ''}
       </p>
     </div>
   `, true);
@@ -719,16 +723,16 @@ export function contactNotificationEmail(data: {
     <h1>New ${data.formType}.</h1>
     <div class="highlight">
       <p>
-        <strong>Name:</strong> ${data.name}<br />
-        <strong>Email:</strong> ${data.email}<br />
-        ${data.company ? `<strong>Company:</strong> ${data.company}<br />` : ''}
-        ${data.topic ? `<strong>Topic:</strong> ${data.topic}<br />` : ''}
-        <strong>Language:</strong> ${data.language}<br />
-        <strong>Page:</strong> ${data.page}
+        <strong>Name:</strong> ${esc(data.name)}<br />
+        <strong>Email:</strong> ${esc(data.email)}<br />
+        ${data.company ? `<strong>Company:</strong> ${esc(data.company)}<br />` : ''}
+        ${data.topic ? `<strong>Topic:</strong> ${esc(data.topic)}<br />` : ''}
+        <strong>Language:</strong> ${esc(data.language)}<br />
+        <strong>Page:</strong> ${esc(data.page)}
       </p>
     </div>
     ${lbl('Message', '')}
-    <p style="white-space:pre-wrap;font-size:14px;">${data.message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+    <p style="white-space:pre-wrap;font-size:14px;">${esc(data.message)}</p>
   `, true);
 }
 
