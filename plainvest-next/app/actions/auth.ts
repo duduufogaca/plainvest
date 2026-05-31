@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { getPostHogClient } from '@/lib/posthog-server';
-import { sendWelcomeEmail } from '@/lib/email/service';
+import { sendWelcomeEmail, sendPasswordChangedEmail, sendAdminNewUser } from '@/lib/email/service';
 
 function getOrigin() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
@@ -93,8 +93,10 @@ export async function signUp(formData: FormData) {
     posthog.capture({ distinctId: data.user.id, event: 'user_signed_up' });
     await posthog.shutdown();
 
-    const name = data.user.user_metadata?.full_name || data.user.email || '';
+    const name = data.user.user_metadata?.full_name || '';
+    const date = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
     sendWelcomeEmail(email, name).catch(() => {});
+    sendAdminNewUser({ name: name || email, email, date }).catch(() => {});
   }
 
   redirect('/login?message=Check your email to confirm your account.');
@@ -151,6 +153,9 @@ export async function updatePassword(formData: FormData) {
     const posthog = getPostHogClient();
     posthog.capture({ distinctId: user.id, event: 'password_updated' });
     await posthog.shutdown();
+
+    const name = user.user_metadata?.full_name || '';
+    if (user.email) sendPasswordChangedEmail(user.email, name).catch(() => {});
   }
 
   redirect('/login?message=Password updated. You can log in now.');

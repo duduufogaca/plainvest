@@ -58,6 +58,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Checkout session missing user ID.' }, { status: 400 });
     }
 
+    let memberName = '';
+    try {
+      const { data: authData } = await supabaseAdmin.auth.admin.getUserById(userId);
+      memberName = authData?.user?.user_metadata?.full_name || '';
+    } catch { /* name lookup is non-critical */ }
+
     if (product === 'plainvest_support_call') {
       const { error } = await supabaseAdmin.from('support_call_purchases').upsert({
         user_id: userId,
@@ -75,8 +81,8 @@ export async function POST(request: Request) {
 
       const scEmail = session.customer_email || session.metadata?.email;
       if (scEmail) {
-        sendSupportCallConfirmationEmail(scEmail, scEmail).catch(() => {});
-        sendAdminNewZoomBooking({ customer: scEmail, email: scEmail }).catch(() => {});
+        sendSupportCallConfirmationEmail(scEmail, memberName).catch(() => {});
+        sendAdminNewZoomBooking({ customer: memberName || scEmail, email: scEmail }).catch(() => {});
       }
 
       return NextResponse.json({ received: true });
@@ -123,13 +129,13 @@ export async function POST(request: Request) {
 
     if (purchaseEmail) {
       if (plan === 'pro') {
-        sendProWelcomeEmail(purchaseEmail, purchaseEmail).catch(() => {});
-        sendPaymentReceiptEmail(purchaseEmail, purchaseEmail, { product: 'Plainvest Pro', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
-        sendAdminNewProPurchase({ customer: purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
+        sendProWelcomeEmail(purchaseEmail, memberName).catch(() => {});
+        sendPaymentReceiptEmail(purchaseEmail, memberName, { product: 'Plainvest Pro', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
+        sendAdminNewProPurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
       } else {
-        sendPremiumWelcomeEmail(purchaseEmail, purchaseEmail).catch(() => {});
-        sendPaymentReceiptEmail(purchaseEmail, purchaseEmail, { product: 'Plainvest Lifetime', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
-        sendAdminNewLifetimePurchase({ customer: purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
+        sendPremiumWelcomeEmail(purchaseEmail, memberName).catch(() => {});
+        sendPaymentReceiptEmail(purchaseEmail, memberName, { product: 'Plainvest Lifetime', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
+        sendAdminNewLifetimePurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
       }
     }
   }
@@ -147,15 +153,23 @@ export async function POST(request: Request) {
         .from('member_access')
         .update({ premium_status: 'active', access_expires_at: accessExpiresAt, updated_at: new Date().toISOString() })
         .eq('stripe_subscription_id', subscriptionId)
-        .select('email');
+        .select('email, user_id');
 
       if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
       const renewEmail = rows?.[0]?.email || invoice.customer_email;
       if (renewEmail && invoice.billing_reason === 'subscription_cycle') {
+        let renewName = '';
+        try {
+          const renewUserId = rows?.[0]?.user_id;
+          if (renewUserId) {
+            const { data: authData } = await supabaseAdmin.auth.admin.getUserById(renewUserId);
+            renewName = authData?.user?.user_metadata?.full_name || '';
+          }
+        } catch { /* non-critical */ }
         const price = invoice.amount_paid ? `$${(invoice.amount_paid / 100).toFixed(2)}` : '—';
         const nextRenewal = new Date(sub.current_period_end * 1000).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-        sendSubscriptionRenewedEmail(renewEmail, renewEmail, { price, nextRenewal }).catch(() => {});
+        sendSubscriptionRenewedEmail(renewEmail, renewName, { price, nextRenewal }).catch(() => {});
       }
     }
   }
@@ -170,12 +184,22 @@ export async function POST(request: Request) {
         .from('member_access')
         .update({ premium_status: 'past_due', updated_at: new Date().toISOString() })
         .eq('stripe_subscription_id', subscriptionId)
-        .select('email');
+        .select('email, user_id');
 
       if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
       const failEmail = rows?.[0]?.email || invoice.customer_email;
-      if (failEmail) sendPaymentFailedEmail(failEmail, failEmail).catch(() => {});
+      if (failEmail) {
+        let failName = '';
+        try {
+          const failUserId = rows?.[0]?.user_id;
+          if (failUserId) {
+            const { data: authData } = await supabaseAdmin.auth.admin.getUserById(failUserId);
+            failName = authData?.user?.user_metadata?.full_name || '';
+          }
+        } catch { /* non-critical */ }
+        sendPaymentFailedEmail(failEmail, failName).catch(() => {});
+      }
     }
   }
 
@@ -205,12 +229,22 @@ export async function POST(request: Request) {
         updated_at: new Date().toISOString(),
       })
       .eq('stripe_subscription_id', sub.id)
-      .select('email');
+      .select('email, user_id');
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
     const cancelEmail = rows?.[0]?.email;
-    if (cancelEmail) sendSubscriptionCancelledEmail(cancelEmail, cancelEmail).catch(() => {});
+    if (cancelEmail) {
+      let cancelName = '';
+      try {
+        const cancelUserId = rows?.[0]?.user_id;
+        if (cancelUserId) {
+          const { data: authData } = await supabaseAdmin.auth.admin.getUserById(cancelUserId);
+          cancelName = authData?.user?.user_metadata?.full_name || '';
+        }
+      } catch { /* non-critical */ }
+      sendSubscriptionCancelledEmail(cancelEmail, cancelName).catch(() => {});
+    }
   }
 
   return NextResponse.json({ received: true });

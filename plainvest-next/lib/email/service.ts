@@ -152,8 +152,12 @@ export async function sendAdminNewUser(data: {
   await send(ADMIN_EMAIL, `New user: ${data.email}`, adminNewUserEmail(data));
 }
 
-export async function sendNewsletterNotification(email: string, language: string, page: string): Promise<void> {
-  await send(ADMIN_EMAIL, `New subscriber: ${email}`, adminNewSubscriberEmail({ email, language, page }));
+export async function sendNewsletterNotification(email: string, language: string, page: string, extra?: {
+  date?: string;
+  country?: string;
+  utmSource?: string;
+}): Promise<void> {
+  await send(ADMIN_EMAIL, `New subscriber: ${email}`, adminNewSubscriberEmail({ email, language, page, ...extra }));
 }
 
 export async function sendAdminNewProPurchase(data: {
