@@ -6,6 +6,7 @@ import { SubmitButton } from '../../../components/submit-button';
 import { SidebarClient } from '../../components/SidebarClient';
 import { AssetLogo } from '../../components/AssetLogo';
 import { getExchangeRates } from '@/lib/exchange-rates';
+import { fetchLivePrices } from '@/lib/live-prices';
 import { T, getLang } from '@/lib/portfolio-i18n';
 import type { Metadata } from 'next';
 
@@ -54,7 +55,7 @@ export default async function AssetDetailPage({
   const displayCurrency: Currency =
     VALID_CURRENCIES.includes(sp.currency as Currency)
       ? (sp.currency as Currency)
-      : 'AUD';
+      : 'USD';
   const lang = getLang(sp.lang);
   const tx = T[lang];
   const editId = sp.edit || null;
@@ -109,8 +110,18 @@ export default async function AssetDetailPage({
   const avgBuyNative = totalQty > 0 ? totalInvestedNative / totalQty : 0;
   const avgBuyDisplay = toDisplay(avgBuyNative, nativeCurrency);
 
-  // Current price — use most recent non-null
+  // Live price fetch
+  const livePrices = await fetchLivePrices([
+    { key: assetKey, ticker, assetType, currency: nativeCurrency }
+  ]);
+  const lp = livePrices[assetKey];
+  const isLivePrice = lp != null;
+
+  // Current price — live price wins; fall back to most recent DB value
   const currentPriceNative = (() => {
+    if (lp) {
+      return (lp.price / (rates[lp.priceCurrency] ?? 1)) * (rates[nativeCurrency] ?? 1);
+    }
     for (const e of entries) {
       if (e.current_price != null) return Number(e.current_price);
     }
@@ -201,29 +212,34 @@ export default async function AssetDetailPage({
             <span className="detail-kpi-sub">{nativeCurrency !== displayCurrency ? `${fmt(totalInvestedNative, nativeCurrency)} ${nativeCurrency}` : tx.totalPaid}</span>
           </div>
 
-          {/* Market price — with inline update form */}
+          {/* Market price — live or manual */}
           <div className="detail-kpi-card detail-kpi-price-card">
             <div className="detail-kpi-icon">📈</div>
             <span className="detail-kpi-label">{tx.marketPrice}</span>
             {currentPriceNative != null && (
-              <strong className="detail-kpi-val">{fmt(currentPriceNative, nativeCurrency)}</strong>
-            )}
-            <form action={updateCurrentPrice} className="detail-market-form">
-              <input type="hidden" name="id" value={entries[0].id} />
-              <input type="hidden" name="redirect_to" value={baseHref} />
-              <div className="detail-market-input-row">
-                <input
-                  type="number"
-                  name="current_price"
-                  step="any"
-                  placeholder={currentPriceNative != null ? tx.updatePrice : tx.enterMarketPrice}
-                  defaultValue={currentPriceNative != null ? String(currentPriceNative) : ''}
-                  className="detail-market-input"
-                />
-                <SubmitButton pendingText="…" className="detail-market-btn">✓</SubmitButton>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <strong className="detail-kpi-val">{fmt(toDisplay(currentPriceNative, nativeCurrency), displayCurrency)}</strong>
+                {isLivePrice && <span className="price-live-badge">LIVE</span>}
               </div>
-            </form>
-            <span className="detail-kpi-sub">{tx.marketPriceHint}</span>
+            )}
+            {!isLivePrice && (
+              <form action={updateCurrentPrice} className="detail-market-form">
+                <input type="hidden" name="id" value={entries[0].id} />
+                <input type="hidden" name="redirect_to" value={baseHref} />
+                <div className="detail-market-input-row">
+                  <input
+                    type="number"
+                    name="current_price"
+                    step="any"
+                    placeholder={currentPriceNative != null ? tx.updatePrice : tx.enterMarketPrice}
+                    defaultValue={currentPriceNative != null ? String(currentPriceNative) : ''}
+                    className="detail-market-input"
+                  />
+                  <SubmitButton pendingText="…" className="detail-market-btn">✓</SubmitButton>
+                </div>
+              </form>
+            )}
+            <span className="detail-kpi-sub">{isLivePrice ? (lang === 'pt' ? 'Preço ao vivo via Yahoo Finance' : 'Live price via Yahoo Finance') : tx.marketPriceHint}</span>
           </div>
 
           {/* Current value */}
