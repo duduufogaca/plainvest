@@ -32,26 +32,42 @@ export async function POST(request: Request) {
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://members.plainvest.app';
 
   // Save subscriber as pending (double opt-in — confirmed after email click)
+  // Skip if already active — don't interrupt their drip sequence
   let confirmationToken: string | null = null;
   try {
     const supabase = createAdminClient();
-    const { data: upserted } = await supabase
+
+    const { data: existing } = await supabase
       .from('newsletter_subscribers')
-      .upsert({
-        email,
-        language,
-        source_page: page,
-        country: country || null,
-        utm_source: utmSource || null,
-        status: 'pending',
-        sequence_step: 0,
-        next_send_at: nextSendAt(1).toISOString(),
-        subscribed_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'email' })
-      .select('confirmation_token')
-      .single();
-    confirmationToken = upserted?.confirmation_token ?? null;
+      .select('status, confirmation_token')
+      .eq('email', email)
+      .maybeSingle();
+
+    if (existing?.status === 'active') {
+      return NextResponse.json({ ok: true });
+    }
+
+    if (existing?.status === 'pending') {
+      confirmationToken = existing.confirmation_token ?? null;
+    } else {
+      const { data: inserted } = await supabase
+        .from('newsletter_subscribers')
+        .upsert({
+          email,
+          language,
+          source_page: page,
+          country: country || null,
+          utm_source: utmSource || null,
+          status: 'pending',
+          sequence_step: 0,
+          next_send_at: nextSendAt(1).toISOString(),
+          subscribed_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'email' })
+        .select('confirmation_token')
+        .single();
+      confirmationToken = inserted?.confirmation_token ?? null;
+    }
   } catch {
     // DB save is non-critical — still send the confirmation request
   }

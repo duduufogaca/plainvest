@@ -1,24 +1,24 @@
 // ─── Icons ──────────────────────────────────────────────────────────────────
 
 const ICONS: Record<string, string> = {
-  welcome:    `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="8" cy="5" r="3" stroke="#00d4aa" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  newsletter: `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#00d4aa" stroke-width="1.5"/><path d="M1 6l7 4 7-4" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  lock:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="3" y="7" width="10" height="8" rx="2" stroke="#00d4aa" stroke-width="1.5"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  shield:     `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 1.5L2 4.5v3.5c0 3 2.5 5 6 6.5 3.5-1.5 6-3.5 6-6.5V4.5L8 1.5z" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
-  star:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 1.5l2 4 4.5.7-3.25 3.1.77 4.5L8 11.6 3.98 13.8l.77-4.5L1.5 6.2l4.5-.7L8 1.5z" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
-  gem:        `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 14L1 6l2-4h10l2 4-7 8z" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/><path d="M1 6h14M5.5 2L7 6M10.5 2L9 6" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  receipt:    `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="2" y="1" width="12" height="14" rx="2" stroke="#00d4aa" stroke-width="1.5"/><path d="M5 5.5h6M5 8.5h6M5 11.5h3" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  video:      `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="1" y="4" width="9" height="8" rx="2" stroke="#00d4aa" stroke-width="1.5"/><path d="M10 7.5l5-3v7l-5-3" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
-  book:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 13S4.5 11.5 1.5 11.5V2C4.5 2 8 3.5 8 3.5S11.5 2 14.5 2v9.5C11.5 11.5 8 13 8 13z" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 3.5V13" stroke="#00d4aa" stroke-width="1.5"/></svg>`,
-  trophy:     `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 10c-2.761 0-5-2.239-5-5V2h10v3c0 2.761-2.239 5-5 5z" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10v4M5.5 14h5" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/><path d="M3 4H1.5M13 4h1.5" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  refresh:    `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M13.5 8A5.5 5.5 0 112.5 5.5" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 2.5v3h3" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  rocket:     `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 1c2.5 0 5 2 5.5 5 .25 1.5 0 3-.5 4L8 15 2.5 10c-.5-1-.75-2.5-.5-4C2.5 3 5.5 1 8 1z" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="7" r="1.5" fill="#00d4aa"/></svg>`,
+  welcome:    `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="8" cy="5" r="3" stroke="#12E3C0" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  newsletter: `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="1" y="3" width="14" height="10" rx="2" stroke="#12E3C0" stroke-width="1.5"/><path d="M1 6l7 4 7-4" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  lock:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="3" y="7" width="10" height="8" rx="2" stroke="#12E3C0" stroke-width="1.5"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  shield:     `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 1.5L2 4.5v3.5c0 3 2.5 5 6 6.5 3.5-1.5 6-3.5 6-6.5V4.5L8 1.5z" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  star:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 1.5l2 4 4.5.7-3.25 3.1.77 4.5L8 11.6 3.98 13.8l.77-4.5L1.5 6.2l4.5-.7L8 1.5z" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  gem:        `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 14L1 6l2-4h10l2 4-7 8z" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/><path d="M1 6h14M5.5 2L7 6M10.5 2L9 6" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  receipt:    `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="2" y="1" width="12" height="14" rx="2" stroke="#12E3C0" stroke-width="1.5"/><path d="M5 5.5h6M5 8.5h6M5 11.5h3" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  video:      `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="1" y="4" width="9" height="8" rx="2" stroke="#12E3C0" stroke-width="1.5"/><path d="M10 7.5l5-3v7l-5-3" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  book:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 13S4.5 11.5 1.5 11.5V2C4.5 2 8 3.5 8 3.5S11.5 2 14.5 2v9.5C11.5 11.5 8 13 8 13z" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 3.5V13" stroke="#12E3C0" stroke-width="1.5"/></svg>`,
+  trophy:     `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 10c-2.761 0-5-2.239-5-5V2h10v3c0 2.761-2.239 5-5 5z" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10v4M5.5 14h5" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/><path d="M3 4H1.5M13 4h1.5" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  refresh:    `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M13.5 8A5.5 5.5 0 112.5 5.5" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 2.5v3h3" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  rocket:     `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 1c2.5 0 5 2 5.5 5 .25 1.5 0 3-.5 4L8 15 2.5 10c-.5-1-.75-2.5-.5-4C2.5 3 5.5 1 8 1z" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="7" r="1.5" fill="#12E3C0"/></svg>`,
   cancel:     `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="8" cy="8" r="6" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  check:      `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="8" cy="8" r="6" stroke="#00d4aa" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  check:      `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="8" cy="8" r="6" stroke="#12E3C0" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   warning:    `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M8 2L1 14h14L8 2z" stroke="#fbbf24" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6.5v3M8 11v.5" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  mail:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#00d4aa" stroke-width="1.5"/><path d="M1 5.5l7 4 7-4" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  clock:      `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="8" cy="8" r="6" stroke="#00d4aa" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-  chat:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M13 8a5 5 0 01-5 5 4.97 4.97 0 01-2.56-.71L1 14l.71-4.44A4.97 4.97 0 013 8a5 5 0 0110 0z" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  mail:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#12E3C0" stroke-width="1.5"/><path d="M1 5.5l7 4 7-4" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  clock:      `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><circle cx="8" cy="8" r="6" stroke="#12E3C0" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="#12E3C0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  chat:       `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><path d="M13 8a5 5 0 01-5 5 4.97 4.97 0 01-2.56-.71L1 14l.71-4.44A4.97 4.97 0 013 8a5 5 0 0110 0z" stroke="#12E3C0" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
   admin:      `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;flex-shrink:0;"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><path d="M5 7h6M5 10h3.5" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round"/></svg>`,
 };
 
@@ -40,7 +40,7 @@ function statsCard(completed: number, total: number): string {
       <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
         <tr>
           <td width="33%" style="padding:14px 8px;text-align:center;border-right:1px solid rgba(0,212,170,.1);">
-            <div style="font-size:22px;font-weight:900;color:#00d4aa;line-height:1;">${completed}</div>
+            <div style="font-size:22px;font-weight:900;color:#12E3C0;line-height:1;">${completed}</div>
             <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;">Done</div>
           </td>
           <td width="33%" style="padding:14px 8px;text-align:center;border-right:1px solid rgba(0,212,170,.1);">
@@ -169,10 +169,10 @@ export function welcomeEmail(name: string): string {
   const roadmapRows = roadmap.map((step, i) => `
     <tr>
       <td style="padding:9px 18px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}vertical-align:middle;" width="28">
-        <div style="width:22px;height:22px;border-radius:50%;background:${step.active ? '#00d4aa' : 'rgba(255,255,255,.07)'};text-align:center;font-size:11px;font-weight:900;color:${step.active ? '#04120e' : 'rgba(255,255,255,.2)'};line-height:22px;">${i + 1}</div>
+        <div style="width:22px;height:22px;border-radius:50%;background:${step.active ? '#12E3C0' : 'rgba(255,255,255,.07)'};text-align:center;font-size:11px;font-weight:900;color:${step.active ? '#02111F' : 'rgba(255,255,255,.2)'};line-height:22px;">${i + 1}</div>
       </td>
       <td style="padding:9px 0 9px 10px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}vertical-align:middle;font-size:14px;color:${step.active ? 'rgba(255,255,255,.88)' : 'rgba(255,255,255,.35)'};">${step.title}</td>
-      ${step.active ? '<td style="padding:9px 18px 9px 0;text-align:right;font-size:12px;color:#00d4aa;font-weight:700;white-space:nowrap;vertical-align:middle;">Start here</td>' : '<td style="padding:9px 18px 9px 0;"></td>'}
+      ${step.active ? '<td style="padding:9px 18px 9px 0;text-align:right;font-size:12px;color:#12E3C0;font-weight:700;white-space:nowrap;vertical-align:middle;">Start here</td>' : '<td style="padding:9px 18px 9px 0;"></td>'}
     </tr>`).join('');
 
   return layout('Welcome to Plainvest', `
@@ -363,7 +363,7 @@ export function supportCallConfirmationEmail(name: string, email: string, data?:
       <p>
         ${data?.date ? `<strong>Date:</strong> ${data.date}<br />` : ''}
         ${data?.time ? `<strong>Time:</strong> ${data.time}<br />` : ''}
-        ${data?.meetingLink ? `<strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#00d4aa;">${data.meetingLink}</a>` : ''}
+        ${data?.meetingLink ? `<strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#12E3C0;">${data.meetingLink}</a>` : ''}
       </p>
     </div>` : ''}
     ${lbl('Topics to explore', '')}
@@ -396,7 +396,7 @@ export function supportCallReminderEmail(name: string, data: {
       <p>
         <strong>Date:</strong> ${data.date}<br />
         <strong>Time:</strong> ${data.time}<br />
-        <strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#00d4aa;">${data.meetingLink}</a>
+        <strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#12E3C0;">${data.meetingLink}</a>
       </p>
     </div>
     <p>We'll make the most of the 60 minutes — the more you bring, the more we can cover.</p>
@@ -825,7 +825,7 @@ export function newsletterEdu4Email(email: string): string {
     <p>If you can withdraw 4% of your portfolio per year, you can live off it indefinitely without running out. That means your <strong>Freedom Number</strong> is:</p>
     <div style="text-align:center;padding:20px;background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.14);border-radius:12px;margin:0 0 24px;">
       <div style="font-size:13px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">Your Freedom Number</div>
-      <div style="font-size:22px;font-weight:900;color:#00d4aa;">Annual expenses ÷ 4%</div>
+      <div style="font-size:22px;font-weight:900;color:#12E3C0;">Annual expenses ÷ 4%</div>
     </div>
     <div class="highlight">
       <p>
@@ -858,7 +858,7 @@ export function newsletterEdu5Email(email: string): string {
           'How to build a simple, durable portfolio',
         ].map((step, i) => `<tr>
           <td style="padding:10px 18px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}vertical-align:middle;" width="28">
-            <div style="width:22px;height:22px;border-radius:50%;background:rgba(0,212,170,.15);text-align:center;font-size:11px;font-weight:900;color:#00d4aa;line-height:22px;">${i + 1}</div>
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(0,212,170,.15);text-align:center;font-size:11px;font-weight:900;color:#12E3C0;line-height:22px;">${i + 1}</div>
           </td>
           <td style="padding:10px 0 10px 10px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}font-size:14px;color:rgba(255,255,255,.7);">${step}</td>
         </tr>`).join('')}

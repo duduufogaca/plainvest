@@ -36,7 +36,7 @@ function withUnsubscribeFooter(html: string, subscriberId: string): string {
   const url = `${BASE_URL}/api/newsletter-unsubscribe?id=${subscriberId}`;
   const footer = `
     <div style="text-align:center;padding:16px 0 8px;font-size:11px;color:rgba(255,255,255,.18);">
-      <a href="${url}" style="color:rgba(0,212,170,.35);text-decoration:none;">Unsubscribe</a>
+      <a href="${url}" style="color:rgba(18,227,192,.35);text-decoration:none;">Unsubscribe</a>
       &nbsp;from Plainvest Insights
     </div>`;
   return html.replace('</body>', `${footer}</body>`);

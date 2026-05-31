@@ -18333,7 +18333,7 @@
           <input id="footer-email-capture" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email for Plainvest updates">
           <button id="footer-email-submit" type="button" onclick="submitNewsletter(event)" data-i18n="footer.captureBtn">Join Plainvest Insights</button>
         </div>
-        <div class="footer-capture-success" id="footer-email-success" data-i18n="footer.captureSuccess">Thanks — you are on the Plainvest insight list.</div>
+        <div class="footer-capture-success" id="footer-email-success" data-i18n="footer.captureSuccess">Check your email to confirm your subscription.</div>
         <div class="footer-trust-strip">
           <span class="footer-trust-badge" data-i18n="footer.trustB1">No spam, ever</span>
           <span class="footer-trust-badge" data-i18n="footer.trustB2">Unsubscribe anytime</span>
@@ -19117,7 +19117,7 @@
           captureTitle: 'Stay Informed, Calmly',
           captureText: 'Build investing confidence with beginner-friendly education, practical guidance, and Plainvest updates. No hype. No pressure.',
           captureBtn: 'Join Plainvest Insights',
-          captureSuccess: 'Thanks — you are on the Plainvest insight list.',
+          captureSuccess: 'Check your email to confirm your subscription.',
           trustB1: 'No spam, ever', trustB2: 'Unsubscribe anytime', trustB3: 'Beginner-focused',
           privacy: 'Privacy Policy',
           terms: 'Terms of Service',
@@ -20007,7 +20007,7 @@
           captureTitle: 'Fique Informado, com Calma',
           captureText: 'Construa confiança nos investimentos com educação para iniciantes, orientações práticas e atualizações da Plainvest. Sem hype. Sem pressão.',
           captureBtn: 'Entrar no Plainvest Insights',
-          captureSuccess: 'Obrigado — você entrou na lista de insights do Plainvest.',
+          captureSuccess: 'Verifique seu email para confirmar a inscrição.',
           trustB1: 'Sem spam, jamais', trustB2: 'Cancele quando quiser', trustB3: 'Foco em iniciantes',
           privacy: 'Política de Privacidade',
           terms: 'Termos de Uso',
@@ -22735,6 +22735,22 @@
         }
       }
     }
+
+    // Show confirmation toast when user returns from ?confirmed=1 link
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('confirmed') === '1') {
+        var el = document.getElementById('footer-email-success');
+        if (el) {
+          el.textContent = currentLang === 'pt'
+            ? '✓ Inscrição confirmada! Bem-vindo(a) ao Plainvest Insights.'
+            : '✓ Subscription confirmed! Welcome to Plainvest Insights.';
+          el.classList.add('show');
+          setTimeout(function() { el.classList.remove('show'); }, 6000);
+        }
+        history.replaceState(null, '', window.location.pathname);
+      }
+    })();
 
     // ══ INFLATION ══
 
