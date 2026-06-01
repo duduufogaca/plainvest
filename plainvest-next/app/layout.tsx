@@ -9,6 +9,20 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+  openGraph: {
+    title: 'Plainvest — Financial Clarity for Beginners',
+    description: 'Structured investing education, portfolio tools, and personal guidance — built for beginner investors.',
+    url: 'https://members.plainvest.app',
+    siteName: 'Plainvest',
+    images: [{ url: 'https://members.plainvest.app/og-image.png', width: 1200, height: 630, alt: 'Plainvest' }],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Plainvest — Financial Clarity for Beginners',
+    description: 'Structured investing education, portfolio tools, and personal guidance — built for beginner investors.',
+    images: ['https://members.plainvest.app/og-image.png'],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
