@@ -254,7 +254,7 @@ export default async function Dashboard({
             <a href={ptUrl} className={`ms-lang-btn${lang === 'pt' ? ' ms-lang-btn--active' : ''}`}>PT</a>
           </div>
           {hasGuideAccess && <a href="/home" className="ms-nav-link">{t.backToHub}</a>}
-          <a href="/profile" className="ms-nav-link">{t.account}</a>
+          {hasGuideAccess && <a href="/profile" className="ms-nav-link">{t.account}</a>}
           <form action={signOut}>
             <SubmitButton className="ms-logout-btn" pendingText={t.loggingOut}>{t.logout}</SubmitButton>
           </form>
