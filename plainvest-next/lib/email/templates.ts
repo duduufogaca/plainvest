@@ -73,17 +73,44 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
+  <meta name="color-scheme" content="dark only" />
   <meta name="supported-color-schemes" content="dark" />
   <title>${title}</title>
   <style>
     /* Base reset */
     body,table,td,a { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     img { -ms-interpolation-mode:bicubic; }
-    /* Force dark backgrounds — Gmail-specific overrides */
-    [data-ogsc] body,[data-ogsb] body { background-color:#07111d !important; }
+    /* Force dark backgrounds — Gmail Light Mode override */
+    [data-ogsc] body,[data-ogsb] body { background-color:#07111d !important; color:#e8f4f8 !important; }
     [data-ogsc] #pv-outer,[data-ogsb] #pv-outer { background-color:#07111d !important; }
     [data-ogsc] #pv-card,[data-ogsb] #pv-card { background-color:#0f1b2b !important; }
+    [data-ogsc] h1,[data-ogsb] h1 { color:#e8f4f8 !important; }
+    [data-ogsc] p,[data-ogsb] p { color:#8ab4c8 !important; }
+    [data-ogsc] .sub,[data-ogsb] .sub { color:#5a8a9c !important; }
+    [data-ogsc] .hint,[data-ogsb] .hint { color:#3a6070 !important; }
+    [data-ogsc] .highlight,[data-ogsb] .highlight { background-color:#091e2c !important; }
+    [data-ogsc] .email-pill,[data-ogsb] .email-pill { background-color:#091e2c !important; color:#8ab4c8 !important; }
+    /* iOS light mode: force dark even when system is in light mode */
+    @media (prefers-color-scheme: light) {
+      body { background-color:#07111d !important; color:#e8f4f8 !important; }
+      #pv-outer { background-color:#07111d !important; }
+      #pv-card { background-color:#0f1b2b !important; color:#e8f4f8 !important; }
+      h1 { color:#e8f4f8 !important; }
+      p { color:#8ab4c8 !important; }
+      strong { color:#d0e8f0 !important; }
+      a { color:#20d6a3 !important; }
+      .sub { color:#5a8a9c !important; }
+      .hint { color:#3a6070 !important; }
+      .highlight { background-color:#091e2c !important; border-color:#163040 !important; }
+      .highlight p { color:#7aa8bc !important; }
+      .email-pill { background-color:#091e2c !important; color:#8ab4c8 !important; }
+      .security-note { background-color:#0e1e14 !important; }
+      .security-note p { color:#7aba9a !important; }
+      .checklist li { color:#8ab4c8 !important; }
+      .receipt-table td { color:#7aa8bc !important; border-color:#162535 !important; }
+      .receipt-table td:last-child { color:#b0d0e0 !important; }
+      .divider { background-color:#162535 !important; }
+    }
     /* Typography */
     body { margin:0;padding:0;background-color:#07111d !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; }
     h1 { margin:0 0 8px;font-size:${h1size};font-weight:800;color:#e8f4f8 !important;line-height:1.25; }
