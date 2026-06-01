@@ -91,8 +91,8 @@ const T = {
     achieveList: [
       { title: 'First Step',          desc: 'Completed your first guide'    },
       { title: 'Building Momentum',   desc: '5 guides completed'            },
-      { title: 'Halfway There',       desc: '9 of 18 guides completed'      },
-      { title: 'Knowledge Complete',  desc: 'All 18 guides completed'       },
+      { title: 'Halfway There',       desc: '9 of 19 guides completed'      },
+      { title: 'Knowledge Complete',  desc: 'All 19 guides completed'       },
       { title: 'Portfolio Builder',   desc: 'Added your first investment'   },
       { title: 'Future Thinker',      desc: 'Ran a future projection'       },
     ],
@@ -205,8 +205,8 @@ const T = {
     achieveList: [
       { title: 'Primeiro Passo',          desc: 'Concluiu seu primeiro guia'        },
       { title: 'Ganhando Ritmo',          desc: '5 guias concluídos'                },
-      { title: 'Metade do Caminho',       desc: '9 de 18 guias concluídos'          },
-      { title: 'Conhecimento Completo',   desc: 'Todos os 18 guias concluídos'      },
+      { title: 'Metade do Caminho',       desc: '9 de 19 guias concluídos'          },
+      { title: 'Conhecimento Completo',   desc: 'Todos os 19 guias concluídos'      },
       { title: 'Construtor de Portfólio', desc: 'Adicionou seu primeiro investimento'},
       { title: 'Pensador do Futuro',      desc: 'Executou uma projeção futura'      },
     ],
@@ -519,7 +519,7 @@ export function AccountCenterClient({
         <h2 className="ac-card-title">{t.achieveTitle}</h2>
         <div className="ac-achievement-row">
           {t.achieveList.map((a, i) => {
-            const checks = [readCount >= 1, readCount >= 5, readCount >= 9, readCount >= 18, hasPortfolio, hasProjection];
+            const checks = [readCount >= 1, readCount >= 5, readCount >= 9, readCount >= 19, hasPortfolio, hasProjection];
             const earned = mounted && checks[i];
             return (
               <div key={i} className={`ac-achievement${earned ? ' ac-achievement--earned' : ''}`}>
