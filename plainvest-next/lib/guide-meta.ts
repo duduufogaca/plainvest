@@ -157,9 +157,9 @@ export const GUIDE_META: Record<string, GuideMeta> = {
 };
 
 export const GUIDE_ORDER = [
-  'welcome', 'guides', 'dca', 'firsttrade', 'exchange', 'inflation', 'sentiment', 'panicsell',
-  'bitcoin', 'crypto', 'tools', 'cycles', 'books', 'tax', 'super', 'platforms',
-  'zoom', 'references', 'glossary',
+  'welcome', 'guides', 'dca', 'exchange', 'crypto', 'bitcoin', 'books', 'tools',
+  'cycles', 'zoom', 'references', 'tax', 'super', 'platforms', 'glossary',
+  'firsttrade', 'inflation', 'sentiment', 'panicsell',
 ];
 
 export const TOTAL_GUIDES = GUIDE_ORDER.length;

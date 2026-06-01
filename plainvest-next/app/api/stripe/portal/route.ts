@@ -22,11 +22,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'No active subscription found.' }, { status: 404 });
   }
 
-  const stripe = createStripeClient();
-  const portalSession = await stripe.billingPortal.sessions.create({
-    customer: access.stripe_customer_id,
-    return_url: `${siteUrl}/dashboard`,
-  });
-
-  return NextResponse.redirect(portalSession.url, { status: 303 });
+  try {
+    const stripe = createStripeClient();
+    const portalSession = await stripe.billingPortal.sessions.create({
+      customer: access.stripe_customer_id,
+      return_url: `${siteUrl}/dashboard`,
+    });
+    return NextResponse.redirect(portalSession.url, { status: 303 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Could not open billing portal.';
+    console.error('Plainvest portal error:', message);
+    return NextResponse.json({ error: 'Billing portal is not available right now. Please try again shortly.' }, { status: 500 });
+  }
 }

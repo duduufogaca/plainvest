@@ -203,8 +203,8 @@ export default async function PortfolioPage({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
-  const { isPremium, plan } = await getPremiumAccess(supabase, user.id);
-  if (!isPremium) redirect('/dashboard');
+  const { isPro, plan } = await getPremiumAccess(supabase, user.id);
+  if (!isPro) redirect('/dashboard');
 
   const fullName: string = user.user_metadata?.full_name || '';
   const firstName = fullName.split(' ')[0] || user.email?.split('@')[0] || '';

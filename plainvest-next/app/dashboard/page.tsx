@@ -295,7 +295,7 @@ export default async function Dashboard({
 
               <div className="ms-upgrade-price-block">
                 <div className="ms-upgrade-price">
-                  <strong>AUD $9,90</strong>
+                  <strong>{t.proPrice}</strong>
                   <span>{t.upgradePeriod}</span>
                 </div>
                 {brlRate && (
