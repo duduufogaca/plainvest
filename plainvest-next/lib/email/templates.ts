@@ -31,7 +31,7 @@ function esc(s: string): string {
   return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-function lbl(text: string, iconType = '', color = 'rgba(0,212,170,.75)'): string {
+function lbl(text: string, iconType = '', color = '#20d6a3'): string {
   const svg = iconType && ICONS[iconType] ? ICONS[iconType] : '';
   return `<div style="margin-bottom:10px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:${color};line-height:1.4;">${svg}${svg ? '<span style="display:inline-block;width:5px;"></span>' : ''}${text}</div>`;
 }
@@ -40,116 +40,144 @@ function statsCard(completed: number, total: number): string {
   const remaining = total - completed;
   const pct = Math.round((completed / total) * 100);
   return `
-    <div style="border:1px solid rgba(0,212,170,.15);border-radius:12px;overflow:hidden;margin:0 0 24px;background:rgba(0,212,170,.04);">
-      <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
-        <tr>
-          <td width="33%" style="padding:14px 8px;text-align:center;border-right:1px solid rgba(0,212,170,.1);">
-            <div style="font-size:22px;font-weight:900;color:#12E3C0;line-height:1;">${completed}</div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;">Done</div>
-          </td>
-          <td width="33%" style="padding:14px 8px;text-align:center;border-right:1px solid rgba(0,212,170,.1);">
-            <div style="font-size:22px;font-weight:900;color:rgba(255,255,255,.7);line-height:1;">${remaining}</div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;">Remaining</div>
-          </td>
-          <td width="34%" style="padding:14px 8px;text-align:center;">
-            <div style="font-size:22px;font-weight:900;color:rgba(255,255,255,.7);line-height:1;">${pct}%</div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;">Progress</div>
-          </td>
-        </tr>
-      </table>
-    </div>`;
+    <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#091e2c"
+      style="background-color:#091e2c;border:1px solid #163040;border-radius:10px;border-collapse:collapse;margin:0 0 24px;">
+      <tr>
+        <td width="33%" style="padding:14px 8px;text-align:center;border-right:1px solid #162535;">
+          <div style="font-size:22px;font-weight:900;color:#20d6a3;line-height:1;">${completed}</div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#3a6070;margin-top:5px;">Done</div>
+        </td>
+        <td width="33%" style="padding:14px 8px;text-align:center;border-right:1px solid #162535;">
+          <div style="font-size:22px;font-weight:900;color:#8ab4c8;line-height:1;">${remaining}</div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#3a6070;margin-top:5px;">Remaining</div>
+        </td>
+        <td width="34%" style="padding:14px 8px;text-align:center;">
+          <div style="font-size:22px;font-weight:900;color:#8ab4c8;line-height:1;">${pct}%</div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#3a6070;margin-top:5px;">Progress</div>
+        </td>
+      </tr>
+    </table>`;
 }
 
 // ─── Shared layout ─────────────────────────────────────────────────────────
 
 function layout(title: string, body: string, compact = false, unsubscribeUrl?: string): string {
   const year = new Date().getFullYear();
-  const outerPad = compact ? '24px 16px 32px' : '40px 16px 52px';
-  const cardPad = compact ? '28px 28px' : '40px 36px';
-  const h1fs = compact ? '20px' : '26px';
-  const h1fsMob = compact ? '18px' : '22px';
+  const padOuter = compact ? '16px 8px 24px' : '32px 8px 44px';
+  const padCard  = compact ? '24px 20px'      : '36px 30px';
+  const h1size   = compact ? '20px'           : '26px';
+  const h1mob    = compact ? '18px'           : '22px';
 
   const html = `<!DOCTYPE html>
-<html lang="en" style="color-scheme:dark;">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <meta name="supported-color-schemes" content="dark" />
   <title>${title}</title>
   <style>
-    :root { color-scheme: dark; }
-    body { margin:0; padding:0; background-color:#060d1a !important; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
-    h1 { margin:0 0 10px; font-size:${h1fs}; font-weight:900; color:#ffffff !important; line-height:1.2; }
-    .sub { display:block; font-size:14px; color:rgba(255,255,255,.4); margin:0 0 28px; line-height:1.5; }
-    p { margin:0 0 16px; font-size:15px; color:rgba(255,255,255,.7) !important; line-height:1.7; }
-    strong { color:rgba(255,255,255,.9) !important; font-weight:700; }
-    .btn { display:inline-block; background:#12E3C0 !important; color:#02111F !important; font-size:15px; font-weight:700; padding:16px 36px; border-radius:12px; text-decoration:none; letter-spacing:.01em; }
-    .divider { height:1px; background:rgba(255,255,255,.06); margin:28px 0; }
-    .highlight { background:rgba(0,212,170,.07); border:1px solid rgba(0,212,170,.14); border-left:3px solid rgba(0,212,170,.5); border-radius:10px; padding:16px 18px; margin:0 0 24px; }
-    .highlight p { margin:0; font-size:14px; color:rgba(255,255,255,.65) !important; line-height:1.65; }
-    .email-pill { display:inline-block; background:rgba(0,212,170,.1); border:1px solid rgba(0,212,170,.2); border-radius:8px; padding:8px 14px; font-size:14px; color:rgba(255,255,255,.8); margin:0 0 24px; word-break:break-all; }
-    .checklist { list-style:none; padding:0; margin:0 0 24px; }
-    .checklist li { font-size:14px; color:rgba(255,255,255,.7); padding:6px 0 6px 24px; position:relative; line-height:1.55; }
-    .checklist li::before { content:'✓'; position:absolute; left:0; color:#12E3C0; font-weight:900; }
-    .receipt-table { width:100%; border-collapse:collapse; margin:0 0 24px; }
-    .receipt-table td { padding:10px 0; font-size:14px; color:rgba(255,255,255,.65); border-bottom:1px solid rgba(255,255,255,.06); line-height:1.5; }
-    .receipt-table td:last-child { text-align:right; color:rgba(255,255,255,.85); font-weight:600; }
-    .security-note { background:rgba(255,183,77,.06); border:1px solid rgba(255,183,77,.15); border-radius:10px; padding:12px 16px; margin:0 0 20px; }
-    .security-note p { margin:0; font-size:13px; color:rgba(255,200,100,.75) !important; }
-    .hint { font-size:13px; color:rgba(255,255,255,.35); margin-top:4px; line-height:1.6; }
-    @media (prefers-color-scheme: light) {
-      body { background-color:#060d1a !important; }
-      h1 { color:#ffffff !important; }
-      p { color:rgba(255,255,255,.7) !important; }
-    }
-    @media (max-width:480px) {
-      .card-td { padding:28px 20px !important; }
-      h1 { font-size:${h1fsMob} !important; }
-      .btn { padding:14px 28px !important; font-size:14px !important; }
+    /* Base reset */
+    body,table,td,a { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+    img { -ms-interpolation-mode:bicubic; }
+    /* Force dark backgrounds — Gmail-specific overrides */
+    [data-ogsc] body,[data-ogsb] body { background-color:#07111d !important; }
+    [data-ogsc] #pv-outer,[data-ogsb] #pv-outer { background-color:#07111d !important; }
+    [data-ogsc] #pv-card,[data-ogsb] #pv-card { background-color:#0f1b2b !important; }
+    /* Typography */
+    body { margin:0;padding:0;background-color:#07111d !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; }
+    h1 { margin:0 0 8px;font-size:${h1size};font-weight:800;color:#e8f4f8 !important;line-height:1.25; }
+    p  { margin:0 0 16px;font-size:16px;color:#8ab4c8 !important;line-height:1.65; }
+    strong { color:#d0e8f0 !important; }
+    a  { color:#20d6a3 !important; }
+    /* Components */
+    .sub { display:block;font-size:14px;color:#5a8a9c !important;margin:0 0 24px;line-height:1.5; }
+    .btn { display:inline-block;background-color:#22d3a6 !important;color:#031018 !important;font-size:16px;font-weight:700;padding:16px 40px;border-radius:10px;text-decoration:none !important;letter-spacing:.01em; }
+    .divider { height:1px;background-color:#162535;margin:24px 0; }
+    .highlight { background-color:#091e2c;border:1px solid #163040;border-left:3px solid #20d6a3;border-radius:8px;padding:14px 16px;margin:0 0 20px; }
+    .highlight p { margin:0;font-size:14px;color:#7aa8bc !important;line-height:1.6; }
+    .email-pill { display:inline-block;background-color:#091e2c;border:1px solid #163040;border-radius:6px;padding:8px 14px;font-size:14px;color:#8ab4c8;margin:0 0 20px;word-break:break-all; }
+    .checklist { list-style:none;padding:0;margin:0 0 24px; }
+    .checklist li { font-size:15px;color:#8ab4c8;padding:5px 0 5px 22px;position:relative;line-height:1.55; }
+    .checklist li::before { content:'✓';position:absolute;left:0;color:#20d6a3;font-weight:900; }
+    .receipt-table { width:100%;border-collapse:collapse;margin:0 0 24px; }
+    .receipt-table td { padding:10px 0;font-size:14px;color:#7aa8bc;border-bottom:1px solid #162535;line-height:1.5; }
+    .receipt-table td:last-child { text-align:right;color:#b0d0e0;font-weight:600; }
+    .security-note { background-color:#0e1e14;border:1px solid #1a3025;border-radius:8px;padding:12px 16px;margin:0 0 20px; }
+    .security-note p { margin:0;font-size:13px;color:#7aba9a !important; }
+    .hint { font-size:13px;color:#3a6070;margin-top:4px;line-height:1.6; }
+    @media screen and (max-width:480px) {
+      #pv-card { padding:${compact ? '20px 16px' : '28px 18px'} !important; }
+      h1 { font-size:${h1mob} !important; }
+      .btn { padding:14px 28px !important;font-size:15px !important; }
     }
   </style>
 </head>
-<body bgcolor="#060d1a" style="margin:0;padding:0;background-color:#060d1a !important;">
-<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#060d1a" style="width:100%;background-color:#060d1a !important;">
-<tr><td align="center" bgcolor="#060d1a" style="padding:${outerPad};background-color:#060d1a !important;">
-<table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width:580px;width:100%;">
+<body bgcolor="#07111d" style="margin:0;padding:0;background-color:#07111d !important;-webkit-text-size-adjust:100%;text-size-adjust:100%;">
+<!--[if mso]><table width="100%" bgcolor="#07111d"><tr><td><![endif]-->
+<table id="pv-outer" role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#07111d"
+  style="background-color:#07111d !important;border-collapse:collapse;width:100%;">
+<tr>
+<td align="center" bgcolor="#07111d" style="background-color:#07111d !important;padding:${padOuter};">
 
-<tr><td align="center" bgcolor="#060d1a" style="padding-bottom:28px;background-color:#060d1a;text-align:center;">
-  <a href="https://plainvest.app" style="display:inline-block;text-decoration:none;">
-    <img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" width="160" style="display:block;width:160px;height:auto;border:0;" />
-  </a>
-  ${!compact ? '<div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:8px;">Future clarity. Smarter decisions.</div>' : ''}
-</td></tr>
+  <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0"
+    style="max-width:600px;width:100%;border-collapse:collapse;">
 
-<tr><td class="card-td" bgcolor="#0b1929" style="background-color:#0b1929 !important;border-radius:20px;border:1px solid rgba(0,212,170,.1);border-top:3px solid #12E3C0;padding:${cardPad};">
-${body}
-</td></tr>
+    <!-- Logo -->
+    <tr>
+      <td align="center" bgcolor="#07111d"
+        style="background-color:#07111d !important;padding-bottom:20px;text-align:center;">
+        <a href="https://plainvest.app" style="display:inline-block;text-decoration:none;border:0;color:#20d6a3 !important;">
+          <img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png"
+            alt="Plainvest" width="148" height="auto"
+            style="display:block;width:148px;height:auto;border:0;max-width:148px;" />
+        </a>
+        ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1e3a4a;margin-top:7px;">Future clarity. Smarter decisions.</div>` : ''}
+      </td>
+    </tr>
 
-<tr><td align="center" bgcolor="#060d1a" style="padding-top:32px;background-color:#060d1a;text-align:center;">
-  ${!compact ? '<p style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18);margin:0 0 12px;">Future Clarity. Smarter Decisions.</p>' : ''}
-  <p style="font-size:13px;color:rgba(255,255,255,.3);margin:0 0 8px;line-height:1.6;">
-    <a href="https://plainvest.app" style="color:rgba(18,227,192,.55);text-decoration:none;">plainvest.app</a>
-    &nbsp;·&nbsp;
-    <a href="mailto:hello@plainvest.app" style="color:rgba(18,227,192,.55);text-decoration:none;">hello@plainvest.app</a>
-  </p>
-  ${!compact ? `
-  <p style="font-size:12px;color:rgba(255,255,255,.22);margin:0 0 6px;line-height:1.6;">Educational platform focused on investing education. Not financial advice.</p>
-  <p style="font-size:11px;color:rgba(255,255,255,.15);line-height:1.6;margin:0 0 4px;">&copy; ${year} Plainvest &nbsp;·&nbsp; <a href="https://members.plainvest.app/profile" style="color:rgba(18,227,192,.35);text-decoration:none;">Manage Preferences</a></p>` : ''}
-  ${unsubscribeUrl ? `<p style="font-size:11px;color:rgba(255,255,255,.18);line-height:1.6;margin:0;"><a href="${unsubscribeUrl}" style="color:rgba(255,255,255,.28);text-decoration:underline;">Unsubscribe</a></p>` : ''}
-</td></tr>
+    <!-- Card -->
+    <tr>
+      <td id="pv-card" bgcolor="#0f1b2b"
+        style="background-color:#0f1b2b !important;border-radius:14px;border:1px solid #183247;border-top:3px solid #20d6a3;padding:${padCard};">
+        ${body}
+      </td>
+    </tr>
 
+    <!-- Footer -->
+    <tr>
+      <td align="center" bgcolor="#07111d"
+        style="background-color:#07111d !important;padding-top:24px;text-align:center;">
+        ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1a3040;margin-bottom:8px;">Future Clarity. Smarter Decisions.</div>` : ''}
+        <div style="font-size:13px;color:#1e3a4c;margin-bottom:5px;line-height:1.7;">
+          <a href="https://plainvest.app" style="color:#1e5a4e !important;text-decoration:none;">plainvest.app</a>
+          &nbsp;·&nbsp;
+          <a href="mailto:hello@plainvest.app" style="color:#1e5a4e !important;text-decoration:none;">hello@plainvest.app</a>
+        </div>
+        <div style="font-size:12px;color:#162a38;margin-bottom:4px;line-height:1.5;">Educational platform. Not financial advice.</div>
+        <div style="font-size:11px;color:#12222e;line-height:1.5;">&copy; ${year} Plainvest</div>
+        ${unsubscribeUrl ? `<div style="margin-top:8px;font-size:11px;line-height:1.5;"><a href="${unsubscribeUrl}" style="color:#1a4050 !important;text-decoration:underline;">Unsubscribe</a></div>` : ''}
+      </td>
+    </tr>
+
+  </table>
+</td>
+</tr>
 </table>
-</td></tr>
-</table>
+<!--[if mso]></td></tr></table><![endif]-->
 </body>
 </html>`;
 
-  // Inject inline styles onto all .btn links so Gmail can't strip them
-  return html.replace(
-    /<a([^>]*?)class="btn"([^>]*?)>/g,
-    '<a$1class="btn"$2 style="display:inline-block;background:#12E3C0 !important;color:#02111F !important;font-size:15px;font-weight:700;padding:16px 36px;border-radius:12px;text-decoration:none;letter-spacing:.01em;">',
-  );
+  // Inject full inline styles onto every .btn link — Gmail strips CSS classes
+  return html
+    .replace(
+      /<a([^>]*?)class="btn"([^>]*?)>/g,
+      '<a$1class="btn"$2 style="display:inline-block;background-color:#22d3a6 !important;color:#031018 !important;font-size:16px;font-weight:700;padding:16px 40px;border-radius:10px;text-decoration:none;letter-spacing:.01em;">',
+    )
+    .replace(
+      /<div class="btn-wrap">([\s\S]*?)<\/div>/g,
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 24px;"><tr><td align="center" style="text-align:center;">$1</td></tr></table>',
+    );
 }
 
 // ─── 1. Welcome ──────────────────────────────────────────────────────────────
@@ -166,23 +194,24 @@ export function welcomeEmail(name: string): string {
 
   const roadmapRows = roadmap.map((step, i) => `
     <tr>
-      <td style="padding:9px 18px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}vertical-align:middle;" width="28">
-        <div style="width:22px;height:22px;border-radius:50%;background:${step.active ? '#12E3C0' : 'rgba(255,255,255,.07)'};text-align:center;font-size:11px;font-weight:900;color:${step.active ? '#02111F' : 'rgba(255,255,255,.2)'};line-height:22px;">${i + 1}</div>
+      <td style="padding:9px 18px;${i > 0 ? 'border-top:1px solid #162535;' : ''}vertical-align:middle;" width="28">
+        <div style="width:22px;height:22px;border-radius:50%;background:${step.active ? '#22d3a6' : '#162535'};text-align:center;font-size:11px;font-weight:900;color:${step.active ? '#031018' : '#3a5a6a'};line-height:22px;">${i + 1}</div>
       </td>
-      <td style="padding:9px 0 9px 10px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}vertical-align:middle;font-size:14px;color:${step.active ? 'rgba(255,255,255,.88)' : 'rgba(255,255,255,.35)'};">${step.title}</td>
-      ${step.active ? '<td style="padding:9px 18px 9px 0;text-align:right;font-size:12px;color:#12E3C0;font-weight:700;white-space:nowrap;vertical-align:middle;">Start here</td>' : '<td style="padding:9px 18px 9px 0;"></td>'}
+      <td style="padding:9px 0 9px 10px;${i > 0 ? 'border-top:1px solid #162535;' : ''}vertical-align:middle;font-size:14px;color:${step.active ? '#e8f4f8' : '#3a5a6a'};">${step.title}</td>
+      ${step.active ? '<td style="padding:9px 18px 9px 0;text-align:right;font-size:12px;color:#22d3a6;font-weight:700;white-space:nowrap;vertical-align:middle;">Start here</td>' : '<td style="padding:9px 18px 9px 0;"></td>'}
     </tr>`).join('');
 
+  const greeting = firstName === 'there' ? 'Welcome to Plainvest.' : `Welcome to Plainvest, ${firstName}.`;
   return layout('Welcome to Plainvest', `
     ${lbl('Welcome', 'welcome')}
-    <h1>Welcome to Plainvest, ${firstName}.</h1>
+    <h1>${greeting}</h1>
     <span class="sub">Your account is ready. Your journey starts now.</span>
     <p>You're now part of a platform built to help you understand investing — clearly, step by step, without the noise.</p>
     <p>Follow the learning path below. Each guide builds on the last.</p>
     ${lbl('Your Learning Path', '')}
-    <div style="background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.12);border-radius:12px;overflow:hidden;margin:0 0 28px;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">${roadmapRows}</table>
-    </div>
+    <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#091e2c" style="background-color:#091e2c;border:1px solid #163040;border-radius:12px;border-collapse:collapse;overflow:hidden;margin:0 0 28px;">
+      ${roadmapRows}
+    </table>
     ${lbl('What\'s inside', '')}
     <ul class="checklist">
       <li>Beginner-friendly investing guides</li>
@@ -208,7 +237,7 @@ export function newsletterConfirmRequestEmail(email: string, confirmUrl: string)
     <div class="security-note">
       <p>⏱ This link expires in 24 hours. If you didn't sign up for Plainvest updates, you can safely ignore this email.</p>
     </div>
-    <p class="hint">No spam. Unsubscribe anytime after confirming.</p>
+    <p style="font-size:13px;color:#3a6070;line-height:1.6;margin-bottom:0;">If the button doesn't work, copy and paste this link into your browser:<br /><a href="${confirmUrl}" style="color:#20d6a3 !important;word-break:break-all;font-size:12px;">${confirmUrl}</a></p>
   `, true);
 }
 
@@ -228,7 +257,7 @@ export function newsletterConfirmationEmail(email: string, unsubscribeUrl?: stri
     ${lbl('Your address', '')}
     <div class="email-pill">${email}</div>
     <div class="btn-wrap"><a href="https://plainvest.app" class="btn">Explore Plainvest →</a></div>
-    <p style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:0;">No spam. Unsubscribe anytime.</p>
+    <p style="font-size:13px;color:#3a6070;margin-bottom:0;">No spam. Unsubscribe anytime.</p>
   `, false, unsubscribeUrl);
 }
 
@@ -309,7 +338,7 @@ export function premiumWelcomeEmail(name: string, email: string): string {
       <li>Included 60-minute Zoom support call</li>
       <li>Lifetime access to all new guides</li>
     </ul>
-    <p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;">No recurring fees. Ever.</p>
+    <p style="font-size:13px;color:#3a6070;margin-bottom:24px;">No recurring fees. Ever.</p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Open Member Hub →</a></div>
     <div class="divider"></div>
     ${lbl('Your included Zoom call', 'video')}
@@ -361,7 +390,7 @@ export function supportCallConfirmationEmail(name: string, email: string, data?:
       <p>
         ${data?.date ? `<strong>Date:</strong> ${data.date}<br />` : ''}
         ${data?.time ? `<strong>Time:</strong> ${data.time}<br />` : ''}
-        ${data?.meetingLink ? `<strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#12E3C0;">${data.meetingLink}</a>` : ''}
+        ${data?.meetingLink ? `<strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#20d6a3 !important;">${data.meetingLink}</a>` : ''}
       </p>
     </div>` : ''}
     ${lbl('Topics to explore', '')}
@@ -394,7 +423,7 @@ export function supportCallReminderEmail(name: string, data: {
       <p>
         <strong>Date:</strong> ${data.date}<br />
         <strong>Time:</strong> ${data.time}<br />
-        <strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#12E3C0;">${data.meetingLink}</a>
+        <strong>Meeting Link:</strong> <a href="${data.meetingLink}" style="color:#20d6a3 !important;">${data.meetingLink}</a>
       </p>
     </div>
     <p>We'll make the most of the 60 minutes — the more you bring, the more we can cover.</p>
@@ -429,9 +458,9 @@ export function newGuideEmail(name: string, guide: {
     <div class="divider"></div>
     ${lbl('Recommended next', '')}
     <div style="margin:0 0 24px;">
-      <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px;color:rgba(255,255,255,.55);">→&nbsp; Investment Paths Guide</div>
-      <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px;color:rgba(255,255,255,.55);">→&nbsp; DCA Method Guide</div>
-      <div style="padding:9px 0;font-size:14px;color:rgba(255,255,255,.55);">→&nbsp; Build Your Portfolio</div>
+      <div style="padding:9px 0;border-bottom:1px solid #162535;font-size:14px;color:#6a90a4;">→&nbsp; Investment Paths Guide</div>
+      <div style="padding:9px 0;border-bottom:1px solid #162535;font-size:14px;color:#6a90a4;">→&nbsp; DCA Method Guide</div>
+      <div style="padding:9px 0;font-size:14px;color:#6a90a4;">→&nbsp; Build Your Portfolio</div>
     </div>
     <p class="hint">Questions about the guide? Reply to this email anytime.</p>
   `, false, unsubscribeUrl);
@@ -487,7 +516,7 @@ export function reengagementEmail(name: string, data?: {
     ${lbl('Pick up where you left off', '')}
     <div class="highlight">
       <p><strong>Next recommended:</strong> ${nextGuide}<br />
-      <span style="font-size:13px;color:rgba(255,255,255,.45);">Continue building your investing foundation.</span></p>
+      <span style="font-size:13px;color:#3a6070;">Continue building your investing foundation.</span></p>
     </div>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Resume Learning →</a></div>
     <p class="hint">Questions or need help getting started again? Reply to this email anytime.</p>
@@ -768,8 +797,8 @@ export function newsletterEdu1Email(email: string): string {
     <div class="highlight">
       <p><strong>The lesson:</strong> Markets go up and down. That's normal. The investors who build wealth are the ones who don't react to every headline — because they understand what they own and why they own it.</p>
     </div>
-    <p style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);border-radius:10px;padding:14px 18px;font-size:14px;color:rgba(255,255,255,.7);line-height:1.65;">
-      <strong style="color:rgba(251,191,36,.9);">Your takeaway:</strong> Knowledge is the cure for emotional investing. When you understand why markets move, you stop reacting to every dip.
+    <p style="background-color:#181408;border:1px solid #2a2010;border-radius:10px;padding:14px 18px;font-size:14px;color:#8ab4c8;line-height:1.65;">
+      <strong style="color:#e8c060 !important;">Your takeaway:</strong> Knowledge is the cure for emotional investing. When you understand why markets move, you stop reacting to every dip.
     </p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Start Learning →</a></div>
   `);
@@ -789,8 +818,8 @@ export function newsletterEdu2Email(email: string): string {
       </p>
     </div>
     <p>It's not exciting. It doesn't require charts, predictions, or market knowledge. It just requires consistency.</p>
-    <p style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);border-radius:10px;padding:14px 18px;font-size:14px;color:rgba(255,255,255,.7);line-height:1.65;">
-      <strong style="color:rgba(251,191,36,.9);">Your takeaway:</strong> Set a fixed amount → Set a recurring date → Automate it → Stop watching it daily. That's it.
+    <p style="background-color:#181408;border:1px solid #2a2010;border-radius:10px;padding:14px 18px;font-size:14px;color:#8ab4c8;line-height:1.65;">
+      <strong style="color:#e8c060 !important;">Your takeaway:</strong> Set a fixed amount → Set a recurring date → Automate it → Stop watching it daily. That's it.
     </p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Read the DCA Guide →</a></div>
   `);
@@ -808,8 +837,8 @@ export function newsletterEdu3Email(email: string): string {
         <strong>Bitcoin</strong> — Digital scarcity. High volatility, but a real long-term thesis for many investors. Not for everyone, but worth understanding.
       </p>
     </div>
-    <p style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);border-radius:10px;padding:14px 18px;font-size:14px;color:rgba(255,255,255,.7);line-height:1.65;">
-      <strong style="color:rgba(251,191,36,.9);">Your takeaway:</strong> Most beginners do best starting with broad ETFs — diversified, low cost, and no need to pick individual winners.
+    <p style="background-color:#181408;border:1px solid #2a2010;border-radius:10px;padding:14px 18px;font-size:14px;color:#8ab4c8;line-height:1.65;">
+      <strong style="color:#e8c060 !important;">Your takeaway:</strong> Most beginners do best starting with broad ETFs — diversified, low cost, and no need to pick individual winners.
     </p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Explore the Asset Guides →</a></div>
   `);
@@ -821,10 +850,10 @@ export function newsletterEdu4Email(email: string): string {
     <h1>There's a number that tells you when you're financially free.</h1>
     <span class="sub">It's called the 4% rule — and it's simpler than it sounds.</span>
     <p>If you can withdraw 4% of your portfolio per year, you can live off it indefinitely without running out. That means your <strong>Freedom Number</strong> is:</p>
-    <div style="text-align:center;padding:20px;background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.14);border-radius:12px;margin:0 0 24px;">
-      <div style="font-size:13px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">Your Freedom Number</div>
-      <div style="font-size:22px;font-weight:900;color:#12E3C0;">Annual expenses ÷ 4%</div>
-    </div>
+    <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#091e2c" style="background-color:#091e2c;border:1px solid #163040;border-radius:12px;border-collapse:collapse;margin:0 0 24px;"><tr><td style="padding:20px;text-align:center;">
+      <div style="font-size:13px;color:#3a6070;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">Your Freedom Number</div>
+      <div style="font-size:22px;font-weight:900;color:#20d6a3;">Annual expenses ÷ 4%</div>
+    </td></tr></table>
     <div class="highlight">
       <p>
         Need <strong>$30,000/year</strong> → target <strong>$750,000</strong><br />
@@ -832,8 +861,8 @@ export function newsletterEdu4Email(email: string): string {
         Need <strong>$80,000/year</strong> → target <strong>$2,000,000</strong>
       </p>
     </div>
-    <p style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);border-radius:10px;padding:14px 18px;font-size:14px;color:rgba(255,255,255,.7);line-height:1.65;">
-      <strong style="color:rgba(251,191,36,.9);">Your takeaway:</strong> Calculate your number. That's your target. Every dollar you invest is a step toward it.
+    <p style="background-color:#181408;border:1px solid #2a2010;border-radius:10px;padding:14px 18px;font-size:14px;color:#8ab4c8;line-height:1.65;">
+      <strong style="color:#e8c060 !important;">Your takeaway:</strong> Calculate your number. That's your target. Every dollar you invest is a step toward it.
     </p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Calculate Your Freedom Score →</a></div>
   `);
@@ -845,8 +874,7 @@ export function newsletterEdu5Email(email: string): string {
     <h1>What I'd learn first if I were starting from zero.</h1>
     <span class="sub">The learning order matters more than most people realise.</span>
     <p>There's no shortage of investing information. The problem is noise — not lack of content. Here's the exact order I'd follow if I were starting today:</p>
-    <div style="background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.12);border-radius:12px;overflow:hidden;margin:0 0 24px;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#091e2c" style="background-color:#091e2c;border:1px solid #163040;border-radius:12px;border-collapse:collapse;margin:0 0 24px;overflow:hidden;">
         ${[
           'What investing actually is — not speculation',
           'How compound growth works over 20–30 years',
@@ -855,15 +883,14 @@ export function newsletterEdu5Email(email: string): string {
           'Bitcoin basics — why it exists and what it\'s for',
           'How to build a simple, durable portfolio',
         ].map((step, i) => `<tr>
-          <td style="padding:10px 18px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}vertical-align:middle;" width="28">
-            <div style="width:22px;height:22px;border-radius:50%;background:rgba(0,212,170,.15);text-align:center;font-size:11px;font-weight:900;color:#12E3C0;line-height:22px;">${i + 1}</div>
+          <td style="padding:10px 18px;${i > 0 ? 'border-top:1px solid #162535;' : ''}vertical-align:middle;" width="28">
+            <div style="width:22px;height:22px;border-radius:50%;background:#0e2a28;text-align:center;font-size:11px;font-weight:900;color:#20d6a3;line-height:22px;">${i + 1}</div>
           </td>
-          <td style="padding:10px 0 10px 10px;${i > 0 ? 'border-top:1px solid rgba(255,255,255,.04);' : ''}font-size:14px;color:rgba(255,255,255,.7);">${step}</td>
+          <td style="padding:10px 0 10px 10px;${i > 0 ? 'border-top:1px solid #162535;' : ''}font-size:14px;color:#8ab4c8;">${step}</td>
         </tr>`).join('')}
-      </table>
-    </div>
-    <p style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);border-radius:10px;padding:14px 18px;font-size:14px;color:rgba(255,255,255,.7);line-height:1.65;">
-      <strong style="color:rgba(251,191,36,.9);">Your takeaway:</strong> You don't need to know everything. These six things give you everything you need to start investing with confidence.
+    </table>
+    <p style="background-color:#181408;border:1px solid #2a2010;border-radius:10px;padding:14px 18px;font-size:14px;color:#8ab4c8;line-height:1.65;">
+      <strong style="color:#e8c060 !important;">Your takeaway:</strong> You don't need to know everything. These six things give you everything you need to start investing with confidence.
     </p>
     <div class="btn-wrap"><a href="https://members.plainvest.app" class="btn">Start the Plainvest Roadmap →</a></div>
   `);
@@ -882,7 +909,7 @@ export function newsletterProductEmail(email: string): string {
       <li>20-year future projections</li>
       <li>Freedom Score™ — your financial independence tracker</li>
     </ul>
-    <p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;">Free account available. No credit card required.</p>
+    <p style="font-size:13px;color:#3a6070;margin-bottom:24px;">Free account available. No credit card required.</p>
     <div class="btn-wrap"><a href="https://members.plainvest.app/signup" class="btn">Create Free Account →</a></div>
     <p class="hint">Questions? Reply to this email anytime.</p>
   `);
@@ -901,7 +928,7 @@ export function newsletterLifetimeEmail(email: string): string {
       <li>Included 60-minute Zoom onboarding call</li>
       <li>Every guide added in the future — included</li>
     </ul>
-    <p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;">No recurring fees. Ever.</p>
+    <p style="font-size:13px;color:#3a6070;margin-bottom:24px;">No recurring fees. Ever.</p>
     <div class="btn-wrap"><a href="https://plainvest.app" class="btn">Get Lifetime Access →</a></div>
     <p class="hint">Questions about what's included? Reply to this email.</p>
   `);
