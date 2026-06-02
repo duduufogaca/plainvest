@@ -767,7 +767,11 @@ export default async function PortfolioPage({
                           <td className="num">
                             {g.currentPrice != null ? (
                               <div className="price-display-cell">
-                                <span className="price-display-val">{fmt(g.currentPrice, g.currency)}</span>
+                                <span className="price-display-val">{
+                                  livePrices[g.key]
+                                    ? fmt(livePrices[g.key]!.price, livePrices[g.key]!.priceCurrency)
+                                    : fmt(g.currentPrice, g.currency)
+                                }</span>
                                 {livePrices[g.key]
                                   ? <span className="price-live-badge">{tx.livePrice}</span>
                                   : <span className="price-manual-badge">{tx.manualPrice}</span>}
