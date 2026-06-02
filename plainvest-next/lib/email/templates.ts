@@ -2,15 +2,21 @@
 
 // ─── Design tokens ───────────────────────────────────────────────────────────
 const C = {
-  bg:      '#07111D',
-  card:    '#101B2B',
-  panel:   '#0F2A2E',
-  text:    '#F4F7FA',
-  body:    '#B7C6D8',
-  muted:   '#7F90A3',
-  accent:  '#00D6A3',
-  border:  '#173246',
-  warning: '#E8B84B',
+  bg:        '#07111D', // email body background
+  card:      '#101C2B', // main card background
+  panel:     '#102B2B', // inner box background
+  text:      '#F3F7FB', // main text
+  body:      '#A9B8CA', // secondary text
+  muted:     '#6F8194', // muted text
+  accent:    '#1FD3AA', // brand teal — labels, icons, checks, top accent, left borders, links
+  cta:       '#22D3AA', // button background
+  ctaText:   '#04131F', // button text
+  warning:   '#F4C95D', // gold accent
+  border:    '#1C3242', // subtle hairline borders / dividers
+  checkText: '#C8D4E3', // "What's inside" list text
+  footSlogan:'#356276', // footer slogan
+  footMuted: '#5F7082', // footer disclaimer
+  unsub:     '#7F8FA3', // unsubscribe text
 } as const;
 
 const ICONS: Record<string, string> = {
@@ -85,11 +91,11 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="supported-color-schemes" content="dark" />
+  <meta name="color-scheme" content="dark only" />
+  <meta name="supported-color-schemes" content="dark only" />
   <title>${title}</title>
   <style>
-    :root { color-scheme: dark; }
+    :root { color-scheme: dark only; supported-color-schemes: dark only; }
     body,table,td,a { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     img { -ms-interpolation-mode:bicubic; border:0; }
     body { margin:0; padding:0; background-color:${C.bg}; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; }
@@ -98,34 +104,29 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
     .pv-p  { margin:0 0 16px; font-size:16px; color:${C.body}; line-height:1.65; }
     .pv-sub { display:block; font-size:14px; color:${C.muted}; margin:0 0 24px; line-height:1.5; }
     .pv-hint { font-size:13px; color:${C.muted}; margin-top:4px; line-height:1.6; }
-    .pv-btn { display:inline-block; background-color:${C.accent}; color:${C.bg}; font-size:16px; font-weight:700; padding:16px 40px; border-radius:10px; text-decoration:none; letter-spacing:.01em; }
+    .pv-btn { display:inline-block; background-color:${C.cta}; color:${C.ctaText}; font-size:16px; font-weight:800; padding:18px 28px; border-radius:14px; text-decoration:none; letter-spacing:.01em; }
     .pv-divider { height:1px; background-color:${C.border}; margin:24px 0; }
     .pv-panel { background-color:${C.panel}; border:1px solid ${C.border}; border-left:3px solid ${C.accent}; border-radius:8px; padding:14px 16px; margin:0 0 20px; }
     .pv-pill { display:inline-block; background-color:${C.panel}; border:1px solid ${C.border}; border-radius:6px; padding:8px 14px; font-size:14px; color:${C.body}; margin:0 0 20px; word-break:break-all; }
     .pv-alert { background-color:${C.panel}; border:1px solid ${C.border}; border-radius:8px; padding:12px 16px; margin:0 0 20px; }
-    .pv-check { padding:5px 0 5px 22px; font-size:15px; color:${C.body}; line-height:1.55; }
-    /* Dark mode: keep colors even if client tries to adapt */
-    @media (prefers-color-scheme: dark) {
+    /* Force dark in BOTH schemes — Apple Mail / Gmail iOS must not invert */
+    @media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
       body, #pv-bg, #pv-card { background-color:${C.bg} !important; }
-      #pv-card-inner { background-color:${C.card} !important; }
-    }
-    @media (prefers-color-scheme: light) {
-      body, #pv-bg, #pv-card { background-color:${C.bg} !important; color:${C.text} !important; }
-      #pv-card-inner { background-color:${C.card} !important; color:${C.text} !important; }
+      #pv-card-inner { background-color:${C.card} !important; color:${C.body} !important; }
       .pv-h1, h1 { color:${C.text} !important; }
       .pv-p, p { color:${C.body} !important; }
       strong { color:${C.text} !important; }
       a { color:${C.accent} !important; }
-      .pv-sub, .pv-hint { color:${C.muted} !important; }
-      .pv-panel { background-color:${C.panel} !important; }
-      .pv-pill { background-color:${C.panel} !important; color:${C.body} !important; }
-      .pv-alert { background-color:${C.panel} !important; }
-      .pv-btn { background-color:${C.accent} !important; color:${C.bg} !important; }
+      .pv-sub { color:${C.muted} !important; }
+      .pv-hint { color:${C.muted} !important; }
+      .pv-panel, .pv-pill, .pv-alert { background-color:${C.panel} !important; }
+      .pv-pill { color:${C.body} !important; }
+      .pv-btn { background-color:${C.cta} !important; color:${C.ctaText} !important; }
     }
     @media screen and (max-width:480px) {
       #pv-card-inner { padding:${compact ? '20px 16px' : '24px 18px'} !important; }
       .pv-h1 { font-size:${h1mob} !important; }
-      .pv-btn { padding:14px 28px !important; font-size:15px !important; }
+      .pv-btn { padding:16px 24px !important; font-size:15px !important; }
     }
   </style>
 </head>
@@ -138,7 +139,7 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
       style="background-color:${C.bg};padding:${compact ? '16px 8px 24px' : '32px 8px 44px'};">
 
       <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0"
-        style="max-width:600px;width:100%;border-collapse:collapse;">
+        style="max-width:640px;width:100%;border-collapse:collapse;">
 
         <!-- Logo row -->
         <tr>
@@ -150,7 +151,7 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
                 alt="Plainvest" width="148" height="auto"
                 style="display:block;width:148px;height:auto;border:0;max-width:148px;" />
             </a>
-            ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${C.border};margin-top:8px;">Future clarity. Smarter decisions.</div>` : ''}
+            ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${C.footSlogan};margin-top:8px;">Future clarity. Smarter decisions.</div>` : ''}
           </td>
         </tr>
 
@@ -172,15 +173,16 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
         <tr>
           <td align="center" bgcolor="${C.bg}"
             style="background-color:${C.bg};padding-top:24px;text-align:center;">
-            ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${C.border};margin-bottom:8px;">Future Clarity. Smarter Decisions.</div>` : ''}
-            <div style="font-size:13px;color:${C.border};margin-bottom:5px;line-height:1.7;">
+            ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${C.footSlogan};margin-bottom:8px;">Future Clarity. Smarter Decisions.</div>` : ''}
+            <div style="font-size:13px;color:${C.footMuted};margin-bottom:6px;line-height:1.7;">
               <a href="https://plainvest.app" style="color:${C.accent};text-decoration:none;">plainvest.app</a>
               &nbsp;·&nbsp;
               <a href="mailto:hello@plainvest.app" style="color:${C.accent};text-decoration:none;">hello@plainvest.app</a>
             </div>
-            <div style="font-size:12px;color:${C.border};margin-bottom:4px;line-height:1.5;">Educational platform. Not financial advice.</div>
-            <div style="font-size:11px;color:${C.border};line-height:1.5;">&copy; ${year} Plainvest</div>
-            ${unsubscribeUrl ? `<div style="margin-top:10px;font-size:11px;line-height:1.5;"><a href="${unsubscribeUrl}" style="color:${C.muted};text-decoration:underline;">Unsubscribe from Plainvest Insights</a></div>` : ''}
+            <div style="font-size:12px;color:${C.footMuted};margin-bottom:6px;line-height:1.5;">Questions? Contact <a href="mailto:hello@plainvest.app" style="color:${C.accent};text-decoration:none;">hello@plainvest.app</a></div>
+            <div style="font-size:12px;color:${C.footMuted};margin-bottom:4px;line-height:1.5;">Educational platform. Not financial advice.</div>
+            <div style="font-size:11px;color:${C.footMuted};line-height:1.5;">&copy; ${year} Plainvest</div>
+            ${unsubscribeUrl ? `<div style="margin-top:12px;font-size:12px;line-height:1.6;color:${C.unsub};max-width:440px;margin-left:auto;margin-right:auto;">You are receiving this because you joined Plainvest or subscribed to Plainvest updates. <a href="${unsubscribeUrl}" style="color:${C.unsub};text-decoration:underline;">Unsubscribe anytime.</a></div>` : ''}
           </td>
         </tr>
 
@@ -194,16 +196,31 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
 
   // ── Post-process: inject inline styles on class-based elements ────────────
   return html
-    // Buttons: fully inline
+    // Buttons: fully inline, bulletproof colors
     .replace(
       /<a([^>]*?)class="btn"([^>]*?)>/g,
-      `<a$1class="pv-btn"$2 style="display:inline-block;background-color:${C.accent};color:${C.bg};font-size:16px;font-weight:700;padding:16px 40px;border-radius:10px;text-decoration:none;letter-spacing:.01em;">`,
+      `<a$1class="pv-btn"$2 style="display:inline-block;background-color:${C.cta};color:${C.ctaText};font-size:16px;font-weight:800;padding:18px 28px;border-radius:14px;text-decoration:none;letter-spacing:.01em;">`,
     )
     // btn-wrap → centering table
     .replace(
       /<div class="btn-wrap">([\s\S]*?)<\/div>/g,
       `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 24px;border-collapse:collapse;"><tr><td align="center" bgcolor="${C.card}" style="text-align:center;background-color:${C.card};">$1</td></tr></table>`,
     )
+    // checklist → table with inline ✓ + readable text (fixes "What's inside" invisible bug)
+    .replace(/<ul class="checklist">([\s\S]*?)<\/ul>/g, (_m, inner: string) => {
+      const rows = inner.replace(/<li>([\s\S]*?)<\/li>/g, (_mm, item: string) =>
+        `<tr><td width="24" valign="top" style="padding:5px 0;font-size:15px;font-weight:900;color:${C.cta};line-height:1.5;">&#10003;</td><td style="padding:5px 0;font-size:15px;color:${C.checkText};line-height:1.55;">${item}</td></tr>`,
+      );
+      return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;border-collapse:collapse;">${rows}</table>`;
+    })
+    // receipt-table → inline readable rows
+    .replace(/<table class="receipt-table">([\s\S]*?)<\/table>/g, (_m, inner: string) => {
+      const rows = inner.replace(/<tr><td>([\s\S]*?)<\/td><td([^>]*)>([\s\S]*?)<\/td><\/tr>/g,
+        (_mm, label: string, attrs: string, val: string) =>
+        `<tr><td style="padding:10px 0;font-size:14px;color:${C.body};border-bottom:1px solid ${C.border};line-height:1.5;">${label}</td><td${attrs} style="padding:10px 0;font-size:14px;color:${C.text};border-bottom:1px solid ${C.border};text-align:right;font-weight:600;line-height:1.5;">${val}</td></tr>`,
+      );
+      return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;border-collapse:collapse;">${rows}</table>`;
+    })
     // sub
     .replace(/<span class="sub">/g, `<span class="pv-sub" style="display:block;font-size:14px;color:${C.muted};margin:0 0 24px;line-height:1.5;">`)
     .replace(/<span class="pv-sub">/g, `<span style="display:block;font-size:14px;color:${C.muted};margin:0 0 24px;line-height:1.5;">`)
@@ -212,12 +229,12 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
     // divider
     .replace(/<div class="divider"><\/div>/g, `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;border-collapse:collapse;"><tr><td bgcolor="${C.border}" height="1" style="background-color:${C.border};height:1px;line-height:1px;font-size:0;">&#8203;</td></tr></table>`)
     // highlight panel
-    .replace(/<div class="highlight">/g, `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border-collapse:collapse;border-radius:8px;border:1px solid ${C.border};border-left:3px solid ${C.accent};"><tr><td bgcolor="${C.panel}" style="background-color:${C.panel};padding:14px 16px;border-radius:8px;">`)
+    .replace(/<div class="highlight">/g, `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border-collapse:collapse;border-radius:8px;border:1px solid ${C.border};border-left:3px solid ${C.accent};"><tr><td bgcolor="${C.panel}" style="background-color:${C.panel};padding:14px 16px;border-radius:8px;color:${C.body};">`)
     .replace(/<\/div>\s*(?=\s*\$\{lbl|<div class="btn-wrap"|<div class="divider"|<table class="receipt-table")/g, '</td></tr></table>')
     // email pill
     .replace(/<div class="email-pill">/g, `<div style="display:inline-block;background-color:${C.panel};border:1px solid ${C.border};border-radius:6px;padding:8px 14px;font-size:14px;color:${C.body};margin:0 0 20px;word-break:break-all;">`)
     // security note
-    .replace(/<div class="security-note">/g, `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border-collapse:collapse;border-radius:8px;border:1px solid ${C.border};"><tr><td bgcolor="${C.panel}" style="background-color:${C.panel};padding:12px 16px;border-radius:8px;">`)
+    .replace(/<div class="security-note">/g, `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border-collapse:collapse;border-radius:8px;border:1px solid ${C.border};"><tr><td bgcolor="${C.panel}" style="background-color:${C.panel};padding:12px 16px;border-radius:8px;color:${C.body};">`)
     // bare <p> tags — add body text color inline
     .replace(/<p(?! class| style)>/g, `<p style="margin:0 0 16px;font-size:16px;color:${C.body};line-height:1.65;">`)
     // bare <h1> tags
@@ -608,7 +625,7 @@ export function promotionEmail(data: {
     ${lbl('Plainvest', 'rocket')}
     <h1>${data.headline}</h1>
     <p>${data.body}</p>
-    ${data.subtext ? `<p style="font-size:13px;color:rgba(255,255,255,.4);">${data.subtext}</p>` : ''}
+    ${data.subtext ? `<p style="font-size:13px;color:${C.muted};">${data.subtext}</p>` : ''}
     <div class="btn-wrap"><a href="${data.ctaUrl}" class="btn">${data.ctaText} →</a></div>
     <p class="hint">Questions? Reply to this email anytime.</p>
   `, false, unsubscribeUrl);

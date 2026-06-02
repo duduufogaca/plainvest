@@ -32,13 +32,20 @@ export const SEQUENCE_LENGTH = NEWSLETTER_SEQUENCE.length - 1; // 9 steps
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://members.plainvest.app';
 
-function withUnsubscribeFooter(html: string, subscriberId: string): string {
-  const url = `${BASE_URL}/api/newsletter-unsubscribe?id=${subscriberId}`;
+function unsubscribeUrl(subscriberId: string): string {
+  return `${BASE_URL}/api/newsletter-unsubscribe?id=${subscriberId}`;
+}
+
+function withUnsubscribeFooter(html: string, url: string): string {
   const footer = `
-    <div style="text-align:center;padding:16px 0 8px;font-size:11px;color:rgba(255,255,255,.18);">
-      <a href="${url}" style="color:rgba(18,227,192,.35);text-decoration:none;">Unsubscribe</a>
-      &nbsp;from Plainvest Insights
-    </div>`;
+    <table role="presentation" width="100%" bgcolor="#07111D" style="background-color:#07111D;border-collapse:collapse;">
+      <tr><td align="center" style="padding:0 16px 30px;text-align:center;background-color:#07111D;">
+        <div style="max-width:440px;margin:0 auto;font-size:12px;line-height:1.6;color:#7F8FA3;">
+          You are receiving this because you joined Plainvest or subscribed to Plainvest updates.
+          <a href="${url}" style="color:#7F8FA3;text-decoration:underline;">Unsubscribe anytime.</a>
+        </div>
+      </td></tr>
+    </table>`;
   return html.replace('</body>', `${footer}</body>`);
 }
 
@@ -50,7 +57,8 @@ export async function sendSequenceStep(
   const entry = NEWSLETTER_SEQUENCE[step];
   if (!entry) throw new Error(`No sequence entry for step ${step}`);
 
-  const html = withUnsubscribeFooter(entry.template(to), subscriberId);
+  const url = unsubscribeUrl(subscriberId);
+  const html = withUnsubscribeFooter(entry.template(to), url);
 
   const resend = getResendClient();
   const { error } = await resend.emails.send({
@@ -58,6 +66,10 @@ export async function sendSequenceStep(
     to,
     subject: entry.subject,
     html,
+    headers: {
+      'List-Unsubscribe': `<${url}>`,
+      'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+    },
   });
 
   if (error) throw new Error(`Resend error: ${error.message}`);

@@ -30,9 +30,14 @@ import {
   adminNewZoomBookingEmail,
 } from './templates';
 
-async function send(to: string, subject: string, html: string): Promise<void> {
+async function send(to: string, subject: string, html: string, unsubscribeUrl?: string): Promise<void> {
   const resend = getResendClient();
-  const { error } = await resend.emails.send({ from: FROM_ADDRESS, to, subject, html });
+  const headers = unsubscribeUrl
+    ? { 'List-Unsubscribe': `<${unsubscribeUrl}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' }
+    : undefined;
+  const { error } = await resend.emails.send({
+    from: FROM_ADDRESS, to, subject, html, ...(headers ? { headers } : {}),
+  });
   if (error) throw new Error(`Resend error: ${error.message}`);
 }
 
@@ -47,7 +52,7 @@ export async function sendNewsletterConfirmRequest(to: string, confirmUrl: strin
 }
 
 export async function sendNewsletterConfirmation(to: string, unsubscribeUrl?: string): Promise<void> {
-  await send(to, "You're on the Plainvest list", newsletterConfirmationEmail(to, unsubscribeUrl));
+  await send(to, "You're on the Plainvest list", newsletterConfirmationEmail(to, unsubscribeUrl), unsubscribeUrl);
 }
 
 export async function sendPasswordResetEmail(to: string, name: string, resetLink: string): Promise<void> {
@@ -105,7 +110,7 @@ export async function sendNewGuideEmail(to: string, name: string, guide: {
   description: string;
   url: string;
 }, unsubscribeUrl?: string): Promise<void> {
-  await send(to, 'New Plainvest guide available', newGuideEmail(name, guide, unsubscribeUrl));
+  await send(to, 'New Plainvest guide available', newGuideEmail(name, guide, unsubscribeUrl), unsubscribeUrl);
 }
 
 export async function sendMilestoneEmail(to: string, name: string, data: {
@@ -113,11 +118,11 @@ export async function sendMilestoneEmail(to: string, name: string, data: {
   total: number;
   milestone: string;
 }, unsubscribeUrl?: string): Promise<void> {
-  await send(to, 'You reached a Plainvest milestone', milestoneEmail(name, data, unsubscribeUrl));
+  await send(to, 'You reached a Plainvest milestone', milestoneEmail(name, data, unsubscribeUrl), unsubscribeUrl);
 }
 
 export async function sendReengagementEmail(to: string, name: string, unsubscribeUrl?: string): Promise<void> {
-  await send(to, 'Continue where you left off', reengagementEmail(name, undefined, unsubscribeUrl));
+  await send(to, 'Continue where you left off', reengagementEmail(name, undefined, unsubscribeUrl), unsubscribeUrl);
 }
 
 export async function sendPromotionEmail(to: string, data: {
@@ -128,7 +133,7 @@ export async function sendPromotionEmail(to: string, data: {
   ctaUrl: string;
   subtext?: string;
 }, unsubscribeUrl?: string): Promise<void> {
-  await send(to, data.subject, promotionEmail(data, unsubscribeUrl));
+  await send(to, data.subject, promotionEmail(data, unsubscribeUrl), unsubscribeUrl);
 }
 
 export async function sendSubscriptionCancelledEmail(to: string, name: string): Promise<void> {
