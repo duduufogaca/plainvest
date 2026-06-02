@@ -17,4 +17,4 @@ export const FROM_ADDRESS =
   process.env.RESEND_FROM_EMAIL || 'Plainvest <hello@plainvest.app>';
 
 export const ADMIN_EMAIL =
-  process.env.RESEND_ADMIN_EMAIL || 'carvalhoo.freefly@gmail.com';
+  process.env.RESEND_ADMIN_EMAIL || 'plainvest.app@gmail.com';
