@@ -91,11 +91,11 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark only" />
-  <meta name="supported-color-schemes" content="dark only" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="supported-color-schemes" content="dark" />
   <title>${title}</title>
   <style>
-    :root { color-scheme: dark only; supported-color-schemes: dark only; }
+    :root { color-scheme: dark; supported-color-schemes: dark; }
     body,table,td,a { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     img { -ms-interpolation-mode:bicubic; border:0; }
     body { margin:0; padding:0; background-color:${C.bg}; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; }
@@ -146,10 +146,11 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
           <td align="center" bgcolor="${C.bg}"
             style="background-color:${C.bg};padding-bottom:20px;text-align:center;">
             <a href="https://plainvest.app"
-              style="display:inline-block;text-decoration:none;border:0;color:${C.accent};">
-              <img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png"
-                alt="Plainvest" width="148" height="auto"
-                style="display:block;width:148px;height:auto;border:0;max-width:148px;" />
+              style="display:inline-block;text-decoration:none;border:0;color:${C.accent};white-space:nowrap;">
+              <img src="https://members.plainvest.app/assets/plainvest-app-icon.png"
+                alt="Plainvest" width="40" height="40"
+                style="display:inline-block;vertical-align:middle;width:40px;height:40px;border:0;border-radius:9px;" />
+              <span style="display:inline-block;vertical-align:middle;font-size:22px;font-weight:800;letter-spacing:.04em;color:${C.accent};margin-left:10px;">Plainvest</span>
             </a>
             ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${C.footSlogan};margin-top:8px;">Future clarity. Smarter decisions.</div>` : ''}
           </td>
