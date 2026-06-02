@@ -64,6 +64,8 @@ const T = {
       billingPrem: 'One-time purchase',
     },
     upgradeBtn:       'Upgrade to Pro →',
+    manageBilling:    'Manage subscription',
+    manageBillingDesc:'Update your payment method, view invoices, or cancel your subscription anytime.',
     learnEyebrow:     'Learning summary',
     learnTitle:       'Your education progress',
     learnComplete:    'Complete',
@@ -178,6 +180,8 @@ const T = {
       billingPrem: 'Compra única',
     },
     upgradeBtn:       'Fazer upgrade para Pro →',
+    manageBilling:    'Gerenciar assinatura',
+    manageBillingDesc:'Atualize sua forma de pagamento, veja faturas ou cancele sua assinatura quando quiser.',
     learnEyebrow:     'Resumo de aprendizado',
     learnTitle:       'Seu progresso educacional',
     learnComplete:    'Concluído',
@@ -450,6 +454,12 @@ export function AccountCenterClient({
             </div>
           </div>
           {!isPro && <a href="/dashboard?upgrade=pro" className="ac-upgrade-btn">{t.upgradeBtn}</a>}
+          {isPro && (
+            <form action="/api/stripe/portal" method="POST" className="ac-billing-form">
+              <button type="submit" className="ac-manage-billing-btn">{t.manageBilling}</button>
+              <p className="ac-billing-note">{t.manageBillingDesc}</p>
+            </form>
+          )}
         </div>
 
         <div className="ac-card ac-learning-summary-card">

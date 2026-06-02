@@ -6834,6 +6834,31 @@ main { width: 100%; max-width: 100vw; overflow-x: hidden; }
 }
 .ac-upgrade-btn:hover { opacity: .85; }
 
+.ac-billing-form { margin-top: 1.25rem; }
+.ac-manage-billing-btn {
+  display: inline-block;
+  padding: .6rem 1.25rem;
+  border-radius: .5rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #c8d6e5;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.ac-manage-billing-btn:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.22);
+}
+.ac-billing-note {
+  margin: .6rem 0 0;
+  font-size: .72rem;
+  color: rgba(255,255,255,.4);
+  line-height: 1.5;
+  max-width: 22rem;
+}
+
 /* ── Activity Card ── */
 .ac-activity-card { border-color: rgba(97,213,180,.1); }
 .ac-activity-row {
