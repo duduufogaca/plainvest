@@ -7,7 +7,7 @@ async function yahooPrice(yTicker: string): Promise<number | null> {
     const url = `https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yTicker)}?interval=1d&range=1d&includePrePost=false`;
     const res = await fetch(url, {
       headers: { 'User-Agent': 'Mozilla/5.0' },
-      next: { revalidate: 300 },
+      next: { revalidate: 60 },
     });
     if (!res.ok) return null;
     const data = await res.json();
