@@ -1,0 +1,15 @@
+
+{
+  "name": "Plainvest",
+  "short_name": "Plainvest",
+  "icons": [
+    {
+      "src": "/android-chrome-1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#08111c",
+  "background_color": "#08111c",
+  "display": "standalone"
+}

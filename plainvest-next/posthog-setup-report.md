@@ -1,44 +1,35 @@
 <wizard-report>
 # PostHog post-wizard report
 
-The wizard has completed a deep integration of PostHog analytics into Plainvest. Here is a summary of all changes made:
-
-- **`instrumentation-client.ts`** (new): Initializes `posthog-js` client-side via Next.js instrumentation. Uses a reverse proxy at `/ingest` and enables exception capture.
-- **`lib/posthog-server.ts`** (new): Server-side PostHog helper using `posthog-node`. Used across all API routes and server actions.
-- **`next.config.ts`** (updated): Added reverse proxy rewrites for `/ingest/static/*`, `/ingest/array/*`, and `/ingest/*` to route PostHog requests through the app, improving reliability.
-- **`app/actions/auth.ts`** (updated): Added server-side event capture and user identification for login, signup, logout, password reset, and password update flows.
-- **`app/auth/callback/route.ts`** (updated): Added `email_confirmed` event and `identify` call when a user confirms their email.
-- **`app/api/stripe/checkout/route.ts`** (updated): Added `checkout_started` event when a user initiates the premium checkout session.
-- **`app/api/stripe/confirm/route.ts`** (updated): Added `payment_confirmed` event after successful Stripe payment redirect and database activation.
-- **`app/api/stripe/webhook/route.ts`** (updated): Added `premium_access_activated` and `support_call_purchased` events when Stripe webhook confirms completed checkout sessions.
-- **`app/api/stripe/support-call/route.ts`** (updated): Added `support_call_checkout_started` event when a user initiates the support call checkout.
+The wizard has completed a deep integration of your project. PostHog was already partially integrated (packages installed, `instrumentation-client.ts`, server-side client, and reverse proxy in `next.config.ts`). This session verified and corrected the environment variable values, added three new event captures covering the portfolio and upgrade flows, and created a new dashboard with five business-critical insights.
 
 ## Events tracked
 
 | Event | Description | File |
 |---|---|---|
-| `user_signed_up` | User successfully created an account | `app/actions/auth.ts` |
-| `user_logged_in` | User successfully logged in | `app/actions/auth.ts` |
-| `user_logged_out` | User signed out from the dashboard | `app/actions/auth.ts` |
-| `password_reset_requested` | User requested a password reset link | `app/actions/auth.ts` |
-| `password_updated` | User updated their password | `app/actions/auth.ts` |
-| `email_confirmed` | User confirmed their email via the auth callback | `app/auth/callback/route.ts` |
-| `checkout_started` | User initiated the Stripe checkout for Premium | `app/api/stripe/checkout/route.ts` |
-| `payment_confirmed` | Premium access confirmed after Stripe redirect | `app/api/stripe/confirm/route.ts` |
-| `premium_access_activated` | Premium access granted via Stripe webhook | `app/api/stripe/webhook/route.ts` |
-| `support_call_purchased` | Support call purchase recorded via Stripe webhook | `app/api/stripe/webhook/route.ts` |
-| `support_call_checkout_started` | User initiated the support call checkout | `app/api/stripe/support-call/route.ts` |
+| `user_signed_up` | New user registers an account | `app/actions/auth.ts` |
+| `user_logged_in` | User successfully logs in (server-side identify also fires) | `app/actions/auth.ts` |
+| `user_logged_out` | User signs out | `app/actions/auth.ts` |
+| `password_reset_requested` | User requests a password reset email | `app/actions/auth.ts` |
+| `password_updated` | User sets a new password | `app/actions/auth.ts` |
+| `checkout_started` | User initiates Stripe checkout for Premium or Pro | `app/api/stripe/checkout/route.ts` |
+| `support_call_checkout_started` | User initiates checkout for a support call | `app/api/stripe/support-call/route.ts` |
+| `premium_access_activated` | Payment confirmed — user's premium/pro access is activated | `app/api/stripe/webhook/route.ts` |
+| `support_call_purchased` | Support call payment confirmed via webhook | `app/api/stripe/webhook/route.ts` |
+| `position_added` | Pro user adds a portfolio position; properties: `asset_type`, `currency` | `app/actions/portfolio.ts` |
+| `position_deleted` | Pro user removes a portfolio position | `app/actions/portfolio.ts` |
+| `upgrade_cta_clicked` | Premium member clicks "Upgrade to Pro" CTA; property: `source` | `app/home/components/MemberHomeClient.tsx` |
 
 ## Next steps
 
 We've built some insights and a dashboard for you to keep an eye on user behavior, based on the events we just instrumented:
 
-- [Analytics basics dashboard](/dashboard/1591563)
-- [Signups & Logins over time](/insights/uHoWg47x)
-- [Signup → Checkout → Premium Conversion Funnel](/insights/Jt8cxIBD)
-- [Premium Activations over time](/insights/ga9LEIqV)
-- [Revenue Events Comparison](/insights/qW4svEpS)
-- [User Logouts (Churn Signal)](/insights/WlKKGXw9)
+- [Analytics basics dashboard](/dashboard/1650389)
+- [New signups over time](/insights/Xp1jfuXx)
+- [Signup to Premium conversion funnel](/insights/FEN2kHkS)
+- [Revenue events trend](/insights/hpB4GiJG)
+- [Portfolio positions added](/insights/VMjpLfV5)
+- [Upgrade CTA clicks](/insights/66CCPAXC)
 
 ### Agent skill
 

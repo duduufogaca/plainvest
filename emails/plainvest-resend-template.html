@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <title>Plainvest</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #071323;
+        color: #eef7ff;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      img {
+        border: 0;
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrapper {
+        width: 100%;
+        background:
+          radial-gradient(circle at 15% 0%, rgba(22, 206, 164, 0.18), transparent 32%),
+          radial-gradient(circle at 90% 10%, rgba(244, 200, 106, 0.12), transparent 30%),
+          #071323;
+        padding: 32px 14px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .panel {
+        background: linear-gradient(180deg, #10243d 0%, #0b1a2e 100%);
+        border: 1px solid rgba(164, 202, 232, 0.16);
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+      }
+
+      .header {
+        padding: 30px 32px 18px;
+      }
+
+      .logo {
+        width: 190px;
+        height: auto;
+      }
+
+      .hero {
+        padding: 18px 32px 10px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: #20d6aa;
+        background: rgba(32, 214, 170, 0.09);
+        border: 1px solid rgba(32, 214, 170, 0.22);
+        border-radius: 999px;
+        padding: 7px 12px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 12px;
+        color: #ffffff;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 42px;
+        line-height: 1.08;
+        letter-spacing: -0.5px;
+      }
+
+      .lead {
+        margin: 0;
+        color: #a9bfd5;
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .cta-row {
+        padding: 26px 32px 20px;
+      }
+
+      .button {
+        display: inline-block;
+        background: linear-gradient(135deg, #8ee8cf 0%, #06d0aa 100%);
+        color: #061323 !important;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 15px 24px;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .secondary-link {
+        display: inline-block;
+        margin-left: 14px;
+        color: #9ec6df !important;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .content {
+        padding: 10px 32px 30px;
+      }
+
+      .card-grid {
+        width: 100%;
+      }
+
+      .member-strip {
+        background: rgba(32, 214, 170, 0.07);
+        border: 1px solid rgba(32, 214, 170, 0.18);
+        border-radius: 18px;
+        padding: 16px 18px;
+        margin-bottom: 18px;
+      }
+
+      .member-strip-title {
+        margin: 0 0 5px;
+        color: #dffdf4;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .member-strip-text {
+        margin: 0;
+        color: #9fb9cf;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .card-title {
+        margin: 0 0 8px;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .card-text {
+        margin: 0;
+        color: #91aac4;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.09);
+        margin: 28px 0;
+      }
+
+      .note {
+        background: rgba(244, 200, 106, 0.08);
+        border: 1px solid rgba(244, 200, 106, 0.22);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .note strong {
+        color: #f4c86a;
+      }
+
+      .note p {
+        margin: 6px 0 0;
+        color: #b7c5d2;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .next-list {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .next-list li {
+        margin: 0 0 10px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.075);
+        color: #a9bfd5;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .next-list strong {
+        color: #ffffff;
+      }
+
+      .footer {
+        padding: 24px 32px 32px;
+        color: #6f879f;
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .footer a {
+        color: #8ee8cf !important;
+        text-decoration: none;
+      }
+
+      @media only screen and (max-width: 620px) {
+        .wrapper {
+          padding: 18px 10px;
+        }
+
+        .header,
+        .hero,
+        .cta-row,
+        .content,
+        .footer {
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
+
+        h1 {
+          font-size: 32px !important;
+        }
+
+        .lead {
+          font-size: 15px !important;
+        }
+
+        .button,
+        .secondary-link {
+          display: block !important;
+          text-align: center !important;
+          margin-left: 0 !important;
+        }
+
+        .secondary-link {
+          margin-top: 14px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <table role="presentation" class="container" width="100%">
+        <tr>
+          <td>
+            <div class="panel">
+              <div class="header">
+                <a href="https://plainvest.app" target="_blank" rel="noopener">
+                  <img class="logo" src="https://plainvest.app/assets/plainvest-logo-cropped.png" alt="Plainvest">
+                </a>
+              </div>
+
+              <div class="hero">
+                <span class="eyebrow">Welcome to Premium</span>
+                <h1>You are inside Plainvest Premium.</h1>
+                <p class="lead">
+                  Hi {{first_name}}, welcome in. Your Premium member hub is ready:
+                  structured guides, book paths, research tools, practical investing
+                  lessons, and your included 60-minute Zoom support call.
+                </p>
+              </div>
+
+              <div class="cta-row">
+                <a class="button" href="https://members.plainvest.app/login" target="_blank" rel="noopener">
+                  Open your member hub &rarr;
+                </a>
+                <a class="secondary-link" href="https://plainvest.app#simulator" target="_blank" rel="noopener">
+                  Use the simulator
+                </a>
+              </div>
+
+              <div class="content">
+                <div class="member-strip">
+                  <p class="member-strip-title">You now have a calmer place to learn investing.</p>
+                  <p class="member-strip-text">
+                    Plainvest was built for the moment when you want to stop guessing,
+                    understand the basics properly, and take the next step with more confidence.
+                  </p>
+                </div>
+
+                <table role="presentation" class="card-grid" width="100%" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td class="card" style="width: 33.33%; vertical-align: top;">
+                      <p class="card-title">Start with direction</p>
+                      <p class="card-text">Open the Premium Welcome guide first. It shows the best order to use the hub without feeling overwhelmed.</p>
+                    </td>
+                    <td style="width: 12px;"></td>
+                    <td class="card" style="width: 33.33%; vertical-align: top;">
+                      <p class="card-title">Build real clarity</p>
+                      <p class="card-text">Learn DCA, ETFs, Bitcoin safety, Australian tax basics, super, platforms, books, chart reading, and first trades.</p>
+                    </td>
+                    <td style="width: 12px;"></td>
+                    <td class="card" style="width: 33.33%; vertical-align: top;">
+                      <p class="card-title">Ask better questions</p>
+                      <p class="card-text">Use your included 60-minute Zoom call when you want help connecting the lessons to your next learning step.</p>
+                    </td>
+                  </tr>
+                </table>
+
+                <div class="divider"></div>
+
+                <div class="note">
+                  <strong>Your best first 15 minutes</strong>
+                  <p>
+                    You do not need to finish everything today. The best start is simple:
+                    open the Welcome guide, run one simulator scenario, then write down
+                    the questions you want to bring to your support call.
+                  </p>
+                </div>
+
+                <ul class="next-list">
+                  <li><strong>1. Read:</strong> Premium Welcome, then choose one topic that matches where you are right now.</li>
+                  <li><strong>2. Practice:</strong> Use the simulator to compare a few simple monthly amounts and time horizons.</li>
+                  <li><strong>3. Prepare:</strong> Save your questions for the Zoom call so the session is practical and useful.</li>
+                </ul>
+              </div>
+
+              <div class="footer">
+                <p style="margin: 0 0 10px;">
+                  Plainvest is an educational platform, not financial advice. Any investing decision should consider your own goals, risks, fees, taxes, and personal circumstances.
+                </p>
+                <p style="margin: 0 0 10px;">
+                  <a href="https://members.plainvest.app/login">Member login</a> &nbsp;|&nbsp;
+                  <a href="https://plainvest.app">plainvest.app</a> &nbsp;|&nbsp;
+                  <a href="https://plainvest.app#contact">Contact</a> &nbsp;|&nbsp;
+                  <a href="https://plainvest.app/privacy.html">Privacy</a> &nbsp;|&nbsp;
+                  <a href="https://plainvest.app/terms.html">Terms</a>
+                </p>
+                <p style="margin: 0;">
+                  You are receiving this because you created a Plainvest member account or purchased Premium access.
+                  <a href="{{unsubscribe_url}}">Unsubscribe</a>
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

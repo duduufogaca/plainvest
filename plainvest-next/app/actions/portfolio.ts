@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import { getPostHogClient } from '@/lib/posthog-server';
 
 export async function addPortfolioEntry(formData: FormData) {
   const supabase = await createClient();
@@ -40,6 +41,10 @@ export async function addPortfolioEntry(formData: FormData) {
       : `Could not add position: ${error.message}`;
     redirect(`/portfolio?message=${encodeURIComponent(msg)}`);
   }
+
+  const posthog = getPostHogClient();
+  posthog.capture({ distinctId: user.id, event: 'position_added', properties: { asset_type: assetType, currency } });
+  await posthog.shutdown();
 
   redirect('/portfolio?success=Position added successfully.');
 }
@@ -91,6 +96,10 @@ export async function deletePortfolioEntry(formData: FormData) {
   if (error) {
     redirect(`${redirectTo}?message=Could not remove position. Please try again.`);
   }
+
+  const posthog = getPostHogClient();
+  posthog.capture({ distinctId: user.id, event: 'position_deleted' });
+  await posthog.shutdown();
 
   redirect(`${redirectTo}?success=Purchase removed.`);
 }
