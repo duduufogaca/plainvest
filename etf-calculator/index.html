@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETF Calculator | Project Index Fund &amp; ETF Growth — Plainvest</title>
+<meta name="description" content="Free ETF calculator. Project how regular investments into index funds and ETFs could grow over time, and learn why beginners often start here.">
+<link rel="canonical" href="https://plainvest.app/etf-calculator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plainvest">
+<meta property="og:title" content="ETF Calculator | Project Index Fund & ETF Growth">
+<meta property="og:description" content="Project ETF and index-fund growth over time. Free, beginner-friendly ETF calculator from Plainvest.">
+<meta property="og:url" content="https://plainvest.app/etf-calculator">
+<meta property="og:image" content="https://plainvest.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ETF Calculator | Project Index Fund & ETF Growth">
+<meta name="twitter:description" content="Project ETF and index-fund growth with this free calculator from Plainvest.">
+<meta name="twitter:image" content="https://plainvest.app/og-image.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/calc.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Plainvest ETF Calculator","url":"https://plainvest.app/etf-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"description":"Free ETF and index fund growth calculator for long-term investing projections."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Plainvest","item":"https://plainvest.app/"},{"@type":"ListItem","position":2,"name":"ETF Calculator","item":"https://plainvest.app/etf-calculator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is an ETF?","acceptedAnswer":{"@type":"Answer","text":"An ETF (exchange-traded fund) holds a basket of many assets — often hundreds of companies — in a single investment. It gives instant diversification at low cost, which is why many beginners start with broad index ETFs."}},
+{"@type":"Question","name":"Why do beginners start with ETFs?","acceptedAnswer":{"@type":"Answer","text":"Because a single broad ETF spreads your money across many companies automatically, lowering the risk of any one company while keeping costs low. You own all of them rather than trying to pick winners."}},
+{"@type":"Question","name":"What return do ETFs provide?","acceptedAnswer":{"@type":"Answer","text":"Broad market ETFs have historically returned roughly 7–8% per year on average before inflation over long periods, though returns vary year to year. Plainvest uses these as educational assumptions, not guarantees."}},
+{"@type":"Question","name":"Is this ETF calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is completely free and requires no account."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a href="https://plainvest.app/"><img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest"></a>
+  <a class="head-cta" href="https://plainvest.app/#plans">Get Started</a>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <p class="eyebrow">ETF Calculator</p>
+    <h1>Project your index fund &amp; ETF growth.</h1>
+    <p class="lead">ETFs let you own hundreds of companies in one simple investment. See how regular investing into a broad ETF could grow over the years — the way most beginners build wealth.</p>
+    <a class="btn" href="#calc">Try the calculator ↓</a>
+    <a class="btn-ghost" href="https://plainvest.app/#learn">Learn about ETFs →</a>
+  </div>
+
+  <div class="calc" id="calc">
+    <h2>ETF growth projection</h2>
+    <p class="calc-sub">Educational estimate · regular investing, compounded</p>
+    <div class="field"><label for="init">Starting investment ($)</label><input id="init" type="number" value="2000" min="0"></div>
+    <div class="field"><label for="mo">Monthly investment ($)</label><input id="mo" type="number" value="300" min="0"></div>
+    <div class="field"><label for="yrs">Years invested</label><input id="yrs" type="number" value="25" min="1" max="60"></div>
+    <div class="field"><label for="rate">Average annual return (%)</label><input id="rate" type="number" value="8" min="0" max="20" step="0.5"></div>
+    <div class="result">
+      <p class="rlabel">Projected ETF value</p>
+      <p class="rval" id="out">—</p>
+      <p class="rnote" id="outnote"></p>
+    </div>
+  </div>
+
+  <section class="content">
+    <h2 class="sec">Why ETFs are where most beginners start</h2>
+    <p>An ETF (exchange-traded fund) bundles many investments — sometimes hundreds or thousands of companies — into one. Buy a single broad ETF and you instantly own a slice of the whole market. That <strong>built-in diversification</strong>, low cost, and simplicity is why ETFs are the most common starting point for new investors.</p>
+    <div class="note">💡 Instead of guessing which company will win, a broad ETF lets you own all of them. You capture the market's long-term growth without picking individual stocks.</div>
+    <h3>What makes ETFs beginner-friendly</h3>
+    <ul>
+      <li><strong>Diversification</strong> — one purchase spreads risk across many companies.</li>
+      <li><strong>Low cost</strong> — broad index ETFs typically have very low fees.</li>
+      <li><strong>Simplicity</strong> — no need to research and track dozens of individual stocks.</li>
+    </ul>
+    <h2 class="sec">Pair ETFs with consistency</h2>
+    <p>ETFs work best with a steady habit — investing a fixed amount regularly (dollar-cost averaging) and holding for the long term. The Plainvest learning path shows you exactly how to choose and set this up as a beginner.</p>
+  </section>
+
+  <div class="ctaband">
+    <h2>Learn how to start with ETFs</h2>
+    <p>Plainvest's beginner guides walk you through ETFs, index funds and building a simple, durable portfolio — step by step, in plain numbers.</p>
+    <a class="btn" href="https://plainvest.app/#plans">Explore Plainvest →</a>
+  </div>
+
+  <h2 class="sec">Related calculators</h2>
+  <div class="related">
+    <a href="/simulator">Investment Simulator<span>See what your money could become</span></a>
+    <a href="/dca-calculator">DCA Calculator<span>Model dollar-cost averaging</span></a>
+    <a href="/financial-freedom-calculator">Financial Freedom Calculator<span>Find your freedom number</span></a>
+    <a href="/inflation">Inflation Calculator<span>See how inflation erodes cash</span></a>
+  </div>
+
+  <div class="faq">
+    <h2 class="sec">Frequently asked questions</h2>
+    <details><summary>What is an ETF?</summary><p>An exchange-traded fund holds a basket of many assets — often hundreds of companies — in a single investment, giving instant diversification at low cost.</p></details>
+    <details><summary>Why do beginners start with ETFs?</summary><p>A single broad ETF spreads money across many companies automatically, lowering single-company risk while keeping costs low. You own all of them instead of picking winners.</p></details>
+    <details><summary>What return do ETFs provide?</summary><p>Broad market ETFs have historically averaged ~7–8% per year before inflation over long periods, though returns vary. These are educational assumptions, not guarantees.</p></details>
+    <details><summary>Is this ETF calculator free?</summary><p>Yes — completely free, no account required.</p></details>
+  </div>
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="flinks">
+    <a href="https://plainvest.app/">Home</a>
+    <a href="/simulator">Simulator</a>
+    <a href="https://plainvest.app/#learn">Learn</a>
+    <a href="https://plainvest.app/#plans">Plans</a>
+    <a href="https://plainvest.app/#contact">Contact</a>
+  </div>
+  <div class="fsocial"><a href="https://instagram.com/plainvest.app">Instagram</a></div>
+  <p class="fdisc">Plainvest is an educational platform — not financial advice.<br>© Plainvest. Future clarity. Smarter decisions.</p>
+</div></footer>
+
+<script>
+(function(){
+  function fmt(n){return new Intl.NumberFormat('en-AU',{style:'currency',currency:'AUD',maximumFractionDigits:0}).format(n);}
+  function calc(){
+    var P=+document.getElementById('init').value||0,
+        m=+document.getElementById('mo').value||0,
+        y=+document.getElementById('yrs').value||0,
+        a=+document.getElementById('rate').value||0;
+    var r=a/100/12,n=y*12;
+    var fv=r>0?P*Math.pow(1+r,n)+m*((Math.pow(1+r,n)-1)/r):P+m*n;
+    var contributed=P+m*n;
+    document.getElementById('out').textContent=fmt(fv);
+    document.getElementById('outnote').textContent='You invest '+fmt(contributed)+' · growth adds '+fmt(Math.max(0,fv-contributed));
+  }
+  ['init','mo','yrs','rate'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
+  calc();
+})();
+</script>
+</body>
+</html>

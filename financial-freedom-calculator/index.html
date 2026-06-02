@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Freedom Calculator | Find Your Freedom Number — Plainvest</title>
+<meta name="description" content="Free financial freedom calculator. Find your freedom number — the amount you need invested to live off your portfolio — using the 4% rule.">
+<link rel="canonical" href="https://plainvest.app/financial-freedom-calculator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plainvest">
+<meta property="og:title" content="Financial Freedom Calculator | Find Your Freedom Number">
+<meta property="og:description" content="Find the number you need invested to be financially free, using the 4% rule. Free calculator from Plainvest.">
+<meta property="og:url" content="https://plainvest.app/financial-freedom-calculator">
+<meta property="og:image" content="https://plainvest.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Financial Freedom Calculator | Find Your Freedom Number">
+<meta name="twitter:description" content="Find your financial freedom number with this free calculator from Plainvest.">
+<meta name="twitter:image" content="https://plainvest.app/og-image.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/calc.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Plainvest Financial Freedom Calculator","url":"https://plainvest.app/financial-freedom-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"description":"Free financial freedom calculator using the 4% rule to estimate the portfolio needed to retire."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Plainvest","item":"https://plainvest.app/"},{"@type":"ListItem","position":2,"name":"Financial Freedom Calculator","item":"https://plainvest.app/financial-freedom-calculator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a financial freedom number?","acceptedAnswer":{"@type":"Answer","text":"Your freedom number is the amount you need invested so that the returns can cover your living expenses indefinitely. A common rule of thumb is annual expenses divided by 4% — roughly 25 times your yearly spending."}},
+{"@type":"Question","name":"What is the 4% rule?","acceptedAnswer":{"@type":"Answer","text":"The 4% rule is a guideline suggesting you can withdraw about 4% of a diversified portfolio in the first year of retirement, adjusting for inflation thereafter, with a strong chance of the money lasting decades. It is a starting estimate, not a guarantee."}},
+{"@type":"Question","name":"Is the 4% rule accurate for everyone?","acceptedAnswer":{"@type":"Answer","text":"It is an educational guideline. Your real number depends on lifestyle, taxes, time horizon, and market conditions. Use it to set a target, then refine your plan over time."}},
+{"@type":"Question","name":"Is this calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is completely free and requires no account."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a href="https://plainvest.app/"><img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest"></a>
+  <a class="head-cta" href="https://plainvest.app/#plans">Get Started</a>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Financial Freedom Calculator</p>
+    <h1>Find your freedom number.</h1>
+    <p class="lead">There's a number that tells you when work becomes optional — when your investments can cover your life. Find yours with the 4% rule in seconds.</p>
+    <a class="btn" href="#calc">Calculate it ↓</a>
+    <a class="btn-ghost" href="/retirement-calculator">Retirement projection →</a>
+  </div>
+
+  <div class="calc" id="calc">
+    <h2>Your freedom number</h2>
+    <p class="calc-sub">Educational estimate · based on the 4% rule</p>
+    <div class="field"><label for="spend">Annual living expenses ($)</label><input id="spend" type="number" value="50000" min="0"></div>
+    <div class="field"><label for="rate">Safe withdrawal rate (%)</label><input id="rate" type="number" value="4" min="2" max="6" step="0.5"></div>
+    <div class="result">
+      <p class="rlabel">You need invested</p>
+      <p class="rval" id="out">—</p>
+      <p class="rnote" id="outnote"></p>
+    </div>
+  </div>
+
+  <section class="content">
+    <h2 class="sec">What financial freedom really means</h2>
+    <p>Financial freedom isn't about being rich — it's about having enough invested that the returns cover your living costs. At that point, work becomes a choice. The <strong>4% rule</strong> gives a simple target: if you can live on 4% of your portfolio per year, you can likely sustain it indefinitely.</p>
+    <div class="note">💡 The math: your freedom number ≈ annual expenses ÷ 4% — about <strong>25× your yearly spending</strong>. Spend less or invest more, and the number comes closer.</div>
+    <h3>How to use your number</h3>
+    <ul>
+      <li>It's a <strong>target</strong>, not a deadline — every dollar invested moves you toward it.</li>
+      <li>Lowering expenses lowers the number twice: less to cover, less to save.</li>
+      <li>Consistent investing over time is how most people reach it.</li>
+    </ul>
+    <h2 class="sec">From number to plan</h2>
+    <p>Knowing the target is step one. Plainvest helps you map the path — how much to invest, for how long, and what it could become — so financial freedom stops being abstract and becomes a plan you can follow.</p>
+  </section>
+
+  <div class="ctaband">
+    <h2>See how long it takes to reach your number</h2>
+    <p>Use the Plainvest simulator to model your contributions and watch your portfolio grow toward financial freedom.</p>
+    <a class="btn" href="/simulator">Open the simulator →</a>
+  </div>
+
+  <h2 class="sec">Related calculators</h2>
+  <div class="related">
+    <a href="/simulator">Investment Simulator<span>See what your money could become</span></a>
+    <a href="/retirement-calculator">Retirement Projection<span>Project your retirement savings</span></a>
+    <a href="/dca-calculator">DCA Calculator<span>Model dollar-cost averaging</span></a>
+    <a href="/inflation">Inflation Calculator<span>See how inflation erodes cash</span></a>
+  </div>
+
+  <div class="faq">
+    <h2 class="sec">Frequently asked questions</h2>
+    <details><summary>What is a financial freedom number?</summary><p>The amount you need invested so returns can cover your living expenses indefinitely. A common rule of thumb is annual expenses ÷ 4% — about 25× your yearly spending.</p></details>
+    <details><summary>What is the 4% rule?</summary><p>A guideline suggesting you can withdraw ~4% of a diversified portfolio in year one of retirement, adjusting for inflation after, with a strong chance it lasts decades. A starting estimate, not a guarantee.</p></details>
+    <details><summary>Is the 4% rule accurate for everyone?</summary><p>It's an educational guideline. Your real number depends on lifestyle, taxes, time horizon and markets. Use it to set a target, then refine over time.</p></details>
+    <details><summary>Is this calculator free?</summary><p>Yes — completely free, no account required.</p></details>
+  </div>
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="flinks">
+    <a href="https://plainvest.app/">Home</a>
+    <a href="/simulator">Simulator</a>
+    <a href="https://plainvest.app/#learn">Learn</a>
+    <a href="https://plainvest.app/#plans">Plans</a>
+    <a href="https://plainvest.app/#contact">Contact</a>
+  </div>
+  <div class="fsocial"><a href="https://instagram.com/plainvest.app">Instagram</a></div>
+  <p class="fdisc">Plainvest is an educational platform — not financial advice.<br>© Plainvest. Future clarity. Smarter decisions.</p>
+</div></footer>
+
+<script>
+(function(){
+  function fmt(n){return new Intl.NumberFormat('en-AU',{style:'currency',currency:'AUD',maximumFractionDigits:0}).format(n);}
+  function calc(){
+    var s=+document.getElementById('spend').value||0,
+        w=+document.getElementById('rate').value||4;
+    var need=w>0?s/(w/100):0;
+    document.getElementById('out').textContent=fmt(need);
+    document.getElementById('outnote').textContent='At a '+w+'% withdrawal rate, that covers '+fmt(s)+' per year.';
+  }
+  ['spend','rate'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
+  calc();
+})();
+</script>
+</body>
+</html>

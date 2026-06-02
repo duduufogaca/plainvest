@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Simulator | See What Your Money Could Become — Plainvest</title>
+<meta name="description" content="Free investment simulator. Enter an amount, time horizon and return rate to visualize what your money could become — and build wealth with confidence.">
+<link rel="canonical" href="https://plainvest.app/simulator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plainvest">
+<meta property="og:title" content="Investment Simulator | See What Your Money Could Become">
+<meta property="og:description" content="Visualize what your money could become over 10, 20 or 30 years. A free, plain-numbers investment simulator from Plainvest.">
+<meta property="og:url" content="https://plainvest.app/simulator">
+<meta property="og:image" content="https://plainvest.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Investment Simulator | See What Your Money Could Become">
+<meta name="twitter:description" content="Visualize what your money could become over the long term. Free investment simulator from Plainvest.">
+<meta name="twitter:image" content="https://plainvest.app/og-image.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/calc.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Plainvest Investment Simulator","url":"https://plainvest.app/simulator","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"description":"Free investment simulator to visualize long-term growth of regular contributions."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Plainvest","item":"https://plainvest.app/"},{"@type":"ListItem","position":2,"name":"Investment Simulator","item":"https://plainvest.app/simulator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is an investment simulator?","acceptedAnswer":{"@type":"Answer","text":"An investment simulator estimates how much a starting amount plus regular contributions could grow over time at an assumed annual return. It helps you visualize compound growth before investing real money."}},
+{"@type":"Question","name":"What return rate should I use?","acceptedAnswer":{"@type":"Answer","text":"A diversified long-term portfolio has historically returned roughly 7–8% per year before inflation. Plainvest uses these as educational assumptions, not guarantees — actual returns vary year to year."}},
+{"@type":"Question","name":"Is the Plainvest simulator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The simulator is completely free with no account required. You only create an account if you want the full member hub, guides and portfolio tools."}},
+{"@type":"Question","name":"Does this predict my exact returns?","acceptedAnswer":{"@type":"Answer","text":"No. It is an educational projection based on a fixed assumed rate. Markets move up and down — the simulator shows the power of consistency and time, not a promised outcome."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a href="https://plainvest.app/"><img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest"></a>
+  <a class="head-cta" href="https://plainvest.app/#plans">Get Started</a>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Investment Simulator</p>
+    <h1>See what your money could become.</h1>
+    <p class="lead">Enter an amount, a time horizon and a return rate, and watch what consistent investing could quietly grow into over the years — in real numbers you can feel.</p>
+    <a class="btn" href="#calc">Try the simulator ↓</a>
+    <a class="btn-ghost" href="https://plainvest.app/#simulator">Open full version →</a>
+  </div>
+
+  <div class="calc" id="calc">
+    <h2>Quick growth simulator</h2>
+    <p class="calc-sub">Educational estimate · compound growth of regular contributions</p>
+    <div class="field"><label for="init">Starting amount ($)</label><input id="init" type="number" value="1000" min="0"></div>
+    <div class="field"><label for="mo">Monthly contribution ($)</label><input id="mo" type="number" value="300" min="0"></div>
+    <div class="field"><label for="yrs">Years invested</label><input id="yrs" type="number" value="20" min="1" max="60"></div>
+    <div class="field"><label for="rate">Average annual return (%)</label><input id="rate" type="number" value="8" min="0" max="20" step="0.5"></div>
+    <div class="result">
+      <p class="rlabel">Projected value</p>
+      <p class="rval" id="out">—</p>
+      <p class="rnote" id="outnote"></p>
+    </div>
+  </div>
+
+  <section class="content">
+    <h2 class="sec">How the investment simulator works</h2>
+    <p>The simulator combines three forces that build wealth: your <strong>starting amount</strong>, your <strong>regular contributions</strong>, and <strong>compound growth</strong> over time. Each year your money earns a return, and the next year that return earns its own return. Over decades, this snowball effect does most of the heavy lifting — not the size of any single deposit.</p>
+    <div class="note">💡 The biggest driver of long-term results isn't picking winners — it's <strong>time in the market</strong> and consistency. Starting earlier with a smaller amount often beats starting later with more.</div>
+    <h3>What the numbers mean</h3>
+    <ul>
+      <li><strong>Starting amount</strong> — what you invest today as a lump sum.</li>
+      <li><strong>Monthly contribution</strong> — what you add each month, automatically.</li>
+      <li><strong>Years invested</strong> — your time horizon; longer horizons compound far more.</li>
+      <li><strong>Average annual return</strong> — a long-term assumption (a diversified portfolio has historically averaged ~7–8%).</li>
+    </ul>
+    <h2 class="sec">Why visualizing your future matters</h2>
+    <p>Most people never invest because the future feels abstract. Seeing a concrete number — what $300 a month could become in 20 years — turns "someday" into a decision you can make today. That's the whole idea behind Plainvest: <strong>future clarity, smarter decisions.</strong></p>
+  </section>
+
+  <div class="ctaband">
+    <h2>Ready to build your real plan?</h2>
+    <p>Create a free Plainvest account to track your portfolio, project your future, and follow a step-by-step learning path built for beginners.</p>
+    <a class="btn" href="https://plainvest.app/#plans">Explore Plainvest →</a>
+  </div>
+
+  <h2 class="sec">Related calculators</h2>
+  <div class="related">
+    <a href="/inflation">Inflation Calculator<span>See how inflation erodes your money</span></a>
+    <a href="/dca-calculator">DCA Calculator<span>Model dollar-cost averaging</span></a>
+    <a href="/financial-freedom-calculator">Financial Freedom Calculator<span>Find your freedom number</span></a>
+    <a href="/retirement-calculator">Retirement Projection<span>Project your retirement savings</span></a>
+  </div>
+
+  <div class="faq">
+    <h2 class="sec">Frequently asked questions</h2>
+    <details><summary>What is an investment simulator?</summary><p>It estimates how a starting amount plus regular contributions could grow over time at an assumed annual return — helping you visualize compound growth before investing real money.</p></details>
+    <details><summary>What return rate should I use?</summary><p>A diversified long-term portfolio has historically returned roughly 7–8% per year before inflation. These are educational assumptions, not guarantees — real returns vary year to year.</p></details>
+    <details><summary>Is the Plainvest simulator free?</summary><p>Yes — completely free, no account required. You only sign up if you want the full member hub, guides and portfolio tools.</p></details>
+    <details><summary>Does this predict my exact returns?</summary><p>No. It's an educational projection at a fixed assumed rate. Markets rise and fall — it shows the power of consistency and time, not a promised outcome.</p></details>
+  </div>
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="flinks">
+    <a href="https://plainvest.app/">Home</a>
+    <a href="/inflation">Inflation</a>
+    <a href="https://plainvest.app/#learn">Learn</a>
+    <a href="https://plainvest.app/#plans">Plans</a>
+    <a href="https://plainvest.app/#contact">Contact</a>
+  </div>
+  <div class="fsocial"><a href="https://instagram.com/plainvest.app">Instagram</a></div>
+  <p class="fdisc">Plainvest is an educational platform — not financial advice.<br>© Plainvest. Future clarity. Smarter decisions.</p>
+</div></footer>
+
+<script>
+(function(){
+  var ids=['init','mo','yrs','rate'];
+  function fmt(n){return new Intl.NumberFormat('en-AU',{style:'currency',currency:'AUD',maximumFractionDigits:0}).format(n);}
+  function calc(){
+    var P=+document.getElementById('init').value||0,
+        m=+document.getElementById('mo').value||0,
+        y=+document.getElementById('yrs').value||0,
+        a=+document.getElementById('rate').value||0;
+    var r=a/100/12,n=y*12;
+    var fv = r>0 ? P*Math.pow(1+r,n)+m*((Math.pow(1+r,n)-1)/r) : P+m*n;
+    var contributed=P+m*n;
+    document.getElementById('out').textContent=fmt(fv);
+    document.getElementById('outnote').textContent=
+      'You contribute '+fmt(contributed)+' · growth adds '+fmt(Math.max(0,fv-contributed));
+  }
+  ids.forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
+  calc();
+})();
+</script>
+</body>
+</html>

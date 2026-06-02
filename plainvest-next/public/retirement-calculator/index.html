@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retirement Calculator | Project Your Retirement Savings — Plainvest</title>
+<meta name="description" content="Free retirement calculator. Project how much your savings and regular contributions could grow by retirement, and the income that could provide.">
+<link rel="canonical" href="https://plainvest.app/retirement-calculator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plainvest">
+<meta property="og:title" content="Retirement Calculator | Project Your Retirement Savings">
+<meta property="og:description" content="See how your savings could grow by retirement and the income it could provide. Free retirement calculator from Plainvest.">
+<meta property="og:url" content="https://plainvest.app/retirement-calculator">
+<meta property="og:image" content="https://plainvest.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Retirement Calculator | Project Your Retirement Savings">
+<meta name="twitter:description" content="Project your retirement savings with this free calculator from Plainvest.">
+<meta name="twitter:image" content="https://plainvest.app/og-image.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/calc.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Plainvest Retirement Calculator","url":"https://plainvest.app/retirement-calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"AUD"},"description":"Free retirement projection calculator estimating savings growth to retirement age."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Plainvest","item":"https://plainvest.app/"},{"@type":"ListItem","position":2,"name":"Retirement Calculator","item":"https://plainvest.app/retirement-calculator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How does a retirement calculator work?","acceptedAnswer":{"@type":"Answer","text":"It projects how your current savings plus ongoing contributions could grow by your chosen retirement age, using an assumed average annual return and compounding over the years remaining."}},
+{"@type":"Question","name":"How much do I need to retire?","acceptedAnswer":{"@type":"Answer","text":"A common guideline is roughly 25 times your annual expenses, so a portfolio can sustainably provide income at about a 4% withdrawal rate. Your real figure depends on lifestyle, taxes and time horizon."}},
+{"@type":"Question","name":"What return should I assume for retirement?","acceptedAnswer":{"@type":"Answer","text":"Diversified long-term portfolios have historically averaged around 7–8% per year before inflation. These are educational assumptions — real returns vary, so it is wise to revisit your plan regularly."}},
+{"@type":"Question","name":"Is this retirement calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is completely free with no account required."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a href="https://plainvest.app/"><img src="https://members.plainvest.app/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest"></a>
+  <a class="head-cta" href="https://plainvest.app/#plans">Get Started</a>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Retirement Calculator</p>
+    <h1>Project your retirement savings.</h1>
+    <p class="lead">See how your current savings and monthly contributions could grow by the time you retire — and the yearly income that nest egg could quietly provide.</p>
+    <a class="btn" href="#calc">Project it ↓</a>
+    <a class="btn-ghost" href="/financial-freedom-calculator">Freedom number →</a>
+  </div>
+
+  <div class="calc" id="calc">
+    <h2>Retirement projection</h2>
+    <p class="calc-sub">Educational estimate · compounded to retirement age</p>
+    <div class="field"><label for="age">Current age</label><input id="age" type="number" value="30" min="16" max="75"></div>
+    <div class="field"><label for="ret">Retirement age</label><input id="ret" type="number" value="65" min="40" max="80"></div>
+    <div class="field"><label for="now">Current savings ($)</label><input id="now" type="number" value="10000" min="0"></div>
+    <div class="field"><label for="mo">Monthly contribution ($)</label><input id="mo" type="number" value="400" min="0"></div>
+    <div class="field"><label for="rate">Average annual return (%)</label><input id="rate" type="number" value="7" min="0" max="20" step="0.5"></div>
+    <div class="result">
+      <p class="rlabel">Projected at retirement</p>
+      <p class="rval" id="out">—</p>
+      <p class="rnote" id="outnote"></p>
+    </div>
+  </div>
+
+  <section class="content">
+    <h2 class="sec">How retirement projections work</h2>
+    <p>Three things shape your retirement: how much you've saved, how much you add each month, and how many years your money has to compound. Because growth builds on growth, <strong>the years you start earliest are worth the most</strong> — even small contributions early can outpace large ones late.</p>
+    <div class="note">💡 The income guideline: at retirement, a portfolio can sustainably provide roughly 4% per year. So a $1,000,000 balance could support about $40,000 a year, adjusted for inflation.</div>
+    <h3>What moves the number most</h3>
+    <ul>
+      <li><strong>Time</strong> — starting 10 years earlier can dramatically change the outcome.</li>
+      <li><strong>Consistency</strong> — automated monthly contributions compound powerfully.</li>
+      <li><strong>Costs &amp; inflation</strong> — keeping fees low and beating inflation protects your real result.</li>
+    </ul>
+    <h2 class="sec">Turn the projection into a plan</h2>
+    <p>A projection is a starting point. Plainvest helps you build the habit, track your progress, and adjust along the way — so retirement stops being a worry and becomes a number you're steadily moving toward.</p>
+  </section>
+
+  <div class="ctaband">
+    <h2>Track your progress to retirement</h2>
+    <p>Create a free Plainvest account to track your portfolio, project your future, and follow a beginner-friendly path to long-term wealth.</p>
+    <a class="btn" href="https://plainvest.app/#plans">Explore Plainvest →</a>
+  </div>
+
+  <h2 class="sec">Related calculators</h2>
+  <div class="related">
+    <a href="/financial-freedom-calculator">Financial Freedom Calculator<span>Find your freedom number</span></a>
+    <a href="/simulator">Investment Simulator<span>See what your money could become</span></a>
+    <a href="/dca-calculator">DCA Calculator<span>Model dollar-cost averaging</span></a>
+    <a href="/inflation">Inflation Calculator<span>See how inflation erodes cash</span></a>
+  </div>
+
+  <div class="faq">
+    <h2 class="sec">Frequently asked questions</h2>
+    <details><summary>How does a retirement calculator work?</summary><p>It projects how current savings plus ongoing contributions could grow by your chosen retirement age, using an assumed average annual return compounded over the years remaining.</p></details>
+    <details><summary>How much do I need to retire?</summary><p>A common guideline is roughly 25× your annual expenses, so a portfolio can provide income at about a 4% withdrawal rate. Your real figure depends on lifestyle, taxes and time horizon.</p></details>
+    <details><summary>What return should I assume?</summary><p>Diversified long-term portfolios have historically averaged ~7–8% per year before inflation. These are educational assumptions — real returns vary, so revisit your plan regularly.</p></details>
+    <details><summary>Is this calculator free?</summary><p>Yes — completely free, no account required.</p></details>
+  </div>
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="flinks">
+    <a href="https://plainvest.app/">Home</a>
+    <a href="/simulator">Simulator</a>
+    <a href="https://plainvest.app/#learn">Learn</a>
+    <a href="https://plainvest.app/#plans">Plans</a>
+    <a href="https://plainvest.app/#contact">Contact</a>
+  </div>
+  <div class="fsocial"><a href="https://instagram.com/plainvest.app">Instagram</a></div>
+  <p class="fdisc">Plainvest is an educational platform — not financial advice.<br>© Plainvest. Future clarity. Smarter decisions.</p>
+</div></footer>
+
+<script>
+(function(){
+  function fmt(n){return new Intl.NumberFormat('en-AU',{style:'currency',currency:'AUD',maximumFractionDigits:0}).format(n);}
+  function calc(){
+    var age=+document.getElementById('age').value||0,
+        ret=+document.getElementById('ret').value||0,
+        P=+document.getElementById('now').value||0,
+        m=+document.getElementById('mo').value||0,
+        a=+document.getElementById('rate').value||0;
+    var yrs=Math.max(0,ret-age),r=a/100/12,n=yrs*12;
+    var fv=r>0?P*Math.pow(1+r,n)+m*((Math.pow(1+r,n)-1)/r):P+m*n;
+    var income=fv*0.04;
+    document.getElementById('out').textContent=fmt(fv);
+    document.getElementById('outnote').textContent=yrs>0
+      ? 'In '+yrs+' years · could provide ~'+fmt(income)+'/yr at a 4% withdrawal rate.'
+      : 'Set a retirement age above your current age.';
+  }
+  ['age','ret','now','mo','rate'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
+  calc();
+})();
+</script>
+</body>
+</html>
