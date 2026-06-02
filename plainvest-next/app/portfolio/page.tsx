@@ -267,24 +267,30 @@ export default async function PortfolioPage({
       toDisplay(Number(e.quantity) * Number(e.buy_price), e.currency);
   });
 
-  // Donut
+  // Donut — use current value where available, fall back to invested
   const sorted = [...grouped].sort(
-    (a, b) => toDisplay(b.totalInvested, b.currency) - toDisplay(a.totalInvested, a.currency));
+    (a, b) => toDisplay(b.currentValue ?? b.totalInvested, b.currency) - toDisplay(a.currentValue ?? a.totalInvested, a.currency));
   const top8 = sorted.slice(0, 8);
   const rest = sorted.slice(8);
-  const restTotal = rest.reduce((s, g) => s + toDisplay(g.totalInvested, g.currency), 0);
+  const restTotal = rest.reduce((s, g) => s + toDisplay(g.currentValue ?? g.totalInvested, g.currency), 0);
+  const donutDisplayTotal = grouped.reduce(
+    (s, g) => s + toDisplay(g.currentValue ?? g.totalInvested, g.currency), 0,
+  );
   const donutSegments: DonutSegment[] = [
-    ...top8.map((g, i) => ({
-      label: g.asset_name,
-      ticker: g.ticker || undefined,
-      value: toDisplay(g.totalInvested, g.currency),
-      pct: totalInvested > 0 ? (toDisplay(g.totalInvested, g.currency) / totalInvested) * 100 : 0,
-      color: PALETTE[i % PALETTE.length],
-      pnlPct: g.pnlPct,
-    })),
+    ...top8.map((g, i) => {
+      const val = toDisplay(g.currentValue ?? g.totalInvested, g.currency);
+      return {
+        label: g.asset_name,
+        ticker: g.ticker || undefined,
+        value: val,
+        pct: donutDisplayTotal > 0 ? (val / donutDisplayTotal) * 100 : 0,
+        color: PALETTE[i % PALETTE.length],
+        pnlPct: g.pnlPct,
+      };
+    }),
     ...(restTotal > 0 ? [{
       label: 'Other', value: restTotal,
-      pct: totalInvested > 0 ? (restTotal / totalInvested) * 100 : 0,
+      pct: donutDisplayTotal > 0 ? (restTotal / donutDisplayTotal) * 100 : 0,
       color: '#475569',
     }] : []),
   ];
@@ -566,7 +572,7 @@ export default async function PortfolioPage({
                 </div>
                 <DonutChart
                   segments={donutSegments}
-                  totalValue={totalInvested}
+                  totalValue={donutDisplayTotal}
                   currency={displayCurrency}
                   currentValue={pricedGroups.length > 0 ? currentValue : null}
                   pnl={pnl}
@@ -756,12 +762,12 @@ export default async function PortfolioPage({
                               <div className="buys-badge">{tx.nBuys(g.entries.length)}</div>
                             )}
                           </td>
-                          <td className="num">{fmt(avgDisp, displayCurrency)}</td>
+                          <td className="num">{fmt(g.avgBuyPrice, g.currency)}</td>
                           <td className="num muted">{fmt(investedDisp, displayCurrency)}</td>
                           <td className="num">
                             {g.currentPrice != null ? (
                               <div className="price-display-cell">
-                                <span className="price-display-val">{fmt(toDisplay(g.currentPrice, g.currency), displayCurrency)}</span>
+                                <span className="price-display-val">{fmt(g.currentPrice, g.currency)}</span>
                                 {livePrices[g.key]
                                   ? <span className="price-live-badge">{tx.livePrice}</span>
                                   : <span className="price-manual-badge">{tx.manualPrice}</span>}
