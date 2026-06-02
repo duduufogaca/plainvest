@@ -253,6 +253,16 @@ export default async function PortfolioPage({
   const pnl = pricedGroups.length > 0 ? currentValue - pricedCost : null;
   const pnlPct = pnl != null && pricedCost > 0 ? (pnl / pricedCost) * 100 : null;
 
+  // Portfolio-level value: priced assets at market + unpriced assets at cost,
+  // so "current value" and "total invested" are always comparable and tie out
+  // to the gain (unpriced assets are assumed flat until a price is known).
+  const unpricedInvested = grouped
+    .filter(g => g.currentValue == null)
+    .reduce((s, g) => s + toDisplay(g.totalInvested, g.currency), 0);
+  const portfolioValue = pricedGroups.length > 0 ? currentValue + unpricedInvested : null;
+  // Total return measured against ALL capital deployed (not just priced assets)
+  const portfolioPnlPct = pnl != null && totalInvested > 0 ? (pnl / totalInvested) * 100 : null;
+
   // Best / worst performers
   const performingGroups = grouped.filter(g => g.pnlPct != null);
   const best = performingGroups.length > 0
@@ -304,7 +314,7 @@ export default async function PortfolioPage({
   const unpricedCount = grouped.length - pricedGroups.length;
   const monthsActive = Math.max(chartData.length, 1);
   const yearsActive = monthsActive / 12;
-  const projCurrentValue = pricedGroups.length > 0 ? currentValue : totalInvested;
+  const projCurrentValue = portfolioValue ?? totalInvested;
   const projMonthlyContrib = monthsActive >= 2 ? totalInvested / monthsActive : 0;
 
   // ── Freedom Score ─────────────────────────────────────────
@@ -519,10 +529,10 @@ export default async function PortfolioPage({
         {/* ── Hero Section ── */}
         <HeroSection
           firstName={firstName}
-          currentValue={pricedGroups.length > 0 ? currentValue : null}
+          currentValue={portfolioValue}
           totalInvested={totalInvested}
           pnl={pnl}
-          pnlPct={pnlPct}
+          pnlPct={portfolioPnlPct}
           currency={displayCurrency}
           lang={lang}
           assetCount={grouped.length}
@@ -572,11 +582,11 @@ export default async function PortfolioPage({
                 </div>
                 <DonutChart
                   segments={donutSegments}
-                  totalValue={donutDisplayTotal}
+                  totalValue={totalInvested}
                   currency={displayCurrency}
-                  currentValue={pricedGroups.length > 0 ? currentValue : null}
+                  currentValue={portfolioValue}
                   pnl={pnl}
-                  pnlPct={pnlPct}
+                  pnlPct={portfolioPnlPct}
                 />
               </section>
 

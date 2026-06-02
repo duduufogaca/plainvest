@@ -127,7 +127,8 @@ export async function POST(request: Request) {
     const purchaseEmail = session.customer_email || session.metadata?.email;
     const purchaseDate = now.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
     const paymentIntentId = typeof session.payment_intent === 'string' ? session.payment_intent : session.id;
-    const amountTotal = session.amount_total ? `$${(session.amount_total / 100).toFixed(2)}` : '—';
+    const curr = (session.currency || 'aud').toUpperCase();
+    const amountTotal = session.amount_total ? `${curr} $${(session.amount_total / 100).toFixed(2)}` : '—';
 
     if (purchaseEmail) {
       if (plan === 'pro') {
@@ -169,7 +170,7 @@ export async function POST(request: Request) {
             renewName = authData?.user?.user_metadata?.full_name || '';
           }
         } catch { /* non-critical */ }
-        const price = invoice.amount_paid ? `$${(invoice.amount_paid / 100).toFixed(2)}` : '—';
+        const price = invoice.amount_paid ? `${(invoice.currency || 'aud').toUpperCase()} $${(invoice.amount_paid / 100).toFixed(2)}` : '—';
         const nextRenewal = new Date(sub.current_period_end * 1000).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
         sendSubscriptionRenewedEmail(renewEmail, renewName, { price, nextRenewal }).catch(() => {});
       }
@@ -284,7 +285,7 @@ export async function POST(request: Request) {
 
       const refundDate = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
       const amount = charge.amount_refunded
-        ? `$${(charge.amount_refunded / 100).toFixed(2)} ${charge.currency.toUpperCase()}`
+        ? `${charge.currency.toUpperCase()} $${(charge.amount_refunded / 100).toFixed(2)}`
         : '—';
       const product = member?.plan === 'pro' ? 'Plainvest Pro' : 'Plainvest Lifetime';
       const txId = paymentIntentId || charge.id;
