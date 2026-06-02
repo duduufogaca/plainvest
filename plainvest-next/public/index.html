@@ -25447,6 +25447,14 @@
       return APP_PAGES.indexOf(key) >= 0 ? key : 'home';
     }
 
+    // Map a clean URL path (e.g. /simulator) to a public section — used so
+    // crawlers / direct links that land on a path show the right content + SEO.
+    function pageFromPath(pathname) {
+      var key = String(pathname || '').replace(/^\/+/, '').replace(/\/+$/, '');
+      var publicPaths = ['simulator', 'inflation', 'learn', 'story', 'books', 'plans', 'contact'];
+      return publicPaths.indexOf(key) >= 0 ? key : null;
+    }
+
     function refreshActiveNav(page) {
       document.querySelectorAll('nav ul li a[href^="#"]').forEach(function (link) {
         var target = pageFromHash(link.getAttribute('href'));
@@ -26017,18 +26025,18 @@
       },
       simulator: {
         path: '/simulator',
-        title: 'Plainvest Investing Simulator | See What Your Money Could Become',
-        description: 'Test investment amounts, time horizons, inflation, and different money paths in a plain-English investing simulator.'
+        title: 'Plainvest Investment Simulator | See What Your Money Could Become',
+        description: 'Test investment amounts, inflation, and long-term growth. Visualize your financial future and build wealth with confidence.'
       },
       inflation: {
         path: '/inflation',
         title: 'Plainvest Inflation Calculator | Understand Purchasing Power',
-        description: 'See how inflation changes the real value of money over time and compare long-term purchasing power.'
+        description: 'See how inflation impacts your money over time and understand your future purchasing power.'
       },
       learn: {
         path: '/learn',
         title: 'Plainvest Learn | Beginner Investing Education',
-        description: 'Plain-English investing lessons for beginners who want clarity before making decisions.'
+        description: 'Beginner-friendly investing education, practical guides, and financial confidence resources.'
       },
       plans: {
         path: '/plans',
@@ -26146,7 +26154,10 @@
         });
         setLang(_savedLang, _langBtn);
         syncMemberNavState();
-        showPage(pageFromHash(window.location.hash), { updateHash: false, instant: true });
+        var initialPage = (window.location.hash && window.location.hash !== '#')
+          ? pageFromHash(window.location.hash)
+          : (pageFromPath(window.location.pathname) || 'home');
+        showPage(initialPage, { updateHash: false, instant: true });
 
         // Event listeners
         var el;
