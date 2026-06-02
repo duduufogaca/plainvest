@@ -5,8 +5,16 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Plainvest Members',
   description: 'Plainvest member dashboard and premium learning area.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon-32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon-16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/assets/plainvest-app-icon.png' },
+    ],
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
