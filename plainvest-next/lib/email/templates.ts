@@ -417,6 +417,31 @@ export function paymentReceiptEmail(name: string, data: {
   `);
 }
 
+// ─── 7b. Refund processed ─────────────────────────────────────────────────────
+
+export function refundProcessedEmail(name: string, data: {
+  product: string;
+  amount: string;
+  date: string;
+  transactionId: string;
+}): string {
+  const firstName = toFirst(name);
+  return layout('Your Plainvest refund has been processed', `
+    ${lbl('Refund processed', 'refresh')}
+    <h1>Your refund is on its way, ${firstName}.</h1>
+    <span class="sub">We've processed your refund in full.</span>
+    <p>Your refund has been issued back to your original payment method. It typically takes <strong>5–10 business days</strong> to appear, depending on your bank or card provider.</p>
+    <table class="receipt-table">
+      <tr><td>Product</td><td>${data.product}</td></tr>
+      <tr><td>Amount refunded</td><td>${data.amount}</td></tr>
+      <tr><td>Date</td><td>${data.date}</td></tr>
+      <tr><td>Transaction ID</td><td style="font-size:12px;font-family:monospace;">${data.transactionId}</td></tr>
+    </table>
+    <p>Your Plainvest access tied to this purchase has now ended. You're always welcome back — your account stays open and you can re-subscribe anytime.</p>
+    <p class="hint">Questions about your refund? Just reply to this email or contact hello@plainvest.app.</p>
+  `);
+}
+
 // ─── 8. Zoom call confirmation ────────────────────────────────────────────────
 
 export function supportCallConfirmationEmail(name: string, email: string, data?: {
@@ -680,6 +705,28 @@ export function contactConfirmationEmail(name: string): string {
 }
 
 // ─── Admin notification emails ───────────────────────────────────────────────
+
+export function adminRefundEmail(data: {
+  customer: string;
+  email: string;
+  amount: string;
+  transactionId: string;
+  date: string;
+}): string {
+  return layout('Refund processed — Plainvest', `
+    ${lbl('Admin Notification', 'admin', C.muted)}
+    <h1>Refund processed.</h1>
+    <div class="highlight">
+      <p>
+        <strong>Customer:</strong> ${esc(data.customer)}<br />
+        <strong>Email:</strong> ${esc(data.email)}<br />
+        <strong>Amount refunded:</strong> ${esc(data.amount)}<br />
+        <strong>Transaction ID:</strong> <span style="font-family:monospace;font-size:12px;">${esc(data.transactionId)}</span><br />
+        <strong>Date:</strong> ${esc(data.date)}
+      </p>
+    </div>
+  `, true);
+}
 
 export function adminNewUserEmail(data: {
   name: string;

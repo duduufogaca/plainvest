@@ -8,6 +8,8 @@ import {
   proWelcomeEmail,
   premiumWelcomeEmail,
   paymentReceiptEmail,
+  refundProcessedEmail,
+  adminRefundEmail,
   supportCallConfirmationEmail,
   supportCallReminderEmail,
   newGuideEmail,
@@ -71,6 +73,15 @@ export async function sendPaymentReceiptEmail(to: string, name: string, data: {
   transactionId: string;
 }): Promise<void> {
   await send(to, 'Your Plainvest receipt', paymentReceiptEmail(name, data));
+}
+
+export async function sendRefundEmail(to: string, name: string, data: {
+  product: string;
+  amount: string;
+  date: string;
+  transactionId: string;
+}): Promise<void> {
+  await send(to, 'Your Plainvest refund has been processed', refundProcessedEmail(name, data));
 }
 
 export async function sendSupportCallConfirmationEmail(to: string, name: string, data?: {
@@ -190,6 +201,16 @@ export async function sendAdminNewZoomBooking(data: {
   time?: string;
 }): Promise<void> {
   await send(ADMIN_EMAIL, `New Zoom booking: ${data.customer}`, adminNewZoomBookingEmail(data));
+}
+
+export async function sendAdminRefund(data: {
+  customer: string;
+  email: string;
+  amount: string;
+  transactionId: string;
+  date: string;
+}): Promise<void> {
+  await send(ADMIN_EMAIL, `Refund processed: ${data.customer}`, adminRefundEmail(data));
 }
 
 export async function sendContactNotification(data: {

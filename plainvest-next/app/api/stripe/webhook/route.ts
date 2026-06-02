@@ -9,9 +9,11 @@ import {
   sendSubscriptionRenewedEmail,
   sendSubscriptionCancelledEmail,
   sendPaymentFailedEmail,
+  sendRefundEmail,
   sendAdminNewProPurchase,
   sendAdminNewLifetimePurchase,
   sendAdminNewZoomBooking,
+  sendAdminRefund,
 } from '@/lib/email/service';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
@@ -245,6 +247,57 @@ export async function POST(request: Request) {
       } catch { /* non-critical */ }
       sendSubscriptionCancelledEmail(cancelEmail, cancelName).catch(() => {});
     }
+  }
+
+  // ── charge.refunded — refund issued, revoke access + notify ────────────────
+  if (event.type === 'charge.refunded') {
+    const charge = event.data.object as Stripe.Charge;
+    const paymentIntentId = typeof charge.payment_intent === 'string' ? charge.payment_intent : null;
+    const customerId = typeof charge.customer === 'string' ? charge.customer : null;
+
+    // Locate the member: prefer payment intent, fall back to customer ID
+    let query = supabaseAdmin.from('member_access').select('email, user_id, plan');
+    query = paymentIntentId
+      ? query.eq('stripe_payment_intent_id', paymentIntentId)
+      : query.eq('stripe_customer_id', customerId ?? '__none__');
+
+    const { data: rows } = await query;
+    const member = rows?.[0];
+
+    // Revoke access
+    if (member) {
+      await supabaseAdmin
+        .from('member_access')
+        .update({ premium_status: 'refunded', updated_at: new Date().toISOString() })
+        .eq('user_id', member.user_id);
+    }
+
+    const refundEmail = member?.email || charge.billing_details?.email || charge.receipt_email;
+    if (refundEmail) {
+      let refundName = '';
+      try {
+        if (member?.user_id) {
+          const { data: authData } = await supabaseAdmin.auth.admin.getUserById(member.user_id);
+          refundName = authData?.user?.user_metadata?.full_name || '';
+        }
+      } catch { /* non-critical */ }
+
+      const refundDate = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+      const amount = charge.amount_refunded
+        ? `$${(charge.amount_refunded / 100).toFixed(2)} ${charge.currency.toUpperCase()}`
+        : '—';
+      const product = member?.plan === 'pro' ? 'Plainvest Pro' : 'Plainvest Lifetime';
+      const txId = paymentIntentId || charge.id;
+
+      sendRefundEmail(refundEmail, refundName, { product, amount, date: refundDate, transactionId: txId }).catch(() => {});
+      sendAdminRefund({ customer: refundName || refundEmail, email: refundEmail, amount, transactionId: txId, date: refundDate }).catch(() => {});
+    }
+
+    const posthogRefund = getPostHogClient();
+    if (member?.user_id) {
+      posthogRefund.capture({ distinctId: member.user_id, event: 'refund_processed', properties: { plan: member.plan } });
+    }
+    await posthogRefund.shutdown();
   }
 
   return NextResponse.json({ received: true });
