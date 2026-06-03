@@ -16372,7 +16372,7 @@
 
     .cyj-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
     }
 
@@ -18015,9 +18015,9 @@
         <div class="res-main">
           <!-- ── One human sentence at the top ── -->
           <div class="result-hero-msg" id="result-hero-msg">
-            <div class="rhm-eyebrow">Your projection</div>
-            <div class="rhm-statement" id="rhm-statement">Your <strong id="rhm-in">$24,000</strong> could become <strong id="rhm-out">$82,604</strong> in <strong id="rhm-yrs">10 years</strong>.</div>
-            <div class="rhm-sub" id="rhm-sub">That's <strong id="rhm-earned">$58,604</strong> added by compounding — money working while you sleep.</div>
+            <div class="rhm-eyebrow" data-i18n="sim.rhmEyebrow">Your projection</div>
+            <div class="rhm-statement" data-i18n="sim.rhmEmotional">Your future self is built by the small steps you take today.</div>
+            <div class="rhm-sub" data-i18n="sim.rhmEmotionalSub">This is your money quietly working for you — even while you sleep.</div>
             <div class="rhm-disclaimer" data-i18n="sim.eduDisclaimer">Educational projection based on historical assumptions. Not a prediction or financial advice.</div>
           </div>
           <div class="rm-top">
@@ -18202,28 +18202,12 @@
           <p class="cyj-sub" data-i18n="sim.cyjSub">Discover the tools and lessons that help explain what shapes your financial future.</p>
         </div>
 
-        <a class="cyj-reco" href="#learn" onclick="showPage('learn');return false;">
-          <span class="cyj-reco-icon" aria-hidden="true">🧭</span>
-          <div class="cyj-reco-body">
-            <div class="cyj-reco-kicker" data-i18n="sim.cyjRecoKicker">Recommended next step</div>
-            <div class="cyj-reco-title" data-i18n="sim.cyjRecoTitle">New to investing?</div>
-            <div class="cyj-reco-text" data-i18n="sim.cyjRecoText">Start with the Learn section to understand the foundations before exploring more advanced concepts.</div>
-          </div>
-          <span class="cyj-reco-cta" data-i18n="sim.cyjStartLearning">Start Learning →</span>
-        </a>
-
         <div class="cyj-grid">
           <a class="cyj-card" href="#inflation" onclick="showPage('inflation');return false;">
             <span class="cyj-card-icon" aria-hidden="true">📈</span>
             <div class="cyj-card-title" data-i18n="sim.cyjC1T">Inflation</div>
             <p class="cyj-card-text" data-i18n="sim.cyjC1B">Understand how inflation affects purchasing power and why growth matters over time.</p>
             <span class="cyj-card-cta" data-i18n="sim.cyjC1Btn">Explore Inflation →</span>
-          </a>
-          <a class="cyj-card" href="#learn" onclick="showPage('learn');return false;">
-            <span class="cyj-card-icon" aria-hidden="true">📚</span>
-            <div class="cyj-card-title" data-i18n="sim.cyjC2T">Learn</div>
-            <p class="cyj-card-text" data-i18n="sim.cyjC2B">Beginner-friendly lessons designed to help you understand investing, wealth building, and long-term thinking.</p>
-            <span class="cyj-card-cta" data-i18n="sim.cyjC2Btn">Start Learning →</span>
           </a>
           <a class="cyj-card" href="#plans" onclick="showPage('plans');return false;">
             <span class="cyj-card-icon" aria-hidden="true">⭐</span>
@@ -18247,7 +18231,6 @@
           </div>
           <div class="sfc-actions">
             <button class="sfc-btn-primary" onclick="showPage('learn')" data-i18n="sim.cyjStartLearning">Start Learning →</button>
-            <button class="sfc-btn-secondary" onclick="showPage('plans')" data-i18n="sim.sfcPlans">View Plans →</button>
           </div>
         </div>
       </div>
@@ -21061,6 +21044,9 @@
           nudgeText: 'Premium includes a 60-minute Zoom call so you can ask questions about platforms, DCA, ETFs, Bitcoin safety, or what to learn next.',
           nudgeBtn: 'Use Premium support →',
           eduDisclaimer: 'Educational projection based on historical assumptions. Not a prediction or financial advice.',
+          rhmEyebrow: 'Your projection',
+          rhmEmotional: 'Your future self is built by the small steps you take today.',
+          rhmEmotionalSub: 'This is your money quietly working for you — even while you sleep.',
           cyjEyebrow: 'Continue your journey',
           cyjTitle: 'You\'ve explored one possible outcome.',
           cyjSub: 'Discover the tools and lessons that help explain what shapes your financial future.',
@@ -21951,6 +21937,9 @@
           nudgeText: 'O Premium inclui uma chamada de 60 minutos no Zoom para tirar dúvidas sobre plataformas, DCA, ETFs, segurança em Bitcoin ou o que estudar depois.',
           nudgeBtn: 'Usar suporte Premium →',
           eduDisclaimer: 'Projeção educacional baseada em premissas históricas. Não é uma previsão nem aconselhamento financeiro.',
+          rhmEyebrow: 'Sua projeção',
+          rhmEmotional: 'O seu eu do futuro é construído pelos pequenos passos que você dá hoje.',
+          rhmEmotionalSub: 'É o seu dinheiro trabalhando por você — silenciosamente, até enquanto você dorme.',
           cyjEyebrow: 'Continue sua jornada',
           cyjTitle: 'Você explorou um resultado possível.',
           cyjSub: 'Descubra as ferramentas e lições que ajudam a explicar o que molda o seu futuro financeiro.',
