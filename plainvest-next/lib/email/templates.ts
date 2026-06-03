@@ -146,11 +146,10 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
           <td align="center" bgcolor="${C.bg}"
             style="background-color:${C.bg};padding-bottom:20px;text-align:center;">
             <a href="https://plainvest.app"
-              style="display:inline-block;text-decoration:none;border:0;color:${C.accent};white-space:nowrap;">
-              <img src="https://members.plainvest.app/assets/plainvest-app-icon.png"
-                alt="Plainvest" width="40" height="40"
-                style="display:inline-block;vertical-align:middle;width:40px;height:40px;border:0;border-radius:9px;" />
-              <span style="display:inline-block;vertical-align:middle;font-size:22px;font-weight:800;letter-spacing:.04em;color:${C.accent};margin-left:10px;">Plainvest</span>
+              style="display:inline-block;text-decoration:none;border:0;">
+              <img src="https://members.plainvest.app/assets/plainvest_horizontal_lockup.png"
+                alt="Plainvest" width="210"
+                style="display:block;width:210px;height:auto;border:0;max-width:210px;border-radius:8px;" />
             </a>
             ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${C.footSlogan};margin-top:8px;">Future clarity. Smarter decisions.</div>` : ''}
           </td>
