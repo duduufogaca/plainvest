@@ -147,7 +147,7 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
             style="background-color:${C.bg};padding-bottom:20px;text-align:center;">
             <a href="https://plainvest.app"
               style="display:inline-block;text-decoration:none;border:0;">
-              <img src="https://members.plainvest.app/assets/plainvest_horizontal_lockup.png"
+              <img src="https://members.plainvest.app/assets/plainvest-email-logo.png"
                 alt="Plainvest" width="210"
                 style="display:block;width:210px;height:auto;border:0;max-width:210px;border-radius:8px;" />
             </a>

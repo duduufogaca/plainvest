@@ -83,8 +83,10 @@ export async function POST(request: Request) {
 
       const scEmail = session.customer_email || session.metadata?.email;
       if (scEmail) {
-        sendSupportCallConfirmationEmail(scEmail, memberName).catch(() => {});
-        sendAdminNewZoomBooking({ customer: memberName || scEmail, email: scEmail }).catch(() => {});
+        await Promise.allSettled([
+          sendSupportCallConfirmationEmail(scEmail, memberName),
+          sendAdminNewZoomBooking({ customer: memberName || scEmail, email: scEmail }),
+        ]);
       }
 
       return NextResponse.json({ received: true });
@@ -131,15 +133,18 @@ export async function POST(request: Request) {
     const amountTotal = session.amount_total ? `${curr} $${(session.amount_total / 100).toFixed(2)}` : '—';
 
     if (purchaseEmail) {
-      if (plan === 'pro') {
-        sendProWelcomeEmail(purchaseEmail, memberName).catch(() => {});
-        sendPaymentReceiptEmail(purchaseEmail, memberName, { product: 'Plainvest Pro', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
-        sendAdminNewProPurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
-      } else {
-        sendPremiumWelcomeEmail(purchaseEmail, memberName).catch(() => {});
-        sendPaymentReceiptEmail(purchaseEmail, memberName, { product: 'Plainvest Lifetime', price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }).catch(() => {});
-        sendAdminNewLifetimePurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }).catch(() => {});
-      }
+      // Await all sends — on serverless the function freezes after the
+      // response returns, which would kill any fire-and-forget emails.
+      const product = plan === 'pro' ? 'Plainvest Pro' : 'Plainvest Lifetime';
+      await Promise.allSettled([
+        plan === 'pro'
+          ? sendProWelcomeEmail(purchaseEmail, memberName)
+          : sendPremiumWelcomeEmail(purchaseEmail, memberName),
+        sendPaymentReceiptEmail(purchaseEmail, memberName, { product, price: amountTotal, date: purchaseDate, transactionId: paymentIntentId }),
+        plan === 'pro'
+          ? sendAdminNewProPurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate })
+          : sendAdminNewLifetimePurchase({ customer: memberName || purchaseEmail, amount: amountTotal, transactionId: paymentIntentId, date: purchaseDate }),
+      ]);
     }
   }
 
@@ -172,7 +177,7 @@ export async function POST(request: Request) {
         } catch { /* non-critical */ }
         const price = invoice.amount_paid ? `${(invoice.currency || 'aud').toUpperCase()} $${(invoice.amount_paid / 100).toFixed(2)}` : '—';
         const nextRenewal = new Date(sub.current_period_end * 1000).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-        sendSubscriptionRenewedEmail(renewEmail, renewName, { price, nextRenewal }).catch(() => {});
+        await sendSubscriptionRenewedEmail(renewEmail, renewName, { price, nextRenewal }).catch(() => {});
       }
     }
   }
@@ -201,7 +206,7 @@ export async function POST(request: Request) {
             failName = authData?.user?.user_metadata?.full_name || '';
           }
         } catch { /* non-critical */ }
-        sendPaymentFailedEmail(failEmail, failName).catch(() => {});
+        await sendPaymentFailedEmail(failEmail, failName).catch(() => {});
       }
     }
   }
@@ -246,7 +251,7 @@ export async function POST(request: Request) {
           cancelName = authData?.user?.user_metadata?.full_name || '';
         }
       } catch { /* non-critical */ }
-      sendSubscriptionCancelledEmail(cancelEmail, cancelName).catch(() => {});
+      await sendSubscriptionCancelledEmail(cancelEmail, cancelName).catch(() => {});
     }
   }
 
@@ -290,8 +295,10 @@ export async function POST(request: Request) {
       const product = member?.plan === 'pro' ? 'Plainvest Pro' : 'Plainvest Lifetime';
       const txId = paymentIntentId || charge.id;
 
-      sendRefundEmail(refundEmail, refundName, { product, amount, date: refundDate, transactionId: txId }).catch(() => {});
-      sendAdminRefund({ customer: refundName || refundEmail, email: refundEmail, amount, transactionId: txId, date: refundDate }).catch(() => {});
+      await Promise.allSettled([
+        sendRefundEmail(refundEmail, refundName, { product, amount, date: refundDate, transactionId: txId }),
+        sendAdminRefund({ customer: refundName || refundEmail, email: refundEmail, amount, transactionId: txId, date: refundDate }),
+      ]);
     }
 
     const posthogRefund = getPostHogClient();
