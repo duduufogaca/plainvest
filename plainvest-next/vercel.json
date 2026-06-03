@@ -3,6 +3,10 @@
     {
       "path": "/api/newsletter-drip",
       "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cleanup-unconfirmed",
+      "schedule": "0 3 * * *"
     }
   ]
 }
