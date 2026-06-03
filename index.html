@@ -345,7 +345,7 @@
     }
 
     .nav-logo {
-      height: 88px;
+      height: 94px;
       width: auto;
       max-width: 440px;
       display: block;
@@ -353,9 +353,9 @@
     }
 
     .footer-logo-img {
-      height: 64px;
+      height: 72px;
       width: auto;
-      max-width: 300px;
+      max-width: 340px;
       display: block;
     }
 
@@ -2553,6 +2553,28 @@
 
     .rm-stat-val-teal {
       color: var(--teal);
+    }
+
+    /* ── Section 2: Where did the growth come from? ── */
+    .rm-growth-source {
+      margin-top: 1.1rem;
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .005));
+    }
+
+    .rgs-eyebrow {
+      font-size: .64rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: .95rem 1.4rem .15rem;
+    }
+
+    .rm-growth-source .rm-stats {
+      border-bottom: none;
     }
 
     .rm-stats {
@@ -12691,6 +12713,24 @@
       border-top: 1px solid var(--border-dark);
     }
 
+    .inf-cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .inf-cta-actions .btn-primary,
+    .inf-cta-actions .btn-ghost {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .inf-cta-plans-btn {
+      border-color: rgba(0, 212, 170, .5);
+    }
+
     .inf-cta-row p {
       flex: 2;
       font-size: .87rem;
@@ -15185,8 +15225,8 @@
       }
 
       .nav-logo {
-        height: 68px !important;
-        max-width: 320px !important;
+        height: auto !important;
+        max-width: 46vw !important;
       }
 
       .lang-btn {
@@ -16357,6 +16397,270 @@
       margin-top: .85rem;
     }
 
+    /* ── Result hero disclaimer ── */
+    .rhm-disclaimer {
+      margin-top: .7rem;
+      font-size: .7rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, .42);
+      font-style: italic;
+    }
+
+    /* ── Continue Your Journey ── */
+    .cyj-wrap {
+      grid-column: 1 / -1;
+      width: 100%;
+      max-width: 1320px;
+      margin: 2.6rem auto 0;
+    }
+
+    .cyj-head {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .cyj-eyebrow {
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .55rem;
+    }
+
+    .cyj-title {
+      font-size: clamp(1.4rem, 2.6vw, 1.95rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 .5rem;
+      line-height: 1.22;
+    }
+
+    .cyj-sub {
+      font-size: .92rem;
+      color: #8ea7c1;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .cyj-reco {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1.1rem;
+      border-radius: 18px;
+      text-decoration: none;
+      border: 1px solid rgba(0, 212, 170, .42);
+      background:
+        linear-gradient(135deg, rgba(0, 212, 170, .14), rgba(0, 212, 170, .04)),
+        rgba(8, 17, 31, .6);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .22);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .cyj-reco:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 212, 170, .7);
+    }
+
+    .cyj-reco-icon {
+      font-size: 1.9rem;
+      flex-shrink: 0;
+    }
+
+    .cyj-reco-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cyj-reco-kicker {
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .25rem;
+    }
+
+    .cyj-reco-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .2rem;
+    }
+
+    .cyj-reco-text {
+      font-size: .82rem;
+      color: #8ea7c1;
+      line-height: 1.5;
+    }
+
+    .cyj-reco-cta {
+      flex-shrink: 0;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+
+    .cyj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .cyj-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.3rem 1.2rem;
+      border-radius: 16px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .015));
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .cyj-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 212, 170, .4);
+    }
+
+    .cyj-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: .6rem;
+    }
+
+    .cyj-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .4rem;
+    }
+
+    .cyj-card-text {
+      font-size: .8rem;
+      color: #8ea7c1;
+      line-height: 1.55;
+      flex: 1;
+      margin: 0 0 .9rem;
+    }
+
+    .cyj-card-cta {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    /* ── Final CTA banner ── */
+    .sim-final-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 1.6rem;
+      padding: 1.6rem 1.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 212, 170, .3);
+      background:
+        radial-gradient(ellipse 60% 120% at 100% 0%, rgba(0, 212, 170, .16), transparent 60%),
+        linear-gradient(135deg, rgba(8, 22, 34, .92), rgba(8, 17, 31, .82));
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .28);
+    }
+
+    .sfc-text {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .sfc-text h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 .35rem;
+    }
+
+    .sfc-text p {
+      font-size: .88rem;
+      color: #a9bdd0;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .sfc-actions {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    .sfc-btn-primary,
+    .sfc-btn-secondary {
+      font-size: .88rem;
+      font-weight: 700;
+      padding: .8rem 1.3rem;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .sfc-btn-primary {
+      background: linear-gradient(140deg, #00d4aa, #00b894);
+      color: #04131f;
+      border: none;
+    }
+
+    .sfc-btn-primary:hover {
+      filter: brightness(1.06);
+    }
+
+    .sfc-btn-secondary {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid rgba(0, 212, 170, .5);
+    }
+
+    .sfc-btn-secondary:hover {
+      background: rgba(0, 212, 170, .1);
+    }
+
+    @media (max-width: 900px) {
+      .cyj-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cyj-reco {
+        flex-wrap: wrap;
+      }
+
+      .cyj-reco-cta {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cyj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sim-final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .sfc-actions {
+        width: 100%;
+      }
+
+      .sfc-btn-primary,
+      .sfc-btn-secondary {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
     .sc-delta {
       font-size: .68rem;
       font-weight: 800;
@@ -16418,11 +16722,15 @@
 
     /* ── Cost of waiting — emotional block ── */
     .cow-block {
-      margin: .9rem 0 0;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(240, 180, 41, .09) 0%, rgba(240, 120, 41, .06) 100%);
-      border: 1px solid rgba(240, 180, 41, .24);
-      padding: 1.3rem 1.5rem;
+      margin: 1.5rem 0 0;
+      border-radius: 20px;
+      background:
+        radial-gradient(ellipse 80% 110% at 50% 0%, rgba(240, 180, 41, .18), transparent 70%),
+        linear-gradient(135deg, rgba(240, 180, 41, .12) 0%, rgba(240, 120, 41, .07) 100%);
+      border: 1px solid rgba(240, 180, 41, .4);
+      border-top: 3px solid #f0b429;
+      box-shadow: 0 16px 42px rgba(240, 150, 30, .16), inset 0 1px 0 rgba(255, 255, 255, .04);
+      padding: 2rem 1.6rem;
       text-align: center;
       display: none;
     }
@@ -16432,22 +16740,22 @@
     }
 
     .cow-eyebrow {
-      font-size: .6rem;
+      font-size: .66rem;
       font-weight: 800;
-      letter-spacing: .12em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: #e8b84b;
-      opacity: .8;
-      margin-bottom: .5rem;
+      color: #f0b429;
+      margin-bottom: .6rem;
     }
 
     .cow-loss {
       font-family: 'Lora', serif;
-      font-size: 2.2rem;
+      font-size: 2.9rem;
       font-weight: 700;
       color: #f0b429;
       line-height: 1;
-      margin-bottom: .3rem;
+      margin-bottom: .35rem;
+      text-shadow: 0 0 30px rgba(240, 180, 41, .3);
     }
 
     .cow-sub {
@@ -17551,7 +17859,7 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="#home">
-      <img src="assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" class="nav-logo">
+      <img src="assets/plainvest-logo-clean.png" alt="Plainvest" class="nav-logo">
     </a>
     <ul>
       <li data-mob-icon="🏠" data-mob-desc="Back to the start"><a href="#home"><span data-i18n="nav.home">Home</span></a></li>
@@ -17792,29 +18100,6 @@
         </div>
 
         <div class="sim-side-info">
-          <!-- ── WHAT THIS RESULT MEANS ── -->
-          <div class="future-insights ssi-insights" id="futureInsights">
-            <div class="fi-eyebrow">What this result means</div>
-            <div class="fi-items" id="fiItems">
-              <div class="fi-item fi-item--teal">
-                <span class="fi-icon">⏳</span>
-                <p>Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."</p>
-              </div>
-              <div class="fi-item fi-item--gold">
-                <span class="fi-icon">📈</span>
-                <p>Most portfolio growth happens in the later years. The first years are planting the seed — the last years are the harvest.</p>
-              </div>
-              <div class="fi-item fi-item--blue">
-                <span class="fi-icon">🛡️</span>
-                <p>Inflation may quietly reduce the purchasing power of what you see here. Investing is how you protect your future self.</p>
-              </div>
-              <div class="fi-item fi-item--teal">
-                <span class="fi-icon">🌱</span>
-                <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
-              </div>
-            </div>
-          </div>
-
           <!-- ── REAL-LIFE CONTEXT ── -->
           <div class="rlc-block ssi-rlc" id="rlc-block" style="display:none">
             <div class="rlc-eyebrow" id="rlc-eyebrow">In real-life terms, your projection could represent</div>
@@ -17900,9 +18185,10 @@
         <div class="res-main">
           <!-- ── One human sentence at the top ── -->
           <div class="result-hero-msg" id="result-hero-msg">
-            <div class="rhm-eyebrow">Your projection</div>
-            <div class="rhm-statement" id="rhm-statement">Your <strong id="rhm-in">$24,000</strong> could become <strong id="rhm-out">$82,604</strong> in <strong id="rhm-yrs">10 years</strong>.</div>
-            <div class="rhm-sub" id="rhm-sub">That's <strong id="rhm-earned">$58,604</strong> added by compounding — money working while you sleep.</div>
+            <div class="rhm-eyebrow" data-i18n="sim.rhmEyebrow">Your projection</div>
+            <div class="rhm-statement" data-i18n="sim.rhmEmotional">Your future self is built by the small steps you take today.</div>
+            <div class="rhm-sub" data-i18n="sim.rhmEmotionalSub">This is your money quietly working for you — even while you sleep.</div>
+            <div class="rhm-disclaimer" data-i18n="sim.eduDisclaimer">Educational projection based on historical assumptions. Not a prediction or financial advice.</div>
           </div>
           <div class="rm-top">
             <div>
@@ -17914,37 +18200,28 @@
               <div class="rm-growth" id="rGrowth">+$58,604 in growth</div>
             </div>
           </div>
-          <div class="rm-compare">
-            <div class="rm-compare-block rm-compare-invested">
-              <div class="rm-compare-lbl" id="lblContrib" data-i18n="sim.rContrib">You put in</div>
-              <div class="rm-compare-val" id="rIn">$24,000</div>
-              <div class="rm-compare-sub" id="lblContribSub" data-i18n="sim.rContribSub">total contributed</div>
-            </div>
-            <div class="rm-compare-arrow">→</div>
-            <div class="rm-compare-block rm-compare-result">
-              <div class="rm-compare-lbl" id="lblResult" data-i18n="sim.rResult">What your money could become</div>
-              <div class="rm-compare-val rm-compare-val-teal" id="rValCopy">$82,604</div>
-              <div class="rm-compare-sub rm-compare-sub-gold" id="rEarned">+$58,604 growth</div>
+          <!-- ── Section 2: Where did the growth come from? ── -->
+          <div class="rm-growth-source">
+            <div class="rgs-eyebrow" data-i18n="sim.growthSourceEyebrow">Where did the growth come from?</div>
+            <div class="rm-stats">
+              <div class="rm-stat">
+                <div class="rm-stat-val" id="rContribStat">$25,000</div>
+                <div class="rm-stat-lbl" data-i18n="sim.statContributed">Total contributed</div>
+              </div>
+              <div class="rm-stat">
+                <div class="rm-stat-val rm-stat-val-teal" id="rEarnedStat" style="color:var(--teal)">$13,809</div>
+                <div class="rm-stat-lbl" data-i18n="sim.rGrowth">Market growth added</div>
+              </div>
+              <div class="rm-stat">
+                <div class="rm-stat-val" id="rMult">1.6×</div>
+                <div class="rm-stat-lbl" data-i18n="sim.statMultiplier">Growth multiplier</div>
+              </div>
             </div>
           </div>
 
-          <!-- ── What this money could mean for your life ── -->
+          <!-- ── Section 3: What this money could mean for your life ── -->
           <div class="life-meaning-block" id="life-meaning-block"></div>
 
-          <div class="rm-stats">
-            <div class="rm-stat">
-              <div class="rm-stat-val" id="rMult">3.4×</div>
-              <div class="rm-stat-lbl" id="lblMult" data-i18n="sim.rMult">How much your money grows</div>
-            </div>
-            <div class="rm-stat">
-              <div class="rm-stat-val rm-stat-val-teal" id="rEarnedStat" style="color:var(--teal)">$58,604</div>
-              <div class="rm-stat-lbl" id="lblGrowth" data-i18n="sim.rGrowth">Market growth added</div>
-            </div>
-            <div class="rm-stat">
-              <div class="rm-stat-val" id="rMultPct">238%</div>
-              <div class="rm-stat-lbl" id="lblMultPct" data-i18n="sim.rReturn">total return</div>
-            </div>
-          </div>
           <!-- ── Monthly income + buying power ── -->
           <div class="rm-meaning" id="rmMeaning">
             <div class="rm-meaning-item">
@@ -18074,6 +18351,47 @@
               <!-- populated by JS -->
             </div>
             <p class="sc-note">Projections are illustrative only and use the same return rate and time horizon as your current selection.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ Continue Your Journey — gateway into the rest of Plainvest ══ -->
+      <div class="cyj-wrap">
+        <div class="cyj-head">
+          <div class="cyj-eyebrow" data-i18n="sim.cyjEyebrow">Continue your journey</div>
+          <h3 class="cyj-title" data-i18n="sim.cyjTitle">A projection is only the beginning.</h3>
+          <p class="cyj-sub" data-i18n="sim.cyjSub">Explore the ideas behind the numbers — inflation, strategy, and the choices that shape your future.</p>
+        </div>
+
+        <div class="cyj-grid">
+          <a class="cyj-card" href="#inflation" onclick="showPage('inflation');return false;">
+            <span class="cyj-card-icon" aria-hidden="true">📈</span>
+            <div class="cyj-card-title" data-i18n="sim.cyjC1T">Inflation</div>
+            <p class="cyj-card-text" data-i18n="sim.cyjC1B">Understand how inflation affects purchasing power and why growth matters over time.</p>
+            <span class="cyj-card-cta" data-i18n="sim.cyjC1Btn">Explore Inflation →</span>
+          </a>
+          <a class="cyj-card" href="#plans" onclick="showPage('plans');return false;">
+            <span class="cyj-card-icon" aria-hidden="true">⭐</span>
+            <div class="cyj-card-title" data-i18n="sim.cyjC3T">Membership Plans</div>
+            <p class="cyj-card-text" data-i18n="sim.cyjC3B">Unlock premium guides, advanced tracking tools, future planning resources, and the full Plainvest experience.</p>
+            <span class="cyj-card-cta" data-i18n="sim.cyjC3Btn">View Plans →</span>
+          </a>
+          <a class="cyj-card" href="#contact" onclick="showPage('contact');return false;">
+            <span class="cyj-card-icon" aria-hidden="true">💬</span>
+            <div class="cyj-card-title" data-i18n="sim.cyjC4T">Contact</div>
+            <p class="cyj-card-text" data-i18n="sim.cyjC4B">Have questions, feedback, or suggestions? We'd love to hear from you.</p>
+            <span class="cyj-card-cta" data-i18n="sim.cyjC4Btn">Contact Us →</span>
+          </a>
+        </div>
+
+        <!-- Final CTA banner -->
+        <div class="sim-final-cta">
+          <div class="sfc-text">
+            <h3 data-i18n="sim.sfcTitle">Understanding is your real advantage.</h3>
+            <p data-i18n="sim.sfcText">The more you learn, the more confident every financial decision becomes.</p>
+          </div>
+          <div class="sfc-actions">
+            <button class="sfc-btn-primary" onclick="showPage('learn')" data-i18n="sim.cyjStartLearning">Start Learning →</button>
           </div>
         </div>
       </div>
@@ -18503,7 +18821,10 @@
 
       <div class="inf-cta-row">
         <p id="inf-cta-p" data-i18n="inflation.ctaP">The best protection against inflation is growth. Even a simple index fund has historically returned far more than inflation over the long term.</p>
-        <a href="#simulator" class="btn-primary" id="inf-cta-btn" data-i18n="inflation.ctaBtn">Run your own projection →</a>
+        <div class="inf-cta-actions">
+          <a href="#simulator" class="btn-primary" id="inf-cta-btn" data-i18n="inflation.ctaBtn">Run your own projection →</a>
+          <a href="#plans" class="btn-ghost inf-cta-plans-btn" id="inf-cta-plans" onclick="showPage('plans');return false;" data-i18n="inflation.ctaPlans">Track your money &amp; stay ahead of inflation →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -20708,7 +21029,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="foot-logo"><img src="assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" class="footer-logo-img"></div>
+        <div class="foot-logo"><img src="assets/plainvest-logo-clean.png" alt="Plainvest" class="footer-logo-img"></div>
         <p data-i18n="footer.tagline">Helping everyday people understand the power of investing — one simulation at a time.</p>
         <p class="foot-disc" data-i18n="footer.disc">Plainvest is an educational tool, not a financial advisor. All projections are estimates based on historical average returns and are not guaranteed. Please consult a qualified financial professional before making investment decisions.</p>
       </div>
@@ -20881,6 +21202,7 @@
           calcBtn: 'Calculate my projection →',
           rContrib: 'You put in', rGrowth: 'Market growth added', rMult: 'How much your money grows',
           rContribSub: 'total contributed', rResult: 'What your money could become', rReturn: 'total return',
+          growthSourceEyebrow: 'Where did the growth come from?', statContributed: 'Total contributed', statMultiplier: 'Growth multiplier',
           hSavingsLabel: '📌 A savings account would give you only',
           cmpTitle: 'Compare every money path',
           eduTitle: 'Want to understand the full picture?',
@@ -20894,7 +21216,25 @@
           methodP3: 'Taxes, fees, timing, inflation, exchange rates, and personal circumstances can change real-life outcomes.',
           nudgeTitle: 'Want help turning this result into a first real step?',
           nudgeText: 'Premium includes a 60-minute Zoom call so you can ask questions about platforms, DCA, ETFs, Bitcoin safety, or what to learn next.',
-          nudgeBtn: 'Use Premium support →'
+          nudgeBtn: 'Use Premium support →',
+          eduDisclaimer: 'Educational projection based on historical assumptions. Not a prediction or financial advice.',
+          rhmEyebrow: 'Your projection',
+          rhmEmotional: 'Your future self is built by the small steps you take today.',
+          rhmEmotionalSub: 'This is your money quietly working for you — even while you sleep.',
+          cyjEyebrow: 'Continue your journey',
+          cyjTitle: 'A projection is only the beginning.',
+          cyjSub: 'Explore the ideas behind the numbers — inflation, strategy, and the choices that shape your future.',
+          cyjRecoKicker: 'Recommended next step',
+          cyjRecoTitle: 'New to investing?',
+          cyjRecoText: 'Start with the Learn section to understand the foundations before exploring more advanced concepts.',
+          cyjStartLearning: 'Start Learning →',
+          cyjC1T: 'Inflation', cyjC1B: 'Understand how inflation affects purchasing power and why growth matters over time.', cyjC1Btn: 'Explore Inflation →',
+          cyjC2T: 'Learn', cyjC2B: 'Beginner-friendly lessons designed to help you understand investing, wealth building, and long-term thinking.', cyjC2Btn: 'Start Learning →',
+          cyjC3T: 'Membership Plans', cyjC3B: 'Unlock premium guides, advanced tracking tools, future planning resources, and the full Plainvest experience.', cyjC3Btn: 'View Plans →',
+          cyjC4T: 'Contact', cyjC4B: 'Have questions, feedback, or suggestions? We\'d love to hear from you.', cyjC4Btn: 'Contact Us →',
+          sfcTitle: 'Understanding is your real advantage.',
+          sfcText: 'The more you learn, the more confident every financial decision becomes.',
+          sfcPlans: 'View Plans →'
         },
         inflation: {
           eyebrow: 'The hidden risk',
@@ -20912,6 +21252,7 @@
           currencySub: 'A simple visual inspired by purchasing-power charts: each line shows how much of one original currency unit may remain after inflation over time.',
           ctaP: 'Inflation is the benchmark your money needs to beat. A simple diversified investment has historically grown much faster than cash over long periods.',
           ctaBtn: 'Run your own projection →',
+          ctaPlans: 'Track your money & stay ahead of inflation →',
           assumptionNote: 'Plainvest uses adjustable average inflation assumptions for education. Official inflation is usually updated monthly or quarterly, not live every second, so you can change the percentage to test different scenarios.'
         },
         learn: {
@@ -21765,6 +22106,7 @@
           calcBtn: 'Calcular minha projeção →',
           rContrib: 'Você investiu', rGrowth: 'Crescimento gerado', rMult: 'Quanto seu dinheiro cresce',
           rContribSub: 'total investido', rResult: 'O que seu dinheiro pode se tornar', rReturn: 'retorno total',
+          growthSourceEyebrow: 'De onde veio o crescimento?', statContributed: 'Total aportado', statMultiplier: 'Multiplicador de crescimento',
           hSavingsLabel: '📌 Uma poupança te daria apenas',
           cmpTitle: 'Compare todos os caminhos',
           eduTitle: 'Quer entender o cenário completo?',
@@ -21778,7 +22120,25 @@
           methodP3: 'Impostos, taxas, momento de compra, inflação, câmbio e circunstâncias pessoais podem mudar os resultados reais.',
           nudgeTitle: 'Quer ajuda para transformar este resultado em um primeiro passo real?',
           nudgeText: 'O Premium inclui uma chamada de 60 minutos no Zoom para tirar dúvidas sobre plataformas, DCA, ETFs, segurança em Bitcoin ou o que estudar depois.',
-          nudgeBtn: 'Usar suporte Premium →'
+          nudgeBtn: 'Usar suporte Premium →',
+          eduDisclaimer: 'Projeção educacional baseada em premissas históricas. Não é uma previsão nem aconselhamento financeiro.',
+          rhmEyebrow: 'Sua projeção',
+          rhmEmotional: 'O seu eu do futuro é construído pelos pequenos passos que você dá hoje.',
+          rhmEmotionalSub: 'É o seu dinheiro trabalhando por você — silenciosamente, até enquanto você dorme.',
+          cyjEyebrow: 'Continue sua jornada',
+          cyjTitle: 'Uma projeção é apenas o começo.',
+          cyjSub: 'Explore as ideias por trás dos números — inflação, estratégia e as escolhas que moldam o seu futuro.',
+          cyjRecoKicker: 'Próximo passo recomendado',
+          cyjRecoTitle: 'Novo em investimentos?',
+          cyjRecoText: 'Comece pela seção Aprender para entender os fundamentos antes de explorar conceitos mais avançados.',
+          cyjStartLearning: 'Começar a aprender →',
+          cyjC1T: 'Inflação', cyjC1B: 'Entenda como a inflação afeta o poder de compra e por que o crescimento importa ao longo do tempo.', cyjC1Btn: 'Explorar inflação →',
+          cyjC2T: 'Aprender', cyjC2B: 'Lições para iniciantes feitas para ajudar você a entender investimentos, construção de patrimônio e pensamento de longo prazo.', cyjC2Btn: 'Começar a aprender →',
+          cyjC3T: 'Planos de assinatura', cyjC3B: 'Desbloqueie guias premium, ferramentas avançadas de acompanhamento, recursos de planejamento e a experiência Plainvest completa.', cyjC3Btn: 'Ver planos →',
+          cyjC4T: 'Contato', cyjC4B: 'Tem dúvidas, comentários ou sugestões? Adoraríamos ouvir você.', cyjC4Btn: 'Fale conosco →',
+          sfcTitle: 'Entender é a sua verdadeira vantagem.',
+          sfcText: 'Quanto mais você aprende, mais confiança ganha em cada decisão financeira.',
+          sfcPlans: 'Ver planos →'
         },
         inflation: {
           eyebrow: 'O risco escondido',
@@ -21796,6 +22156,7 @@
           currencySub: 'Um visual simples inspirado em gráficos de poder de compra: cada linha mostra quanto de uma unidade original da moeda pode restar após a inflação.',
           ctaP: 'A inflação é a referência que o seu dinheiro precisa superar. Um investimento simples e diversificado historicamente cresce muito mais do que dinheiro parado no longo prazo.',
           ctaBtn: 'Criar a sua projeção →',
+          ctaPlans: 'Acompanhe seus investimentos e fique à frente da inflação →',
           assumptionNote: 'O Plainvest usa médias de inflação ajustáveis para fins educativos. A inflação oficial normalmente é atualizada mensalmente ou trimestralmente, não ao vivo a cada segundo, então você pode alterar a porcentagem para testar cenários diferentes.'
         },
         learn: {
@@ -22969,6 +23330,7 @@
         setTi('inf-stat-avg-lbl', inflT.statAvgLbl);
         setTi('inf-cta-p', inflT.ctaP);
         setTi('inf-cta-btn', inflT.ctaBtn);
+        setTi('inf-cta-plans', inflT.ctaPlans);
         const simAssumptions = document.getElementById('sim-assumptions');
         if (simAssumptions) {
           simAssumptions.innerHTML = currentLang === 'pt'
@@ -23913,16 +24275,12 @@
 
       document.getElementById('rLabel').textContent = `${displayInvName} — ${yrs} ${yearsWord} ${projLabel}`;
       document.getElementById('rVal').textContent = fmt(finalV);
-      document.getElementById('rValCopy').textContent = fmt(finalV);
       document.getElementById('rTag').textContent = c.flag + ' ' + displayInvName;
       document.getElementById('rGrowth').textContent = `+${fmt(earned)} ${growthWord}`;
-      document.getElementById('rIn').textContent = fmt(totalIn);
-      document.getElementById('rEarned').textContent = `+${fmt(earned)} ${growthWord}`;
+      // Section 2 — Where did the growth come from? (contributed / growth / multiplier)
+      document.getElementById('rContribStat').textContent = fmt(totalIn);
       document.getElementById('rEarnedStat').textContent = fmt(earned);
       document.getElementById('rMult').textContent = mult;
-      // % return
-      const pctReturn = totalIn > 0 ? Math.round((earned / totalIn) * 100) + '%' : '—';
-      document.getElementById('rMultPct').textContent = pctReturn;
       const nudgeTitle = document.getElementById('sim-nudge-title');
       const nudgeText = document.getElementById('sim-nudge-text');
       const nudgeBtn = document.getElementById('sim-nudge-btn');
