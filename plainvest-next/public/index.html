@@ -13266,70 +13266,207 @@
       margin-bottom: .55rem;
     }
 
-    /* ── Hero educational card (replaces the milestone/returns card) ── */
-    .hs-edu-sub {
-      font-size: .82rem;
-      color: #8ea7c1;
-      line-height: 1.5;
-      margin: .55rem 0 0;
+    /* ── Hero "understand money" card — premium asymmetric, education-first ── */
+    .hs-und-card {
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
     }
 
-    .hs-edu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .7rem;
-      margin: 1.1rem 0 .2rem;
-    }
-
-    .hs-edu-item {
-      padding: .9rem .85rem;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, .08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .015)),
-        radial-gradient(circle at 100% 0%, rgba(0, 212, 170, .05), transparent 50%);
-    }
-
-    .hs-edu-ico {
-      font-size: 1.3rem;
-      display: block;
-      margin-bottom: .4rem;
-      line-height: 1;
-    }
-
-    .hs-edu-t {
-      font-size: .82rem;
-      font-weight: 700;
-      color: #f3f8fc;
-      margin-bottom: .25rem;
-      line-height: 1.25;
-    }
-
-    .hs-edu-b {
-      font-size: .715rem;
-      color: #8ea7c1;
-      line-height: 1.45;
-      margin: 0;
-    }
-
-    .hs-edu-card .hs-story-footer {
-      border-top: 1px solid rgba(255, 255, 255, .08);
-      padding-top: .9rem;
-      margin-top: .9rem;
-    }
-
-    .hs-edu-foot-t {
-      font-size: .85rem;
-      font-weight: 700;
-      color: var(--teal);
+    .hs-und-intro {
       margin-bottom: .35rem;
     }
 
-    .hs-edu-disclaimer {
-      font-size: .68rem;
+    .hs-und-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.35rem, 1.9vw, 1.62rem);
+      font-weight: 700;
+      color: #f4f9fd;
+      line-height: 1.22;
+      letter-spacing: -.01em;
+      margin: 0 0 .55rem;
+    }
+
+    .hs-und-sub {
+      font-size: .98rem;
+      font-weight: 600;
+      color: var(--teal);
+      margin: 0 0 .7rem;
+    }
+
+    .hs-und-lead {
+      font-size: .8rem;
+      color: #9fb2c6;
+      line-height: 1.62;
+      margin: 0;
+    }
+
+    .hs-und-hero {
+      padding: 1.35rem 1.35rem 1.45rem;
+      border-radius: 20px;
+      background:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(0, 212, 170, .10), transparent 60%),
+        rgba(255, 255, 255, .026);
+    }
+
+    .hs-und-hero-eyebrow {
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .55rem;
+    }
+
+    .hs-und-hero-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f4f9fd;
+      line-height: 1.42;
+      margin: 0 0 .45rem;
+    }
+
+    .hs-und-hero-support {
+      font-size: .78rem;
+      color: #9fb2c6;
+      line-height: 1.55;
+      margin: 0 0 1.25rem;
+    }
+
+    .hs-und-timeline {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+
+    .hs-und-tl-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    .hs-und-tl-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(0, 212, 170, .45);
+      box-shadow: 0 0 0 4px rgba(0, 212, 170, .08);
+    }
+
+    .hs-und-tl-step--end .hs-und-tl-dot {
+      background: #00d4aa;
+      box-shadow: 0 0 14px rgba(0, 212, 170, .65);
+    }
+
+    .hs-und-tl-lbl {
+      font-size: .62rem;
+      color: #8ea7c1;
+      white-space: nowrap;
+    }
+
+    .hs-und-tl-line {
+      flex: 1;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(0, 212, 170, .22), rgba(0, 212, 170, .5));
+    }
+
+    .hs-und-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+    }
+
+    .hs-und-mini {
+      padding: 1.1rem 1.05rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .022);
+    }
+
+    .hs-und-mini-t {
+      font-size: .85rem;
+      font-weight: 700;
+      color: #f4f9fd;
+      line-height: 1.3;
+      margin-bottom: .42rem;
+    }
+
+    .hs-und-mini-b {
+      font-size: .74rem;
+      color: #9fb2c6;
+      line-height: 1.52;
+      margin: 0;
+    }
+
+    .hs-und-statement {
+      padding: 1.5rem 1.35rem 1.4rem;
+      border-radius: 20px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 70% 95% at 50% 0%, rgba(0, 212, 170, .11), transparent 65%),
+        linear-gradient(180deg, rgba(255, 255, 255, .032), rgba(255, 255, 255, .012));
+    }
+
+    .hs-und-st-title {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f4f9fd;
+      margin-bottom: .25rem;
+    }
+
+    .hs-und-st-sub {
+      font-size: .94rem;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .hs-und-choices {
+      list-style: none;
+      margin: 0 auto 1.1rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .42rem;
+      text-align: left;
+      max-width: 270px;
+    }
+
+    .hs-und-choices li {
+      font-size: .79rem;
+      color: #c2d2e0;
+      padding-left: 1.3rem;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .hs-und-choices li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .hs-und-trust {
+      font-size: .76rem;
+      color: #9fb2c6;
+      font-weight: 600;
+      margin-bottom: .3rem;
+    }
+
+    .hs-und-foot {
+      font-size: .66rem;
       color: #6f8194;
       font-style: italic;
-      margin-top: .5rem;
+    }
+
+    @media (max-width: 520px) {
+      .hs-und-row {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* scroll indicator */
@@ -17976,38 +18113,51 @@
           <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta3">See Premium →</button>
         </div>
       </div>
-      <div class="hs-sidecard hs-edu-card">
-        <div class="hs-story-intro">
-          <div class="hs-side-kicker" data-i18n="hero.eduKicker">What Plainvest helps you understand</div>
-          <div class="hs-side-title" data-i18n-html="hero.eduTitle">Simple lessons,<br><em>made visual.</em></div>
-          <p class="hs-edu-sub" data-i18n="hero.eduSub">Built for people who were never taught this stuff.</p>
+      <div class="hs-sidecard hs-und-card">
+        <div class="hs-und-intro">
+          <h3 class="hs-und-title" data-i18n="hero.undTitle">Most people were never taught how money works.</h3>
+          <p class="hs-und-sub" data-i18n="hero.undSub">Plainvest helps you see what happens next.</p>
+          <p class="hs-und-lead" data-i18n="hero.undLead">No financial jargon. No confusing charts. No sales pressure. Just simple visual tools that help you understand how today's decisions can shape tomorrow's opportunities.</p>
         </div>
-        <div class="hs-edu-grid">
-          <div class="hs-edu-item">
-            <span class="hs-edu-ico" aria-hidden="true">📈</span>
-            <div class="hs-edu-t" data-i18n="hero.eduC1T">How Money Grows</div>
-            <p class="hs-edu-b" data-i18n="hero.eduC1B">See how small decisions can compound over time.</p>
-          </div>
-          <div class="hs-edu-item">
-            <span class="hs-edu-ico" aria-hidden="true">🔥</span>
-            <div class="hs-edu-t" data-i18n="hero.eduC2T">Inflation Explained</div>
-            <p class="hs-edu-b" data-i18n="hero.eduC2B">Why prices rise and how purchasing power changes.</p>
-          </div>
-          <div class="hs-edu-item">
-            <span class="hs-edu-ico" aria-hidden="true">🧭</span>
-            <div class="hs-edu-t" data-i18n="hero.eduC3T">Compare Paths</div>
-            <p class="hs-edu-b" data-i18n="hero.eduC3B">Trade-offs between growth, income, stability and risk.</p>
-          </div>
-          <div class="hs-edu-item">
-            <span class="hs-edu-ico" aria-hidden="true">🌱</span>
-            <div class="hs-edu-t" data-i18n="hero.eduC4T">Small Habits Matter</div>
-            <p class="hs-edu-b" data-i18n="hero.eduC4B">How consistency creates long-term opportunity.</p>
+
+        <!-- Large hero insight card -->
+        <div class="hs-und-hero">
+          <div class="hs-und-hero-eyebrow" data-i18n="hero.undC1Eyebrow">The future cost of waiting</div>
+          <p class="hs-und-hero-text" data-i18n="hero.undC1Text">Most people think they need more money. Often, they simply need more time.</p>
+          <p class="hs-und-hero-support" data-i18n="hero.undC1Support">See how starting earlier can change what becomes possible later.</p>
+          <div class="hs-und-timeline" aria-hidden="true">
+            <div class="hs-und-tl-step"><span class="hs-und-tl-dot"></span><span class="hs-und-tl-lbl" data-i18n="hero.undTlToday">Today</span></div>
+            <div class="hs-und-tl-line"></div>
+            <div class="hs-und-tl-step"><span class="hs-und-tl-dot"></span><span class="hs-und-tl-lbl" data-i18n="hero.undTl10">10 years</span></div>
+            <div class="hs-und-tl-line"></div>
+            <div class="hs-und-tl-step hs-und-tl-step--end"><span class="hs-und-tl-dot"></span><span class="hs-und-tl-lbl" data-i18n="hero.undTl20">20 years</span></div>
           </div>
         </div>
-        <div class="hs-story-footer">
-          <div class="hs-edu-foot-t" data-i18n="hero.eduFootT">Built to teach. Not to predict.</div>
-          <div class="hs-side-note" data-i18n="hero.eduFootB">Plainvest helps you understand financial concepts through interactive, visual learning.</div>
-          <div class="hs-edu-disclaimer" data-i18n="hero.eduFootNote">Educational only. Not financial advice.</div>
+
+        <!-- Two smaller supporting cards -->
+        <div class="hs-und-row">
+          <div class="hs-und-mini">
+            <div class="hs-und-mini-t" data-i18n="hero.undC2Title">Why saving alone isn't enough</div>
+            <p class="hs-und-mini-b" data-i18n="hero.undC2Text">Your bank balance can grow while your purchasing power quietly shrinks. Plainvest makes inflation visible.</p>
+          </div>
+          <div class="hs-und-mini">
+            <div class="hs-und-mini-t" data-i18n="hero.undC3Title">How small habits become big outcomes</div>
+            <p class="hs-und-mini-b" data-i18n="hero.undC3Text">You don't need to be rich to start understanding wealth. You need clarity, time, and consistency.</p>
+          </div>
+        </div>
+
+        <!-- Full-width emotional statement card -->
+        <div class="hs-und-statement">
+          <div class="hs-und-st-title" data-i18n="hero.undStTitle">This isn't about becoming rich.</div>
+          <div class="hs-und-st-sub" data-i18n="hero.undStSub">It's about having more choices.</div>
+          <ul class="hs-und-choices">
+            <li data-i18n="hero.undCh1">The choice to travel</li>
+            <li data-i18n="hero.undCh2">The choice to change careers</li>
+            <li data-i18n="hero.undCh3">The choice to help your family</li>
+            <li data-i18n="hero.undCh4">The choice to retire on your own terms</li>
+          </ul>
+          <div class="hs-und-trust" data-i18n="hero.undTrust">Built for people who were never taught this stuff.</div>
+          <div class="hs-und-foot" data-i18n="hero.undFoot">Educational platform. Not financial advice.</div>
         </div>
       </div>
       <div class="hs-feature-band">
@@ -21206,16 +21356,22 @@
           m3yr: '20 years', m3val: '~$176k', m3life: 'The kind of number that changes how you walk through life.',
           storyAssume: '$300/month from $0 · 8% avg. annual return · AUD',
           storyNote: '<strong>The hardest part is starting.</strong> You\'re already here.',
-          eduKicker: 'What Plainvest helps you understand',
-          eduTitle: 'Simple lessons,<br><em>made visual.</em>',
-          eduSub: 'Built for people who were never taught this stuff.',
-          eduC1T: 'How Money Grows', eduC1B: 'See how small decisions can compound over time.',
-          eduC2T: 'Inflation Explained', eduC2B: 'Why prices rise and how purchasing power changes.',
-          eduC3T: 'Compare Paths', eduC3B: 'Trade-offs between growth, income, stability and risk.',
-          eduC4T: 'Small Habits Matter', eduC4B: 'How consistency creates long-term opportunity.',
-          eduFootT: 'Built to teach. Not to predict.',
-          eduFootB: 'Plainvest helps you understand financial concepts through interactive, visual learning.',
-          eduFootNote: 'Educational only. Not financial advice.'
+          undTitle: 'Most people were never taught how money works.',
+          undSub: 'Plainvest helps you see what happens next.',
+          undLead: 'No financial jargon. No confusing charts. No sales pressure. Just simple visual tools that help you understand how today\'s decisions can shape tomorrow\'s opportunities.',
+          undC1Eyebrow: 'The future cost of waiting',
+          undC1Text: 'Most people think they need more money. Often, they simply need more time.',
+          undC1Support: 'See how starting earlier can change what becomes possible later.',
+          undTlToday: 'Today', undTl10: '10 years', undTl20: '20 years',
+          undC2Title: 'Why saving alone isn\'t enough',
+          undC2Text: 'Your bank balance can grow while your purchasing power quietly shrinks. Plainvest makes inflation visible.',
+          undC3Title: 'How small habits become big outcomes',
+          undC3Text: 'You don\'t need to be rich to start understanding wealth. You need clarity, time, and consistency.',
+          undStTitle: 'This isn\'t about becoming rich.',
+          undStSub: 'It\'s about having more choices.',
+          undCh1: 'The choice to travel', undCh2: 'The choice to change careers', undCh3: 'The choice to help your family', undCh4: 'The choice to retire on your own terms',
+          undTrust: 'Built for people who were never taught this stuff.',
+          undFoot: 'Educational platform. Not financial advice.'
         },
         howpv: {
           eyebrow: 'How Plainvest works',
@@ -22120,16 +22276,22 @@
           m3yr: '20 anos', m3val: '~R$880k', m3life: 'O tipo de número que muda como você caminha pela vida.',
           storyAssume: 'R$1.500/mês do zero · 8% retorno médio ao ano · BRL',
           storyNote: '<strong>A parte mais difícil é começar.</strong> Você já está aqui.',
-          eduKicker: 'O que o Plainvest ajuda você a entender',
-          eduTitle: 'Lições simples,<br><em>de forma visual.</em>',
-          eduSub: 'Feito para quem nunca aprendeu essas coisas.',
-          eduC1T: 'Como o Dinheiro Cresce', eduC1B: 'Veja como pequenas decisões se acumulam ao longo do tempo.',
-          eduC2T: 'Inflação Explicada', eduC2B: 'Por que os preços sobem e como o poder de compra muda.',
-          eduC3T: 'Compare Caminhos', eduC3B: 'Os trade-offs entre crescimento, renda, estabilidade e risco.',
-          eduC4T: 'Pequenos Hábitos Importam', eduC4B: 'Como a consistência cria oportunidades no longo prazo.',
-          eduFootT: 'Feito para ensinar. Não para prever.',
-          eduFootB: 'O Plainvest ajuda você a entender conceitos financeiros por meio de aprendizado visual e interativo.',
-          eduFootNote: 'Apenas educacional. Não é aconselhamento financeiro.'
+          undTitle: 'A maioria das pessoas nunca aprendeu como o dinheiro funciona.',
+          undSub: 'O Plainvest ajuda você a ver o que vem a seguir.',
+          undLead: 'Sem jargão financeiro. Sem gráficos confusos. Sem pressão de venda. Apenas ferramentas visuais simples que ajudam você a entender como as decisões de hoje podem moldar as oportunidades de amanhã.',
+          undC1Eyebrow: 'O custo futuro de esperar',
+          undC1Text: 'A maioria pensa que precisa de mais dinheiro. Muitas vezes, só precisa de mais tempo.',
+          undC1Support: 'Veja como começar mais cedo pode mudar o que se torna possível depois.',
+          undTlToday: 'Hoje', undTl10: '10 anos', undTl20: '20 anos',
+          undC2Title: 'Por que poupar sozinho não basta',
+          undC2Text: 'Seu saldo no banco pode crescer enquanto seu poder de compra encolhe silenciosamente. O Plainvest torna a inflação visível.',
+          undC3Title: 'Como pequenos hábitos viram grandes resultados',
+          undC3Text: 'Você não precisa ser rico para começar a entender patrimônio. Você precisa de clareza, tempo e consistência.',
+          undStTitle: 'Não se trata de ficar rico.',
+          undStSub: 'Trata-se de ter mais escolhas.',
+          undCh1: 'A escolha de viajar', undCh2: 'A escolha de mudar de carreira', undCh3: 'A escolha de ajudar sua família', undCh4: 'A escolha de se aposentar nos seus próprios termos',
+          undTrust: 'Feito para quem nunca aprendeu essas coisas.',
+          undFoot: 'Plataforma educacional. Não é aconselhamento financeiro.'
         },
         howpv: {
           eyebrow: 'Como o Plainvest funciona',
