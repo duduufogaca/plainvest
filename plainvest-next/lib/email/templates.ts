@@ -147,9 +147,9 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
             style="background-color:${C.bg};padding-bottom:20px;text-align:center;">
             <a href="https://plainvest.app"
               style="display:inline-block;text-decoration:none;border:0;">
-              <img src="https://members.plainvest.app/assets/plainvest-email-banner.png"
-                alt="Plainvest — Future clarity. Smarter decisions." width="${compact ? 320 : 460}"
-                style="display:block;width:100%;height:auto;border:0;max-width:${compact ? 320 : 460}px;border-radius:12px;" />
+              <img src="https://members.plainvest.app/assets/plainvest-email-logo.png"
+                alt="Plainvest" width="${compact ? 260 : 320}"
+                style="display:block;width:100%;height:auto;border:0;max-width:${compact ? 260 : 320}px;border-radius:8px;" />
             </a>
           </td>
         </tr>
