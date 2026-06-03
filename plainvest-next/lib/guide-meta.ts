@@ -10,6 +10,14 @@ export interface GuideMeta {
 }
 
 export const GUIDE_META: Record<string, GuideMeta> = {
+  welcome: {
+    title: 'Premium Welcome — Start Here',
+    file: '/files/premium_content/00-premium-member-start-here.html',
+    description: 'Your starting point — how to use Plainvest and what to read first.',
+    readMins: 3,
+    difficulty: 'Beginner',
+    why: 'Get oriented before diving into the guides.',
+  },
   guides: {
     title: 'Investment Paths Guide',
     file: '/files/premium_content/01-investment-paths-guide.html',
@@ -171,6 +179,11 @@ interface GuideI18n {
 }
 
 const GUIDE_META_PT: Record<string, GuideI18n> = {
+  welcome: {
+    title: 'Boas-vindas Premium — Comece aqui',
+    description: 'Seu ponto de partida — como usar o Plainvest e o que ler primeiro.',
+    why: 'Oriente-se antes de mergulhar nos guias.',
+  },
   guides: {
     title: 'Guia de Caminhos de Investimento',
     description: 'Entenda qual caminho de investimento se encaixa nos seus objetivos.',
