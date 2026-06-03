@@ -12614,6 +12614,24 @@
       border-top: 1px solid var(--border-dark);
     }
 
+    .inf-cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .inf-cta-actions .btn-primary,
+    .inf-cta-actions .btn-ghost {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .inf-cta-plans-btn {
+      border-color: rgba(0, 212, 170, .5);
+    }
+
     .inf-cta-row p {
       flex: 2;
       font-size: .87rem;
@@ -18677,7 +18695,10 @@
 
       <div class="inf-cta-row">
         <p id="inf-cta-p" data-i18n="inflation.ctaP">The best protection against inflation is growth. Even a simple index fund has historically returned far more than inflation over the long term.</p>
-        <a href="#simulator" class="btn-primary" id="inf-cta-btn" data-i18n="inflation.ctaBtn">Run your own projection →</a>
+        <div class="inf-cta-actions">
+          <a href="#simulator" class="btn-primary" id="inf-cta-btn" data-i18n="inflation.ctaBtn">Run your own projection →</a>
+          <a href="#plans" class="btn-ghost inf-cta-plans-btn" id="inf-cta-plans" onclick="showPage('plans');return false;" data-i18n="inflation.ctaPlans">Track your money &amp; stay ahead of inflation →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -21096,6 +21117,7 @@
           currencySub: 'A simple visual inspired by purchasing-power charts: each line shows how much of one original currency unit may remain after inflation over time.',
           ctaP: 'Inflation is the benchmark your money needs to beat. A simple diversified investment has historically grown much faster than cash over long periods.',
           ctaBtn: 'Run your own projection →',
+          ctaPlans: 'Track your money & stay ahead of inflation →',
           assumptionNote: 'Plainvest uses adjustable average inflation assumptions for education. Official inflation is usually updated monthly or quarterly, not live every second, so you can change the percentage to test different scenarios.'
         },
         learn: {
@@ -21990,6 +22012,7 @@
           currencySub: 'Um visual simples inspirado em gráficos de poder de compra: cada linha mostra quanto de uma unidade original da moeda pode restar após a inflação.',
           ctaP: 'A inflação é a referência que o seu dinheiro precisa superar. Um investimento simples e diversificado historicamente cresce muito mais do que dinheiro parado no longo prazo.',
           ctaBtn: 'Criar a sua projeção →',
+          ctaPlans: 'Acompanhe seus investimentos e fique à frente da inflação →',
           assumptionNote: 'O Plainvest usa médias de inflação ajustáveis para fins educativos. A inflação oficial normalmente é atualizada mensalmente ou trimestralmente, não ao vivo a cada segundo, então você pode alterar a porcentagem para testar cenários diferentes.'
         },
         learn: {
@@ -23163,6 +23186,7 @@
         setTi('inf-stat-avg-lbl', inflT.statAvgLbl);
         setTi('inf-cta-p', inflT.ctaP);
         setTi('inf-cta-btn', inflT.ctaBtn);
+        setTi('inf-cta-plans', inflT.ctaPlans);
         const simAssumptions = document.getElementById('sim-assumptions');
         if (simAssumptions) {
           simAssumptions.innerHTML = currentLang === 'pt'
