@@ -175,7 +175,17 @@ export async function resendConfirmation(formData: FormData) {
     redirect('/login?message=Could not send email right now. Please try again shortly.');
   }
   if (email) {
-    await supabase.auth.resend({ type: 'signup', email });
+    const { error } = await supabase.auth.resend({ type: 'signup', email });
+    if (error) {
+      const lower = error.message.toLowerCase();
+      if (lower.includes('already') || lower.includes('confirmed')) {
+        redirect('/login?message=This email is already confirmed — just log in with your password.');
+      }
+      if (lower.includes('rate') || lower.includes('limit') || lower.includes('seconds') || lower.includes('after')) {
+        redirect(`/login?confirm_email=1&email=${encodeURIComponent(email)}&message=Please wait about a minute, then request the email again.`);
+      }
+      redirect(`/login?confirm_email=1&email=${encodeURIComponent(email)}&message=Could not resend right now. Please try again shortly.`);
+    }
   }
   redirect('/login?message=Confirmation email sent — check your inbox and spam folder.');
 }
