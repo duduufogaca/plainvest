@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { getPostHogClient } from '@/lib/posthog-server';
+import { sendWelcomeEmail } from '@/lib/email/service';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -17,6 +18,15 @@ export async function GET(request: Request) {
       posthog.identify({ distinctId: user.id, properties: { email: user.email } });
       posthog.capture({ distinctId: user.id, event: 'email_confirmed' });
       await posthog.shutdown();
+
+      // Send the Welcome email now that the email is confirmed — once, just
+      // after sign-up (created within the last 10 minutes).
+      const createdAt = user.created_at ? new Date(user.created_at).getTime() : 0;
+      const isFreshSignup = createdAt > 0 && (Date.now() - createdAt) < 10 * 60 * 1000;
+      if (isFreshSignup && user.email) {
+        const name = user.user_metadata?.full_name || '';
+        sendWelcomeEmail(user.email, name).catch(() => {});
+      }
     }
   }
 

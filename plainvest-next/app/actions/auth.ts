@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { getPostHogClient } from '@/lib/posthog-server';
-import { sendWelcomeEmail, sendPasswordChangedEmail, sendAdminNewUser } from '@/lib/email/service';
+import { sendPasswordChangedEmail, sendAdminNewUser } from '@/lib/email/service';
 
 function getOrigin() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
@@ -95,7 +95,8 @@ export async function signUp(formData: FormData) {
 
     const name = data.user.user_metadata?.full_name || '';
     const date = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-    sendWelcomeEmail(email, name).catch(() => {});
+    // Welcome email is sent AFTER the user confirms (in /auth/callback) so it
+    // doesn't arrive before the confirmation email. Admin notify on signup.
     sendAdminNewUser({ name: name || email, email, date }).catch(() => {});
   }
 
