@@ -75,6 +75,10 @@ export async function signUp(formData: FormData) {
     redirect('/signup?message=Signup is not available right now. Please try again shortly.');
   }
 
+  // Clear any existing session so creating an account never leaves a
+  // previously logged-in user active (e.g. on a shared/other computer).
+  await supabase.auth.signOut().catch(() => {});
+
   const { error, data } = await supabase.auth.signUp({
     email,
     password,
