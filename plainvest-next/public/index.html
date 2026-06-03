@@ -13266,6 +13266,72 @@
       margin-bottom: .55rem;
     }
 
+    /* ── Hero educational card (replaces the milestone/returns card) ── */
+    .hs-edu-sub {
+      font-size: .82rem;
+      color: #8ea7c1;
+      line-height: 1.5;
+      margin: .55rem 0 0;
+    }
+
+    .hs-edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .7rem;
+      margin: 1.1rem 0 .2rem;
+    }
+
+    .hs-edu-item {
+      padding: .9rem .85rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .015)),
+        radial-gradient(circle at 100% 0%, rgba(0, 212, 170, .05), transparent 50%);
+    }
+
+    .hs-edu-ico {
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: .4rem;
+      line-height: 1;
+    }
+
+    .hs-edu-t {
+      font-size: .82rem;
+      font-weight: 700;
+      color: #f3f8fc;
+      margin-bottom: .25rem;
+      line-height: 1.25;
+    }
+
+    .hs-edu-b {
+      font-size: .715rem;
+      color: #8ea7c1;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .hs-edu-card .hs-story-footer {
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      padding-top: .9rem;
+      margin-top: .9rem;
+    }
+
+    .hs-edu-foot-t {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: .35rem;
+    }
+
+    .hs-edu-disclaimer {
+      font-size: .68rem;
+      color: #6f8194;
+      font-style: italic;
+      margin-top: .5rem;
+    }
+
     /* scroll indicator */
     .hero-scroll-hint {
       position: absolute;
@@ -17910,52 +17976,38 @@
           <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta3">See Premium →</button>
         </div>
       </div>
-      <div class="hs-sidecard">
+      <div class="hs-sidecard hs-edu-card">
         <div class="hs-story-intro">
-          <div class="hs-side-kicker" data-i18n="hero.storyKicker">What starting today actually looks like</div>
-          <div class="hs-side-title" data-i18n-html="hero.storyTitle">Your money, quietly<br><em>doing the work for you.</em></div>
+          <div class="hs-side-kicker" data-i18n="hero.eduKicker">What Plainvest helps you understand</div>
+          <div class="hs-side-title" data-i18n-html="hero.eduTitle">Simple lessons,<br><em>made visual.</em></div>
+          <p class="hs-edu-sub" data-i18n="hero.eduSub">Built for people who were never taught this stuff.</p>
         </div>
-        <div class="hs-milestones" aria-label="Illustrative growth milestones">
-          <div class="hs-milestone">
-            <div class="hs-milestone-left">
-              <div class="hs-milestone-yr" data-i18n="hero.m1yr">5 years</div>
-              <div class="hs-milestone-bar">
-                <div class="hs-milestone-fill" style="--w:28%"></div>
-              </div>
-            </div>
-            <div class="hs-milestone-right">
-              <div class="hs-milestone-val" data-i18n="hero.m1val">~$22k</div>
-              <div class="hs-milestone-life" data-i18n="hero.m1life">Real breathing room. Enough to say no when it matters.</div>
-            </div>
+        <div class="hs-edu-grid">
+          <div class="hs-edu-item">
+            <span class="hs-edu-ico" aria-hidden="true">📈</span>
+            <div class="hs-edu-t" data-i18n="hero.eduC1T">How Money Grows</div>
+            <p class="hs-edu-b" data-i18n="hero.eduC1B">See how small decisions can compound over time.</p>
           </div>
-          <div class="hs-milestone hs-milestone--mid">
-            <div class="hs-milestone-left">
-              <div class="hs-milestone-yr" data-i18n="hero.m2yr">10 years</div>
-              <div class="hs-milestone-bar">
-                <div class="hs-milestone-fill" style="--w:56%"></div>
-              </div>
-            </div>
-            <div class="hs-milestone-right">
-              <div class="hs-milestone-val" data-i18n="hero.m2val">~$52k</div>
-              <div class="hs-milestone-life" data-i18n="hero.m2life">More choices in life. Not luck — just patience.</div>
-            </div>
+          <div class="hs-edu-item">
+            <span class="hs-edu-ico" aria-hidden="true">🔥</span>
+            <div class="hs-edu-t" data-i18n="hero.eduC2T">Inflation Explained</div>
+            <p class="hs-edu-b" data-i18n="hero.eduC2B">Why prices rise and how purchasing power changes.</p>
           </div>
-          <div class="hs-milestone hs-milestone--peak">
-            <div class="hs-milestone-left">
-              <div class="hs-milestone-yr" data-i18n="hero.m3yr">20 years</div>
-              <div class="hs-milestone-bar">
-                <div class="hs-milestone-fill" style="--w:100%"></div>
-              </div>
-            </div>
-            <div class="hs-milestone-right">
-              <div class="hs-milestone-val teal" data-i18n="hero.m3val">~$176k</div>
-              <div class="hs-milestone-life" data-i18n="hero.m3life">The kind of number that changes how you walk through life.</div>
-            </div>
+          <div class="hs-edu-item">
+            <span class="hs-edu-ico" aria-hidden="true">🧭</span>
+            <div class="hs-edu-t" data-i18n="hero.eduC3T">Compare Paths</div>
+            <p class="hs-edu-b" data-i18n="hero.eduC3B">Trade-offs between growth, income, stability and risk.</p>
+          </div>
+          <div class="hs-edu-item">
+            <span class="hs-edu-ico" aria-hidden="true">🌱</span>
+            <div class="hs-edu-t" data-i18n="hero.eduC4T">Small Habits Matter</div>
+            <p class="hs-edu-b" data-i18n="hero.eduC4B">How consistency creates long-term opportunity.</p>
           </div>
         </div>
         <div class="hs-story-footer">
-          <div class="hs-story-assumption" data-i18n="hero.storyAssume">$300/month from $0 · 8% avg. annual return · AUD</div>
-          <div class="hs-side-note" data-i18n-html="hero.storyNote"><strong>The hardest part is starting.</strong> You're already here.</div>
+          <div class="hs-edu-foot-t" data-i18n="hero.eduFootT">Built to teach. Not to predict.</div>
+          <div class="hs-side-note" data-i18n="hero.eduFootB">Plainvest helps you understand financial concepts through interactive, visual learning.</div>
+          <div class="hs-edu-disclaimer" data-i18n="hero.eduFootNote">Educational only. Not financial advice.</div>
         </div>
       </div>
       <div class="hs-feature-band">
@@ -21153,7 +21205,17 @@
           m2yr: '10 years', m2val: '~$52k', m2life: 'More choices in life. Not luck — just patience.',
           m3yr: '20 years', m3val: '~$176k', m3life: 'The kind of number that changes how you walk through life.',
           storyAssume: '$300/month from $0 · 8% avg. annual return · AUD',
-          storyNote: '<strong>The hardest part is starting.</strong> You\'re already here.'
+          storyNote: '<strong>The hardest part is starting.</strong> You\'re already here.',
+          eduKicker: 'What Plainvest helps you understand',
+          eduTitle: 'Simple lessons,<br><em>made visual.</em>',
+          eduSub: 'Built for people who were never taught this stuff.',
+          eduC1T: 'How Money Grows', eduC1B: 'See how small decisions can compound over time.',
+          eduC2T: 'Inflation Explained', eduC2B: 'Why prices rise and how purchasing power changes.',
+          eduC3T: 'Compare Paths', eduC3B: 'Trade-offs between growth, income, stability and risk.',
+          eduC4T: 'Small Habits Matter', eduC4B: 'How consistency creates long-term opportunity.',
+          eduFootT: 'Built to teach. Not to predict.',
+          eduFootB: 'Plainvest helps you understand financial concepts through interactive, visual learning.',
+          eduFootNote: 'Educational only. Not financial advice.'
         },
         howpv: {
           eyebrow: 'How Plainvest works',
@@ -22057,7 +22119,17 @@
           m2yr: '10 anos', m2val: '~R$260k', m2life: 'Mais escolhas na vida. Não é sorte — é paciência.',
           m3yr: '20 anos', m3val: '~R$880k', m3life: 'O tipo de número que muda como você caminha pela vida.',
           storyAssume: 'R$1.500/mês do zero · 8% retorno médio ao ano · BRL',
-          storyNote: '<strong>A parte mais difícil é começar.</strong> Você já está aqui.'
+          storyNote: '<strong>A parte mais difícil é começar.</strong> Você já está aqui.',
+          eduKicker: 'O que o Plainvest ajuda você a entender',
+          eduTitle: 'Lições simples,<br><em>de forma visual.</em>',
+          eduSub: 'Feito para quem nunca aprendeu essas coisas.',
+          eduC1T: 'Como o Dinheiro Cresce', eduC1B: 'Veja como pequenas decisões se acumulam ao longo do tempo.',
+          eduC2T: 'Inflação Explicada', eduC2B: 'Por que os preços sobem e como o poder de compra muda.',
+          eduC3T: 'Compare Caminhos', eduC3B: 'Os trade-offs entre crescimento, renda, estabilidade e risco.',
+          eduC4T: 'Pequenos Hábitos Importam', eduC4B: 'Como a consistência cria oportunidades no longo prazo.',
+          eduFootT: 'Feito para ensinar. Não para prever.',
+          eduFootB: 'O Plainvest ajuda você a entender conceitos financeiros por meio de aprendizado visual e interativo.',
+          eduFootNote: 'Apenas educacional. Não é aconselhamento financeiro.'
         },
         howpv: {
           eyebrow: 'Como o Plainvest funciona',
