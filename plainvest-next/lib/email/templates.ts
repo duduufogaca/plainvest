@@ -147,11 +147,10 @@ function layout(title: string, body: string, compact = false, unsubscribeUrl?: s
             style="background-color:${C.bg};padding-bottom:20px;text-align:center;">
             <a href="https://plainvest.app"
               style="display:inline-block;text-decoration:none;border:0;">
-              <img src="https://members.plainvest.app/assets/plainvest-email-logo.png"
-                alt="Plainvest" width="210"
-                style="display:block;width:210px;height:auto;border:0;max-width:210px;border-radius:8px;" />
+              <img src="https://members.plainvest.app/assets/plainvest-email-banner.png"
+                alt="Plainvest — Future clarity. Smarter decisions." width="${compact ? 320 : 460}"
+                style="display:block;width:100%;height:auto;border:0;max-width:${compact ? 320 : 460}px;border-radius:12px;" />
             </a>
-            ${!compact ? `<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${C.footSlogan};margin-top:8px;">Future clarity. Smarter decisions.</div>` : ''}
           </td>
         </tr>
 
