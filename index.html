@@ -16262,6 +16262,270 @@
       margin-top: .85rem;
     }
 
+    /* ── Result hero disclaimer ── */
+    .rhm-disclaimer {
+      margin-top: .7rem;
+      font-size: .7rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, .42);
+      font-style: italic;
+    }
+
+    /* ── Continue Your Journey ── */
+    .cyj-wrap {
+      grid-column: 1 / -1;
+      width: 100%;
+      max-width: 1320px;
+      margin: 2.6rem auto 0;
+    }
+
+    .cyj-head {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .cyj-eyebrow {
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .55rem;
+    }
+
+    .cyj-title {
+      font-size: clamp(1.4rem, 2.6vw, 1.95rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 .5rem;
+      line-height: 1.22;
+    }
+
+    .cyj-sub {
+      font-size: .92rem;
+      color: #8ea7c1;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .cyj-reco {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1.1rem;
+      border-radius: 18px;
+      text-decoration: none;
+      border: 1px solid rgba(0, 212, 170, .42);
+      background:
+        linear-gradient(135deg, rgba(0, 212, 170, .14), rgba(0, 212, 170, .04)),
+        rgba(8, 17, 31, .6);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .22);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .cyj-reco:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 212, 170, .7);
+    }
+
+    .cyj-reco-icon {
+      font-size: 1.9rem;
+      flex-shrink: 0;
+    }
+
+    .cyj-reco-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cyj-reco-kicker {
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .25rem;
+    }
+
+    .cyj-reco-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .2rem;
+    }
+
+    .cyj-reco-text {
+      font-size: .82rem;
+      color: #8ea7c1;
+      line-height: 1.5;
+    }
+
+    .cyj-reco-cta {
+      flex-shrink: 0;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+
+    .cyj-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .cyj-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.3rem 1.2rem;
+      border-radius: 16px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .015));
+      transition: transform .18s ease, border-color .18s ease;
+    }
+
+    .cyj-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 212, 170, .4);
+    }
+
+    .cyj-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: .6rem;
+    }
+
+    .cyj-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .4rem;
+    }
+
+    .cyj-card-text {
+      font-size: .8rem;
+      color: #8ea7c1;
+      line-height: 1.55;
+      flex: 1;
+      margin: 0 0 .9rem;
+    }
+
+    .cyj-card-cta {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    /* ── Final CTA banner ── */
+    .sim-final-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 1.6rem;
+      padding: 1.6rem 1.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 212, 170, .3);
+      background:
+        radial-gradient(ellipse 60% 120% at 100% 0%, rgba(0, 212, 170, .16), transparent 60%),
+        linear-gradient(135deg, rgba(8, 22, 34, .92), rgba(8, 17, 31, .82));
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .28);
+    }
+
+    .sfc-text {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .sfc-text h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 .35rem;
+    }
+
+    .sfc-text p {
+      font-size: .88rem;
+      color: #a9bdd0;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .sfc-actions {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    .sfc-btn-primary,
+    .sfc-btn-secondary {
+      font-size: .88rem;
+      font-weight: 700;
+      padding: .8rem 1.3rem;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .sfc-btn-primary {
+      background: linear-gradient(140deg, #00d4aa, #00b894);
+      color: #04131f;
+      border: none;
+    }
+
+    .sfc-btn-primary:hover {
+      filter: brightness(1.06);
+    }
+
+    .sfc-btn-secondary {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid rgba(0, 212, 170, .5);
+    }
+
+    .sfc-btn-secondary:hover {
+      background: rgba(0, 212, 170, .1);
+    }
+
+    @media (max-width: 900px) {
+      .cyj-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cyj-reco {
+        flex-wrap: wrap;
+      }
+
+      .cyj-reco-cta {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cyj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sim-final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .sfc-actions {
+        width: 100%;
+      }
+
+      .sfc-btn-primary,
+      .sfc-btn-secondary {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
     .sc-delta {
       font-size: .68rem;
       font-weight: 800;
@@ -17666,29 +17930,6 @@
         </div>
 
         <div class="sim-side-info">
-          <!-- ── WHAT THIS RESULT MEANS ── -->
-          <div class="future-insights ssi-insights" id="futureInsights">
-            <div class="fi-eyebrow">What this result means</div>
-            <div class="fi-items" id="fiItems">
-              <div class="fi-item fi-item--teal">
-                <span class="fi-icon">⏳</span>
-                <p>Time matters more than timing. Starting with any amount today beats waiting for the "perfect moment."</p>
-              </div>
-              <div class="fi-item fi-item--gold">
-                <span class="fi-icon">📈</span>
-                <p>Most portfolio growth happens in the later years. The first years are planting the seed — the last years are the harvest.</p>
-              </div>
-              <div class="fi-item fi-item--blue">
-                <span class="fi-icon">🛡️</span>
-                <p>Inflation may quietly reduce the purchasing power of what you see here. Investing is how you protect your future self.</p>
-              </div>
-              <div class="fi-item fi-item--teal">
-                <span class="fi-icon">🌱</span>
-                <p>Consistency is your strongest advantage. The habit matters far more than the starting amount.</p>
-              </div>
-            </div>
-          </div>
-
           <!-- ── REAL-LIFE CONTEXT ── -->
           <div class="rlc-block ssi-rlc" id="rlc-block" style="display:none">
             <div class="rlc-eyebrow" id="rlc-eyebrow">In real-life terms, your projection could represent</div>
@@ -17777,6 +18018,7 @@
             <div class="rhm-eyebrow">Your projection</div>
             <div class="rhm-statement" id="rhm-statement">Your <strong id="rhm-in">$24,000</strong> could become <strong id="rhm-out">$82,604</strong> in <strong id="rhm-yrs">10 years</strong>.</div>
             <div class="rhm-sub" id="rhm-sub">That's <strong id="rhm-earned">$58,604</strong> added by compounding — money working while you sleep.</div>
+            <div class="rhm-disclaimer" data-i18n="sim.eduDisclaimer">Educational projection based on historical assumptions. Not a prediction or financial advice.</div>
           </div>
           <div class="rm-top">
             <div>
@@ -17948,6 +18190,64 @@
               <!-- populated by JS -->
             </div>
             <p class="sc-note">Projections are illustrative only and use the same return rate and time horizon as your current selection.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ Continue Your Journey — gateway into the rest of Plainvest ══ -->
+      <div class="cyj-wrap">
+        <div class="cyj-head">
+          <div class="cyj-eyebrow" data-i18n="sim.cyjEyebrow">Continue your journey</div>
+          <h3 class="cyj-title" data-i18n="sim.cyjTitle">You've explored one possible outcome.</h3>
+          <p class="cyj-sub" data-i18n="sim.cyjSub">Discover the tools and lessons that help explain what shapes your financial future.</p>
+        </div>
+
+        <a class="cyj-reco" href="#learn" onclick="showPage('learn');return false;">
+          <span class="cyj-reco-icon" aria-hidden="true">🧭</span>
+          <div class="cyj-reco-body">
+            <div class="cyj-reco-kicker" data-i18n="sim.cyjRecoKicker">Recommended next step</div>
+            <div class="cyj-reco-title" data-i18n="sim.cyjRecoTitle">New to investing?</div>
+            <div class="cyj-reco-text" data-i18n="sim.cyjRecoText">Start with the Learn section to understand the foundations before exploring more advanced concepts.</div>
+          </div>
+          <span class="cyj-reco-cta" data-i18n="sim.cyjStartLearning">Start Learning →</span>
+        </a>
+
+        <div class="cyj-grid">
+          <a class="cyj-card" href="#inflation" onclick="showPage('inflation');return false;">
+            <span class="cyj-card-icon" aria-hidden="true">📈</span>
+            <div class="cyj-card-title" data-i18n="sim.cyjC1T">Inflation</div>
+            <p class="cyj-card-text" data-i18n="sim.cyjC1B">Understand how inflation affects purchasing power and why growth matters over time.</p>
+            <span class="cyj-card-cta" data-i18n="sim.cyjC1Btn">Explore Inflation →</span>
+          </a>
+          <a class="cyj-card" href="#learn" onclick="showPage('learn');return false;">
+            <span class="cyj-card-icon" aria-hidden="true">📚</span>
+            <div class="cyj-card-title" data-i18n="sim.cyjC2T">Learn</div>
+            <p class="cyj-card-text" data-i18n="sim.cyjC2B">Beginner-friendly lessons designed to help you understand investing, wealth building, and long-term thinking.</p>
+            <span class="cyj-card-cta" data-i18n="sim.cyjC2Btn">Start Learning →</span>
+          </a>
+          <a class="cyj-card" href="#plans" onclick="showPage('plans');return false;">
+            <span class="cyj-card-icon" aria-hidden="true">⭐</span>
+            <div class="cyj-card-title" data-i18n="sim.cyjC3T">Membership Plans</div>
+            <p class="cyj-card-text" data-i18n="sim.cyjC3B">Unlock premium guides, advanced tracking tools, future planning resources, and the full Plainvest experience.</p>
+            <span class="cyj-card-cta" data-i18n="sim.cyjC3Btn">View Plans →</span>
+          </a>
+          <a class="cyj-card" href="#contact" onclick="showPage('contact');return false;">
+            <span class="cyj-card-icon" aria-hidden="true">💬</span>
+            <div class="cyj-card-title" data-i18n="sim.cyjC4T">Contact</div>
+            <p class="cyj-card-text" data-i18n="sim.cyjC4B">Have questions, feedback, or suggestions? We'd love to hear from you.</p>
+            <span class="cyj-card-cta" data-i18n="sim.cyjC4Btn">Contact Us →</span>
+          </a>
+        </div>
+
+        <!-- Final CTA banner -->
+        <div class="sim-final-cta">
+          <div class="sfc-text">
+            <h3 data-i18n="sim.sfcTitle">You've seen one possible future.</h3>
+            <p data-i18n="sim.sfcText">Now explore the tools and lessons that help explain what drives the outcome.</p>
+          </div>
+          <div class="sfc-actions">
+            <button class="sfc-btn-primary" onclick="showPage('learn')" data-i18n="sim.cyjStartLearning">Start Learning →</button>
+            <button class="sfc-btn-secondary" onclick="showPage('plans')" data-i18n="sim.sfcPlans">View Plans →</button>
           </div>
         </div>
       </div>
@@ -20759,7 +21059,22 @@
           methodP3: 'Taxes, fees, timing, inflation, exchange rates, and personal circumstances can change real-life outcomes.',
           nudgeTitle: 'Want help turning this result into a first real step?',
           nudgeText: 'Premium includes a 60-minute Zoom call so you can ask questions about platforms, DCA, ETFs, Bitcoin safety, or what to learn next.',
-          nudgeBtn: 'Use Premium support →'
+          nudgeBtn: 'Use Premium support →',
+          eduDisclaimer: 'Educational projection based on historical assumptions. Not a prediction or financial advice.',
+          cyjEyebrow: 'Continue your journey',
+          cyjTitle: 'You\'ve explored one possible outcome.',
+          cyjSub: 'Discover the tools and lessons that help explain what shapes your financial future.',
+          cyjRecoKicker: 'Recommended next step',
+          cyjRecoTitle: 'New to investing?',
+          cyjRecoText: 'Start with the Learn section to understand the foundations before exploring more advanced concepts.',
+          cyjStartLearning: 'Start Learning →',
+          cyjC1T: 'Inflation', cyjC1B: 'Understand how inflation affects purchasing power and why growth matters over time.', cyjC1Btn: 'Explore Inflation →',
+          cyjC2T: 'Learn', cyjC2B: 'Beginner-friendly lessons designed to help you understand investing, wealth building, and long-term thinking.', cyjC2Btn: 'Start Learning →',
+          cyjC3T: 'Membership Plans', cyjC3B: 'Unlock premium guides, advanced tracking tools, future planning resources, and the full Plainvest experience.', cyjC3Btn: 'View Plans →',
+          cyjC4T: 'Contact', cyjC4B: 'Have questions, feedback, or suggestions? We\'d love to hear from you.', cyjC4Btn: 'Contact Us →',
+          sfcTitle: 'You\'ve seen one possible future.',
+          sfcText: 'Now explore the tools and lessons that help explain what drives the outcome.',
+          sfcPlans: 'View Plans →'
         },
         inflation: {
           eyebrow: 'The hidden risk',
@@ -21634,7 +21949,22 @@
           methodP3: 'Impostos, taxas, momento de compra, inflação, câmbio e circunstâncias pessoais podem mudar os resultados reais.',
           nudgeTitle: 'Quer ajuda para transformar este resultado em um primeiro passo real?',
           nudgeText: 'O Premium inclui uma chamada de 60 minutos no Zoom para tirar dúvidas sobre plataformas, DCA, ETFs, segurança em Bitcoin ou o que estudar depois.',
-          nudgeBtn: 'Usar suporte Premium →'
+          nudgeBtn: 'Usar suporte Premium →',
+          eduDisclaimer: 'Projeção educacional baseada em premissas históricas. Não é uma previsão nem aconselhamento financeiro.',
+          cyjEyebrow: 'Continue sua jornada',
+          cyjTitle: 'Você explorou um resultado possível.',
+          cyjSub: 'Descubra as ferramentas e lições que ajudam a explicar o que molda o seu futuro financeiro.',
+          cyjRecoKicker: 'Próximo passo recomendado',
+          cyjRecoTitle: 'Novo em investimentos?',
+          cyjRecoText: 'Comece pela seção Aprender para entender os fundamentos antes de explorar conceitos mais avançados.',
+          cyjStartLearning: 'Começar a aprender →',
+          cyjC1T: 'Inflação', cyjC1B: 'Entenda como a inflação afeta o poder de compra e por que o crescimento importa ao longo do tempo.', cyjC1Btn: 'Explorar inflação →',
+          cyjC2T: 'Aprender', cyjC2B: 'Lições para iniciantes feitas para ajudar você a entender investimentos, construção de patrimônio e pensamento de longo prazo.', cyjC2Btn: 'Começar a aprender →',
+          cyjC3T: 'Planos de assinatura', cyjC3B: 'Desbloqueie guias premium, ferramentas avançadas de acompanhamento, recursos de planejamento e a experiência Plainvest completa.', cyjC3Btn: 'Ver planos →',
+          cyjC4T: 'Contato', cyjC4B: 'Tem dúvidas, comentários ou sugestões? Adoraríamos ouvir você.', cyjC4Btn: 'Fale conosco →',
+          sfcTitle: 'Você viu um futuro possível.',
+          sfcText: 'Agora explore as ferramentas e lições que ajudam a explicar o que impulsiona o resultado.',
+          sfcPlans: 'Ver planos →'
         },
         inflation: {
           eyebrow: 'O risco escondido',
