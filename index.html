@@ -18706,6 +18706,33 @@
         grid-template-columns: 1fr !important;
       }
     }
+
+    /* ── Wider, more premium layout on large monitors (text stays capped) ── */
+    @media (min-width: 1500px) {
+      .hs-intro { max-width: 1460px; }
+      .cyj-wrap { max-width: 1460px; }
+      .why-exists,
+      .hwy-do,
+      .plans-preview,
+      .home-howpv,
+      .how-pv { max-width: 1360px; }
+      .learn-proof { max-width: 1200px; }
+      .inflation-chart-wrap { max-width: 1440px; }
+      .lpb-horizontal { max-width: 1360px; }
+    }
+
+    @media (min-width: 1850px) {
+      .hs-intro { max-width: 1600px; }
+      .cyj-wrap { max-width: 1600px; }
+      .why-exists,
+      .hwy-do,
+      .plans-preview,
+      .home-howpv,
+      .how-pv { max-width: 1480px; }
+      .learn-proof { max-width: 1280px; }
+      .inflation-chart-wrap { max-width: 1560px; }
+      .lpb-horizontal { max-width: 1480px; }
+    }
   </style>
 </head>
 
