@@ -181,6 +181,9 @@
       --navy-mid: #132240;
       --navy-soft: #1a2f52;
       --navy-deep: #08111f;
+      /* Layout rhythm tokens — keep section spacing consistent across breakpoints */
+      --nav-height: 110px;
+      --sec-pad-y: 2.75rem;   /* ~44px each side → ~88px between sections (desktop) */
       --surface-1: rgba(18, 34, 57, 0.88);
       --surface-2: rgba(15, 29, 49, 0.96);
       --surface-3: rgba(255, 255, 255, 0.035);
@@ -226,8 +229,8 @@
       background:
         radial-gradient(circle at 12% -8%, rgba(0, 212, 170, .13), transparent 22%),
         radial-gradient(circle at 88% 4%, rgba(232, 184, 75, .11), transparent 18%),
-        radial-gradient(circle at 50% 24%, rgba(19, 34, 64, .55), transparent 28%),
-        linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 18%, #0c182c 100%);
+        radial-gradient(circle at 50% 30%, rgba(19, 34, 64, .18), transparent 34%),
+        linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-deep) 30%, #0a1424 100%);
       color: var(--white);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -1930,7 +1933,7 @@
     .plans-preview {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 1.5rem 2rem 1.7rem;
+      padding: var(--sec-pad-y) 2rem;
       text-align: center;
     }
 
@@ -13406,7 +13409,7 @@
     .hero-sim {
       background:
         linear-gradient(100deg, rgba(8, 17, 31, .97) 0%, rgba(8, 17, 31, .89) 42%, rgba(8, 17, 31, .52) 68%, rgba(8, 17, 31, .44) 100%),        var(--navy-deep);
-      padding-top: 8rem !important;
+      padding-top: calc(var(--nav-height) + 32px) !important;
     }
 
     #home {
@@ -15869,8 +15872,8 @@
     ═══════════════════════════════════════════════ */
     .why-exists {
       max-width: 1140px;
-      margin: -0.8rem auto 0;
-      padding: 1.4rem 2rem 2rem;
+      margin: 0 auto;
+      padding: var(--sec-pad-y) 2rem;
       position: relative;
     }
 
@@ -15883,7 +15886,7 @@
       transform: translateX(-50%);
       width: min(1000px, 85%);
       height: 320px;
-      background: radial-gradient(ellipse at center top, rgba(31, 211, 170, .07), rgba(31, 211, 170, 0) 72%);
+      background: radial-gradient(ellipse at center top, rgba(31, 211, 170, .10), rgba(31, 211, 170, 0) 72%);
       pointer-events: none;
       z-index: 0;
     }
@@ -15891,13 +15894,13 @@
     /* ── Homepage story: standalone How-It-Works + What-you-can-do + life-outcome icons ── */
     .home-howpv {
       margin: 0 auto !important;
-      padding: 2rem 1.5rem 1.5rem;
+      padding: var(--sec-pad-y) 1.5rem;
     }
 
     .hwy-do {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 1.6rem 2rem 1.7rem;
+      padding: var(--sec-pad-y) 2rem;
       text-align: center;
     }
 
@@ -16084,7 +16087,7 @@
     .tools-cta {
       text-align: center;
       padding: .5rem 2rem 1rem;
-      margin-top: -1rem;
+      margin-top: 0;
     }
 
     /* ── Learning topics: 6-item grid ── */
@@ -16155,7 +16158,7 @@
     .learn-proof {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 1.5rem 2rem;
+      padding: var(--sec-pad-y) 2rem;
       text-align: center;
     }
 
@@ -16537,7 +16540,7 @@
     .home-cta {
       max-width: 820px;
       margin: 0 auto;
-      padding: 2.2rem 2rem 3rem;
+      padding: var(--sec-pad-y) 2rem;
       text-align: center;
     }
 
@@ -18006,12 +18009,12 @@
     #books.app-page,
     #plans.app-page,
     #contact.app-page {
-      padding-top: 8.5rem !important;
+      padding-top: calc(var(--nav-height) + 32px) !important;
     }
 
-    /* Inflation hero sits closer to the nav — tighter, more refined */
+    /* Inflation hero sits a touch closer to the nav — still clears it safely */
     #inflation.app-page {
-      padding-top: 7rem !important;
+      padding-top: calc(var(--nav-height) + 24px) !important;
     }
 
     .the-problem.app-page,
@@ -18745,9 +18748,10 @@
       }
     }
 
-    /* ── Laptop (short viewports ≥1024px wide): compact the hero so the next section never gets cut off ── */
+    /* ── Laptop (short viewports ≥1024px wide): compact rhythm, but the hero still clears the fixed navbar ── */
     @media (max-height: 900px) and (min-width: 1024px) {
-      .hero-sim { padding-top: 5.5rem !important; }
+      :root { --sec-pad-y: 2rem; }   /* ~32px each side → ~64px between sections */
+      .hero-sim { padding-top: calc(var(--nav-height) + 24px) !important; }
       #home { padding-bottom: 0.4rem; }
       .hs-intro {
         margin: 0 auto 0.35rem;
@@ -18762,9 +18766,13 @@
       .hs-mock-card { padding: 1rem 1.15rem 0.95rem; }
       .hs-sidecard { gap: .7rem; }
       .hs-mock-rows { gap: .55rem; }
-      .why-exists {
-        margin-top: -1rem;
-        padding-top: 1rem;
+    }
+
+    /* ── Mobile: tighter, consistent section rhythm; nav shrinks to ~60px ── */
+    @media (max-width: 768px) {
+      :root {
+        --sec-pad-y: 1.5rem;   /* ~24px each side → ~48px between sections */
+        --nav-height: 60px;
       }
     }
 
