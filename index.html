@@ -1218,8 +1218,8 @@
     }
 
     .hs-intro {
-      max-width: 1320px;
-      margin: 0 auto 0.9rem;
+      max-width: 1500px;
+      margin: 0 auto 0.5rem;
       padding: 1.35rem 1.5rem 1.3rem;
       border: 1px solid rgba(255, 255, 255, .09);
       border-radius: 26px;
@@ -1930,7 +1930,7 @@
     .plans-preview {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 2rem 2rem 2.3rem;
+      padding: 1.5rem 2rem 1.7rem;
       text-align: center;
     }
 
@@ -12364,16 +12364,25 @@
 
     /* ══ INFLATION CSS FIXES ═════════════════════════════════════════ */
     #inflation {
-      padding: 7rem 3rem;
+      padding: 4.5rem 3rem 5rem;
       background: linear-gradient(180deg, #101e37 0%, #0b1628 100%);
     }
 
     #inflation>.section-eyebrow,
     #inflation>.section-h2,
     #inflation>.section-lead {
-      max-width: 1260px;
+      max-width: 900px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    /* Refined, educational (not oversized) inflation hero title */
+    #inflation>.section-h2 {
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem) !important;
+      max-width: 900px;
+    }
+    #inflation>.section-lead {
+      max-width: 760px;
     }
 
     /* Emotional purchasing-power callout */
@@ -12381,10 +12390,10 @@
       display: flex;
       align-items: center;
       gap: 1.5rem;
-      max-width: 720px;
-      margin: 1.8rem auto 2.5rem;
-      padding: 1.4rem 2rem;
-      border-radius: 20px;
+      max-width: 600px;
+      margin: 1.2rem auto 1.8rem;
+      padding: 1.1rem 1.7rem;
+      border-radius: 18px;
       background: linear-gradient(135deg, rgba(224, 85, 85, .07) 0%, rgba(12, 24, 43, .9) 100%);
       border: 1px solid rgba(224, 85, 85, .2);
       box-shadow: 0 0 40px rgba(224, 85, 85, .06);
@@ -12401,7 +12410,7 @@
 
     .inf-ec-num {
       font-family: 'Lora', Georgia, serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-size: clamp(1.4rem, 3vw, 2.05rem);
       font-weight: 700;
       color: #dde6f4;
       line-height: 1;
@@ -13405,7 +13414,7 @@
         linear-gradient(180deg, rgba(5, 12, 24, .0) 60%, rgba(7, 17, 32, 1) 100%),
         linear-gradient(100deg, rgba(8, 17, 31, .97) 0%, rgba(8, 17, 31, .89) 42%, rgba(8, 17, 31, .52) 68%, rgba(8, 17, 31, .44) 100%),        var(--navy-deep) !important;
       min-height: auto;
-      padding-bottom: 1.3rem;
+      padding-bottom: 0.7rem;
       position: relative;
     }
 
@@ -15860,8 +15869,8 @@
     ═══════════════════════════════════════════════ */
     .why-exists {
       max-width: 1140px;
-      margin: -0.5rem auto 0;
-      padding: 2.1rem 2rem 2.8rem;
+      margin: -0.8rem auto 0;
+      padding: 1.4rem 2rem 2rem;
       position: relative;
     }
 
@@ -15882,13 +15891,13 @@
     /* ── Homepage story: standalone How-It-Works + What-you-can-do + life-outcome icons ── */
     .home-howpv {
       margin: 0 auto !important;
-      padding: 2.8rem 1.5rem 2rem;
+      padding: 2rem 1.5rem 1.5rem;
     }
 
     .hwy-do {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 2.2rem 2rem 2.3rem;
+      padding: 1.6rem 2rem 1.7rem;
       text-align: center;
     }
 
@@ -16146,7 +16155,7 @@
     .learn-proof {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 2rem 2rem;
+      padding: 1.5rem 2rem;
       text-align: center;
     }
 
@@ -16528,7 +16537,7 @@
     .home-cta {
       max-width: 820px;
       margin: 0 auto;
-      padding: 3rem 2rem 4rem;
+      padding: 2.2rem 2rem 3rem;
       text-align: center;
     }
 
@@ -18000,6 +18009,11 @@
       padding-top: 8.5rem !important;
     }
 
+    /* Inflation hero sits closer to the nav — tighter, more refined */
+    #inflation.app-page {
+      padding-top: 7rem !important;
+    }
+
     .the-problem.app-page,
     .why-exists.app-page,
     .future-vis.app-page,
@@ -18734,11 +18748,11 @@
     /* ── Wider, more premium layout on large monitors (text stays capped) ── */
     @media (min-width: 1500px) {
       .hs-intro {
-        width: min(90vw, 1500px);
+        width: min(92vw, 1560px);
         max-width: none;
         grid-template-columns: minmax(0, 1.25fr) minmax(0, .95fr);
       }
-      .cyj-wrap { max-width: 1440px; }
+      .cyj-wrap { max-width: 1480px; }
       .why-exists,
       .hwy-do,
       .plans-preview,
@@ -18750,8 +18764,8 @@
     }
 
     @media (min-width: 1850px) {
-      .hs-intro { width: min(86vw, 1560px); }
-      .cyj-wrap { max-width: 1500px; }
+      .hs-intro { width: min(90vw, 1600px); }
+      .cyj-wrap { max-width: 1560px; }
       .why-exists,
       .hwy-do,
       .plans-preview,
@@ -19403,9 +19417,9 @@
      SECTION 2: INFLATION
 ══════════════════════════════════════════ -->
   <section id="inflation" class="app-page" data-page="inflation">
-    <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">The silent thief</div>
-    <div class="section-h2" id="inf-h2" data-i18n-html="inflation.h2">Your money is losing value<br><em>right now, while you sleep.</em></div>
-    <p class="section-lead" id="inf-lead" data-i18n="inflation.lead">Inflation doesn't announce itself. It quietly erodes the buying power of every dollar sitting in a savings account. $100,000 today may only feel like $60,000 in 20 years — unless your money grows faster than rising prices.</p>
+    <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">Inflation, explained</div>
+    <div class="section-h2" id="inf-h2" data-i18n-html="inflation.h2">See how inflation changes <em>what your money can buy.</em></div>
+    <p class="section-lead" id="inf-lead" data-i18n="inflation.lead">Test different amounts, countries, and time horizons to understand how rising prices affect real purchasing power over time.</p>
     <div class="inf-emotional-callout">
       <div class="inf-ec-item">
         <div class="inf-ec-num" id="inf-ec-num1">$100,000</div>
@@ -22122,9 +22136,9 @@
           sfcPlans: 'View Plans →'
         },
         inflation: {
-          eyebrow: 'The hidden risk',
-          h2: 'Your savings are <em>losing value</em> right now.',
-          lead: 'Inflation silently erodes the purchasing power of money sitting in savings. Compare cash, savings, and invested growth across a time horizon instead of guessing.',
+          eyebrow: 'Inflation, explained',
+          h2: 'See how inflation changes <em>what your money can buy.</em>',
+          lead: 'Test different amounts, countries, and time horizons to understand how rising prices affect real purchasing power over time.',
           chartTitle: 'Purchasing power over a 30-year horizon',
           yearsLabel: 'Time horizon:',
           legendInvested: 'Invested (8%/yr avg)',
@@ -23073,9 +23087,9 @@
           sfcPlans: 'Ver planos →'
         },
         inflation: {
-          eyebrow: 'O risco escondido',
-          h2: 'A sua reserva está <em>perdendo valor</em> agora mesmo.',
-          lead: 'A inflação reduz silenciosamente o poder de compra do dinheiro parado. Compare dinheiro em caixa, poupança e crescimento investido em um horizonte de tempo claro.',
+          eyebrow: 'Inflação, explicada',
+          h2: 'Veja como a inflação muda <em>o que o seu dinheiro pode comprar.</em>',
+          lead: 'Teste diferentes valores, países e horizontes de tempo para entender como a alta dos preços afeta o poder de compra real ao longo do tempo.',
           chartTitle: 'Poder de compra em um horizonte de 30 anos',
           yearsLabel: 'Horizonte de tempo:',
           legendInvested: 'Investido (8%/ano)',
