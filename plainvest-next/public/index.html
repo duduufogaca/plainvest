@@ -1049,7 +1049,16 @@
       line-height: 1.15;
       letter-spacing: -0.4px;
       margin-bottom: 0.7rem;
-      max-width: 16ch;
+      max-width: 920px;
+    }
+
+    /* Centered home sections: center the heading block (not narrow/left-pinned) */
+    .why-inner .section-eyebrow, .why-inner .section-h2, .why-inner .section-lead,
+    .hwy-inner .section-eyebrow, .hwy-inner .section-h2, .hwy-inner .hwy-sub,
+    .lpf-inner .section-eyebrow, .lpf-inner .section-h2,
+    .ppv-inner .section-eyebrow, .ppv-inner .section-h2 {
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .section-h2 em {
@@ -1379,7 +1388,7 @@
       font-size: clamp(1.95rem, 3vw, 2.9rem);
       line-height: .98;
       letter-spacing: -.03em;
-      max-width: 760px;
+      max-width: 720px;
     }
 
     .hs-h1 em {
@@ -1921,7 +1930,7 @@
     .plans-preview {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 2.6rem 2rem 3rem;
+      padding: 2rem 2rem 2.3rem;
       text-align: center;
     }
 
@@ -1929,7 +1938,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
-      margin-top: 2rem;
+      margin-top: 1.4rem;
       text-align: left;
     }
 
@@ -15864,7 +15873,7 @@
     .hwy-do {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 2.8rem 2rem 3rem;
+      padding: 2.2rem 2rem 2.3rem;
       text-align: center;
     }
 
@@ -15872,7 +15881,7 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1rem;
-      margin-top: 2.2rem;
+      margin-top: 1.6rem;
       text-align: left;
     }
 
@@ -16122,7 +16131,7 @@
     .learn-proof {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 2.6rem 2rem;
+      padding: 2rem 2rem;
       text-align: center;
     }
 
@@ -16130,7 +16139,7 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: .7rem;
-      margin-top: 2rem;
+      margin-top: 1.4rem;
     }
 
     .lpf-item {
@@ -18709,8 +18718,12 @@
 
     /* ── Wider, more premium layout on large monitors (text stays capped) ── */
     @media (min-width: 1500px) {
-      .hs-intro { max-width: 1460px; }
-      .cyj-wrap { max-width: 1460px; }
+      .hs-intro {
+        width: min(90vw, 1500px);
+        max-width: none;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, .95fr);
+      }
+      .cyj-wrap { max-width: 1440px; }
       .why-exists,
       .hwy-do,
       .plans-preview,
@@ -18722,8 +18735,8 @@
     }
 
     @media (min-width: 1850px) {
-      .hs-intro { max-width: 1600px; }
-      .cyj-wrap { max-width: 1600px; }
+      .hs-intro { width: min(86vw, 1560px); }
+      .cyj-wrap { max-width: 1500px; }
       .why-exists,
       .hwy-do,
       .plans-preview,
@@ -19317,7 +19330,7 @@
   <section class="learn-proof app-page" data-page="home">
     <div class="lpf-inner">
       <div class="section-eyebrow" data-i18n="lpf.eyebrow">What you'll learn</div>
-      <h2 class="section-h2" data-i18n-html="lpf.h2">Topics you'll finally <em>understand.</em></h2>
+      <h2 class="section-h2" data-i18n-html="lpf.h2">Money topics, <em>made clear.</em></h2>
       <div class="lpf-grid lpf-grid--6">
         <span class="lpf-item" data-i18n="lpf.i1">Investing</span>
         <span class="lpf-item" data-i18n="lpf.i2">Inflation</span>
@@ -19335,7 +19348,7 @@
   <section class="plans-preview app-page" data-page="home">
     <div class="ppv-inner">
       <div class="section-eyebrow" data-i18n="ppv.eyebrow">Plans</div>
-      <h2 class="section-h2" data-i18n-html="ppv.h2">Start free. Go deeper when you're ready.</h2>
+      <h2 class="section-h2" data-i18n-html="ppv.h2">Start free. Upgrade when you're ready.</h2>
       <div class="ppv-grid">
         <div class="ppv-card">
           <div class="ppv-tier" data-i18n="ppv.t1">Free</div>
@@ -22231,7 +22244,7 @@
         },
         lpf: {
           eyebrow: 'What you\'ll learn',
-          h2: 'Topics you\'ll finally <em>understand.</em>',
+          h2: 'Money topics, <em>made clear.</em>',
           i1: 'Investing', i2: 'Inflation', i3: 'ETFs & Bitcoin', i4: 'Retirement planning',
           i5: 'Financial independence', i6: 'Wealth building'
         },
@@ -22280,7 +22293,7 @@
         },
         ppv: {
           eyebrow: 'Plans',
-          h2: 'Start free. Go deeper when you\'re ready.',
+          h2: 'Start free. Upgrade when you\'re ready.',
           t1: 'Free', p1: 'Explore and learn', d1: 'The full simulator, inflation calculator, and beginner lessons. No account, no card.',
           t2: 'Premium', p2: 'Build your knowledge', d2: 'Structured guides, Bitcoin & ETF clarity, and a 60-minute onboarding call. Yours for life.',
           t3: 'Pro', p3: 'Track your financial journey', d3: 'Portfolio tracking, future projections, and a dashboard that grows with you.'
@@ -23180,7 +23193,7 @@
         },
         lpf: {
           eyebrow: 'O que você vai aprender',
-          h2: 'Temas que você vai finalmente <em>entender.</em>',
+          h2: 'Temas de dinheiro, <em>com clareza.</em>',
           i1: 'Investimentos', i2: 'Inflação', i3: 'ETFs e Bitcoin', i4: 'Aposentadoria',
           i5: 'Independência financeira', i6: 'Construção de patrimônio'
         },
@@ -23229,7 +23242,7 @@
         },
         ppv: {
           eyebrow: 'Planos',
-          h2: 'Comece grátis. Vá além quando estiver pronto.',
+          h2: 'Comece grátis. Evolua quando quiser.',
           t1: 'Grátis', p1: 'Explorar e aprender', d1: 'O simulador completo, a calculadora de inflação e lições para iniciantes. Sem cadastro, sem cartão.',
           t2: 'Premium', p2: 'Construir seu conhecimento', d2: 'Guias estruturados, clareza sobre Bitcoin e ETFs e uma chamada de onboarding de 60 minutos. Seu para sempre.',
           t3: 'Pro', p3: 'Acompanhar sua jornada financeira', d3: 'Acompanhamento de portfólio, projeções de futuro e um painel que cresce com você.'
