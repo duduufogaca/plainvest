@@ -15826,6 +15826,159 @@
       padding: 1.6rem 1.6rem 1.4rem;
     }
 
+    /* ── Hero Future-Simulator product mockup ── */
+    .hs-mock-card {
+      align-self: center;
+      padding: 1.25rem 1.35rem 1.2rem;
+    }
+
+    .hs-mock-head {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding-bottom: .9rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .hs-mock-dots {
+      display: inline-flex;
+      gap: .3rem;
+    }
+
+    .hs-mock-dots i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .18);
+    }
+
+    .hs-mock-title {
+      font-size: .82rem;
+      font-weight: 700;
+      color: #f4f9fd;
+    }
+
+    .hs-mock-pill {
+      margin-left: auto;
+      font-size: .58rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(0, 212, 170, .12);
+      padding: .25rem .5rem;
+      border-radius: 999px;
+    }
+
+    .hs-mock-span {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: #8ea7c1;
+      margin-bottom: .9rem;
+    }
+
+    .hs-mock-arrow {
+      color: var(--teal);
+    }
+
+    .hs-mock-rows {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .hs-mock-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .82rem;
+    }
+
+    .hs-mock-lbl {
+      color: #9fb2c6;
+    }
+
+    .hs-mock-val {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      color: #f4f9fd;
+    }
+
+    .hs-mock-neg {
+      color: #e88;
+    }
+
+    .hs-mock-pos {
+      color: var(--teal);
+    }
+
+    .hs-mock-row--total {
+      margin-top: .35rem;
+      padding-top: .75rem;
+      border-top: 1px dashed rgba(255, 255, 255, .12);
+    }
+
+    .hs-mock-row--total .hs-mock-lbl {
+      color: #f4f9fd;
+      font-weight: 600;
+    }
+
+    .hs-mock-total {
+      font-size: 1.15rem;
+      color: var(--teal);
+      text-shadow: 0 0 24px rgba(0, 212, 170, .35);
+    }
+
+    .hs-mock-bar {
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .07);
+      overflow: hidden;
+      margin: 1.05rem 0 .85rem;
+    }
+
+    .hs-mock-bar-fill {
+      display: block;
+      height: 100%;
+      width: 78%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(0, 212, 170, .55), #00d4aa);
+    }
+
+    .hs-mock-foot {
+      font-size: .66rem;
+      color: #6f8194;
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* ── CTA bar after the toolkit ── */
+    .tools-cta {
+      text-align: center;
+      padding: .5rem 2rem 1rem;
+      margin-top: -1rem;
+    }
+
+    /* ── Learning topics: 6-item grid ── */
+    .lpf-grid--6 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 640px) {
+      .lpf-grid--6 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     .hs-visual-eyebrow {
       font-size: .66rem;
       font-weight: 800;
@@ -18476,18 +18629,13 @@
     <ul>
       <li data-mob-icon="🏠" data-mob-desc="Back to the start"><a href="#home"><span data-i18n="nav.home">Home</span></a></li>
       <li data-mob-icon="📊" data-mob-desc="Test your investment plan"><a href="#simulator"><span data-i18n="nav.simulator">Simulator</span></a></li>
+      <li data-mob-icon="📉" data-mob-desc="See how inflation affects your money"><a href="#inflation"><span data-i18n="nav.inflation">Inflation</span></a></li>
       <li data-mob-icon="📚" data-mob-desc="Start learning the basics"><a href="#learn"><span data-i18n="nav.learn">Learn</span></a></li>
-      <li data-mob-icon="🛡️" class="plans-public-nav-item mob-cta-item" data-mob-desc="Get lifetime Premium access"><a href="#plans"><span data-i18n="nav.plans">Plans</span></a></li>
+      <li data-mob-icon="💬" data-mob-desc="Why Plainvest was built"><a href="#story"><span data-i18n="nav.story">Story</span></a></li>
+      <li data-mob-icon="📖" class="books-public-nav-item" data-mob-desc="Recommended reading list"><a href="#books"><span data-i18n="nav.books">Books</span></a></li>
       <li data-mob-icon="👑" class="member-content-nav-item" data-mob-desc="Your premium guides"><a class="member-content-nav" href="#member" id="nav-member-content-btn"><span data-i18n="nav.memberContent">Premium Hub</span></a></li>
-      <li class="nav-more-li">
-        <button type="button" class="nav-more-toggle" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.more">More</span><span class="nav-more-caret" aria-hidden="true">▾</span></button>
-        <ul class="nav-more-menu">
-          <li data-mob-icon="📉" data-mob-desc="See how inflation affects your money"><a href="#inflation"><span data-i18n="nav.inflation">Inflation</span></a></li>
-          <li data-mob-icon="💬" data-mob-desc="Why Plainvest was built"><a href="#story"><span data-i18n="nav.story">Story</span></a></li>
-          <li data-mob-icon="📖" class="books-public-nav-item" data-mob-desc="Recommended reading list"><a href="#books"><span data-i18n="nav.books">Books</span></a></li>
-          <li data-mob-icon="📩" data-mob-desc="Questions or feedback"><a href="#contact"><span data-i18n="nav.contact">Contact</span></a></li>
-        </ul>
-      </li>
+      <li data-mob-icon="🛡️" class="plans-public-nav-item mob-cta-item" data-mob-desc="Get lifetime Premium access"><a href="#plans"><span data-i18n="nav.plans">Plans</span></a></li>
+      <li data-mob-icon="📩" data-mob-desc="Questions or feedback"><a href="#contact"><span data-i18n="nav.contact">Contact</span></a></li>
     </ul>
     <div class="nav-actions">
       <a class="member-login-btn member-create-btn" href="https://members.plainvest.app/signup" id="nav-create-member-btn" data-i18n="nav.createMember">Create member</a>
@@ -18514,12 +18662,12 @@
     <div class="hs-intro">
       <div class="hs-copy">
         <p class="hs-pre-headline" data-i18n="hero.preHead">Future clarity. Smarter decisions.</p>
-        <h1 class="hs-h1" data-i18n-html="hero.h1">Understand money.<br>Without the <em>jargon.</em></h1>
-        <p class="hs-tension" data-i18n="hero.tension">Money affects every major decision in life — yet most people were never taught how it works. Plainvest is where normal people finally understand it, visually.</p>
-        <p class="hs-lead hs-support" data-i18n="hero.lead">No jargon. No pressure. No money required to start.</p>
+        <h1 class="hs-h1" data-i18n-html="hero.h1">See how today's financial decisions<br>shape your <em>future.</em></h1>
+        <p class="hs-tension" data-i18n="hero.tension">Plainvest is an interactive financial education platform that helps you visualize investing, inflation, and long-term wealth building through simulations and real-life scenarios.</p>
+        <p class="hs-lead hs-support" data-i18n="hero.lead">No jargon. No spreadsheets. No financial background required.</p>
         <div class="hero-actions">
-          <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Try the Free Simulator →</button>
-          <button class="btn-ghost" onclick="document.querySelector('.why-exists').scrollIntoView({behavior:'smooth'})" data-i18n="hero.cta2">See How It Works →</button>
+          <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Try the Simulator →</button>
+          <button class="btn-ghost" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})" data-i18n="hero.cta2">See How It Works →</button>
         </div>
         <div class="hs-trust">
           <span class="hs-trust-item" data-i18n="hero.trust1">Free to explore</span>
@@ -18528,32 +18676,37 @@
           <span class="hs-trust-item" data-i18n="hero.trust4">Australia • Brazil • USA</span>
         </div>
       </div>
-      <div class="hs-sidecard hs-visual-card">
-        <div class="hs-visual-eyebrow" data-i18n="hero.visEyebrow">What clarity looks like over time</div>
-        <div class="hs-visual-chart" aria-hidden="true">
-          <svg viewBox="0 0 320 168" role="img">
-            <defs>
-              <linearGradient id="heroVisFill" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="#00d4aa" stop-opacity=".26" />
-                <stop offset="100%" stop-color="#00d4aa" stop-opacity="0" />
-              </linearGradient>
-            </defs>
-            <line x1="16" y1="148" x2="304" y2="148" stroke="rgba(255,255,255,.09)" stroke-width="1" />
-            <line x1="160" y1="20" x2="160" y2="148" stroke="rgba(255,255,255,.05)" stroke-width="1" />
-            <path d="M16,148 C72,144 120,130 168,102 C216,74 258,42 304,18 L304,148 Z" fill="url(#heroVisFill)" />
-            <path d="M16,148 C72,144 120,130 168,102 C216,74 258,42 304,18" fill="none" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" />
-            <circle cx="16" cy="148" r="4" fill="#0b1622" stroke="#00d4aa" stroke-width="2" />
-            <circle cx="160" cy="104" r="4" fill="#0b1622" stroke="#00d4aa" stroke-width="2" />
-            <circle cx="304" cy="18" r="5.5" fill="#00d4aa" />
-            <circle cx="304" cy="18" r="11" fill="#00d4aa" opacity=".18" />
-          </svg>
+      <div class="hs-sidecard hs-mock-card">
+        <div class="hs-mock-head">
+          <span class="hs-mock-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="hs-mock-title" data-i18n="hero.mockTitle">Future Simulator</span>
+          <span class="hs-mock-pill" data-i18n="hero.mockPill">Live preview</span>
         </div>
-        <div class="hs-visual-axis">
-          <span data-i18n="hero.visToday">Today</span>
-          <span data-i18n="hero.vis10">10 years</span>
-          <span data-i18n="hero.vis20">20 years</span>
+        <div class="hs-mock-span">
+          <span data-i18n="hero.mockToday">Today</span>
+          <span class="hs-mock-arrow" aria-hidden="true">→</span>
+          <span data-i18n="hero.mock20">20 years</span>
         </div>
-        <p class="hs-visual-foot" data-i18n="hero.visFoot">A calm, visual way to see how time shapes your future — no dollar figures, just understanding.</p>
+        <div class="hs-mock-rows">
+          <div class="hs-mock-row">
+            <span class="hs-mock-lbl" data-i18n="hero.mockR1">Starting savings</span>
+            <span class="hs-mock-val">$10,000</span>
+          </div>
+          <div class="hs-mock-row">
+            <span class="hs-mock-lbl" data-i18n="hero.mockR2">Inflation impact</span>
+            <span class="hs-mock-val hs-mock-neg">−$12,000</span>
+          </div>
+          <div class="hs-mock-row">
+            <span class="hs-mock-lbl" data-i18n="hero.mockR3">Monthly contributions</span>
+            <span class="hs-mock-val hs-mock-pos">+$45,000</span>
+          </div>
+          <div class="hs-mock-row hs-mock-row--total">
+            <span class="hs-mock-lbl" data-i18n="hero.mockR4">Net future value</span>
+            <span class="hs-mock-val hs-mock-total">$71,000</span>
+          </div>
+        </div>
+        <div class="hs-mock-bar" aria-hidden="true"><span class="hs-mock-bar-fill"></span></div>
+        <p class="hs-mock-foot" data-i18n="hero.mockFoot">Illustrative preview of the free simulator · Educational only</p>
       </div>
     </div>
 
@@ -18949,24 +19102,24 @@
 ══════════════════════════════════════════ -->
   <section class="why-exists app-page" data-page="home">
     <div class="why-inner">
-      <div class="section-eyebrow" data-i18n="why.eyebrow">Why this matters</div>
-      <h2 class="section-h2 why-h2" data-i18n-html="why.h2">Money isn't complicated.<br>It was just made to <em>feel</em> that way.</h2>
-      <p class="section-lead why-lead" data-i18n="why.lead">Most people were never taught investing, inflation, or long-term planning. Plainvest turns those ideas into simple visual examples.</p>
+      <div class="section-eyebrow" data-i18n="why.eyebrow">Why Plainvest exists</div>
+      <h2 class="section-h2 why-h2" data-i18n-html="why.h2">Most people were never taught<br>how money <em>works.</em></h2>
+      <p class="section-lead why-lead" data-i18n="why.lead">School teaches algebra. Most people spend their entire lives using money — yet investing, inflation, retirement planning, and long-term decisions are rarely explained in a practical way. Plainvest was built to make those concepts visible.</p>
       <div class="why-grid">
         <div class="why-card">
-          <span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
-          <h4 class="why-card-h" data-i18n="why.c1h">See what usually stays invisible</h4>
-          <p class="why-card-p" data-i18n="why.c1p">Understand inflation, investing, and time through visual simulations.</p>
+          <span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+          <h4 class="why-card-h" data-i18n="why.c1h">Investing</h4>
+          <p class="why-card-p" data-i18n="why.c1p">See how money grows over time.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l6 6 4-4 8 8"/><path d="M17 17h4v-4"/></svg></span>
+          <h4 class="why-card-h" data-i18n="why.c2h">Inflation</h4>
+          <p class="why-card-p" data-i18n="why.c2p">See how purchasing power changes.</p>
         </div>
         <div class="why-card">
           <span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 15V9a3 3 0 0 1 3-3h6"/><path d="M18 9v6a3 3 0 0 1-3 3H9"/></svg></span>
-          <h4 class="why-card-h" data-i18n="why.c2h">Compare choices before making them</h4>
-          <p class="why-card-p" data-i18n="why.c2p">Explore different paths without risking real money.</p>
-        </div>
-        <div class="why-card">
-          <span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6Z"/><path d="M9 12l2 2 4-4"/></svg></span>
-          <h4 class="why-card-h" data-i18n="why.c3h">Build confidence through understanding</h4>
-          <p class="why-card-p" data-i18n="why.c3p">Better decisions start when the picture finally becomes clear.</p>
+          <h4 class="why-card-h" data-i18n="why.c3h">Decisions</h4>
+          <p class="why-card-p" data-i18n="why.c3p">Compare different paths before committing.</p>
         </div>
       </div>
     </div>
@@ -18975,19 +19128,27 @@
   <!-- ══════════════════════════════════════════
      WHAT YOU'LL ACTUALLY LEARN (proof / curiosity)
 ══════════════════════════════════════════ -->
-  <section class="learn-proof app-page" data-page="home">
-    <div class="lpf-inner">
-      <div class="section-eyebrow" data-i18n="lpf.eyebrow">What you'll actually learn</div>
-      <h2 class="section-h2" data-i18n-html="lpf.h2">Real money concepts,<br>made finally <em>understandable.</em></h2>
-      <div class="lpf-grid">
-        <span class="lpf-item" data-i18n="lpf.i1">Investment basics</span>
-        <span class="lpf-item" data-i18n="lpf.i2">Inflation &amp; purchasing power</span>
-        <span class="lpf-item" data-i18n="lpf.i3">Compound growth</span>
-        <span class="lpf-item" data-i18n="lpf.i4">Risk vs reward</span>
-        <span class="lpf-item" data-i18n="lpf.i5">Bitcoin &amp; ETFs</span>
-        <span class="lpf-item" data-i18n="lpf.i6">Long-term planning</span>
-        <span class="lpf-item" data-i18n="lpf.i7">Financial independence</span>
-        <span class="lpf-item" data-i18n="lpf.i8">Retirement scenarios</span>
+  <section id="how-it-works" class="how-pv home-howpv app-page" data-page="home" aria-labelledby="how-pv-title">
+    <div class="how-pv-head">
+      <p class="how-pv-eyebrow" data-i18n="howpv.eyebrow">How it works</p>
+      <h2 class="how-pv-title" id="how-pv-title" data-i18n="howpv.title">From your numbers to a clear picture</h2>
+      <p class="how-pv-sub" data-i18n="howpv.sub">No account needed — explore it free.</p>
+    </div>
+    <div class="how-pv-grid how-pv-grid--3">
+      <div class="how-pv-step">
+        <div class="how-pv-num">1</div>
+        <h3 class="how-pv-step-title" data-i18n="howpv.s1t">Enter your situation</h3>
+        <p class="how-pv-step-body" data-i18n="howpv.s1b">Your country, savings, monthly habit, and time horizon.</p>
+      </div>
+      <div class="how-pv-step">
+        <div class="how-pv-num">2</div>
+        <h3 class="how-pv-step-title" data-i18n="howpv.s2t">See it visualized</h3>
+        <p class="how-pv-step-body" data-i18n="howpv.s2b">Watch investing, inflation, and time play out instantly.</p>
+      </div>
+      <div class="how-pv-step">
+        <div class="how-pv-num">3</div>
+        <h3 class="how-pv-step-title" data-i18n="howpv.s3t">Understand and decide</h3>
+        <p class="how-pv-step-body" data-i18n="howpv.s3b">Compare paths and make calmer long-term choices.</p>
       </div>
     </div>
   </section>
@@ -19029,11 +19190,31 @@
     </div>
   </section>
 
+  <!-- ── CTA after the tools ── -->
+  <div class="tools-cta app-page" data-page="home">
+    <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hwy.exploreCta">Explore the Simulator →</button>
+  </div>
+
   <!-- ══════════════════════════════════════════
-     HOME: FUTURE VISUALIZATION
+     LEARNING TOPICS (compressed)
 ══════════════════════════════════════════ -->
+  <section class="learn-proof app-page" data-page="home">
+    <div class="lpf-inner">
+      <div class="section-eyebrow" data-i18n="lpf.eyebrow">What you'll learn</div>
+      <h2 class="section-h2" data-i18n-html="lpf.h2">Topics you'll finally <em>understand.</em></h2>
+      <div class="lpf-grid lpf-grid--6">
+        <span class="lpf-item" data-i18n="lpf.i1">Investing</span>
+        <span class="lpf-item" data-i18n="lpf.i2">Inflation</span>
+        <span class="lpf-item" data-i18n="lpf.i3">ETFs &amp; Bitcoin</span>
+        <span class="lpf-item" data-i18n="lpf.i4">Retirement planning</span>
+        <span class="lpf-item" data-i18n="lpf.i5">Financial independence</span>
+        <span class="lpf-item" data-i18n="lpf.i6">Wealth building</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ══════════════════════════════════════════
-     ACT 6: PLANS PREVIEW (soft conversion)
+     PLANS PREVIEW (pricing)
 ══════════════════════════════════════════ -->
   <section class="plans-preview app-page" data-page="home">
     <div class="ppv-inner">
@@ -19042,17 +19223,17 @@
       <div class="ppv-grid">
         <div class="ppv-card">
           <div class="ppv-tier" data-i18n="ppv.t1">Free</div>
-          <div class="ppv-price" data-i18n="ppv.p1">Learn and explore</div>
+          <div class="ppv-price" data-i18n="ppv.p1">Explore and learn</div>
           <p class="ppv-desc" data-i18n="ppv.d1">The full simulator, inflation calculator, and beginner lessons. No account, no card.</p>
         </div>
         <div class="ppv-card ppv-card--feature">
           <div class="ppv-tier" data-i18n="ppv.t2">Premium</div>
-          <div class="ppv-price" data-i18n="ppv.p2">Guided education</div>
+          <div class="ppv-price" data-i18n="ppv.p2">Build your knowledge</div>
           <p class="ppv-desc" data-i18n="ppv.d2">Structured guides, Bitcoin &amp; ETF clarity, and a 60-minute onboarding call. Yours for life.</p>
         </div>
         <div class="ppv-card">
           <div class="ppv-tier" data-i18n="ppv.t3">Pro</div>
-          <div class="ppv-price" data-i18n="ppv.p3">Education + tracking</div>
+          <div class="ppv-price" data-i18n="ppv.p3">Track your financial journey</div>
           <p class="ppv-desc" data-i18n="ppv.d3">Portfolio tracking, future projections, and a dashboard that grows with you.</p>
         </div>
       </div>
@@ -19064,10 +19245,10 @@
 ══════════════════════════════════════════ -->
   <section class="home-cta app-page" data-page="home">
     <div class="hcta-inner">
-      <h2 class="hcta-h2" data-i18n-html="hcta.h2">When money makes sense,<br>life feels <em>different.</em></h2>
-      <p class="hcta-sub" data-i18n="hcta.sub">Start understanding your money today — free. Go deeper with Premium or Pro when you're ready.</p>
+      <h2 class="hcta-h2" data-i18n-html="hcta.h2">Ready to see your<br>financial <em>future?</em></h2>
+      <p class="hcta-sub" data-i18n="hcta.sub">It's free to explore — no account, no card. Go deeper with Premium or Pro whenever you're ready.</p>
       <div class="hcta-actions">
-        <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hero.cta1">Try the Free Simulator →</button>
+        <button class="btn-primary" onclick="showPage('simulator')" data-i18n="hcta.journey">Start Your Financial Journey →</button>
         <button class="btn-ghost" onclick="showPage('plans')" data-i18n="hero.cta3">Compare Plans →</button>
       </div>
       <p class="hcta-note" data-i18n-html="hcta.note">No account needed to explore the simulator. <span>Completely free.</span></p>
@@ -21633,8 +21814,11 @@
         nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', more: 'More', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub', profile: 'My Profile', portfolio: 'Portfolio' },
         hero: {
           kicker: 'Financial clarity for beginners',
-          h1: 'Understand money.<br>Without the <em>jargon.</em>',
-          lead: 'No jargon. No pressure. No money required to start.',
+          h1: 'See how today\'s financial decisions<br>shape your <em>future.</em>',
+          lead: 'No jargon. No spreadsheets. No financial background required.',
+          mockTitle: 'Future Simulator', mockPill: 'Live preview', mockToday: 'Today', mock20: '20 years',
+          mockR1: 'Starting savings', mockR2: 'Inflation impact', mockR3: 'Monthly contributions', mockR4: 'Net future value',
+          mockFoot: 'Illustrative preview of the free simulator · Educational only',
           brandSub: 'Financial clarity for beginners',
           sideKicker: 'The financial clarity platform',
           sideTitle: 'See what your everyday money could become over time.',
@@ -21668,7 +21852,7 @@
           band3T: 'Growth only matters if it beats inflation.',
           band3B: 'You are not just seeing bigger numbers. You are seeing what those numbers still buy over time.',
           social: 'Built with <strong>beginner clarity</strong><br>for people who want investing to finally make sense.',
-          cta1: 'Try the Free Simulator →', cta2: 'See How It Works →', cta3: 'Compare Plans →',
+          cta1: 'Try the Simulator →', cta2: 'See How It Works →', cta3: 'Compare Plans →',
           trust1: 'Free to explore', trust2: 'Built for beginners', trust3: 'Educational only', trust4: 'Australia • Brazil • USA',
           s60Eyebrow: 'What you\'ll understand in 60 seconds',
           s60r1t: 'Why time matters', s60r1b: 'Small habits can change long-term outcomes.',
@@ -21680,7 +21864,7 @@
           how2T: 'See growth vs inflation', how2B: 'Charts update instantly — no account needed.',
           how3T: 'Understand what it means', how3B: 'Plain-English context, no jargon, no advice.',
           preHead: 'Future clarity. Smarter decisions.',
-          tension: 'Money affects every major decision in life — yet most people were never taught how it works. Plainvest is where normal people finally understand it, visually.',
+          tension: 'Plainvest is an interactive financial education platform that helps you visualize investing, inflation, and long-term wealth building through simulations and real-life scenarios.',
           visEyebrow: 'What clarity looks like over time', visToday: 'Today', vis10: '10 years', vis20: '20 years',
           visFoot: 'A calm, visual way to see how time shapes your future — no dollar figures, just understanding.',
           storyKicker: 'What starting today actually looks like',
@@ -21708,12 +21892,12 @@
           undFoot: 'Educational platform. Not financial advice.'
         },
         howpv: {
-          eyebrow: 'The process',
-          title: 'How Plainvest works',
-          sub: 'Three simple steps — no account needed.',
-          s1t: 'Enter simple numbers', s1b: 'Choose your country, starting amount, monthly habit, and time horizon.',
-          s2t: 'See the outcome visually', s2b: 'Watch how inflation, time, and different money paths change the picture.',
-          s3t: 'Understand what it means', s3b: 'Use the result to learn, compare, and make calmer long-term decisions.',
+          eyebrow: 'How it works',
+          title: 'From your numbers to a clear picture',
+          sub: 'No account needed — explore it free.',
+          s1t: 'Enter your situation', s1b: 'Your country, savings, monthly habit, and time horizon.',
+          s2t: 'See it visualized', s2b: 'Watch investing, inflation, and time play out instantly.',
+          s3t: 'Understand and decide', s3b: 'Compare paths and make calmer long-term choices.',
         },
         strip: { free: 'Free', free2: 'no credit card, ever', sec: '60 seconds', sec2: 'to your first result', plain: 'Plain language', nojargon: 'no jargon', built: 'Built for', beginners: 'complete beginners', edu: 'Educational', notadvice: 'not advice' },
         trustLaunch: {
@@ -21914,27 +22098,25 @@
           t4: '<strong>Understanding it clearly changes everything.</strong> You don\'t need to be an expert. You just need a clear starting point.'
         },
         why: {
-          eyebrow: 'Why people use Plainvest',
-          h2: 'Money isn\'t complicated.<br>It was just made to <em>feel</em> that way.',
-          lead: 'Most people were never taught investing, inflation, or long-term planning. Plainvest turns those ideas into something you can finally see — and understand.',
-          c1h: 'See what usually stays invisible',
-          c1p: 'Understand inflation, investing, and time through visual simulations.',
-          c2h: 'Compare choices before making them',
-          c2p: 'Explore different paths without risking real money.',
-          c3h: 'Build confidence through understanding',
-          c3p: 'Better decisions start when the picture finally becomes clear.',
-          mission: '<strong>That\'s why Plainvest exists</strong> — a calm, visual way to finally understand money, built for the people the finance world usually leaves out.'
+          eyebrow: 'Why Plainvest exists',
+          h2: 'Most people were never taught<br>how money <em>works.</em>',
+          lead: 'School teaches algebra. Most people spend their entire lives using money — yet investing, inflation, retirement planning, and long-term decisions are rarely explained in a practical way. Plainvest was built to make those concepts visible.',
+          c1h: 'Investing', c1p: 'See how money grows over time.',
+          c2h: 'Inflation', c2p: 'See how purchasing power changes.',
+          c3h: 'Decisions', c3p: 'Compare different paths before committing.',
+          mission: ''
         },
         lpf: {
-          eyebrow: 'What you\'ll actually learn',
-          h2: 'Real money concepts,<br>made finally <em>understandable.</em>',
-          i1: 'Investment basics', i2: 'Inflation & purchasing power', i3: 'Compound growth', i4: 'Risk vs reward',
-          i5: 'Bitcoin & ETFs', i6: 'Long-term planning', i7: 'Financial independence', i8: 'Retirement scenarios'
+          eyebrow: 'What you\'ll learn',
+          h2: 'Topics you\'ll finally <em>understand.</em>',
+          i1: 'Investing', i2: 'Inflation', i3: 'ETFs & Bitcoin', i4: 'Retirement planning',
+          i5: 'Financial independence', i6: 'Wealth building'
         },
         hwy: {
           eyebrow: 'The toolkit',
           sub: 'Everything you need to learn, compare, and understand your future — in one place.',
           h2: 'Explore the Plainvest toolkit',
+          exploreCta: 'Explore the Simulator →',
           c1t: 'Simulator', c1b: 'Test different amounts, time horizons, and money paths.', c1cta: 'Try Simulator →',
           c2t: 'Inflation', c2b: 'See how rising prices affect future purchasing power.', c2cta: 'Open Inflation →',
           c3t: 'Learn', c3b: 'Beginner lessons that explain money without jargon.', c3cta: 'Start Learning →',
@@ -21968,16 +22150,17 @@
         },
         hcta: {
           badge: 'Free to start',
-          h2: 'When money makes sense,<br>life feels <em>different.</em>',
-          sub: 'Start understanding your money today — free. Go deeper with Premium or Pro when you\'re ready.',
+          h2: 'Ready to see your<br>financial <em>future?</em>',
+          sub: 'It\'s free to explore — no account, no card. Go deeper with Premium or Pro whenever you\'re ready.',
+          journey: 'Start Your Financial Journey →',
           note: 'No account needed to explore the simulator. <span>Completely free.</span>'
         },
         ppv: {
           eyebrow: 'Plans',
           h2: 'Start free. Go deeper when you\'re ready.',
-          t1: 'Free', p1: 'Learn and explore', d1: 'The full simulator, inflation calculator, and beginner lessons. No account, no card.',
-          t2: 'Premium', p2: 'Guided education', d2: 'Structured guides, Bitcoin & ETF clarity, and a 60-minute onboarding call. Yours for life.',
-          t3: 'Pro', p3: 'Education + tracking', d3: 'Portfolio tracking, future projections, and a dashboard that grows with you.'
+          t1: 'Free', p1: 'Explore and learn', d1: 'The full simulator, inflation calculator, and beginner lessons. No account, no card.',
+          t2: 'Premium', p2: 'Build your knowledge', d2: 'Structured guides, Bitcoin & ETF clarity, and a 60-minute onboarding call. Yours for life.',
+          t3: 'Pro', p3: 'Track your financial journey', d3: 'Portfolio tracking, future projections, and a dashboard that grows with you.'
         },
         missionPillars: [
           { h: 'Investing is for everyone', p: 'Not just the wealthy or the financially educated. Anyone with $10 and a smartphone can start. Plainvest was built to make that feel real — not just possible.' },
@@ -22581,8 +22764,11 @@
         nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', more: 'Mais', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil', portfolio: 'Portfólio' },
         hero: {
           kicker: 'Clareza financeira para iniciantes',
-          h1: 'Entenda dinheiro.<br>Sem o <em>jargão.</em>',
-          lead: 'Sem jargão. Sem pressão. Sem dinheiro para começar.',
+          h1: 'Veja como as decisões financeiras de hoje<br>moldam o seu <em>futuro.</em>',
+          lead: 'Sem jargão. Sem planilhas. Sem precisar de conhecimento financeiro.',
+          mockTitle: 'Simulador do Futuro', mockPill: 'Prévia ao vivo', mockToday: 'Hoje', mock20: '20 anos',
+          mockR1: 'Poupança inicial', mockR2: 'Impacto da inflação', mockR3: 'Aportes mensais', mockR4: 'Valor futuro líquido',
+          mockFoot: 'Prévia ilustrativa do simulador gratuito · Apenas educacional',
           brandSub: 'Clareza financeira para iniciantes',
           sideKicker: 'A plataforma de clareza financeira',
           sideTitle: 'Veja no que o seu dinheiro do dia a dia pode se transformar ao longo do tempo.',
@@ -22616,7 +22802,7 @@
           band3T: 'Não apenas números maiores — mas o que eles compram de verdade.',
           band3B: 'O crescimento só importa se for maior que a inflação. O Plainvest mostra os dois juntos para que a imagem seja sempre honesta.',
           social: 'Criado com <strong>clareza para iniciantes</strong><br>para quem quer finalmente entender investimentos.',
-          cta1: 'Testar o Simulador Grátis →', cta2: 'Ver como funciona →', cta3: 'Comparar planos →',
+          cta1: 'Testar o Simulador →', cta2: 'Ver como funciona →', cta3: 'Comparar planos →',
           s60Eyebrow: 'O que você vai entender em 60 segundos',
           s60r1t: 'Por que o tempo importa', s60r1b: 'Pequenos hábitos podem mudar resultados de longo prazo.',
           s60r2t: 'Por que a inflação importa', s60r2b: 'O crescimento só vale se superar a alta dos preços.',
@@ -22628,7 +22814,7 @@
           how2T: 'Veja crescimento vs inflação', how2B: 'Gráficos atualizam na hora — sem cadastro.',
           how3T: 'Entenda o que significa', how3B: 'Contexto em linguagem simples, sem jargão.',
           preHead: 'Clareza para o futuro. Decisões mais inteligentes.',
-          tension: 'O dinheiro afeta cada grande decisão da vida — mas a maioria das pessoas nunca aprendeu como ele funciona. O Plainvest é onde pessoas comuns finalmente entendem isso, de forma visual.',
+          tension: 'O Plainvest é uma plataforma interativa de educação financeira que ajuda você a visualizar investimentos, inflação e construção de patrimônio de longo prazo por meio de simulações e cenários da vida real.',
           visEyebrow: 'O que a clareza parece ao longo do tempo', visToday: 'Hoje', vis10: '10 anos', vis20: '20 anos',
           visFoot: 'Uma forma calma e visual de ver como o tempo molda o seu futuro — sem valores em dinheiro, apenas entendimento.',
           storyKicker: 'O que começar hoje realmente parece',
@@ -22656,12 +22842,12 @@
           undFoot: 'Plataforma educacional. Não é aconselhamento financeiro.'
         },
         howpv: {
-          eyebrow: 'O processo',
-          title: 'Como o Plainvest funciona',
-          sub: 'Três passos simples — sem precisar de cadastro.',
-          s1t: 'Insira números simples', s1b: 'Escolha seu país, valor inicial, hábito mensal e horizonte de tempo.',
-          s2t: 'Veja o resultado de forma visual', s2b: 'Veja como a inflação, o tempo e diferentes caminhos do dinheiro mudam o quadro.',
-          s3t: 'Entenda o que significa', s3b: 'Use o resultado para aprender, comparar e tomar decisões de longo prazo mais calmas.',
+          eyebrow: 'Como funciona',
+          title: 'Dos seus números a uma imagem clara',
+          sub: 'Sem precisar de cadastro — explore de graça.',
+          s1t: 'Insira a sua situação', s1b: 'Seu país, poupança, hábito mensal e horizonte de tempo.',
+          s2t: 'Veja de forma visual', s2b: 'Veja investimentos, inflação e tempo acontecerem na hora.',
+          s3t: 'Entenda e decida', s3b: 'Compare caminhos e tome decisões de longo prazo mais calmas.',
         },
         strip: { free: 'Calmo', free2: 'não sobrecarregador', plain: 'Sem experiência', nojargon: 'necessária', built: 'Feito para', beginners: 'iniciantes completos', sec: 'Grátis', sec2: 'para explorar — sem cartão', edu: 'Educação', notadvice: 'não é conselho financeiro' },
         trustLaunch: {
@@ -22860,27 +23046,25 @@
           t4: '<strong>Entender claramente muda tudo.</strong> Você não precisa ser especialista. Só precisa de um ponto de partida claro.'
         },
         why: {
-          eyebrow: 'Por que as pessoas usam o Plainvest',
-          h2: 'Dinheiro não é complicado.<br>Só fizeram ele <em>parecer</em> assim.',
-          lead: 'A maioria das pessoas nunca aprendeu sobre investimentos, inflação ou planejamento de longo prazo. O Plainvest transforma essas ideias em algo que você finalmente consegue ver — e entender.',
-          c1h: 'Veja o que costuma ficar invisível',
-          c1p: 'Entenda inflação, investimentos e tempo por meio de simulações visuais.',
-          c2h: 'Compare escolhas antes de decidir',
-          c2p: 'Explore diferentes caminhos sem arriscar dinheiro de verdade.',
-          c3h: 'Ganhe confiança através do entendimento',
-          c3p: 'Decisões melhores começam quando o quadro finalmente fica claro.',
-          mission: '<strong>É por isso que o Plainvest existe</strong> — uma forma calma e visual de finalmente entender dinheiro, feita para as pessoas que o mundo financeiro costuma deixar de fora.'
+          eyebrow: 'Por que o Plainvest existe',
+          h2: 'A maioria das pessoas nunca aprendeu<br>como o dinheiro <em>funciona.</em>',
+          lead: 'A escola ensina álgebra. A maioria das pessoas passa a vida inteira usando dinheiro — mas investimentos, inflação, aposentadoria e decisões de longo prazo raramente são explicados de forma prática. O Plainvest foi criado para tornar esses conceitos visíveis.',
+          c1h: 'Investimentos', c1p: 'Veja como o dinheiro cresce ao longo do tempo.',
+          c2h: 'Inflação', c2p: 'Veja como o poder de compra muda.',
+          c3h: 'Decisões', c3p: 'Compare diferentes caminhos antes de se comprometer.',
+          mission: ''
         },
         lpf: {
-          eyebrow: 'O que você vai realmente aprender',
-          h2: 'Conceitos reais de dinheiro,<br>finalmente <em>compreensíveis.</em>',
-          i1: 'Fundamentos de investimento', i2: 'Inflação e poder de compra', i3: 'Juros compostos', i4: 'Risco x retorno',
-          i5: 'Bitcoin e ETFs', i6: 'Planejamento de longo prazo', i7: 'Independência financeira', i8: 'Cenários de aposentadoria'
+          eyebrow: 'O que você vai aprender',
+          h2: 'Temas que você vai finalmente <em>entender.</em>',
+          i1: 'Investimentos', i2: 'Inflação', i3: 'ETFs e Bitcoin', i4: 'Aposentadoria',
+          i5: 'Independência financeira', i6: 'Construção de patrimônio'
         },
         hwy: {
           eyebrow: 'O kit de ferramentas',
           sub: 'Tudo o que você precisa para aprender, comparar e entender o seu futuro — em um só lugar.',
           h2: 'Explore o kit de ferramentas do Plainvest',
+          exploreCta: 'Explorar o Simulador →',
           c1t: 'Simulador', c1b: 'Teste diferentes valores, horizontes de tempo e caminhos do dinheiro.', c1cta: 'Testar o Simulador →',
           c2t: 'Inflação', c2b: 'Veja como a alta dos preços afeta o poder de compra futuro.', c2cta: 'Abrir Inflação →',
           c3t: 'Aprender', c3b: 'Lições para iniciantes que explicam dinheiro sem jargão.', c3cta: 'Começar a aprender →',
@@ -22914,16 +23098,17 @@
         },
         hcta: {
           badge: 'Grátis para começar',
-          h2: 'Quando o dinheiro faz sentido,<br>a vida fica <em>diferente.</em>',
-          sub: 'Comece a entender o seu dinheiro hoje — de graça. Vá além com Premium ou Pro quando estiver pronto.',
+          h2: 'Pronto para ver o seu<br>futuro <em>financeiro?</em>',
+          sub: 'É grátis para explorar — sem cadastro, sem cartão. Vá além com Premium ou Pro quando quiser.',
+          journey: 'Comece a sua jornada financeira →',
           note: 'Sem cadastro para explorar o simulador. <span>Completamente grátis.</span>'
         },
         ppv: {
           eyebrow: 'Planos',
           h2: 'Comece grátis. Vá além quando estiver pronto.',
-          t1: 'Grátis', p1: 'Aprender e explorar', d1: 'O simulador completo, a calculadora de inflação e lições para iniciantes. Sem cadastro, sem cartão.',
-          t2: 'Premium', p2: 'Educação guiada', d2: 'Guias estruturados, clareza sobre Bitcoin e ETFs e uma chamada de onboarding de 60 minutos. Seu para sempre.',
-          t3: 'Pro', p3: 'Educação + acompanhamento', d3: 'Acompanhamento de portfólio, projeções de futuro e um painel que cresce com você.'
+          t1: 'Grátis', p1: 'Explorar e aprender', d1: 'O simulador completo, a calculadora de inflação e lições para iniciantes. Sem cadastro, sem cartão.',
+          t2: 'Premium', p2: 'Construir seu conhecimento', d2: 'Guias estruturados, clareza sobre Bitcoin e ETFs e uma chamada de onboarding de 60 minutos. Seu para sempre.',
+          t3: 'Pro', p3: 'Acompanhar sua jornada financeira', d3: 'Acompanhamento de portfólio, projeções de futuro e um painel que cresce com você.'
         },
         missionPillars: [
           { h: 'Investir é para todo mundo', p: 'Não apenas para os ricos ou os que já entendem de finanças. Qualquer pessoa com R$10 e um celular pode começar. O Plainvest foi criado para fazer isso parecer real — não só possível.' },
