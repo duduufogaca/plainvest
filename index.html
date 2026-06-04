@@ -1219,7 +1219,7 @@
 
     .hs-intro {
       max-width: 1320px;
-      margin: 0 auto 1.95rem;
+      margin: 0 auto 0.9rem;
       padding: 1.35rem 1.5rem 1.3rem;
       border: 1px solid rgba(255, 255, 255, .09);
       border-radius: 26px;
@@ -13405,7 +13405,7 @@
         linear-gradient(180deg, rgba(5, 12, 24, .0) 60%, rgba(7, 17, 32, 1) 100%),
         linear-gradient(100deg, rgba(8, 17, 31, .97) 0%, rgba(8, 17, 31, .89) 42%, rgba(8, 17, 31, .52) 68%, rgba(8, 17, 31, .44) 100%),        var(--navy-deep) !important;
       min-height: auto;
-      padding-bottom: 2rem;
+      padding-bottom: 1.3rem;
       position: relative;
     }
 
@@ -15860,8 +15860,23 @@
     ═══════════════════════════════════════════════ */
     .why-exists {
       max-width: 1140px;
-      margin: 0 auto;
-      padding: 3.4rem 2rem 2.8rem;
+      margin: -0.5rem auto 0;
+      padding: 2.1rem 2rem 2.8rem;
+      position: relative;
+    }
+
+    /* Soft glow bridging the hero into "why" so the two sections read as one continuous page */
+    .why-exists::before {
+      content: "";
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1000px, 85%);
+      height: 320px;
+      background: radial-gradient(ellipse at center top, rgba(31, 211, 170, .07), rgba(31, 211, 170, 0) 72%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* ── Homepage story: standalone How-It-Works + What-you-can-do + life-outcome icons ── */
