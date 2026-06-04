@@ -4047,19 +4047,19 @@
     }
 
     .lpb-horizontal .lpb-left {
-      flex: 0 0 38%;
+      flex: 0 0 26%;
       min-width: 0;
     }
 
     .lpb-horizontal .lpb-mid {
-      flex: 0 0 36%;
+      flex: 0 0 50%;
       display: flex;
-      gap: 1.4rem;
+      gap: 1rem;
       min-width: 0;
     }
 
     .lpb-horizontal .lpb-right {
-      flex: 0 0 22%;
+      flex: 0 0 21%;
       display: flex;
       flex-direction: column;
       gap: .55rem;
@@ -4103,6 +4103,7 @@
       padding: 0;
       border: none;
       background: none;
+      box-shadow: none;
     }
 
     .lpb-horizontal .lpb-col-title {
@@ -4119,6 +4120,10 @@
 
     .lpb-horizontal .lpb-col--premium .lpb-col-title {
       color: #e8b84b;
+    }
+
+    .lpb-horizontal .lpb-col--pro .lpb-col-title {
+      color: #8ab4e8;
     }
 
     .lpb-horizontal .lpb-col-item {
@@ -4146,6 +4151,10 @@
 
     .lpb-check--gold {
       background-color: #e8b84b;
+    }
+
+    .lpb-check--blue {
+      background-color: #8ab4e8;
     }
 
     .lpb-horizontal .lpb-btn {
@@ -19866,7 +19875,12 @@
           <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p4">Full roadmap</span></div>
           <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p5">Guided learning paths</span></div>
           <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p6">Support call</span></div>
-          <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p7">Portfolio tracking</span></div>
+        </div>
+        <div class="lpb-col lpb-col--pro">
+          <div class="lpb-col-title" id="lpb-pro-title">Pro</div>
+          <div class="lpb-col-item"><span class="lpb-check lpb-check--blue"></span><span id="lpb-p7">Portfolio tracking</span></div>
+          <div class="lpb-col-item"><span class="lpb-check lpb-check--blue"></span><span id="lpb-p8">Future projections</span></div>
+          <div class="lpb-col-item"><span class="lpb-check lpb-check--blue"></span><span id="lpb-p9">Freedom Score™</span></div>
         </div>
       </div>
       <div class="lpb-right">
@@ -22181,7 +22195,7 @@
           premText: 'Free helps you understand investing. Premium helps you build a complete investing roadmap with guidance, structure and support.',
           premTransition: '',
           premBtn: 'Unlock Your Investing Roadmap →',
-          premFreeTitle: 'Free', premPremTitle: 'Premium',
+          premFreeTitle: 'Free', premPremTitle: 'Premium', premProTitle: 'Pro',
           premSupport: 'Lifetime access. Built for beginners.',
           moreEyebrow: 'More investment types to explore',
           clarityEyebrow: 'The difference Plainvest makes',
@@ -22200,7 +22214,9 @@
           'Full roadmap',
           'Guided learning paths',
           'Support call',
-          'Portfolio tracking'
+          'Portfolio tracking',
+          'Future projections',
+          'Freedom Score™'
         ],
         testi: {
           eyebrow: 'Simulator insights',
@@ -23130,7 +23146,7 @@
           premText: 'O Grátis ajuda você a entender investimentos. O Premium ajuda você a construir um roteiro completo de investimentos com orientação, estrutura e suporte.',
           premTransition: '',
           premBtn: 'Desbloqueie seu roteiro de investimentos →',
-          premFreeTitle: 'Gratuito', premPremTitle: 'Premium',
+          premFreeTitle: 'Grátis', premPremTitle: 'Premium', premProTitle: 'Pro',
           premSupport: 'Acesso vitalício. Feito para iniciantes.',
           moreEyebrow: 'Mais tipos de investimento para explorar',
           clarityEyebrow: 'A diferença que o Plainvest faz',
@@ -23149,7 +23165,9 @@
           'Roteiro completo',
           'Trilhas de aprendizado guiadas',
           'Chamada de suporte',
-          'Acompanhamento de portfólio'
+          'Acompanhamento de portfólio',
+          'Projeções de futuro',
+          'Freedom Score™'
         ],
         testi: {
           eyebrow: 'Insights do simulador',
@@ -24040,10 +24058,11 @@
       setText('lpb-support', lc.premSupport);
       setText('lpb-free-title', lc.premFreeTitle);
       setText('lpb-prem-title', lc.premPremTitle);
+      setText('lpb-pro-title', lc.premProTitle);
       if (lp) {
         setText('lpb-p1', lp[0]); setText('lpb-p2', lp[1]); setText('lpb-p3', lp[2]);
         setText('lpb-p4', lp[3]); setText('lpb-p5', lp[4]); setText('lpb-p6', lp[5]);
-        setText('lpb-p7', lp[6]);
+        setText('lpb-p7', lp[6]); setText('lpb-p8', lp[7]); setText('lpb-p9', lp[8]);
       }
 
       // ── MORE INVESTMENT TYPES EYEBROW
