@@ -380,6 +380,86 @@
       color: var(--teal-soft);
     }
 
+    /* ── "More" nav dropdown ── */
+    .nav-more-li {
+      position: relative;
+    }
+
+    .nav-more-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #90a9c3;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      transition: color .2s;
+    }
+
+    .nav-more-li:hover .nav-more-toggle,
+    .nav-more-li:focus-within .nav-more-toggle {
+      color: var(--teal-soft);
+    }
+
+    .nav-more-caret {
+      font-size: .7em;
+      transition: transform .2s;
+    }
+
+    .nav-more-li:hover .nav-more-caret,
+    .nav-more-li:focus-within .nav-more-caret {
+      transform: rotate(180deg);
+    }
+
+    .nav-more-menu {
+      position: absolute;
+      top: calc(100% + .55rem);
+      right: 0;
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      padding: .4rem;
+      background: rgba(10, 20, 34, .98);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-dark);
+      border-radius: 14px;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .4);
+      list-style: none;
+      z-index: 320;
+    }
+
+    .nav-more-menu::before {
+      content: '';
+      position: absolute;
+      top: -.6rem;
+      left: 0;
+      right: 0;
+      height: .6rem;
+    }
+
+    .nav-more-li:hover .nav-more-menu,
+    .nav-more-li:focus-within .nav-more-menu {
+      display: flex;
+    }
+
+    .nav-more-menu li {
+      display: block;
+      width: 100%;
+    }
+
+    .nav-more-menu a {
+      display: block;
+      padding: .6rem .85rem;
+      border-radius: 9px;
+      white-space: nowrap;
+    }
+
+    .nav-more-menu a:hover {
+      background: rgba(255, 255, 255, .05);
+    }
+
     .nav-cta {
       background: linear-gradient(135deg, var(--teal-soft), var(--teal)) !important;
       color: var(--navy) !important;
@@ -18396,13 +18476,18 @@
     <ul>
       <li data-mob-icon="🏠" data-mob-desc="Back to the start"><a href="#home"><span data-i18n="nav.home">Home</span></a></li>
       <li data-mob-icon="📊" data-mob-desc="Test your investment plan"><a href="#simulator"><span data-i18n="nav.simulator">Simulator</span></a></li>
-      <li data-mob-icon="📉" data-mob-desc="See how inflation affects your money"><a href="#inflation"><span data-i18n="nav.inflation">Inflation</span></a></li>
       <li data-mob-icon="📚" data-mob-desc="Start learning the basics"><a href="#learn"><span data-i18n="nav.learn">Learn</span></a></li>
-      <li data-mob-icon="💬" data-mob-desc="Why Plainvest was built"><a href="#story"><span data-i18n="nav.story">Story</span></a></li>
-      <li data-mob-icon="📖" class="books-public-nav-item" data-mob-desc="Recommended reading list"><a href="#books"><span data-i18n="nav.books">Books</span></a></li>
-      <li data-mob-icon="👑" class="member-content-nav-item" data-mob-desc="Your premium guides"><a class="member-content-nav" href="#member" id="nav-member-content-btn"><span data-i18n="nav.memberContent">Premium Hub</span></a></li>
       <li data-mob-icon="🛡️" class="plans-public-nav-item mob-cta-item" data-mob-desc="Get lifetime Premium access"><a href="#plans"><span data-i18n="nav.plans">Plans</span></a></li>
-      <li data-mob-icon="📩" data-mob-desc="Questions or feedback"><a href="#contact"><span data-i18n="nav.contact">Contact</span></a></li>
+      <li data-mob-icon="👑" class="member-content-nav-item" data-mob-desc="Your premium guides"><a class="member-content-nav" href="#member" id="nav-member-content-btn"><span data-i18n="nav.memberContent">Premium Hub</span></a></li>
+      <li class="nav-more-li">
+        <button type="button" class="nav-more-toggle" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.more">More</span><span class="nav-more-caret" aria-hidden="true">▾</span></button>
+        <ul class="nav-more-menu">
+          <li data-mob-icon="📉" data-mob-desc="See how inflation affects your money"><a href="#inflation"><span data-i18n="nav.inflation">Inflation</span></a></li>
+          <li data-mob-icon="💬" data-mob-desc="Why Plainvest was built"><a href="#story"><span data-i18n="nav.story">Story</span></a></li>
+          <li data-mob-icon="📖" class="books-public-nav-item" data-mob-desc="Recommended reading list"><a href="#books"><span data-i18n="nav.books">Books</span></a></li>
+          <li data-mob-icon="📩" data-mob-desc="Questions or feedback"><a href="#contact"><span data-i18n="nav.contact">Contact</span></a></li>
+        </ul>
+      </li>
     </ul>
     <div class="nav-actions">
       <a class="member-login-btn member-create-btn" href="https://members.plainvest.app/signup" id="nav-create-member-btn" data-i18n="nav.createMember">Create member</a>
@@ -21545,7 +21630,7 @@
     // ══════════════════════════════════════════════════════
     const LANG = {
       en: {
-        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub', profile: 'My Profile', portfolio: 'Portfolio' },
+        nav: { home: 'Home', simulator: 'Simulator', inflation: 'Inflation', learn: 'Learn', story: 'Story', books: 'Books', exchanges: 'Exchanges', plans: 'Plans', contact: 'Contact', more: 'More', cta: 'Start free', login: 'Login', logout: 'Logout', createMember: 'Create member', memberContent: 'Premium Hub', profile: 'My Profile', portfolio: 'Portfolio' },
         hero: {
           kicker: 'Financial clarity for beginners',
           h1: 'Understand money.<br>Without the <em>jargon.</em>',
@@ -22493,7 +22578,7 @@
       },
 
       pt: {
-        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil', portfolio: 'Portfólio' },
+        nav: { home: 'Início', simulator: 'Simulador', inflation: 'Inflação', learn: 'Aprender', story: 'História', books: 'Livros', exchanges: 'Plataformas', plans: 'Planos', contact: 'Contato', more: 'Mais', cta: 'Comece grátis', login: 'Entrar', logout: 'Sair', createMember: 'Criar membro', memberContent: 'Hub Premium', profile: 'Meu Perfil', portfolio: 'Portfólio' },
         hero: {
           kicker: 'Clareza financeira para iniciantes',
           h1: 'Entenda dinheiro.<br>Sem o <em>jargão.</em>',
@@ -27788,6 +27873,7 @@
 
       // Build overlay items from nav ul data
       navEl.querySelectorAll('ul li').forEach(function (li) {
+        if (li.classList.contains('nav-more-li')) return;
         var a = li.querySelector('a');
         if (!a) return;
         var icon = li.getAttribute('data-mob-icon') || '';
