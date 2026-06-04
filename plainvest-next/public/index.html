@@ -18745,6 +18745,29 @@
       }
     }
 
+    /* ── Laptop (short viewports ≥1024px wide): compact the hero so the next section never gets cut off ── */
+    @media (max-height: 900px) and (min-width: 1024px) {
+      .hero-sim { padding-top: 5.5rem !important; }
+      #home { padding-bottom: 0.4rem; }
+      .hs-intro {
+        margin: 0 auto 0.35rem;
+        padding: 1rem 1.4rem 1.05rem;
+        gap: 1rem;
+      }
+      .hs-h1 {
+        font-size: clamp(1.7rem, 2.5vw, 2.45rem);
+        margin-top: .5rem;
+        margin-bottom: .55rem;
+      }
+      .hs-mock-card { padding: 1rem 1.15rem 0.95rem; }
+      .hs-sidecard { gap: .7rem; }
+      .hs-mock-rows { gap: .55rem; }
+      .why-exists {
+        margin-top: -1rem;
+        padding-top: 1rem;
+      }
+    }
+
     /* ── Wider, more premium layout on large monitors (text stays capped) ── */
     @media (min-width: 1500px) {
       .hs-intro {
