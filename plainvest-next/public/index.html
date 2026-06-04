@@ -4036,6 +4036,142 @@
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
     }
 
+    /* ── Premium conversion: compact full-width horizontal banner ── */
+    .lpb-horizontal {
+      max-width: 1140px;
+      margin: 2.5rem auto 0;
+      padding: 1.6rem 2rem;
+      gap: 1.8rem;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    .lpb-horizontal .lpb-left {
+      flex: 0 0 38%;
+      min-width: 0;
+    }
+
+    .lpb-horizontal .lpb-mid {
+      flex: 0 0 36%;
+      display: flex;
+      gap: 1.4rem;
+      min-width: 0;
+    }
+
+    .lpb-horizontal .lpb-right {
+      flex: 0 0 22%;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+      min-width: 0;
+    }
+
+    .lpb-horizontal .lpb-premium-badge {
+      position: static;
+      display: inline-block;
+      font-size: .56rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #e8b84b;
+      border: 1px solid rgba(232, 184, 75, .4);
+      border-radius: 999px;
+      padding: .22rem .55rem;
+      margin-bottom: .7rem;
+      background: rgba(232, 184, 75, .08);
+    }
+
+    .lpb-horizontal .lpb-headline {
+      font-family: 'Lora', serif;
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: #f4f9fd;
+      margin: 0 0 .45rem;
+      line-height: 1.2;
+    }
+
+    .lpb-horizontal .lpb-subhead {
+      font-size: .82rem;
+      color: #9fb2c6;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .lpb-horizontal .lpb-col {
+      flex: 1;
+      min-width: 0;
+      padding: 0;
+      border: none;
+      background: none;
+    }
+
+    .lpb-horizontal .lpb-col-title {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .55rem;
+    }
+
+    .lpb-horizontal .lpb-col--free .lpb-col-title {
+      color: var(--teal);
+    }
+
+    .lpb-horizontal .lpb-col--premium .lpb-col-title {
+      color: #e8b84b;
+    }
+
+    .lpb-horizontal .lpb-col-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .45rem;
+      font-size: .76rem;
+      color: #c2d2e0;
+      line-height: 1.35;
+      margin-bottom: .4rem;
+    }
+
+    .lpb-check {
+      flex-shrink: 0;
+      width: 15px;
+      height: 15px;
+      margin-top: 1px;
+      border-radius: 5px;
+      background-color: var(--teal);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304131f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 10px;
+    }
+
+    .lpb-check--gold {
+      background-color: #e8b84b;
+    }
+
+    .lpb-horizontal .lpb-btn {
+      width: 100%;
+      white-space: normal;
+    }
+
+    .lpb-horizontal .lpb-support {
+      font-size: .68rem;
+      color: #8ea7c1;
+      text-align: center;
+      margin: 0;
+    }
+
+    @media (max-width: 880px) {
+      .lpb-horizontal {
+        flex-wrap: wrap;
+      }
+
+      .lpb-horizontal .lpb-left,
+      .lpb-horizontal .lpb-mid,
+      .lpb-horizontal .lpb-right {
+        flex: 1 1 100%;
+      }
+    }
+
     .learn-premium-banner::before {
       content: '';
       position: absolute;
@@ -5313,6 +5449,28 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
+    }
+
+    /* ── Compressed "more investment types" cards ── */
+    .learn-more-grid .learn-card {
+      min-height: 0;
+      padding: 1.2rem 1.25rem;
+      border-radius: 18px;
+    }
+
+    .learn-more-grid .learn-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+    }
+
+    .learn-more-grid .learn-card-name {
+      font-size: .98rem;
+    }
+
+    .learn-more-grid .learn-card-desc {
+      font-size: .8rem;
+      line-height: 1.45;
+      margin: .45rem 0 .65rem;
     }
 
     /* ── Premium banner: updated inner spacing ── */
@@ -19685,38 +19843,37 @@
             <div class="learn-card-cta" id="lc-etf-cta">Explore your beginner shortcut →</div>
           </div>
 
-          <!-- Premium banner redesigned -->
-          <div class="learn-premium-banner" onclick="showPage('plans')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')showPage('plans')">
-            <div class="lpb-premium-badge" id="lpb-badge">Most complete path</div>
-            <div class="lpb-left">
-              <h4 class="lpb-headline" id="lpb-title">Ready for the next step?</h4>
-              <p class="lpb-subhead" id="lpb-text">Free explanations help you understand the basics. Premium helps you build a real investing path with guidance, structure, and support.</p>
-              <p class="lpb-transition" id="lpb-transition">When you're ready to move from understanding to action, Premium guides the next step.</p>
-              <div class="lpb-comparison">
-                <div class="lpb-col lpb-col--free">
-                  <div class="lpb-col-title" id="lpb-free-title">Free</div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">✅</span><span id="lpb-p1">Learn investing concepts</span></div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">✅</span><span id="lpb-p2">Explore the simulator</span></div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">✅</span><span id="lpb-p3">Understand investing basics</span></div>
-                </div>
-                <div class="lpb-col lpb-col--premium">
-                  <div class="lpb-col-title" id="lpb-prem-title">Premium</div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p4">Full investing roadmap</span></div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p5">Beginner learning paths</span></div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p6">Portfolio tracking + DCA systems</span></div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p7">Crypto safety guides</span></div>
-                  <div class="lpb-col-item"><span class="lpb-col-icon">🔓</span><span id="lpb-p8">Included 60-min support call</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="lpb-btn-wrap">
-              <button class="lpb-btn" id="lpb-btn" onclick="event.stopPropagation();showPage('plans')">Unlock your full investing roadmap →</button>
-              <p class="lpb-support" id="lpb-support">Built for beginners who want clarity, not complexity.</p>
-            </div>
-          </div>
         </div><!-- /learn-all-cards -->
       </div><!-- /learn-right -->
     </div><!-- /learn-two-col -->
+
+    <!-- Premium conversion — full-width horizontal banner -->
+    <div class="learn-premium-banner lpb-horizontal" onclick="showPage('plans')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')showPage('plans')">
+      <div class="lpb-left">
+        <div class="lpb-premium-badge" id="lpb-badge">Most complete path</div>
+        <h4 class="lpb-headline" id="lpb-title">Ready for the next step?</h4>
+        <p class="lpb-subhead" id="lpb-text">Free helps you understand investing. Premium helps you build a complete investing roadmap with guidance, structure and support.</p>
+      </div>
+      <div class="lpb-mid">
+        <div class="lpb-col lpb-col--free">
+          <div class="lpb-col-title" id="lpb-free-title">Free</div>
+          <div class="lpb-col-item"><span class="lpb-check"></span><span id="lpb-p1">Investing basics</span></div>
+          <div class="lpb-col-item"><span class="lpb-check"></span><span id="lpb-p2">Simulator access</span></div>
+          <div class="lpb-col-item"><span class="lpb-check"></span><span id="lpb-p3">Inflation tools</span></div>
+        </div>
+        <div class="lpb-col lpb-col--premium">
+          <div class="lpb-col-title" id="lpb-prem-title">Premium</div>
+          <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p4">Full roadmap</span></div>
+          <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p5">Guided learning paths</span></div>
+          <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p6">Support call</span></div>
+          <div class="lpb-col-item"><span class="lpb-check lpb-check--gold"></span><span id="lpb-p7">Portfolio tracking</span></div>
+        </div>
+      </div>
+      <div class="lpb-right">
+        <button class="lpb-btn" id="lpb-btn" onclick="event.stopPropagation();showPage('plans')">Unlock Your Investing Roadmap →</button>
+        <p class="lpb-support" id="lpb-support">Lifetime access. Built for beginners.</p>
+      </div>
+    </div>
 
     <!-- MORE INVESTMENT TYPES -->
     <div class="learn-more-section app-page" data-page="learn">
@@ -22021,11 +22178,11 @@
           },
           premBadge: 'Most complete path',
           premTitle: 'Ready for the next step?',
-          premText: 'Free explanations help you understand the basics. Premium helps you build a real investing path with guidance, structure, and support.',
-          premTransition: "When you're ready to move from understanding to action, Premium guides the next step.",
-          premBtn: 'Unlock your full investing roadmap →',
+          premText: 'Free helps you understand investing. Premium helps you build a complete investing roadmap with guidance, structure and support.',
+          premTransition: '',
+          premBtn: 'Unlock Your Investing Roadmap →',
           premFreeTitle: 'Free', premPremTitle: 'Premium',
-          premSupport: 'Built for beginners who want clarity, not complexity.',
+          premSupport: 'Lifetime access. Built for beginners.',
           moreEyebrow: 'More investment types to explore',
           clarityEyebrow: 'The difference Plainvest makes',
           clarityH2: 'Most people don\'t need more finance content. They need clarity.',
@@ -22037,14 +22194,13 @@
           floatLabel: 'Start your beginner path'
         },
         learnPillars: [
-          'Learn investing concepts',
-          'Explore the simulator',
-          'Understand investing basics',
-          'Full investing roadmap',
-          'Beginner learning paths',
-          'Portfolio tracking + DCA systems',
-          'Crypto safety guides',
-          'Included 60-min support call'
+          'Investing basics',
+          'Simulator access',
+          'Inflation tools',
+          'Full roadmap',
+          'Guided learning paths',
+          'Support call',
+          'Portfolio tracking'
         ],
         testi: {
           eyebrow: 'Simulator insights',
@@ -22971,11 +23127,11 @@
           },
           premBadge: 'Caminho mais completo',
           premTitle: 'Pronto para o próximo passo?',
-          premText: 'As explicações gratuitas ajudam você a entender o básico. O Premium ajuda a construir um caminho real de investimento com orientação, estrutura e suporte.',
-          premTransition: 'Quando estiver pronto para sair do entendimento para a ação, o Premium guia o próximo passo.',
-          premBtn: 'Acesse seu roteiro completo de investimentos →',
+          premText: 'O Grátis ajuda você a entender investimentos. O Premium ajuda você a construir um roteiro completo de investimentos com orientação, estrutura e suporte.',
+          premTransition: '',
+          premBtn: 'Desbloqueie seu roteiro de investimentos →',
           premFreeTitle: 'Gratuito', premPremTitle: 'Premium',
-          premSupport: 'Feito para iniciantes que querem clareza, não complexidade.',
+          premSupport: 'Acesso vitalício. Feito para iniciantes.',
           moreEyebrow: 'Mais tipos de investimento para explorar',
           clarityEyebrow: 'A diferença que o Plainvest faz',
           clarityH2: 'A maioria das pessoas não precisa de mais conteúdo financeiro. Precisa de clareza.',
@@ -22987,14 +23143,13 @@
           floatLabel: 'Comece seu caminho de iniciante'
         },
         learnPillars: [
-          'Aprenda conceitos de investimento',
-          'Explore o simulador',
-          'Entenda o básico sobre investir',
-          'Roteiro completo de investimentos',
-          'Trilhas de aprendizado para iniciantes',
-          'Rastreamento de portfólio + método DCA',
-          'Guias de segurança cripto',
-          'Chamada de suporte incluída (60 min)'
+          'Básico de investimentos',
+          'Acesso ao simulador',
+          'Ferramentas de inflação',
+          'Roteiro completo',
+          'Trilhas de aprendizado guiadas',
+          'Chamada de suporte',
+          'Acompanhamento de portfólio'
         ],
         testi: {
           eyebrow: 'Insights do simulador',
@@ -23881,7 +24036,6 @@
       setText('lpb-badge', lc.premBadge);
       setText('lpb-title', lc.premTitle);
       setText('lpb-text', lc.premText);
-      setText('lpb-transition', lc.premTransition);
       setText('lpb-btn', lc.premBtn);
       setText('lpb-support', lc.premSupport);
       setText('lpb-free-title', lc.premFreeTitle);
@@ -23889,7 +24043,7 @@
       if (lp) {
         setText('lpb-p1', lp[0]); setText('lpb-p2', lp[1]); setText('lpb-p3', lp[2]);
         setText('lpb-p4', lp[3]); setText('lpb-p5', lp[4]); setText('lpb-p6', lp[5]);
-        setText('lpb-p7', lp[6]); setText('lpb-p8', lp[7]);
+        setText('lpb-p7', lp[6]);
       }
 
       // ── MORE INVESTMENT TYPES EYEBROW
