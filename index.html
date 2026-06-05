@@ -181,9 +181,12 @@
       --navy-mid: #132240;
       --navy-soft: #1a2f52;
       --navy-deep: #08111f;
-      /* Layout rhythm tokens — keep section spacing consistent across breakpoints */
+      /* Layout rhythm tokens — ONE spacing system across the whole homepage */
       --nav-height: 110px;
-      --sec-pad-y: 2.75rem;   /* ~44px each side → ~88px between sections (desktop) */
+      --section-gap: 4rem;                       /* ~64px between sections (desktop) */
+      --sec-pad-y: calc(var(--section-gap) / 2); /* per-side section padding (derives from --section-gap) */
+      --content-gap: 2rem;                       /* ~32px: subtitle → cards/content */
+      --title-gap: 1.25rem;                      /* ~20px: title → subtitle */
       --surface-1: rgba(18, 34, 57, 0.88);
       --surface-2: rgba(15, 29, 49, 0.96);
       --surface-3: rgba(255, 255, 255, 0.035);
@@ -1941,7 +1944,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
-      margin-top: 1.4rem;
+      margin-top: var(--content-gap);
       text-align: left;
     }
 
@@ -15908,7 +15911,7 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1rem;
-      margin-top: 1.6rem;
+      margin-top: var(--content-gap);
       text-align: left;
     }
 
@@ -16166,7 +16169,7 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: .7rem;
-      margin-top: 1.4rem;
+      margin-top: var(--content-gap);
     }
 
     .lpf-item {
@@ -16260,7 +16263,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.35rem;
-      margin-bottom: 3.5rem;
+      margin-top: var(--content-gap);
     }
 
     .why-card {
@@ -18095,9 +18098,18 @@
       line-height: 1.65 !important;
     }
 
+    /* ── Authoritative homepage section rhythm — one consistent vertical gap everywhere ── */
     .why-exists.app-page,
+    .home-howpv.app-page,
+    .hwy-do.app-page,
+    .learn-proof.app-page,
+    .plans-preview.app-page,
+    .home-cta.app-page,
     .future-vis.app-page {
-      padding: clamp(4rem, 6vw, 6rem) clamp(1rem, 3vw, 2rem) !important;
+      padding-top: var(--sec-pad-y) !important;
+      padding-bottom: var(--sec-pad-y) !important;
+      padding-left: clamp(1rem, 3vw, 2rem) !important;
+      padding-right: clamp(1rem, 3vw, 2rem) !important;
     }
 
     .why-h2,
@@ -18750,7 +18762,7 @@
 
     /* ── Laptop (short viewports ≥1024px wide): compact rhythm, but the hero still clears the fixed navbar ── */
     @media (max-height: 900px) and (min-width: 1024px) {
-      :root { --sec-pad-y: 2rem; }   /* ~32px each side → ~64px between sections */
+      :root { --section-gap: 3rem; }   /* laptop: ~48px between sections (compact) */
       .hero-sim { padding-top: calc(var(--nav-height) + 24px) !important; }
       #home { padding-bottom: 0.4rem; }
       .hs-intro {
@@ -18771,7 +18783,7 @@
     /* ── Mobile: tighter, consistent section rhythm; nav shrinks to ~60px ── */
     @media (max-width: 768px) {
       :root {
-        --sec-pad-y: 1.5rem;   /* ~24px each side → ~48px between sections */
+        --section-gap: 2.5rem;   /* mobile: ~40px between sections */
         --nav-height: 60px;
       }
     }
@@ -18879,19 +18891,19 @@
         <div class="hs-mock-rows">
           <div class="hs-mock-row">
             <span class="hs-mock-lbl" data-i18n="hero.mockR1">Starting savings</span>
-            <span class="hs-mock-val">$10,000</span>
+            <span class="hs-mock-val" data-i18n="hero.mockV1">$10,000</span>
           </div>
           <div class="hs-mock-row">
             <span class="hs-mock-lbl" data-i18n="hero.mockR2">Inflation impact</span>
-            <span class="hs-mock-val hs-mock-neg">−$12,000</span>
+            <span class="hs-mock-val hs-mock-neg" data-i18n="hero.mockV2">−$12,000</span>
           </div>
           <div class="hs-mock-row">
             <span class="hs-mock-lbl" data-i18n="hero.mockR3">Monthly contributions</span>
-            <span class="hs-mock-val hs-mock-pos">+$45,000</span>
+            <span class="hs-mock-val hs-mock-pos" data-i18n="hero.mockV3">+$45,000</span>
           </div>
           <div class="hs-mock-row hs-mock-row--total">
             <span class="hs-mock-lbl" data-i18n="hero.mockR4">Net future value</span>
-            <span class="hs-mock-val hs-mock-total">$71,000</span>
+            <span class="hs-mock-val hs-mock-total" data-i18n="hero.mockV4">$71,000</span>
           </div>
         </div>
         <div class="hs-mock-bar" aria-hidden="true"><span class="hs-mock-bar-fill"></span></div>
@@ -22013,6 +22025,7 @@
           lead: 'No jargon. No spreadsheets. No financial background required.',
           mockTitle: 'Future Simulator', mockPill: 'Live preview', mockToday: 'Today', mock20: '20 years',
           mockR1: 'Starting savings', mockR2: 'Inflation impact', mockR3: 'Monthly contributions', mockR4: 'Net future value',
+          mockV1: '$10,000', mockV2: '−$12,000', mockV3: '+$45,000', mockV4: '$71,000',
           mockFoot: 'Illustrative preview of the free simulator · Educational only',
           brandSub: 'Financial clarity for beginners',
           sideKicker: 'The financial clarity platform',
@@ -22964,6 +22977,7 @@
           lead: 'Sem jargão. Sem planilhas. Sem precisar de conhecimento financeiro.',
           mockTitle: 'Simulador do Futuro', mockPill: 'Prévia ao vivo', mockToday: 'Hoje', mock20: '20 anos',
           mockR1: 'Poupança inicial', mockR2: 'Impacto da inflação', mockR3: 'Aportes mensais', mockR4: 'Valor futuro líquido',
+          mockV1: 'R$ 50.000', mockV2: '−R$ 60.000', mockV3: '+R$ 225.000', mockV4: 'R$ 355.000',
           mockFoot: 'Prévia ilustrativa do simulador gratuito · Apenas educacional',
           brandSub: 'Clareza financeira para iniciantes',
           sideKicker: 'A plataforma de clareza financeira',
