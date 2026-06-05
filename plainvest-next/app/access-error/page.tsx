@@ -162,7 +162,7 @@ export default async function AccessErrorPage({
       {/* Plainvest brand */}
       <a href="/" className="ae-brand">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" className="ae-brand-logo" />
+        <img src="/assets/plainvest-logo-clean.png" alt="Plainvest" className="ae-brand-logo" />
       </a>
 
     </main>

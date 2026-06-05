@@ -85,7 +85,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
         ) : (
           <a href={backHref} className="sb-brand-logo-link">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" className="sb-logo-img" />
+            <img src="/assets/plainvest-logo-clean.png" alt="Plainvest" className="sb-logo-img" />
           </a>
         )}
         <button

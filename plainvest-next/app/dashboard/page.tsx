@@ -245,7 +245,7 @@ export default async function Dashboard({
       <nav className="ms-topbar">
         <a href="/" className="ms-brand">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/LOGO%20TRANSPARENTE%20BACK.png" alt="Plainvest" className="ms-brand-logo" />
+          <img src="/assets/plainvest-logo-clean.png" alt="Plainvest" className="ms-brand-logo" />
         </a>
         <div className="ms-topbar-actions">
           {/* Language switcher */}
