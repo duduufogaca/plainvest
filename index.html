@@ -12375,97 +12375,98 @@
     }
 
     /* One shared content column — title, description and example card all align to the same left edge (simulator-hero rhythm) */
+    /* ── Inflation hero: title/subtitle left, compact impact card right ── */
     .inf-hero {
-      max-width: 900px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 2.6rem;
+      align-items: center;
+      max-width: 1240px;
       margin: 0 auto;
       text-align: left;
     }
-    .inf-hero > .section-eyebrow,
-    .inf-hero > .section-h2,
-    .inf-hero > .section-lead,
-    .inf-hero > .inf-emotional-callout {
+    .inf-hero-copy > .section-eyebrow,
+    .inf-hero-copy > .section-h2,
+    .inf-hero-copy > .section-lead {
       max-width: 100% !important;
       width: auto !important;
       margin-left: 0 !important;
       margin-right: 0 !important;
       text-align: left;
     }
-
-    /* Refined, educational (not oversized) inflation hero title */
     .inf-hero .section-h2 {
-      font-size: clamp(1.6rem, 2.4vw, 2.1rem) !important;
+      font-size: clamp(1.75rem, 2.6vw, 2.45rem) !important;
+    }
+    .inf-hero .section-lead {
+      margin-bottom: 0;
+      max-width: 480px !important;
     }
 
-    /* Emotional purchasing-power callout */
-    .inf-emotional-callout {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem 2.5rem;
-      max-width: 880px;
-      margin: 0.4rem auto 1.6rem;
-      padding: 1.2rem 2rem;
+    /* Compact 3-row impact card */
+    .inf-impact-card {
+      border: 1px solid rgba(224, 85, 85, .22);
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(224, 85, 85, .07) 0%, rgba(12, 24, 43, .9) 100%);
-      border: 1px solid rgba(224, 85, 85, .2);
-      box-shadow: 0 0 40px rgba(224, 85, 85, .06);
-      flex-wrap: wrap;
-      justify-content: flex-start;
+      background: linear-gradient(150deg, rgba(224, 85, 85, .085), rgba(12, 24, 43, .92));
+      padding: 1.35rem 1.5rem 1.2rem;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, .26);
     }
-
-    .inf-ec-item {
+    .iic-kicker {
+      font-size: .64rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(224, 85, 85, .85);
+      margin-bottom: .8rem;
+    }
+    .iic-row {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .3rem;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: .55rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
     }
-
-    .inf-ec-num {
+    .iic-row--total {
+      border-bottom: 0;
+      margin-top: .1rem;
+      padding-top: .65rem;
+    }
+    .iic-lbl {
+      font-size: .82rem;
+      color: #9fb2c6;
+    }
+    .iic-val {
       font-family: 'Lora', Georgia, serif;
-      font-size: clamp(1.4rem, 3vw, 2.05rem);
+      font-size: 1.35rem;
       font-weight: 700;
-      color: #dde6f4;
+      color: #e8eff7;
       line-height: 1;
+      white-space: nowrap;
     }
-
-    .inf-ec-num--red {
+    .iic-val--red {
       color: #e05555;
     }
-
-    .inf-ec-item--faded .inf-ec-lbl {
-      color: rgba(224, 85, 85, .7);
+    .iic-row--total .iic-val {
+      font-size: 1.55rem;
     }
-
-    .inf-ec-lbl {
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: #5a7a96;
-      margin-top: .2rem;
-    }
-
-    .inf-ec-arrow {
-      font-size: 1.6rem;
-      color: rgba(224, 85, 85, .4);
-      flex-shrink: 0;
-    }
-
-    .inf-ec-note {
-      width: 100%;
-      text-align: left;
-      font-size: .68rem;
-      color: rgba(255, 255, 255, .25);
+    .iic-note {
+      margin-top: .75rem;
+      font-size: .66rem;
       font-style: italic;
-      margin-top: .5rem;
+      color: rgba(255, 255, 255, .3);
     }
 
-    .inf-hero .section-lead {
-      margin-bottom: 0.4rem;
+    @media (max-width: 760px) {
+      .inf-hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .inf-hero .section-lead { max-width: 100% !important; }
     }
 
     .inflation-chart-wrap {
-      max-width: 1180px;
-      margin: 2rem auto 0;
+      max-width: 1240px;
+      margin: 3rem auto 0;
       background: linear-gradient(180deg, rgba(21, 36, 60, .98) 0%, rgba(12, 24, 43, .98) 100%);
       border: 1px solid rgba(255, 255, 255, .08);
       border-radius: var(--r-lg);
@@ -12502,13 +12503,16 @@
 
     .inf-market-card {
       margin-bottom: .75rem;
-      padding: .95rem 1rem;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, .05), transparent 52%),
-        rgba(255, 255, 255, .03);
-      border: 1px solid rgba(255, 255, 255, .07);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, .14);
+      padding: 0 0 .9rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      background: none;
+    }
+
+    /* Flatten the two input cards so they read as connected sections of one panel (fewer heavy boxes) */
+    .inf-controls .inf-control.card {
+      box-shadow: none !important;
+      border: 1px solid rgba(255, 255, 255, .05) !important;
+      background: rgba(255, 255, 255, .018) !important;
     }
 
     .inf-market-kicker {
@@ -18810,7 +18814,7 @@
       .home-howpv,
       .how-pv { max-width: 1360px; }
       .learn-proof { max-width: 1200px; }
-      .inflation-chart-wrap { max-width: 1440px; }
+      .inflation-chart-wrap, .inf-hero { max-width: 1440px; }
       .lpb-horizontal { max-width: 1360px; }
     }
 
@@ -18823,7 +18827,7 @@
       .home-howpv,
       .how-pv { max-width: 1480px; }
       .learn-proof { max-width: 1280px; }
-      .inflation-chart-wrap { max-width: 1560px; }
+      .inflation-chart-wrap, .inf-hero { max-width: 1560px; }
       .lpb-horizontal { max-width: 1480px; }
     }
   </style>
@@ -19464,21 +19468,27 @@
 ══════════════════════════════════════════ -->
   <section id="inflation" class="app-page" data-page="inflation">
     <div class="inf-hero">
-    <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">Inflation, explained</div>
-    <div class="section-h2" id="inf-h2" data-i18n-html="inflation.h2">See how inflation changes <em>what your money can buy.</em></div>
-    <p class="section-lead" id="inf-lead" data-i18n="inflation.lead">Test different amounts, countries, and time horizons to understand how rising prices affect real purchasing power over time.</p>
-    <div class="inf-emotional-callout">
-      <div class="inf-ec-item">
-        <div class="inf-ec-num" id="inf-ec-num1">$100,000</div>
-        <div class="inf-ec-lbl">today's value</div>
+      <div class="inf-hero-copy">
+        <div class="section-eyebrow" id="inf-eyebrow" data-i18n="inflation.eyebrow">Inflation, explained</div>
+        <div class="section-h2" id="inf-h2" data-i18n-html="inflation.h2">See how inflation changes <em>what your money can buy.</em></div>
+        <p class="section-lead" id="inf-lead" data-i18n="inflation.lead">Test an amount, choose a country, and see how rising prices affect purchasing power over time.</p>
       </div>
-      <div class="inf-ec-arrow">→</div>
-      <div class="inf-ec-item inf-ec-item--faded">
-        <div class="inf-ec-num inf-ec-num--red" id="inf-ec-num2">~$54,000</div>
-        <div class="inf-ec-lbl">real buying power in 20 years</div>
+      <div class="inf-impact-card">
+        <div class="iic-kicker" data-i18n="inflation.impactKicker">Inflation impact</div>
+        <div class="iic-row">
+          <span class="iic-lbl" data-i18n="inflation.impactToday">Today</span>
+          <strong class="iic-val" id="inf-ec-num1">$100,000</strong>
+        </div>
+        <div class="iic-row">
+          <span class="iic-lbl" data-i18n="inflation.impactFuture">In 20 years</span>
+          <strong class="iic-val iic-val--red" id="inf-ec-num2">~$54,000</strong>
+        </div>
+        <div class="iic-row iic-row--total">
+          <span class="iic-lbl" data-i18n="inflation.impactLost">Buying power lost</span>
+          <strong class="iic-val iic-val--red" id="inf-ec-num3">~$46,000</strong>
+        </div>
+        <div class="iic-note" data-i18n="inflation.impactNote">at ~3.3% average annual inflation</div>
       </div>
-      <div class="inf-ec-note">at ~3.3% average annual inflation</div>
-    </div>
     </div><!-- /inf-hero -->
 
     <div class="inflation-chart-wrap">
@@ -22187,7 +22197,8 @@
         inflation: {
           eyebrow: 'Inflation, explained',
           h2: 'See how inflation changes <em>what your money can buy.</em>',
-          lead: 'Test different amounts, countries, and time horizons to understand how rising prices affect real purchasing power over time.',
+          lead: 'Test an amount, choose a country, and see how rising prices affect purchasing power over time.',
+          impactKicker: 'Inflation impact', impactToday: 'Today', impactFuture: 'In 20 years', impactLost: 'Buying power lost', impactNote: 'at ~3.3% average annual inflation',
           chartTitle: 'Purchasing power over a 30-year horizon',
           yearsLabel: 'Time horizon:',
           legendInvested: 'Invested (8%/yr avg)',
@@ -23139,7 +23150,8 @@
         inflation: {
           eyebrow: 'Inflação, explicada',
           h2: 'Veja como a inflação muda <em>o que o seu dinheiro pode comprar.</em>',
-          lead: 'Teste diferentes valores, países e horizontes de tempo para entender como a alta dos preços afeta o poder de compra real ao longo do tempo.',
+          lead: 'Teste um valor, escolha um país e veja como a alta dos preços afeta o poder de compra ao longo do tempo.',
+          impactKicker: 'Impacto da inflação', impactToday: 'Hoje', impactFuture: 'Em 20 anos', impactLost: 'Poder de compra perdido', impactNote: 'a ~3,3% de inflação média anual',
           chartTitle: 'Poder de compra em um horizonte de 30 anos',
           yearsLabel: 'Horizonte de tempo:',
           legendInvested: 'Investido (8%/ano)',
