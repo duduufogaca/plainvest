@@ -5627,7 +5627,7 @@
 
     /* 5. Clarity bridge — more cinematic */
     .learn-clarity-bridge {
-      margin-top: 2.5rem !important;
+      margin-top: 1.5rem !important;
       border-color: rgba(0, 212, 170, .18) !important;
       box-shadow: 0 2px 60px rgba(0, 212, 170, .06), 0 0 0 1px rgba(0, 212, 170, .07) !important;
     }
@@ -12374,37 +12374,36 @@
       background: linear-gradient(180deg, #101e37 0%, #0b1628 100%);
     }
 
+    /* One shared content column — title, description and example card all align to the same left edge */
     #inflation>.section-eyebrow,
     #inflation>.section-h2,
-    #inflation>.section-lead {
-      max-width: 900px;
+    #inflation>.section-lead,
+    #inflation>.inf-emotional-callout {
+      max-width: 880px;
       margin-left: auto;
       margin-right: auto;
+      text-align: left;
     }
 
     /* Refined, educational (not oversized) inflation hero title */
     #inflation>.section-h2 {
       font-size: clamp(1.6rem, 2.4vw, 2.1rem) !important;
-      max-width: 900px;
-    }
-    #inflation>.section-lead {
-      max-width: 760px;
     }
 
     /* Emotional purchasing-power callout */
     .inf-emotional-callout {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      max-width: 600px;
-      margin: 1.2rem auto 1.8rem;
-      padding: 1.1rem 1.7rem;
+      gap: 1.5rem 2.5rem;
+      max-width: 880px;
+      margin: 0.4rem auto 1.6rem;
+      padding: 1.2rem 2rem;
       border-radius: 18px;
       background: linear-gradient(135deg, rgba(224, 85, 85, .07) 0%, rgba(12, 24, 43, .9) 100%);
       border: 1px solid rgba(224, 85, 85, .2);
       box-shadow: 0 0 40px rgba(224, 85, 85, .06);
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .inf-ec-item {
@@ -12447,7 +12446,7 @@
 
     .inf-ec-note {
       width: 100%;
-      text-align: center;
+      text-align: left;
       font-size: .68rem;
       color: rgba(255, 255, 255, .25);
       font-style: italic;
@@ -12455,7 +12454,7 @@
     }
 
     #inflation>.section-lead {
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
     }
 
     .inflation-chart-wrap {
@@ -18146,7 +18145,7 @@
 
     #learn.app-page {
       padding-top: 8.5rem !important;
-      padding-bottom: clamp(4.5rem, 7vw, 7rem) !important;
+      padding-bottom: clamp(2rem, 3vw, 2.75rem) !important;
       padding-left: max(1.25rem, calc((100vw - 1480px) / 2)) !important;
       padding-right: max(1.25rem, calc((100vw - 1480px) / 2)) !important;
       overflow: hidden !important;
