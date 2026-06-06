@@ -82,3 +82,10 @@ strong{color:var(--ink)}
   .btn-ghost{margin-left:0;margin-top:10px;display:block}
   h2.sec{font-size:1.3rem}
 }
+
+/* EN/PT language toggle (calculator pages) */
+.head-actions{display:flex;align-items:center;gap:14px}
+.lang-toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang-toggle a{padding:6px 13px;font-size:.78rem;font-weight:800;letter-spacing:.02em;color:var(--muted);text-decoration:none;line-height:1}
+.lang-toggle a.active{background:var(--teal-bright);color:var(--bg)}
+@media(max-width:560px){.lang-toggle a{padding:5px 10px;font-size:.72rem}.head-actions{gap:8px}}
