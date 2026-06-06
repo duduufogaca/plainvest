@@ -15,7 +15,7 @@ a{color:var(--teal)}
 .wrap{max-width:780px;margin:0 auto;padding:0 22px}
 /* header */
 .site-head{border-bottom:1px solid var(--line);background:rgba(7,17,29,.85);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
-.site-head .wrap{display:flex;align-items:center;justify-content:space-between;min-height:110px;padding:8px 22px}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;max-width:none;min-height:110px;padding:10px 2.5rem}
 .site-head img{height:94px;width:auto;max-width:360px;object-fit:contain;display:block}
 .head-cta{font-size:.86rem;font-weight:700;color:var(--bg);background:var(--teal-bright);
   padding:9px 16px;border-radius:10px;text-decoration:none}
