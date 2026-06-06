@@ -1,7 +1,8 @@
-/* Plainvest calculator pages — lightweight EN/PT switcher.
-   English is the canonical HTML; PT is applied client-side.
-   Shared strings live in CALC_PT_BASE; each page adds window.CALC_PT for its unique copy. */
+/* Plainvest calculator pages — EN/PT language + AUD/USD/BRL currency switcher.
+   English is the canonical HTML; PT is applied client-side from CALC_PT.
+   Currency only changes how the SAME numbers are formatted (no FX conversion). */
 (function () {
+  /* ---------- language ---------- */
   var BASE = {
     "Create an account": "Criar uma conta",
     "Create an account →": "Criar uma conta →",
@@ -25,7 +26,7 @@
     });
   }
   function applyPT() {
-    var map = {}; var k;
+    var map = {}, k;
     for (k in BASE) map[k] = BASE[k];
     if (window.CALC_PT) for (k in window.CALC_PT) map[k] = window.CALC_PT[k];
     var sel = 'h1,h2,h3,h4,p,li,label,summary,a.btn,a.btn-ghost,a.head-cta,.eyebrow,.calc-sub,.rlabel,.note,.related a,.flinks a';
@@ -35,7 +36,42 @@
     });
     document.documentElement.lang = 'pt-BR';
   }
-  function run() { var lang = getLang(); markToggle(lang); if (lang === 'pt') applyPT(); }
+
+  /* ---------- currency ---------- */
+  var CCY = { AUD: ['en-AU', 'AUD'], USD: ['en-US', 'USD'], BRL: ['pt-BR', 'BRL'] };
+  function getCcy() { try { var c = localStorage.getItem('pv_ccy'); if (CCY[c]) return c; } catch (e) {} return 'AUD'; }
+  var curCcy = getCcy();
+  window.pvFmt = function (n) {
+    var c = CCY[curCcy] || CCY.AUD;
+    try { return new Intl.NumberFormat(c[0], { style: 'currency', currency: c[1], maximumFractionDigits: 0 }).format(n); }
+    catch (e) { return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(n); }
+  };
+  function injectCcy() {
+    var host = document.querySelector('.head-actions');
+    if (!host || host.querySelector('.ccy-select')) return;
+    var sel = document.createElement('select');
+    sel.className = 'ccy-select';
+    sel.setAttribute('aria-label', 'Currency');
+    ['AUD', 'USD', 'BRL'].forEach(function (c) {
+      var o = document.createElement('option');
+      o.value = c; o.textContent = c; if (c === curCcy) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () {
+      curCcy = sel.value;
+      try { localStorage.setItem('pv_ccy', curCcy); } catch (e) {}
+      if (typeof window.pvRecalc === 'function') window.pvRecalc();
+    });
+    host.insertBefore(sel, host.firstChild);
+  }
+
+  function run() {
+    var lang = getLang();
+    markToggle(lang);
+    if (lang === 'pt') applyPT();
+    injectCcy();
+    if (typeof window.pvRecalc === 'function') window.pvRecalc();
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();
 })();

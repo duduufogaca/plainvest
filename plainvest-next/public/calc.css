@@ -89,3 +89,6 @@ strong{color:var(--ink)}
 .lang-toggle a{padding:6px 13px;font-size:.78rem;font-weight:800;letter-spacing:.02em;color:var(--muted);text-decoration:none;line-height:1}
 .lang-toggle a.active{background:var(--teal-bright);color:var(--bg)}
 @media(max-width:560px){.lang-toggle a{padding:5px 10px;font-size:.72rem}.head-actions{gap:8px}}
+.ccy-select{appearance:none;-webkit-appearance:none;background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--body);font-size:.78rem;font-weight:800;letter-spacing:.02em;padding:6px 10px;cursor:pointer}
+.ccy-select option{background:var(--card);color:var(--ink)}
+@media(max-width:560px){.ccy-select{padding:5px 8px;font-size:.72rem}}
