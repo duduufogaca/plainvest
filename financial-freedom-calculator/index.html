@@ -117,7 +117,7 @@
         w=+document.getElementById('rate').value||4;
     var need=w>0?s/(w/100):0;
     document.getElementById('out').textContent=fmt(need);
-    document.getElementById('outnote').textContent='At a '+w+'% withdrawal rate, that covers '+fmt(s)+' per year.';
+    document.getElementById('outnote').textContent=(window.pvLang==='pt'?'A uma taxa de retirada de '+w+'%, isso cobre '+fmt(s)+' por ano.':'At a '+w+'% withdrawal rate, that covers '+fmt(s)+' per year.');
   }
   ['spend','rate'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
   window.pvRecalc=calc;
@@ -159,6 +159,6 @@
 "Is this calculator free?":"Esta calculadora é gratuita?",
 "Yes — completely free, no account required.":"Sim — totalmente gratuita, sem precisar de conta."
 };</script>
-<script src="/calc-i18n.js?v=5"></script>
+<script src="/calc-i18n.js?v=6"></script>
 </body>
 </html>

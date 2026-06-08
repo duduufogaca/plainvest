@@ -121,7 +121,7 @@
     var fv=r>0?m*((Math.pow(1+r,n)-1)/r):m*n;
     var contributed=m*n;
     document.getElementById('out').textContent=fmt(fv);
-    document.getElementById('outnote').textContent='You invest '+fmt(contributed)+' · growth adds '+fmt(Math.max(0,fv-contributed));
+    document.getElementById('outnote').textContent=(window.pvLang==='pt'?'Você investe '+fmt(contributed)+' · o crescimento adiciona '+fmt(Math.max(0,fv-contributed)):'You invest '+fmt(contributed)+' · growth adds '+fmt(Math.max(0,fv-contributed)));
   }
   ['mo','yrs','rate'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',calc);});
   window.pvRecalc=calc;
@@ -164,6 +164,6 @@
 "Is this DCA calculator free?":"Esta calculadora de DCA é gratuita?",
 "Yes — completely free, no account required.":"Sim — totalmente gratuita, sem precisar de conta."
 };</script>
-<script src="/calc-i18n.js?v=5"></script>
+<script src="/calc-i18n.js?v=6"></script>
 </body>
 </html>

@@ -26,8 +26,10 @@
     if (window.CALC_PT) for (k in window.CALC_PT) map[k] = window.CALC_PT[k];
     var sel = 'h1,h2,h3,h4,p,li,label,summary,a.btn,a.btn-ghost,a.head-cta,.eyebrow,.calc-sub,.rlabel,.note,.related a,.flinks a';
     document.querySelectorAll(sel).forEach(function (el) {
-      var key = norm(el.innerText || el.textContent);
-      if (Object.prototype.hasOwnProperty.call(map, key)) el.innerHTML = map[key];
+      var a = norm(el.textContent), b = norm(el.innerText || '');  /* textContent ignores CSS uppercase; innerText handles block spacing */
+      var v = Object.prototype.hasOwnProperty.call(map, a) ? map[a]
+            : (Object.prototype.hasOwnProperty.call(map, b) ? map[b] : null);
+      if (v != null) el.innerHTML = v;
     });
     document.documentElement.lang = 'pt-BR';
   }
@@ -90,6 +92,7 @@
 
   function run() {
     var lang = getLang();
+    window.pvLang = lang;          /* expose so each page's calc script can localize its dynamic output */
     if (lang === 'pt') applyPT();
     addNote(lang);
     initBases();
@@ -117,7 +120,6 @@
 
     applyCurrency();  /* render in stored currency (AUD = no change) */
 
-    /* live FX (no key, CORS-enabled); falls back silently to static rates */
     fetch('https://open.er-api.com/v6/latest/AUD')
       .then(function (r) { return r.json(); })
       .then(function (d) {
