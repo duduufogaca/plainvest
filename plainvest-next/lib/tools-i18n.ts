@@ -4,84 +4,152 @@ export type Lang = 'en' | 'pt';
 export type ToolId = 'simulator' | 'retirement' | 'dca' | 'etf' | 'inflation' | 'freedom';
 export const TOOL_IDS: ToolId[] = ['simulator', 'retirement', 'dca', 'etf', 'inflation', 'freedom'];
 
+export type CatId = 'wealth' | 'retirement' | 'risk';
+export const CATEGORIES: { id: CatId; tools: ToolId[] }[] = [
+  { id: 'wealth', tools: ['simulator', 'etf', 'dca'] },
+  { id: 'retirement', tools: ['retirement', 'freedom'] },
+  { id: 'risk', tools: ['inflation'] },
+];
+
+type Card = { name: string; desc: string };
+type ToolStrings = Record<string, string>;
 type Dict = {
-  hub: { eyebrow: string; title: string; sub: string };
-  cards: Record<ToolId, { name: string; desc: string }>;
+  hub: { eyebrow: string; title: string; sub: string; open: string };
+  cat: Record<CatId, string>;
+  cards: Record<ToolId, Card>;
   common: {
-    back: string; annualReturn: string; years: string; now: string; disclaimer: string;
-    invested: string; projectedLine: string; realLine: string; perYear: string;
+    back: string; settings: string; annualReturn: string; years: string; now: string;
+    disclaimer: string; invested: string; growth: string; projectedLine: string; realLine: string;
+    contributions: string; growthShare: string;
   };
-  simulator: { sub: string; lStart: string; lMonthly: string; lYears: string; rValue: string; rContribute: string; rGrowth: string };
-  retirement: { sub: string; lAge: string; lRetire: string; lSavings: string; lMonthly: string; rValue: string; rIncome: string };
-  dca: { sub: string; lMonthly: string; lYears: string; rValue: string; rInvested: string; rGrowth: string };
-  etf: { sub: string; lStart: string; lMonthly: string; lYears: string; rValue: string; rGrowth: string };
-  inflation: { sub: string; lAmount: string; lYears: string; lRate: string; rValue: string; rLost: string };
-  freedom: { sub: string; lExpenses: string; lRate: string; rValue: string; rNote: string };
+  tool: Record<ToolId, ToolStrings>;
 };
 
 export const TOOLS_T: Record<Lang, Dict> = {
   en: {
-    hub: {
-      eyebrow: 'Pro tools',
-      title: 'Calculators',
-      sub: 'Model your money across currencies — every projection updates live.',
-    },
+    hub: { eyebrow: 'Pro tools', title: 'Calculators', sub: 'Model your money across currencies — every projection updates live.', open: 'Open tool →' },
+    cat: { wealth: 'Wealth building', retirement: 'Retirement planning', risk: 'Risk & purchasing power' },
     cards: {
-      simulator:  { name: 'Investment Simulator', desc: 'See what consistent investing could become.' },
-      retirement: { name: 'Retirement', desc: 'Project your savings to retirement age.' },
-      dca:        { name: 'DCA', desc: 'Dollar-cost averaging over time.' },
-      etf:        { name: 'ETF Growth', desc: 'Project regular investing into a broad ETF.' },
-      inflation:  { name: 'Inflation', desc: 'See how prices erode purchasing power.' },
-      freedom:    { name: 'Financial Freedom', desc: 'Find your freedom number (4% rule).' },
+      simulator:  { name: 'Investment Simulator', desc: 'Compound growth of a starting amount plus regular contributions.' },
+      retirement: { name: 'Retirement', desc: 'Project current savings and contributions to retirement age.' },
+      dca:        { name: 'DCA', desc: 'Invest a fixed amount on a regular schedule — no market timing.' },
+      etf:        { name: 'ETF Growth', desc: 'Regular investing into a broad, diversified ETF.' },
+      inflation:  { name: 'Inflation', desc: 'How much real buying power an amount keeps over time.' },
+      freedom:    { name: 'Financial Freedom', desc: 'The amount invested whose returns can cover your life.' },
     },
     common: {
-      back: '← All tools',
-      annualReturn: 'Average annual return (%)',
-      years: 'Years',
-      now: 'Now',
+      back: '← All tools', settings: 'Settings', annualReturn: 'Average annual return (%)', years: 'Years', now: 'Now',
       disclaimer: 'Educational estimate. Past performance does not guarantee future results.',
-      invested: 'Invested',
-      projectedLine: 'Projected',
-      realLine: 'Real value',
-      perYear: '/yr',
+      invested: 'You invested', growth: 'Investment growth', projectedLine: 'Projected', realLine: 'Real value',
+      contributions: 'Contributions', growthShare: 'Growth',
     },
-    simulator: { sub: 'Compound growth of a starting amount plus regular contributions.', lStart: 'Starting amount', lMonthly: 'Monthly contribution', lYears: 'Years invested', rValue: 'Projected value', rContribute: 'You contribute', rGrowth: 'growth adds' },
-    retirement: { sub: 'Project current savings and contributions to retirement age.', lAge: 'Current age', lRetire: 'Retirement age', lSavings: 'Current savings', lMonthly: 'Monthly contribution', rValue: 'Projected at retirement', rIncome: 'Could provide ~{x}/yr at a 4% withdrawal rate.' },
-    dca: { sub: 'Invest a fixed amount on a regular schedule — no market timing.', lMonthly: 'Amount invested each month', lYears: 'Years investing', rValue: 'Projected value', rInvested: 'You invest', rGrowth: 'growth adds' },
-    etf: { sub: 'Regular investing into a broad, diversified ETF.', lStart: 'Starting investment', lMonthly: 'Monthly investment', lYears: 'Years invested', rValue: 'Projected ETF value', rGrowth: 'growth adds' },
-    inflation: { sub: 'How much real buying power an amount keeps over time.', lAmount: 'Amount today', lYears: 'Years from now', lRate: 'Average annual inflation (%)', rValue: 'Real value in the future', rLost: '~{x}% less buying power than today.' },
-    freedom: { sub: 'The amount invested whose returns can cover your life (4% rule).', lExpenses: 'Annual living expenses', lRate: 'Safe withdrawal rate (%)', rValue: 'You need invested', rNote: 'About {x}× your yearly spending.' },
+    tool: {
+      simulator: {
+        sub: 'Model how regular investing can grow over time.',
+        lStart: 'Starting amount', lMonthly: 'Monthly contribution', lYears: 'Years invested',
+        rTitle: 'Projected portfolio value', preview: 'See how consistent investing could become {v} over {y} years.',
+      },
+      retirement: {
+        sub: 'See where your savings and contributions could land by retirement.',
+        lAge: 'Current age', lRetire: 'Retirement age', lSavings: 'Current savings', lMonthly: 'Monthly contribution',
+        rTitle: 'Projected retirement portfolio', income: 'Potential income', perWeek: '≈ {v}/week',
+        retireAt: 'Retire at', yearsRemaining: 'Years remaining', balance: 'Projected balance', incomePotential: 'Income potential',
+        preview: 'Project ~{v} by retirement.',
+      },
+      dca: {
+        sub: 'See how investing the same amount every month adds up.',
+        lMonthly: 'Amount invested each month', lYears: 'Years investing',
+        rTitle: 'Total accumulated through DCA', monthly: 'Monthly contribution', totalContributed: 'Total contributed',
+        insightTitle: 'Consistency beats timing.', deposits: '{n} monthly deposits, through every market.',
+        preview: 'Turn {m}/mo into {v} over {y} years.',
+      },
+      etf: {
+        sub: 'Project regular investing into a broad, diversified ETF.',
+        lStart: 'Starting investment', lMonthly: 'Monthly investment', lYears: 'Years invested',
+        rTitle: 'Projected ETF value', summaryTitle: 'ETF projection summary',
+        initial: 'Initial investment', monthlyInv: 'Monthly investment', totalInvested: 'Total invested', growthGen: 'Growth generated',
+        divNote: 'Broad ETFs spread risk across hundreds of companies — diversification with one purchase.',
+        preview: 'Project to {v} over {y} years.',
+      },
+      inflation: {
+        sub: 'See how rising prices quietly erode the value of idle cash.',
+        lAmount: 'Amount today', lYears: 'Years from now', lRate: 'Average annual inflation (%)',
+        rTitle: 'Future buying power', loss: 'Loss of purchasing power', reduction: '≈ {x}% reduction',
+        today: 'Today', future: 'In {y} years',
+        warnTitle: 'Idle cash loses value', warnBody: 'Inflation silently reduces the value of cash sitting still. Investing aims to outpace it.',
+        preview: '{a} today ≈ {v} in {y} years.',
+      },
+      freedom: {
+        sub: 'Find the portfolio that makes work optional (4% rule).',
+        lExpenses: 'Annual living expenses', lRate: 'Safe withdrawal rate (%)',
+        rTitle: 'Financial freedom target', basedOn: 'Based on {a} annual expenses · {r}% withdrawal rule',
+        monthlyLifestyle: 'Monthly lifestyle', yearlyLifestyle: 'Yearly lifestyle', requiredPortfolio: 'Required portfolio',
+        progressTitle: 'Freedom progress', progressNote: 'You are building toward full work-optional status.',
+        preview: 'Target {v} to cover {a}/yr.',
+      },
+    },
   },
   pt: {
-    hub: {
-      eyebrow: 'Ferramentas Pro',
-      title: 'Calculadoras',
-      sub: 'Simule seu dinheiro em várias moedas — cada projeção atualiza ao vivo.',
-    },
+    hub: { eyebrow: 'Ferramentas Pro', title: 'Calculadoras', sub: 'Simule seu dinheiro em várias moedas — cada projeção atualiza ao vivo.', open: 'Abrir ferramenta →' },
+    cat: { wealth: 'Construção de patrimônio', retirement: 'Planejamento de aposentadoria', risk: 'Risco e poder de compra' },
     cards: {
-      simulator:  { name: 'Simulador de Investimentos', desc: 'Veja no que investir com consistência pode se tornar.' },
-      retirement: { name: 'Aposentadoria', desc: 'Projete suas economias até a aposentadoria.' },
-      dca:        { name: 'DCA', desc: 'Custo médio (DCA) ao longo do tempo.' },
-      etf:        { name: 'Crescimento de ETF', desc: 'Projete investir regularmente em um ETF amplo.' },
-      inflation:  { name: 'Inflação', desc: 'Veja como os preços corroem o poder de compra.' },
-      freedom:    { name: 'Liberdade Financeira', desc: 'Descubra o seu número da liberdade (regra dos 4%).' },
+      simulator:  { name: 'Simulador de Investimentos', desc: 'Crescimento composto de um valor inicial mais aportes regulares.' },
+      retirement: { name: 'Aposentadoria', desc: 'Projete economias atuais e aportes até a aposentadoria.' },
+      dca:        { name: 'DCA', desc: 'Invista um valor fixo de forma regular — sem acertar o mercado.' },
+      etf:        { name: 'Crescimento de ETF', desc: 'Investir regularmente em um ETF amplo e diversificado.' },
+      inflation:  { name: 'Inflação', desc: 'Quanto poder de compra real um valor mantém ao longo do tempo.' },
+      freedom:    { name: 'Liberdade Financeira', desc: 'O valor investido cujos rendimentos cobrem sua vida.' },
     },
     common: {
-      back: '← Todas as ferramentas',
-      annualReturn: 'Retorno médio anual (%)',
-      years: 'Anos',
-      now: 'Hoje',
+      back: '← Todas as ferramentas', settings: 'Configurações', annualReturn: 'Retorno médio anual (%)', years: 'Anos', now: 'Hoje',
       disclaimer: 'Estimativa educacional. Retornos passados não garantem resultados futuros.',
-      invested: 'Investido',
-      projectedLine: 'Projetado',
-      realLine: 'Valor real',
-      perYear: '/ano',
+      invested: 'Você investiu', growth: 'Crescimento do investimento', projectedLine: 'Projetado', realLine: 'Valor real',
+      contributions: 'Aportes', growthShare: 'Crescimento',
     },
-    simulator: { sub: 'Crescimento composto de um valor inicial mais aportes regulares.', lStart: 'Valor inicial', lMonthly: 'Aporte mensal', lYears: 'Anos investindo', rValue: 'Valor projetado', rContribute: 'Você aporta', rGrowth: 'o crescimento adiciona' },
-    retirement: { sub: 'Projete economias atuais e aportes até a idade de aposentadoria.', lAge: 'Idade atual', lRetire: 'Idade de aposentadoria', lSavings: 'Economias atuais', lMonthly: 'Aporte mensal', rValue: 'Projetado na aposentadoria', rIncome: 'Poderia gerar ~{x}/ano a uma taxa de retirada de 4%.' },
-    dca: { sub: 'Invista um valor fixo de forma regular — sem acertar o mercado.', lMonthly: 'Valor investido por mês', lYears: 'Anos investindo', rValue: 'Valor projetado', rInvested: 'Você investe', rGrowth: 'o crescimento adiciona' },
-    etf: { sub: 'Investir regularmente em um ETF amplo e diversificado.', lStart: 'Investimento inicial', lMonthly: 'Investimento mensal', lYears: 'Anos investindo', rValue: 'Valor projetado do ETF', rGrowth: 'o crescimento adiciona' },
-    inflation: { sub: 'Quanto poder de compra real um valor mantém ao longo do tempo.', lAmount: 'Valor hoje', lYears: 'Daqui a quantos anos', lRate: 'Inflação média anual (%)', rValue: 'Valor real no futuro', rLost: '~{x}% menos poder de compra do que hoje.' },
-    freedom: { sub: 'O valor investido cujos rendimentos cobrem sua vida (regra dos 4%).', lExpenses: 'Gastos anuais de vida', lRate: 'Taxa de retirada segura (%)', rValue: 'Você precisa ter investido', rNote: 'Cerca de {x}× seus gastos anuais.' },
+    tool: {
+      simulator: {
+        sub: 'Veja como investir com regularidade pode crescer ao longo do tempo.',
+        lStart: 'Valor inicial', lMonthly: 'Aporte mensal', lYears: 'Anos investindo',
+        rTitle: 'Valor projetado da carteira', preview: 'Veja como investir com consistência pode chegar a {v} em {y} anos.',
+      },
+      retirement: {
+        sub: 'Veja onde suas economias e aportes podem chegar na aposentadoria.',
+        lAge: 'Idade atual', lRetire: 'Idade de aposentadoria', lSavings: 'Economias atuais', lMonthly: 'Aporte mensal',
+        rTitle: 'Carteira projetada na aposentadoria', income: 'Renda potencial', perWeek: '≈ {v}/semana',
+        retireAt: 'Aposentar aos', yearsRemaining: 'Anos restantes', balance: 'Saldo projetado', incomePotential: 'Renda potencial',
+        preview: 'Projete ~{v} na aposentadoria.',
+      },
+      dca: {
+        sub: 'Veja como investir o mesmo valor todo mês se acumula.',
+        lMonthly: 'Valor investido por mês', lYears: 'Anos investindo',
+        rTitle: 'Total acumulado com DCA', monthly: 'Aporte mensal', totalContributed: 'Total aportado',
+        insightTitle: 'Consistência vence o timing.', deposits: '{n} aportes mensais, em todos os mercados.',
+        preview: 'Transforme {m}/mês em {v} em {y} anos.',
+      },
+      etf: {
+        sub: 'Projete investir regularmente em um ETF amplo e diversificado.',
+        lStart: 'Investimento inicial', lMonthly: 'Investimento mensal', lYears: 'Anos investindo',
+        rTitle: 'Valor projetado do ETF', summaryTitle: 'Resumo da projeção do ETF',
+        initial: 'Investimento inicial', monthlyInv: 'Investimento mensal', totalInvested: 'Total investido', growthGen: 'Crescimento gerado',
+        divNote: 'ETFs amplos distribuem o risco entre centenas de empresas — diversificação em uma única compra.',
+        preview: 'Projete até {v} em {y} anos.',
+      },
+      inflation: {
+        sub: 'Veja como a alta de preços corrói silenciosamente o dinheiro parado.',
+        lAmount: 'Valor hoje', lYears: 'Daqui a quantos anos', lRate: 'Inflação média anual (%)',
+        rTitle: 'Poder de compra futuro', loss: 'Perda de poder de compra', reduction: '≈ {x}% de redução',
+        today: 'Hoje', future: 'Em {y} anos',
+        warnTitle: 'Dinheiro parado perde valor', warnBody: 'A inflação reduz silenciosamente o valor do dinheiro parado. Investir busca superá-la.',
+        preview: '{a} hoje ≈ {v} em {y} anos.',
+      },
+      freedom: {
+        sub: 'Encontre a carteira que torna o trabalho opcional (regra dos 4%).',
+        lExpenses: 'Gastos anuais de vida', lRate: 'Taxa de retirada segura (%)',
+        rTitle: 'Meta de liberdade financeira', basedOn: 'Baseado em {a} de gastos anuais · regra de retirada de {r}%',
+        monthlyLifestyle: 'Estilo de vida mensal', yearlyLifestyle: 'Estilo de vida anual', requiredPortfolio: 'Carteira necessária',
+        progressTitle: 'Progresso da liberdade', progressNote: 'Você está construindo rumo ao status de trabalho opcional.',
+        preview: 'Meta de {v} para cobrir {a}/ano.',
+      },
+    },
   },
 };

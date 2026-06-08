@@ -10,10 +10,11 @@ type Props = {
   nowLabel: string;
   color?: string;                      // primary stroke gradient endpoint (defaults teal)
   baselineColor?: string;
+  height?: number;                     // rendered pixel height (default 400 for premium tools)
 };
 
 /* Lightweight area+line chart shared by the Pro calculator tools. */
-export function ToolChart({ main, baseline, years, nowLabel, color = '#2dd4bf', baselineColor = '#5a7a96' }: Props) {
+export function ToolChart({ main, baseline, years, nowLabel, color = '#2dd4bf', baselineColor = '#5a7a96', height = 400 }: Props) {
   const W = 660, H = 210, PL = 50, PB = 26, PT = 12;
 
   const maxVal = useMemo(() => {
@@ -43,7 +44,7 @@ export function ToolChart({ main, baseline, years, nowLabel, color = '#2dd4bf', 
 
   return (
     <div className="tool-chart">
-      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: '100%', height: '220px', display: 'block' }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: '100%', height: `${height}px`, display: 'block' }}>
         <defs>
           <linearGradient id="toolArea" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={color} stopOpacity="0.26" />

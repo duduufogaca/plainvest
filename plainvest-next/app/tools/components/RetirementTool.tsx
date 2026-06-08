@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { fv, fmtCurrency, growthSeries, convert, roundNice } from '@/lib/finance';
 import { TOOLS_T, type Lang } from '@/lib/tools-i18n';
 import { ToolChart } from './ToolChart';
+import { NumberField, SliderField, StatRows, Legend } from './ToolBits';
 
 type Props = { currency: string; rates: Record<string, number>; lang: Lang };
 
 export function RetirementTool({ currency, rates, lang }: Props) {
-  const t = TOOLS_T[lang]; const s = t.retirement;
+  const T = TOOLS_T[lang]; const s = T.tool.retirement; const co = T.common;
   const r = rates[currency] || 1;
   const [age, setAge] = useState(30);
   const [retire, setRetire] = useState(65);
@@ -19,36 +20,44 @@ export function RetirementTool({ currency, rates, lang }: Props) {
   const years = Math.max(0, retire - age);
   const value = fv(savings, monthly, rate, years);
   const income = value * 0.04;
+  const perWeek = income / 52;
   const series = growthSeries(savings, monthly, rate, Math.max(1, years));
 
   return (
     <div className="tool-view">
       <div className="tool-grid">
         <div className="tool-inputs portfolio-card">
-          <label className="tool-field"><span>{s.lAge}: <strong>{age}</strong></span>
-            <input type="range" min={16} max={75} value={age} onChange={e => setAge(+e.target.value)} className="tool-slider" /></label>
-          <label className="tool-field"><span>{s.lRetire}: <strong>{retire}</strong></span>
-            <input type="range" min={40} max={80} value={retire} onChange={e => setRetire(+e.target.value)} className="tool-slider" /></label>
-          <label className="tool-field"><span>{s.lSavings} ({currency})</span>
-            <input type="number" min={0} value={savings} onChange={e => setSavings(+e.target.value || 0)} /></label>
-          <label className="tool-field"><span>{s.lMonthly} ({currency})</span>
-            <input type="number" min={0} value={monthly} onChange={e => setMonthly(+e.target.value || 0)} /></label>
-          <label className="tool-field"><span>{t.common.annualReturn}: <strong>{rate}%</strong></span>
-            <input type="range" min={0} max={20} step={0.5} value={rate} onChange={e => setRate(+e.target.value)} className="tool-slider" /></label>
+          <div className="tool-inputs-title">{co.settings}</div>
+          <SliderField label={s.lAge} value={age} min={16} max={75} onChange={setAge} />
+          <SliderField label={s.lRetire} value={retire} min={40} max={80} onChange={setRetire} />
+          <NumberField label={`${s.lSavings} (${currency})`} value={savings} onChange={setSavings} />
+          <NumberField label={`${s.lMonthly} (${currency})`} value={monthly} onChange={setMonthly} />
+          <SliderField label={co.annualReturn} value={rate} min={0} max={20} step={0.5} onChange={setRate} display={`${rate}%`} />
         </div>
+
         <div className="tool-result-col">
           <div className="tool-result portfolio-card">
-            <span className="tool-result-label">{s.rValue}</span>
+            <span className="tool-result-label">{s.rTitle}</span>
             <span className="tool-result-val">{fmtCurrency(value, currency)}</span>
-            <span className="tool-result-sub">{s.rIncome.replace('{x}', fmtCurrency(income, currency))}</span>
+            <span className="tool-result-sub">{s.income}: <strong>{fmtCurrency(income, currency)}/{lang === 'pt' ? 'ano' : 'yr'}</strong> · {(s.perWeek || '').replace('{v}', fmtCurrency(perWeek, currency))}</span>
           </div>
+
+          <div className="portfolio-card tool-summary">
+            <StatRows items={[
+              { label: s.retireAt, value: retire },
+              { label: s.yearsRemaining, value: years },
+              { label: s.balance, value: fmtCurrency(value, currency) },
+              { label: s.incomePotential, value: `${fmtCurrency(income, currency)}/${lang === 'pt' ? 'ano' : 'yr'}`, strong: true },
+            ]} />
+          </div>
+
           <div className="portfolio-card tool-chart-card">
-            <ToolChart main={series} baseline={series.map(p => ({ ...p, value: p.contributed }))} years={Math.max(1, years)} nowLabel={t.common.now} />
-            <div className="tool-legend"><span className="tool-dot tool-dot-teal" />{t.common.projectedLine}<span className="tool-dot tool-dot-grey" />{t.common.invested}</div>
+            <ToolChart main={series} baseline={series.map(p => ({ ...p, value: p.contributed }))} years={Math.max(1, years)} nowLabel={co.now} />
+            <Legend items={[{ color: '#2dd4bf', label: co.projectedLine }, { color: '#5a7a96', label: co.invested }]} />
           </div>
         </div>
       </div>
-      <p className="tool-disclaimer">{t.common.disclaimer}</p>
+      <p className="tool-disclaimer">{co.disclaimer}</p>
     </div>
   );
 }

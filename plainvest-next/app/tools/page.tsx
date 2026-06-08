@@ -69,13 +69,12 @@ export default async function ToolsPage({
           </a>
 
           <div className="tools-head">
-            <p className="eyebrow">{t.hub.eyebrow}</p>
             <h1>{tool ? t.cards[tool].name : t.hub.title}</h1>
-            <p className="tools-head-sub">{tool ? t[tool].sub : t.hub.sub}</p>
+            <p className="tools-head-sub">{tool ? (t.tool[tool].sub ?? t.cards[tool].desc) : t.hub.sub}</p>
             {tool && <a href="/tools" className="tool-back-link">{t.common.back}</a>}
           </div>
 
-          {!tool && <ToolsHub lang={lang} />}
+          {!tool && <ToolsHub lang={lang} currency={currency} rates={rates} />}
           {tool === 'simulator' && <SimulatorTool {...tp} />}
           {tool === 'retirement' && <RetirementTool {...tp} />}
           {tool === 'dca' && <DcaTool {...tp} />}

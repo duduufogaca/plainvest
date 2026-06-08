@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { fv, fmtCurrency, growthSeries, convert, roundNice } from '@/lib/finance';
 import { TOOLS_T, type Lang } from '@/lib/tools-i18n';
 import { ToolChart } from './ToolChart';
+import { NumberField, SliderField, SplitBar, StatRows, Legend } from './ToolBits';
 
 type Props = { currency: string; rates: Record<string, number>; lang: Lang };
 
 export function DcaTool({ currency, rates, lang }: Props) {
-  const t = TOOLS_T[lang]; const s = t.dca;
+  const T = TOOLS_T[lang]; const s = T.tool.dca; const co = T.common;
   const r = rates[currency] || 1;
   const [monthly, setMonthly] = useState(roundNice(convert(300, r)));
   const [years, setYears] = useState(20);
@@ -16,32 +17,45 @@ export function DcaTool({ currency, rates, lang }: Props) {
 
   const value = fv(0, monthly, rate, years);
   const contributed = monthly * 12 * years;
+  const growth = Math.max(0, value - contributed);
+  const contribPct = value > 0 ? (contributed / value) * 100 : 0;
+  const deposits = years * 12;
   const series = growthSeries(0, monthly, rate, years);
 
   return (
     <div className="tool-view">
       <div className="tool-grid">
         <div className="tool-inputs portfolio-card">
-          <label className="tool-field"><span>{s.lMonthly} ({currency})</span>
-            <input type="number" min={0} value={monthly} onChange={e => setMonthly(+e.target.value || 0)} /></label>
-          <label className="tool-field"><span>{s.lYears}: <strong>{years}</strong></span>
-            <input type="range" min={1} max={50} value={years} onChange={e => setYears(+e.target.value)} className="tool-slider" /></label>
-          <label className="tool-field"><span>{t.common.annualReturn}: <strong>{rate}%</strong></span>
-            <input type="range" min={0} max={20} step={0.5} value={rate} onChange={e => setRate(+e.target.value)} className="tool-slider" /></label>
+          <div className="tool-inputs-title">{co.settings}</div>
+          <NumberField label={`${s.lMonthly} (${currency})`} value={monthly} onChange={setMonthly} />
+          <SliderField label={s.lYears} value={years} min={1} max={50} onChange={setYears} />
+          <SliderField label={co.annualReturn} value={rate} min={0} max={20} step={0.5} onChange={setRate} display={`${rate}%`} />
         </div>
+
         <div className="tool-result-col">
           <div className="tool-result portfolio-card">
-            <span className="tool-result-label">{s.rValue}</span>
+            <span className="tool-result-label">{s.rTitle}</span>
             <span className="tool-result-val">{fmtCurrency(value, currency)}</span>
-            <span className="tool-result-sub">{s.rInvested} {fmtCurrency(contributed, currency)} · {s.rGrowth} {fmtCurrency(Math.max(0, value - contributed), currency)}</span>
+            <StatRows items={[
+              { label: s.monthly, value: fmtCurrency(monthly, currency) },
+              { label: s.totalContributed, value: fmtCurrency(contributed, currency) },
+              { label: co.growth, value: fmtCurrency(growth, currency), strong: true },
+            ]} />
+            <SplitBar contribPct={contribPct} leftLabel={co.contributions} rightLabel={co.growthShare} />
           </div>
+
+          <div className="portfolio-card tool-insight">
+            <span className="tool-insight-title">{s.insightTitle}</span>
+            <span className="tool-insight-body">{(s.deposits || '').replace('{n}', String(deposits))}</span>
+          </div>
+
           <div className="portfolio-card tool-chart-card">
-            <ToolChart main={series} baseline={series.map(p => ({ ...p, value: p.contributed }))} years={years} nowLabel={t.common.now} />
-            <div className="tool-legend"><span className="tool-dot tool-dot-teal" />{t.common.projectedLine}<span className="tool-dot tool-dot-grey" />{t.common.invested}</div>
+            <ToolChart main={series} baseline={series.map(p => ({ ...p, value: p.contributed }))} years={years} nowLabel={co.now} />
+            <Legend items={[{ color: '#2dd4bf', label: co.projectedLine }, { color: '#5a7a96', label: co.invested }]} />
           </div>
         </div>
       </div>
-      <p className="tool-disclaimer">{t.common.disclaimer}</p>
+      <p className="tool-disclaimer">{co.disclaimer}</p>
     </div>
   );
 }
