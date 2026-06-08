@@ -1,4 +1,4 @@
-/* Plainvest calculator pages — EN/PT language + AUD/USD/BRL currency switcher.
+/* Plainvest calculator pages — EN/PT language + AUD/USD/BRL currency switchers.
    English is the canonical HTML; PT is applied client-side from CALC_PT.
    Currency only changes how the SAME numbers are formatted (no FX conversion). */
 (function () {
@@ -20,7 +20,7 @@
     return 'en';
   }
   function norm(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
-  function markToggle(lang) {
+  function markLang(lang) {
     document.querySelectorAll('.lang-toggle [data-lang]').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-lang') === lang);
     });
@@ -37,7 +37,7 @@
     document.documentElement.lang = 'pt-BR';
   }
 
-  /* ---------- currency ---------- */
+  /* ---------- currency (display formatting only) ---------- */
   var CCY = { AUD: ['en-AU', 'AUD'], USD: ['en-US', 'USD'], BRL: ['pt-BR', 'BRL'] };
   function getCcy() { try { var c = localStorage.getItem('pv_ccy'); if (CCY[c]) return c; } catch (e) {} return 'AUD'; }
   var curCcy = getCcy();
@@ -46,30 +46,30 @@
     try { return new Intl.NumberFormat(c[0], { style: 'currency', currency: c[1], maximumFractionDigits: 0 }).format(n); }
     catch (e) { return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(n); }
   };
-  function injectCcy() {
-    var host = document.querySelector('.head-actions');
-    if (!host || host.querySelector('.ccy-select')) return;
-    var sel = document.createElement('select');
-    sel.className = 'ccy-select';
-    sel.setAttribute('aria-label', 'Currency');
-    ['AUD', 'USD', 'BRL'].forEach(function (c) {
-      var o = document.createElement('option');
-      o.value = c; o.textContent = c; if (c === curCcy) o.selected = true;
-      sel.appendChild(o);
+  function markCcy() {
+    document.querySelectorAll('.ccy-toggle [data-ccy]').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-ccy') === curCcy);
     });
-    sel.addEventListener('change', function () {
-      curCcy = sel.value;
-      try { localStorage.setItem('pv_ccy', curCcy); } catch (e) {}
-      if (typeof window.pvRecalc === 'function') window.pvRecalc();
-    });
-    host.insertBefore(sel, host.firstChild);
   }
+
+  /* one delegated click handler for the currency pills */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.ccy-toggle [data-ccy]');
+    if (!b) return;
+    e.preventDefault();
+    var v = b.getAttribute('data-ccy');
+    if (!CCY[v]) return;
+    curCcy = v;
+    try { localStorage.setItem('pv_ccy', v); } catch (err) {}
+    markCcy();
+    if (typeof window.pvRecalc === 'function') window.pvRecalc();
+  });
 
   function run() {
     var lang = getLang();
-    markToggle(lang);
+    markLang(lang);
     if (lang === 'pt') applyPT();
-    injectCcy();
+    markCcy();
     if (typeof window.pvRecalc === 'function') window.pvRecalc();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);

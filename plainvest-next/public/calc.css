@@ -92,3 +92,14 @@ strong{color:var(--ink)}
 .ccy-select{appearance:none;-webkit-appearance:none;background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--body);font-size:.78rem;font-weight:800;letter-spacing:.02em;padding:6px 10px;cursor:pointer}
 .ccy-select option{background:var(--card);color:var(--ink)}
 @media(max-width:560px){.ccy-select{padding:5px 8px;font-size:.72rem}}
+
+/* ── Header controls: currency + language segmented switchers ── */
+.head-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.pv-switch{display:inline-flex;align-items:stretch;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.025)}
+.pv-switch>a,.pv-switch>button{display:inline-flex;align-items:center;gap:5px;margin:0;padding:7px 13px;font-family:inherit;font-size:.78rem;font-weight:800;letter-spacing:.02em;line-height:1;color:var(--muted);background:transparent;border:0;text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.pv-switch>a+a,.pv-switch>button+button{border-left:1px solid var(--line)}
+.pv-switch>a:hover,.pv-switch>button:hover{color:var(--ink)}
+.pv-switch>a.active,.pv-switch>button.active{background:var(--teal-bright);color:var(--bg)}
+.pv-switch .fl{font-size:1rem;line-height:1}
+@media(max-width:720px){.head-actions{gap:7px}.pv-switch>a,.pv-switch>button{padding:6px 10px;font-size:.72rem}.pv-switch .fl{font-size:.9rem}}
+@media(max-width:430px){.head-cta{padding:8px 12px;font-size:.8rem}.pv-switch>a,.pv-switch>button{padding:5px 8px}}
