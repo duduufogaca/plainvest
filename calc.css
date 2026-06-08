@@ -111,3 +111,5 @@ strong{color:var(--ink)}
 .pv-select:focus{outline:none;border-color:var(--teal)}
 .pv-select option{background:var(--card);color:var(--ink);font-weight:600}
 @media(max-width:430px){.head-actions{gap:6px}.pv-select{padding:6px 22px 6px 9px;font-size:.74rem}.head-cta{padding:8px 13px;font-size:.82rem}}
+
+.ccy-note{margin-top:.5rem;font-size:.7rem;color:var(--muted);opacity:.85;font-style:italic}

@@ -1,6 +1,8 @@
-/* Plainvest calculator pages — EN/PT language + AUD/USD/BRL currency.
-   Compact dropdowns. English is canonical; PT applied client-side. Currency = display formatting only. */
+/* Plainvest calculator pages — EN/PT language + AUD/USD/BRL currency with FX conversion.
+   English is canonical; PT applied client-side. Monetary inputs/outputs convert at live
+   indicative rates (fallback to recent static rates). Base values are held in AUD to avoid drift. */
 (function () {
+  /* ---------- language ---------- */
   var BASE = {
     "Create an account": "Criar uma conta",
     "Create an account →": "Criar uma conta →",
@@ -29,25 +31,78 @@
     });
     document.documentElement.lang = 'pt-BR';
   }
-  var CCY = { AUD: ['en-AU', 'AUD'], USD: ['en-US', 'USD'], BRL: ['pt-BR', 'BRL'] };
-  function getCcy() { try { var c = localStorage.getItem('pv_ccy'); if (CCY[c]) return c; } catch (e) {} return 'AUD'; }
+
+  /* ---------- currency + FX ---------- */
+  var LOCALE = { AUD: 'en-AU', USD: 'en-US', BRL: 'pt-BR' };
+  var SYM = { AUD: '$', USD: 'US$', BRL: 'R$' };
+  var RATE = { AUD: 1, USD: 0.65, BRL: 3.55 };   /* fallback rates per 1 AUD */
+  function getCcy() { try { var c = localStorage.getItem('pv_ccy'); if (LOCALE[c]) return c; } catch (e) {} return 'AUD'; }
   var curCcy = getCcy();
   window.pvFmt = function (n) {
-    var c = CCY[curCcy] || CCY.AUD;
-    try { return new Intl.NumberFormat(c[0], { style: 'currency', currency: c[1], maximumFractionDigits: 0 }).format(n); }
+    try { return new Intl.NumberFormat(LOCALE[curCcy] || 'en-AU', { style: 'currency', currency: curCcy, maximumFractionDigits: 0 }).format(n); }
     catch (e) { return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(n); }
   };
+  function moneyEls() { return document.querySelectorAll('[data-money]'); }
+  function initBases() {
+    moneyEls().forEach(function (el) {
+      if (el.dataset.base == null || el.dataset.base === '') {
+        var v = parseFloat(el.value); el.dataset.base = isNaN(v) ? '' : String(v); /* authored values are AUD */
+      }
+    });
+  }
+  function refreshMoney() {
+    moneyEls().forEach(function (el) {
+      var b = parseFloat(el.dataset.base);
+      if (isNaN(b)) return;
+      el.value = Math.round(b * RATE[curCcy] / 10) * 10;
+    });
+  }
+  function updateLabels() {
+    moneyEls().forEach(function (el) {
+      if (!el.id) return;
+      var lab = document.querySelector('label[for="' + el.id + '"]');
+      if (lab) lab.innerHTML = lab.innerHTML.replace(/\((?:A\$|US\$|R\$|\$)\)/, '(' + SYM[curCcy] + ')');
+    });
+  }
+  function applyCurrency() {
+    refreshMoney();
+    updateLabels();
+    if (typeof window.pvRecalc === 'function') window.pvRecalc();
+  }
+  function wireMoneyInputs() {
+    moneyEls().forEach(function (el) {
+      el.addEventListener('input', function () {           /* user typed in current currency → store AUD base */
+        var v = parseFloat(el.value);
+        el.dataset.base = isNaN(v) ? '' : String(v / RATE[curCcy]);
+      });
+    });
+  }
+  function addNote(lang) {
+    var sub = document.querySelector('.calc-sub');
+    if (!sub || document.querySelector('.ccy-note')) return;
+    var note = document.createElement('div');
+    note.className = 'ccy-note';
+    note.textContent = (lang === 'pt')
+      ? 'Conversões de moeda usam taxas indicativas em tempo real.'
+      : 'Currency conversions use live indicative rates.';
+    sub.parentNode.insertBefore(note, sub.nextSibling);
+  }
+
   function run() {
     var lang = getLang();
     if (lang === 'pt') applyPT();
+    addNote(lang);
+    initBases();
+    wireMoneyInputs();
+
     var cs = document.querySelector('.ccy-select');
     if (cs) {
       cs.value = curCcy;
       cs.addEventListener('change', function () {
-        if (!CCY[cs.value]) return;
+        if (!LOCALE[cs.value]) return;
         curCcy = cs.value;
         try { localStorage.setItem('pv_ccy', curCcy); } catch (e) {}
-        if (typeof window.pvRecalc === 'function') window.pvRecalc();
+        applyCurrency();
       });
     }
     var ls = document.querySelector('.lang-select');
@@ -59,7 +114,19 @@
         location.href = u.toString();
       });
     }
-    if (typeof window.pvRecalc === 'function') window.pvRecalc();
+
+    applyCurrency();  /* render in stored currency (AUD = no change) */
+
+    /* live FX (no key, CORS-enabled); falls back silently to static rates */
+    fetch('https://open.er-api.com/v6/latest/AUD')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.rates && d.rates.USD && d.rates.BRL) {
+          RATE = { AUD: 1, USD: d.rates.USD, BRL: d.rates.BRL };
+          applyCurrency();
+        }
+      })
+      .catch(function () {});
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();
