@@ -1,8 +1,6 @@
-/* Plainvest calculator pages — EN/PT language + AUD/USD/BRL currency switchers.
-   English is the canonical HTML; PT is applied client-side from CALC_PT.
-   Currency only changes how the SAME numbers are formatted (no FX conversion). */
+/* Plainvest calculator pages — EN/PT language + AUD/USD/BRL currency.
+   Compact dropdowns. English is canonical; PT applied client-side. Currency = display formatting only. */
 (function () {
-  /* ---------- language ---------- */
   var BASE = {
     "Create an account": "Criar uma conta",
     "Create an account →": "Criar uma conta →",
@@ -20,11 +18,6 @@
     return 'en';
   }
   function norm(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
-  function markLang(lang) {
-    document.querySelectorAll('.lang-toggle [data-lang]').forEach(function (b) {
-      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
-    });
-  }
   function applyPT() {
     var map = {}, k;
     for (k in BASE) map[k] = BASE[k];
@@ -36,8 +29,6 @@
     });
     document.documentElement.lang = 'pt-BR';
   }
-
-  /* ---------- currency (display formatting only) ---------- */
   var CCY = { AUD: ['en-AU', 'AUD'], USD: ['en-US', 'USD'], BRL: ['pt-BR', 'BRL'] };
   function getCcy() { try { var c = localStorage.getItem('pv_ccy'); if (CCY[c]) return c; } catch (e) {} return 'AUD'; }
   var curCcy = getCcy();
@@ -46,30 +37,28 @@
     try { return new Intl.NumberFormat(c[0], { style: 'currency', currency: c[1], maximumFractionDigits: 0 }).format(n); }
     catch (e) { return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(n); }
   };
-  function markCcy() {
-    document.querySelectorAll('.ccy-toggle [data-ccy]').forEach(function (b) {
-      b.classList.toggle('active', b.getAttribute('data-ccy') === curCcy);
-    });
-  }
-
-  /* one delegated click handler for the currency pills */
-  document.addEventListener('click', function (e) {
-    var b = e.target.closest && e.target.closest('.ccy-toggle [data-ccy]');
-    if (!b) return;
-    e.preventDefault();
-    var v = b.getAttribute('data-ccy');
-    if (!CCY[v]) return;
-    curCcy = v;
-    try { localStorage.setItem('pv_ccy', v); } catch (err) {}
-    markCcy();
-    if (typeof window.pvRecalc === 'function') window.pvRecalc();
-  });
-
   function run() {
     var lang = getLang();
-    markLang(lang);
     if (lang === 'pt') applyPT();
-    markCcy();
+    var cs = document.querySelector('.ccy-select');
+    if (cs) {
+      cs.value = curCcy;
+      cs.addEventListener('change', function () {
+        if (!CCY[cs.value]) return;
+        curCcy = cs.value;
+        try { localStorage.setItem('pv_ccy', curCcy); } catch (e) {}
+        if (typeof window.pvRecalc === 'function') window.pvRecalc();
+      });
+    }
+    var ls = document.querySelector('.lang-select');
+    if (ls) {
+      ls.value = lang;
+      ls.addEventListener('change', function () {
+        var u = new URL(location.href);
+        u.searchParams.set('lang', ls.value === 'pt' ? 'pt' : 'en');
+        location.href = u.toString();
+      });
+    }
     if (typeof window.pvRecalc === 'function') window.pvRecalc();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
