@@ -4714,6 +4714,38 @@ a.sb-link:hover, button.sb-link:hover {
   border-color: rgba(97,213,180,.18) !important;
   font-weight: 700;
 }
+
+/* Calculator sub-nav (each tool, straight from the sidebar) */
+.sb-subnav {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: .15rem 0 .2rem .55rem;
+  padding-left: .55rem;
+  border-left: 1px solid rgba(255,255,255,.08);
+}
+.sb-sublink {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .36rem .55rem;
+  border-radius: 7px;
+  font-size: .73rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .15s, background .15s;
+}
+.sb-sublink:hover { color: var(--text); background: rgba(97,213,180,.06); }
+.sb-sublink.sb-active {
+  color: var(--teal) !important;
+  background: rgba(97,213,180,.08) !important;
+  font-weight: 700;
+}
+.sb-sublink-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: currentColor; opacity: .5; flex-shrink: 0;
+}
 .sb-link-soon {
   opacity: .38;
   cursor: not-allowed;
@@ -4970,6 +5002,53 @@ a.sb-link:hover, button.sb-link:hover {
   justify-content: center;
   padding: .5rem 0;
 }
+
+/* ── Portfolio Health card ── */
+.ph-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: .35rem;
+}
+.ph-score-row { display: flex; align-items: baseline; gap: .4rem; }
+.ph-score { font-size: 2.1rem; font-weight: 800; line-height: 1; }
+.ph-score-max { font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.4); }
+.ph-status {
+  margin-left: auto; align-self: center;
+  font-size: .68rem; font-weight: 700; padding: .28rem .6rem; border-radius: 999px; white-space: nowrap;
+}
+.ph-status.good { background: rgba(97,213,180,.14); color: #61d5b4; }
+.ph-status.warn { background: rgba(244,200,106,.14); color: #f4c86a; }
+.ph-bar-bg {
+  height: 7px; margin-top: .6rem; border-radius: 6px;
+  background: rgba(255,255,255,.07); overflow: hidden;
+}
+.ph-bar-fill { height: 100%; border-radius: 6px; transition: width .45s ease; }
+.ph-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem .9rem; }
+.ph-stat { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
+.ph-stat-label {
+  font-size: .6rem; text-transform: uppercase; letter-spacing: .05em;
+  color: rgba(255,255,255,.4); font-weight: 700;
+}
+.ph-stat-val {
+  font-size: .9rem; font-weight: 700; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ph-chip {
+  display: inline-block; width: fit-content;
+  font-size: .72rem; font-weight: 700; padding: .12rem .55rem; border-radius: 999px;
+}
+.ph-chip.low { background: rgba(97,213,180,.14); color: #61d5b4; }
+.ph-chip.moderate { background: rgba(244,200,106,.14); color: #f4c86a; }
+.ph-chip.high { background: rgba(251,113,133,.14); color: #fb7185; }
+.ph-insight {
+  display: flex; gap: .55rem; margin-top: auto;
+  padding: .7rem .75rem; border-radius: 12px;
+  background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.06);
+  font-size: .78rem; line-height: 1.45; color: rgba(255,255,255,.72);
+}
+.ph-insight-icon { flex-shrink: 0; }
 .bottom-holdings-list {
   display: flex;
   flex-direction: column;

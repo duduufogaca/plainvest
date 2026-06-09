@@ -42,6 +42,12 @@ export async function addPortfolioEntry(formData: FormData) {
     redirect(`/portfolio?message=${encodeURIComponent(msg)}`);
   }
 
+  // Mark the "Portfolio created" milestone (server-persisted, syncs to hub/profile/home)
+  await supabase.from('member_progress').upsert(
+    { user_id: user.id, portfolio_added: true, updated_at: new Date().toISOString() },
+    { onConflict: 'user_id' },
+  );
+
   const posthog = getPostHogClient();
   posthog.capture({ distinctId: user.id, event: 'position_added', properties: { asset_type: assetType, currency } });
   await posthog.shutdown();

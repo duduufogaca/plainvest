@@ -1,8 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { DonutSegment } from './DonutChart';
-import { DonutChart } from './DonutChart';
+
+type HealthData = {
+  score: number;            // 0–10 diversification score
+  assetCount: number;
+  largestName: string;
+  largestPct: number;       // 0–100
+  concentration: 'low' | 'moderate' | 'high';
+  wellBalanced: boolean;
+};
 
 type GroupedAsset = {
   key: string;
@@ -13,16 +20,13 @@ type GroupedAsset = {
 };
 
 type Props = {
-  donutSegments: DonutSegment[];
   totalInvested: number;
   currency: string;
   lang: string;
   topHoldings: GroupedAsset[];
   projCurrentValue: number;
   projMonthlyContrib: number;
-  currentValue?: number | null;
-  pnl?: number | null;
-  pnlPct?: number | null;
+  health: HealthData;
 };
 
 function fmt(n: number, currency: string) {
@@ -73,9 +77,34 @@ function MilestoneRing({ pct, color }: { pct: number; color: string }) {
   );
 }
 
-export function BottomCards({ donutSegments, totalInvested, currency, lang, topHoldings, projCurrentValue, projMonthlyContrib, currentValue, pnl, pnlPct }: Props) {
+export function BottomCards({ totalInvested, currency, lang, topHoldings, projCurrentValue, projMonthlyContrib, health }: Props) {
   const isEN = lang !== 'pt';
   const targets = MILESTONE_TARGETS[currency] ?? MILESTONE_TARGETS.AUD;
+
+  // ── Portfolio Health presentation ──
+  const scoreColor = health.score >= 7 ? '#61d5b4' : health.score >= 4.5 ? '#f4c86a' : '#fb7185';
+  const concLabel = isEN
+    ? { low: 'Low', moderate: 'Moderate', high: 'High' }[health.concentration]
+    : { low: 'Baixo', moderate: 'Moderado', high: 'Alto' }[health.concentration];
+  const healthInsight = (() => {
+    const n = health.assetCount;
+    const plural = (en: string) => (n !== 1 ? en : '');
+    if (n === 0) return isEN
+      ? 'Add your first position to unlock health insights.'
+      : 'Adicione sua primeira posição para ver os insights de saúde.';
+    if (health.concentration === 'high') return isEN
+      ? `Your portfolio is heavily concentrated in ${health.largestName} (${health.largestPct}%). Consider adding more assets to improve diversification.`
+      : `Sua carteira está muito concentrada em ${health.largestName} (${health.largestPct}%). Considere adicionar mais ativos para melhorar a diversificação.`;
+    if (n < 3) return isEN
+      ? `With only ${n} asset${plural('s')}, adding a few more positions would strengthen your diversification.`
+      : `Com apenas ${n} ativo${plural('s')}, adicionar mais posições fortaleceria sua diversificação.`;
+    if (health.wellBalanced) return isEN
+      ? `Nicely diversified across ${n} assets. Keep contributing consistently to stay on track.`
+      : `Bem diversificada entre ${n} ativos. Continue aportando com consistência para manter o ritmo.`;
+    return isEN
+      ? `Your largest position is ${health.largestName} (${health.largestPct}%). Spreading new contributions across other assets will improve balance.`
+      : `Sua maior posição é ${health.largestName} (${health.largestPct}%). Distribuir novos aportes entre outros ativos melhorará o equilíbrio.`;
+  })();
 
   // Find the next milestone above current value
   const nextMilestoneIdx = targets.findIndex(t => projCurrentValue < t);
@@ -89,21 +118,53 @@ export function BottomCards({ donutSegments, totalInvested, currency, lang, topH
   return (
     <div className="bottom-cards-row">
 
-      {/* Asset Allocation */}
+      {/* Portfolio Health */}
       <section className="portfolio-card bottom-card">
         <div className="bottom-card-header">
-          <span className="bottom-card-title">{isEN ? 'Asset Allocation' : 'Alocação de Ativos'}</span>
-          <span className="bottom-card-sub">{isEN ? 'By value' : 'Por valor'}</span>
+          <span className="bottom-card-title">{isEN ? 'Portfolio Health' : 'Saúde da Carteira'}</span>
+          <span className="bottom-card-sub">{isEN ? 'Diversification & risk' : 'Diversificação & risco'}</span>
         </div>
-        <div className="bottom-alloc-body">
-          <DonutChart
-            segments={donutSegments}
-            totalValue={totalInvested}
-            currency={currency}
-            currentValue={currentValue}
-            pnl={pnl}
-            pnlPct={pnlPct}
-          />
+        <div className="ph-body">
+          <div>
+            <div className="ph-score-row">
+              <span className="ph-score" style={{ color: scoreColor }}>{health.score.toFixed(1)}</span>
+              <span className="ph-score-max">/ 10</span>
+              <span className={`ph-status ${health.wellBalanced ? 'good' : 'warn'}`}>
+                {health.wellBalanced
+                  ? (isEN ? 'Well Balanced' : 'Bem Equilibrada')
+                  : (isEN ? 'Needs Rebalancing' : 'Precisa Rebalancear')}
+              </span>
+            </div>
+            <div className="ph-bar-bg">
+              <div className="ph-bar-fill" style={{ width: `${health.score * 10}%`, background: scoreColor }} />
+            </div>
+          </div>
+
+          <div className="ph-stats">
+            <div className="ph-stat">
+              <span className="ph-stat-label">{isEN ? 'Largest Position' : 'Maior Posição'}</span>
+              <span className="ph-stat-val">
+                {health.largestName ? `${health.largestName} · ${health.largestPct}%` : '—'}
+              </span>
+            </div>
+            <div className="ph-stat">
+              <span className="ph-stat-label">{isEN ? 'Concentration Risk' : 'Risco de Concentração'}</span>
+              <span className={`ph-chip ${health.concentration}`}>{concLabel}</span>
+            </div>
+            <div className="ph-stat">
+              <span className="ph-stat-label">{isEN ? 'Number of Assets' : 'Número de Ativos'}</span>
+              <span className="ph-stat-val">{health.assetCount}</span>
+            </div>
+            <div className="ph-stat">
+              <span className="ph-stat-label">{isEN ? 'Diversification' : 'Diversificação'}</span>
+              <span className="ph-stat-val">{health.score.toFixed(1)} / 10</span>
+            </div>
+          </div>
+
+          <div className="ph-insight">
+            <span className="ph-insight-icon">💡</span>
+            <span>{healthInsight}</span>
+          </div>
         </div>
       </section>
 

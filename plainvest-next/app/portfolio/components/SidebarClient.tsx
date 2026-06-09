@@ -10,6 +10,15 @@ import { signOut } from '../../actions/auth';
 import { TOTAL_GUIDES } from '@/lib/guide-meta';
 import { hydrateProgress } from '@/lib/member-progress-client';
 
+const CALCS: { id: string; en: string; pt: string }[] = [
+  { id: 'simulator',  en: 'Investment Simulator', pt: 'Simulador de Investimentos' },
+  { id: 'etf',        en: 'ETF Growth',           pt: 'Crescimento de ETF' },
+  { id: 'dca',        en: 'DCA',                  pt: 'DCA' },
+  { id: 'retirement', en: 'Retirement',           pt: 'Aposentadoria' },
+  { id: 'freedom',    en: 'Financial Freedom',     pt: 'Liberdade Financeira' },
+  { id: 'inflation',  en: 'Inflation',             pt: 'Inflação' },
+];
+
 type Props = {
   displayCurrency: string;
   lang: string;
@@ -37,6 +46,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
   const isPortfolioActive = !portfolioHref;
   const searchParams = useSearchParams();
   const currentView = searchParams.get('view') || '';
+  const currentTool = searchParams.get('tool') || '';
 
   useEffect(() => {
     function sync() {
@@ -65,9 +75,6 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
     return `/portfolio${qs ? '?' + qs : ''}`;
   }
 
-  function isViewActive(view: string) {
-    return currentView === view;
-  }
 
   const progressPct = guideCount !== null ? Math.round((guideCount / TOTAL_GUIDES) * 100) : 0;
 
@@ -197,20 +204,6 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
           )}
         </a>
 
-        <a href={navHref('projections')} className={`sb-link${isViewActive('projections') ? ' sb-active' : ''}`}>
-          <span className="sb-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </span>
-          {!collapsed && (
-            <>
-              <span className="sb-label">{isEN ? 'Projections' : 'Projeções'}</span>
-              {!isPro && <span className="sb-pro-lock">Pro</span>}
-            </>
-          )}
-        </a>
-
         <a href="/tools" className={`sb-link${toolsActive ? ' sb-active' : ''}`}>
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -224,6 +217,21 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
             </>
           )}
         </a>
+
+        {!collapsed && (
+          <div className="sb-subnav">
+            {CALCS.map(c => (
+              <a
+                key={c.id}
+                href={`/tools?tool=${c.id}`}
+                className={`sb-sublink${toolsActive && currentTool === c.id ? ' sb-active' : ''}`}
+              >
+                <span className="sb-sublink-dot" />
+                {isEN ? c.en : c.pt}
+              </a>
+            ))}
+          </div>
+        )}
 
       </nav>
 

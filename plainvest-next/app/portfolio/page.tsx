@@ -307,6 +307,40 @@ export default async function PortfolioPage({
     }] : []),
   ];
 
+  // ── Portfolio Health (replaces the redundant Asset Allocation card) ──
+  // Diversification / concentration from current-value weights of every holding.
+  const healthVals = grouped.map(g => ({
+    name: g.ticker || g.asset_name,
+    v: toDisplay(g.currentValue ?? g.totalInvested, g.currency),
+  }));
+  const healthTotal = healthVals.reduce((s, a) => s + a.v, 0);
+  const assetCount = grouped.length;
+  const largestAsset = healthVals.reduce((m, a) => (a.v > m.v ? a : m), { name: '', v: 0 });
+  const largestPct = healthTotal > 0 ? (largestAsset.v / healthTotal) * 100 : 0;
+  // Herfindahl index → 0 (diverse) … 1 (single asset)
+  const hhi = healthTotal > 0
+    ? healthVals.reduce((s, a) => { const w = a.v / healthTotal; return s + w * w; }, 0)
+    : 1;
+  const divScore = assetCount > 0 ? Math.max(0, Math.min(10, (1 - hhi) * 10)) : 0;
+  const concentration: 'low' | 'moderate' | 'high' =
+    largestPct >= 50 ? 'high' : largestPct >= 30 ? 'moderate' : 'low';
+  const health = {
+    score: Math.round(divScore * 10) / 10,
+    assetCount,
+    largestName: largestAsset.name,
+    largestPct: Math.round(largestPct * 10) / 10,
+    concentration,
+    wellBalanced: divScore >= 6.5 && largestPct < 40 && assetCount >= 3,
+  };
+
+  // Backfill the "Portfolio created" milestone for members who already hold positions
+  if (assetCount > 0) {
+    await supabase.from('member_progress').upsert(
+      { user_id: user.id, portfolio_added: true, updated_at: new Date().toISOString() },
+      { onConflict: 'user_id' },
+    );
+  }
+
   // Chart data
   const chartData = buildChartData(rows, toDisplay);
 
@@ -691,12 +725,9 @@ export default async function PortfolioPage({
 
             {/* ── Bottom cards: allocation | top holdings | milestone ── */}
             <BottomCards
-              donutSegments={donutSegments}
               totalInvested={totalInvested}
               currency={displayCurrency}
-              currentValue={portfolioValue}
-              pnl={pnl}
-              pnlPct={portfolioPnlPct}
+              health={health}
               lang={lang}
               topHoldings={grouped.map(g => ({
                 key: g.key,

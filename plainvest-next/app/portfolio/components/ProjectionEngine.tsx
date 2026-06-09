@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { saveProgress } from '@/lib/member-progress-client';
 
 /* ── Finance helpers ────────────────────────────────────── */
 function fv(pv: number, monthlyC: number, annualRatePct: number, years: number): number {
@@ -58,6 +59,12 @@ export function ProjectionEngine({ currentValue, monthlyContribution, currency, 
   const [rate, setRate]           = useState(7);
   const [inflation, setInflation] = useState(3);
   const [showReal, setShowReal]   = useState(false);
+
+  // Mark the "Future projections run" milestone (server-persisted) once viewed
+  useEffect(() => {
+    try { localStorage.setItem('pv_projection_run', '1'); } catch { /* */ }
+    saveProgress({ projection_run: true });
+  }, []);
 
   const isEN = lang !== 'pt';
   const CV   = Math.max(currentValue, 0);
