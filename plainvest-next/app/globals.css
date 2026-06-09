@@ -7631,3 +7631,27 @@ main { width: 100%; max-width: 100vw; overflow-x: hidden; }
 .tool-progress-track { height: 10px; border-radius: 999px; background: rgba(255,255,255,.07); overflow: hidden; }
 .tool-progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--teal), var(--gold)); }
 .tool-progress-note { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+
+/* ── Account Center: password change — dark, premium, integrated ── */
+.ac-form { gap: 1rem; }
+.ac-card .pw-wrap { position: relative; }
+.ac-card .pw-wrap input {
+  width: 100%; box-sizing: border-box;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: .65rem;
+  color: var(--text);
+  padding: .75rem 2.9rem .75rem .9rem;
+  font-size: .95rem; font-family: inherit; outline: none;
+  transition: border-color .15s, background .15s;
+}
+.ac-card .pw-wrap input:focus { border-color: var(--teal); background: rgba(255,255,255,.06); }
+.ac-card .pw-wrap input::placeholder { color: #5a7a96; }
+.ac-card .pw-toggle {
+  position: absolute; right: .55rem; top: 50%; transform: translateY(-50%);
+  background: none; border: none; padding: .35rem; cursor: pointer;
+  color: #6f8194; display: inline-flex; align-items: center; border-radius: 8px;
+  transition: color .15s, background .15s;
+}
+.ac-card .pw-toggle:hover { color: var(--teal); background: rgba(255,255,255,.05); }
+.ac-card .pw-toggle svg { width: 18px; height: 18px; }

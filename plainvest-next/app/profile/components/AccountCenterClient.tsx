@@ -292,9 +292,30 @@ export function AccountCenterClient({
       try { setHasProjection(localStorage.getItem('pv_projection_run') === '1'); } catch { /* */ }
     }
     sync();
+    // mark a guide read the moment its link is clicked — robust vs. cached guide HTML / blocked scripts
+    const fileToKey: Record<string, string> = {};
+    Object.entries(GUIDE_META).forEach(([k, m]) => { fileToKey[(m.file.split('/').pop() || '').toLowerCase()] = k; });
+    function onClick(e: MouseEvent) {
+      const a = (e.target as HTMLElement)?.closest?.('a[href*="/files/premium_content/"]') as HTMLAnchorElement | null;
+      if (!a) return;
+      const fname = ((a.getAttribute('href') || '').split('/').pop() || '').split('?')[0].toLowerCase();
+      const key = fileToKey[fname];
+      if (!key) return;
+      try {
+        const raw = localStorage.getItem('pv_read_guides');
+        const list = (() => { try { const v = raw ? JSON.parse(raw) : []; return Array.isArray(v) ? v : []; } catch { return []; } })();
+        if (list.indexOf(key) < 0) { list.push(key); localStorage.setItem('pv_read_guides', JSON.stringify(list)); }
+        localStorage.setItem('pv_last_guide', key);
+      } catch { /* */ }
+    }
+    document.addEventListener('click', onClick, true);
     window.addEventListener('pageshow', sync);          // re-read when returning from a guide (incl. bfcache)
     document.addEventListener('visibilitychange', sync);
-    return () => { window.removeEventListener('pageshow', sync); document.removeEventListener('visibilitychange', sync); };
+    return () => {
+      document.removeEventListener('click', onClick, true);
+      window.removeEventListener('pageshow', sync);
+      document.removeEventListener('visibilitychange', sync);
+    };
   }, []);
 
   // Use the SAVED lang for all page labels (not the in-progress selection)
