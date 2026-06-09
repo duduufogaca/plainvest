@@ -18346,10 +18346,8 @@
       color: #7a95b0 !important;
     }
 
-    .learn-card .lc-free-tag {
-      background: rgba(97, 213, 180, .12) !important;
-      color: var(--teal) !important;
-    }
+    /* 'Free explanation' is already stated in the section header — hide the redundant per-card badge */
+    .lc-free-tag { display: none !important; }
 
     .learn-card .learn-card-cta {
       color: var(--teal) !important;
@@ -19910,7 +19908,7 @@
       <div class="lpb-left">
         <div class="lpb-premium-badge" id="lpb-badge">Most complete path</div>
         <h4 class="lpb-headline" id="lpb-title">Ready for the next step?</h4>
-        <p class="lpb-subhead" id="lpb-text">Free helps you understand investing. Premium helps you build a complete investing roadmap with guidance, structure and support.</p>
+        <p class="lpb-subhead" id="lpb-text">Free helps you understand investing. Premium builds your complete roadmap — guidance, structure and support. Pro adds the tools to act on it: a portfolio tracker, live projections and the full calculator suite.</p>
       </div>
       <div class="lpb-mid">
         <div class="lpb-col lpb-col--free">
@@ -20048,7 +20046,7 @@
         </div>
         <div class="story-body">
           <p class="story-para" id="story-p1">When I first got curious about investing, every resource I found was built for people who already knew what they were doing. I felt like this was a world reserved for the <strong>wealthy, the educated, or the financially gifted</strong> — not someone like me.</p>
-          <p class="story-para" id="story-p2">What I wished for was something simple — something visual that could show me, in plain numbers, <strong>what $100 a month actually becomes in 10 years.</strong> Not theory. Just: here's what's possible.</p>
+          <p class="story-para" id="story-p2">The tool I wanted didn't exist — so I went and learned it the hard way. I took courses, read everything I could, and started investing for real to see what actually worked. After years of that — and a genuine passion for it — I decided to build <strong>what I wish I'd had at the start</strong>: a simple, visual way to understand investing, clear enough for anyone.</p>
         </div>
 
         <!-- C) Pull-out statement -->
@@ -20135,7 +20133,7 @@
       <div class="story-timeline-header">
         <div class="story-timeline-eyebrow" id="story-tl-eyebrow">The beginner journey</div>
         <div class="story-timeline-h2" id="story-tl-h2">The 5 stages most beginners go through</div>
-        <p class="story-timeline-sub" id="story-tl-sub">Most people reach confidence on their own — eventually. Plainvest shortens the path.</p>
+        <p class="story-timeline-sub" id="story-tl-sub">Most people reach confidence on their own — eventually.</p>
       </div>
       <div class="story-timeline-steps">
         <div class="story-stage">
@@ -20173,7 +20171,7 @@
   <section id="books" class="app-page" data-page="books">
     <div class="section-eyebrow" id="books-eyebrow">Your transformation reading path</div>
     <div class="section-h2" id="books-h2">Books that change how you <em>think about money.</em></div>
-    <p class="section-lead" id="books-lead">Most people consume random finance content for years and still feel confused. One great book, understood deeply, changes more than 500 social media posts. We built a different path.</p>
+    <p class="section-lead" id="books-lead">The right book at the right moment can change the entire trajectory of your money. These are the ones that did it for us — chosen for clarity, honesty, and ideas that stay with you long after the last page.</p>
 
     <div class="books-spotlight">
       <div class="books-spot-card">
@@ -20471,11 +20469,12 @@
         <div class="plan-identity" data-i18n="plans.sub.identity">Everything in Lifetime, plus your complete wealth dashboard.</div>
         <button class="plan-btn pb-fill pb-emerald" data-i18n="plans.sub.btn" onclick="openMemberSignup()">Build Wealth With Confidence</button>
         <p class="plan-trust" data-i18n="plans.sub.trust">Cancel anytime.</p>
-        <p class="plan-popular-note" data-i18n="plans.sub.popularNote">Includes everything in Lifetime plus portfolio tracking, future projections and the full dashboard.</p>
+        <p class="plan-popular-note" data-i18n="plans.sub.popularNote">Includes everything in Lifetime plus portfolio tracking, future projections, the full calculator suite, and the complete dashboard.</p>
         <div class="plan-below-cta">
           <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f1">Everything in Lifetime</span></div>
           <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f2">Portfolio tracking</span></div>
           <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f3">Future projections dashboard</span></div>
+          <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.fCalc">Full calculator suite — 6 Pro tools</span></div>
           <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f5">Freedom Score™ dashboard</span></div>
           <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.sub.f4">Goal tracking &amp; insights</span></div>
           <details class="sub-proj-details">
@@ -22246,7 +22245,7 @@
           },
           premBadge: 'Most complete path',
           premTitle: 'Ready for the next step?',
-          premText: 'Free helps you understand investing. Premium helps you build a complete investing roadmap with guidance, structure and support.',
+          premText: 'Free helps you understand investing. Premium builds your complete roadmap — guidance, structure and support. Pro adds the tools to act on it: a portfolio tracker, live projections and the full calculator suite.',
           premTransition: '',
           premBtn: 'Unlock Your Investing Roadmap →',
           premFreeTitle: 'Free', premPremTitle: 'Premium', premProTitle: 'Pro',
@@ -22299,7 +22298,7 @@
           cta1: 'Try the simulator →', cta2: 'Start learning →',
           tlEyebrow: 'The beginner journey',
           tlH2: 'The 5 stages most beginners go through',
-          tlSub: 'Most people reach confidence on their own — eventually. Plainvest shortens the path.',
+          tlSub: 'Most people reach confidence on their own — eventually.',
           tlFooter: '<em>Plainvest was designed to shorten this journey.</em>',
           stage1: 'Fear', stage1Desc: '"What if I lose everything?"',
           stage2: 'Confusion', stage2Desc: '"Where do I even begin?"',
@@ -22311,7 +22310,7 @@
         },
         storyParas: [
           'When I first got curious about investing, every resource I found was built for people who already knew what they were doing. I felt like this was a world reserved for the <strong>wealthy, the educated, or the financially gifted</strong> — not someone like me.',
-          'What I wished for was something simple — something visual that could show me, in plain numbers, <strong>what $100 a month actually becomes in 10 years.</strong> Not theory. Just: here\'s what\'s possible.',
+          'The tool I wanted didn\'t exist — so I went and learned it the hard way. I took courses, read everything I could, and started investing for real to see what actually worked. After years of that — and a genuine passion for it — I decided to build <strong>what I wish I\'d had at the start</strong>: a simple, visual way to understand investing, clear enough for anyone.',
           'Plainvest exists for every person who ever thought "I\'ll figure it out later." You don\'t need a finance degree. You don\'t need thousands in the bank. You just need to <strong>see what\'s possible.</strong>',
           'Plainvest exists for every person who felt like I did. For anyone who ever thought "I\'ll figure it out later" or "I don\'t have enough to start." You don\'t need a finance degree. You don\'t need thousands in the bank. You just need to <strong>see what\'s possible</strong> — and that\'s what this is for.',
           'I\'m Eduardo, the person building Plainvest in Australia. My goal is simple: help as many people as possible understand that <strong>investing is for everyone</strong>, without pretending this is personal financial advice.'
@@ -22533,7 +22532,7 @@
           bottomCtaSub: 'Start your future — AUD $9.90/mo',
           bottomCtaLifetime: 'Or get lifetime access — AUD $89.90 once',
           free: { tier: 'Free — always', rec: 'Best for Beginners', name: 'Learn & Explore', identity: 'Start learning before risking money.', hook: 'Learn before risking money.', desc: 'All the tools to build understanding. No commitment, ever.', f1: 'Investment simulator', f2: 'Inflation calculator', f3: 'Plain-English education', f4: 'Investment comparisons', f5: 'Future projections', btn: 'Start Learning Free', trust: 'No credit card required.' },
-          sub: { badge: 'Most Complete', rec: 'Most Complete', popularNote: 'Includes everything in Lifetime plus portfolio tracking, future projections and the full dashboard.', tier: 'Future Membership', name: 'Build Wealth With Confidence', identity: 'Everything in Lifetime, plus your complete wealth dashboard.', hook: 'Track your portfolio, projections, and progress every month.', desc: 'Your financial future — tracked, projected, and guided every single month.', emotionHead: 'Most people never truly see where their money is going.', emotionSub: 'Plainvest helps you understand it before it\'s too late to act.', projEyebrow: 'Example: $200/mo invested at 8%/yr', projNow: 'Today', projThen: 'In 20 yrs', projNote: 'Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.', projToggle: 'View example growth →', bestfor: 'People actively building wealth.', includesLabel: 'What you get', billingMonthly: 'Monthly', billingAnnual: 'Annual', billingSave: 'Save 16%', f1: 'Everything in Lifetime', f2: 'Portfolio tracking', f3: 'Future projections dashboard', f4: 'Goal tracking & insights', f5: 'Freedom Score™ dashboard', f7: 'Celebrate every financial milestone', f8: 'Everything in Free', btn: 'Build Wealth With Confidence', note: 'Cancel anytime. No lock-in.', trust: 'Cancel anytime.' },
+          sub: { badge: 'Most Complete', rec: 'Most Complete', popularNote: 'Includes everything in Lifetime plus portfolio tracking, future projections, the full calculator suite, and the complete dashboard.', tier: 'Future Membership', name: 'Build Wealth With Confidence', identity: 'Everything in Lifetime, plus your complete wealth dashboard.', hook: 'Track your portfolio, projections, and progress every month.', desc: 'Your financial future — tracked, projected, and guided every single month.', emotionHead: 'Most people never truly see where their money is going.', emotionSub: 'Plainvest helps you understand it before it\'s too late to act.', projEyebrow: 'Example: $200/mo invested at 8%/yr', projNow: 'Today', projThen: 'In 20 yrs', projNote: 'Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.', projToggle: 'View example growth →', bestfor: 'People actively building wealth.', includesLabel: 'What you get', billingMonthly: 'Monthly', billingAnnual: 'Annual', billingSave: 'Save 16%', f1: 'Everything in Lifetime', f2: 'Portfolio tracking', f3: 'Future projections dashboard', fCalc: 'Full calculator suite — 6 Pro tools', f4: 'Goal tracking & insights', f5: 'Freedom Score™ dashboard', f7: 'Celebrate every financial milestone', f8: 'Everything in Free', btn: 'Build Wealth With Confidence', note: 'Cancel anytime. No lock-in.', trust: 'Cancel anytime.' },
           prem: { badge: 'Founding one-time price', rec: 'Best One-Time Value', tier: 'Clarity Pass', name: 'Build Your Investing Foundation', identity: 'Education & personal guidance — yours forever.', trust: 'One-time payment. Lifetime access.', t1: 'Your investing foundation.', t2: 'Learn the essentials. Avoid costly beginner mistakes.', t3: 'Get a roadmap you can follow with confidence.', price: 'AUD $89.90', priceNote: 'Lifetime access. No subscription, ever.', foundationNote: '📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.', cgYesHead: 'Included', cg1: '✔ Structured investing education', cg2: '✔ Beginner roadmap', cg3: '✔ Bitcoin & ETF guidance', cg4: '✔ 60-min onboarding Zoom call', cg5: '✔ Lifetime access to guides', cgNoHead: 'Not included', cgn1: '✖ Live portfolio tracking', cgn2: '✖ Future projections', cgn3: '✖ AI portfolio insights', cgn4: '✖ Freedom Score™ dashboard', footnote: 'One-time payment. 7-day review policy.', desc: 'Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.', bestfor: 'People who want clarity before making investment decisions.', includesLabel: 'What you unlock', b1: 'Avoid costly beginner mistakes', b2: 'Build a clear investing roadmap', b3: 'Get personal guidance when needed', b4: 'Learn at your own pace', b5: 'Included 60-min Zoom support call', f1: '19 structured investing guides', f3: 'Bitcoin & ETF education', f5: 'Curated book reading path', f7: 'Your first account, done right', f9: '60-minute Zoom support call (incl.)', f11: 'Permanent hub access — grows over time', f12: 'Everything in Free', btn: 'Get Clarity & Lifetime Access' },
           proof: { p1: 'AUD $89.90 one-time', p2: '60-min Zoom incl.', p3: 'Extra calls AUD $39.90' },
           why: { eyebrow: 'Why members stay', title: 'What consistent clarity does for your future', c1: 'Future clarity', b1: 'See where your investing path may lead — years before you get there.', c2: 'Emotional confidence', b2: 'Understand what your numbers actually mean — without industry-speak or anxiety.', c3: 'Inflation awareness', b3: 'Protect your future purchasing power before inflation quietly erodes it.', c4: 'Consistency tracking', b4: 'Stay motivated for the long-term. See your progress build month by month.' },
@@ -22869,7 +22868,7 @@
         },
         books: {
           eyebrow: 'Your transformation reading path', h2: 'Books that change how you <em>think about money.</em>',
-          lead: 'Most people consume random finance content for years and still feel confused. One great book, understood deeply, changes more than 500 social media posts. We built a different path.',
+          lead: 'The right book at the right moment can change the entire trajectory of your money. These are the ones that did it for us — chosen for clarity, honesty, and ideas that stay with you long after the last page.',
           spotK: 'What most beginners get wrong',
           spotTag: 'Plainvest pick',
           spotH: '"I\'ll just watch videos until it clicks."',
@@ -23200,7 +23199,7 @@
           },
           premBadge: 'Caminho mais completo',
           premTitle: 'Pronto para o próximo passo?',
-          premText: 'O Grátis ajuda você a entender investimentos. O Premium ajuda você a construir um roteiro completo de investimentos com orientação, estrutura e suporte.',
+          premText: 'O Grátis ajuda você a entender investimentos. O Premium constrói seu roteiro completo — orientação, estrutura e suporte. O Pro adiciona as ferramentas para agir: rastreador de portfólio, projeções ao vivo e o conjunto completo de calculadoras.',
           premTransition: '',
           premBtn: 'Desbloqueie seu roteiro de investimentos →',
           premFreeTitle: 'Grátis', premPremTitle: 'Premium', premProTitle: 'Pro',
@@ -23253,7 +23252,7 @@
           cta1: 'Testar o simulador →', cta2: 'Começar a aprender →',
           tlEyebrow: 'A jornada do iniciante',
           tlH2: 'As 5 etapas que a maioria dos iniciantes atravessa',
-          tlSub: 'A maioria das pessoas chega à confiança sozinha — eventualmente. O Plainvest encurta esse caminho.',
+          tlSub: 'A maioria das pessoas chega à confiança sozinha — eventualmente.',
           tlFooter: '<em>O Plainvest foi criado para encurtar essa jornada.</em>',
           stage1: 'Medo', stage1Desc: '"E se eu perder tudo?"',
           stage2: 'Confusão', stage2Desc: '"Por onde começo?"',
@@ -23265,7 +23264,7 @@
         },
         storyParas: [
           'Quando fiquei curioso sobre investimentos pela primeira vez, todo recurso que encontrava era feito para quem já entendia do assunto. Sentia que esse era um mundo reservado para os <strong>ricos, os instruídos ou os financeiramente privilegiados</strong> — não para alguém como eu.',
-          'O que eu queria era algo simples — algo visual que pudesse me mostrar, em números claros, <strong>o que R$100 por mês vira em 10 anos.</strong> Sem teoria. Só: veja o que é possível.',
+          'A ferramenta que eu queria não existia — então fui aprender na prática. Fiz cursos, li tudo o que pude e comecei a investir de verdade para ver o que realmente funcionava. Depois de anos assim — e de uma paixão genuína por isso — decidi construir <strong>o que eu gostaria de ter tido no começo</strong>: uma forma simples e visual de entender investimentos, clara o suficiente para qualquer pessoa.',
           'O Plainvest existe para cada pessoa que já pensou "vou deixar para depois." Você não precisa de diploma em finanças. Não precisa de milhares na conta. Só precisa <strong>ver o que é possível.</strong>',
         ],
         prob: {
@@ -23485,7 +23484,7 @@
           bottomCtaSub: 'Comece seu futuro — AUD $9,90/mês',
           bottomCtaLifetime: 'Ou obtenha acesso vitalício — AUD $89,90 uma vez',
           free: { tier: 'Gratuito — para sempre', rec: 'Ideal para Iniciantes', name: 'Aprender & Explorar', identity: 'Comece a aprender antes de arriscar dinheiro.', hook: 'Aprenda antes de arriscar dinheiro.', desc: 'Todas as ferramentas para construir entendimento. Sem compromisso.', f1: 'Simulador de investimentos', f2: 'Calculadora de inflação', f3: 'Educação em linguagem simples', f4: 'Comparações de investimentos', f5: 'Projeções futuras', btn: 'Começar a Aprender Grátis', trust: 'Sem cartão de crédito.' },
-          sub: { badge: 'Mais Completo', rec: 'Mais Completo', popularNote: 'Inclui tudo do Vitalício, mais rastreamento de portfólio, projeções futuras e o painel completo.', tier: 'Future Membership', name: 'Construa Patrimônio com Confiança', identity: 'Tudo do Vitalício, mais seu painel completo de riqueza.', hook: 'Acompanhe seu portfólio, projeções e progresso todo mês.', desc: 'Seu futuro financeiro — acompanhado, projetado e guiado todo mês.', emotionHead: 'A maioria das pessoas nunca realmente vê para onde está indo seu dinheiro.', emotionSub: 'O Plainvest te ajuda a entender isso antes que seja tarde demais para agir.', projEyebrow: 'Exemplo: R$1.000/mês investido a 8%/ano', projNow: 'Hoje', projThen: 'Em 20 anos', projNote: 'Estimativa educacional. Considera 8%/ano de média. Não é promessa nem conselho financeiro.', projToggle: 'Ver exemplo de crescimento →', bestfor: 'Pessoas construindo patrimônio ativamente.', includesLabel: 'O que você recebe', billingMonthly: 'Mensal', billingAnnual: 'Anual', billingSave: 'Economize 16%', f1: 'Tudo do Vitalício', f2: 'Rastreamento de portfólio', f3: 'Painel de projeções futuras', f4: 'Acompanhamento de metas e insights', f5: 'Painel Freedom Score™', f7: 'Celebre cada marco financeiro', f8: 'Tudo do plano Gratuito', btn: 'Construa Patrimônio com Confiança', note: 'Cancele quando quiser. Sem fidelidade.', trust: 'Cancele quando quiser.' },
+          sub: { badge: 'Mais Completo', rec: 'Mais Completo', popularNote: 'Inclui tudo do Vitalício, mais rastreamento de portfólio, projeções futuras, o conjunto completo de calculadoras e o painel completo.', tier: 'Future Membership', name: 'Construa Patrimônio com Confiança', identity: 'Tudo do Vitalício, mais seu painel completo de riqueza.', hook: 'Acompanhe seu portfólio, projeções e progresso todo mês.', desc: 'Seu futuro financeiro — acompanhado, projetado e guiado todo mês.', emotionHead: 'A maioria das pessoas nunca realmente vê para onde está indo seu dinheiro.', emotionSub: 'O Plainvest te ajuda a entender isso antes que seja tarde demais para agir.', projEyebrow: 'Exemplo: R$1.000/mês investido a 8%/ano', projNow: 'Hoje', projThen: 'Em 20 anos', projNote: 'Estimativa educacional. Considera 8%/ano de média. Não é promessa nem conselho financeiro.', projToggle: 'Ver exemplo de crescimento →', bestfor: 'Pessoas construindo patrimônio ativamente.', includesLabel: 'O que você recebe', billingMonthly: 'Mensal', billingAnnual: 'Anual', billingSave: 'Economize 16%', f1: 'Tudo do Vitalício', f2: 'Rastreamento de portfólio', f3: 'Painel de projeções futuras', fCalc: 'Conjunto completo de calculadoras — 6 ferramentas Pro', f4: 'Acompanhamento de metas e insights', f5: 'Painel Freedom Score™', f7: 'Celebre cada marco financeiro', f8: 'Tudo do plano Gratuito', btn: 'Construa Patrimônio com Confiança', note: 'Cancele quando quiser. Sem fidelidade.', trust: 'Cancele quando quiser.' },
           prem: { badge: 'Preço fundador em pagamento único', rec: 'Melhor Valor Único', tier: 'Passe de Clareza', name: 'Construa Sua Base de Investimento', identity: 'Educação e orientação pessoal — seus para sempre.', trust: 'Pagamento único. Acesso vitalício.', t1: 'Sua base de investimento.', t2: 'Aprenda o essencial. Evite erros caros de iniciante.', t3: 'Tenha um roteiro que você pode seguir com confiança.', price: 'aprox. R$320,00', priceNote: 'Acesso vitalício. Sem assinatura.', foundationNote: '📚 Educacional. Guiado. Seguro para iniciantes. Esta é a sua base — não rastreamento financeiro em tempo real.', cgYesHead: 'Incluído', cg1: '✔ Educação de investimentos estruturada', cg2: '✔ Roteiro para iniciantes', cg3: '✔ Orientação sobre Bitcoin e ETFs', cg4: '✔ Chamada de onboarding no Zoom de 60 min', cg5: '✔ Acesso vitalício aos guias', cgNoHead: 'Não incluído', cgn1: '✖ Rastreamento de portfólio em tempo real', cgn2: '✖ Projeções futuras', cgn3: '✖ Insights de IA sobre portfólio', cgn4: '✖ Painel Freedom Score™', footnote: 'Pagamento único. Política de revisão de 7 dias.', desc: 'Guias estruturados, clareza sobre Bitcoin e uma chamada de Zoom de 60 minutos para construir sua confiança — seus para sempre.', bestfor: 'Pessoas que querem clareza antes de tomar decisões de investimento.', includesLabel: 'O que você libera', b1: 'Evitar erros caros de iniciante', b2: 'Construir um roteiro de investimento claro', b3: 'Ter orientação personalizada quando precisar', b4: 'Aprender no seu ritmo', b5: 'Chamada de Zoom de 60 min incluída', f1: '19 guias estruturados de investimento', f3: 'Educação sobre Bitcoin e ETFs', f5: 'Trilha curada de livros', f7: 'Sua primeira conta, feita certo', f9: 'Chamada de Zoom de 60 min (incl.)', f11: 'Acesso permanente ao hub — cresce com o tempo', f12: 'Tudo do plano Gratuito', btn: 'Obter Clareza e Acesso Vitalício' },
           proof: { p1: 'aprox. R$320,00 uma vez', p2: 'Zoom de 60 min incl.', p3: 'Chamadas extras aprox. R$142,00' },
           why: { eyebrow: 'Por que os membros ficam', title: 'O que a clareza consistente faz pelo seu futuro', c1: 'Clareza sobre o futuro', b1: 'Veja onde pode chegar seu caminho de investimentos — anos antes de chegar lá.', c2: 'Confiança emocional', b2: 'Entenda o que seus números realmente significam — sem jargões ou ansiedade.', c3: 'Consciência sobre inflação', b3: 'Proteja seu poder de compra futuro antes que a inflação o corroa silenciosamente.', c4: 'Acompanhamento de consistência', b4: 'Mantenha-se motivado no longo prazo. Veja seu progresso crescer mês a mês.' },
@@ -23845,7 +23844,7 @@
         },
         books: {
           eyebrow: 'Sua trilha de transformação', h2: 'Livros que mudam como você <em>pensa sobre dinheiro.</em>',
-          lead: 'A maioria das pessoas consome conteúdo financeiro aleatório por anos e ainda se sente confusa. Um grande livro, entendido em profundidade, muda mais do que 500 posts. Construímos um caminho diferente.',
+          lead: 'O livro certo no momento certo pode mudar toda a trajetória do seu dinheiro. Estes são os que fizeram isso por nós — escolhidos pela clareza, honestidade e ideias que permanecem com você muito depois da última página.',
           spotK: 'O que a maioria dos iniciantes erra',
           spotTag: 'Escolha Plainvest',
           spotH: '"Vou assistir vídeos até fazer sentido."',
