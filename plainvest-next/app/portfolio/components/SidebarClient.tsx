@@ -8,6 +8,7 @@ import { HelpModal } from './HelpModal';
 import { SubmitButton } from '../../components/submit-button';
 import { signOut } from '../../actions/auth';
 import { TOTAL_GUIDES } from '@/lib/guide-meta';
+import { hydrateProgress } from '@/lib/member-progress-client';
 
 type Props = {
   displayCurrency: string;
@@ -46,9 +47,13 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
       } catch { setGuideCount(0); }
     }
     sync();
-    window.addEventListener('pageshow', sync);          // re-read when returning from a guide (incl. bfcache)
-    document.addEventListener('visibilitychange', sync);
-    return () => { window.removeEventListener('pageshow', sync); document.removeEventListener('visibilitychange', sync); };
+    // pull server-saved progress so the count matches every other surface
+    const refresh = () => { hydrateProgress().then(() => sync()); };
+    refresh();
+    window.addEventListener('pageshow', refresh);       // re-pull when returning from a guide (incl. bfcache)
+    document.addEventListener('visibilitychange', refresh);
+    window.addEventListener('focus', refresh);
+    return () => { window.removeEventListener('pageshow', refresh); document.removeEventListener('visibilitychange', refresh); window.removeEventListener('focus', refresh); };
   }, []);
 
   function navHref(view: string) {

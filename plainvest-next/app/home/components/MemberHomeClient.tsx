@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { GUIDE_META, GUIDE_ORDER, TOTAL_GUIDES, getGuideI18n } from '@/lib/guide-meta';
+import { hydrateProgress, saveProgress } from '@/lib/member-progress-client';
 import posthog from 'posthog-js';
 
 type Props = {
@@ -155,6 +156,9 @@ export function MemberHomeClient({ firstName, fullName, plan, isPro, memberSince
       try { setHasProjection(localStorage.getItem('pv_projection_run') === '1'); } catch { /* */ }
     }
     sync();
+    // pull server-saved progress (survives tab close / logout / other devices), then re-render
+    const refresh = () => { hydrateProgress().then(() => sync()); };
+    refresh();
     // mark a guide read the moment its link is clicked — robust vs. cached guide HTML / blocked scripts
     const fileToKey: Record<string, string> = {};
     Object.entries(GUIDE_META).forEach(([k, m]) => { fileToKey[(m.file.split('/').pop() || '').toLowerCase()] = k; });
@@ -170,14 +174,17 @@ export function MemberHomeClient({ firstName, fullName, plan, isPro, memberSince
         if (list.indexOf(key) < 0) { list.push(key); localStorage.setItem('pv_read_guides', JSON.stringify(list)); }
         localStorage.setItem('pv_last_guide', key);
       } catch { /* */ }
+      saveProgress({ read_guides: [key], last_guide: key }); // persist server-side
     }
     document.addEventListener('click', onClick, true);
-    window.addEventListener('pageshow', sync);          // re-read when returning from a guide (incl. bfcache)
-    document.addEventListener('visibilitychange', sync);
+    window.addEventListener('pageshow', refresh);       // re-pull when returning from a guide (incl. bfcache)
+    document.addEventListener('visibilitychange', refresh);
+    window.addEventListener('focus', refresh);
     return () => {
       document.removeEventListener('click', onClick, true);
-      window.removeEventListener('pageshow', sync);
-      document.removeEventListener('visibilitychange', sync);
+      window.removeEventListener('pageshow', refresh);
+      document.removeEventListener('visibilitychange', refresh);
+      window.removeEventListener('focus', refresh);
     };
   }, []);
 

@@ -1,0 +1,87 @@
+'use client';
+
+/**
+ * Shared client helpers so the Next.js member pages (/home, /profile, /portfolio)
+ * reflect the SAME server-persisted progress as the public-site card hub.
+ *
+ * The server (member_progress table via /api/member/progress) is the source of
+ * truth, so opened guides + "where I left off" survive tab close, logout, and
+ * sync across devices/sessions. localStorage is only a fast-paint cache that the
+ * existing sync() readers already use — we mirror the server into it.
+ */
+
+type ServerProgress = {
+  authenticated?: boolean;
+  read_guides?: string[];
+  starred?: string[];
+  last_guide?: string | null;
+  sim_run?: boolean;
+  projection_run?: boolean;
+  portfolio_added?: boolean;
+};
+
+function readLocalGuides(): string[] {
+  try {
+    const v = JSON.parse(localStorage.getItem('pv_read_guides') || '[]');
+    return Array.isArray(v) ? v : [];
+  } catch {
+    return [];
+  }
+}
+
+/** Fire-and-forget write-through to the server (survives navigation via keepalive). */
+export function saveProgress(patch: Record<string, unknown>): void {
+  try {
+    fetch('/api/member/progress', {
+      method: 'POST',
+      credentials: 'include',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(patch || {}),
+    }).catch(() => {});
+  } catch {
+    /* ignore */
+  }
+}
+
+/**
+ * Pull progress from the server and mirror it into localStorage so the page's
+ * existing sync() picks it up. On the first run, if the server is empty but the
+ * browser already has local progress, push that up so nothing is lost.
+ * Resolves true when server data was applied (caller should re-sync state).
+ */
+export async function hydrateProgress(): Promise<boolean> {
+  try {
+    const r = await fetch('/api/member/progress', { credentials: 'include', cache: 'no-store' });
+    if (!r.ok) return false;
+    const d: ServerProgress = await r.json();
+    if (!d || d.authenticated === false) return false;
+
+    const sGuides = Array.isArray(d.read_guides) ? d.read_guides : [];
+    const lGuides = readLocalGuides();
+    if (sGuides.length === 0 && lGuides.length > 0) {
+      saveProgress({ read_guides: lGuides }); // migrate existing local progress up
+    } else {
+      try { localStorage.setItem('pv_read_guides', JSON.stringify(sGuides)); } catch { /* */ }
+    }
+
+    if (Array.isArray(d.starred)) {
+      try { localStorage.setItem('pv_starred', JSON.stringify(d.starred)); } catch { /* */ }
+    }
+
+    if (d.last_guide) {
+      try { localStorage.setItem('pv_last_guide', d.last_guide); } catch { /* */ }
+    } else {
+      let ll: string | null = null;
+      try { ll = localStorage.getItem('pv_last_guide'); } catch { /* */ }
+      if (ll) saveProgress({ last_guide: ll });
+    }
+
+    if (d.projection_run) { try { localStorage.setItem('pv_projection_run', '1'); } catch { /* */ } }
+    if (d.portfolio_added) { try { localStorage.setItem('pv_portfolio_created', '1'); } catch { /* */ } }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
