@@ -333,6 +333,14 @@ export default async function PortfolioPage({
     wellBalanced: divScore >= 6.5 && largestPct < 40 && assetCount >= 3,
   };
 
+  // Backfill the "Portfolio created" milestone for members who already hold positions
+  if (assetCount > 0) {
+    await supabase.from('member_progress').upsert(
+      { user_id: user.id, portfolio_added: true, updated_at: new Date().toISOString() },
+      { onConflict: 'user_id' },
+    );
+  }
+
   // Chart data
   const chartData = buildChartData(rows, toDisplay);
 

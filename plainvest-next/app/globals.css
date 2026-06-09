@@ -4714,6 +4714,38 @@ a.sb-link:hover, button.sb-link:hover {
   border-color: rgba(97,213,180,.18) !important;
   font-weight: 700;
 }
+
+/* Calculator sub-nav (each tool, straight from the sidebar) */
+.sb-subnav {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: .15rem 0 .2rem .55rem;
+  padding-left: .55rem;
+  border-left: 1px solid rgba(255,255,255,.08);
+}
+.sb-sublink {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .36rem .55rem;
+  border-radius: 7px;
+  font-size: .73rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .15s, background .15s;
+}
+.sb-sublink:hover { color: var(--text); background: rgba(97,213,180,.06); }
+.sb-sublink.sb-active {
+  color: var(--teal) !important;
+  background: rgba(97,213,180,.08) !important;
+  font-weight: 700;
+}
+.sb-sublink-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: currentColor; opacity: .5; flex-shrink: 0;
+}
 .sb-link-soon {
   opacity: .38;
   cursor: not-allowed;
