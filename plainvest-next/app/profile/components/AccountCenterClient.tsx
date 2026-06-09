@@ -281,14 +281,20 @@ export function AccountCenterClient({
 
   useEffect(() => {
     setMounted(true);
-    try {
-      const raw = localStorage.getItem('pv_read_guides');
-      const parsed: string[] = raw ? JSON.parse(raw) : [];
-      setReadGuides(Array.isArray(parsed) ? parsed.filter(k => k !== 'welcome') : []);
-    } catch { setReadGuides([]); }
-    try { setLastGuideKey(localStorage.getItem('pv_last_guide')); } catch { /* */ }
-    try { setHasPortfolio(localStorage.getItem('pv_portfolio_created') === '1'); } catch { /* */ }
-    try { setHasProjection(localStorage.getItem('pv_projection_run') === '1'); } catch { /* */ }
+    function sync() {
+      try {
+        const raw = localStorage.getItem('pv_read_guides');
+        const parsed: string[] = raw ? JSON.parse(raw) : [];
+        setReadGuides(Array.isArray(parsed) ? parsed.filter(k => k !== 'welcome') : []);
+      } catch { setReadGuides([]); }
+      try { setLastGuideKey(localStorage.getItem('pv_last_guide')); } catch { /* */ }
+      try { setHasPortfolio(localStorage.getItem('pv_portfolio_created') === '1'); } catch { /* */ }
+      try { setHasProjection(localStorage.getItem('pv_projection_run') === '1'); } catch { /* */ }
+    }
+    sync();
+    window.addEventListener('pageshow', sync);          // re-read when returning from a guide (incl. bfcache)
+    document.addEventListener('visibilitychange', sync);
+    return () => { window.removeEventListener('pageshow', sync); document.removeEventListener('visibilitychange', sync); };
   }, []);
 
   // Use the SAVED lang for all page labels (not the in-progress selection)

@@ -38,11 +38,17 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
   const currentView = searchParams.get('view') || '';
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem('pv_read_guides');
-      const parsed: string[] = raw ? JSON.parse(raw) : [];
-      setGuideCount(Array.isArray(parsed) ? parsed.filter(k => k !== 'welcome').length : 0);
-    } catch { setGuideCount(0); }
+    function sync() {
+      try {
+        const raw = localStorage.getItem('pv_read_guides');
+        const parsed: string[] = raw ? JSON.parse(raw) : [];
+        setGuideCount(Array.isArray(parsed) ? parsed.filter(k => k !== 'welcome').length : 0);
+      } catch { setGuideCount(0); }
+    }
+    sync();
+    window.addEventListener('pageshow', sync);          // re-read when returning from a guide (incl. bfcache)
+    document.addEventListener('visibilitychange', sync);
+    return () => { window.removeEventListener('pageshow', sync); document.removeEventListener('visibilitychange', sync); };
   }, []);
 
   function navHref(view: string) {
