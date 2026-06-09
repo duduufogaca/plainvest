@@ -26165,6 +26165,25 @@
       } catch (e) { }
     }
 
+    /* Re-pull from the server when the hub is restored from the back/forward cache
+       (returning from a guide or the profile) or the tab is refocused, so opened
+       guides / favourites / "continue" reflect what was just saved. */
+    (function () {
+      var lastHydrate = 0;
+      function reHydrateIfMember() {
+        try {
+          if (!document.body.classList.contains('premium-access-granted')) return;
+          var now = Date.now();
+          if (now - lastHydrate < 1500) return;
+          lastHydrate = now;
+          pvHydrateProgress();
+        } catch (e) { }
+      }
+      window.addEventListener('pageshow', function (e) { if (e && e.persisted) reHydrateIfMember(); });
+      document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') reHydrateIfMember(); });
+      window.addEventListener('focus', reHydrateIfMember);
+    }());
+
     function applyGuideProgress() {
       var read = getReadGuides();
       var total = Object.keys(getMemberGuideFiles()).length;
