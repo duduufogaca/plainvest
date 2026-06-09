@@ -20,14 +20,6 @@ type ServerProgress = {
   portfolio_added?: boolean;
 };
 
-function readLocalGuides(): string[] {
-  try {
-    const v = JSON.parse(localStorage.getItem('pv_read_guides') || '[]');
-    return Array.isArray(v) ? v : [];
-  } catch {
-    return [];
-  }
-}
 
 /** Fire-and-forget write-through to the server (survives navigation via keepalive). */
 export function saveProgress(patch: Record<string, unknown>): void {
@@ -57,28 +49,19 @@ export async function hydrateProgress(): Promise<boolean> {
     const d: ServerProgress = await r.json();
     if (!d || d.authenticated === false) return false;
 
+    // Server is the single source of truth for THIS account — overwrite the local
+    // cache (no merge/migration) so one account never inherits another's leftover
+    // browser data in the same browser.
     const sGuides = Array.isArray(d.read_guides) ? d.read_guides : [];
-    const lGuides = readLocalGuides();
-    if (sGuides.length === 0 && lGuides.length > 0) {
-      saveProgress({ read_guides: lGuides }); // migrate existing local progress up
-    } else {
-      try { localStorage.setItem('pv_read_guides', JSON.stringify(sGuides)); } catch { /* */ }
-    }
-
-    if (Array.isArray(d.starred)) {
-      try { localStorage.setItem('pv_starred', JSON.stringify(d.starred)); } catch { /* */ }
-    }
-
-    if (d.last_guide) {
-      try { localStorage.setItem('pv_last_guide', d.last_guide); } catch { /* */ }
-    } else {
-      let ll: string | null = null;
-      try { ll = localStorage.getItem('pv_last_guide'); } catch { /* */ }
-      if (ll) saveProgress({ last_guide: ll });
-    }
-
-    if (d.projection_run) { try { localStorage.setItem('pv_projection_run', '1'); } catch { /* */ } }
-    if (d.portfolio_added) { try { localStorage.setItem('pv_portfolio_created', '1'); } catch { /* */ } }
+    const sStars = Array.isArray(d.starred) ? d.starred : [];
+    try { localStorage.setItem('pv_read_guides', JSON.stringify(sGuides)); } catch { /* */ }
+    try { localStorage.setItem('pv_starred', JSON.stringify(sStars)); } catch { /* */ }
+    try {
+      if (d.last_guide) localStorage.setItem('pv_last_guide', d.last_guide);
+      else localStorage.removeItem('pv_last_guide');
+      if (d.projection_run) localStorage.setItem('pv_projection_run', '1'); else localStorage.removeItem('pv_projection_run');
+      if (d.portfolio_added) localStorage.setItem('pv_portfolio_created', '1'); else localStorage.removeItem('pv_portfolio_created');
+    } catch { /* */ }
 
     return true;
   } catch {
