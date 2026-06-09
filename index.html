@@ -21072,7 +21072,7 @@
       </div>
       <div class="member-hero-visual">
         <div class="member-hero-copy">
-          <strong data-i18n="member.heroVisualTitle">Your future becomes clearer every month.</strong>
+          <strong data-i18n="member.heroVisualTitle">Learn. Understand. Decide with confidence.</strong>
           <p data-i18n="member.heroVisualText">Every guide you open, every concept you understand, every more confident decision you make — that's what Premium is for. Not just courses. A clearer financial life.</p>
           <div class="member-hero-pills">
             <span data-i18n="member.heroPill1">Structured learning</span>
@@ -21106,7 +21106,7 @@
           <div class="support-call-paid-panel" id="support-call-paid-panel">
             <strong data-i18n="member.extraPaidTitle">Extra call payment received</strong>
             <p data-i18n="member.extraPaidText">Now send your preferred days, times, timezone, and the questions you want to cover. We will reply with confirmation and the Zoom details.</p>
-            <a class="member-action-btn primary" href="mailto:hello@plainvest.app?subject=Plainvest%20extra%20support%20call%20details&body=Hi%20Plainvest%2C%0A%0AI%20have%20paid%20for%20an%20extra%2060-minute%20support%20call.%0A%0AMy%20preferred%20days%2Ftimes%20are%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AMy%20timezone%20is%3A%20%0A%0AQuestions%20I%20want%20to%20cover%3A%0A-%20%0A-%20%0A-%20%0A" data-i18n="member.extraPaidBtn">Send call details</a>
+            <a class="member-action-btn primary" href="mailto:hello@plainvest.app?subject=Plainvest%20extra%20support%20call%20details&body=Hi%20Plainvest%2C%0A%0AI%20have%20paid%20for%20an%20extra%2060-minute%20support%20call.%0A%0AMy%20preferred%20days%2Ftimes%20are%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AMy%20timezone%20is%3A%20%0A%0AQuestions%20I%20want%20to%20cover%3A%0A-%20%0A-%20%0A-%20%0A" onclick="setTimeout(dismissSupportCallPaid, 800)" data-i18n="member.extraPaidBtn">Send call details</a>
           </div>
           <div class="member-support-actions">
             <button class="member-action-btn primary" onclick="openMemberGuide('zoom')" data-i18n="member.askBtn">Book included support call</button>
@@ -22605,7 +22605,7 @@
           check2: 'One 60-minute Zoom call included with access',
           check3: 'Exchange setup support',
           check4: 'Books, DCA, crypto, and saved learning paths',
-          heroVisualTitle: 'Your future becomes clearer every month.',
+          heroVisualTitle: 'Learn. Understand. Decide with confidence.',
           heroVisualText: 'Every guide you open, every concept you understand, every more confident decision you make — that\'s what Premium is for. Not just courses. A clearer financial life.',
           heroPill1: 'Structured learning',
           heroPill2: 'Practical checklists',
@@ -23557,7 +23557,7 @@
           check2: 'Uma chamada no Zoom de 60 minutos incluída no acesso',
           check3: 'Suporte para configurar exchange',
           check4: 'Livros, DCA, cripto e trilhas salvas',
-          heroVisualTitle: 'Seu futuro fica mais claro a cada mês.',
+          heroVisualTitle: 'Aprenda. Entenda. Decida com confiança.',
           heroVisualText: 'Cada guia que você abre, cada conceito que entende, cada decisão mais confiante que toma — é para isso que o Premium existe. Não é apenas um curso. É uma vida financeira mais clara.',
           heroPill1: 'Aprendizado estruturado',
           heroPill2: 'Checklists práticos',
@@ -27248,7 +27248,7 @@
       panicsell: ['mindset'],
       sentiment: ['mindset', 'tools'],
       books: ['tools'],
-      glossary: ['start', 'tools'],
+      glossary: ['tools'],
       references: ['tools'],
       zoom: ['tools'],
       platforms: ['exchange'],
@@ -27446,6 +27446,19 @@
           if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 300);
       }
+    }
+
+    /* After the member sends their extra-call details, clear the one-time paid
+       state, hide the panel, and return to the top of the hub. The "send details"
+       option only appears right after a fresh extra-call payment. */
+    function dismissSupportCallPaid() {
+      try { sessionStorage.removeItem('plainvestSupportCallPaid'); } catch (e) { }
+      document.body.classList.remove('support-call-paid');
+      try {
+        var top = document.getElementById('member') || document.querySelector('[data-page="member"]');
+        if (top) top.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) { }
     }
 
     function syncMemberNavState() {
