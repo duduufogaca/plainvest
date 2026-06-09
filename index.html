@@ -27525,6 +27525,7 @@
         syncMemberNavState();
         updateWelcomeBadge();
         initMemberHub();
+        try { pvHydrateProgress(); } catch (e) { }
         return true;
       }
 
@@ -27534,6 +27535,7 @@
         syncMemberNavState();
         updateWelcomeBadge();
         initMemberHub();
+        try { pvHydrateProgress(); } catch (e) { }
         return true;
       }
 
