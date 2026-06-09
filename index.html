@@ -26121,6 +26121,48 @@
         var read = getReadGuides();
         if (read.indexOf(key) < 0) { read.push(key); sessionStorage.setItem(GUIDE_PROGRESS_KEY, JSON.stringify(read)); }
       } catch (e) { }
+      pvSaveProgress({ read_guides: [key], last_guide: key });
+    }
+
+    /* ── Server-side member progress: survives logout/login & syncs across devices ── */
+    function pvSaveProgress(patch) {
+      try {
+        fetch('/api/member/progress', {
+          method: 'POST', credentials: 'include', keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(patch || {})
+        }).catch(function () { });
+      } catch (e) { }
+    }
+
+    function pvHydrateProgress() {
+      try {
+        fetch('/api/member/progress', { credentials: 'include', cache: 'no-store' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) {
+            if (!d || d.authenticated === false) return;
+            try {
+              var sGuides = Array.isArray(d.read_guides) ? d.read_guides : [];
+              var sStars = Array.isArray(d.starred) ? d.starred : [];
+              var lGuides = getReadGuides();
+              var lStars = getStarred();
+              /* migrate any existing local progress up the first time; otherwise the server wins */
+              if (sGuides.length === 0 && lGuides.length > 0) pvSaveProgress({ read_guides: lGuides });
+              else sessionStorage.setItem(GUIDE_PROGRESS_KEY, JSON.stringify(sGuides));
+              if (sStars.length === 0 && lStars.length > 0) pvSaveProgress({ starred: lStars });
+              else localStorage.setItem('pv_starred', JSON.stringify(sStars));
+              if (d.last_guide) { try { localStorage.setItem('pv_last_guide', d.last_guide); } catch (e) { } }
+              else { var ll = null; try { ll = localStorage.getItem('pv_last_guide'); } catch (e) { } if (ll) pvSaveProgress({ last_guide: ll }); }
+              if (d.sim_run) { try { localStorage.setItem('pv_sim_run', '1'); } catch (e) { } }
+              if (d.portfolio_added) { try { localStorage.setItem('pv_portfolio_added', '1'); } catch (e) { } }
+            } catch (e) { }
+            try { applyGuideProgress(); } catch (e) { }
+            try { initStarButtons(); } catch (e) { }
+            try { updateMilestones(); } catch (e) { }
+            try { updateContinueBlock(); } catch (e) { }
+            try { updateHubStats(); } catch (e) { }
+          }).catch(function () { });
+      } catch (e) { }
     }
 
     function applyGuideProgress() {
@@ -27210,6 +27252,7 @@
       if (idx > -1) arr.splice(idx, 1);
       else arr.push(guide);
       try { localStorage.setItem('pv_starred', JSON.stringify(arr)); } catch (e) { }
+      pvSaveProgress({ starred: arr });
       btn.classList.toggle('starred', idx === -1);
       updateHubStats();
       if (hubFilter === 'fav') setHubFilter('fav');
@@ -27496,6 +27539,7 @@
             rememberMemberPlan(status.plan || '');
             updateWelcomeBadge();
             initMemberHub();
+            try { pvHydrateProgress(); } catch (e) { }
             return true;
           }
 
@@ -27539,6 +27583,7 @@
           syncMemberNavState();
           updateWelcomeBadge();
           initMemberHub();
+          try { pvHydrateProgress(); } catch (e) { }
           return true;
         }
         document.body.classList.remove('premium-access-checking', 'premium-access-granted');
