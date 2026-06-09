@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, usePathname } from 'next/navigation';
 import { CurrencySwitcher } from './CurrencySwitcher';
 import { LangSwitcher } from './LangSwitcher';
 import { HelpModal } from './HelpModal';
@@ -34,7 +34,7 @@ type Props = {
   userFullName?: string;
 };
 
-export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, profileLabel, logoutLabel, userName, plan, profileActive, homeActive, toolsActive, userFullName }: Props) {
+export function SidebarClient({ displayCurrency, lang, backHref, profileLabel, logoutLabel, userName, plan, profileActive, homeActive, toolsActive, userFullName }: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -43,7 +43,10 @@ export function SidebarClient({ displayCurrency, lang, backHref, portfolioHref, 
   const isEN = lang !== 'pt';
   const isPro = plan === 'pro';
   const initial = userName ? userName[0].toUpperCase() : '?';
-  const isPortfolioActive = !portfolioHref;
+  // Active only when we're actually on a portfolio page — not derived from
+  // portfolioHref (which is undefined for non-Pro and wrongly flagged it active).
+  const pathname = usePathname();
+  const isPortfolioActive = pathname === '/portfolio' || pathname.startsWith('/portfolio/');
   const searchParams = useSearchParams();
   const currentView = searchParams.get('view') || '';
   const currentTool = searchParams.get('tool') || '';
