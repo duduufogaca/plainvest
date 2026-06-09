@@ -26166,6 +26166,7 @@
               if (d.last_guide) localStorage.setItem('pv_last_guide', d.last_guide);
               else localStorage.removeItem('pv_last_guide');
               if (d.sim_run) localStorage.setItem('pv_sim_run', '1'); else localStorage.removeItem('pv_sim_run');
+              if (d.projection_run) localStorage.setItem('pv_projection_run', '1'); else localStorage.removeItem('pv_projection_run');
               if (d.portfolio_added) localStorage.setItem('pv_portfolio_added', '1'); else localStorage.removeItem('pv_portfolio_added');
             } catch (e) { }
             try { applyGuideProgress(); } catch (e) { }
@@ -26343,7 +26344,7 @@
         setMs('ms-first-guide', count >= 1, 'First guide opened', 'Primeiro guia aberto');
         setMs('ms-five-guides', count >= 5, '5 guides explored', '5 guias explorados');
         setMs('ms-ten-guides', count >= 10, '10 guides completed', '10 guias concluídos');
-        setMs('ms-projection', (function () { try { return !!localStorage.getItem('pv_sim_run'); } catch (e) { return false; } }()), 'First projection run', 'Primeira projeção feita');
+        setMs('ms-projection', (function () { try { return !!localStorage.getItem('pv_projection_run'); } catch (e) { return false; } }()), 'First projection run', 'Primeira projeção feita');
         setMs('ms-portfolio', (function () { try { return !!localStorage.getItem('pv_portfolio_added'); } catch (e) { return false; } }()), 'Portfolio created', 'Portfólio criado');
         setMs('ms-dca-done', read.indexOf('dca') >= 0, 'DCA plan understood', 'Método DCA compreendido');
         var enc = document.getElementById('milestone-encouragement');
