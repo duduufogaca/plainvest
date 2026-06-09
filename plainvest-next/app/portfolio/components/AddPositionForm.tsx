@@ -43,7 +43,7 @@ export function AddPositionForm({ lang = 'en' }: { lang?: Lang }) {
         </div>
 
         {/* Asset name + ticker */}
-        <AssetSearchInput assetType={assetType} lang={lang} />
+        <AssetSearchInput assetType={assetType} lang={lang} onPick={setAssetType} />
 
         {/* Numbers */}
         <div className="portfolio-form-grid">

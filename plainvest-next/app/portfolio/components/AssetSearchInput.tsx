@@ -11,11 +11,13 @@ export function AssetSearchInput({
   defaultName = '',
   defaultTicker = '',
   lang = 'en',
+  onPick,
 }: {
   assetType: string;
   defaultName?: string;
   defaultTicker?: string;
   lang?: Lang;
+  onPick?: (type: string) => void;
 }) {
   const [name, setName] = useState(defaultName);
   const [ticker, setTicker] = useState(defaultTicker);
@@ -24,6 +26,7 @@ export function AssetSearchInput({
   const [loading, setLoading] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const justPickedRef = useRef(false);
 
   const search = useCallback(async (q: string) => {
     if (!q || q.length < 2 || assetType === 'other') {
@@ -51,10 +54,13 @@ export function AssetSearchInput({
   };
 
   const pick = (r: Result) => {
+    justPickedRef.current = true; // keep these values across the type-driven reset effect
     setName(r.name);
     setTicker(r.ticker);
     setOpen(false);
     setResults([]);
+    // auto-correct the asset type to match what was actually selected (e.g. TLT = ETF)
+    if (r.type === 'stock' || r.type === 'etf') onPick?.(r.type);
   };
 
   useEffect(() => {
@@ -68,6 +74,9 @@ export function AssetSearchInput({
   }, []);
 
   useEffect(() => {
+    // Skip the reset when the type change was triggered by picking a result,
+    // otherwise the just-picked name/ticker would be wiped.
+    if (justPickedRef.current) { justPickedRef.current = false; return; }
     setName(defaultName);
     setTicker(defaultTicker);
   }, [assetType, defaultName, defaultTicker]);

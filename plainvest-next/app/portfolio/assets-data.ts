@@ -51,6 +51,14 @@ export const STOCK_LIST: AssetOption[] = [
   { ticker: 'NCM',    name: 'Newcrest Mining',                          type: 'stock', market: 'AU' },
   { ticker: 'EVN',    name: 'Evolution Mining',                         type: 'stock', market: 'AU' },
   { ticker: 'NST',    name: 'Northern Star Resources',                  type: 'stock', market: 'AU' },
+  { ticker: 'BXB',    name: 'Brambles Limited',                         type: 'stock', market: 'AU' },
+  { ticker: 'TCL',    name: 'Transurban Group',                         type: 'stock', market: 'AU' },
+  { ticker: 'WTC',    name: 'WiseTech Global',                          type: 'stock', market: 'AU' },
+  { ticker: 'ALL',    name: 'Aristocrat Leisure',                       type: 'stock', market: 'AU' },
+  { ticker: 'COH',    name: 'Cochlear Limited',                         type: 'stock', market: 'AU' },
+  { ticker: 'JHX',    name: 'James Hardie Industries',                  type: 'stock', market: 'AU' },
+  { ticker: 'QAN',    name: 'Qantas Airways',                           type: 'stock', market: 'AU' },
+  { ticker: 'SUN',    name: 'Suncorp Group',                            type: 'stock', market: 'AU' },
   // ── US ETFs ──
   { ticker: 'SPY',    name: 'SPDR S&P 500 ETF Trust',                   type: 'etf',   market: 'US' },
   { ticker: 'QQQ',    name: 'Invesco QQQ Trust (NASDAQ 100)',            type: 'etf',   market: 'US' },
@@ -74,6 +82,18 @@ export const STOCK_LIST: AssetOption[] = [
   { ticker: 'QQQM',   name: 'Invesco NASDAQ 100 ETF',                   type: 'etf',   market: 'US' },
   { ticker: 'DIA',    name: 'SPDR Dow Jones Industrial Average ETF',    type: 'etf',   market: 'US' },
   { ticker: 'VXUS',   name: 'Vanguard Total International Stock ETF',   type: 'etf',   market: 'US' },
+  { ticker: 'SLV',    name: 'iShares Silver Trust',                     type: 'etf',   market: 'US' },
+  { ticker: 'IAU',    name: 'iShares Gold Trust',                       type: 'etf',   market: 'US' },
+  { ticker: 'TFLO',   name: 'iShares Treasury Floating Rate Bond ETF',  type: 'etf',   market: 'US' },
+  { ticker: 'SGOV',   name: 'iShares 0-3 Month Treasury Bond ETF',      type: 'etf',   market: 'US' },
+  { ticker: 'BIL',    name: 'SPDR Bloomberg 1-3 Month T-Bill ETF',      type: 'etf',   market: 'US' },
+  { ticker: 'IEF',    name: 'iShares 7-10 Year Treasury Bond ETF',      type: 'etf',   market: 'US' },
+  { ticker: 'SHY',    name: 'iShares 1-3 Year Treasury Bond ETF',       type: 'etf',   market: 'US' },
+  { ticker: 'TIP',    name: 'iShares TIPS Bond ETF',                    type: 'etf',   market: 'US' },
+  { ticker: 'VEA',    name: 'Vanguard FTSE Developed Markets ETF',      type: 'etf',   market: 'US' },
+  { ticker: 'VWO',    name: 'Vanguard FTSE Emerging Markets ETF',       type: 'etf',   market: 'US' },
+  { ticker: 'VNQ',    name: 'Vanguard Real Estate ETF',                 type: 'etf',   market: 'US' },
+  { ticker: 'SMH',    name: 'VanEck Semiconductor ETF',                 type: 'etf',   market: 'US' },
   // ── US Stocks ──
   { ticker: 'AAPL',   name: 'Apple Inc.',                               type: 'stock', market: 'US' },
   { ticker: 'MSFT',   name: 'Microsoft Corporation',                    type: 'stock', market: 'US' },
@@ -158,11 +178,28 @@ export const STOCK_LIST: AssetOption[] = [
 
 export function searchStocks(query: string, type?: string): AssetOption[] {
   const q = query.toLowerCase().trim();
-  if (!q || q.length < 1) return [];
-  const filtered = type && type !== 'other'
-    ? STOCK_LIST.filter(a => a.type === type || (type === 'etf' && a.type === 'etf') || (type === 'stock' && a.type === 'stock'))
-    : STOCK_LIST;
-  return filtered
-    .filter(a => a.ticker.toLowerCase().includes(q) || a.name.toLowerCase().includes(q))
-    .slice(0, 8);
+  if (!q) return [];
+  // Search stocks AND ETFs together — a member shouldn't need to know whether a
+  // ticker (e.g. TLT, SLV) is classed as a stock or an ETF to find it. ('other'
+  // has no searchable catalogue.)
+  if (type === 'other') return [];
+  const pool = STOCK_LIST.filter(a => a.type === 'stock' || a.type === 'etf');
+
+  const rank = (a: AssetOption): number => {
+    const t = a.ticker.toLowerCase();
+    const n = a.name.toLowerCase();
+    if (t === q) return 0;            // exact ticker
+    if (t.startsWith(q)) return 1;    // ticker prefix
+    if (n.startsWith(q)) return 2;    // name prefix
+    if (t.includes(q)) return 3;      // ticker contains
+    if (n.includes(q)) return 4;      // name contains
+    return 99;
+  };
+
+  return pool
+    .map(a => ({ a, r: rank(a) }))
+    .filter(x => x.r < 99)
+    .sort((x, y) => x.r - y.r || x.a.ticker.localeCompare(y.a.ticker))
+    .slice(0, 8)
+    .map(x => x.a);
 }

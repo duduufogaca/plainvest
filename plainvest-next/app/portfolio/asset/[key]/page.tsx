@@ -64,8 +64,8 @@ export default async function AssetDetailPage({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
-  const { isPremium } = await getPremiumAccess(supabase, user.id);
-  if (!isPremium) redirect('/dashboard');
+  const { isPro, plan } = await getPremiumAccess(supabase, user.id);
+  if (!isPro) redirect('/dashboard');
 
   const fullName: string = user.user_metadata?.full_name || '';
   const firstName = fullName.split(' ')[0] || user.email?.split('@')[0] || '';
@@ -151,6 +151,8 @@ export default async function AssetDetailPage({
         profileLabel={tx.profile}
         logoutLabel={tx.logout}
         userName={firstName}
+        userFullName={fullName}
+        plan={plan ?? 'premium'}
       />
 
       <div className="portfolio-main">
