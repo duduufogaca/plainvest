@@ -1809,6 +1809,50 @@ td.muted { color:var(--muted) !important; }
 .donut-v2-row:hover, .donut-v2-row.hov {
   background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.08);
 }
+
+/* Columns-table legend: Asset · Alloc · Invested · Current · P/L (+ Total) */
+.donut-tbl {
+  flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; padding-top:.4rem;
+}
+.donut-tbl-head, .donut-tbl-row, .donut-tbl-total {
+  display:grid;
+  grid-template-columns: minmax(64px, 1.5fr) 50px minmax(60px, 1fr) minmax(60px, 1fr) 62px;
+  align-items:center; gap:.5rem;
+  padding:.5rem .55rem;
+}
+.donut-tbl-head {
+  font-size:.6rem; letter-spacing:.05em; text-transform:uppercase;
+  color:rgba(255,255,255,.4); font-weight:700; padding-bottom:.25rem;
+}
+.donut-tbl-row {
+  border-radius:9px; cursor:pointer; transition:background .15s; border:1px solid transparent;
+}
+.donut-tbl-row:hover, .donut-tbl-row.hov {
+  background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.08);
+}
+.donut-tbl-total {
+  margin-top:.2rem; border-top:1px solid rgba(255,255,255,.12);
+  font-weight:800; color:#fff;
+}
+.dt-asset { display:flex; align-items:center; gap:.5rem; min-width:0; }
+.dt-tk {
+  font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.dt-num {
+  text-align:right; font-variant-numeric:tabular-nums;
+  color:rgba(255,255,255,.8); font-size:.82rem; white-space:nowrap;
+}
+.donut-tbl-head .dt-asset { text-align:left; }
+.dt-pl.pos { color:#34d399; }
+.dt-pl.neg { color:#fb7185; }
+@media(max-width:560px) {
+  .donut-tbl-head, .donut-tbl-row, .donut-tbl-total {
+    grid-template-columns: minmax(46px,1.3fr) 38px minmax(50px,1fr) minmax(50px,1fr) 50px;
+    gap:.3rem; padding:.45rem .3rem;
+  }
+  .dt-num { font-size:.72rem; }
+  .donut-tbl-head { font-size:.53rem; }
+}
 .donut-v2-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
 .donut-v2-info { flex:1; min-width:0; display:flex; flex-direction:column; gap:.05rem; }
 .donut-v2-name {

@@ -293,6 +293,7 @@ export default async function PortfolioPage({
         label: g.asset_name,
         ticker: g.ticker || undefined,
         value: val,
+        invested: toDisplay(g.totalInvested, g.currency),
         pct: donutDisplayTotal > 0 ? (val / donutDisplayTotal) * 100 : 0,
         color: PALETTE[i % PALETTE.length],
         pnlPct: g.pnlPct,
@@ -300,6 +301,7 @@ export default async function PortfolioPage({
     }),
     ...(restTotal > 0 ? [{
       label: 'Other', value: restTotal,
+      invested: rest.reduce((s, g) => s + toDisplay(g.totalInvested, g.currency), 0),
       pct: donutDisplayTotal > 0 ? (restTotal / donutDisplayTotal) * 100 : 0,
       color: '#475569',
     }] : []),
@@ -587,6 +589,8 @@ export default async function PortfolioPage({
                   currentValue={portfolioValue}
                   pnl={pnl}
                   pnlPct={portfolioPnlPct}
+                  layout="table"
+                  lang={lang}
                 />
               </section>
 
@@ -690,6 +694,9 @@ export default async function PortfolioPage({
               donutSegments={donutSegments}
               totalInvested={totalInvested}
               currency={displayCurrency}
+              currentValue={portfolioValue}
+              pnl={pnl}
+              pnlPct={portfolioPnlPct}
               lang={lang}
               topHoldings={grouped.map(g => ({
                 key: g.key,

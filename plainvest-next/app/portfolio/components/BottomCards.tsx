@@ -20,6 +20,9 @@ type Props = {
   topHoldings: GroupedAsset[];
   projCurrentValue: number;
   projMonthlyContrib: number;
+  currentValue?: number | null;
+  pnl?: number | null;
+  pnlPct?: number | null;
 };
 
 function fmt(n: number, currency: string) {
@@ -70,7 +73,7 @@ function MilestoneRing({ pct, color }: { pct: number; color: string }) {
   );
 }
 
-export function BottomCards({ donutSegments, totalInvested, currency, lang, topHoldings, projCurrentValue, projMonthlyContrib }: Props) {
+export function BottomCards({ donutSegments, totalInvested, currency, lang, topHoldings, projCurrentValue, projMonthlyContrib, currentValue, pnl, pnlPct }: Props) {
   const isEN = lang !== 'pt';
   const targets = MILESTONE_TARGETS[currency] ?? MILESTONE_TARGETS.AUD;
 
@@ -97,6 +100,9 @@ export function BottomCards({ donutSegments, totalInvested, currency, lang, topH
             segments={donutSegments}
             totalValue={totalInvested}
             currency={currency}
+            currentValue={currentValue}
+            pnl={pnl}
+            pnlPct={pnlPct}
           />
         </div>
       </section>

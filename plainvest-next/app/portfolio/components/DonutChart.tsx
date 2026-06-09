@@ -5,10 +5,16 @@ import { useState } from 'react';
 export type DonutSegment = {
   label: string;
   ticker?: string;
-  value: number;
+  value: number;       // current value (drives the slice size)
+  invested?: number;   // amount invested (for the table layout)
   pct: number;
   color: string;
   pnlPct?: number | null;
+};
+
+const TBL_T = {
+  en: { asset: 'Asset', alloc: 'Alloc', invested: 'Invested', current: 'Current', pl: 'P/L', total: 'Total' },
+  pt: { asset: 'Ativo', alloc: 'Aloc.', invested: 'Investido', current: 'Atual', pl: 'L/P', total: 'Total' },
 };
 
 const R = 85;
@@ -37,6 +43,8 @@ export function DonutChart({
   currentValue,
   pnl,
   pnlPct,
+  layout = 'compact',
+  lang = 'en',
 }: {
   segments: DonutSegment[];
   totalValue: number;
@@ -44,8 +52,11 @@ export function DonutChart({
   currentValue?: number | null;
   pnl?: number | null;
   pnlPct?: number | null;
+  layout?: 'compact' | 'table';
+  lang?: string;
 }) {
   const [hovered, setHovered] = useState<number | null>(null);
+  const tt = lang === 'pt' ? TBL_T.pt : TBL_T.en;
 
   const locale = currency === 'BRL' ? 'pt-BR' : currency === 'USD' ? 'en-US' : 'en-AU';
 
@@ -167,31 +178,76 @@ export function DonutChart({
         </svg>
       </div>
 
-      <div className="donut-v2-legend">
-        {arcs.map(a => (
-          <div
-            key={a.i}
-            className={`donut-v2-row${hovered === a.i ? ' hov' : ''}`}
-            onMouseEnter={() => setHovered(a.i)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            <span className="donut-v2-dot" style={{ background: a.color }} />
-            <div className="donut-v2-info">
-              <span className="donut-v2-name">{a.ticker || a.label}</span>
-              {a.ticker && <span className="donut-v2-sub">{a.label}</span>}
-            </div>
-            <div className="donut-v2-nums">
-              <span className="donut-v2-pct-badge">{a.pct.toFixed(1)}%</span>
-              <span className="donut-v2-amount">{fmtFull(a.value)}</span>
-              {a.pnlPct != null && (
-                <span className={`donut-v2-gain ${a.pnlPct >= 0 ? 'pos' : 'neg'}`}>
-                  {a.pnlPct >= 0 ? '▲' : '▼'} {Math.abs(a.pnlPct).toFixed(1)}%
-                </span>
-              )}
-            </div>
+      {layout === 'table' ? (
+        <div className="donut-tbl">
+          <div className="donut-tbl-head">
+            <span className="dt-asset">{tt.asset}</span>
+            <span className="dt-num">{tt.alloc}</span>
+            <span className="dt-num">{tt.invested}</span>
+            <span className="dt-num">{tt.current}</span>
+            <span className="dt-num">{tt.pl}</span>
           </div>
-        ))}
-      </div>
+          {arcs.map(a => {
+            const hasPnl = a.pnlPct != null;
+            return (
+              <div
+                key={a.i}
+                className={`donut-tbl-row${hovered === a.i ? ' hov' : ''}`}
+                onMouseEnter={() => setHovered(a.i)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                <span className="dt-asset" title={a.label}>
+                  <span className="donut-v2-dot" style={{ background: a.color }} />
+                  <span className="dt-tk">{a.ticker || a.label}</span>
+                </span>
+                <span className="dt-num">{a.pct.toFixed(1)}%</span>
+                <span className="dt-num">{a.invested != null ? fmtFull(a.invested) : '—'}</span>
+                <span className="dt-num">{fmtFull(a.value)}</span>
+                <span className={`dt-num dt-pl ${hasPnl ? (a.pnlPct! >= 0 ? 'pos' : 'neg') : ''}`}>
+                  {hasPnl ? (a.pnlPct! >= 0 ? '▲ ' : '▼ ') + Math.abs(a.pnlPct!).toFixed(1) + '%' : '—'}
+                </span>
+              </div>
+            );
+          })}
+          <div className="donut-tbl-total">
+            <span className="dt-asset"><span className="dt-tk">{tt.total}</span></span>
+            <span className="dt-num">100%</span>
+            <span className="dt-num">{fmtFull(totalValue)}</span>
+            <span className="dt-num">{fmtFull(currentValue ?? totalValue)}</span>
+            <span className={`dt-num dt-pl ${pnl != null ? (pnl >= 0 ? 'pos' : 'neg') : ''}`}>
+              {pnl != null && pnlPct != null
+                ? (pnl >= 0 ? '▲ +' : '▼ ') + Math.abs(pnlPct).toFixed(1) + '%'
+                : '—'}
+            </span>
+          </div>
+        </div>
+      ) : (
+        <div className="donut-v2-legend">
+          {arcs.map(a => (
+            <div
+              key={a.i}
+              className={`donut-v2-row${hovered === a.i ? ' hov' : ''}`}
+              onMouseEnter={() => setHovered(a.i)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <span className="donut-v2-dot" style={{ background: a.color }} />
+              <div className="donut-v2-info">
+                <span className="donut-v2-name">{a.ticker || a.label}</span>
+                {a.ticker && <span className="donut-v2-sub">{a.label}</span>}
+              </div>
+              <div className="donut-v2-nums">
+                <span className="donut-v2-pct-badge">{a.pct.toFixed(1)}%</span>
+                <span className="donut-v2-amount">{fmtFull(a.value)}</span>
+                {a.pnlPct != null && (
+                  <span className={`donut-v2-gain ${a.pnlPct >= 0 ? 'pos' : 'neg'}`}>
+                    {a.pnlPct >= 0 ? '▲' : '▼'} {Math.abs(a.pnlPct).toFixed(1)}%
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
