@@ -2178,6 +2178,11 @@
       align-items: start;
     }
 
+    /* Mobile-only reorder slot for the projection hero — collapses on desktop */
+    #mobile-hero-slot:empty {
+      display: none;
+    }
+
     .sim-panel,
     .cmp-panel,
     .edu-banner,
@@ -11904,6 +11909,10 @@
         display: contents !important;
       }
 
+      #mobile-hero-slot {
+        order: 0 !important;
+      }
+
       .sim-panel {
         order: 1 !important;
         position: static;
@@ -18961,6 +18970,7 @@
 
     <!-- The actual simulator -->
     <div class="sim-grid" id="calculator">
+      <div id="mobile-hero-slot"></div>
       <div class="sim-left-col">
         <div class="sim-panel">
           <div class="sp-head">
@@ -18969,13 +18979,13 @@
           </div>
           <div class="sp-body">
 
-            <div class="fg">
+            <div class="fg" id="fg-country">
               <label id="labelCountry" data-i18n="sim.labelCountry">Your country</label>
               <div class="country-switcher">
                 <div class="cs-flags">
-                  <div class="cs-flag active" onclick="setCountry('us',this)"><span class="flag-emoji">🇺🇸</span> United States</div>
-                  <div class="cs-flag" onclick="setCountry('br',this)"><span class="flag-emoji">🇧🇷</span> Brazil</div>
-                  <div class="cs-flag" onclick="setCountry('au',this)"><span class="flag-emoji">🇦🇺</span> Australia</div>
+                  <div class="cs-flag active" onclick="setCountry('us',this)"><span class="flag-emoji">🇺🇸</span> <span data-i18n="sim.countryUS">United States</span></div>
+                  <div class="cs-flag" onclick="setCountry('br',this)"><span class="flag-emoji">🇧🇷</span> <span data-i18n="sim.countryBR">Brazil</span></div>
+                  <div class="cs-flag" onclick="setCountry('au',this)"><span class="flag-emoji">🇦🇺</span> <span data-i18n="sim.countryAU">Australia</span></div>
                 </div>
               </div>
               <div class="country-note" id="countryNote"></div>
@@ -19100,6 +19110,7 @@
       <div class="results-col">
         <div class="res-main">
           <!-- ── One human sentence at the top ── -->
+          <div id="hero-placeholder"></div>
           <div class="result-hero-msg" id="result-hero-msg">
             <div class="rhm-eyebrow" data-i18n="sim.rhmEyebrow">Your projection</div>
             <div class="rhm-statement" data-i18n="sim.rhmEmotional">Your future self is built by the small steps you take today.</div>
@@ -19536,9 +19547,9 @@
             <div class="inf-market-kicker" id="inf-market-kicker">Inflation market</div>
             <p class="inf-market-sub" id="inf-market-sub">Choose the country to switch the inflation benchmark and currency used in the chart.</p>
             <div class="inflation-country-tabs">
-              <button class="inf-tab active" onclick="setInflationCountry('us',this)">🇺🇸 USA</button>
-              <button class="inf-tab" onclick="setInflationCountry('br',this)">🇧🇷 Brazil</button>
-              <button class="inf-tab" onclick="setInflationCountry('au',this)">🇦🇺 Australia</button>
+              <button class="inf-tab active" onclick="setInflationCountry('us',this)">🇺🇸 <span data-i18n="sim.countryUSA">USA</span></button>
+              <button class="inf-tab" onclick="setInflationCountry('br',this)">🇧🇷 <span data-i18n="sim.countryBR">Brazil</span></button>
+              <button class="inf-tab" onclick="setInflationCountry('au',this)">🇦🇺 <span data-i18n="sim.countryAU">Australia</span></button>
             </div>
           </div>
           <div class="inf-control-head">
@@ -20785,14 +20796,14 @@
           <div class="pc-mob-badge" data-i18n="plans.compare.badgePro">★ Recommended</div>
           <div class="pc-mob-name">Pro ★</div>
           <div class="pc-mob-price" data-i18n="plans.compare.mobPricePro">AUD $9.90/mo</div>
-          <div class="pc-mob-sub">Everything in Lifetime, plus portfolio tracking and the full dashboard.</div>
+          <div class="pc-mob-sub" data-i18n="plans.compare.mobSubPro">Everything in Lifetime, plus portfolio tracking and the full dashboard.</div>
           <div class="pc-mob-divider"></div>
           <ul class="pc-mob-features">
             <li class="pc-mob-feat-inherited" data-i18n="plans.compare.advPro0">Everything in Lifetime</li>
             <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r9">Portfolio tracking</li>
             <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r10">Future projections dashboard</li>
             <li class="pc-mob-feat-highlight" data-i18n="plans.compare.r11">Freedom Score™ dashboard</li>
-            <li class="pc-mob-feat-highlight">Goal tracking &amp; insights</li>
+            <li class="pc-mob-feat-highlight" data-i18n="plans.sub.f4">Goal tracking &amp; insights</li>
           </ul>
           <button class="pc-mob-btn pc-mob-btn-pro" onclick="openMemberSignup(event)" data-i18n="plans.compare.ctaPro">Build Wealth</button>
         </div>
@@ -20821,10 +20832,10 @@
             <li data-i18n="plans.compare.r1">Investment simulator</li>
             <li data-i18n="plans.compare.r2">Inflation calculator</li>
             <li data-i18n="plans.compare.r3">Plain-English education</li>
-            <li>Investment comparisons</li>
-            <li>Future projections preview</li>
+            <li data-i18n="plans.free.f4">Investment comparisons</li>
+            <li data-i18n="plans.free.f5">Future projections preview</li>
           </ul>
-          <button class="pc-mob-btn pc-mob-btn-free" onclick="showPage('simulator')">Start Learning Free</button>
+          <button class="pc-mob-btn pc-mob-btn-free" onclick="showPage('simulator')" data-i18n="plans.free.btn">Start Learning Free</button>
         </div>
       </div>
       <!-- Quick comparison — stacked rows -->
@@ -20837,7 +20848,7 @@
           <div class="pc-mob-qval pc-mob-qval-pro" data-i18n="plans.compare.hPro">Pro</div>
         </div>
         <div class="pc-mob-qrow">
-          <div class="pc-mob-qlabel">Learning tools</div>
+          <div class="pc-mob-qlabel" data-i18n="plans.compare.mobQLearning">Learning tools</div>
           <div class="pc-mob-qval yes">✓</div>
           <div class="pc-mob-qval yes">✓</div>
           <div class="pc-mob-qval yes">✓</div>
@@ -20861,8 +20872,8 @@
           <div class="pc-mob-qval yes">✓</div>
         </div>
         <div class="pc-mob-qrow">
-          <div class="pc-mob-qlabel">Future projections</div>
-          <div class="pc-mob-qval preview">Preview</div>
+          <div class="pc-mob-qlabel" data-i18n="plans.compare.advPro2">Future projections</div>
+          <div class="pc-mob-qval preview" data-i18n="plans.compare.mobQPreview">Preview</div>
           <div class="pc-mob-qval">—</div>
           <div class="pc-mob-qval yes">✓</div>
         </div>
@@ -22169,6 +22180,7 @@
           introCta: 'Change the numbers live →',
           panelTitle: 'Your projection inputs', panelSub: 'Choose your country, adjust the numbers, and see results update live.',
           labelCountry: 'Your country',
+          countryUS: 'United States', countryBR: 'Brazil', countryAU: 'Australia', countryUSA: 'USA',
           labelInit: 'Initial investment', initHint: 'The amount you\'d put in today — $0 is fine',
           labelMo: 'Monthly contribution',
           moHint: 'Even skipping one coffee a day adds up',
@@ -22501,7 +22513,9 @@
             mobEverythingFree: 'Everything in Free',
             mobQuick: 'Quick comparison',
             mobPricePro: 'AUD $9.90/mo',
-            mobPriceLifetime: 'AUD $89.90 once'
+            mobPriceLifetime: 'AUD $89.90 once',
+            mobSubPro: 'Everything in Lifetime, plus portfolio tracking and the full dashboard.',
+            mobQLearning: 'Learning tools', mobQPreview: 'Preview'
           },
           preview: {
             title: 'Inside Premium',
@@ -23126,6 +23140,7 @@
           introCta: 'Altere os números ao vivo →',
           panelTitle: 'Suas informações', panelSub: 'Escolha seu país, ajuste os números e veja os resultados atualizarem ao vivo.',
           labelCountry: 'Seu país',
+          countryUS: 'Estados Unidos', countryBR: 'Brasil', countryAU: 'Austrália', countryUSA: 'EUA',
           labelInit: 'Investimento inicial', initHint: 'O valor que você colocaria hoje — R$0 tá ótimo',
           labelMo: 'Aporte mensal',
           moHint: 'Mesmo pular um cafezinho por dia já ajuda',
@@ -23456,7 +23471,9 @@
             mobEverythingFree: 'Tudo do Grátis',
             mobQuick: 'Comparação rápida',
             mobPricePro: 'AUD $9,90/mês',
-            mobPriceLifetime: 'AUD $89,90 único'
+            mobPriceLifetime: 'AUD $89,90 único',
+            mobSubPro: 'Tudo do Vitalício, mais rastreamento de portfólio e o painel completo.',
+            mobQLearning: 'Ferramentas de aprendizado', mobQPreview: 'Prévia'
           },
           preview: {
             title: 'Dentro do Premium',
@@ -27052,12 +27069,19 @@
       var goodInfo = document.querySelector('.sim-side-info');
       var goodSlot = document.getElementById('mobile-good-slot');
       var leftCol = document.querySelector('.sim-left-col');
+      var countryFg = document.getElementById('fg-country');
+      var heroMsg = document.getElementById('result-hero-msg');
+      var heroSlot = document.getElementById('mobile-hero-slot');
+      var heroPlaceholder = document.getElementById('hero-placeholder');
       if (!investFg || !placeholder || !slot) return;
       var mobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
       if (mobile) {
-        if (slot.firstElementChild !== investFg) slot.appendChild(investFg);
+        // Mobile order: projection hero → country → investments → rest
+        if (heroMsg && heroSlot && heroSlot.firstElementChild !== heroMsg) heroSlot.appendChild(heroMsg);
+        if (countryFg && countryFg.nextElementSibling !== investFg) countryFg.parentNode.insertBefore(investFg, countryFg.nextSibling);
         if (goodInfo && goodSlot && goodSlot.firstElementChild !== goodInfo) goodSlot.appendChild(goodInfo);
       } else {
+        if (heroMsg && heroPlaceholder && heroPlaceholder.nextElementSibling !== heroMsg) heroPlaceholder.parentNode.insertBefore(heroMsg, heroPlaceholder.nextSibling);
         if (placeholder.nextElementSibling !== investFg) placeholder.parentNode.insertBefore(investFg, placeholder.nextSibling);
         if (goodInfo && leftCol && goodInfo.parentNode !== leftCol) leftCol.appendChild(goodInfo);
       }
