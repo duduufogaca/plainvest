@@ -26065,7 +26065,10 @@
     }
 
     function openMemberApp(path) {
-      window.location.href = getMemberAppBase() + path;
+      // Carry the marketing-site language into the members app (signup/login land in PT/EN)
+      var lang = (typeof currentLang !== 'undefined' && currentLang === 'pt') ? 'pt' : 'en';
+      var sep = path.indexOf('?') > -1 ? '&' : '?';
+      window.location.href = getMemberAppBase() + path + sep + 'lang=' + lang;
     }
 
     function openMemberSignup(event) {

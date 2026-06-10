@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 const LANGS = [
   { code: 'en', flag: '🇺🇸', label: 'English' },
@@ -11,6 +12,12 @@ const LANGS = [
 export function LangSwitcher({ current }: { current: string; currency?: string }) {
   const pathname = usePathname();
   const sp = useSearchParams();
+
+  // Persist the active language (e.g. arrived via ?lang=pt from the marketing site)
+  // so it carries through the whole flow — post-signup redirects, dashboard, etc.
+  useEffect(() => {
+    try { document.cookie = `pv_lang=${current};path=/;max-age=31536000`; } catch { /* */ }
+  }, [current]);
 
   function hrefFor(code: string) {
     const params = new URLSearchParams(sp.toString());
