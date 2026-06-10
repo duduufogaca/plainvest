@@ -12,14 +12,14 @@ export function PremiumCTA({ lang }: Props) {
           </p>
           <p className="premium-cta-sub">
             {isEN
-              ? 'Advanced projections, detailed analytics, AI reports, and premium tools to accelerate your journey.'
-              : 'Projeções avançadas, análises detalhadas, relatórios de IA e ferramentas premium para acelerar sua jornada.'}
+              ? 'Advanced projections, detailed analytics, AI insights, and premium tools to accelerate your journey.'
+              : 'Projeções avançadas, análises detalhadas, insights de IA e ferramentas premium para acelerar sua jornada.'}
           </p>
         </div>
       </div>
-      <a href="#" className="premium-cta-btn">
+      <a href="/dashboard?upgrade=pro" className="premium-cta-btn">
         <span>♛</span>
-        {isEN ? 'Upgrade to Premium' : 'Tornar-se Premium'}
+        {isEN ? 'Upgrade to Pro' : 'Fazer upgrade para Pro'}
       </a>
     </div>
   );
