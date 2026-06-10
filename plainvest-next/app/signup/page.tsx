@@ -71,7 +71,7 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
 
           <div>
             <p className="avp-label">What you unlock</p>
-            <h2 className="avp-headline">Everything in one calm investing hub.</h2>
+            <h2 className="avp-headline">Everything in one clear investing hub.</h2>
           </div>
 
           <ul className="avp-list">

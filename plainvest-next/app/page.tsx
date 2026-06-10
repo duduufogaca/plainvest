@@ -9,7 +9,7 @@ export default function Home() {
         <div className="auth-card-wrap">
           <div className="auth-card--premium auth-gateway">
             <p className="eyebrow">Plainvest Premium</p>
-            <h1>Everything in one calm investing hub.</h1>
+            <h1>Everything in one clear investing hub.</h1>
             <p className="muted">
               Create your account to access your investing roadmap, simulator tools, and Premium learning paths.
             </p>
@@ -54,7 +54,7 @@ export default function Home() {
             Built for people starting from zero &mdash; no jargon, no hype, no pressure.
           </div>
           <p className="avp-note">
-            Designed to help first-time investors feel calm, clear, and confident.
+            Designed to help first-time investors feel clear, confident, and in control.
           </p>
         </div>
 
