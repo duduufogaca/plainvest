@@ -279,8 +279,8 @@
     var br  = pt(cx, cy, 7, v / 100 + 0.09);
     var needle = '<polygon points="'+tip.x+','+tip.y+' '+bl.x+','+bl.y+' '+br.x+','+br.y+'" fill="white" opacity=".92"/>';
     var dot    = '<circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#0b1e33" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>';
-    var lblL   = '<text x="12" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Fear</text>';
-    var lblR   = '<text x="188" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Greed</text>';
+    var lblL   = '<text class="lang-en" x="12" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Fear</text><text class="lang-pt" x="12" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Medo</text>';
+    var lblR   = '<text class="lang-en" x="188" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Greed</text><text class="lang-pt" x="188" y="122" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle" font-family="sans-serif">Ganância</text>';
     el.innerHTML = '<svg viewBox="0 0 200 128" style="width:100%;display:block;overflow:visible">' +
                    segs + needle + dot + lblL + lblR + '</svg>';
   }
