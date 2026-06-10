@@ -39,6 +39,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, profileLabel, l
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [guideCount, setGuideCount] = useState<number | null>(null);
+  const [navHidden, setNavHidden] = useState(false);
 
   const isEN = lang !== 'pt';
   const isPro = plan === 'pro';
@@ -69,6 +70,26 @@ export function SidebarClient({ displayCurrency, lang, backHref, profileLabel, l
     return () => { window.removeEventListener('pageshow', refresh); document.removeEventListener('visibilitychange', refresh); window.removeEventListener('focus', refresh); };
   }, []);
 
+  // Auto-hide the floating mobile nav button while scrolling down so it never
+  // covers content (e.g. calculator result cards); reveal on scroll-up / near top.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+    function update() {
+      const y = window.scrollY;
+      if (mobileOpen || y < 80) setNavHidden(false);
+      else if (y > lastY + 6) setNavHidden(true);
+      else if (y < lastY - 6) setNavHidden(false);
+      lastY = y;
+      ticking = false;
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [mobileOpen]);
+
   function navHref(view: string) {
     const p = new URLSearchParams();
     if (displayCurrency && displayCurrency !== 'AUD') p.set('currency', displayCurrency);
@@ -85,7 +106,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, profileLabel, l
     <>
     {/* ── Mobile nav toggle ── */}
     <button
-      className="mob-sidebar-toggle"
+      className={`mob-sidebar-toggle${navHidden ? ' mob-sidebar-toggle-hidden' : ''}`}
       onClick={() => setMobileOpen(o => !o)}
       aria-label={isEN ? 'Open navigation' : 'Abrir navegação'}
     >
