@@ -232,6 +232,12 @@ button[aria-disabled="true"] {
 ══════════════════════════════════════ */
 
 /* 2-column split shell */
+.auth-lang-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+}
 .auth-shell--split {
   min-height: 100vh;
   display: grid;

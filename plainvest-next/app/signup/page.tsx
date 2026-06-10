@@ -1,32 +1,91 @@
 import Link from 'next/link';
+import { cookies } from 'next/headers';
 import { signUp } from '../actions/auth';
 import { SubmitButton } from '../components/submit-button';
 import { PasswordInput } from '../components/password-input';
+import { LangSwitcher } from '../portfolio/components/LangSwitcher';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const metadata: Metadata = { robots: { index: false, follow: false } };
 
-const UNLOCKS = [
-  '19 structured investment guides',
-  'DCA method & investment paths',
-  'Chart reading & research tools',
-  'Portfolio tracker & simulator',
-  'One included Zoom support call',
-];
+const T = {
+  en: {
+    step: 'Step 1 of 3',
+    eyebrow: 'Create account',
+    h1: 'Start building your investing confidence.',
+    intro: 'Your account keeps your guides, progress, and membership access in one place — always available when you come back.',
+    email: 'Email',
+    password: 'Password',
+    creating: 'Creating account…',
+    submit: 'Start my investing path',
+    nextHint: "After signing up you'll confirm your email, then choose your plan.",
+    secure: 'Secure & encrypted',
+    noSpam: 'No spam',
+    cancel: 'Cancel anytime',
+    already: 'Already a member?',
+    login: 'Log in',
+    unlock: 'What you unlock',
+    headline: 'Everything in one clear investing hub.',
+    firstSteps: 'Your first 3 steps',
+    reassure: 'Built for people starting from zero — no jargon, no hype, no financial advice.',
+    unlocks: [
+      '19 structured investment guides',
+      'DCA method & investment paths',
+      'Chart reading & research tools',
+      'Portfolio tracker & simulator',
+      'One included Zoom support call',
+    ],
+    steps: [
+      { n: '1', title: 'Create your account', body: 'Takes 30 seconds. Confirm your email to activate.' },
+      { n: '2', title: 'Choose your plan', body: 'Premium (one-time) or Pro (monthly). Both built for beginners.' },
+      { n: '3', title: 'Open your first guide', body: 'Start the Investment Paths Guide and build real clarity.' },
+    ],
+  },
+  pt: {
+    step: 'Passo 1 de 3',
+    eyebrow: 'Criar conta',
+    h1: 'Comece a construir sua confiança para investir.',
+    intro: 'Sua conta mantém seus guias, progresso e acesso à assinatura em um só lugar — sempre disponíveis quando você voltar.',
+    email: 'E-mail',
+    password: 'Senha',
+    creating: 'Criando conta…',
+    submit: 'Começar meu caminho de investimentos',
+    nextHint: 'Após o cadastro, você confirma seu e-mail e depois escolhe seu plano.',
+    secure: 'Seguro e criptografado',
+    noSpam: 'Sem spam',
+    cancel: 'Cancele quando quiser',
+    already: 'Já é membro?',
+    login: 'Entrar',
+    unlock: 'O que você libera',
+    headline: 'Tudo em um hub de investimentos claro.',
+    firstSteps: 'Seus 3 primeiros passos',
+    reassure: 'Feito para quem está começando do zero — sem termos complexos, sem hype, sem conselho financeiro.',
+    unlocks: [
+      '19 guias estruturados de investimento',
+      'Método DCA e caminhos de investimento',
+      'Leitura de gráficos e ferramentas de pesquisa',
+      'Rastreador de portfólio e simulador',
+      'Uma chamada de suporte no Zoom incluída',
+    ],
+    steps: [
+      { n: '1', title: 'Crie sua conta', body: 'Leva 30 segundos. Confirme seu e-mail para ativar.' },
+      { n: '2', title: 'Escolha seu plano', body: 'Premium (pagamento único) ou Pro (mensal). Ambos feitos para iniciantes.' },
+      { n: '3', title: 'Abra seu primeiro guia', body: 'Comece pelo Guia de Caminhos de Investimento e ganhe clareza real.' },
+    ],
+  },
+};
 
-const STEPS = [
-  { n: '1', title: 'Create your account', body: 'Takes 30 seconds. Confirm your email to activate.' },
-  { n: '2', title: 'Choose your plan', body: 'Premium (one-time) or Pro (monthly). Both built for beginners.' },
-  { n: '3', title: 'Open your first guide', body: 'Start the Investment Paths Guide and build real clarity.' },
-];
-
-export default async function SignUp({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+export default async function SignUp({ searchParams }: { searchParams: Promise<{ message?: string; lang?: string }> }) {
   const params = await searchParams;
+  const cookieStore = await cookies();
+  const lang: 'en' | 'pt' = (params.lang || cookieStore.get('pv_lang')?.value) === 'pt' ? 'pt' : 'en';
+  const t = T[lang];
 
   return (
     <main className="auth-shell--split">
+      <div className="auth-lang-toggle"><LangSwitcher current={lang} /></div>
       <div className="auth-split-wrap">
 
         {/* LEFT — signup form */}
@@ -34,7 +93,7 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
           <form className="auth-card--premium login-fade-in" action={signUp}>
 
             <div className="auth-step">
-              <span className="auth-step-pill">Step 1 of 3</span>
+              <span className="auth-step-pill">{t.step}</span>
               <div className="auth-step-line" />
               <div className="auth-step-dots">
                 <span className="auth-step-dot active" />
@@ -43,26 +102,26 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
               </div>
             </div>
 
-            <p className="eyebrow">Create account</p>
-            <h1>Start building your investing confidence.</h1>
-            <p className="muted">Your account keeps your guides, progress, and membership access in one place — always available when you come back.</p>
+            <p className="eyebrow">{t.eyebrow}</p>
+            <h1>{t.h1}</h1>
+            <p className="muted">{t.intro}</p>
 
             {params.message && <div className="notice">{params.message}</div>}
 
-            <label>Email<input name="email" type="email" placeholder="you@email.com" required /></label>
-            <label>Password<PasswordInput name="password" minLength={6} required /></label>
+            <label>{t.email}<input name="email" type="email" placeholder="you@email.com" required /></label>
+            <label>{t.password}<PasswordInput name="password" minLength={6} required /></label>
 
-            <SubmitButton pendingText="Creating account…">Start my investing path</SubmitButton>
+            <SubmitButton pendingText={t.creating}>{t.submit}</SubmitButton>
 
-            <p className="auth-next-hint">After signing up you'll confirm your email, then choose your plan.</p>
+            <p className="auth-next-hint">{t.nextHint}</p>
 
             <div className="auth-trust-row">
-              <span className="auth-trust-item">Secure &amp; encrypted</span>
-              <span className="auth-trust-item">No spam</span>
-              <span className="auth-trust-item">Cancel anytime</span>
+              <span className="auth-trust-item">{t.secure}</span>
+              <span className="auth-trust-item">{t.noSpam}</span>
+              <span className="auth-trust-item">{t.cancel}</span>
             </div>
 
-            <p className="switch">Already a member? <Link href="/login?mode=manual">Log in</Link></p>
+            <p className="switch">{t.already} <Link href={`/login?mode=manual&lang=${lang}`}>{t.login}</Link></p>
           </form>
         </div>
 
@@ -70,12 +129,12 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
         <div className="auth-value-panel login-fade-in login-fade-in--delayed">
 
           <div>
-            <p className="avp-label">What you unlock</p>
-            <h2 className="avp-headline">Everything in one clear investing hub.</h2>
+            <p className="avp-label">{t.unlock}</p>
+            <h2 className="avp-headline">{t.headline}</h2>
           </div>
 
           <ul className="avp-list">
-            {UNLOCKS.map((item) => (
+            {t.unlocks.map((item) => (
               <li key={item}>
                 <span className="avp-check">✓</span>
                 {item}
@@ -86,9 +145,9 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
           <div className="avp-divider" />
 
           <div>
-            <p className="avp-label">Your first 3 steps</p>
+            <p className="avp-label">{t.firstSteps}</p>
             <div className="avp-steps">
-              {STEPS.map(({ n, title, body }) => (
+              {t.steps.map(({ n, title, body }) => (
                 <div key={n} className="avp-step">
                   <div className="avp-step-num">{n}</div>
                   <div className="avp-step-text">
@@ -100,9 +159,7 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
             </div>
           </div>
 
-          <div className="avp-reassurance">
-            Built for people starting from zero — no jargon, no hype, no financial advice.
-          </div>
+          <div className="avp-reassurance">{t.reassure}</div>
 
         </div>
 
