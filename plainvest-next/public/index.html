@@ -6338,6 +6338,14 @@
       margin: .2rem 0 .1rem;
     }
 
+    .plan-price-ref {
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      margin: 0 0 .35rem;
+    }
+    .plan-price-ref:empty { display: none; }
+
     .plan-price sub {
       font-family: 'Sora', sans-serif;
       font-size: 0.85rem;
@@ -20510,6 +20518,7 @@
         <div class="plan-tier" data-i18n="plans.prem.tier">Clarity Pass</div>
         <div class="plan-name" data-i18n="plans.prem.name">Build Your Investing Foundation</div>
         <div class="plan-price" id="plans-prem-price">AUD $89.90</div>
+        <div class="plan-price-ref" id="plans-prem-price-ref" data-i18n="plans.prem.priceRef"></div>
         <div class="plan-identity" data-i18n="plans.prem.identity">Education &amp; personal guidance — yours forever.</div>
         <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.prem.b1">Avoid costly beginner mistakes</span></div>
         <div class="plan-li"><span class="ck">✓</span> <span data-i18n="plans.prem.b2">Build a clear investing roadmap</span></div>
@@ -22541,7 +22550,7 @@
           bottomCtaLifetime: 'Or get lifetime access — AUD $89.90 once',
           free: { tier: 'Free — always', rec: 'Best for Beginners', name: 'Learn & Explore', identity: 'Start learning before risking money.', hook: 'Learn before risking money.', desc: 'All the tools to build understanding. No commitment, ever.', f1: 'Investment simulator', f2: 'Inflation calculator', f3: 'Plain-English education', f4: 'Investment comparisons', f5: 'Future projections', btn: 'Start Learning Free', trust: 'No credit card required.' },
           sub: { badge: 'Most Complete', rec: 'Most Complete', popularNote: 'Includes everything in Lifetime plus portfolio tracking, future projections, the full calculator suite, and the complete dashboard.', tier: 'Future Membership', name: 'Build Wealth With Confidence', identity: 'Everything in Lifetime, plus your complete wealth dashboard.', hook: 'Track your portfolio, projections, and progress every month.', desc: 'Your financial future — tracked, projected, and guided every single month.', emotionHead: 'Most people never truly see where their money is going.', emotionSub: 'Plainvest helps you understand it before it\'s too late to act.', projEyebrow: 'Example: $200/mo invested at 8%/yr', projNow: 'Today', projThen: 'In 20 yrs', projNote: 'Educational estimate. Assumes 8%/yr avg. Not a promise or financial advice.', projToggle: 'View example growth →', bestfor: 'People actively building wealth.', includesLabel: 'What you get', billingMonthly: 'Monthly', billingAnnual: 'Annual', billingSave: 'Save 16%', f1: 'Everything in Lifetime', f2: 'Portfolio tracking', f3: 'Future projections dashboard', fCalc: 'Full calculator suite — 6 Pro tools', fCalcList: 'Investment Simulator, Retirement, DCA, ETF Growth, Inflation & Financial Freedom.', f4: 'Goal tracking & insights', f5: 'Freedom Score™ dashboard', f7: 'Celebrate every financial milestone', f8: 'Everything in Free', btn: 'Build Wealth With Confidence', note: 'Cancel anytime. No lock-in.', trust: 'Cancel anytime.' },
-          prem: { badge: 'Founding one-time price', rec: 'Best One-Time Value', tier: 'Clarity Pass', name: 'Build Your Investing Foundation', identity: 'Education & personal guidance — yours forever.', trust: 'One-time payment. Lifetime access.', t1: 'Your investing foundation.', t2: 'Learn the essentials. Avoid costly beginner mistakes.', t3: 'Get a roadmap you can follow with confidence.', price: 'AUD $89.90', priceNote: 'Lifetime access. No subscription, ever.', foundationNote: '📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.', cgYesHead: 'Included', cg1: '✔ Structured investing education', cg2: '✔ Beginner roadmap', cg3: '✔ Bitcoin & ETF guidance', cg4: '✔ 60-min onboarding Zoom call', cg5: '✔ Lifetime access to guides', cgNoHead: 'Not included', cgn1: '✖ Live portfolio tracking', cgn2: '✖ Future projections', cgn3: '✖ AI portfolio insights', cgn4: '✖ Freedom Score™ dashboard', footnote: 'One-time payment. 7-day review policy.', desc: 'Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.', bestfor: 'People who want clarity before making investment decisions.', includesLabel: 'What you unlock', b1: 'Avoid costly beginner mistakes', b2: 'Build a clear investing roadmap', b3: 'Get personal guidance when needed', b4: 'Learn at your own pace', b5: 'Included 60-min Zoom support call', f1: '19 structured investing guides', f3: 'Bitcoin & ETF education', f5: 'Curated book reading path', f7: 'Your first account, done right', f9: '60-minute Zoom support call (incl.)', f11: 'Permanent hub access — grows over time', f12: 'Everything in Free', btn: 'Get Clarity & Lifetime Access' },
+          prem: { badge: 'Founding one-time price', rec: 'Best One-Time Value', tier: 'Clarity Pass', name: 'Build Your Investing Foundation', identity: 'Education & personal guidance — yours forever.', trust: 'One-time payment. Lifetime access.', t1: 'Your investing foundation.', t2: 'Learn the essentials. Avoid costly beginner mistakes.', t3: 'Get a roadmap you can follow with confidence.', price: 'AUD $89.90', priceRef: '', priceNote: 'Lifetime access. No subscription, ever.', foundationNote: '📚 Educational. Guided. Beginner-safe. This is your foundation — not live financial tracking.', cgYesHead: 'Included', cg1: '✔ Structured investing education', cg2: '✔ Beginner roadmap', cg3: '✔ Bitcoin & ETF guidance', cg4: '✔ 60-min onboarding Zoom call', cg5: '✔ Lifetime access to guides', cgNoHead: 'Not included', cgn1: '✖ Live portfolio tracking', cgn2: '✖ Future projections', cgn3: '✖ AI portfolio insights', cgn4: '✖ Freedom Score™ dashboard', footnote: 'One-time payment. 7-day review policy.', desc: 'Structured guides, Bitcoin clarity, and a 60-minute Zoom call to build your investing confidence — yours forever.', bestfor: 'People who want clarity before making investment decisions.', includesLabel: 'What you unlock', b1: 'Avoid costly beginner mistakes', b2: 'Build a clear investing roadmap', b3: 'Get personal guidance when needed', b4: 'Learn at your own pace', b5: 'Included 60-min Zoom support call', f1: '19 structured investing guides', f3: 'Bitcoin & ETF education', f5: 'Curated book reading path', f7: 'Your first account, done right', f9: '60-minute Zoom support call (incl.)', f11: 'Permanent hub access — grows over time', f12: 'Everything in Free', btn: 'Get Clarity & Lifetime Access' },
           proof: { p1: 'AUD $89.90 one-time', p2: '60-min Zoom incl.', p3: 'Extra calls AUD $39.90' },
           why: { eyebrow: 'Why members stay', title: 'What consistent clarity does for your future', c1: 'Future clarity', b1: 'See where your investing path may lead — years before you get there.', c2: 'Emotional confidence', b2: 'Understand what your numbers actually mean — without industry-speak or anxiety.', c3: 'Inflation awareness', b3: 'Protect your future purchasing power before inflation quietly erodes it.', c4: 'Consistency tracking', b4: 'Stay motivated for the long-term. See your progress build month by month.' },
           journeyBanner: 'Your future evolves every month. Your financial clarity should too.',
@@ -23394,7 +23403,7 @@
           premBestForLabel: 'Ideal para',
           premBestForText: 'Pessoas que querem clareza antes de tomar decisões de investimento.',
           premIncludesLabel: 'O que você libera',
-          proof1: 'aprox. R$320,00 pagamento único',
+          proof1: 'AUD $89,90 pagamento único',
           proof2: '1 chamada de 60 min no Zoom',
           proof3: 'Chamadas extras aprox. R$142,00',
           valueNote: 'Valor de lançamento: uma única sessão de educação financeira de 1 hora na Austrália pode custar AUD $200–$350. O Premium inclui uma chamada de 60 minutos, guias estruturados e trilha de livros por AUD $89,90 uma vez.',
@@ -23404,7 +23413,7 @@
             leftT: 'AUD $200–$350',
             leftB: 'Uma faixa comum para uma sessão de educação ou orientação financeira na Austrália.',
             rightK: 'Plainvest Premium',
-            rightT: 'aprox. R$320,00 uma vez',
+            rightT: 'AUD $89,90 uma vez',
             rightB: 'Inclui a chamada de Zoom de 60 minutos, 19 guias, trilha de livros e acesso permanente ao hub.',
             eyebrow: 'Comparar planos',
             title: 'Escolha o caminho que combina com você',
@@ -23486,7 +23495,7 @@
             s1: '1. Crie sua conta',
             b1: 'Um email. Acesso a tudo que você comprou.',
             s2: '2. Um pagamento',
-            b2: 'aprox. R$320,00 uma vez. Seguro via Stripe. Sem cobranças recorrentes.',
+            b2: 'AUD $89,90 uma vez. Seguro via Stripe. Sem cobranças recorrentes.',
             s3: '3. Comece a aprender',
             b3: 'Abra qualquer guia na hora. Agende sua chamada no Zoom quando estiver pronto.'
           },
@@ -23496,8 +23505,8 @@
           bottomCtaLifetime: 'Ou obtenha acesso vitalício — AUD $89,90 uma vez',
           free: { tier: 'Gratuito — para sempre', rec: 'Ideal para Iniciantes', name: 'Aprender & Explorar', identity: 'Comece a aprender antes de arriscar dinheiro.', hook: 'Aprenda antes de arriscar dinheiro.', desc: 'Todas as ferramentas para construir entendimento. Sem compromisso.', f1: 'Simulador de investimentos', f2: 'Calculadora de inflação', f3: 'Educação em linguagem simples', f4: 'Comparações de investimentos', f5: 'Projeções futuras', btn: 'Começar a Aprender Grátis', trust: 'Sem cartão de crédito.' },
           sub: { badge: 'Mais Completo', rec: 'Mais Completo', popularNote: 'Inclui tudo do Vitalício, mais rastreamento de portfólio, projeções futuras, o conjunto completo de calculadoras e o painel completo.', tier: 'Future Membership', name: 'Construa Patrimônio com Confiança', identity: 'Tudo do Vitalício, mais seu painel completo de riqueza.', hook: 'Acompanhe seu portfólio, projeções e progresso todo mês.', desc: 'Seu futuro financeiro — acompanhado, projetado e guiado todo mês.', emotionHead: 'A maioria das pessoas nunca realmente vê para onde está indo seu dinheiro.', emotionSub: 'O Plainvest te ajuda a entender isso antes que seja tarde demais para agir.', projEyebrow: 'Exemplo: R$1.000/mês investido a 8%/ano', projNow: 'Hoje', projThen: 'Em 20 anos', projNote: 'Estimativa educacional. Considera 8%/ano de média. Não é promessa nem conselho financeiro.', projToggle: 'Ver exemplo de crescimento →', bestfor: 'Pessoas construindo patrimônio ativamente.', includesLabel: 'O que você recebe', billingMonthly: 'Mensal', billingAnnual: 'Anual', billingSave: 'Economize 16%', f1: 'Tudo do Vitalício', f2: 'Rastreamento de portfólio', f3: 'Painel de projeções futuras', fCalc: 'Conjunto completo de calculadoras — 6 ferramentas Pro', fCalcList: 'Simulador de Investimentos, Aposentadoria, DCA, Crescimento de ETF, Inflação e Liberdade Financeira.', f4: 'Acompanhamento de metas e insights', f5: 'Painel Freedom Score™', f7: 'Celebre cada marco financeiro', f8: 'Tudo do plano Gratuito', btn: 'Construa Patrimônio com Confiança', note: 'Cancele quando quiser. Sem fidelidade.', trust: 'Cancele quando quiser.' },
-          prem: { badge: 'Preço fundador em pagamento único', rec: 'Melhor Valor Único', tier: 'Passe de Clareza', name: 'Construa Sua Base de Investimento', identity: 'Educação e orientação pessoal — seus para sempre.', trust: 'Pagamento único. Acesso vitalício.', t1: 'Sua base de investimento.', t2: 'Aprenda o essencial. Evite erros caros de iniciante.', t3: 'Tenha um roteiro que você pode seguir com confiança.', price: 'aprox. R$320,00', priceNote: 'Acesso vitalício. Sem assinatura.', foundationNote: '📚 Educacional. Guiado. Seguro para iniciantes. Esta é a sua base — não rastreamento financeiro em tempo real.', cgYesHead: 'Incluído', cg1: '✔ Educação de investimentos estruturada', cg2: '✔ Roteiro para iniciantes', cg3: '✔ Orientação sobre Bitcoin e ETFs', cg4: '✔ Chamada de onboarding no Zoom de 60 min', cg5: '✔ Acesso vitalício aos guias', cgNoHead: 'Não incluído', cgn1: '✖ Rastreamento de portfólio em tempo real', cgn2: '✖ Projeções futuras', cgn3: '✖ Insights de IA sobre portfólio', cgn4: '✖ Painel Freedom Score™', footnote: 'Pagamento único. Política de revisão de 7 dias.', desc: 'Guias estruturados, clareza sobre Bitcoin e uma chamada de Zoom de 60 minutos para construir sua confiança — seus para sempre.', bestfor: 'Pessoas que querem clareza antes de tomar decisões de investimento.', includesLabel: 'O que você libera', b1: 'Evitar erros caros de iniciante', b2: 'Construir um roteiro de investimento claro', b3: 'Ter orientação personalizada quando precisar', b4: 'Aprender no seu ritmo', b5: 'Chamada de Zoom de 60 min incluída', f1: '19 guias estruturados de investimento', f3: 'Educação sobre Bitcoin e ETFs', f5: 'Trilha curada de livros', f7: 'Sua primeira conta, feita certo', f9: 'Chamada de Zoom de 60 min (incl.)', f11: 'Acesso permanente ao hub — cresce com o tempo', f12: 'Tudo do plano Gratuito', btn: 'Obter Clareza e Acesso Vitalício' },
-          proof: { p1: 'aprox. R$320,00 uma vez', p2: 'Zoom de 60 min incl.', p3: 'Chamadas extras aprox. R$142,00' },
+          prem: { badge: 'Preço fundador em pagamento único', rec: 'Melhor Valor Único', tier: 'Passe de Clareza', name: 'Construa Sua Base de Investimento', identity: 'Educação e orientação pessoal — seus para sempre.', trust: 'Pagamento único. Acesso vitalício.', t1: 'Sua base de investimento.', t2: 'Aprenda o essencial. Evite erros caros de iniciante.', t3: 'Tenha um roteiro que você pode seguir com confiança.', price: 'AUD $89,90', priceRef: '≈ R$320,00 · referência', priceNote: 'Acesso vitalício. Sem assinatura.', foundationNote: '📚 Educacional. Guiado. Seguro para iniciantes. Esta é a sua base — não rastreamento financeiro em tempo real.', cgYesHead: 'Incluído', cg1: '✔ Educação de investimentos estruturada', cg2: '✔ Roteiro para iniciantes', cg3: '✔ Orientação sobre Bitcoin e ETFs', cg4: '✔ Chamada de onboarding no Zoom de 60 min', cg5: '✔ Acesso vitalício aos guias', cgNoHead: 'Não incluído', cgn1: '✖ Rastreamento de portfólio em tempo real', cgn2: '✖ Projeções futuras', cgn3: '✖ Insights de IA sobre portfólio', cgn4: '✖ Painel Freedom Score™', footnote: 'Pagamento único. Política de revisão de 7 dias.', desc: 'Guias estruturados, clareza sobre Bitcoin e uma chamada de Zoom de 60 minutos para construir sua confiança — seus para sempre.', bestfor: 'Pessoas que querem clareza antes de tomar decisões de investimento.', includesLabel: 'O que você libera', b1: 'Evitar erros caros de iniciante', b2: 'Construir um roteiro de investimento claro', b3: 'Ter orientação personalizada quando precisar', b4: 'Aprender no seu ritmo', b5: 'Chamada de Zoom de 60 min incluída', f1: '19 guias estruturados de investimento', f3: 'Educação sobre Bitcoin e ETFs', f5: 'Trilha curada de livros', f7: 'Sua primeira conta, feita certo', f9: 'Chamada de Zoom de 60 min (incl.)', f11: 'Acesso permanente ao hub — cresce com o tempo', f12: 'Tudo do plano Gratuito', btn: 'Obter Clareza e Acesso Vitalício' },
+          proof: { p1: 'AUD $89,90 uma vez', p2: 'Zoom de 60 min incl.', p3: 'Chamadas extras aprox. R$142,00' },
           why: { eyebrow: 'Por que os membros ficam', title: 'O que a clareza consistente faz pelo seu futuro', c1: 'Clareza sobre o futuro', b1: 'Veja onde pode chegar seu caminho de investimentos — anos antes de chegar lá.', c2: 'Confiança emocional', b2: 'Entenda o que seus números realmente significam — sem jargões ou ansiedade.', c3: 'Consciência sobre inflação', b3: 'Proteja seu poder de compra futuro antes que a inflação o corroa silenciosamente.', c4: 'Acompanhamento de consistência', b4: 'Mantenha-se motivado no longo prazo. Veja seu progresso crescer mês a mês.' },
           journeyBanner: 'Seu futuro evolui todo mês. Sua clareza financeira também deveria.',
           trust: { t1: '✓ Cancele quando quiser', t2: '🔒 Pagamentos seguros via Stripe', t3: '🌱 Amigável para iniciantes', t4: '🔐 Privacidade em primeiro lugar', t5: '📚 Apenas educação', t6: '⚖️ Sem conselho financeiro' },
@@ -23524,7 +23533,7 @@
           eyebrow: 'Acesso fundador',
           h2: 'Crie sua conta <em>Premium</em>.',
           lead: 'Crie seu perfil de membro com segurança no app de membros Plainvest, finalize o checkout e entre no hub Premium.',
-          pill1: 'aprox. R$320,00',
+          pill1: 'AUD $89,90',
           pill2: 'Pagamento único',
           pill3: 'Apoio para iniciantes',
           createTitle: 'Criar conta',
@@ -23549,7 +23558,7 @@
           launch2: 'Uma chamada no Zoom de 60 minutos incluída',
           launch3: 'Guias, livros, Bitcoin, DCA, exchange e módulos de leitura de gráficos em crescimento',
           launch4: 'Chamadas extras de suporte disponíveis separadamente quando necessário',
-          paymentPrice: 'aprox. R$320,00<span>compra Premium em pagamento único</span>',
+          paymentPrice: 'AUD $89,90<span>compra Premium em pagamento único</span>',
           pay1: 'Pagamento único, não assinatura mensal',
           pay2: 'Inclui uma chamada no Zoom de 60 minutos',
           pay3: 'Chamada extra de apoio: aprox. R$142,00',
@@ -26073,15 +26082,15 @@
       if (!priceEl) return;
       var isPt = currentLang === 'pt';
       if (currentBillingMode === 'annual') {
-        priceEl.textContent = isPt ? 'aprox. R$320,00' : 'AUD $99';
+        priceEl.textContent = 'AUD $99';
         if (periodEl) periodEl.textContent = isPt ? '/ano' : '/yr';
-        if (noteEl) noteEl.textContent = isPt ? 'Cobrado anualmente. Economize aprox. R$63,00.' : 'Billed annually. Save AUD $19.80.';
+        if (noteEl) noteEl.textContent = isPt ? 'Cobrado anualmente em AUD · ≈ R$320,00. Economize 16%.' : 'Billed annually. Save AUD $19.80.';
         if (btnMonthly) btnMonthly.classList.remove('pbt-active');
         if (btnAnnual) btnAnnual.classList.add('pbt-active');
       } else {
-        priceEl.textContent = isPt ? 'aprox. R$32,00' : 'AUD $9.90';
+        priceEl.textContent = isPt ? 'AUD $9,90' : 'AUD $9.90';
         if (periodEl) periodEl.textContent = isPt ? '/mês' : '/mo';
-        if (noteEl) noteEl.textContent = isPt ? 'Cobrado mensalmente. Cancele quando quiser.' : 'Billed monthly. Cancel anytime.';
+        if (noteEl) noteEl.textContent = isPt ? 'Cobrado mensalmente em AUD · ≈ R$32,00. Cancele quando quiser.' : 'Billed monthly. Cancel anytime.';
         if (btnMonthly) btnMonthly.classList.add('pbt-active');
         if (btnAnnual) btnAnnual.classList.remove('pbt-active');
       }
