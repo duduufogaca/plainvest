@@ -27,7 +27,7 @@ const T = {
     already: 'Already a member?',
     login: 'Log in',
     unlock: 'What you unlock',
-    headline: 'Everything in one clear investing hub.',
+    headline: 'Everything you need to invest with confidence.',
     firstSteps: 'Your first 3 steps',
     reassure: 'Built for people starting from zero — no jargon, no hype, no financial advice.',
     unlocks: [
@@ -59,7 +59,7 @@ const T = {
     already: 'Já é membro?',
     login: 'Entrar',
     unlock: 'O que você libera',
-    headline: 'Tudo em um hub de investimentos claro.',
+    headline: 'Tudo o que você precisa para investir com confiança.',
     firstSteps: 'Seus 3 primeiros passos',
     reassure: 'Feito para quem está começando do zero — sem termos complexos, sem hype, sem conselho financeiro.',
     unlocks: [

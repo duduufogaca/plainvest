@@ -5,7 +5,7 @@ import { LangSwitcher } from './portfolio/components/LangSwitcher';
 const T = {
   en: {
     eyebrow: 'Plainvest Premium',
-    h1: 'Everything in one clear investing hub.',
+    h1: 'Everything you need to invest with confidence.',
     intro: 'Create your account to access your investing roadmap, simulator tools, and Premium learning paths.',
     create: 'Create account',
     haveAccount: 'I already have an account',
@@ -29,7 +29,7 @@ const T = {
   },
   pt: {
     eyebrow: 'Plainvest Premium',
-    h1: 'Tudo em um hub de investimentos claro.',
+    h1: 'Tudo o que você precisa para investir com confiança.',
     intro: 'Crie sua conta para acessar seu roteiro de investimentos, ferramentas de simulação e trilhas de aprendizado Premium.',
     create: 'Criar conta',
     haveAccount: 'Já tenho uma conta',
