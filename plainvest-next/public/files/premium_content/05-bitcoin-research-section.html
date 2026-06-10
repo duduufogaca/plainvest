@@ -252,42 +252,52 @@
   (function() {
     var root = document.querySelector('[data-halving-clock]');
     if (!root) return;
-    var nextHalvingHeight = 1050000;
-    var fallbackHeight = 900000;
-    var minutesPerBlock = 10;
+    var NEXT = 1050000;                       // 5th halving block (210,000 x 5)
+    var ANCHOR_H = 840000, ANCHOR_T = 1713571200000; // 4th halving: block 840,000, ~2024-04-20 UTC
+    var MS_PER_BLOCK = 10 * 60 * 1000;
     var daysEl = root.querySelector('[data-halving-days]');
     var blocksEl = root.querySelector('[data-halving-blocks]');
     var heightEl = root.querySelector('[data-halving-height]');
     var statusEl = root.querySelector('[data-halving-status]');
+    var lastHeight = null, lastLive = false;
 
-    function fmt(num) {
-      return Math.max(0, Math.round(num)).toLocaleString('en-US');
-    }
+    function isPt() { var l = document.documentElement.lang; return l === 'pt' || l === 'pt-BR'; }
+    function fmt(n) { return Math.max(0, Math.round(n)).toLocaleString(isPt() ? 'pt-BR' : 'en-US'); }
+    function estHeight() { return Math.round(ANCHOR_H + (Date.now() - ANCHOR_T) / MS_PER_BLOCK); }
 
-    function update(height, source) {
-      var remaining = Math.max(0, nextHalvingHeight - height);
-      var days = remaining * minutesPerBlock / 60 / 24;
-      daysEl.textContent = fmt(days);
+    function render() {
+      if (lastHeight == null) lastHeight = estHeight();
+      var remaining = Math.max(0, NEXT - lastHeight);
+      daysEl.textContent = fmt(remaining * 10 / 60 / 24);
       blocksEl.textContent = fmt(remaining);
-      heightEl.textContent = fmt(height);
-      statusEl.textContent = source === 'live'
-        ? 'Live estimate using the latest available Bitcoin block height.'
-        : 'Estimate shown with fallback data. Refresh later if live block data is unavailable.';
+      heightEl.textContent = fmt(lastHeight);
+      statusEl.textContent = lastLive
+        ? (isPt() ? 'Estimativa ao vivo com a última altura de bloco do Bitcoin disponível.' : 'Live estimate using the latest available Bitcoin block height.')
+        : (isPt() ? 'Estimativa por tempo (atualiza ao vivo). Dados em tempo real são usados quando disponíveis.' : 'Time-based estimate (updates live). Real-time block data is used when available.');
     }
 
-    fetch('https://mempool.space/api/blocks/tip/height', { cache: 'no-store' })
-      .then(function(response) {
-        if (!response.ok) throw new Error('Block height unavailable');
-        return response.text();
-      })
-      .then(function(text) {
-        var height = parseInt(text, 10);
-        if (!Number.isFinite(height)) throw new Error('Invalid block height');
-        update(height, 'live');
-      })
-      .catch(function() {
-        update(fallbackHeight, 'fallback');
-      });
+    function fetchHeight(i, apis) {
+      if (i >= apis.length) return Promise.reject();
+      return fetch(apis[i], { cache: 'no-store' })
+        .then(function(r) { if (!r.ok) throw 0; return r.text(); })
+        .then(function(t) { var h = parseInt(t, 10); if (!isFinite(h) || h < 800000) throw 0; return h; })
+        .catch(function() { return fetchHeight(i + 1, apis); });
+    }
+
+    function tick() {
+      lastHeight = estHeight(); lastLive = false; render();   // live time-based estimate first
+      fetchHeight(0, [
+        'https://mempool.space/api/blocks/tip/height',
+        'https://blockstream.info/api/blocks/tip/height',
+        'https://blockchain.info/q/getblockcount'
+      ]).then(function(h) { lastHeight = h; lastLive = true; render(); }).catch(function() {});
+    }
+
+    tick();
+    setInterval(tick, 60000);                                  // refresh live every minute
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.classList && e.target.classList.contains('guide-lang-btn')) setTimeout(render, 60);
+    });
   })();
 </script>
 <script>
