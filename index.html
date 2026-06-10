@@ -18859,6 +18859,7 @@
       <li data-mob-icon="📊" data-mob-desc="Test your investment plan"><a href="#simulator"><span data-i18n="nav.simulator">Simulator</span></a></li>
       <li data-mob-icon="📉" data-mob-desc="See how inflation affects your money"><a href="#inflation"><span data-i18n="nav.inflation">Inflation</span></a></li>
       <li data-mob-icon="📚" data-mob-desc="Start learning the basics"><a href="#learn"><span data-i18n="nav.learn">Learn</span></a></li>
+      <li data-mob-icon="📖" class="member-content-nav-item member-booklist-nav-item" data-mob-desc="Your recommended book list"><a href="#member-books" onclick="openMemberBooks();return false;"><span data-i18n="nav.booklist">Book list</span></a></li>
       <li data-mob-icon="💬" data-mob-desc="Why Plainvest was built"><a href="#story"><span data-i18n="nav.story">Story</span></a></li>
       <li data-mob-icon="📖" class="books-public-nav-item" data-mob-desc="Recommended reading list"><a href="#books"><span data-i18n="nav.books">Books</span></a></li>
       <li data-mob-icon="👑" class="member-content-nav-item" data-mob-desc="Your premium guides"><a class="member-content-nav" href="#member" id="nav-member-content-btn"><span data-i18n="nav.memberContent">Premium Hub</span></a></li>
@@ -18869,7 +18870,6 @@
       <a class="member-login-btn member-create-btn" href="https://members.plainvest.app/signup" id="nav-create-member-btn" data-i18n="nav.createMember">Create member</a>
       <a class="member-login-btn nav-profile-btn" href="/profile" id="nav-profile-btn" data-i18n="nav.profile" style="display:none">My Profile</a>
       <a class="member-login-btn" href="/portfolio" id="nav-portfolio-btn" data-i18n="nav.portfolio" style="display:none">Portfolio</a>
-      <a class="member-login-btn" href="#member-books" id="nav-booklist-btn" data-i18n="nav.booklist" onclick="openMemberBooks();return false;" style="display:none">Book list</a>
       <a class="member-login-btn" href="https://members.plainvest.app/login?mode=manual" id="nav-login-btn" data-i18n="nav.login">Login</a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-btn active" onclick="setLang('en',this)" title="English">🇺🇸 EN</button>
@@ -27572,12 +27572,6 @@
         navPortfolioBtn.href = (isMemberAppHost() || isLocalH) ? '/portfolio' : 'https://members.plainvest.app/portfolio';
         const isMobileNavP = window.innerWidth <= 1024;
         navPortfolioBtn.style.setProperty('display', active && !isMobileNavP ? 'inline-flex' : 'none', 'important');
-      }
-
-      const navBooklistBtn = document.getElementById('nav-booklist-btn');
-      if (navBooklistBtn) {
-        const isMobileNavB = window.innerWidth <= 1024;
-        navBooklistBtn.style.setProperty('display', active && !isMobileNavB ? 'inline-flex' : 'none', 'important');
       }
 
       const statPortfolioLink = document.getElementById('stat-portfolio-link');
