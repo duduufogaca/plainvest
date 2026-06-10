@@ -4933,14 +4933,15 @@ a.sb-link:hover, button.sb-link:hover {
     height: 42px;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,.12);
-    background: rgba(9,21,42,.92);
+    background: rgba(9,21,42,.98);
     backdrop-filter: blur(10px);
     color: #9fb0c8;
     cursor: pointer;
     z-index: 200;
-    transition: color .15s, background .15s;
+    transition: color .15s, background .15s, transform .25s ease, opacity .25s ease;
   }
-  .mob-sidebar-toggle:hover { color: #dde6f4; background: rgba(20,40,70,.95); }
+  .mob-sidebar-toggle:hover { color: #dde6f4; background: rgba(20,40,70,.98); }
+  .mob-sidebar-toggle-hidden { transform: translateY(-150%); opacity: 0; pointer-events: none; }
 
   .mob-sidebar-backdrop {
     display: block;
@@ -7733,8 +7734,14 @@ main { width: 100%; max-width: 100vw; overflow-x: hidden; }
 .tool-split-bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,.06); }
 .tool-split-contrib { background: #5a7a96; }
 .tool-split-growth { background: linear-gradient(90deg, #2dd4bf, #61d5b4); }
-.tool-split-legend { display: flex; justify-content: space-between; margin-top: .5rem; font-size: .76rem; color: var(--muted); }
+.tool-split-legend { display: flex; justify-content: space-between; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; font-size: .76rem; color: var(--muted); }
 .tool-split-legend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: .35rem; }
+
+/* On phones the inline 400px chart height over-stretches the curve — shorten it */
+@media (max-width: 720px) {
+  .tool-chart svg { height: 280px !important; }
+  .tool-chart-card { padding-left: .9rem; padding-right: .9rem; }
+}
 
 /* Secondary cards: summary / insight / compare / progress */
 .tool-summary { display: flex; flex-direction: column; gap: .35rem; }
