@@ -16,7 +16,7 @@ export const metadata: Metadata = { robots: { index: false, follow: false } };
 const T = {
   en: {
     eyebrow: 'Member login',
-    h1: 'Good to see you again.',
+    h1: 'Access your learning hub.',
     intro: 'Your guides, progress, and portfolio are waiting for you.',
     confirmTitle: 'Confirm your email first',
     confirmBodyA: 'We sent a confirmation link to',
@@ -35,7 +35,7 @@ const T = {
     newHere: 'New here?',
     create: 'Create an account',
     progressHere: 'Your progress is here',
-    headline: 'Welcome back to your investing journey.',
+    headline: 'Welcome back to your learning journey.',
     statLabel: 'of your data is saved — pick up exactly where you left off.',
     list: [
       { icon: '📚', text: 'Your learning paths & reading progress' },
@@ -46,7 +46,7 @@ const T = {
   },
   pt: {
     eyebrow: 'Acesso de membro',
-    h1: 'Que bom ver você de novo.',
+    h1: 'Acesse seu hub de aprendizado.',
     intro: 'Seus guias, progresso e portfólio estão esperando por você.',
     confirmTitle: 'Confirme seu e-mail primeiro',
     confirmBodyA: 'Enviamos um link de confirmação para',
@@ -65,7 +65,7 @@ const T = {
     newHere: 'Novo por aqui?',
     create: 'Criar uma conta',
     progressHere: 'Seu progresso está aqui',
-    headline: 'Bem-vindo de volta à sua jornada de investimentos.',
+    headline: 'Bem-vindo de volta à sua jornada de aprendizado.',
     statLabel: 'dos seus dados ficam salvos — continue exatamente de onde parou.',
     list: [
       { icon: '📚', text: 'Suas trilhas de aprendizado e progresso de leitura' },
