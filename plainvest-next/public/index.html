@@ -20474,6 +20474,7 @@
           <button class="pbt-btn" id="pbt-annual" onclick="setPlanBilling('annual')"><span data-i18n="plans.sub.billingAnnual">Annual</span> <span class="pbt-save" data-i18n="plans.sub.billingSave">Save 16%</span></button>
         </div>
         <div class="plan-price"><span id="sub-price-display">AUD $9.90</span><sub id="sub-period-display">/mo</sub></div>
+        <div class="plan-price-ref" id="sub-price-ref"></div>
         <div class="plan-identity" data-i18n="plans.sub.identity">Everything in Lifetime, plus your complete wealth dashboard.</div>
         <button class="plan-btn pb-fill pb-emerald" data-i18n="plans.sub.btn" onclick="openMemberSignup()">Build Wealth With Confidence</button>
         <p class="plan-trust" data-i18n="plans.sub.trust">Cancel anytime.</p>
@@ -26077,6 +26078,7 @@
       var priceEl = document.getElementById('sub-price-display');
       var periodEl = document.getElementById('sub-period-display');
       var noteEl = document.getElementById('sub-billing-note');
+      var refEl = document.getElementById('sub-price-ref');
       var btnMonthly = document.getElementById('pbt-monthly');
       var btnAnnual = document.getElementById('pbt-annual');
       if (!priceEl) return;
@@ -26084,13 +26086,15 @@
       if (currentBillingMode === 'annual') {
         priceEl.textContent = 'AUD $99';
         if (periodEl) periodEl.textContent = isPt ? '/ano' : '/yr';
-        if (noteEl) noteEl.textContent = isPt ? 'Cobrado anualmente em AUD · ≈ R$320,00. Economize 16%.' : 'Billed annually. Save AUD $19.80.';
+        if (refEl) refEl.textContent = isPt ? '≈ R$320,00 · referência' : '';
+        if (noteEl) noteEl.textContent = isPt ? 'Cobrado anualmente em AUD. Economize 16%.' : 'Billed annually. Save AUD $19.80.';
         if (btnMonthly) btnMonthly.classList.remove('pbt-active');
         if (btnAnnual) btnAnnual.classList.add('pbt-active');
       } else {
         priceEl.textContent = isPt ? 'AUD $9,90' : 'AUD $9.90';
         if (periodEl) periodEl.textContent = isPt ? '/mês' : '/mo';
-        if (noteEl) noteEl.textContent = isPt ? 'Cobrado mensalmente em AUD · ≈ R$32,00. Cancele quando quiser.' : 'Billed monthly. Cancel anytime.';
+        if (refEl) refEl.textContent = isPt ? '≈ R$32,00 · referência' : '';
+        if (noteEl) noteEl.textContent = isPt ? 'Cobrado mensalmente em AUD. Cancele quando quiser.' : 'Billed monthly. Cancel anytime.';
         if (btnMonthly) btnMonthly.classList.add('pbt-active');
         if (btnAnnual) btnAnnual.classList.remove('pbt-active');
       }
