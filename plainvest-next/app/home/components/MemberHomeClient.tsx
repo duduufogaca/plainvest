@@ -149,7 +149,7 @@ export function MemberHomeClient({ firstName, fullName, plan, isPro, memberSince
       try {
         const raw = localStorage.getItem('pv_read_guides');
         const parsed: string[] = raw ? JSON.parse(raw) : [];
-        setReadGuides(Array.isArray(parsed) ? parsed.filter(k => k !== 'welcome') : []);
+        setReadGuides(Array.isArray(parsed) ? parsed.filter(Boolean) : []);
       } catch { setReadGuides([]); }
       try { setLastGuideKey(localStorage.getItem('pv_last_guide')); } catch { /* */ }
       try { setHasPortfolio(localStorage.getItem('pv_portfolio_created') === '1'); } catch { /* */ }

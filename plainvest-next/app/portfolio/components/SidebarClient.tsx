@@ -56,7 +56,7 @@ export function SidebarClient({ displayCurrency, lang, backHref, profileLabel, l
       try {
         const raw = localStorage.getItem('pv_read_guides');
         const parsed: string[] = raw ? JSON.parse(raw) : [];
-        setGuideCount(Array.isArray(parsed) ? parsed.filter(k => k !== 'welcome').length : 0);
+        setGuideCount(Array.isArray(parsed) ? parsed.filter(Boolean).length : 0);
       } catch { setGuideCount(0); }
     }
     sync();
