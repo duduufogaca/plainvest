@@ -28169,6 +28169,19 @@
         -webkit-tap-highlight-color: rgba(0, 212, 170, 0.08) !important;
       }
 
+      /* Member/public visibility in the mobile overlay — keeps a single Book list:
+         members see only the member "Book list", non-members see only public "Books". */
+      .mob-menu-overlay .mob-item.member-content-nav-item {
+        display: none !important;
+      }
+      body.premium-session-active .mob-menu-overlay .mob-item.member-content-nav-item {
+        display: flex !important;
+      }
+      body.premium-session-active .mob-menu-overlay .mob-item.books-public-nav-item,
+      body.premium-session-active .mob-menu-overlay .mob-item.plans-public-nav-item {
+        display: none !important;
+      }
+
       .mob-menu-overlay .mob-item-icon {
         width: 60px !important;
         min-width: 60px !important;
@@ -28506,6 +28519,15 @@
         var item = document.createElement('a');
         item.href = a.getAttribute('href') || '#';
         item.className = 'mob-item' + (li.classList.contains('mob-cta-item') ? ' is-cta' : '');
+        // Carry member/public visibility classes so the overlay matches the desktop
+        // nav (members see only the member "Book list", non-members see only public "Books").
+        ['member-content-nav-item', 'member-booklist-nav-item', 'books-public-nav-item', 'plans-public-nav-item'].forEach(function (c) {
+          if (li.classList.contains(c)) item.classList.add(c);
+        });
+        // Preserve the member Book-list click handler (opens the member books hub)
+        if (li.classList.contains('member-booklist-nav-item')) {
+          item.addEventListener('click', function (e) { e.preventDefault(); try { openMemberBooks(); } catch (err) { } });
+        }
 
         var iconEl = document.createElement('span');
         iconEl.className = 'mob-item-icon';
