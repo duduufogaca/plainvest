@@ -28182,6 +28182,11 @@
         display: none !important;
       }
 
+      /* Create account / Login show only when logged out */
+      body.premium-session-active .mob-menu-overlay .mob-item.mob-auth-item {
+        display: none !important;
+      }
+
       .mob-menu-overlay .mob-item-icon {
         width: 60px !important;
         min-width: 60px !important;
@@ -28558,6 +28563,41 @@
           btn.setAttribute('aria-expanded', 'false');
           overlay.setAttribute('aria-hidden', 'true');
         });
+      });
+
+      // ── Auth actions for logged-out visitors: Create account + Login ──
+      // (hidden once a member session is active — see .mob-auth-item CSS)
+      function navLabel(key, fallback) {
+        try { return (LANG[currentLang] && LANG[currentLang].nav && LANG[currentLang].nav[key]) || fallback; }
+        catch (e) { return fallback; }
+      }
+      [
+        { i18nKey: 'nav.createMember', key: 'createMember', fb: 'Create account', icon: '🆕', cta: true, fn: openMemberSignup },
+        { i18nKey: 'nav.login', key: 'login', fb: 'Login', icon: '🔑', cta: false, fn: openMemberLogin }
+      ].forEach(function (cfg) {
+        var item = document.createElement('a');
+        item.href = '#';
+        item.className = 'mob-item mob-auth-item' + (cfg.cta ? ' is-cta' : '');
+        var iconEl = document.createElement('span');
+        iconEl.className = 'mob-item-icon';
+        iconEl.textContent = cfg.icon;
+        var textEl = document.createElement('span');
+        textEl.className = 'mob-item-text';
+        var labelEl = document.createElement('span');
+        labelEl.className = 'mob-item-label';
+        labelEl.setAttribute('data-i18n', cfg.i18nKey);
+        labelEl.textContent = navLabel(cfg.key, cfg.fb);
+        textEl.appendChild(labelEl);
+        item.appendChild(iconEl);
+        item.appendChild(textEl);
+        item.addEventListener('click', function (e) {
+          overlay.classList.remove('is-open');
+          navEl.classList.remove('menu-open');
+          btn.setAttribute('aria-expanded', 'false');
+          overlay.setAttribute('aria-hidden', 'true');
+          cfg.fn(e);
+        });
+        overlay.appendChild(item);
       });
 
       btn.addEventListener('click', function () {
