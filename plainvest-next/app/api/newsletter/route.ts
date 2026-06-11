@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { sendNewsletterConfirmRequest, sendNewsletterNotification } from '@/lib/email/service';
 import { nextSendAt } from '@/lib/email/newsletter-sequence';
+import { checkRateLimit, clientIp } from '@/lib/rate-limit';
 
 export async function POST(request: Request) {
   let body: Record<string, string>;
@@ -17,7 +18,18 @@ export async function POST(request: Request) {
     page = '/',
     country,
     utmSource,
+    website,
   } = body;
+
+  // Honeypot: hidden "website" field — filled only by bots → silently accept.
+  if (website && website.trim() !== '') {
+    return NextResponse.json({ ok: true });
+  }
+
+  // Rate limit: max 5 sign-ups per IP per hour.
+  if (!(await checkRateLimit(`newsletter:${clientIp(request)}`, 5, 3600))) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+  }
 
   if (!email) {
     return NextResponse.json({ error: 'email is required.' }, { status: 400 });
