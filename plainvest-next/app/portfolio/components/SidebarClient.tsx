@@ -43,7 +43,9 @@ export function SidebarClient({ displayCurrency, lang, backHref, profileLabel, l
 
   const isEN = lang !== 'pt';
   const isPro = plan === 'pro';
-  const publicSiteUrl = process.env.NEXT_PUBLIC_PUBLIC_SITE_URL || 'https://plainvest.app';
+  // Public website home, served same-origin so the member session is preserved
+  // (member_session=1 keeps premium access; no cross-subdomain hop = no re-login).
+  const publicHomeUrl = '/index.html?member_session=1#home';
   const initial = userName ? userName[0].toUpperCase() : '?';
   // Active only when we're actually on a portfolio page — not derived from
   // portfolioHref (which is undefined for non-Pro and wrongly flagged it active).
@@ -171,8 +173,8 @@ export function SidebarClient({ displayCurrency, lang, backHref, profileLabel, l
       {/* ── Navigation ── */}
       <nav className="sb-nav">
 
-        {/* Home — back to the public Plainvest website */}
-        <a href={publicSiteUrl} className="sb-link">
+        {/* Home — public Plainvest website home, session preserved (no re-login) */}
+        <a href={publicHomeUrl} className="sb-link">
           <span className="sb-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
