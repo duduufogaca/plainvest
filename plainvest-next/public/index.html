@@ -6351,6 +6351,18 @@
     }
     .plan-price-ref:empty { display: none; }
 
+    /* Honeypot field — hidden from humans, left for bots to fill (spam trap) */
+    .hp-field {
+      position: absolute !important;
+      left: -9999px !important;
+      top: -9999px !important;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     .plan-price sub {
       font-family: 'Sora', sans-serif;
       font-size: 0.85rem;
@@ -21935,6 +21947,7 @@
               <div class="cf-group">
                 <label class="cf-label" id="fb-lbl-name">Your name</label>
                 <input class="cf-input" type="text" id="fb-name" placeholder="Jane Smith">
+                <input class="hp-field" type="text" id="fb-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
               </div>
               <div class="cf-group">
                 <label class="cf-label" id="fb-lbl-email">Email</label>
@@ -21968,6 +21981,7 @@
               <div class="cf-group">
                 <label class="cf-label" id="pt-lbl-name">Your name</label>
                 <input class="cf-input" type="text" id="pt-name" placeholder="Alex Johnson">
+                <input class="hp-field" type="text" id="pt-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
               </div>
               <div class="cf-group">
                 <label class="cf-label" id="pt-lbl-company">Company / Organisation</label>
@@ -22057,6 +22071,7 @@
         <p data-i18n="footer.captureText">Build investing confidence with beginner-friendly education, practical guidance, and Plainvest updates. No hype. No pressure.</p>
         <div class="footer-capture-row">
           <input id="footer-email-capture" type="email" autocomplete="email" placeholder="you@email.com" aria-label="Email for Plainvest updates">
+          <input id="nl-website" class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button id="footer-email-submit" type="button" onclick="submitNewsletter(event)" data-i18n="footer.captureBtn">Join Plainvest Insights</button>
         </div>
         <div class="footer-capture-success" id="footer-email-success" data-i18n="footer.captureSuccess">Check your email to confirm your subscription.</div>
@@ -26640,6 +26655,7 @@
         email: email,
         topic: topic,
         company: company,
+        website: (document.getElementById(type === 'feedback' ? 'fb-website' : 'pt-website') || {}).value || '',
         message: msg,
         language: currentLang === 'pt' ? 'Portuguese' : 'English',
         page: window.location.href
@@ -26694,6 +26710,7 @@
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: email,
+            website: (document.getElementById('nl-website') || {}).value || '',
             language: currentLang === 'pt' ? 'Portuguese' : 'English',
             page: window.location.href
           })

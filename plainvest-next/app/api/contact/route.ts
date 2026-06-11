@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sendContactNotification, sendContactConfirmation } from '@/lib/email/service';
+import { checkRateLimit, clientIp } from '@/lib/rate-limit';
 
 export async function POST(request: Request) {
   let body: Record<string, string>;
@@ -9,7 +10,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid JSON.' }, { status: 400 });
   }
 
-  const { name, email, message, topic, company, language = 'en', page = '/', formType = 'Contact form' } = body;
+  const { name, email, message, topic, company, website, language = 'en', page = '/', formType = 'Contact form' } = body;
+
+  // Honeypot: the hidden "website" field is invisible to humans. If it's filled,
+  // silently accept (so the bot believes it worked) but send nothing.
+  if (website && website.trim() !== '') {
+    return NextResponse.json({ ok: true });
+  }
+
+  // Rate limit: max 5 submissions per IP per hour.
+  if (!(await checkRateLimit(`contact:${clientIp(request)}`, 5, 3600))) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+  }
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: 'name, email, and message are required.' }, { status: 400 });
