@@ -13272,6 +13272,7 @@
       color: var(--ink-soft);
       transition: color 0.2s;
       position: relative;
+      white-space: nowrap;
     }
 
     nav ul li a:hover {
@@ -13301,6 +13302,17 @@
 
     nav ul li a.is-active::after {
       transform: scaleX(1);
+    }
+
+    /* Portuguese nav labels are longer ("Lista de livros", "Hub Premium") —
+       tighten gap/size so the bar stays on one tidy single line instead of wrapping. */
+    html[lang="pt-BR"] nav ul {
+      gap: 1rem;
+    }
+
+    html[lang="pt-BR"] nav ul li a {
+      font-size: 0.78rem;
+      letter-spacing: 0;
     }
 
     .nav-cta {
