@@ -27241,9 +27241,9 @@
         var greeting;
         if (currentLang === 'pt') {
           var ptWord = gender === 'female' ? 'Bem-vinda' : 'Bem-vindo';
-          greeting = ptWord + ' de volta, <span>' + firstName + '</span>';
+          greeting = ptWord + ' de volta, <span>' + escHtml(firstName) + '</span>';
         } else {
-          greeting = 'Welcome back, <span>' + firstName + '</span>';
+          greeting = 'Welcome back, <span>' + escHtml(firstName) + '</span>';
         }
         el.innerHTML = greeting;
         el.style.display = 'block';
@@ -27263,9 +27263,9 @@
         var g = (typeof getMemberGender === 'function') ? getMemberGender() : '';
         var html;
         if (typeof currentLang !== 'undefined' && currentLang === 'pt') {
-          html = 'Olá, <span>' + firstName + '</span>. Vamos construir sua base de investimentos.';
+          html = 'Olá, <span>' + escHtml(firstName) + '</span>. Vamos construir sua base de investimentos.';
         } else {
-          html = 'Welcome, <span>' + firstName + '</span>. Let\'s build your investing foundation.';
+          html = 'Welcome, <span>' + escHtml(firstName) + '</span>. Let\'s build your investing foundation.';
         }
         el.innerHTML = html;
         el.style.display = 'block';
