@@ -8,6 +8,7 @@ export async function GET(request: Request) {
   const code = requestUrl.searchParams.get('code');
   const rawNext = requestUrl.searchParams.get('next') || '/dashboard';
   const next = rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : '/dashboard';
+  let dest = next;
 
   if (code) {
     const supabase = await createClient();
@@ -23,12 +24,16 @@ export async function GET(request: Request) {
       // after sign-up (created within the last 10 minutes).
       const createdAt = user.created_at ? new Date(user.created_at).getTime() : 0;
       const isFreshSignup = createdAt > 0 && (Date.now() - createdAt) < 10 * 60 * 1000;
-      if (isFreshSignup && user.email) {
-        const name = user.user_metadata?.full_name || '';
-        sendWelcomeEmail(user.email, name).catch(() => {});
+      if (isFreshSignup) {
+        // Flag the landing so the client fires the Google Ads "Sign-up" conversion once.
+        dest = '/dashboard?signup=confirmed';
+        if (user.email) {
+          const name = user.user_metadata?.full_name || '';
+          sendWelcomeEmail(user.email, name).catch(() => {});
+        }
       }
     }
   }
 
-  return NextResponse.redirect(new URL(next, requestUrl.origin));
+  return NextResponse.redirect(new URL(dest, requestUrl.origin));
 }
