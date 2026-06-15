@@ -27320,7 +27320,8 @@
       catch (e) { return; }
       var hasMemberSession = params.get('member_session') === '1';
       var supportCallPaid = params.get('support_call_paid') === '1';
-      if (!hasMemberSession && !supportCallPaid) return;
+      var purchaseSuccess = params.get('purchase') === 'success';
+      if (!hasMemberSession && !supportCallPaid && !purchaseSuccess) return;
       if (hasMemberSession) {
         premiumSessionUrlRequested = true;
         clearGuideProgress();
@@ -27331,6 +27332,16 @@
         catch (e) { }
         document.body.classList.add('support-call-paid');
         params.delete('support_call_paid');
+      }
+      if (purchaseSuccess) {
+        // Fire the Google Ads "Purchase" conversion once (Lifetime buyers land here).
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', { send_to: 'AW-18234441233/zXjzCNqQ970cEJH87fZD', transaction_id: params.get('txn') || '' });
+          }
+        } catch (e) { }
+        params.delete('purchase');
+        params.delete('txn');
       }
       var cleanSearch = params.toString();
       var cleanUrl = window.location.pathname + (cleanSearch ? '?' + cleanSearch : '') + window.location.hash;

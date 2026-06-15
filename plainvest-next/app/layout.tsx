@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import Script from 'next/script';
+import { ConversionTracker } from './components/ConversionTracker';
 import './globals.css';
 
 const GOOGLE_ADS_ID = 'AW-18234441233';
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
             gtag('js', new Date());
             gtag('config', '${GOOGLE_ADS_ID}');`}
         </Script>
+        <ConversionTracker />
         {children}
       </body>
     </html>

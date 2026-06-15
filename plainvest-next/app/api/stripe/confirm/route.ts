@@ -76,7 +76,12 @@ export async function GET(request: Request) {
     posthog.capture({ distinctId: user.id, event: 'payment_confirmed', properties: { product: 'plainvest_premium_access', plan } });
     await posthog.shutdown();
 
-    return redirectTo(plan === 'pro' ? '/portfolio' : '/index.html?member_session=1#member', request);
+    // Flag the landing so the client fires the Google Ads "Purchase" conversion once.
+    const txn = encodeURIComponent(session.id);
+    const dest = plan === 'pro'
+      ? `/portfolio?purchase=success&txn=${txn}`
+      : `/index.html?member_session=1&purchase=success&txn=${txn}#member`;
+    return redirectTo(dest, request);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to confirm Stripe payment.';
     console.error('Plainvest Stripe confirmation failed:', message);
