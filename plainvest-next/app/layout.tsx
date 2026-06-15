@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import Script from 'next/script';
 import './globals.css';
+
+const GOOGLE_ADS_ID = 'AW-18234441233';
 
 export const metadata: Metadata = {
   title: 'Plainvest Members',
@@ -40,7 +43,20 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#071120" />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* Google tag (gtag.js) — Google Ads conversion tracking */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
