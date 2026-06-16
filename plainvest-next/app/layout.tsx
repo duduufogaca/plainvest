@@ -5,6 +5,7 @@ import { ConversionTracker } from './components/ConversionTracker';
 import './globals.css';
 
 const GOOGLE_ADS_ID = 'AW-18234441233';
+const GA4_ID = 'G-WJML2VCFSH';
 
 export const metadata: Metadata = {
   title: 'Plainvest Members',
@@ -54,7 +55,8 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           {`window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GOOGLE_ADS_ID}');`}
+            gtag('config', '${GOOGLE_ADS_ID}');
+            gtag('config', '${GA4_ID}');`}
         </Script>
         <ConversionTracker />
         {children}
