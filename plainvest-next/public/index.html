@@ -27928,7 +27928,13 @@
         syncMobileSimulatorLayout();
         setCountry('us', document.querySelector('.cs-flag.active'));
         var _savedLang = 'en';
-        try { var _s = localStorage.getItem('plainvest-lang'); if (_s === 'pt' || _s === 'en') _savedLang = _s; } catch (e) { }
+        try {
+          // ?lang= in the URL wins (lets PT ads land in Portuguese); else saved choice.
+          var _urlLang = new URLSearchParams(window.location.search).get('lang');
+          if (_urlLang === 'pt' || _urlLang === 'pt-BR') _savedLang = 'pt';
+          else if (_urlLang === 'en') _savedLang = 'en';
+          else { var _s = localStorage.getItem('plainvest-lang'); if (_s === 'pt' || _s === 'en') _savedLang = _s; }
+        } catch (e) { }
         var _langBtn = null;
         document.querySelectorAll('.lang-btn').forEach(function (b) {
           if ((b.getAttribute('onclick') || '').indexOf("'" + _savedLang + "'") !== -1) _langBtn = b;
@@ -27949,6 +27955,22 @@
           updateYearUI(this.value);
           simulate();
         });
+
+        // Ad signal: fire a GA4 / Google Ads "simulator_engaged" event once, the first
+        // time the visitor actively interacts with the simulator (a strong soft-conversion
+        // for ad optimisation — import it as a conversion from GA4).
+        (function () {
+          var fired = false;
+          function fireEngaged() {
+            if (fired) return; fired = true;
+            try { if (typeof gtag === 'function') gtag('event', 'simulator_engaged', { event_category: 'simulator' }); } catch (e) { }
+          }
+          ['sInit', 'sMo', 'yrRange'].forEach(function (id) {
+            var e = document.getElementById(id); if (e) e.addEventListener('input', fireEngaged);
+          });
+          document.querySelectorAll('.cs-flag').forEach(function (e) { e.addEventListener('click', fireEngaged); });
+          var ig = document.getElementById('invGrid'); if (ig) ig.addEventListener('click', fireEngaged);
+        })();
 
         el = document.getElementById('infYearRange');
         if (el) {
