@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { getPostHogClient } from '@/lib/posthog-server';
-import { sendWelcomeEmail } from '@/lib/email/service';
+import { sendWelcomeEmail, sendAdminNewUser } from '@/lib/email/service';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -29,7 +29,10 @@ export async function GET(request: Request) {
         dest = '/dashboard?signup=confirmed';
         if (user.email) {
           const name = user.user_metadata?.full_name || '';
+          const date = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
           sendWelcomeEmail(user.email, name).catch(() => {});
+          // Admin "new user" notification — only for confirmed (real) signups.
+          sendAdminNewUser({ name: name || user.email, email: user.email, date }).catch(() => {});
         }
       }
     }
