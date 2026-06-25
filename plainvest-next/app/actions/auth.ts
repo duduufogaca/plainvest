@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getPremiumAccess } from '@/lib/premium';
 import { redirect } from 'next/navigation';
 import { getPostHogClient } from '@/lib/posthog-server';
-import { sendPasswordChangedEmail, sendAdminNewUser } from '@/lib/email/service';
+import { sendPasswordChangedEmail } from '@/lib/email/service';
 
 function getOrigin() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
@@ -96,12 +96,9 @@ export async function signUp(formData: FormData) {
     posthog.identify({ distinctId: data.user.id, properties: { email: data.user.email } });
     posthog.capture({ distinctId: data.user.id, event: 'user_signed_up' });
     await posthog.shutdown();
-
-    const name = data.user.user_metadata?.full_name || '';
-    const date = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-    // Welcome email is sent AFTER the user confirms (in /auth/callback) so it
-    // doesn't arrive before the confirmation email. Admin notify on signup.
-    sendAdminNewUser({ name: name || email, email, date }).catch(() => {});
+    // The Welcome email AND the admin "new user" notification are both sent only
+    // AFTER the user confirms their email (in /auth/callback), so unconfirmed/bot
+    // signups never trigger them.
   }
 
   redirect('/login?message=Check your email to confirm your account.');
